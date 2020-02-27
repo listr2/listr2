@@ -36,7 +36,7 @@ export interface ListrEvent {
 
 export interface ListrRenderer {
   render(): void;
-  end(err: Error): void;
+  end(err?: Error): void;
 }
 
 export interface ListrTask<Ctx = ListrContext> {

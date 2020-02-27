@@ -1,6 +1,6 @@
 import * as pMap from 'p-map'
 
-import { ListrClass, ListrTask, ListrOptions, ListrContext } from './interfaces/listr-task.interface'
+import { ListrClass, ListrTask, ListrOptions, ListrContext, ListrRendererClass, ListrTaskObject, ListrRenderer } from './interfaces/listr-task.interface'
 
 const ListrError = require('./lib/listr-error')
 const renderer = require('./lib/renderer')
@@ -16,30 +16,22 @@ const runTask = (task, context, errors) => {
 }
 
 export class Listr implements ListrClass {
+  private concurrency: number
+  private renderer: ListrRenderer
+  private rendererClass: ListrRendererClass<any>
+  private exitOnError: boolean
 
-  constructor (tasks: readonly ListrTask<ListrContext>[], opts: ListrOptions) {
+  constructor (private tasks: ListrTaskObject<ListrContext>[], private options: ListrOptions) {
 
-    if (tasks && !Array.isArray(tasks) && typeof tasks === 'object') {
-      if (typeof tasks.task === 'function') {
-        throw new TypeError('Expected an array of tasks or an options object, got a task object.')
-      }
-
-      opts = tasks
-      tasks = []
-    }
-
-    if (tasks && !Array.isArray(tasks)) {
-      throw new TypeError('Expected an array of tasks.')
-    }
-
+    // assign over default options
     this.options = Object.assign({
       showSubtasks: true,
       concurrent: false,
       renderer: 'default',
       nonTTYRenderer: 'verbose'
-    }, opts)
-    this.tasks = []
+    }, options)
 
+    // define parallel options
     this.concurrency = 1
     if (this.options.concurrent === true) {
       this.concurrency = Infinity
@@ -47,56 +39,28 @@ export class Listr implements ListrClass {
       this.concurrency = this.options.concurrent
     }
 
+    // get renderer class
     this.rendererClass = renderer.getRenderer(this.options.renderer, this.options.nonTTYRenderer)
 
+    // get exit on error option
     this.exitOnError = this.options.exitOnError
 
+    // parse and add tasks
     this.add(tasks || [])
   }
 
-  _checkAll (context) {
-    for (const task of this.tasks) {
-      task.check(context)
-    }
-  }
-
-  get tasks () {
-    return this.tasks
-  }
-
-  setRenderer (value) {
-    this.rendererClass = renderer.getRenderer(value)
-  }
-
-  add (task) {
-    const tasks = Array.isArray(task) ? task : [task]
-
-    for (const task of tasks) {
-      this.tasks.push(new Task(this, task, this.options))
-    }
-
-    return this
-  }
-
-  render () {
-    if (!this.renderer) {
-      this.renderer = new this.rendererClass(this.tasks, this.options)
-    }
-
-    return this.renderer.render()
-  }
-
-  run (context) {
+  public run <Ctx> (context: Ctx): Promise<Ctx> {
     this.render()
 
     context = context || Object.create(null)
 
     const errors = []
 
-    this._checkAll(context)
+    this.checkAll(context)
 
     const tasks = pMap(this.tasks, (task) => {
-      this._checkAll(context)
+      this.checkAll(context)
+
       return runTask(task, context, errors)
     }, { concurrency: this.concurrency })
 
@@ -118,6 +82,29 @@ export class Listr implements ListrClass {
         throw error
       })
   }
-}
 
-module.exports = Listr
+  private checkAll (context): void {
+    for (const task of this.tasks) {
+      task.check(context)
+    }
+  }
+
+  private add <Ctx> (task: ListrTaskObject<Ctx> | ListrTaskObject<Ctx>[]): Listr {
+    const tasks = Array.isArray(task) ? task : [task]
+
+    for (const task of tasks) {
+      this.tasks.push(new Task(this, task, this.options))
+    }
+
+    return this
+  }
+
+  private render (): void {
+    if (!this.renderer) {
+      this.renderer = new this.rendererClass(this.tasks, this.options)
+    }
+
+    return this.renderer.render()
+  }
+
+}
