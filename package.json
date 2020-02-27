@@ -10,11 +10,25 @@
 		"url": "github.com/SamVerschueren"
 	},
 	"engines": {
-		"node": ">=6"
+		"node": ">=10.0.0"
 	},
 	"scripts": {
 		"test": "clinton && xo && nyc ava",
-		"lint:staged": "lint-staged"
+		"lint": "eslint --ext .json,.ts,.js --fix src/**",
+		"dev:lint": "lint-staged"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn run dev:lint"
+		}
+	},
+	"lint-staged": {
+		"src/*.{ts,js}": [
+			"eslint --fix"
+		],
+		"src/*.{json}": [
+			"eslint --fix"
+		]
 	},
 	"files": [
 		"index.js",
@@ -43,32 +57,17 @@
 		"is-promise": "^2.1.0",
 		"is-stream": "^1.1.0",
 		"listr-silent-renderer": "^1.1.1",
-		"listr-update-renderer": "^0.5.0",
-		"listr-verbose-renderer": "^0.5.0",
 		"p-map": "^2.0.0",
 		"rxjs": "^6.3.3"
 	},
 	"devDependencies": {
-		"ava": "*",
-		"clinton": "*",
-		"codecov": "^3.1.0",
-		"delay": "^4.1.0",
-		"hook-std": "^1.1.0",
+		"@typescript-eslint/eslint-plugin": "^2.21.0",
+		"@typescript-eslint/parser": "^2.21.0",
+		"eslint": "^6.8.0",
+		"eslint-plugin-import": "^2.20.1",
+		"husky": "^4.2.3",
 		"lint-staged": "^8.0.5",
-		"log-symbols": "^2.2.0",
-		"nyc": "^13.1.0",
-		"pre-commit": "^1.2.2",
-		"split": "^1.0.1",
-		"xo": "*",
-		"zen-observable": "^0.8.11"
-	},
-	"lint-staged": {
-		"*.js": "xo"
-	},
-	"pre-commit": "lint:staged",
-	"xo": {
-		"rules": {
-			"prefer-destructuring": "off"
-		}
+		"ts-node": "^8.6.2",
+		"typescript": "^3.8.2"
 	}
 }

@@ -1,0 +1,82 @@
+Arguments: 
+  /usr/bin/node /usr/bin/yarn add -D husky
+
+PATH: 
+  /opt/puppetlabs/bin:/opt/puppetlabs/bin:/home/cenk/.local/bin:/opt/puppetlabs/bin:/home/cenk/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/opt/yarn-[version]/bin:/home/cenk/.yarn/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/yarn-[version]/bin:/home/cenk/.yarn/bin:/opt/yarn-[version]/bin:/home/cenk/.yarn/bin
+
+Yarn version: 
+  1.22.0
+
+Node version: 
+  13.7.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/cenk/Documents/work/listr/package.json: Unexpected token } in JSON at position 903
+      at JSON.parse (<anonymous>)
+      at /usr/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+  	"name": "listr",
+  	"version": "0.14.3",
+  	"description": "Terminal task list",
+  	"license": "MIT",
+  	"repository": "SamVerschueren/listr",
+  	"author": {
+  		"name": "Sam Verschueren",
+  		"email": "sam.verschueren@gmail.com",
+  		"url": "github.com/SamVerschueren"
+  	},
+  	"engines": {
+  		"node": ">=10.0.0"
+  	},
+  	"scripts": {
+  		"test": "clinton && xo && nyc ava",
+  		"lint:staged": "lint-staged"
+  	},
+  	"files": [
+  		"index.js",
+  		"lib"
+  	],
+  	"keywords": [
+  		"cli",
+  		"task",
+  		"list",
+  		"tasklist",
+  		"terminal",
+  		"term",
+  		"console",
+  		"ascii",
+  		"unicode",
+  		"loading",
+  		"indicator",
+  		"progress",
+  		"busy",
+  		"wait",
+  		"idle"
+  	],
+  	"dependencies": {
+  		"@samverschueren/stream-to-observable": "^0.3.0",
+  		"is-observable": "^1.1.0",
+  		"is-promise": "^2.1.0",
+  		"is-stream": "^1.1.0",
+  		"listr-silent-renderer": "^1.1.1",
+  		"p-map": "^2.0.0",
+  		"rxjs": "^6.3.3"
+  	},
+  	"devDependencies": {
+  		"lint-staged": "^8.0.5"
+  	},
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
