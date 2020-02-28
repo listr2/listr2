@@ -63,7 +63,7 @@ export class MultiLineRenderer implements ListrRenderer {
           if (typeof data === 'string') {
             // indent and color
             data.split('\n').filter(Boolean).forEach((line, i) => {
-              output.push(`${cliTruncate(indentString(`${i === 0 ? figures.arrowRight : ' '} ${line}`, (level+1) * 2), process.stdout.columns - 3)}`)
+              output.push(`${cliTruncate(indentString(`${i === 0 ? figures.arrowRight : ' '} ${line}`, (level + 1) * 2), process.stdout.columns - 3)}`)
             })
           }
         }
