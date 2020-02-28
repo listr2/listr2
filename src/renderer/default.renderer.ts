@@ -13,13 +13,9 @@ import { ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/list
 export class MultiLineRenderer implements ListrRenderer {
   static nonTTY = false
   private id?: NodeJS.Timeout
+  private indentation = 2
 
-  constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {
-    this.options = Object.assign({
-      showSubtasks: true,
-      collapse: true
-    }, this.options)
-  }
+  constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) { }
 
   public render (): void {
     // hide cursor
@@ -51,19 +47,17 @@ export class MultiLineRenderer implements ListrRenderer {
 
     for (const task of tasks) {
       if (task.isEnabled()) {
-        // SKIPPED TASK
-        const skipped = task.isSkipped() ? `${chalk.dim('[skipped]')}` : ''
-
         // CURRENT TASK TITLE
-        output.push(cliTruncate(indentString(`${this.getSymbol(task, this.options)}  ${task.title} ${skipped}`, level * 2), process.stdout.columns - 3))
+        const taskTitle = !task.isSkipped() ? task.title : `${task.output} ${chalk.dim('[SKIPPED]')}`
+        output.push(this.formatString(taskTitle, this.getSymbol(task, this.options), level))
 
         // CURRENT TASK OUTPUT
-        if ((task.isPending() || task.isSkipped()) && task?.output) {
-          const data = task.output
-          if (typeof data === 'string') {
+        if (task.isPending() && task?.output) {
+          if (typeof task.output === 'string') {
             // indent and color
-            data.split('\n').filter(Boolean).forEach((line, i) => {
-              output.push(`${cliTruncate(indentString(`${i === 0 ? figures.arrowRight : ' '} ${line}`, (level + 1) * 2), process.stdout.columns - 3)}`)
+            task.output.split('\n').filter(Boolean).forEach((line, i) => {
+              const icon = i === 0 ? figures.pointerSmall : ' '
+              output.push(this.formatString(line, icon, level +1))
             })
           }
         }
@@ -76,6 +70,10 @@ export class MultiLineRenderer implements ListrRenderer {
     }
 
     return output.join('\n')
+  }
+
+  private formatString (string: string, icon: string, level: number): string {
+    return `${cliTruncate(indentString(`${icon} ${string}`, (level) * this.indentation), process.stdout.columns - 3)}`
   }
 
   private getSymbol (task, options): string {
@@ -99,6 +97,6 @@ export class MultiLineRenderer implements ListrRenderer {
       return chalk.yellow(figures.arrowDown)
     }
 
-    return chalk.white(figures.squareSmallFilled)
+    return chalk.dim(figures.squareSmallFilled)
   }
 }

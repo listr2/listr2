@@ -1,0 +1,35 @@
+# Source Code
+.gitlab-ci.yml
+.drone.yml
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+
+# Node Package Manager
+.npm
+.npmrc
+
+# eslint
+.eslintrc*
+
+# Logs
+logs
+*.log
+*-debug.log*
+*-error.log*
+/.nyc_output
+
+# yarn
+yarn.lock
+
+# tsbuild
+tsconfig.tsbuildinfo

@@ -1,37 +1,37 @@
-import { Observable, Subject } from 'rxjs'
+import * as sttoob from '@samverschueren/stream-to-observable'
+import { Subject, Observable } from 'rxjs'
+import { Stream } from 'stream'
 
+import { stateConstants } from '../constants/state.constants'
 import { ListrError } from '../interfaces/listr-error'
-import { ListrContext, ListrOptions, ListrTask, ListrTaskObject, ListrTaskResult, ListrTaskWrapper } from '../interfaces/listr-task.interface'
+import { ListrContext, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper } from '../interfaces/listr-task.interface'
 import { getRenderer } from '../utils/renderer'
-import { stateConstants } from '../utils/state'
 import { Listr } from './../index'
 import { TaskType } from './task.constants'
 
-const streamToObservable = require('@samverschueren/stream-to-observable')
-const isPromise = require('is-promise')
+export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<ListrContext> {
+  public title: ListrTaskObject<Ctx>['title']
+  public output: ListrTaskObject<Ctx>['output']
+  public task: ListrTaskObject<Ctx>['task']
+  public skip: ListrTaskObject<Ctx>['skip']
+  public subtasks: ListrTaskObject<Ctx>['subtasks']
+  public state: ListrTaskObject<Ctx>['state']
+  public enabled: ListrTaskObject<Ctx>['enabled']
+  public hidden: ListrTaskObject<Ctx>['hidden']
+  public enabledFn: ListrTask['enabled']
+  public hiddenFn: ListrTask['hidden']
 
-const utils = require('../../lib/utils')
-
-export class Task extends Subject<ListrContext> implements ListrTaskObject<ListrContext> {
-  public title: string
-  public output?: string
-  public task: (ListrContext: ListrContext, task: ListrTaskWrapper<ListrContext>) => void |ListrTaskResult<ListrContext>
-  public skip: (ListrContext?: ListrContext) => void | boolean | string | Promise<boolean>
-  public subtasks: ListrTaskObject<ListrContext>[]
-  public state: string
-  public enabled: boolean
-  public enabledFn: (ctx: ListrContext) => boolean | Promise<boolean> | Observable<boolean>
-
-  constructor (public listr: Listr, public tasks: ListrTask, public options: ListrOptions) {
+  constructor (public listr: Listr<Ctx>, public tasks: ListrTask, public options: ListrOptions) {
 
     super()
 
-    this.title = this.tasks.title
+    // move to private parameters
+    this.title = this.tasks?.title
     this.task = this.tasks.task
-
+    // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
-    this.enabledFn = this.tasks.enabled || ((): boolean => true)
-
+    this.enabledFn = this.tasks?.enabled  || ((): boolean => true)
+    this.hidden = this.tasks?.hidden
   }
 
   set state$ (state) {
@@ -42,19 +42,20 @@ export class Task extends Subject<ListrContext> implements ListrTaskObject<Listr
     })
   }
 
-  check (ctx: ListrContext): void {
+  async check (ctx: Ctx): Promise<void> {
     // Check if a task is enabled or disabled
-    if (this.state === undefined && this.enabledFn) {
-      const isEnabled = this.enabledFn(ctx)
+    if (this.state === undefined) {
 
-      if (this.enabled !== isEnabled) {
-        this.enabled = isEnabled as boolean
-
-        this.next({
-          type: TaskType.ENABLED,
-          data: this.enabled
-        })
+      if (typeof this.enabledFn === 'function') {
+        this.enabled = await this.enabledFn(ctx)
+      } else {
+        this.enabled = this.enabledFn
       }
+
+      this.next({
+        type: TaskType.ENABLED,
+        data: this.enabled
+      })
     }
   }
 
@@ -82,11 +83,15 @@ export class Task extends Subject<ListrContext> implements ListrTaskObject<Listr
     return this.enabled
   }
 
-  run (context: ListrContext, wrapper: ListrTaskWrapper<ListrContext>): Promise<void> {
-    const handleResult = (result): Promise<void> => {
-      // Detect the subtask
+  isHidden (): boolean {
+    return this.hidden
+  }
+
+  async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx>): Promise<void> {
+    const handleResult = async (result): Promise<void> => {
       if (result instanceof Listr) {
-        // assign subtask options
+        // Detect the subtask
+        // assign options
         result.options = Object.assign(this.options, result.options)
 
         // assign exit on error
@@ -103,15 +108,17 @@ export class Task extends Subject<ListrContext> implements ListrTaskObject<Listr
         })
 
         return result.run(context)
-      }
+      } else if (result instanceof Promise) {
+        // Detect promise
+        const response = await result
+        return handleResult(response)
 
-      // Detect stream
-      if (utils.isStream(result)) {
-        result = streamToObservable(result)
-      }
+      } else if (result instanceof Stream.Readable) {
+        // Detect stream
+        result = sttoob(result)
 
-      // Detect Observable
-      if (utils.isObservable(result)) {
+      } else if (result instanceof Observable) {
+        // Detect Observable
         result = new Promise((resolve, reject) => {
           result.subscribe({
             next: (data) => {
@@ -128,67 +135,48 @@ export class Task extends Subject<ListrContext> implements ListrTaskObject<Listr
         })
       }
 
-      // Detect promise
-      if (isPromise(result)) {
-        return result.then(handleResult)
-      }
-
       return result
     }
 
-    return Promise.resolve()
-      .then(() => {
-        this.state$ = stateConstants.PENDING
-        return this.skip(context)
-      })
-      .then((skipped) => {
-        if (skipped) {
-          if (typeof skipped === 'string') {
-            this.output = skipped
-          }
-          this.state$ = stateConstants.SKIPPED
-          return
-        }
+    // finish the task first
+    // await Promise.resolve()
+    this.state$ = stateConstants.PENDING
 
-        return handleResult(this.task(context, wrapper))
-      })
-      .then(() => {
-        if (this.isPending()) {
-          this.state$ = stateConstants.COMPLETED
-        }
-      })
-      .catch((error) => {
-        this.state$ = stateConstants.FAILED
+    // check if this function wants to be skipped
+    const skipped = this.skip(context)
+    if (skipped) {
+      if (typeof skipped === 'string') {
+        this.output = skipped
+      }
+      this.state$ = stateConstants.SKIPPED
+      return
+    }
 
-        if (error instanceof ListrError) {
-          // if (typeof error === 'string') {
-          //   this.title = error
-          // }
+    try {
+      // handle the results
+      await handleResult(this.task(context, wrapper))
+      if (this.isPending()) {
+        this.state$ = stateConstants.COMPLETED
+      }
+    } catch (error) {
+      // mark task as failed
+      this.state$ = stateConstants.FAILED
 
-          wrapper.report(error)
-          return
-        }
+      // show error message
+      this.title = error.message
 
-        if (!this.hasSubtasks()) {
-          // Do not show the message if we have subtasks as the error is already shown in the subtask
-          this.output = error.message
-        }
+      // report error
+      wrapper.report(error)
 
-        this.next({
-          type: TaskType.DATA,
-          data: error.message
-        })
+      // if problem is with listr throw it immediately
+      // Do not exit when explicitely set to `false`
+      if (this.options.exitOnError !== false || error instanceof ListrError) {
+        throw error
+      }
 
-        wrapper.report(error)
-
-        if (this.options.exitOnError !== false) {
-          // Do not exit when explicitely set to `false`
-          throw error
-        }
-      })
-      .then(() => {
-        // Mark the Observable as completed
-        this.complete()
-      })
+    } finally {
+      // Mark the observable as completed
+      this.complete()
+    }
   }
 }

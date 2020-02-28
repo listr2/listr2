@@ -1,12 +1,11 @@
 import { ListrError } from '../interfaces/listr-error'
 import { ListrTaskWrapper } from './../interfaces/listr-task.interface'
-import { stateConstants } from './../utils/state';
+import { stateConstants } from '../constants/state.constants';
 import { Task } from './task'
 
-export class TaskWrapper implements ListrTaskWrapper {
+export class TaskWrapper<Ctx> implements ListrTaskWrapper {
 
-  constructor (public task: Task, public errors: ListrError[]) {
-  }
+  constructor (public task: Task<Ctx>, public errors: ListrError[]) {}
 
   set title (title) {
     this.task.title = title
@@ -30,13 +29,13 @@ export class TaskWrapper implements ListrTaskWrapper {
     })
   }
 
-  report (error): void {
+  public report (error): void {
     if (error instanceof ListrError) {
       this.errors.push(error)
     }
   }
 
-  skip (message): void {
+  public skip (message): void {
     if (message && typeof message !== 'string') {
       throw new TypeError(`Expected \`message\` to be of type \`string\`, got \`${typeof message}\``)
     }
@@ -48,7 +47,7 @@ export class TaskWrapper implements ListrTaskWrapper {
     this.task.state = stateConstants.SKIPPED
   }
 
-  run (ctx): Promise<void> {
+  public run (ctx): Promise<void> {
     return this.task.run(ctx, this)
   }
 }
