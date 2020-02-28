@@ -14,7 +14,6 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/explicit-function-return-type": "error",
     "object-curly-spacing": [
       "error",
@@ -25,7 +24,6 @@
       "unix"
     ],
     "sort-imports": "off",
-    "semi": ["error", "never"],
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
