@@ -13,17 +13,11 @@ steps:
     commands:
       - yarn --frozen-lockfile
       - yarn lint
-    volumes:
-      - name: cache
-        path: /drone/src
 
   - name: transpile
     image: node:current-alpine
     commands:
       - yarn build
-    volumes:
-      - name: cache
-        path: /drone/src
 
   - name: publish
     image: node:current-alpine
@@ -37,10 +31,3 @@ steps:
         from_secret: NPM_USERNAME
       NPM_PASSWORD:
         from_secret: NPM_PASSWORD
-    volumes:
-      - name: cache
-        path: /drone/src
-
-volumes:
-  - name: cache
-    temp: {}
