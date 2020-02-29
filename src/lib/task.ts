@@ -1,15 +1,14 @@
 import * as sttoob from '@samverschueren/stream-to-observable'
-import { Subject, Observable } from 'rxjs'
+import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
 
 import { stateConstants } from '../constants/state.constants'
 import { ListrError } from '../interfaces/listr-error'
-import { ListrContext, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper } from '../interfaces/listr-task.interface'
+import { ListrContext, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper , ListrEvent, StateConstants } from '../interfaces/listr-task.interface'
 import { getRenderer } from '../utils/renderer'
 import { Listr } from './../index'
-import { TaskType } from './task.constants'
 
-export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<ListrContext> {
+export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext> {
   public title: ListrTaskObject<Ctx>['title']
   public output: ListrTaskObject<Ctx>['output']
   public task: ListrTaskObject<Ctx>['task']
@@ -17,9 +16,8 @@ export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<
   public subtasks: ListrTaskObject<Ctx>['subtasks']
   public state: ListrTaskObject<Ctx>['state']
   public enabled: ListrTaskObject<Ctx>['enabled']
-  public hidden: ListrTaskObject<Ctx>['hidden']
+  public bottomBar: ListrTaskObject<Ctx>['bottomBar']
   public enabledFn: ListrTask['enabled']
-  public hiddenFn: ListrTask['hidden']
 
   constructor (public listr: Listr<Ctx>, public tasks: ListrTask, public options: ListrOptions) {
 
@@ -30,15 +28,16 @@ export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<
     this.task = this.tasks.task
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
+    this.bottomBar = this.tasks?.bottomBar
     this.enabledFn = this.tasks?.enabled  || ((): boolean => true)
-    this.hidden = this.tasks?.hidden
   }
 
-  set state$ (state) {
+  set state$ (state: StateConstants) {
     this.state = state
 
     this.next({
-      type: TaskType.STATE
+      type: 'STATE',
+      data: state
     })
   }
 
@@ -53,7 +52,7 @@ export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<
       }
 
       this.next({
-        type: TaskType.ENABLED,
+        type: 'ENABLED',
         data: this.enabled
       })
     }
@@ -83,19 +82,23 @@ export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<
     return this.enabled
   }
 
-  isHidden (): boolean {
-    return this.hidden
+  isBottomBar (): boolean {
+    return this.bottomBar
+  }
+
+  hasTitle (): boolean {
+    return typeof this?.title === 'string'
   }
 
   async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx>): Promise<void> {
-    const handleResult = async (result): Promise<void> => {
+    const handleResult = (result): Promise<void> => {
       if (result instanceof Listr) {
         // Detect the subtask
         // assign options
         result.options = Object.assign(this.options, result.options)
 
         // assign exit on error
-        result.exitOnError = result.options.exitOnError
+        result.exitOnError = result.options?.exitOnError
 
         // switch to silent renderer since already rendering
         result.rendererClass = getRenderer('silent')
@@ -104,14 +107,14 @@ export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<
         this.subtasks = result.tasks
 
         this.next({
-          type: TaskType.SUBTASK
+          type: 'SUBTASK'
         })
 
-        return result.run(context)
+        result = result.run(context)
+
       } else if (result instanceof Promise) {
         // Detect promise
-        const response = await result
-        return handleResult(response)
+        result = result.then(handleResult)
 
       } else if (result instanceof Stream.Readable) {
         // Detect stream
@@ -125,7 +128,7 @@ export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<
               this.output = data
 
               this.next({
-                type: TaskType.DATA,
+                type: 'DATA',
                 data
               })
             },
@@ -147,6 +150,8 @@ export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<
     if (skipped) {
       if (typeof skipped === 'string') {
         this.output = skipped
+      } else if (this.hasTitle()) {
+        this.output = this.title
       }
       this.state$ = stateConstants.SKIPPED
       return
@@ -155,22 +160,30 @@ export class Task<Ctx> extends Subject<ListrContext> implements ListrTaskObject<
     try {
       // handle the results
       await handleResult(this.task(context, wrapper))
+
       if (this.isPending()) {
         this.state$ = stateConstants.COMPLETED
       }
+
     } catch (error) {
       // mark task as failed
       this.state$ = stateConstants.FAILED
 
-      // show error message
-      this.title = error.message
-
       // report error
+      if (error instanceof ListrError) {
+        wrapper.report(error)
+        return
+      }
+
+      if (!this.hasSubtasks()) {
+        // Do not show the message if we have subtasks as the error is already shown in the subtask
+        this.title = error.message
+      }
+
       wrapper.report(error)
 
-      // if problem is with listr throw it immediately
-      // Do not exit when explicitely set to `false`
-      if (this.options.exitOnError !== false || error instanceof ListrError) {
+      if (this.listr.exitOnError !== false) {
+        // Do not exit when explicitely set to `false`
         throw error
       }
 

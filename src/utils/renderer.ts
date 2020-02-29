@@ -1,10 +1,11 @@
 import { ListrContext, ListrRendererClass, ListrRendererValue } from '../interfaces/listr-task.interface'
 import { MultiLineRenderer } from '../renderer/default.renderer'
 import { SilentRenderer } from '../renderer/silent.renderer'
+import { VerboseRenderer } from '../renderer/verbose.renderer'
 
 const renderers = {
   default: MultiLineRenderer,
-  verbose: SilentRenderer,
+  verbose: VerboseRenderer,
   silent: SilentRenderer
 }
 

@@ -4,25 +4,12 @@
     "es6": true,
     "node": true
   },
-  "plugins": [
-    "@typescript-eslint",
-    "import"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "plugins": ["@typescript-eslint", "import"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "error",
-    "object-curly-spacing": [
-      "error",
-      "always"
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
+    "object-curly-spacing": ["error", "always"],
+    "linebreak-style": ["error", "unix"],
     "sort-imports": "off",
     "import/first": "error",
     "import/newline-after-import": "error",
@@ -30,7 +17,10 @@
     "import/order": [
       "error",
       {
-        "groups": [["builtin", "external"], ["parent", "sibling", "index"]],
+        "groups": [
+          ["builtin", "external"],
+          ["index", "parent", "sibling"]
+        ],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",
@@ -38,10 +28,7 @@
         }
       }
     ],
-    "indent": [
-      "error",
-      2
-    ],
+    "indent": ["error", 2],
     "max-len": [
       "error",
       {
@@ -80,31 +67,16 @@
     "@typescript-eslint/no-parameter-properties": "off",
     "@typescript-eslint/prefer-for-of": "warn",
     "@typescript-eslint/prefer-function-type": "error",
-    "@typescript-eslint/quotes": [
-      "error",
-      "single"
-    ],
-    "@typescript-eslint/semi": [
-      "off",
-      null
-    ],
+    "@typescript-eslint/quotes": ["error", "single"],
+    "@typescript-eslint/semi": ["error", "never"],
     "@typescript-eslint/unified-signatures": "error",
-    "arrow-parens": [
-      "error",
-      "always"
-    ],
+    "arrow-parens": ["error", "always"],
     "@typescript-eslint/no-use-before-define": "off",
     "comma-dangle": "off",
-    "complexity": [
-      "error",
-      20
-    ],
+    "complexity": ["error", 20],
     "constructor-super": "error",
     "dot-notation": "error",
-    "eqeqeq": [
-      "error",
-      "smart"
-    ],
+    "eqeqeq": ["error", "smart"],
     "guard-for-in": "error",
     "id-blacklist": "off",
     "id-match": "off",
@@ -132,10 +104,7 @@
     "no-unused-expressions": "warn",
     "no-unused-vars": "warn",
     "object-shorthand": "error",
-    "one-var": [
-      "error",
-      "never"
-    ],
+    "one-var": ["error", "never"],
     "radix": "error",
     "spaced-comment": "error",
     "use-isnan": "error",

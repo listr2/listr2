@@ -1,3 +1,11 @@
+README/
+src/
+tsconfig*.json
+.eslintrc
+.drone.yml
+licence
+TODO.md
+
 # Source Code
 .gitlab-ci.yml
 .drone.yml

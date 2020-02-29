@@ -1,6 +1,6 @@
+import { stateConstants } from '../constants/state.constants'
 import { ListrError } from '../interfaces/listr-error'
-import { ListrTaskWrapper } from './../interfaces/listr-task.interface'
-import { stateConstants } from '../constants/state.constants';
+import { ListrTaskWrapper, StateConstants } from './../interfaces/listr-task.interface'
 import { Task } from './task'
 
 export class TaskWrapper<Ctx> implements ListrTaskWrapper {
@@ -29,25 +29,37 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
     })
   }
 
-  public report (error): void {
-    if (error instanceof ListrError) {
-      this.errors.push(error)
-    }
+  set state (data: StateConstants) {
+    this.task.state = data
+
+    this.task.next({
+      type: 'STATE',
+      data
+    })
   }
 
-  public skip (message): void {
-    if (message && typeof message !== 'string') {
-      throw new TypeError(`Expected \`message\` to be of type \`string\`, got \`${typeof message}\``)
+  public report (error: Error | ListrError): void {
+    if (error instanceof ListrError) {
+      for (const err of error.errors) {
+        this.errors.push(err)
+        this.output = err.message || this.task?.title || 'Task with no title.'
+      }
+    } else {
+      this.errors.push(error)
+      this.output = error.message || this.task?.title || 'Task with no title.'
     }
+
+  }
+
+  public skip (message: string): void {
+    this.state = stateConstants.SKIPPED
 
     if (message) {
-      this.task.output = message
+      this.output = message || this.task?.title || 'Task with no title.'
     }
-
-    this.task.state = stateConstants.SKIPPED
   }
 
-  public run (ctx): Promise<void> {
+  public run (ctx: Ctx): Promise<void> {
     return this.task.run(ctx, this)
   }
 }

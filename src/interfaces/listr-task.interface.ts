@@ -1,6 +1,8 @@
 import { Observable } from 'rxjs'
 import { Readable } from 'stream'
 
+import { stateConstants } from './../constants/state.constants'
+
 export type ListrContext = any
 
 export declare class ListrClass<Ctx = ListrContext> {
@@ -10,12 +12,12 @@ export declare class ListrClass<Ctx = ListrContext> {
   public add(tasks: ListrTask<Ctx> | readonly ListrTask<Ctx>[]): void
 }
 export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
-  title: string
+  title?: string
   output?: string
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx>) => void | ListrTaskResult<Ctx>
   skip: (ctx: Ctx) => void | boolean | string | Promise<boolean>
   enabled: boolean
-  hidden: boolean
+  bottomBar: boolean
   subtasks: ListrTaskObject<Ctx>[]
   state: string
   check: (ctx: Ctx) => void
@@ -25,8 +27,9 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   isSkipped(): boolean
   isCompleted(): boolean
   isEnabled(): boolean
-  isHidden(): boolean
+  isBottomBar(): boolean
   hasFailed(): boolean
+  hasTitle(): boolean
 }
 
 export interface ListrTask<Ctx = ListrContext> {
@@ -34,7 +37,7 @@ export interface ListrTask<Ctx = ListrContext> {
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx>) => void | ListrTaskResult<Ctx>
   skip?: (ctx: Ctx) => void | boolean | string | Promise<boolean>
   enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
-  hidden?: boolean
+  bottomBar?: boolean
 }
 
 export interface ListrTaskWrapper<Ctx = ListrContext> {
@@ -53,12 +56,13 @@ export interface ListrOptions<Ctx = ListrContext> {
   renderer?: ListrRendererValue<Ctx>
   nonTTYRenderer?: ListrRendererValue<Ctx>
   showSubtasks?: boolean
+  bottomBarItems?: number
   collapse?: boolean
   ctx?: Ctx
 }
 
 export interface ListrEvent {
-  type: string
+  type: ListrEventTypes
   data?: string | boolean
 }
 
@@ -71,5 +75,9 @@ export interface ListrRendererClass<Ctx> {
   nonTTY: boolean
   new(tasks: readonly ListrTaskObject<Ctx>[], options: ListrOptions<Ctx>): ListrRenderer
 }
+
+export type ListrEventTypes = 'TITLE' | 'STATE' | 'ENABLED' | 'SUBTASK' | 'DATA'
+
+export type StateConstants = stateConstants
 
 export type ListrRendererValue<Ctx> = 'silent' | 'default' | 'verbose' | ListrRendererClass<Ctx>

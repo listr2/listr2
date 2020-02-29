@@ -13,6 +13,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
+    "build": "tsc --declaration",
     "lint": "eslint --ext .json,.ts,.js --fix src/**",
     "dev:lint": "lint-staged"
   },
@@ -58,7 +59,9 @@
     "listr-silent-renderer": "^1.1.1",
     "log-update": "^4.0.0",
     "p-map": "^2.0.0",
-    "rxjs": "^6.3.3"
+    "pad": "^3.2.0",
+    "rxjs": "^6.3.3",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",

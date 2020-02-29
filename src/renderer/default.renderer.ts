@@ -8,14 +8,16 @@ import * as logUpdate from 'log-update'
 
 import { ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr-task.interface'
 
-// type MultiLineRendererOptions = ListrOptions<any> & { showSubtasks: boolean, collapse: boolean }
-
 export class MultiLineRenderer implements ListrRenderer {
   static nonTTY = false
   private id?: NodeJS.Timeout
   private indentation = 2
+  private bottomBarItems: number
+  private bottomBar: string[] = []
 
-  constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) { }
+  constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {
+    this.bottomBarItems = this.options.bottomBarItems || 3
+  }
 
   public render (): void {
     // hide cursor
@@ -26,13 +28,11 @@ export class MultiLineRenderer implements ListrRenderer {
     }
 
     this.id = setInterval(() => {
-      logUpdate(this.multiLineRenderer(this.tasks))
+      logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar())
     }, 100)
   }
 
   public end (): void {
-    // hide cursor
-    cliCursor.show()
     if (this.id) {
       clearInterval(this.id)
       this.id = undefined
@@ -40,36 +40,69 @@ export class MultiLineRenderer implements ListrRenderer {
 
     logUpdate(this.multiLineRenderer(this.tasks))
     logUpdate.done()
+
+    // hide cursor
+    cliCursor.show()
   }
 
+  // eslint-disable-next-line complexity
   private multiLineRenderer (tasks: ListrTaskObject<any>[], level = 0): string {
     let output: string[] = []
 
     for (const task of tasks) {
+
       if (task.isEnabled()) {
-        // CURRENT TASK TITLE
-        const taskTitle = !task.isSkipped() ? task.title : `${task.output} ${chalk.dim('[SKIPPED]')}`
-        output.push(this.formatString(taskTitle, this.getSymbol(task, this.options), level))
+        if (task.hasTitle()) {
+        // CURRENT TASK TITLE and skip change the title
+          const taskTitle = !task.isSkipped() ? task?.title : `${task?.output} ${chalk.dim('[SKIPPED]')}`
+          output.push(this.formatString(taskTitle, this.getSymbol(task, this.options), level))
+        }
 
         // CURRENT TASK OUTPUT
         if (task.isPending() && task?.output) {
-          if (typeof task.output === 'string') {
-            // indent and color
-            task.output.split('\n').filter(Boolean).forEach((line, i) => {
-              const icon = i === 0 ? figures.pointerSmall : ' '
-              output.push(this.formatString(line, icon, level +1))
-            })
+          if (task.isBottomBar() || !task.hasTitle()) {
+            const data = this.dumpData(task.output, -1)
+
+            if (!data?.some((element) => this.bottomBar.includes(element))) {
+              this.bottomBar = [...this.bottomBar, ...data]
+            }
+
+          } else {
+            output = [...output, ...this.dumpData(task.output, level)]
           }
         }
 
         // SUBTASKS
-        if ((task.isPending() || task.hasFailed() || this.options.collapse === false) && (task.hasFailed() || this.options.showSubtasks !== false) && task.hasSubtasks()) {
-          output = [...output, this.multiLineRenderer(task.subtasks, level + 1)]
+        if ((task.isPending() || task.hasFailed() || this.options.collapse === false || !task.hasTitle())
+        && (task.hasFailed() || this.options.showSubtasks !== false)
+        && task.hasSubtasks()) {
+          const subtaskLevel = !task.hasTitle() ? level : level + 1
+          output = [...output, this.multiLineRenderer(task.subtasks, subtaskLevel)]
         }
       }
     }
 
     return output.join('\n')
+  }
+
+  private renderBottomBar (): string {
+    if (this.bottomBar.length > 0) {
+      this.bottomBar = this.bottomBar.slice(-this.bottomBarItems)
+      return ['\n', ...this.bottomBar].join('\n')
+    }
+  }
+
+  private dumpData (taskOutput: string, level: number): string[] {
+    const output: string[] = []
+    if (typeof taskOutput === 'string') {
+      // indent and color
+      taskOutput.split('\n').filter(Boolean).forEach((line, i) => {
+        const icon = i === 0 ? figures.pointerSmall : ' '
+        output.push(this.formatString(line, icon, level +1))
+      })
+    }
+
+    return output
   }
 
   private formatString (string: string, icon: string, level: number): string {

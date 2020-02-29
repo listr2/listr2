@@ -1,0 +1,50 @@
+kind: pipeline
+name: default
+
+trigger:
+  event:
+    - tag
+  branch:
+    - master
+
+steps:
+  - name: test
+    image: node:current-alpine
+    commands:
+      - yarn --frozen-lockfile
+      - yarn lint
+      - mv ./{,.}* /cache
+    volumes:
+      - name: cache
+        path: /cache
+
+  - name: transpile
+    image: node:current-alpine
+    commands:
+      - mv /cache/{,.}* ./
+      - yarn build
+      - mv ./{,.}* /cache
+    volumes:
+      - name: cache
+        path: /cache
+
+  - name: publish
+    image: node:current-alpine
+    commands:
+      - mv /cache/{,.}* ./
+      - yarn global add npm-cli-login
+      - npm-cli-login -u $NPM_USERNAME -p $NPM_PASSWORD
+      - npm publish --access public
+      - npm logout
+    environment:
+      NPM_USERNAME:
+        from_secret: NPM_USERNAME
+      NPM_PASSWORD:
+        from_secret: NPM_PASSWORD
+    volumes:
+      - name: cache
+        path: /cache
+
+volumes:
+  - name: cache
+    temp: {}

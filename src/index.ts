@@ -24,7 +24,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
       concurrent: false,
       renderer: 'default',
       nonTTYRenderer: 'verbose',
-      exitOnError: false,
+      exitOnError: true,
       collapse: true
     }, options)
 
@@ -43,7 +43,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
     this.exitOnError = this.options.exitOnError
 
     // inject context
-    this.context = this.options.ctx
+    this.context = this.options?.ctx
 
     // parse and add tasks
     this.add(task || [])
@@ -62,10 +62,11 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
     if (!this.renderer) {
       this.renderer = new this.rendererClass(this.tasks, this.options)
     }
+
     this.renderer.render()
 
     // create a new context
-    context = context || this.context || Object.create(null)
+    context = context || this.context || Object.create({})
 
     // create new error queue
     const errors = []
@@ -73,19 +74,17 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
     // check if the items are enabled
     await this.checkAll(context)
 
-    // create a new promise map
-    const tasks = pMap(this.tasks, async (task): Promise<void> => {
-      await this.checkAll(context)
-
-      return this.runTask(task, context, errors)
-    }, { concurrency: this.concurrency })
-
     // run tasks
     try {
-      await tasks
+      await pMap(this.tasks, async (task): Promise<void> => {
+        await this.checkAll(context)
+
+        return this.runTask(task, context, errors)
+      }, { concurrency: this.concurrency })
+
       if (errors.length > 0) {
         const err = new ListrError('Something went wrong')
-        this.err = errors
+        err.errors = errors
         throw err
       }
 
@@ -95,7 +94,11 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
     } catch (error) {
       error.context = context
       this.renderer.end(error)
-      throw error
+
+      if (this.exitOnError !== false) {
+        // Do not exit when explicitely set to `false`
+        throw error
+      }
     }
   }
 
