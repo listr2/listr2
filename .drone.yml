@@ -23,7 +23,7 @@ steps:
     image: node:current-alpine
     commands:
       - yarn global add npm-cli-login
-      - npm-cli-login -u $NPM_USERNAME -p $NPM_PASSWORD
+      - npm-cli-login -u $NPM_USERNAME -p $NPM_PASSWORD -e $NPM_EMAIL
       - npm publish --access public
       - npm logout
     environment:
@@ -31,3 +31,5 @@ steps:
         from_secret: NPM_USERNAME
       NPM_PASSWORD:
         from_secret: NPM_PASSWORD
+      NPM_EMAIL:
+        from_secret: NPM_EMAIL
