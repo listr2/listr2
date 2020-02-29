@@ -1,5 +1,8 @@
-README/
-src/
+README
+example.ts
+src
+CHANGELOG.md
+licence
 tsconfig*.json
 .eslintrc
 .drone.yml
