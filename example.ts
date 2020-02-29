@@ -7,6 +7,11 @@ interface ListrCtx {
   yarn: boolean
   inside: string
   second: boolean
+  prompt: {
+    test: {
+      [name: string]: string
+    }
+  }
 }
 
 async function main (): Promise<void> {
@@ -81,6 +86,12 @@ async function main (): Promise<void> {
       task: (ctx, task): void => {
         task.title = 'Got the context variables from the first listr.'
         ctx.second = true
+      }
+    },
+    {
+      title: 'Testing second level object.',
+      task: (ctx, task): void => {
+        ctx.prompt.test = { somekey: 'test' }
       }
     }
   ], { ctx })
