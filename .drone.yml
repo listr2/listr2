@@ -13,27 +13,21 @@ steps:
     commands:
       - yarn --frozen-lockfile
       - yarn lint
-      - ls
-      - pwd
-      - exit
     volumes:
       - name: cache
-        path: /cache
+        path: /drone/src
 
   - name: transpile
     image: node:current-alpine
     commands:
-      - mv -f /cache/.* /cache/* ./
       - yarn build
-      - mv -f ./.* ./* /cache
     volumes:
       - name: cache
-        path: /cache
+        path: /drone/src
 
   - name: publish
     image: node:current-alpine
     commands:
-      - mv -f /cache/.* /cache/* ./
       - yarn global add npm-cli-login
       - npm-cli-login -u $NPM_USERNAME -p $NPM_PASSWORD
       - npm publish --access public
@@ -45,7 +39,7 @@ steps:
         from_secret: NPM_PASSWORD
     volumes:
       - name: cache
-        path: /cache
+        path: /drone/src
 
 volumes:
   - name: cache
