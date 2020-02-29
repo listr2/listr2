@@ -1,12 +1,11 @@
-README
+media/
 example.ts
 src
 CHANGELOG.md
-licence
+license
 tsconfig*.json
 .eslintrc
 .drone.yml
-licence
 TODO.md
 
 # Source Code

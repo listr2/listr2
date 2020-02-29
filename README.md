@@ -6,7 +6,7 @@
 
 This is the expanded and re-written in Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr). Fully backwards compatible with the Listr itself but with more features.
 
-![Demo](./README/demo.gif)
+![Demo](./demo/demo.gif)
 
 # How to use
 
