@@ -4,7 +4,7 @@ import { Stream } from 'stream'
 
 import { stateConstants } from '../constants/state.constants'
 import { ListrError } from '../interfaces/listr-error'
-import { ListrContext, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper , ListrEvent, StateConstants } from '../interfaces/listr-task.interface'
+import { ListrContext, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, StateConstants } from '../interfaces/listr-task.interface'
 import { getRenderer } from '../utils/renderer'
 import { Listr } from './../index'
 
@@ -18,6 +18,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   public enabled: ListrTaskObject<Ctx>['enabled']
   public bottomBar: ListrTaskObject<Ctx>['bottomBar']
   public enabledFn: ListrTask['enabled']
+  public prompt: ListrTaskObject<Ctx>['prompt']
 
   constructor (public listr: Listr<Ctx>, public tasks: ListrTask, public options: ListrOptions) {
 
@@ -90,6 +91,10 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     return typeof this?.title === 'string'
   }
 
+  isPrompt (): boolean {
+    return this.prompt
+  }
+
   async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx>): Promise<void> {
     const handleResult = (result): Promise<void> => {
       if (result instanceof Listr) {
@@ -142,7 +147,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     }
 
     // finish the task first
-    // await Promise.resolve()
+    // Promise.resolve()
     this.state$ = stateConstants.PENDING
 
     // check if this function wants to be skipped

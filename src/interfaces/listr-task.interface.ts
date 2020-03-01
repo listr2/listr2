@@ -2,6 +2,7 @@ import { Observable } from 'rxjs'
 import { Readable } from 'stream'
 
 import { stateConstants } from './../constants/state.constants'
+import { PromptOptions, PromptTypes } from './../utils/prompt.interface'
 
 export type ListrContext = any
 
@@ -17,6 +18,7 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx>) => void | ListrTaskResult<Ctx>
   skip: (ctx: Ctx) => void | boolean | string | Promise<boolean>
   enabled: boolean
+  prompt: boolean
   bottomBar: boolean
   subtasks: ListrTaskObject<Ctx>[]
   state: string
@@ -28,6 +30,7 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   isCompleted(): boolean
   isEnabled(): boolean
   isBottomBar(): boolean
+  isPrompt(): boolean
   hasFailed(): boolean
   hasTitle(): boolean
 }
@@ -45,7 +48,8 @@ export interface ListrTaskWrapper<Ctx = ListrContext> {
   output: string
   report(error: Error): void
   skip(message: string): void
-  run(ctx?: Ctx): Promise<void>
+  run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx>): Promise<void>
+  prompt(type?: PromptTypes, prompt?: PromptOptions): Promise<any>
 }
 
 export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx> | Readable | Observable<any>

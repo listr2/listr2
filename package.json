@@ -53,12 +53,14 @@
     "cli-cursor": "^3.1.0",
     "cli-truncate": "^2.1.0",
     "elegant-spinner": "^2.0.0",
+    "enquirer": "^2.3.4",
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
     "log-update": "^4.0.0",
     "p-map": "^2.0.0",
     "pad": "^3.2.0",
     "rxjs": "^6.3.3",
+    "through": "^2.3.8",
     "winston": "^3.2.1"
   },
   "devDependencies": {

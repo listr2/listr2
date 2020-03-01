@@ -1,4 +1,4 @@
-import * as delay from 'delay'
+import delay from 'delay'
 import { Observable } from 'rxjs'
 
 import { Listr } from './src'
@@ -8,17 +8,17 @@ interface ListrCtx {
   inside: string
   second: boolean
   hidden: boolean
+  testInput: string
   prompt: {
-    test: {
-      [name: string]: string
-    }
+    [name: string]: any
   }
 }
 
 async function main (): Promise<void> {
+
   const tasks = new Listr<ListrCtx>([
     {
-      title: 'Concurrent subtasks test.',
+      title: 'Concurrent sub test.',
       task: (): Listr => new Listr<ListrCtx>([
         {
           title: 'Promise with changing output. [1.5s]',
@@ -90,6 +90,7 @@ async function main (): Promise<void> {
       ])
     }
   ], { exitOnError: false })
+
   let ctx: ListrCtx
   try {
     ctx = await tasks.run()
@@ -159,10 +160,30 @@ async function main (): Promise<void> {
 
   ], { ctx })
   try {
-    await tasks2.run()
+    ctx = await tasks2.run()
   } catch (e) {
     console.error(e)
   }
+
+  const tasks3 = new Listr<ListrCtx>([
+    {
+      task: async (ctx, task): Promise<any> => ctx.testInput = await task.prompt('Input', { message: 'test' })
+    },
+    {
+      title: 'Dump prompt.',
+      task: (ctx,task): void => {
+        task.title = ctx.testInput
+      }
+    }
+  ], { ctx, renderer: 'verbose' })
+
+  try {
+    ctx = await tasks3.run()
+  } catch (e) {
+    console.error(e)
+  }
+
+  console.log(ctx.testInput)
 }
 
 main()

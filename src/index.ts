@@ -1,4 +1,4 @@
-import * as pMap from 'p-map'
+import pMap from 'p-map'
 
 import { ListrError } from './interfaces/listr-error'
 import { ListrClass, ListrContext, ListrOptions, ListrRenderer, ListrRendererClass, ListrTask } from './interfaces/listr-task.interface'

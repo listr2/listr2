@@ -1,10 +1,10 @@
-import * as chalk from 'chalk'
-import * as cliCursor from 'cli-cursor'
-import * as cliTruncate from 'cli-truncate'
-import * as elegantSpinner from 'elegant-spinner'
-import * as figures from 'figures'
-import * as indentString from 'indent-string'
-import * as logUpdate from 'log-update'
+import chalk from 'chalk'
+import cliCursor from 'cli-cursor'
+import cliTruncate from 'cli-truncate'
+import elegantSpinner from 'elegant-spinner'
+import figures from 'figures'
+import indentString from 'indent-string'
+import logUpdate from 'log-update'
 
 import { ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr-task.interface'
 
@@ -14,6 +14,7 @@ export class MultiLineRenderer implements ListrRenderer {
   private indentation = 2
   private bottomBarItems: number
   private bottomBar: string[] = []
+  private promptBar: string
 
   constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {
     this.bottomBarItems = this.options.bottomBarItems || 3
@@ -28,7 +29,7 @@ export class MultiLineRenderer implements ListrRenderer {
     }
 
     this.id = setInterval(() => {
-      logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar())
+      logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
     }, 100)
   }
 
@@ -60,7 +61,10 @@ export class MultiLineRenderer implements ListrRenderer {
 
         // CURRENT TASK OUTPUT
         if (task.isPending() && task?.output) {
-          if (task.isBottomBar() || !task.hasTitle()) {
+          if (task.isPrompt()) {
+            this.promptBar = task.output
+
+          } else if (task.isBottomBar() || !task.hasTitle()) {
             const data = this.dumpData(task.output, -1)
 
             if (!data?.some((element) => this.bottomBar.includes(element))) {
@@ -79,6 +83,12 @@ export class MultiLineRenderer implements ListrRenderer {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
           output = [...output, this.multiLineRenderer(task.subtasks, subtaskLevel)]
         }
+
+        // TASK FINISHED CLEAN BOTTOM BAR
+        // FIXME: REMOVE MATCHING ITEMS ONLY
+        if (task.isCompleted()) {
+          this.bottomBar = []
+        }
       }
     }
 
@@ -89,6 +99,12 @@ export class MultiLineRenderer implements ListrRenderer {
     if (this.bottomBar.length > 0) {
       this.bottomBar = this.bottomBar.slice(-this.bottomBarItems)
       return ['\n', ...this.bottomBar].join('\n')
+    }
+  }
+
+  private renderPrompt (): string {
+    if (this.promptBar) {
+      return `\n\n${this.promptBar}`
     }
   }
 
@@ -128,6 +144,10 @@ export class MultiLineRenderer implements ListrRenderer {
 
     if (task.isSkipped()) {
       return chalk.yellow(figures.arrowDown)
+    }
+
+    if (task.isPrompt()) {
+      return chalk.cyan(figures.questionMarkPrefix)
     }
 
     return chalk.dim(figures.squareSmallFilled)

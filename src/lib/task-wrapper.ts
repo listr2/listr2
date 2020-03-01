@@ -1,6 +1,11 @@
+import through from 'through'
+
 import { stateConstants } from '../constants/state.constants'
 import { ListrError } from '../interfaces/listr-error'
+import { createPrompt } from '../utils/prompt'
+import { PromptOptions } from '../utils/prompt.interface'
 import { ListrTaskWrapper, StateConstants } from './../interfaces/listr-task.interface'
+import { PromptTypes } from './../utils/prompt.interface'
 import { Task } from './task'
 
 export class TaskWrapper<Ctx> implements ListrTaskWrapper {
@@ -57,6 +62,29 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
     if (message) {
       this.output = message || this.task?.title || 'Task with no title.'
     }
+  }
+
+  public prompt (type: PromptTypes, prompt: PromptOptions): Promise<any> {
+    this.task.prompt = true
+
+    let buffer = Buffer.alloc(64)
+
+    const outputStream = through((data) => {
+      buffer += data
+
+      // eslint-disable-next-line no-control-regex
+      const deleteMultiLineRegexp = new RegExp(/.*\u001b\[.*G.*/)
+
+      if (deleteMultiLineRegexp.test(buffer.toString())) {
+        buffer = Buffer.alloc(64)
+      } else {
+        this.output = buffer
+      }
+    })
+
+    Object.assign(prompt, { stdout: outputStream })
+
+    return createPrompt(type, prompt)
   }
 
   public run (ctx: Ctx): Promise<void> {

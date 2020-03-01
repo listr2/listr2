@@ -1,14 +1,10 @@
 {
   "compilerOptions": {
     "paths": {
-      "*": [
-        "types/*"
-      ]
+      "*": ["types/*"]
     },
     "target": "es2019",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "outDir": "./dist",
     "rootDir": "src",
     "baseUrl": "src",
@@ -22,12 +18,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "incremental": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "esModuleInterop": true
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src/**/*"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src/**/*", "example.ts"]
 }

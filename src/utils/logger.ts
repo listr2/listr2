@@ -1,6 +1,6 @@
-import * as chalk from 'chalk'
-import * as figures from 'figures'
-import * as pad from 'pad'
+import chalk from 'chalk'
+import figures from 'figures'
+import pad from 'pad'
 import { createLogger, format, transports } from 'winston'
 
 import { logLevels } from './logger.constants'
@@ -78,6 +78,6 @@ export class Logger {
       break
     }
 
-    return coloring(`${icon} ${pad(context.toUpperCase(), 7)} | ${message}`)
+    return coloring(`${icon} ${pad(context.toUpperCase(), 8)} | ${message}`)
   }
 }

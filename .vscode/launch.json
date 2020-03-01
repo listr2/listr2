@@ -2,14 +2,23 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Node Inspector",
+      "name": "Attach",
+      "port": 5858,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "${workspaceFolder}"
+    },
+    {
       "type": "node",
       "request": "launch",
-      "args": ["${workspaceRoot}/example.ts"],
+      "name": "Launch Program",
       "runtimeArgs": ["-r", "ts-node/register"],
-      "cwd": "${workspaceRoot}",
+      "args": ["${workspaceFolder}/example.ts"],
+      "cwd": "${workspaceFolder}",
       "protocol": "inspector",
-      "internalConsoleOptions": "openOnSessionStart"
+      "sourceMaps": true
     }
   ]
 }
