@@ -41,7 +41,7 @@ export class Manager <InjectCtx = ListrContext> {
         }
       },
       {
-        enabled: (): boolean => this.options?.showRunTime && (this.initially.length > 0 || this.tasks.length > 0 || this.finally.length > 0),
+        enabled: (): boolean => this.options?.showRunTime && (this.tasks.length > 0),
         task: (ctx, task): void => { task.title = `Parallel tasks are finished in ${this.getRuntime(pipetime)}.` }
       },
       {

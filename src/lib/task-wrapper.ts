@@ -68,7 +68,7 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
     }
   }
 
-  public prompt (type: PromptTypes, prompt: PromptOptions): Promise<any> {
+  public prompt <T = any> (type: PromptTypes, prompt: PromptOptions): Promise<T> {
     this.task.prompt = true
 
     let buffer = Buffer.alloc(64)
