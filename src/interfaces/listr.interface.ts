@@ -52,7 +52,7 @@ export interface ListrTaskWrapper<Ctx = ListrContext> {
   report(error: Error): void
   skip(message: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx>): Promise<void>
-  prompt(type?: PromptTypes, prompt?: PromptOptions): Promise<any>
+  prompt<T = any>(type?: PromptTypes, prompt?: PromptOptions): Promise<T>
 }
 
 export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx> | Readable | Observable<any>
