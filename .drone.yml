@@ -4,8 +4,6 @@ name: default
 trigger:
   event:
     - tag
-  branch:
-    - master
 
 steps:
   - name: test
