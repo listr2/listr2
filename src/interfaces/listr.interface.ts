@@ -1,9 +1,9 @@
-import { Prompt } from 'enquirer'
 import { Observable } from 'rxjs'
 import { Readable } from 'stream'
 
-import { stateConstants } from './../constants/state.constants'
-import { PromptOptions, PromptTypes } from './../utils/prompt.interface'
+import { stateConstants } from '../constants/state.constants'
+import { Listr } from '../listr'
+import { PromptOptions, PromptTypes } from '../utils/prompt.interface'
 
 export type ListrContext = any
 
@@ -13,6 +13,7 @@ export declare class ListrClass<Ctx = ListrContext> {
   public run(ctx?: Ctx): Promise<Ctx>
   public add(tasks: ListrTask<Ctx> | readonly ListrTask<Ctx>[]): void
 }
+
 export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   title?: string
   output?: string
@@ -47,6 +48,7 @@ export interface ListrTask<Ctx = ListrContext> {
 export interface ListrTaskWrapper<Ctx = ListrContext> {
   title: string
   output: string
+  newListr<Ctx = ListrContext>(task: ListrTask<Ctx>[], options?: ListrOptions): Listr
   report(error: Error): void
   skip(message: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx>): Promise<void>
@@ -62,7 +64,7 @@ export interface ListrOptions<Ctx = ListrContext> {
   nonTTYRenderer?: ListrRendererValue<Ctx>
   showSubtasks?: boolean
   bottomBarItems?: number
-  collapse?: boolean
+  collapse?: boolean,
   ctx?: Ctx
 }
 
@@ -74,6 +76,14 @@ export interface ListrEvent {
 export interface ListrRenderer {
   render(): void
   end(err?: Error): void
+}
+
+export class ListrError extends Error {
+  public errors?: ListrError[]
+  constructor (message) {
+    super(message)
+    this.name = 'ListrError'
+  }
 }
 
 export interface ListrRendererClass<Ctx> {

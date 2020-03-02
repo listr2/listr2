@@ -3,10 +3,9 @@ import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
 
 import { stateConstants } from '../constants/state.constants'
-import { ListrError } from '../interfaces/listr-error'
-import { ListrContext, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, StateConstants } from '../interfaces/listr-task.interface'
+import { ListrContext, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrError, ListrTaskWrapper, StateConstants } from '../interfaces/listr.interface'
 import { getRenderer } from '../utils/renderer'
-import { Listr } from './../index'
+import { Listr } from './../listr'
 
 export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext> {
   public title: ListrTaskObject<Ctx>['title']
@@ -177,6 +176,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
       // mark task as failed
       this.state$ = stateConstants.FAILED
 
+      // catch prompt error, this was the best i could do without going crazy
       if (this.isPrompt()) {
         // eslint-disable-next-line no-ex-assign
         error = new Error('Cancelled the prompt.')

@@ -3,7 +3,7 @@ import { AutoComplete,
   BasicAuth,
   Confirm, Editable, Form, Input, Invisible, List, MultiSelect, Numeral, Password, Quiz, Scale, Select, Snippet, Sort, Survey, Text, Toggle } from 'enquirer/lib/prompts'
 
-import { ListrError } from '../interfaces/listr-error'
+import { ListrError } from '../interfaces/listr.interface'
 import { PromptOptions, PromptTypes } from './prompt.interface'
 
 export function promptUser (input: Prompt): Promise<any> {

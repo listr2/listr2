@@ -6,8 +6,8 @@
     "target": "es2019",
     "lib": ["esnext"],
     "outDir": "./dist",
-    "rootDir": "src",
-    "baseUrl": "src",
+    "rootDir": "./src/",
+    "baseUrl": "./src/",
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -22,5 +22,5 @@
     "esModuleInterop": true
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*", "example.ts"]
+  "include": ["src/**/*"]
 }

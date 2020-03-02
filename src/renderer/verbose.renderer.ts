@@ -1,4 +1,4 @@
-import { ListrEvent, ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr-task.interface'
+import { ListrEvent, ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr.interface'
 import { Logger } from '../utils/logger'
 import { ILogger } from '../utils/logger.interface'
 

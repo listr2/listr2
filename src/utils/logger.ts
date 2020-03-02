@@ -1,10 +1,9 @@
 import chalk from 'chalk'
 import figures from 'figures'
-import pad from 'pad'
 import { createLogger, format, transports } from 'winston'
 
 import { logLevels } from './logger.constants'
-import { ILogger , ILoggerFormat } from './logger.interface'
+import { ILogger, ILoggerFormat } from './logger.interface'
 
 export class Logger {
   static readonly levels = {
@@ -47,9 +46,6 @@ export class Logger {
   private logColoring ({ level, message }: ILoggerFormat): string {
     let icon: string
 
-    // parse context from custom or module
-    const context = level
-
     // do the coloring
     let coloring = (input: string): string => {
       return input
@@ -78,6 +74,6 @@ export class Logger {
       break
     }
 
-    return coloring(`${icon} ${pad(context.toUpperCase(), 8)} | ${message}`)
+    return coloring(`${icon}  ${message}`)
   }
 }

@@ -6,7 +6,7 @@ import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
 
-import { ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr-task.interface'
+import { ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr.interface'
 
 export class MultiLineRenderer implements ListrRenderer {
   static nonTTY = false
@@ -46,7 +46,6 @@ export class MultiLineRenderer implements ListrRenderer {
     cliCursor.show()
   }
 
-  // eslint-disable-next-line complexity
   private multiLineRenderer (tasks: ListrTaskObject<any>[], level = 0): string {
     let output: string[] = []
 
@@ -84,9 +83,10 @@ export class MultiLineRenderer implements ListrRenderer {
           output = [...output, this.multiLineRenderer(task.subtasks, subtaskLevel)]
         }
 
-        // TASK FINISHED CLEAN BOTTOM BAR
-        // FIXME: REMOVE MATCHING ITEMS ONLY
+        // TASK FINISHED CLEAN BOTTOM BARS
         if (task.isCompleted()) {
+          this.promptBar = null
+          // FIXME: maybe in later iterations delete according to from and typestamp, but trivial atm.
           this.bottomBar = []
         }
       }

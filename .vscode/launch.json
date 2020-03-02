@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Launch Program",
       "runtimeArgs": ["-r", "ts-node/register"],
-      "args": ["${workspaceFolder}/input.ts"],
+      "args": ["${workspaceFolder}/example.ts"],
       "cwd": "${workspaceFolder}",
       "protocol": "inspector",
       "sourceMaps": true,

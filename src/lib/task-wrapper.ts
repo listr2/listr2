@@ -1,10 +1,10 @@
 import through from 'through'
 
 import { stateConstants } from '../constants/state.constants'
-import { ListrError } from '../interfaces/listr-error'
+import { ListrTaskWrapper, StateConstants, ListrTask, ListrOptions, ListrError } from '../interfaces/listr.interface'
+import { Listr } from '../listr'
 import { createPrompt } from '../utils/prompt'
 import { PromptOptions } from '../utils/prompt.interface'
-import { ListrTaskWrapper, StateConstants } from './../interfaces/listr-task.interface'
 import { PromptTypes } from './../utils/prompt.interface'
 import { Task } from './task'
 
@@ -41,6 +41,10 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
       type: 'STATE',
       data
     })
+  }
+
+  public newListr<Ctx> (task: ListrTask<Ctx>[], options?: ListrOptions): Listr<Ctx> {
+    return new Listr<Ctx>(task, options)
   }
 
   public report (error: Error | ListrError): void {
