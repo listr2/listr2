@@ -52,8 +52,14 @@ async function main (): Promise<void> {
         {
           title: 'Getting some input',
           task: async (ctx, task): Promise<any> => task.prompt('Input', { message: 'test' })
+        },
+        {
+          title: 'Dump prompt concurrent.',
+          task: (ctx,task): void => {
+            task.title = `asdasda ${ctx.testInput}`
+          }
         }
-      ], { concurrent: true, exitOnError: false })
+      ], { concurrent: false, exitOnError: true })
     },
     {
       title: 'Dump prompt.',

@@ -2,23 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach",
-      "port": 5858,
-      "request": "attach",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node",
-      "localRoot": "${workspaceFolder}",
-      "remoteRoot": "${workspaceFolder}"
-    },
-    {
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
       "runtimeArgs": ["-r", "ts-node/register"],
-      "args": ["${workspaceFolder}/example.ts"],
+      "args": ["${workspaceFolder}/input.ts"],
       "cwd": "${workspaceFolder}",
       "protocol": "inspector",
-      "sourceMaps": true
+      "sourceMaps": true,
+      "console": "integratedTerminal"
     }
   ]
 }

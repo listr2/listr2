@@ -1,3 +1,4 @@
+import { Prompt } from 'enquirer'
 import { Observable } from 'rxjs'
 import { Readable } from 'stream'
 

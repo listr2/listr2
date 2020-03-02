@@ -1,5 +1,7 @@
 import { Prompt } from 'enquirer'
-import { AutoComplete, BasicAuth, Confirm, Editable, Form, Input, Invisible, List, MultiSelect, Numeral, Password, Quiz, Scale, Select, Snippet, Sort, Survey, Text, Toggle } from 'enquirer/lib/prompts'
+import { AutoComplete,
+  BasicAuth,
+  Confirm, Editable, Form, Input, Invisible, List, MultiSelect, Numeral, Password, Quiz, Scale, Select, Snippet, Sort, Survey, Text, Toggle } from 'enquirer/lib/prompts'
 
 import { ListrError } from '../interfaces/listr-error'
 import { PromptOptions, PromptTypes } from './prompt.interface'
@@ -78,6 +80,6 @@ export function createPrompt (type: PromptTypes, options: PromptOptions): Promis
     throw new ListrError('No prompt type this was not supposed to happen.')
   }
   return prompt.on('cancel', () => {
-    throw new Error('Cancelled prompt.')
+    return 'Cancelled prompt.'
   }).run()
 }

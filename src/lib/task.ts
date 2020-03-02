@@ -96,7 +96,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   }
 
   async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx>): Promise<void> {
-    const handleResult = (result): Promise<void> => {
+    const handleResult = (result): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask
         // assign options
@@ -116,6 +116,9 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
         })
 
         result = result.run(context)
+
+      // eslint-disable-next-line no-empty
+      } else if (this.isPrompt()) {
 
       } else if (result instanceof Promise) {
         // Detect promise
@@ -173,6 +176,11 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     } catch (error) {
       // mark task as failed
       this.state$ = stateConstants.FAILED
+
+      if (this.isPrompt()) {
+        // eslint-disable-next-line no-ex-assign
+        error = new Error('Cancelled the prompt.')
+      }
 
       // report error
       if (error instanceof ListrError) {
