@@ -46,6 +46,7 @@ export class MultiLineRenderer implements ListrRenderer {
     cliCursor.show()
   }
 
+  // eslint-disable-next-line complexity
   private multiLineRenderer (tasks: ListrTaskObject<any>[], level = 0): string {
     let output: string[] = []
 
@@ -80,7 +81,9 @@ export class MultiLineRenderer implements ListrRenderer {
         && (task.hasFailed() || this.options.showSubtasks !== false)
         && task.hasSubtasks()) {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
-          output = [...output, this.multiLineRenderer(task.subtasks, subtaskLevel)]
+          if (task.subtasks.some((subtask) => subtask.hasTitle())) {
+            output = [...output, this.multiLineRenderer(task.subtasks, subtaskLevel)]
+          }
         }
 
         // TASK FINISHED CLEAN BOTTOM BARS
