@@ -211,10 +211,33 @@ async function main (): Promise<void> {
       bottomBar: true
     },
     {
-      title: 'Getting some input',
-      task: async (ctx, task): Promise<any> => ctx.testInput = await task.prompt('MultiSelect',
-        { message: 'Select some', hint: 'space to select, a to select all', choices: ['me', 'or me'] }
-      )
+      title: 'Indented input',
+      task: (ctx, task): Listr => task.newListr([
+        {
+          task: async (ctx, task): Promise<any> => ctx.testInput = await task.prompt('MultiSelect',
+            { message: 'Select some', hint: 'space to select, a to select all', choices: ['me', 'or me'] }
+          )
+        },
+        {
+          task: async (ctx, task): Promise<void> => {
+            await delay(550)
+            task.output = 'Still pushing some.'
+            await delay(775)
+            task.output = 'Multiple output.'
+            await delay(995)
+          },
+        }
+      ])
+    },
+    {
+      title: 'I have a title.',
+      task: async (ctx, task): Promise<void> => {
+        await delay(550)
+        task.output = 'Still pushing some.'
+        await delay(775)
+        task.output = 'Multiple output.'
+        await delay(995)
+      },
     }
   ])
 

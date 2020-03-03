@@ -55,7 +55,7 @@ export class MultiLineRenderer implements ListrRenderer {
       if (task.isEnabled()) {
         if (task.hasTitle()) {
         // CURRENT TASK TITLE and skip change the title
-          const taskTitle = !task.isSkipped() ? task?.title : `${task?.output} ${chalk.dim('[SKIPPED]')}`
+          const taskTitle = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
           output.push(this.formatString(taskTitle, this.getSymbol(task, this.options), level))
         }
 
@@ -81,7 +81,11 @@ export class MultiLineRenderer implements ListrRenderer {
         && (task.hasFailed() || this.options.showSubtasks !== false)
         && task.hasSubtasks()) {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
-          output = [...output, this.multiLineRenderer(task.subtasks, subtaskLevel)]
+
+          const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
+          if (subtaskRender !== '') {
+            output = [...output, subtaskRender]
+          }
         }
 
         // TASK FINISHED CLEAN BOTTOM BARS
@@ -123,7 +127,7 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   private formatString (string: string, icon: string, level: number): string {
-    return `${cliTruncate(indentString(`${icon} ${string}`, (level) * this.indentation), process.stdout.columns - 3)}`
+    return `${cliTruncate(indentString(`${icon} ${string}`, level * this.indentation), process.stdout.columns - 3)}`
   }
 
   private getSymbol (task, options): string {
