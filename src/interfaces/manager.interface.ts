@@ -1,21 +1,17 @@
+import { Listr } from '../listr'
 import { ListrContext, ListrTask, ListrOptions } from './listr.interface'
 
-export declare class ManagerClass<Ctx = ListrContext> {
-  constructor(options?: ManagerOptions)
-  addInitial<Ctx>(tasks: ListrTask<Ctx>[]): void
-  add<Ctx>(tasks: ListrTask<Ctx>[]): void
-  addFinal<Ctx>(tasks: ListrTask<Ctx>[]): void
-  runAll<Ctx>(options?: Exclude<ListrOptions<Ctx>, {concurrent}>): Promise<Ctx>
-  run<Ctx>(tasks: ListrTask<Ctx>[], options?: ListrOptions): Promise<Ctx>
+export declare class ManagerClass <InjectCtx = ListrContext> {
+  constructor(options?: ManagerOptions, listrOptions?: ListrOptions<InjectCtx>)
+  add<Ctx = InjectCtx>(tasks: ListrTask<Ctx>[]): void
+  injectOptions <Ctx = InjectCtx> (options?: ManagerOptions, ListrOptions?: ListrOptions<Ctx>): void
+  runAll<Ctx = InjectCtx>(options?: Exclude<ListrOptions<Ctx>, {concurrent}>): Promise<Ctx>
+  run<Ctx = InjectCtx>(tasks: ListrTask<Ctx>[], options?: ListrOptions): Promise<Ctx>
+  newListr<Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Listr<Ctx>
   getRunTime (pipetime: number): string
 }
 
-export interface ManagerInjectOptions<Ctx =ListrContext> {
-  initial?: Exclude<ListrOptions<Ctx>, {concurrent}>
-  parallel?: Exclude<ListrOptions<Ctx>, {concurrent}>
-  final?: Exclude<ListrOptions<Ctx>, {concurrent}>
-}
-
-export interface ManagerOptions {
-  showRunTime?: boolean
+export interface ManagerOptions<Ctx = ListrContext> {
+  showRunTime?: boolean,
+  listr: ListrOptions<Ctx>
 }

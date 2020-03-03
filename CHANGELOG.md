@@ -1,3 +1,6 @@
+# 20200303, v1.2.0
+* Removed task manager options since it was making things complicated. It shall now be executed after each initiation.
+
 # 20200302, v1.1.1
 * Fixed time measuring.
 * Added type to the prompt from task-wrapper.

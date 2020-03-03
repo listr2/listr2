@@ -199,7 +199,7 @@ async function main (): Promise<void> {
   const manager = new Manager<ListrCtx>()
 
   // initial tasks will be executed synchronously at the beggining
-  manager.addInitial([
+  manager.add([
     {
       title: 'I have a title but still can push to the bottom bar.',
       task: async (ctx, task): Promise<void> => {
@@ -215,7 +215,7 @@ async function main (): Promise<void> {
       title: 'Indented input',
       task: (ctx, task): Listr => task.newListr([
         {
-          task: async (ctx, task): Promise<any> => ctx.testInput = await task.prompt('MultiSelect',
+          task: async (ctx, task): Promise<any> => ctx.testInput = await task.prompt('Select',
             { message: 'Select some', hint: 'space to select, a to select all', choices: ['me', 'or me'] }
           )
         },
@@ -239,78 +239,6 @@ async function main (): Promise<void> {
         task.output = 'Multiple output.'
         await delay(995)
       },
-    }
-  ])
-
-  // add tasks will be executed in the middle async
-  // you can also inject a context through the add functions
-  manager.add<ListrCtx>([
-    {
-      task: async (ctx, task): Promise<void> => {
-        await delay(500)
-        task.output = 'I am outputting from a task without a title.'
-        await delay(800)
-        task.output = 'This will drop to the bottom bar instead.'
-        await delay(1000)
-        task.output = 'Last message.'
-        await delay(1000)
-      }
-    },
-    {
-      task: async (ctx, task): Promise<void> => {
-        await delay(600)
-        task.output = 'Some output to bottom bar.'
-        await delay(850)
-        task.output = 'Pushing moreee.'
-        await delay(1020)
-      }
-    },
-    {
-      task: (ctx, task): Listr => task.newListr(
-        [{
-          title: 'Running from a subtask in manager.',
-          task: async (ctx, task): Promise<void> => {
-            await delay(500)
-            task.output = 'Subtask output.'
-            await delay(800)
-            task.output = 'Hey.'
-            await delay(1000)
-            task.output = 'Last message.'
-            await delay(1000)
-          }
-        },
-        {
-          title: 'Running from another subtask in manager.',
-          task: async (ctx, task): Promise<void> => {
-            await delay(600)
-            task.output = 'SYo.'
-            await delay(850)
-            task.output = 'More data.'
-            await delay(1020)
-          }
-        }]
-      )
-    },
-    {
-      title: 'I have a title but still can push to the bottom bar.',
-      task: async (ctx, task): Promise<void> => {
-        await delay(550)
-        task.output = 'Still pushing some.'
-        await delay(775)
-        task.output = 'Multiple output.'
-        await delay(995)
-      },
-      bottomBar: true
-    }
-  ])
-
-  // final tasks will be executed at the end synchronously
-  manager.addFinal([
-    {
-      title: 'Dump prompt.',
-      task: (ctx,task): void => {
-        task.title = ctx.testInput.toString()
-      }
     }
   ])
 

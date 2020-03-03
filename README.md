@@ -67,36 +67,16 @@ This enables user to push the tasks in a queue and execute them when needed. In 
 private manager: Manager<Ctx> = new Manager<Ctx>()
 ```
 
-### Initial Tasks
-* Initial tasks will be executed in order at the beginning.
-* You can also inject your type through add initial interface if initiating it via defining a type is not possible. ```manager.addInitial<Ctx>([])```
-
-```typescript
-manager.addInitial([])
-```
-
-### Parallel Tasks
-* This tasks will be run as async.
-* If showRuntime option enabled while generating manager, it will show the run time of async part.
-* You can also inject your type through add initial interface if initiating it via defining a type is not possible. ```manager.add<Ctx>([])```
-
+### Add Tasks
 ```typescript
 manager.add([])
-```
-
-### Final Tasks
-* Final tasks will be executed in order at the end.
-* You can also inject your type through add initial interface if initiating it via defining a type is not possible. ```manager.addFinal<Ctx>([])```
-
-```typescript
-manager.addFinal([])
 ```
 
 ### Run Tasks that are in Queue
 * This will also return the context object back.
 
 ```typescript
-const ctx = await manager.runAll()
+const ctx = await manager.runAll<Ctx>({concurrent: true})
 ```
 
 ## Input Module
