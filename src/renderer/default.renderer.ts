@@ -77,13 +77,11 @@ export class MultiLineRenderer implements ListrRenderer {
         }
 
         // SUBTASKS
-        if ((task.isPending() || task.hasFailed() || this.options.collapse === false || !task.hasTitle())
+        if ((task.isPending() || task.hasFailed() || this.options.collapse === false || (task.isCompleted() && !task.hasTitle()))
         && (task.hasFailed() || this.options.showSubtasks !== false)
         && task.hasSubtasks()) {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
-          if (task.subtasks.some((subtask) => subtask.hasTitle())) {
-            output = [...output, this.multiLineRenderer(task.subtasks, subtaskLevel)]
-          }
+          output = [...output, this.multiLineRenderer(task.subtasks, subtaskLevel)]
         }
 
         // TASK FINISHED CLEAN BOTTOM BARS
