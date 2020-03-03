@@ -2,11 +2,11 @@ import { Listr } from '../listr'
 import { ListrContext, ListrTask, ListrOptions } from './listr.interface'
 
 export declare class ManagerClass <InjectCtx = ListrContext> {
-  constructor(options?: ManagerOptions, listrOptions?: ListrOptions<InjectCtx>)
+  constructor(options?: ManagerOptions<InjectCtx>)
   add<Ctx = InjectCtx>(tasks: ListrTask<Ctx>[]): void
-  injectOptions <Ctx = InjectCtx> (options?: ManagerOptions, ListrOptions?: ListrOptions<Ctx>): void
-  runAll<Ctx = InjectCtx>(options?: Exclude<ListrOptions<Ctx>, {concurrent}>): Promise<Ctx>
-  run<Ctx = InjectCtx>(tasks: ListrTask<Ctx>[], options?: ListrOptions): Promise<Ctx>
+  injectOptions <Ctx = InjectCtx> (options?: ManagerOptions<Ctx>): void
+  runAll<Ctx = InjectCtx>(options?: ManagerOptions<Ctx>): Promise<Ctx>
+  run<Ctx = InjectCtx>(tasks: ListrTask<Ctx>[], options?: ManagerOptions<Ctx>): Promise<Ctx>
   newListr<Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Listr<Ctx>
   getRunTime (pipetime: number): string
 }
