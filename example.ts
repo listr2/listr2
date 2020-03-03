@@ -118,7 +118,8 @@ async function main (): Promise<void> {
       }
     },
     {
-      // if you give no title to the current task, subtasks will be one less level indendent to be inline with the current tasks, this way you can switch parallel and synchronous tasks
+      // if you give no title to the current task, subtasks will be one less level
+      // indendent to be inline with the current tasks, this way you can switch parallel and synchronous tasks
       task: (ctx, task): Listr => task.newListr<ListrCtx>([
         {
           title: 'If title is empty task will be hidden, but subtasks will be one level less indented.',
@@ -161,7 +162,7 @@ async function main (): Promise<void> {
           },
           bottomBar: true
         }
-      ], { concurrent: true })
+      ], { concurrent: true, collapse: false })
     }
 
   ], {
@@ -186,7 +187,7 @@ async function main (): Promise<void> {
         task.title = ctx.testInput
       }
     }
-  ], { collapse: false })
+  ])
 
   try {
     ctx = await tasks3.run()
