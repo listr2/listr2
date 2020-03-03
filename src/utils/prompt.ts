@@ -6,16 +6,6 @@ import { AutoComplete,
 import { ListrError } from '../interfaces/listr.interface'
 import { PromptOptions, PromptTypes } from './prompt.interface'
 
-export function promptUser (input: Prompt): Promise<any> {
-  try {
-    return input.on('cancel', () => {
-      throw new Error('Cancelled prompt. Quitting.')
-    }).run()
-  } catch (e) {
-    throw new Error('There was a problem getting the answer of the last question. Quitting.')
-  }
-}
-
 export function createPrompt (type: PromptTypes, options: PromptOptions): Promise<any> {
   let prompt: Prompt
   switch (type.toLocaleLowerCase()) {
