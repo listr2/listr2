@@ -11,7 +11,6 @@ export declare class ManagerClass <InjectCtx = ListrContext> {
   getRunTime (pipetime: number): string
 }
 
-export interface ManagerOptions<Ctx = ListrContext> {
+export interface ManagerOptions<Ctx = ListrContext> extends ListrOptions<Ctx> {
   showRunTime?: boolean,
-  listr: ListrOptions<Ctx>
 }
