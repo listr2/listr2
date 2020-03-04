@@ -34,7 +34,7 @@ export class Manager <InjectCtx = ListrContext> {
   }
 
   public run <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Promise<Ctx> {
-    options = Object.assign(this.options, options)
+    options = { ...this.options, ...options } as ListrOptions<Ctx>
 
     return this.newListr<Ctx>(tasks, options).run()
   }

@@ -253,7 +253,7 @@ async function main (): Promise<void> {
         title: 'Write to ctx.',
         task: (ctx): string => ctx.indent = 'bravo'
       }
-    ]),
+    ], {}, 'I have a title.'),
     manager.indent<ListrCtx>([
       {
         title: 'Test',
@@ -262,7 +262,7 @@ async function main (): Promise<void> {
         }
       }
     ], {}, 'Indent title'),
-  ], { exitOnError: false })
+  ], { exitOnError: false, collapse: false })
 
   // run tasks in the queue
   ctx = await manager.runAll({ ctx })
