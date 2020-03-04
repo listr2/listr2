@@ -7,7 +7,7 @@ export class Manager <InjectCtx = ListrContext> {
   private tasks: ListrTask[] = []
 
   constructor (options?: ListrOptions<InjectCtx>) {
-    this.options = Object.assign({}, options)
+    this.options = Object.assign({ showSubtasks: true, collapse: false }, options)
   }
 
   set ctx (ctx: InjectCtx) {
