@@ -9,12 +9,17 @@ interface ListrCtx {
   second: boolean
   hidden: boolean
   testInput: string
+  verbose: string
+  secondInput: string
+  indent: string
   prompt: {
     [name: string]: any
   }
 }
 
 async function main (): Promise<void> {
+
+  let ctx: ListrCtx
 
   // Task structure
   const tasks = new Listr<ListrCtx>([
@@ -91,15 +96,14 @@ async function main (): Promise<void> {
       task: (ctx, task): Listr => task.newListr<ListrCtx>([
         {
           title: 'I am going to fail.',
-          task: (): void => {
+          task: (ctx): void => {
+            ctx.verbose = 'sometesting'
             throw new Error('Oh noes, i failed already.')
           }
         }
       ])
     }
   ], { exitOnError: false })
-
-  let ctx: ListrCtx
 
   // running the command returns the context object back
   try {
@@ -114,7 +118,7 @@ async function main (): Promise<void> {
       // a test with injected context from other listr
       title: 'Got the context variables from the first listr.',
       task: (ctx, task): void => {
-        ctx.second = true
+        task.title = ctx.inside
       }
     },
     {
@@ -187,7 +191,7 @@ async function main (): Promise<void> {
         task.title = ctx.testInput
       }
     }
-  ])
+  ], { ctx })
 
   try {
     ctx = await tasks3.run()
@@ -199,13 +203,13 @@ async function main (): Promise<void> {
   const manager = new Manager<ListrCtx>()
 
   // initial tasks will be executed synchronously at the beggining
-  manager.add([
+  manager.add<ListrCtx>([
     {
       title: 'I have a title but still can push to the bottom bar.',
       task: async (ctx, task): Promise<void> => {
         await delay(550)
-        task.output = 'Still pushing some.'
-        await delay(775)
+        task.output = ctx.testInput
+        await delay(1200)
         task.output = 'Multiple output.'
         await delay(995)
       },
@@ -213,9 +217,9 @@ async function main (): Promise<void> {
     },
     {
       title: 'Indented input',
-      task: (ctx, task): Listr => task.newListr([
+      task: (ctx, task): Listr => task.newListr<ListrCtx>([
         {
-          task: async (ctx, task): Promise<any> => ctx.testInput = await task.prompt('Select',
+          task: async (ctx, task): Promise<any> => ctx.secondInput = await task.prompt<string>('Select',
             { message: 'Select some', choices: ['me', 'or me'] }
           )
         },
@@ -239,12 +243,23 @@ async function main (): Promise<void> {
         task.output = 'Multiple output.'
         await delay(995)
       },
-    }
+    },
+    manager.indent<ListrCtx>([
+      {
+        title: 'One level indented.',
+        task: (ctx, task): string => task.title = 'yeah'
+      },
+      {
+        title: 'Write to ctx.',
+        task: (ctx): string => ctx.indent = 'bravo'
+      }
+    ])
   ])
 
   // run tasks in the queue
-  ctx = await manager.runAll()
+  ctx = await manager.runAll({ ctx })
 
+  console.log(ctx)
 }
 
 main()

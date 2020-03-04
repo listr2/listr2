@@ -68,7 +68,7 @@ interface NumberPromptOptions extends BasePromptOptions {
 
 interface SnippetPromptOptions extends BasePromptOptions {
   newline?: string
-  fields: BasePromptOptions[]
+  fields: Partial<BasePromptOptions[]>
   template: string
 }
 

@@ -2,13 +2,14 @@ import { Observable } from 'rxjs'
 import { Readable } from 'stream'
 
 import { stateConstants } from '../constants/state.constants'
+import { Task } from '../lib/task'
 import { Listr } from '../listr'
 import { PromptOptionsType, PromptTypes } from '../utils/prompt.interface'
 
 export type ListrContext = any
 
 export declare class ListrClass<Ctx = ListrContext> {
-  tasks: ListrTaskObject<Ctx>[]
+  tasks: Task<Ctx>[]
   constructor(task?: readonly ListrTask<Ctx>[], options?: ListrOptions<Ctx>)
   public run(ctx?: Ctx): Promise<Ctx>
   public add(tasks: ListrTask<Ctx> | readonly ListrTask<Ctx>[]): void
@@ -48,7 +49,7 @@ export interface ListrTask<Ctx = ListrContext> {
 export interface ListrTaskWrapper<Ctx = ListrContext> {
   title: string
   output: string
-  newListr<Ctx = ListrContext>(task: ListrTask<Ctx>[], options?: ListrOptions): Listr
+  newListr<Ctx = ListrContext>(task: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Listr
   report(error: Error): void
   skip(message: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx>): Promise<void>

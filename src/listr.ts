@@ -1,6 +1,6 @@
 import pMap from 'p-map'
 
-import { ListrClass, ListrContext, ListrOptions, ListrRenderer, ListrRendererClass, ListrTask, ListrError } from './interfaces/listr.interface'
+import { ListrClass, ListrContext, ListrError, ListrOptions, ListrRenderer, ListrRendererClass, ListrTask } from './interfaces/listr.interface'
 import { Task } from './lib/task'
 import { TaskWrapper } from './lib/task-wrapper'
 import { getRenderer } from './utils/renderer'
@@ -10,13 +10,10 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
   public err: ListrError[] = []
   public exitOnError: ListrOptions['exitOnError']
   public rendererClass: ListrRendererClass<Ctx>
-  public context: Ctx
   private concurrency: number
   private renderer: ListrRenderer
 
-  constructor (public task: ListrTask<Ctx>[], public options?: ListrOptions) {
-    // initiate observable subjectfrom rxjs
-
+  constructor (public task: ListrTask<Ctx> | ListrTask<Ctx>[], public options?: ListrOptions<Ctx>) {
     // assign over default options
     this.options = Object.assign({
       showSubtasks: true,
@@ -41,9 +38,6 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
     // get exit on error option
     this.exitOnError = this.options.exitOnError
 
-    // inject context
-    this.context = this.options?.ctx
-
     // parse and add tasks
     this.add(task || [])
   }
@@ -65,7 +59,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
     this.renderer.render()
 
     // create a new context
-    context = context || this.context || Object.create({})
+    context = context || this.options?.ctx || Object.create({})
 
     // create new error queue
     const errors = []
@@ -89,7 +83,6 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
 
       this.renderer.end()
 
-      return context
     } catch (error) {
       error.context = context
       this.renderer.end(error)
@@ -99,6 +92,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
         throw error
       }
     }
+    return context
   }
 
   private checkAll (context): Promise<void[]> {
@@ -107,7 +101,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
     }))
   }
 
-  private runTask (task: any, context: Ctx, errors: ListrError[]): Promise<void> {
+  private runTask (task: Task<Ctx>, context: Ctx, errors: ListrError[]): Promise<void> {
     if (!task.isEnabled()) {
       return Promise.resolve()
     }
