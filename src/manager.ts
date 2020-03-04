@@ -4,6 +4,11 @@ import { Listr } from './listr'
 export class Manager <InjectCtx = ListrContext> {
   // tasks
   private tasks: ListrTask[] = []
+  private options: ListrOptions<InjectCtx>
+
+  constructor (options?: ListrOptions<InjectCtx>) {
+    this.options = Object.assign({}, options)
+  }
 
   public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): void {
     this.tasks = [...this.tasks, this.indent(tasks, options)]
@@ -29,6 +34,8 @@ export class Manager <InjectCtx = ListrContext> {
   }
 
   public run <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Promise<Ctx> {
+    options = Object.assign(this.options, options)
+
     return this.newListr<Ctx>(tasks, options).run()
   }
 
