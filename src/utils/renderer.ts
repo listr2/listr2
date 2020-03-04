@@ -10,7 +10,7 @@ const renderers = {
 }
 
 function isRendererSupported (renderer: ListrRendererClass<ListrContext>): boolean {
-  return  process.stdout.isTTY === true || renderer.nonTTY === true
+  return process.stdout.isTTY === true || renderer.nonTTY === true
 }
 
 function getRendererClass (renderer: ListrRendererValue<ListrContext>): ListrRendererClass<ListrContext> {

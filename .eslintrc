@@ -39,7 +39,7 @@
     "no-multi-spaces": "error",
     "no-multiple-empty-lines": ["error", {"max":1}],
     "space-before-function-paren": "error",
-    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/explicit-member-accessibility": [
@@ -104,7 +104,7 @@
     "no-underscore-dangle": "error",
     "no-unsafe-finally": "error",
     "no-unused-expressions": "warn",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "error",
     "object-shorthand": "error",
     "one-var": ["error", "never"],
     "radix": "error",

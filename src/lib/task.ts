@@ -29,7 +29,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
     this.bottomBar = this.tasks?.bottomBar
-    this.enabledFn = this.tasks?.enabled  || ((): boolean => true)
+    this.enabledFn = this.tasks?.enabled || ((): boolean => true)
   }
 
   set state$ (state: StateConstants) {
