@@ -67,7 +67,7 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
     }
   }
 
-  public prompt <T extends any, P extends PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T> {
+  public prompt <T = any, P extends PromptTypes = PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T> {
     this.task.prompt = true
 
     let buffer = Buffer.alloc(64)
@@ -87,7 +87,7 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
 
     Object.assign(options, { stdout: outputStream })
 
-    return createPrompt(type, options)
+    return createPrompt<P>(type, options)
   }
 
   public run (ctx: Ctx): Promise<void> {
