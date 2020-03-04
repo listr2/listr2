@@ -21,12 +21,13 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   public render (): void {
-    // hide cursor
-    cliCursor.hide()
     // Do not render if we are already rendering
     if (this.id) {
       return
     }
+
+    // hide cursor
+    cliCursor.hide()
 
     this.id = setInterval(() => {
       logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
@@ -81,9 +82,9 @@ export class MultiLineRenderer implements ListrRenderer {
           (
             task.isPending() || task.hasFailed()
           || (task.isCompleted() && !task.hasTitle())
-          || (task.isCompleted() && this.options.collapse === false)
+          || (task.isCompleted() && task.collapse === false)
           )
-        && this.options.showSubtasks !== false && task.hasSubtasks()
+        && task.showSubtasks !== false && task.hasSubtasks()
         ) {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
 

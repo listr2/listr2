@@ -20,13 +20,12 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   output?: string
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx>) => void | ListrTaskResult<Ctx>
   skip: (ctx: Ctx) => void | boolean | string | Promise<boolean>
-  enabled: boolean
-  prompt: boolean
-  bottomBar: boolean
   subtasks: ListrTaskObject<Ctx>[]
   state: string
   check: (ctx: Ctx) => void
   run: (ctx: Ctx, wrapper: ListrTaskWrapper<Ctx>) => Promise<void>
+  showSubtasks?: boolean
+  collapse?: boolean
   hasSubtasks(): boolean
   isPending(): boolean
   isSkipped(): boolean
@@ -64,8 +63,8 @@ export interface ListrOptions<Ctx = ListrContext> {
   renderer?: ListrRendererValue<Ctx>
   nonTTYRenderer?: ListrRendererValue<Ctx>
   showSubtasks?: boolean
-  bottomBarItems?: number
   collapse?: boolean,
+  bottomBarItems?: number
   ctx?: Ctx
 }
 

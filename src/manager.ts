@@ -10,6 +10,10 @@ export class Manager <InjectCtx = ListrContext> {
     this.options = Object.assign({}, options)
   }
 
+  set ctx (ctx: InjectCtx) {
+    this.options.ctx = ctx
+  }
+
   public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): void {
     this.tasks = [...this.tasks, this.indent(tasks, options)]
   }

@@ -21,7 +21,7 @@ export class VerboseRenderer implements ListrRenderer {
   private verboseRenderer (tasks: ListrTaskObject<any>[]): void {
     return tasks?.forEach((task) => {
       task.subscribe((event: ListrEvent) => {
-        if (task.enabled) {
+        if (task.isEnabled()) {
         // render lower level if multi-level
           if (event.type === 'SUBTASK' && task.hasSubtasks()) {
             this.verboseRenderer(task.subtasks)

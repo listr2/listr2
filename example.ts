@@ -253,7 +253,7 @@ async function main (): Promise<void> {
         title: 'Write to ctx.',
         task: (ctx): string => ctx.indent = 'bravo'
       }
-    ], {}, 'I have a title.'),
+    ], { collapse: false, showSubtasks: true }, 'This might be one level indendent.'),
     manager.indent<ListrCtx>([
       {
         title: 'Test',
@@ -264,10 +264,22 @@ async function main (): Promise<void> {
     ], {}, 'Indent title'),
   ], { exitOnError: false, collapse: false })
 
+  manager.add([
+    manager.indent<ListrCtx>([
+      {
+        title: 'One level indented.',
+        task: (ctx, task): string => task.title = 'yeah'
+      },
+      {
+        title: 'Write to ctx.',
+        task: (ctx): string => ctx.indent = 'bravo'
+      }
+    ], {}, 'I have a title and i am indented.')
+  ], { collapse: true })
+
   // run tasks in the queue
   ctx = await manager.runAll({ ctx })
 
-  console.log(ctx)
 }
 
 main()

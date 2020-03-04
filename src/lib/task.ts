@@ -14,10 +14,12 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   public skip: ListrTaskObject<Ctx>['skip']
   public subtasks: ListrTaskObject<Ctx>['subtasks']
   public state: ListrTaskObject<Ctx>['state']
-  public enabled: ListrTaskObject<Ctx>['enabled']
-  public bottomBar: ListrTaskObject<Ctx>['bottomBar']
-  public enabledFn: ListrTask['enabled']
-  public prompt: ListrTaskObject<Ctx>['prompt']
+  public prompt: boolean
+  public collapse: boolean
+  public showSubtasks: boolean
+  private enabled: boolean
+  private bottomBar: boolean
+  private enabledFn: ListrTask['enabled']
 
   constructor (public listr: Listr<Ctx>, public tasks: ListrTask, public options: ListrOptions) {
 
@@ -26,6 +28,8 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     // move to private parameters
     this.title = this.tasks?.title
     this.task = this.tasks.task
+    this.collapse = this.options.collapse
+    this.showSubtasks = this.options.showSubtasks
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
     this.bottomBar = this.tasks?.bottomBar
