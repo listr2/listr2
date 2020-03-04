@@ -7,6 +7,6 @@ export declare class ManagerClass <InjectCtx = ListrContext> {
   runAll<Ctx = InjectCtx>(options?: ListrOptions<Ctx>): Promise<Ctx>
   run<Ctx = InjectCtx>(tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Promise<Ctx>
   newListr<Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Listr<Ctx>
-  indent <Ctx = ListrContext> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): ListrTask<Ctx>
+  indent <Ctx = ListrContext> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>, title?: string): ListrTask<Ctx>
   getRunTime (pipetime: number): string
 }
