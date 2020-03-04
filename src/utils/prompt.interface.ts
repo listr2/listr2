@@ -1,23 +1,4 @@
 import Enquirer from 'enquirer'
-import { AutoComplete,
-  BasicAuth,
-  Confirm,
-  Editable,
-  Form,
-  Input,
-  Invisible,
-  List,
-  MultiSelect,
-  Numeral,
-  Password,
-  Quiz,
-  Scale,
-  Select,
-  Snippet,
-  Sort,
-  Survey,
-  Text,
-  Toggle } from 'enquirer/lib/prompts'
 
 export type PromptOptions =
   | ArrayPromptOptions
