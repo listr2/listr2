@@ -1,11 +1,10 @@
 import through from 'through'
 
 import { stateConstants } from '../constants/state.constants'
-import { ListrTaskWrapper, StateConstants, ListrTask, ListrOptions, ListrError } from '../interfaces/listr.interface'
+import { ListrError, ListrOptions, ListrTask, ListrTaskWrapper, StateConstants } from '../interfaces/listr.interface'
 import { Listr } from '../listr'
 import { createPrompt } from '../utils/prompt'
-import { PromptOptions } from '../utils/prompt.interface'
-import { PromptTypes } from './../utils/prompt.interface'
+import { PromptOptionsType, PromptTypes } from '../utils/prompt.interface'
 import { Task } from './task'
 
 export class TaskWrapper<Ctx> implements ListrTaskWrapper {
@@ -68,7 +67,7 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
     }
   }
 
-  public prompt <T = any> (type: PromptTypes, prompt: PromptOptions): Promise<T> {
+  public prompt <T extends any, P extends PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T> {
     this.task.prompt = true
 
     let buffer = Buffer.alloc(64)
@@ -86,9 +85,9 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
       }
     })
 
-    Object.assign(prompt, { stdout: outputStream })
+    Object.assign(options, { stdout: outputStream })
 
-    return createPrompt(type, prompt)
+    return createPrompt(type, options)
   }
 
   public run (ctx: Ctx): Promise<void> {

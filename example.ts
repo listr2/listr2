@@ -216,7 +216,7 @@ async function main (): Promise<void> {
       task: (ctx, task): Listr => task.newListr([
         {
           task: async (ctx, task): Promise<any> => ctx.testInput = await task.prompt('Select',
-            { message: 'Select some', hint: 'space to select, a to select all', choices: ['me', 'or me'] }
+            { message: 'Select some', choices: ['me', 'or me'] }
           )
         },
         {

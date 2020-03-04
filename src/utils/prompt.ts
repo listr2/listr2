@@ -1,14 +1,30 @@
 import { Prompt } from 'enquirer'
 import { AutoComplete,
   BasicAuth,
-  Confirm, Editable, Form, Input, Invisible, List, MultiSelect, Numeral, Password, Quiz, Scale, Select, Snippet, Sort, Survey, Text, Toggle } from 'enquirer/lib/prompts'
+  Confirm,
+  Editable,
+  Form,
+  Input,
+  Invisible,
+  List,
+  MultiSelect,
+  Numeral,
+  Password,
+  Quiz,
+  Scale,
+  Select,
+  Snippet,
+  Sort,
+  Survey,
+  Text,
+  Toggle } from 'enquirer/lib/prompts'
 
 import { ListrError } from '../interfaces/listr.interface'
-import { PromptOptions, PromptTypes } from './prompt.interface'
+import { PromptOptionsType, PromptTypes } from './prompt.interface'
 
-export function createPrompt (type: PromptTypes, options: PromptOptions): Promise<any> {
+export function createPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Promise<any> {
   let prompt: Prompt
-  switch (type.toLocaleLowerCase()) {
+  switch (type.toString().toLocaleLowerCase()) {
   case 'autocomplete':
     prompt = new AutoComplete(options)
     break

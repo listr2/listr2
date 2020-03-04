@@ -5,13 +5,19 @@ export class Manager <InjectCtx = ListrContext> {
   // tasks
   private tasks: ListrTask[] = []
 
-  constructor (private options?: ListrOptions<InjectCtx>) {}
-
-  public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[]): void {
-    this.tasks = [...this.tasks, ...tasks]
+  constructor (private options?: ListrOptions<InjectCtx>) {
+    this.options = Object.assign({}, options)
   }
 
-  public async runAll <Ctx> (options?: ListrOptions<Ctx>): Promise<Ctx> {
+  public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): void {
+    const newTask: ListrTask<Ctx> = {
+      task: (ctx, task): Listr<Ctx> => task.newListr<Ctx>(tasks,options)
+    }
+
+    this.tasks = [...this.tasks, newTask]
+  }
+
+  public async runAll <Ctx = InjectCtx> (options?: ListrOptions<Ctx>): Promise<Ctx> {
     options = Object.assign(this.options, options)
     const ctx = await this.run<Ctx>(this.tasks, options)
     this.tasks = []

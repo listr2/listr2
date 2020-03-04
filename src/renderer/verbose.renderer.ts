@@ -1,13 +1,12 @@
 import { ListrEvent, ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr.interface'
 import { Logger } from '../utils/logger'
-import { ILogger } from '../utils/logger.interface'
 
 export class VerboseRenderer implements ListrRenderer {
   static nonTTY = true
-  private logger: ILogger
+  private logger: Logger
 
   constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {
-    this.logger = new Logger().log
+    this.logger = new Logger()
   }
 
   public render (): void {

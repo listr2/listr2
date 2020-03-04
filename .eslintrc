@@ -36,6 +36,8 @@
         "comments": 0
       }
     ],
+    "no-multi-spaces": "error",
+    "no-multiple-empty-lines": ["error", {"max":1}],
     "space-before-function-paren": "error",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/array-type": "error",

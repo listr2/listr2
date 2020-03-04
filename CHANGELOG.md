@@ -1,3 +1,7 @@
+# 20200304, v1.2.4
+* Removed winston because of the cost from verbose renderer, and it was also a bit unnecassary.
+* Fixed prompt module types.
+
 # 20200303, v1.2.0
 * Removed task manager options since it was making things complicated. It shall now be executed after each initiation.
 

@@ -3,7 +3,7 @@ import { Readable } from 'stream'
 
 import { stateConstants } from '../constants/state.constants'
 import { Listr } from '../listr'
-import { PromptOptions, PromptTypes } from '../utils/prompt.interface'
+import { PromptOptionsType, PromptTypes } from '../utils/prompt.interface'
 
 export type ListrContext = any
 
@@ -52,7 +52,7 @@ export interface ListrTaskWrapper<Ctx = ListrContext> {
   report(error: Error): void
   skip(message: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx>): Promise<void>
-  prompt<T = any>(type?: PromptTypes, prompt?: PromptOptions): Promise<T>
+  prompt<T extends any, P extends PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T>
 }
 
 export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx> | Readable | Observable<any>
