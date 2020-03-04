@@ -2,6 +2,7 @@ import { Listr } from '../listr'
 import { ListrContext, ListrTask, ListrOptions } from './listr.interface'
 
 export declare class ManagerClass <InjectCtx = ListrContext> {
+  public options: ListrOptions<InjectCtx>
   constructor(options?: ListrOptions<InjectCtx>)
   add<Ctx = InjectCtx>(tasks: ListrTask<Ctx>[]): void
   runAll<Ctx = InjectCtx>(options?: ListrOptions<Ctx>): Promise<Ctx>

@@ -1,6 +1,6 @@
 {
   "name": "listr2",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "Terminal task list reborn!",
   "license": "MIT",
   "repository": "https://github.com/cenk1cenk2/listr2",

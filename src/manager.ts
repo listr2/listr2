@@ -3,8 +3,8 @@ import { Listr } from './listr'
 
 export class Manager <InjectCtx = ListrContext> {
   // tasks
+  public options: ListrOptions<InjectCtx>
   private tasks: ListrTask[] = []
-  private options: ListrOptions<InjectCtx>
 
   constructor (options?: ListrOptions<InjectCtx>) {
     this.options = Object.assign({}, options)
