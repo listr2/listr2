@@ -19,6 +19,8 @@ export class Manager <InjectCtx = ListrContext> {
   }
 
   public async runAll <Ctx = InjectCtx> (options?: ListrOptions<Ctx>): Promise<Ctx> {
+    options = { ...this.options, ...options } as ListrOptions<Ctx>
+
     const ctx = await this.run<Ctx>(this.tasks, options)
     this.tasks = []
     return ctx
