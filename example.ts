@@ -156,15 +156,17 @@ async function main (): Promise<void> {
         },
         {
           // if you set the bottom bar explicitly, it will output to the bottom bar even the task has a title.
-          title: 'I have a title but still can push to the bottom bar.',
+          title: 'Persistent bottom bar.',
           task: async (ctx, task): Promise<void> => {
             await delay(550)
-            task.output = 'Still pushing some.'
+            task.output = 'test persistent.'
             await delay(775)
-            task.output = 'Multiple output.'
+            task.output = 'test persistent2'
             await delay(995)
+            task.output = 'test persistent3'
+
           },
-          bottomBar: 3,
+          bottomBar: Infinity,
           persistentBottomBar: true
         }
       ], { concurrent: true, collapse: false })

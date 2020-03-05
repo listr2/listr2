@@ -11,11 +11,12 @@ import { Listr } from './../listr'
 export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext> {
   public id: ListrTaskObject<Ctx>['id']
   public title: ListrTaskObject<Ctx>['title']
-  public output: ListrTaskObject<Ctx>['output']
+  // public output: ListrTaskObject<Ctx>['output']
   public task: ListrTaskObject<Ctx>['task']
   public skip: ListrTaskObject<Ctx>['skip']
   public subtasks: ListrTaskObject<Ctx>['subtasks']
   public state: ListrTaskObject<Ctx>['state']
+  public output: ListrTaskObject<Ctx>['output']
   public prompt: boolean
   public collapse: boolean
   public showSubtasks: boolean
@@ -98,7 +99,9 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   }
 
   hasPersistentBottomBar (): boolean {
-    return this.persistentBottomBar
+    if (this.persistentBottomBar === true) {
+      return true
+    }
   }
 
   hasTitle (): boolean {

@@ -1,6 +1,5 @@
 import chalk from 'chalk'
 import cliCursor from 'cli-cursor'
-import cliTruncate from 'cli-truncate'
 import elegantSpinner from 'elegant-spinner'
 import figures from 'figures'
 import indentString from 'indent-string'
@@ -64,8 +63,8 @@ export class MultiLineRenderer implements ListrRenderer {
         }
 
         // CURRENT TASK OUTPUT
-        if (task.isPending() && task?.output) {
-          if (task.isPrompt()) {
+        if (task?.output) {
+          if (task.isPending() && task.isPrompt()) {
             this.promptBar = task.output
 
           } else if (task.isBottomBar() || !task.hasTitle()) {
@@ -82,7 +81,7 @@ export class MultiLineRenderer implements ListrRenderer {
               this.bottomBar[task.id].data = [...this.bottomBar[task.id].data, ...data]
             }
 
-          } else {
+          } else if (task.isPending()) {
             output = [...output, ...this.dumpData(task.output, level)]
           }
         }
@@ -108,7 +107,7 @@ export class MultiLineRenderer implements ListrRenderer {
         if (task.isCompleted()) {
           this.promptBar = null
 
-          if (!task.hasPersistentBottomBar()) {
+          if ((!task.hasTitle() || task.isBottomBar()) && !task.hasPersistentBottomBar()) {
             delete this.bottomBar[task.id]
           }
         }
@@ -157,7 +156,7 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   private formatString (string: string, icon: string, level: number): string {
-    return `${cliTruncate(indentString(`${icon} ${string}`, level * this.indentation), process.stdout.columns - 3)}`
+    return `${indentString(`${icon} ${string}`, level * this.indentation)}`
   }
 
   private getSymbol (task, options): string {
