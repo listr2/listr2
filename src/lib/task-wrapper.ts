@@ -75,7 +75,7 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
       buffer += data
 
       // eslint-disable-next-line no-control-regex
-      const deleteMultiLineRegexp = new RegExp(/.*(\u001b\[.*G|\u0007).*/m)
+      const deleteMultiLineRegexp = new RegExp(/.*(\u001b\[[0-9]?G|\u0007).*/m)
 
       if (deleteMultiLineRegexp.test(buffer.toString())) {
         buffer = Buffer.alloc(64)
