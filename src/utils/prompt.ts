@@ -88,8 +88,11 @@ export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptio
   return prompt
 }
 
-export function createPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Promise<any> {
+export function createPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>, error = false): Promise<any> {
   return newPrompt(type, options).on('cancel', () => {
+    if (error) {
+      throw new Error('Cancelled prompt.')
+    }
     return 'Cancelled prompt.'
   }).run()
 }
