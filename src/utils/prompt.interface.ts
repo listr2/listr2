@@ -17,8 +17,8 @@ interface BasePromptOptions {
   skip?: ((state: object) => boolean | Promise<boolean>) | boolean
   stdin?: NodeJS.ReadStream
   stdout?: NodeJS.WriteStream
-  format?(value: any): string | Promise<string>
-  result?(value: any): string | Promise<string>
+  format?(value: any): any | Promise<any>
+  result?(value: any): any | Promise<any>
   validate?(value: any): boolean | Promise<boolean> | string | Promise<string>
   onSubmit?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
   onCancel?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
