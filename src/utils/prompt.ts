@@ -22,7 +22,7 @@ import { AutoComplete,
 import { ListrError } from '../interfaces/listr.interface'
 import { PromptOptionsType, PromptTypes } from './prompt.interface'
 
-export function createPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Promise<any> {
+export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Prompt {
   let prompt: Prompt
   switch (type.toString().toLocaleLowerCase()) {
   case 'autocomplete':
@@ -85,7 +85,11 @@ export function createPrompt <T extends PromptTypes> (type: T, options: PromptOp
   default:
     throw new ListrError('No prompt type this was not supposed to happen.')
   }
-  return prompt.on('cancel', () => {
+  return prompt
+}
+
+export function createPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Promise<any> {
+  return newPrompt(type, options).on('cancel', () => {
     return 'Cancelled prompt.'
   }).run()
 }
