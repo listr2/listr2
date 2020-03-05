@@ -26,6 +26,11 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
 
   set output (data: string) {
     this.task.output = data
+
+    this.task.next({
+      type: 'DATA',
+      data
+    })
   }
 
   get output (): string {
