@@ -16,6 +16,7 @@ export declare class ListrClass<Ctx = ListrContext> {
 }
 
 export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
+  id: string
   title?: string
   output?: string
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx>) => void | ListrTaskResult<Ctx>
@@ -26,12 +27,14 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   run: (ctx: Ctx, wrapper: ListrTaskWrapper<Ctx>) => Promise<void>
   showSubtasks?: boolean
   collapse?: boolean
+  bottomBar: boolean | number
   hasSubtasks(): boolean
   isPending(): boolean
   isSkipped(): boolean
   isCompleted(): boolean
   isEnabled(): boolean
   isBottomBar(): boolean
+  hasPersistentBottomBar(): boolean
   isPrompt(): boolean
   hasFailed(): boolean
   hasTitle(): boolean
@@ -42,7 +45,8 @@ export interface ListrTask<Ctx = ListrContext> {
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx>) => void | ListrTaskResult<Ctx>
   skip?: (ctx: Ctx) => void | boolean | string | Promise<boolean>
   enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
-  bottomBar?: boolean
+  bottomBar?: boolean | number
+  persistentBottomBar?: boolean
 }
 
 export interface ListrTaskWrapper<Ctx = ListrContext> {
@@ -63,8 +67,8 @@ export interface ListrOptions<Ctx = ListrContext> {
   renderer?: ListrRendererValue<Ctx>
   nonTTYRenderer?: ListrRendererValue<Ctx>
   showSubtasks?: boolean
-  collapse?: boolean,
-  bottomBarItems?: number
+  collapse?: boolean
+  clearOutput?: boolean
   ctx?: Ctx
 }
 

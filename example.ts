@@ -164,7 +164,8 @@ async function main (): Promise<void> {
             task.output = 'Multiple output.'
             await delay(995)
           },
-          bottomBar: true
+          bottomBar: 3,
+          persistentBottomBar: true
         }
       ], { concurrent: true, collapse: false })
     }
@@ -213,7 +214,7 @@ async function main (): Promise<void> {
         task.output = 'Multiple output.'
         await delay(995)
       },
-      bottomBar: true
+      bottomBar: 3
     },
     {
       title: 'Indented input',

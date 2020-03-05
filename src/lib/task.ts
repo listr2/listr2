@@ -1,6 +1,7 @@
 import * as sttoob from '@samverschueren/stream-to-observable'
 import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
+import { v4 as uuidv4 } from 'uuid'
 
 import { stateConstants } from '../constants/state.constants'
 import { ListrContext, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrError, ListrTaskWrapper, StateConstants } from '../interfaces/listr.interface'
@@ -8,6 +9,7 @@ import { getRenderer } from '../utils/renderer'
 import { Listr } from './../listr'
 
 export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext> {
+  public id: ListrTaskObject<Ctx>['id']
   public title: ListrTaskObject<Ctx>['title']
   public output: ListrTaskObject<Ctx>['output']
   public task: ListrTaskObject<Ctx>['task']
@@ -17,8 +19,9 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   public prompt: boolean
   public collapse: boolean
   public showSubtasks: boolean
+  public bottomBar: boolean | number
+  private persistentBottomBar: boolean
   private enabled: boolean
-  private bottomBar: boolean
   private enabledFn: ListrTask['enabled']
 
   constructor (public listr: Listr<Ctx>, public tasks: ListrTask, public options: ListrOptions) {
@@ -26,10 +29,12 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     super()
 
     // move to private parameters
+    this.id = uuidv4()
     this.title = this.tasks?.title
     this.task = this.tasks.task
     this.collapse = this.options.collapse
     this.showSubtasks = this.options.showSubtasks
+    this.persistentBottomBar = this.tasks?.persistentBottomBar
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
     this.bottomBar = this.tasks?.bottomBar
@@ -87,7 +92,13 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   }
 
   isBottomBar (): boolean {
-    return this.bottomBar
+    if (typeof this?.bottomBar === 'number' || typeof this.bottomBar === 'boolean') {
+      return true
+    }
+  }
+
+  hasPersistentBottomBar (): boolean {
+    return this.persistentBottomBar
   }
 
   hasTitle (): boolean {

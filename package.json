@@ -1,6 +1,6 @@
 {
   "name": "listr2",
-  "version": "1.2.14",
+  "version": "1.2.15",
   "description": "Terminal task list reborn!",
   "license": "MIT",
   "repository": "https://github.com/cenk1cenk2/listr2",
@@ -60,7 +60,8 @@
     "p-map": "^3.0.0",
     "pad": "^3.2.0",
     "rxjs": "^6.3.3",
-    "through": "^2.3.8"
+    "through": "^2.3.8",
+    "uuid": "^7.0.2"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",

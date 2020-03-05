@@ -12,12 +12,10 @@ export class MultiLineRenderer implements ListrRenderer {
   static nonTTY = false
   private id?: NodeJS.Timeout
   private indentation = 2
-  private bottomBarItems: number
-  private bottomBar: string[] = []
+  private bottomBar: {[uuid: string]: {data?: string[], items?: number}} = {}
   private promptBar: string
 
   constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {
-    this.bottomBarItems = this.options.bottomBarItems || 3
   }
 
   public render (): void {
@@ -40,8 +38,13 @@ export class MultiLineRenderer implements ListrRenderer {
       this.id = undefined
     }
 
-    logUpdate(this.multiLineRenderer(this.tasks))
-    logUpdate.done()
+    logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar())
+
+    if (this.options.clearOutput) {
+      logUpdate.clear()
+    } else {
+      logUpdate.done()
+    }
 
     // hide cursor
     cliCursor.show()
@@ -68,8 +71,15 @@ export class MultiLineRenderer implements ListrRenderer {
           } else if (task.isBottomBar() || !task.hasTitle()) {
             const data = this.dumpData(task.output, -1)
 
-            if (!data?.some((element) => this.bottomBar.includes(element))) {
-              this.bottomBar = [...this.bottomBar, ...data]
+            if (!this.bottomBar[task.id]) {
+              this.bottomBar[task.id] = {}
+              this.bottomBar[task.id].data = []
+
+              this.bottomBar[task.id].items = typeof task.bottomBar === 'boolean' ? 1 : task.bottomBar
+            }
+
+            if (!data?.some((element) => this.bottomBar[task.id].data.includes(element))) {
+              this.bottomBar[task.id].data = [...this.bottomBar[task.id].data, ...data]
             }
 
           } else {
@@ -97,8 +107,10 @@ export class MultiLineRenderer implements ListrRenderer {
         // TASK FINISHED CLEAN BOTTOM BARS
         if (task.isCompleted()) {
           this.promptBar = null
-          // FIXME: maybe in later iterations delete according to from and typestamp, but trivial atm.
-          this.bottomBar = []
+
+          if (!task.hasPersistentBottomBar()) {
+            delete this.bottomBar[task.id]
+          }
         }
       }
     }
@@ -107,9 +119,21 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   private renderBottomBar (): string {
-    if (this.bottomBar.length > 0) {
-      this.bottomBar = this.bottomBar.slice(-this.bottomBarItems)
-      return ['\n', ...this.bottomBar].join('\n')
+    // parse through all objects return only the last mentioned items
+    if (Object.keys(this.bottomBar).length > 0) {
+      this.bottomBar = Object.keys(this.bottomBar).reduce((o, key) => {
+        if (!o?.[key]) {
+          o[key] = {}
+        }
+
+        o[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
+        return o
+      }, {})
+
+      // render the bar
+      const returnRender = Object.values(this.bottomBar).reduce((o, value )=> o = [...o, ...value.data], [])
+
+      return ['\n', ...returnRender].join('\n')
     }
   }
 
