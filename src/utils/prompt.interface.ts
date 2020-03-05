@@ -12,7 +12,7 @@ export type PromptOptions =
 interface BasePromptOptions {
   name?: string | (() => string)
   message: string | (() => string) | (() => Promise<string>)
-  initial?: any
+  initial?: boolean | number | string | (() => string) | (() => Promise<string>)
   required?: boolean
   skip?: ((state: object) => boolean | Promise<boolean>) | boolean
   stdin?: NodeJS.ReadStream
@@ -24,16 +24,8 @@ interface BasePromptOptions {
   onCancel?(name: string, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
 }
 
-interface Choice {
-  name?: string
-  message?: string
-  value?: string
-  hint?: string
-  disabled?: boolean | string
-}
-
 interface ArrayPromptOptions extends BasePromptOptions {
-  choices: string[] | Choice[]
+  choices: string[] | BasePromptOptions[]
   maxChoices?: number
   muliple?: boolean
   initial?: number
@@ -47,7 +39,7 @@ interface ArrayPromptOptions extends BasePromptOptions {
 }
 
 interface BooleanPromptOptions extends BasePromptOptions {
-  initial?: boolean
+  initial?: boolean | (() => string) | (() => Promise<string>)
 }
 
 interface StringPromptOptions extends BasePromptOptions {
