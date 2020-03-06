@@ -44,7 +44,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
   }
 
   public add (task: ListrTask | ListrTask[]): void {
-    const tasks = Array.isArray(task) ? task : [task]
+    const tasks = Array.isArray(task) ? task : [ task ]
 
     tasks.forEach((task): void => {
       this.tasks.push(new Task(this, task, this.options))

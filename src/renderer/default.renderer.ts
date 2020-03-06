@@ -78,11 +78,11 @@ export class MultiLineRenderer implements ListrRenderer {
             }
 
             if (!data?.some((element) => this.bottomBar[task.id].data.includes(element))) {
-              this.bottomBar[task.id].data = [...this.bottomBar[task.id].data, ...data]
+              this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
 
           } else if (task.isPending()) {
-            output = [...output, ...this.dumpData(task.output, level)]
+            output = [ ...output, ...this.dumpData(task.output, level) ]
           }
         }
 
@@ -99,7 +99,7 @@ export class MultiLineRenderer implements ListrRenderer {
 
           const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
           if (subtaskRender !== '') {
-            output = [...output, subtaskRender]
+            output = [ ...output, subtaskRender ]
           }
         }
 
@@ -130,9 +130,9 @@ export class MultiLineRenderer implements ListrRenderer {
       }, {})
 
       // render the bar
-      const returnRender = Object.values(this.bottomBar).reduce((o, value )=> o = [...o, ...value.data], [])
+      const returnRender = Object.values(this.bottomBar).reduce((o, value )=> o = [ ...o, ...value.data ], [])
 
-      return ['\n', ...returnRender].join('\n')
+      return [ '\n', ...returnRender ].join('\n')
     }
   }
 

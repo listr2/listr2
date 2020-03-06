@@ -128,9 +128,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
         // assign subtasks
         this.subtasks = result.tasks
 
-        this.next({
-          type: 'SUBTASK'
-        })
+        this.next({ type: 'SUBTASK' })
 
         result = result.run(context)
 

@@ -1,13 +1,13 @@
 {
   "name": "listr2",
-  "version": "1.2.26",
+  "version": "1.2.27",
   "description": "Terminal task list reborn!",
   "license": "MIT",
   "repository": "https://github.com/cenk1cenk2/listr2",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "author": {
-    "name": "Cenk Kilic, Sam Verschueren",
+    "name": "Cenk Kilic",
     "email": "cenk@kilic.dev",
     "url": "https://srcs.kilic.dev"
   },
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "tsc --declaration",
-    "lint": "eslint --ext .json,.ts,.js --fix src/**",
+    "lint": "eslint --ext .json,.ts,.js --fix src/",
     "dev:lint": "lint-staged"
   },
   "husky": {
@@ -57,20 +57,17 @@
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
     "log-update": "^4.0.0",
-    "p-map": "^3.0.0",
+    "p-map": "^4.0.0",
     "pad": "^3.2.0",
     "rxjs": "^6.3.3",
     "through": "^2.3.8",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
-    "@types/chalk": "^2.2.0",
+    "@cenk1cenk2/eslint-config": "0.0.3",
     "@types/node": "^13.7.7",
-    "@typescript-eslint/eslint-plugin": "^2.22.0",
-    "@typescript-eslint/parser": "^2.22.0",
     "delay": "^4.3.0",
     "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.1",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "ts-node": "^8.6.2",

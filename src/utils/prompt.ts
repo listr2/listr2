@@ -1,5 +1,6 @@
 import { Prompt } from 'enquirer'
-import { AutoComplete,
+import {
+  AutoComplete,
   BasicAuth,
   Confirm,
   Editable,
@@ -17,7 +18,8 @@ import { AutoComplete,
   Sort,
   Survey,
   Text,
-  Toggle } from 'enquirer/lib/prompts'
+  Toggle
+} from 'enquirer/lib/prompts'
 
 import { ListrError } from '../interfaces/listr.interface'
 import { PromptOptionsType, PromptTypes } from './prompt.interface'

@@ -15,7 +15,7 @@ export class Manager <InjectCtx = ListrContext> {
   }
 
   public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): void {
-    this.tasks = [...this.tasks, this.indent(tasks, options)]
+    this.tasks = [ ...this.tasks, this.indent(tasks, options) ]
   }
 
   public async runAll <Ctx = InjectCtx> (options?: ListrOptions<Ctx>): Promise<Ctx> {

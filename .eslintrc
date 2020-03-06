@@ -8,7 +8,6 @@
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "error",
-    "object-curly-spacing": ["error", "always"],
     "linebreak-style": ["error", "unix"],
     "sort-imports": "off",
     "import/first": "error",
@@ -17,6 +16,7 @@
     "import/order": [
       "error",
       {
+        "pathGroupsExcludedImportTypes": ["builtin"],
         "groups": [
           ["builtin", "external"],
           ["index", "parent", "sibling"]
@@ -74,7 +74,12 @@
     "@typescript-eslint/unified-signatures": "error",
     "arrow-parens": ["error", "always"],
     "@typescript-eslint/no-use-before-define": "off",
-    "comma-dangle": "off",
+    "object-curly-spacing": ["error", "always"],
+    "object-curly-newline": ["error", { "ObjectExpression": {"multiline": true, "minProperties": 3, "consistent": true}, "ObjectPattern": "never", "ImportDeclaration": {"multiline": true, "minProperties": 10}, "ExportDeclaration": {"multiline": true, "minProperties": 10} }],
+    "array-element-newline": ["error", "consistent"],
+    "array-bracket-newline": ["error", "consistent"],
+    "comma-dangle": ["error", "never"],
+    "array-bracket-spacing": ["error", "always", {"objectsInArrays": true, "arraysInArrays": true}],
     "complexity": ["error", 20],
     "constructor-super": "error",
     "dot-notation": "error",
