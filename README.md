@@ -1,8 +1,8 @@
 Listr2
 ====
 
-[![Version](https://img.shields.io/npm/v/init-cli.svg)](https://npmjs.org/package/listr2)
-[![Downloads/week](https://img.shields.io/npm/dw/init-cli.svg)](https://npmjs.org/package/listr2)
+[![Version](https://img.shields.io/npm/v/listr2.svg)](https://npmjs.org/package/listr2)
+[![Downloads/week](https://img.shields.io/npm/dw/listr2.svg)](https://npmjs.org/package/listr2)
 [![Build Status](https://cd.ev.kilic.dev/api/badges/cenk1cenk2/listr2/status.svg)](https://cd.ev.kilic.dev/cenk1cenk2/listr2)
 
 This is the expanded and re-written in Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr). Fully backwards compatible with the Listr itself but with more features.
