@@ -36,12 +36,12 @@ export class Manager <InjectCtx = ListrContext> {
     if (typeof tasks === 'function') {
       newTask = {
         title,
-        task: (ctx): Listr<Ctx> => this.newListr<Ctx>(tasks(ctx),{ctx, ...options})
+        task: (ctx): Listr<Ctx> => this.newListr<Ctx>(tasks(ctx), options)
       }
     } else {
       newTask = {
         title,
-        task: (ctx): Listr<Ctx> => this.newListr<Ctx>(tasks,{ctx, ...options})
+        task: (): Listr<Ctx> => this.newListr<Ctx>(tasks, options)
       }
     }
 
