@@ -30,10 +30,19 @@ export class Manager <InjectCtx = ListrContext> {
     return new Listr<Ctx>(tasks, options)
   }
 
-  public indent <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>, title?: string): ListrTask<Ctx> {
-    const newTask: ListrTask<Ctx> = {
-      title,
-      task: (): Listr<Ctx> => this.newListr<Ctx>(tasks,options)
+  public indent <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[] | ((ctx?: Ctx) => ListrTask<Ctx>[]), options?: ListrOptions<Ctx>, title?: string): ListrTask<Ctx> {
+    let newTask: ListrTask<Ctx>
+    // type function or directly
+    if (typeof tasks === 'function') {
+      newTask = {
+        title,
+        task: (ctx): Listr<Ctx> => this.newListr<Ctx>(tasks(ctx),{ctx, ...options})
+      }
+    } else {
+      newTask = {
+        title,
+        task: (ctx): Listr<Ctx> => this.newListr<Ctx>(tasks,{ctx, ...options})
+      }
     }
 
     return newTask

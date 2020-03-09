@@ -280,6 +280,15 @@ async function main (): Promise<void> {
     ], {}, 'I have a title and i am indented.')
   ], { collapse: true })
 
+  manager.add([
+    manager.indent<ListrCtx>((ctx) => [
+      {
+        title: `Testing ${ctx.indent}`,
+        task: (ctx, task): void => { task.output = 'wow' }
+      }
+    ])
+  ])
+
   // run tasks in the queue
   ctx = await manager.runAll({ ctx })
 
