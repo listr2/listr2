@@ -11,12 +11,12 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 
 # Navigation
 * [Changelog](./CHANGELOG.md)
-* [How to use](#how-to-use)
+* [How to Use](#how-to-use)
 * [Features](#extra-features)
 
-# How to use
+# How to Use
 
-Check out `example.ts` in the root of the repository for the code in demo.
+Check out `example.ts` in the root of the repository for the code in demo or follow through with the readme.
 
 ```typescript
 import { Listr } from 'listr2'
