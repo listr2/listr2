@@ -91,7 +91,8 @@ export class MultiLineRenderer implements ListrRenderer {
           (
             task.isPending() || task.hasFailed()
           || (task.isCompleted() && !task.hasTitle())
-          || (task.isCompleted() && task.collapse === false)
+          || (task.isCompleted() && task.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.collapse === true))
+          || (task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.collapse === false))
           )
         && task.showSubtasks !== false && task.hasSubtasks()
         ) {
