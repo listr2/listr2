@@ -15,6 +15,8 @@ export class Manager <InjectCtx = ListrContext> {
   }
 
   public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): void {
+    options = { ...this.options, ...options } as ListrOptions<Ctx>
+
     this.tasks = [ ...this.tasks, this.indent(tasks, options) ]
   }
 
@@ -31,6 +33,8 @@ export class Manager <InjectCtx = ListrContext> {
   }
 
   public indent <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[] | ((ctx?: Ctx) => ListrTask<Ctx>[]), options?: ListrOptions<Ctx>, title?: string): ListrTask<Ctx> {
+    options = { ...this.options, ...options } as ListrOptions<Ctx>
+
     let newTask: ListrTask<Ctx>
     // type function or directly
     if (typeof tasks === 'function') {
