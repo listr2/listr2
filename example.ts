@@ -138,7 +138,7 @@ async function main (): Promise<void> {
             ctx.hidden = true
           }
         }
-      ], { concurrent: true }),
+      ], { concurrent: true })
     },
     {
       task: (ctx,task): Listr => task.newListr<ListrCtx>([
@@ -223,7 +223,7 @@ async function main (): Promise<void> {
       task: (ctx, task): Listr => task.newListr<ListrCtx>([
         {
           task: async (ctx, task): Promise<any> => ctx.secondInput = await task.prompt<string>('Select',
-            { message: 'Select some', choices: ['me', 'or me'] }
+            { message: 'Select some', choices: [ 'me', 'or me' ] }
           )
         },
         {
@@ -233,7 +233,7 @@ async function main (): Promise<void> {
             await delay(775)
             task.output = 'Multiple output.'
             await delay(995)
-          },
+          }
         }
       ])
     },
@@ -245,7 +245,7 @@ async function main (): Promise<void> {
         await delay(775)
         task.output = 'Multiple output.'
         await delay(995)
-      },
+      }
     },
     manager.indent<ListrCtx>([
       {
@@ -264,7 +264,7 @@ async function main (): Promise<void> {
           throw new Error('failed')
         }
       }
-    ], {}, 'Indent title'),
+    ], {}, 'Indent title')
   ], { exitOnError: false, collapse: false })
 
   manager.add([

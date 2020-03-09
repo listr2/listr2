@@ -36,11 +36,14 @@ const tasks = new Listr<ListrCtx>(
   ],
   {
     // throw in some options, all have a default
-    showSubtasks: true,
-    concurrent: false,
-    exitOnError: true,
-    bottomBarItems: 3,
-    ctx: someOtherContextObject
+    concurrent: false
+    exitOnError: true
+    renderer: ListrRendererValue<Ctx>
+    nonTTYRenderer: ListrRendererValue<Ctx>
+    showSubtasks: true
+    collapse: false
+    clearOutput: false
+    ctx: Ctx
   }
 )
 
@@ -69,21 +72,63 @@ private manager: Manager<Ctx> = new Manager<Ctx>()
 
 ### Add Tasks
 ```typescript
-manager.add([])
+manager.add([<--TASK-->])
 ```
 
 ### Run Tasks that are in Queue
 * This will also return the context object back.
 
 ```typescript
-const ctx = await manager.runAll<Ctx>({concurrent: true})
+const ctx = await manager.runAll<Ctx>({ concurrent: true })
 ```
+### Indent A Task
+To wrap a task around a new listr object with task manager, you can use ```manager.indent([], {...options})```. This way you can change the concurrency in a one big task lists.
+
+```typescript
+const ctx = await manager.runAll<Ctx>({ concurrent: true })
+
+manager.add<Ctx>([
+  {
+    title: 'Some task.',
+    task: (): void => {}
+  },
+  // this is equal to wrapping it inside task:(): Listr => new Listr(<-SOMETASK->)
+  manager.indent<Ctx>([
+    {
+      title: 'Some task.',
+      task: (): void => {}
+    },
+  ], { concurrent: true })
+], { concurrent: false })
+```
+
+### Listr Wrapper
+You can also use the method below to directly create a Listr class. This will just return a Listr class, which you need to run after.
+
+```typescript
+const myListr = manager.newListr<Ctx>([
+  {
+    title: 'Some task.',
+    task: (): void => {}
+  }
+], { concurrent: false })
+
+// then you can perform any class actions
+myListr.run()
+```
+
 
 ## Input Module
 
-Input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer). So with running a `task.prompt` function, you first select which kind of prompt that you will use and second one is the enquirer object which you can see more in detail in the designated npm page.
+Input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
 
-To get a input you can assign the task a new prompt in an async function and write the response to the context. It is not advisable to run prompts in a concurrent task because they will class and overwrite each others console output and when you do keyboard movements it will apply to the both.
+So with running a `task.prompt` function, you first select which kind of prompt that you will use and second one is the enquirer object which you can see more in detail in the designated npm page.
+
+To get a input you can assign the task a new prompt in an async function and write the response to the context.
+
+**It is not advisable to run prompts in a concurrent task because they will class and overwrite each others console output and when you do keyboard movements it will apply to the both.**
+
+It will render multiple times in verbose renderers, because the `enquirer`'s output is passed through the Listr itself as data. It will work anyway, but will not look that nice.
 
 Prompts can either have a title or not but they will always be rendered at the end of the current console while using the default renderer.
 
@@ -101,17 +146,90 @@ new Listr<ListrCtx>([
   ])
   ```
 
+### Directly access enquirer without explicitly installing in your project
+If you want to use enquirer in your project, outside of the Listr, you can do it as follows.
+
+```typescript
+import { newPrompt, PromptTypes, PromptOptionsType } from 'listr2'
+
+export async function promptUser <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Promise<any>{
+  try {
+    return newPrompt(type, options).on('cancel', () => {
+      console.error('Cancelled prompt. Quitting.')
+      process.exit(20)
+    }).run()
+  } catch (e) {
+    console.error('There was a problem getting the answer of the last question. Quitting.')
+    console.debug(e.trace)
+    process.exit(20)
+  }
+}
+
+await promptUser('Input', { message: 'Hey what is that?' })
+  ```
+
+If you want to directly run it, and do not want to create a jumper function you can do as follows.
+
+```typescript
+import { createPrompt } from 'listr2'
+
+await createPrompt('Input', { message: 'Hey what is that?' })
+```
+
 ## Inject Context
 
 Context which is the object that is being used while executing the actions in the Listr can now be enjected to the next Listr through using the custom options.
 
+**If all tasks are in a one big Listr class you dont have to inject context to the childs, since it is automatically injected as in the original.**
+
+```typescript
+// get the context from other listr object
+const ctx = manager.runAll()
+
+// and inject it to next via options
+new Listr<ListrCtx>([
+    {
+      title: 'Dump prompt.',
+      task: (ctx,task): void => {
+        task.output = ctx.testInput
+      }
+    }
+  ], {ctx})
+```
+
 ## Bottom Bar For More Information
 
-Default renderer now supports a bottom bar to dump the output if desired. The output lenght can be limited through options of the Listr class.
+Default renderer now supports a bottom bar to dump the output if desired. The output lenght can be limited through options of the task.
+
+**If title has no title, and generates output it will be pushed to the bottom bar instead.**
+
+Else you have to specicify explicitly to the dump the output to the bottom bar. Bottom bar output from the particular task will be cleared after the task finished, but with ```persistentBottomBar: true``` option it can be persistent.
+
+```typescript
+new Listr<ListrCtx>([
+    {
+      task: async (ctx, task): Promise<any> => {
+        task.output = 'Something'
+      },
+      bottomBar: Infinity, // bottom bar items to keep by this particular task, number | boolean. boolean true will set it to 1.
+      persistentBottomBar: true // defaults to false, has to be set explicitly if desired
+    },
+  ], {ctx})
+```
 
 ## Tasks without Titles
 
-Tasks can be created without titles, and if any output is dumped it will be dumped to the bottom bar instead. If a task with no title is returns a new Listr task, it can be used to change the parallel task count and execute those particular tasks in order or in parallel. The subtasks of the untitled tasks will drop down one indentation level to be consistent.
+Tasks can be created without titles, and if any output is dumped it will be dumped to the bottom bar instead. If a task with no title is returns a new Listr task, it can be used to change the parallel task count and execute those particular tasks in order or in parallel. The subtasks of the untitled tasks will drop down one indentation level to be consistent. In the verbose renderer tasks with no-title will render as 'Task with no title.'
+
+```typescript
+new Listr<ListrCtx>([
+    {
+      task: async (ctx, task): Promise<any> => {
+        task.output = 'Something'
+      }
+    },
+  ], {})
+```
 
 ## Multi-Line Renderer
 
@@ -119,4 +237,4 @@ The default update renderer now supports multi-line rendering. Therefore impleme
 
 ## Fully-Typed
 
-You can download the types if you are starting a new Typescript project.
+Types are exported from the root.
