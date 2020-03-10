@@ -14,7 +14,7 @@ export class Manager <InjectCtx = ListrContext> {
     this.options.ctx = ctx
   }
 
-  public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): void {
+  public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[] | ((ctx?: Ctx) => ListrTask<Ctx>[]), options?: ListrOptions<Ctx>): void {
     options = { ...this.options, ...options } as ListrOptions<Ctx>
 
     this.tasks = [ ...this.tasks, this.indent(tasks, options) ]
