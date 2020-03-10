@@ -34,7 +34,7 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   isCompleted(): boolean
   isEnabled(): boolean
   isBottomBar(): boolean
-  hasPersistentBottomBar(): boolean
+  haspersistentOutput(): boolean
   isPrompt(): boolean
   hasFailed(): boolean
   hasTitle(): boolean
@@ -46,7 +46,7 @@ export interface ListrTask<Ctx = ListrContext> {
   skip?: (ctx: Ctx) => void | boolean | string | Promise<boolean>
   enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
   bottomBar?: boolean | number
-  persistentBottomBar?: boolean
+  persistentOutput?: boolean
 }
 
 export interface ListrTaskWrapper<Ctx = ListrContext> {

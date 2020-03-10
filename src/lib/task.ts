@@ -21,7 +21,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   public collapse: boolean
   public showSubtasks: boolean
   public bottomBar: boolean | number
-  private persistentBottomBar: boolean
+  private persistentOutput: boolean
   private enabled: boolean
   private enabledFn: ListrTask['enabled']
 
@@ -35,7 +35,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     this.task = this.tasks.task
     this.collapse = this.options.collapse
     this.showSubtasks = this.options.showSubtasks
-    this.persistentBottomBar = this.tasks?.persistentBottomBar
+    this.persistentOutput = this.tasks?.persistentOutput
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
     this.bottomBar = this.tasks?.bottomBar
@@ -98,8 +98,8 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     }
   }
 
-  hasPersistentBottomBar (): boolean {
-    if (this.persistentBottomBar === true) {
+  haspersistentOutput (): boolean {
+    if (this.persistentOutput === true) {
       return true
     }
   }

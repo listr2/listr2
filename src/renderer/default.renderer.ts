@@ -81,7 +81,7 @@ export class MultiLineRenderer implements ListrRenderer {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
 
-          } else if (task.isPending()) {
+          } else if (task.isPending() || task.haspersistentOutput()) {
             output = [ ...output, ...this.dumpData(task.output, level) ]
           }
         }
@@ -108,7 +108,7 @@ export class MultiLineRenderer implements ListrRenderer {
         if (task.isCompleted()) {
           this.promptBar = null
 
-          if ((!task.hasTitle() || task.isBottomBar()) && task.hasPersistentBottomBar() !== true) {
+          if ((!task.hasTitle() || task.isBottomBar()) && task.haspersistentOutput() !== true) {
             delete this.bottomBar[task.id]
           }
         }

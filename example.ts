@@ -167,7 +167,7 @@ async function main (): Promise<void> {
 
           },
           bottomBar: Infinity,
-          persistentBottomBar: true
+          persistentOutput: true
         }
       ], { concurrent: true, collapse: false })
     }

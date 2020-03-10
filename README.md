@@ -203,7 +203,7 @@ Default renderer now supports a bottom bar to dump the output if desired. The ou
 
 **If title has no title, and generates output it will be pushed to the bottom bar instead.**
 
-Else you have to specicify explicitly to the dump the output to the bottom bar. Bottom bar output from the particular task will be cleared after the task finished, but with ```persistentBottomBar: true``` option it can be persistent.
+Else you have to specicify explicitly to the dump the output to the bottom bar. Bottom bar output from the particular task will be cleared after the task finished, but with ```persistentOutput: true``` option it can be persistent.
 
 ```typescript
 new Listr<ListrCtx>([
@@ -212,7 +212,7 @@ new Listr<ListrCtx>([
         task.output = 'Something'
       },
       bottomBar: Infinity, // bottom bar items to keep by this particular task, number | boolean. boolean true will set it to 1.
-      persistentBottomBar: true // defaults to false, has to be set explicitly if desired
+      persistentOutput: true // defaults to false, has to be set explicitly if desired
     },
   ], {ctx})
 ```
