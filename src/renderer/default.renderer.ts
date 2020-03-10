@@ -108,7 +108,7 @@ export class MultiLineRenderer implements ListrRenderer {
         if (task.isCompleted() || task.hasFailed()) {
           this.promptBar = null
 
-          if ((!task.hasTitle() || task.isBottomBar()) && task.haspersistentOutput() !== true) {
+          if (task.hasFailed() || (!task.hasTitle() || task.isBottomBar()) && task.haspersistentOutput() !== true) {
             delete this.bottomBar[task.id]
           }
         }
