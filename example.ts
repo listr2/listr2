@@ -256,7 +256,7 @@ async function main (): Promise<void> {
         title: 'Write to ctx.',
         task: (ctx): string => ctx.indent = 'bravo'
       }
-    ], { collapse: false, showSubtasks: true }, 'This might be one level indendent.'),
+    ], { collapse: false, showSubtasks: true }, { title: 'This might be one level indendent.' }),
     manager.indent<ListrCtx>([
       {
         title: 'Test',
@@ -264,7 +264,7 @@ async function main (): Promise<void> {
           throw new Error('failed')
         }
       }
-    ], {}, 'Indent title')
+    ], {}, {title: 'Indent title'})
   ], { exitOnError: false, collapse: false })
 
   manager.add([
@@ -277,7 +277,7 @@ async function main (): Promise<void> {
         title: 'Write to ctx.',
         task: (ctx): string => ctx.indent = 'bravo'
       }
-    ], {}, 'I have a title and i am indented.')
+    ], {}, {title: 'I have a title and i am indented.'})
   ], { collapse: true })
 
   manager.add([
