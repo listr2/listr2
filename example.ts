@@ -103,7 +103,7 @@ async function main (): Promise<void> {
         }
       ])
     }
-  ], { exitOnError: false })
+  ], { exitOnError: false, collapseSkips: false })
 
   // running the command returns the context object back
   try {

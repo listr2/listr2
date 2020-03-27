@@ -19,6 +19,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   public output: ListrTaskObject<Ctx>['output']
   public prompt: boolean
   public collapse: boolean
+  public collapseSkips: boolean
   public showSubtasks: boolean
   public bottomBar: boolean | number
   private persistentOutput: boolean
@@ -34,6 +35,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     this.title = this.tasks?.title
     this.task = this.tasks.task
     this.collapse = this.options.collapse
+    this.collapseSkips = this.options.collapseSkips
     this.showSubtasks = this.options.showSubtasks
     this.persistentOutput = this.tasks?.persistentOutput
     // parse functions

@@ -27,7 +27,9 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   run: (ctx: Ctx, wrapper: ListrTaskWrapper<Ctx>) => Promise<void>
   showSubtasks?: boolean
   collapse?: boolean
+  collapseSkips?: boolean
   bottomBar: boolean | number
+  spinner?: () => string
   hasSubtasks(): boolean
   isPending(): boolean
   isSkipped(): boolean
@@ -68,6 +70,7 @@ export interface ListrOptions<Ctx = ListrContext> {
   nonTTYRenderer?: ListrRendererValue<Ctx>
   showSubtasks?: boolean
   collapse?: boolean
+  collapseSkips?: boolean
   clearOutput?: boolean
   ctx?: Ctx
 }

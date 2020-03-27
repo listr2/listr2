@@ -22,6 +22,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
       nonTTYRenderer: 'verbose',
       exitOnError: true,
       collapse: true,
+      collapseSkips: true,
       clearOutput: false
     }, options)
 

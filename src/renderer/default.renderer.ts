@@ -6,6 +6,7 @@ import indentString from 'indent-string'
 import logUpdate from 'log-update'
 
 import { ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr.interface'
+import { ListrContext } from './../interfaces/listr.interface'
 
 export class MultiLineRenderer implements ListrRenderer {
   static nonTTY = false
@@ -57,9 +58,15 @@ export class MultiLineRenderer implements ListrRenderer {
 
       if (task.isEnabled()) {
         if (task.hasTitle()) {
-        // CURRENT TASK TITLE and skip change the title
-          const taskTitle = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
-          output.push(this.formatString(taskTitle, this.getSymbol(task, this.options), level))
+          let taskTitle: string = task.title
+
+          // if task is skipped
+          if (task.isSkipped() && task?.collapseSkips) {
+            // CURRENT TASK TITLE and skip change the title
+            taskTitle = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
+          }
+
+          output.push(this.formatString(taskTitle, this.getSymbol(task), level))
         }
 
         // CURRENT TASK OUTPUT
@@ -68,7 +75,7 @@ export class MultiLineRenderer implements ListrRenderer {
             this.promptBar = task.output
 
           } else if (task.isBottomBar() || !task.hasTitle()) {
-            const data = this.dumpData(task.output, -1)
+            const data = this.dumpData(task, -1)
 
             if (!this.bottomBar[task.id]) {
               this.bottomBar[task.id] = {}
@@ -82,8 +89,13 @@ export class MultiLineRenderer implements ListrRenderer {
             }
 
           } else if (task.isPending() || task.haspersistentOutput()) {
-            output = [ ...output, ...this.dumpData(task.output, level) ]
+            output = [ ...output, ...this.dumpData(task, level) ]
+
+          } else if (task.isSkipped() && task.collapseSkips === false) {
+            output = [ ...output, ...this.dumpData(task, level) ]
+
           }
+
         }
 
         // SUBTASKS
@@ -143,12 +155,12 @@ export class MultiLineRenderer implements ListrRenderer {
     }
   }
 
-  private dumpData (taskOutput: string, level: number): string[] {
+  private dumpData (task: ListrTaskObject<ListrContext>, level: number): string[] {
     const output: string[] = []
-    if (typeof taskOutput === 'string') {
+    if (typeof task.output === 'string') {
       // indent and color
-      taskOutput.split('\n').filter(Boolean).forEach((line, i) => {
-        const icon = i === 0 ? figures.pointerSmall : ' '
+      task.output.split('\n').filter(Boolean).forEach((line, i) => {
+        const icon = i === 0 ? this.getSymbol(task, true) : ' '
         output.push(this.formatString(line, icon, level +1))
       })
     }
@@ -160,31 +172,39 @@ export class MultiLineRenderer implements ListrRenderer {
     return `${indentString(`${icon} ${string}`, level * this.indentation)}`
   }
 
-  private getSymbol (task, options): string {
-    if (!task.spinner) {
+  private getSymbol (task: ListrTaskObject<ListrContext>, data = false): string {
+    if (!task.spinner && !data) {
       task.spinner = elegantSpinner()
     }
 
-    if (task.isPending()) {
-      return options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.pointer) : chalk.yellowBright(task.spinner())
+    if (task.isPending() && !data) {
+      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.pointer) : chalk.yellowBright(task.spinner())
     }
 
-    if (task.isCompleted()) {
+    if (task.isCompleted() && !data) {
       return chalk.green(figures.tick)
     }
 
-    if (task.hasFailed()) {
+    if (task.hasFailed() && !data) {
       return task.hasSubtasks() ? chalk.red(figures.play) : chalk.red(figures.cross)
     }
 
-    if (task.isSkipped()) {
+    if (task.isSkipped() && !data && task.collapseSkips === false) {
+      return chalk.yellow(figures.warning)
+
+    } else if (task.isSkipped() && (data || task.collapseSkips)) {
       return chalk.yellow(figures.arrowDown)
+
     }
 
     if (task.isPrompt()) {
       return chalk.cyan(figures.questionMarkPrefix)
     }
 
-    return chalk.dim(figures.squareSmallFilled)
+    if (!data) {
+      return chalk.dim(figures.squareSmallFilled)
+    } else {
+      return figures.pointerSmall
+    }
   }
 }
