@@ -93,6 +93,13 @@ export class ListrError extends Error {
   }
 }
 
+export class PromptError extends Error {
+  constructor (message) {
+    super(message)
+    this.name = 'PromptError'
+  }
+}
+
 export interface ListrRendererClass<Ctx> {
   nonTTY: boolean
   new(tasks: readonly ListrTaskObject<Ctx>[], options: ListrOptions<Ctx>): ListrRenderer

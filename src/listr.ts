@@ -53,6 +53,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
   }
 
   public async run (context?: Ctx): Promise<Ctx> {
+
     // start the renderer
     if (!this.renderer) {
       this.renderer = new this.rendererClass(this.tasks, this.options)

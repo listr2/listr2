@@ -1,27 +1,10 @@
 import { Prompt } from 'enquirer'
 import {
-  AutoComplete,
-  BasicAuth,
-  Confirm,
-  Editable,
-  Form,
-  Input,
-  Invisible,
-  List,
-  MultiSelect,
-  Numeral,
-  Password,
-  Quiz,
-  Scale,
-  Select,
-  Snippet,
-  Sort,
-  Survey,
-  Text,
-  Toggle
+  AutoComplete, BasicAuth, Confirm, Editable, Form, Input, Invisible, List, MultiSelect, Numeral, Password, Quiz, Scale, Select, Snippet, Sort, Survey, Text, Toggle
 } from 'enquirer/lib/prompts'
 
-import { ListrError } from '../interfaces/listr.interface'
+import { ListrError, PromptError } from '../interfaces/listr.interface'
+import { TaskWrapper } from '../lib/task-wrapper'
 import { PromptOptionsType, PromptTypes } from './prompt.interface'
 
 export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Prompt {
@@ -92,9 +75,16 @@ export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptio
 
 export function createPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>, error = false): Promise<any> {
   return newPrompt(type, options).on('cancel', () => {
+    const errorMsg = 'Cancelled prompt.'
     if (error) {
-      throw new Error('Cancelled prompt.')
+      throw new PromptError(errorMsg)
+
+    } else if (this instanceof TaskWrapper) {
+      this.task.prompt = new PromptError(errorMsg)
+
+    } else {
+      return errorMsg
+
     }
-    return 'Cancelled prompt.'
   }).run()
 }

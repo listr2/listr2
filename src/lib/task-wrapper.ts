@@ -71,7 +71,7 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
     }
   }
 
-  public prompt <T = any, P extends PromptTypes = PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T> {
+  public async prompt <T = any, P extends PromptTypes = PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T> {
     this.task.prompt = true
 
     let buffer = Buffer.alloc(64)
@@ -84,14 +84,16 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
 
       if (deleteMultiLineRegexp.test(buffer.toString())) {
         buffer = Buffer.alloc(64)
+
       } else {
         this.output = buffer.toString()
+
       }
     })
 
     Object.assign(options, { stdout: outputStream })
 
-    return createPrompt<P>(type, options)
+    return createPrompt.bind(this)(type, options)
   }
 
   public run (ctx: Ctx): Promise<void> {

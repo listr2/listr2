@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import delay from 'delay'
 import { Observable } from 'rxjs'
 
@@ -141,7 +142,7 @@ async function main (): Promise<void> {
       ], { concurrent: true })
     },
     {
-      task: (ctx,task): Listr => task.newListr<ListrCtx>([
+      task: (ctx, task): Listr => task.newListr<ListrCtx>([
         {
           // if you output from a task without a title, it will drop to the bottom bar instead.
           task: async (ctx, task): Promise<void> => {
@@ -190,7 +191,7 @@ async function main (): Promise<void> {
     },
     {
       title: 'Dump prompt.',
-      task: (ctx,task): void => {
+      task: (ctx, task): void => {
         task.title = ctx.testInput
       }
     }
@@ -222,9 +223,12 @@ async function main (): Promise<void> {
       title: 'Indented input',
       task: (ctx, task): Listr => task.newListr<ListrCtx>([
         {
-          task: async (ctx, task): Promise<any> => ctx.secondInput = await task.prompt<string>('Select',
-            { message: 'Select some', choices: [ 'me', 'or me' ] }
-          )
+          task: async (ctx, task): Promise<any> =>{
+            ctx.secondInput = await task.prompt<string>('Select',
+              { message: 'Select some', choices: [ 'me', 'or me' ] }
+            )
+            throw new Error('I got the input but failed afterwards because of an unknown reason.')
+          }
         },
         {
           task: async (ctx, task): Promise<void> => {
@@ -264,8 +268,10 @@ async function main (): Promise<void> {
           throw new Error('failed')
         }
       }
-    ], {}, {title: 'Indent title'})
-  ], { exitOnError: false, collapse: false })
+    ], {}, { title: 'Indent title' })
+  ], {
+    exitOnError: false, collapse: false
+  })
 
   manager.add([
     manager.indent<ListrCtx>([
@@ -277,7 +283,7 @@ async function main (): Promise<void> {
         title: 'Write to ctx.',
         task: (ctx): string => ctx.indent = 'bravo'
       }
-    ], {}, {title: 'I have a title and i am indented.'})
+    ], {}, { title: 'I have a title and i am indented.' })
   ], { collapse: true })
 
   manager.add([

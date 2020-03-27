@@ -4,7 +4,7 @@ import { Stream } from 'stream'
 import { v4 as uuidv4 } from 'uuid'
 
 import { stateConstants } from '../constants/state.constants'
-import { ListrContext, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrError, ListrTaskWrapper, StateConstants } from '../interfaces/listr.interface'
+import { ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, StateConstants } from '../interfaces/listr.interface'
 import { getRenderer } from '../utils/renderer'
 import { Listr } from './../listr'
 
@@ -17,7 +17,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   public subtasks: ListrTaskObject<Ctx>['subtasks']
   public state: ListrTaskObject<Ctx>['state']
   public output: ListrTaskObject<Ctx>['output']
-  public prompt: boolean
+  public prompt: boolean | PromptError
   public collapse: boolean
   public collapseSkips: boolean
   public showSubtasks: boolean
@@ -111,7 +111,11 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   }
 
   isPrompt (): boolean {
-    return this.prompt
+    if (this.prompt) {
+      return true
+    } else {
+      return false
+    }
   }
 
   async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx>): Promise<void> {
@@ -136,6 +140,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
 
       // eslint-disable-next-line no-empty
       } else if (this.isPrompt()) {
+        // do nothing, it is already being handled
 
       } else if (result instanceof Promise) {
         // Detect promise
@@ -191,11 +196,12 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
       }
 
     } catch (error) {
+
       // mark task as failed
       this.state$ = stateConstants.FAILED
 
       // catch prompt error, this was the best i could do without going crazy
-      if (this.isPrompt()) {
+      if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
         error = new Error('Cancelled the prompt.')
       }
