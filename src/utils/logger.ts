@@ -31,7 +31,7 @@ export class Logger {
     console.info(message)
   }
 
-  private parseMessage (level: logLevels ,message: string): string {
+  private parseMessage (level: logLevels, message: string): string {
     // parse multi line messages
     let multiLineMessage = message?.split('\n')
     multiLineMessage = multiLineMessage?.map((msg) => {

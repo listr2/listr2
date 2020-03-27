@@ -102,22 +102,22 @@ export type PromptTypes =
 
 export type PromptOptionsType<T> =
   T extends 'AutoComplete' ? ArrayPromptOptions :
-  T extends 'BasicAuth' ? StringPromptOptions :
-  T extends 'Confirm' ? BooleanPromptOptions :
-  T extends 'Editable' ? ArrayPromptOptions :
-  T extends 'Form' ? ArrayPromptOptions :
-  T extends 'Input' ? StringPromptOptions :
-  T extends 'Invisible' ? StringPromptOptions :
-  T extends 'List' ? ArrayPromptOptions :
-  T extends 'MultiSelect' ? ArrayPromptOptions :
-  T extends 'Numeral' ? NumberPromptOptions :
-  T extends 'Password' ? StringPromptOptions :
-  T extends 'Quiz' ? QuizPromptOptions :
-  T extends 'Scale' ? ArrayPromptOptions :
-  T extends 'Select' ? ArrayPromptOptions :
-  T extends 'Snippet' ? SnippetPromptOptions :
-  T extends 'Sort' ? SortPromptOptions:
-  T extends 'Survey' ? ArrayPromptOptions :
-  T extends 'Text' ? StringPromptOptions:
-  T extends 'Toggle'? TogglePromptOptions :
-  never
+    T extends 'BasicAuth' ? StringPromptOptions :
+      T extends 'Confirm' ? BooleanPromptOptions :
+        T extends 'Editable' ? ArrayPromptOptions :
+          T extends 'Form' ? ArrayPromptOptions :
+            T extends 'Input' ? StringPromptOptions :
+              T extends 'Invisible' ? StringPromptOptions :
+                T extends 'List' ? ArrayPromptOptions :
+                  T extends 'MultiSelect' ? ArrayPromptOptions :
+                    T extends 'Numeral' ? NumberPromptOptions :
+                      T extends 'Password' ? StringPromptOptions :
+                        T extends 'Quiz' ? QuizPromptOptions :
+                          T extends 'Scale' ? ArrayPromptOptions :
+                            T extends 'Select' ? ArrayPromptOptions :
+                              T extends 'Snippet' ? SnippetPromptOptions :
+                                T extends 'Sort' ? SortPromptOptions:
+                                  T extends 'Survey' ? ArrayPromptOptions :
+                                    T extends 'Text' ? StringPromptOptions:
+                                      T extends 'Toggle'? TogglePromptOptions :
+                                        never
