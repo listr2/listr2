@@ -59,12 +59,12 @@ export class MultiLineRenderer implements ListrRenderer {
       if (task.isEnabled()) {
         if (task.hasTitle()) {
           // if task is skipped
-          if (task.isSkipped() && task?.settings.collapseSkips) {
+          if (task.isSkipped() && task?.options.collapseSkips) {
             // CURRENT TASK TITLE and skip change the title
             task.title = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
           }
 
-          if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.settings.exitOnError !== false)) {
+          if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
             // normal state
             output.push(this.formatString(task.title, this.getSymbol(task), level))
 
@@ -87,7 +87,7 @@ export class MultiLineRenderer implements ListrRenderer {
               this.bottomBar[task.id] = {}
               this.bottomBar[task.id].data = []
 
-              this.bottomBar[task.id].items = typeof task.settings.bottomBar === 'boolean' ? 1 : task.settings.bottomBar
+              this.bottomBar[task.id].items = typeof task.options.bottomBar === 'boolean' ? 1 : task.options.bottomBar
             }
 
             if (!data?.some((element) => this.bottomBar[task.id].data.includes(element))) {
@@ -97,7 +97,7 @@ export class MultiLineRenderer implements ListrRenderer {
           } else if (task.isPending() || task.haspersistentOutput()) {
             output = [ ...output, ...this.dumpData(task, level) ]
 
-          } else if (task.isSkipped() && task.settings.collapseSkips === false) {
+          } else if (task.isSkipped() && task.options.collapseSkips === false) {
             output = [ ...output, ...this.dumpData(task, level) ]
 
           }
@@ -109,11 +109,11 @@ export class MultiLineRenderer implements ListrRenderer {
           (
             task.isPending() || task.hasFailed()
           || task.isCompleted() && !task.hasTitle()
-          || task.isCompleted() && task.settings.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.settings.collapse === true)
-          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.settings.collapse === false)
+          || task.isCompleted() && task.options.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.options.collapse === true)
+          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.options.collapse === false)
           || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())
           )
-        && task.settings.showSubtasks !== false && task.hasSubtasks()
+        && task.options.showSubtasks !== false && task.hasSubtasks()
         ) {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
 
@@ -186,7 +186,7 @@ export class MultiLineRenderer implements ListrRenderer {
     }
 
     if (task.isPending() && !data) {
-      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.pointer) : chalk.yellowBright(task.spinner())
+      return task.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.pointer) : chalk.yellowBright(task.spinner())
     }
 
     if (task.isCompleted() && !data) {
@@ -201,10 +201,10 @@ export class MultiLineRenderer implements ListrRenderer {
       return task.hasSubtasks() ? chalk.red(figures.pointer) : chalk.red(figures.cross)
     }
 
-    if (task.isSkipped() && !data && task.settings.collapseSkips === false) {
+    if (task.isSkipped() && !data && task.options.collapseSkips === false) {
       return chalk.yellow(figures.warning)
 
-    } else if (task.isSkipped() && (data || task.settings.collapseSkips)) {
+    } else if (task.isSkipped() && (data || task.options.collapseSkips)) {
       return chalk.yellow(figures.arrowDown)
 
     }

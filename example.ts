@@ -88,7 +88,7 @@ async function main (): Promise<void> {
       title: 'Throw error test',
       task:  async (): Promise<void> => {
         await delay(1000)
-        throw new Error('I have failed.')
+        // throw new Error('I have failed.')
       }
     },
     {
@@ -103,8 +103,18 @@ async function main (): Promise<void> {
           }
         }
       ])
+    },
+    {
+      // You can enable tasks with a given condition
+      title: 'One more task',
+      task: async (ctx, task): Promise<void> => {
+        await delay(1000)
+        task.title = 'Not failed'
+      }
     }
-  ], { exitOnError: false, collapseSkips: false })
+  ], {
+    exitOnError: false, collapseSkips: false, renderer:'default'
+  })
 
   // running the command returns the context object back
   try {
@@ -296,15 +306,20 @@ async function main (): Promise<void> {
   ])
 
   // run tasks in the queue
-  ctx = await manager.runAll({ ctx })
+  try {
+    ctx = await manager.runAll({ ctx })
+  // eslint-disable-next-line no-empty
+  } catch (e) {
+
+  }
 
   manager.add([
     {
       title: 'Do stuff',
-      task: async () => {
+      task: async (): Promise<Listr> => {
         return new Listr([
-          { title: 'Task 1', task: async () => { throw new Error('FAIL') } },
-          { title: 'Task 2', task: async (ctx, task) => { await delay(1000); task.title = 'I succeed'; return true } }
+          { title: 'Task 1', task: async (): Promise<void> => { throw new Error('FAIL') } },
+          { title: 'Task 2', task: async (ctx, task): Promise<boolean> => { await delay(1000); task.title = 'I succeed'; return true } }
         ], {
           concurrent: true,
           exitOnError: true
@@ -331,6 +346,7 @@ async function main (): Promise<void> {
 
   try {
     ctx = await manager.runAll()
+  // eslint-disable-next-line no-empty
   } catch (e){
 
   }

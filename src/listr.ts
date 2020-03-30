@@ -1,5 +1,6 @@
 import pMap from 'p-map'
 
+import { stateConstants } from './constants/state.constants'
 import { ListrClass, ListrContext, ListrError, ListrOptions, ListrRenderer, ListrRendererClass, ListrTask } from './interfaces/listr.interface'
 import { Task } from './lib/task'
 import { TaskWrapper } from './lib/task-wrapper'
@@ -8,7 +9,6 @@ import { getRenderer } from './utils/renderer'
 export class Listr<Ctx = ListrContext> implements ListrClass {
   public tasks: ListrClass['tasks'] = []
   public err: ListrError[] = []
-  public exitOnError: ListrOptions['exitOnError']
   public rendererClass: ListrRendererClass<Ctx>
   private concurrency: number
   private renderer: ListrRenderer
@@ -37,11 +37,19 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
     // get renderer class
     this.rendererClass = getRenderer(this.options.renderer, this.options.nonTTYRenderer)
 
-    // get exit on error option
-    this.exitOnError = this.options.exitOnError
-
     // parse and add tasks
     this.add(task || [])
+
+    // Graceful interrupt for render cleanup
+    process.on('SIGINT', async () => {
+      await Promise.all(this.tasks.map(async (task) => {
+        if (task.isPending()) {
+          task.state$ = stateConstants.FAILED
+        }
+      }))
+      this.renderer.end(new Error('Interrupted.'))
+      process.exit(127)
+    }).setMaxListeners(0)
   }
 
   public add (task: ListrTask | ListrTask[]): void {
@@ -90,7 +98,7 @@ export class Listr<Ctx = ListrContext> implements ListrClass {
       error.context = context
       this.renderer.end(error)
 
-      if (this.exitOnError !== false) {
+      if (this.options.exitOnError !== false) {
         // Do not exit when explicitely set to `false`
         throw error
       }
