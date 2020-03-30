@@ -11,18 +11,13 @@ import { Listr } from './../listr'
 export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext> {
   public id: ListrTaskObject<Ctx>['id']
   public title: ListrTaskObject<Ctx>['title']
-  // public output: ListrTaskObject<Ctx>['output']
   public task: ListrTaskObject<Ctx>['task']
   public skip: ListrTaskObject<Ctx>['skip']
   public subtasks: ListrTaskObject<Ctx>['subtasks']
   public state: ListrTaskObject<Ctx>['state']
   public output: ListrTaskObject<Ctx>['output']
   public prompt: boolean | PromptError
-  public collapse: boolean
-  public collapseSkips: boolean
-  public showSubtasks: boolean
-  public bottomBar: boolean | number
-  private persistentOutput: boolean
+  public settings: ListrTaskObject<Ctx>['settings']
   private enabled: boolean
   private enabledFn: ListrTask['enabled']
 
@@ -34,13 +29,11 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     this.id = uuidv4()
     this.title = this.tasks?.title
     this.task = this.tasks.task
-    this.collapse = this.options.collapse
-    this.collapseSkips = this.options.collapseSkips
-    this.showSubtasks = this.options.showSubtasks
-    this.persistentOutput = this.tasks?.persistentOutput
+    this.settings = Object.assign({ persistentOutput: this.tasks?.persistentOutput, bottomBar: this.tasks?.bottomBar }, this.options)
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
-    this.bottomBar = this.tasks?.bottomBar
+    // parse functions
+    this.skip = this.tasks?.skip || ((): boolean => false)
     this.enabledFn = this.tasks?.enabled || ((): boolean => true)
   }
 
@@ -95,13 +88,13 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   }
 
   isBottomBar (): boolean {
-    if (typeof this?.bottomBar === 'number' || typeof this.bottomBar === 'boolean') {
+    if (typeof this?.settings.bottomBar === 'number' || typeof this.settings.bottomBar === 'boolean') {
       return true
     }
   }
 
   haspersistentOutput (): boolean {
-    if (this.persistentOutput === true) {
+    if (this.settings.persistentOutput === true) {
       return true
     }
   }
@@ -219,11 +212,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
 
       wrapper.report(error)
 
-      if (this.listr.exitOnError !== false) {
-        // Do not exit when explicitely set to `false`
-        throw error
-      }
-
+      throw error
     } finally {
       // Mark the observable as completed
       this.complete()

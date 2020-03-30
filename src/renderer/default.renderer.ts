@@ -58,15 +58,21 @@ export class MultiLineRenderer implements ListrRenderer {
 
       if (task.isEnabled()) {
         if (task.hasTitle()) {
-          let taskTitle: string = task.title
-
           // if task is skipped
-          if (task.isSkipped() && task?.collapseSkips) {
+          if (task.isSkipped() && task?.settings.collapseSkips) {
             // CURRENT TASK TITLE and skip change the title
-            taskTitle = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
+            task.title = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
           }
 
-          output.push(this.formatString(taskTitle, this.getSymbol(task), level))
+          if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.settings.exitOnError !== false)) {
+            // normal state
+            output.push(this.formatString(task.title, this.getSymbol(task), level))
+
+          } else {
+            // some sibling task but self has failed and this has stopped
+            output.push(this.formatString(task.title, chalk.red(figures.squareSmallFilled), level))
+
+          }
         }
 
         // CURRENT TASK OUTPUT
@@ -81,7 +87,7 @@ export class MultiLineRenderer implements ListrRenderer {
               this.bottomBar[task.id] = {}
               this.bottomBar[task.id].data = []
 
-              this.bottomBar[task.id].items = typeof task.bottomBar === 'boolean' ? 1 : task.bottomBar
+              this.bottomBar[task.id].items = typeof task.settings.bottomBar === 'boolean' ? 1 : task.settings.bottomBar
             }
 
             if (!data?.some((element) => this.bottomBar[task.id].data.includes(element))) {
@@ -91,7 +97,7 @@ export class MultiLineRenderer implements ListrRenderer {
           } else if (task.isPending() || task.haspersistentOutput()) {
             output = [ ...output, ...this.dumpData(task, level) ]
 
-          } else if (task.isSkipped() && task.collapseSkips === false) {
+          } else if (task.isSkipped() && task.settings.collapseSkips === false) {
             output = [ ...output, ...this.dumpData(task, level) ]
 
           }
@@ -103,10 +109,11 @@ export class MultiLineRenderer implements ListrRenderer {
           (
             task.isPending() || task.hasFailed()
           || task.isCompleted() && !task.hasTitle()
-          || task.isCompleted() && task.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.collapse === true)
-          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.collapse === false)
+          || task.isCompleted() && task.settings.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.settings.collapse === true)
+          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.settings.collapse === false)
+          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())
           )
-        && task.showSubtasks !== false && task.hasSubtasks()
+        && task.settings.showSubtasks !== false && task.hasSubtasks()
         ) {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
 
@@ -172,6 +179,7 @@ export class MultiLineRenderer implements ListrRenderer {
     return `${indentString(`${icon} ${string}`, level * this.indentation)}`
   }
 
+  // eslint-disable-next-line complexity
   private getSymbol (task: ListrTaskObject<ListrContext>, data = false): string {
     if (!task.spinner && !data) {
       task.spinner = elegantSpinner()
@@ -182,17 +190,21 @@ export class MultiLineRenderer implements ListrRenderer {
     }
 
     if (task.isCompleted() && !data) {
+      if (task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())) {
+        return chalk.yellow(figures.warning)
+      }
+
       return chalk.green(figures.tick)
     }
 
     if (task.hasFailed() && !data) {
-      return task.hasSubtasks() ? chalk.red(figures.play) : chalk.red(figures.cross)
+      return task.hasSubtasks() ? chalk.red(figures.pointer) : chalk.red(figures.cross)
     }
 
-    if (task.isSkipped() && !data && task.collapseSkips === false) {
+    if (task.isSkipped() && !data && task.settings.collapseSkips === false) {
       return chalk.yellow(figures.warning)
 
-    } else if (task.isSkipped() && (data || task.collapseSkips)) {
+    } else if (task.isSkipped() && (data || task.settings.collapseSkips)) {
       return chalk.yellow(figures.arrowDown)
 
     }
