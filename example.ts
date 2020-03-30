@@ -88,7 +88,7 @@ async function main (): Promise<void> {
       title: 'Throw error test',
       task:  async (): Promise<void> => {
         await delay(1000)
-        // throw new Error('I have failed.')
+        throw new Error('I have failed.')
       }
     },
     {
