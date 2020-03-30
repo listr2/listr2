@@ -25,10 +25,7 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   state: string
   check: (ctx: Ctx) => void
   run: (ctx: Ctx, wrapper: ListrTaskWrapper<Ctx>) => Promise<void>
-  showSubtasks?: boolean
-  collapse?: boolean
-  collapseSkips?: boolean
-  bottomBar: boolean | number
+  options: ListrOptions & { bottomBar?: ListrTask<Ctx>['bottomBar'], persistentOutput?: ListrTask<Ctx>['persistentOutput']}
   spinner?: () => string
   hasSubtasks(): boolean
   isPending(): boolean

@@ -103,8 +103,18 @@ async function main (): Promise<void> {
           }
         }
       ])
+    },
+    {
+      // You can enable tasks with a given condition
+      title: 'One more task',
+      task: async (ctx, task): Promise<void> => {
+        await delay(1000)
+        task.title = 'Not failed'
+      }
     }
-  ], { exitOnError: false, collapseSkips: false })
+  ], {
+    exitOnError: false, collapseSkips: false, renderer:'default'
+  })
 
   // running the command returns the context object back
   try {
@@ -239,7 +249,7 @@ async function main (): Promise<void> {
             await delay(995)
           }
         }
-      ])
+      ], { exitOnError: false })
     },
     {
       title: 'I have a title.',
@@ -296,8 +306,50 @@ async function main (): Promise<void> {
   ])
 
   // run tasks in the queue
-  ctx = await manager.runAll({ ctx })
+  try {
+    ctx = await manager.runAll({ ctx })
+  // eslint-disable-next-line no-empty
+  } catch (e) {
 
+  }
+
+  manager.add([
+    {
+      title: 'Do stuff',
+      task: async (): Promise<Listr> => {
+        return new Listr([
+          { title: 'Task 1', task: async (): Promise<void> => { throw new Error('FAIL') } },
+          { title: 'Task 2', task: async (ctx, task): Promise<boolean> => { await delay(1000); task.title = 'I succeed'; return true } }
+        ], {
+          concurrent: true,
+          exitOnError: true
+        })
+      }
+    },
+    {
+      // You can skip tasks on conditions as in the original
+      title: 'Task Skip test, with title and skip note. [1s]',
+      task: async (ctx, task): Promise<void> => {
+        await delay(1000)
+        ctx.yarn = false
+        task.title = 'Changed title succesfully.'
+        task.skip('Showing skip message')
+      }
+    },
+    {
+      // You can enable tasks with a given condition
+      title: 'Context enabled via the top one fail. [1s]',
+      enabled: (ctx): boolean => ctx.yarn === false,
+      task: (): Promise<void> => delay(1000)
+    }
+  ], { exitOnError: true })
+
+  try {
+    ctx = await manager.runAll()
+  // eslint-disable-next-line no-empty
+  } catch (e){
+
+  }
 }
 
 main()
