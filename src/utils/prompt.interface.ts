@@ -1,4 +1,6 @@
-import Enquirer from 'enquirer'
+import Enquirer, { Prompt } from 'enquirer'
+
+import { PromptError } from '../interfaces/listr.interface'
 
 export type PromptOptions =
   | ArrayPromptOptions
@@ -120,4 +122,9 @@ export type PromptOptionsType<T> =
                                   T extends 'Survey' ? ArrayPromptOptions :
                                     T extends 'Text' ? StringPromptOptions:
                                       T extends 'Toggle'? TogglePromptOptions :
-                                        never
+                                        any
+
+export interface PromptSettings {
+  error?: boolean
+  cancelCallback?: (settings?: PromptSettings) => string | Error | PromptError | void
+}

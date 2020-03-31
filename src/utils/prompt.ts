@@ -5,7 +5,7 @@ import {
 
 import { ListrError, PromptError } from '../interfaces/listr.interface'
 import { TaskWrapper } from '../lib/task-wrapper'
-import { PromptOptionsType, PromptTypes } from './prompt.interface'
+import { PromptOptionsType, PromptSettings, PromptTypes } from './prompt.interface'
 
 export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Prompt {
   let prompt: Prompt
@@ -73,18 +73,44 @@ export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptio
   return prompt
 }
 
-export function createPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>, error = false): Promise<any> {
-  return newPrompt(type, options).on('cancel', () => {
-    const errorMsg = 'Cancelled prompt.'
-    if (error) {
-      throw new PromptError(errorMsg)
+type PromptClass = new(options: any) => Prompt
+function isPromptClass (SomeClass: any): SomeClass is PromptClass {
+  try {
+    new SomeClass({})
+    return true
+  } catch {
+    return false
+  }
+}
 
-    } else if (this instanceof TaskWrapper) {
-      this.task.prompt = new PromptError(errorMsg)
+export function createPrompt <T extends PromptTypes> (type: T | PromptClass, options: PromptOptionsType<T>, settings?: PromptSettings): Promise<any> {
+  // override cancel callback
+  let cancelCallback: PromptSettings['cancelCallback']
+  if (settings?.cancelCallback) {
+    cancelCallback = settings.cancelCallback
+  } else {
+    cancelCallback = defaultCancelCallback
+  }
 
-    } else {
-      return errorMsg
+  // if this is a custom prompt
+  if (isPromptClass(type)) {
+    return new type(options).on('cancel', cancelCallback.bind(this)).run()
+  } else {
+    return newPrompt(type, options).on('cancel', cancelCallback.bind(this)).run()
+  }
 
-    }
-  }).run()
+}
+
+function defaultCancelCallback (settings: PromptSettings): string | Error | PromptError {
+  const errorMsg = 'Cancelled prompt.'
+  if (settings?.error === true) {
+    throw new PromptError(errorMsg)
+
+  } else if (this instanceof TaskWrapper) {
+    this.task.prompt = new PromptError(errorMsg)
+
+  } else {
+    return errorMsg
+
+  }
 }

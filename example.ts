@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import delay from 'delay'
+import EditorPrompt from 'enquirer-editor'
 import { Observable } from 'rxjs'
 
 import { Listr, Manager } from './src'
@@ -322,7 +323,7 @@ async function main (): Promise<void> {
           { title: 'Task 2', task: async (ctx, task): Promise<boolean> => { await delay(1000); task.title = 'I succeed'; return true } }
         ], {
           concurrent: true,
-          exitOnError: true
+          exitOnError: false
         })
       }
     },
@@ -343,6 +344,38 @@ async function main (): Promise<void> {
       task: (): Promise<void> => delay(1000)
     }
   ], { exitOnError: true })
+
+  try {
+    ctx = await manager.runAll()
+  // eslint-disable-next-line no-empty
+  } catch (e){
+
+  }
+
+  manager.add([
+    {
+      title: 'Custom prompt test',
+      task: async (ctx, task): Promise<void> => {
+        ctx.testInput = await task.prompt(EditorPrompt, {
+          message: 'Please write a short bio of at least 3 lines',
+          initial: 'Start writing!',
+          validate: (response): boolean | string => {
+            if (response.split('\n').length < 4) {
+              return 'The bio must be at least 3 lines.'
+            }
+            return true
+          }
+        })
+      }
+    },
+    {
+      title: 'Dump',
+      task: (ctx, task): void => {
+        task.output = ctx.testInput
+      },
+      persistentOutput: true
+    }
+  ])
 
   try {
     ctx = await manager.runAll()
