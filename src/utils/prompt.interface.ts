@@ -1,4 +1,4 @@
-import Enquirer, { Prompt } from 'enquirer'
+import Enquirer from 'enquirer'
 
 import { PromptError } from '../interfaces/listr.interface'
 

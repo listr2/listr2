@@ -1,4 +1,4 @@
-import * as sttoob from '@samverschueren/stream-to-observable'
+import sttoob from '@samverschueren/stream-to-observable'
 import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
 import { v4 as uuidv4 } from 'uuid'
