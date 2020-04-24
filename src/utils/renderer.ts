@@ -2,11 +2,13 @@ import { ListrContext, ListrRendererClass, ListrRendererValue } from '../interfa
 import { MultiLineRenderer } from '../renderer/default.renderer'
 import { SilentRenderer } from '../renderer/silent.renderer'
 import { VerboseRenderer } from '../renderer/verbose.renderer'
+import { TestRenderer } from './../renderer/test.renderer'
 
 const renderers = {
   default: MultiLineRenderer,
   verbose: VerboseRenderer,
-  silent: SilentRenderer
+  silent: SilentRenderer,
+  test: TestRenderer
 }
 
 function isRendererSupported (renderer: ListrRendererClass<ListrContext>): boolean {

@@ -106,4 +106,4 @@ export type ListrEventTypes = 'TITLE' | 'STATE' | 'ENABLED' | 'SUBTASK' | 'DATA'
 
 export type StateConstants = stateConstants
 
-export type ListrRendererValue<Ctx> = 'silent' | 'default' | 'verbose' | ListrRendererClass<Ctx>
+export type ListrRendererValue<Ctx> = 'silent' | 'default' | 'verbose' | 'test' | ListrRendererClass<Ctx>

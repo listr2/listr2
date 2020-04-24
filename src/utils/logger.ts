@@ -4,7 +4,13 @@ import figures from 'figures'
 
 import { logLevels } from './logger.constants'
 
+export interface LoggerOptions {
+  direct: boolean
+}
+
 export class Logger {
+
+  constructor (private options?: LoggerOptions) {}
 
   public fail (message: string): void {
     message = this.parseMessage(logLevels.fail, message)
@@ -12,7 +18,7 @@ export class Logger {
   }
 
   public skip (message: string): void {
-    message = this.parseMessage(logLevels.fail, message)
+    message = this.parseMessage(logLevels.skip, message)
     console.warn(message)
   }
 
@@ -28,6 +34,11 @@ export class Logger {
 
   public start (message: string): void {
     message = this.parseMessage(logLevels.start, message)
+    console.log(message)
+  }
+
+  public title (message: string): void {
+    message = this.parseMessage(logLevels.title, message)
     console.info(message)
   }
 
@@ -36,7 +47,9 @@ export class Logger {
     let multiLineMessage = message?.split('\n')
     multiLineMessage = multiLineMessage?.map((msg) => {
       // format messages
-      return this.logColoring({ level, message: msg })
+      return this.logColoring({
+        level, message: msg
+      })
     })
     // join back multi line messages
     message = multiLineMessage?.join('\n')
@@ -53,22 +66,50 @@ export class Logger {
     }
     switch (level) {
     case logLevels.fail:
-      coloring = chalk.red
-      icon = figures.cross
+      if (!this.options?.direct) {
+        coloring = chalk.red
+        icon = figures.cross
+      } else {
+        icon = '[FAILED]'
+      }
+
       break
     case logLevels.skip:
-      coloring = chalk.yellow
-      icon = figures.arrowDown
+      if (!this.options?.direct) {
+        coloring = chalk.yellow
+        icon = figures.arrowDown
+      } else {
+        icon ='[SKIPPED]'
+      }
       break
     case logLevels.success:
-      coloring = chalk.green
-      icon = figures.tick
+      if (!this.options?.direct) {
+        coloring = chalk.green
+        icon = figures.tick
+      } else {
+        icon = '[SUCCESS]'
+      }
       break
     case logLevels.data:
-      icon = figures.arrowRight
+      if (!this.options?.direct) {
+        icon = figures.arrowRight
+      } else {
+        icon = '[DATA]'
+      }
       break
     case logLevels.start:
-      icon = figures.pointer
+      if (!this.options?.direct) {
+        icon = figures.pointer
+      } else {
+        icon = '[STARTED]'
+      }
+      break
+    case logLevels.title:
+      if (!this.options?.direct) {
+        icon = figures.checkboxOn
+      } else {
+        icon = '[TITLE]'
+      }
       break
     default:
       icon = figures.pointer
