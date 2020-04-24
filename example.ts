@@ -114,7 +114,7 @@ async function main (): Promise<void> {
       }
     }
   ], {
-    exitOnError: false, collapseSkips: false, renderer:'default'
+    exitOnError: false, renderer:'default', collapseSkips: false
   })
 
   // running the command returns the context object back

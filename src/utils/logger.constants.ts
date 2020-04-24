@@ -4,5 +4,6 @@ export enum logLevels {
   skip = 'skip',
   success = 'success',
   data = 'data',
-  start = 'start'
+  start = 'start',
+  title = 'title'
 }
