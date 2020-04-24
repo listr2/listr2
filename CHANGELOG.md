@@ -1,3 +1,6 @@
+# 20200424, v1.3.8
+* Added test renderer.
+
 # 20200304, v1.2.4
 * Removed winston because of the cost from verbose renderer, and it was also a bit unnecassary.
 * Fixed prompt module types.
