@@ -19,7 +19,7 @@
     "build": "tsc && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
     "lint": "eslint --ext .json,.ts,.js --fix src/",
     "dev:lint": "lint-staged",
-    "test": "NODE_ENV=test jest --verbose --config ./tests/jest.js",
+    "test": "NODE_ENV=test jest --config ./tests/jest.js",
     "test:cov": "NODE_ENV=test jest --coverage --config ./tests/jest.js",
     "dev:test": "NODE_ENV=test jest --verbose --watchAll --config ./tests/jest.js"
   },
