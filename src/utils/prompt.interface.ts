@@ -1,6 +1,6 @@
 import Enquirer from 'enquirer'
 
-import { PromptError } from '../interfaces/listr.interface'
+import { PromptError } from '@interfaces/listr.interface'
 
 export type PromptOptions =
   | ArrayPromptOptions

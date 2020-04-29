@@ -4,6 +4,14 @@
     "outDir": "./dist",
     "rootDir": "../",
     "baseUrl": "../",
+    "paths": {
+      "@root/*": ["./src/*"],
+      "@constants/*": ["src/constants/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@lib/*": ["src/lib/*"],
+      "@renderer/*": ["src/renderer/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["../src", "../tests"],
   "exclude": ["node_modules", "dist"]

@@ -1,11 +1,11 @@
 import through from 'through'
 
-import { stateConstants } from '../constants/state.constants'
-import { ListrError, ListrOptions, ListrTask, ListrTaskWrapper, StateConstants } from '../interfaces/listr.interface'
-import { Listr } from '../listr'
-import { createPrompt } from '../utils/prompt'
-import { PromptOptionsType, PromptTypes } from '../utils/prompt.interface'
-import { Task } from './task'
+import { stateConstants } from '@constants/state.constants'
+import { ListrError, ListrOptions, ListrTask, ListrTaskWrapper, StateConstants } from '@interfaces/listr.interface'
+import { Task } from '@lib/task'
+import { Listr } from '@root/index'
+import { createPrompt } from '@utils/prompt'
+import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
 
 export class TaskWrapper<Ctx> implements ListrTaskWrapper {
 

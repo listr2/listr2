@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs'
 import { Readable } from 'stream'
 
-import { stateConstants } from '../constants/state.constants'
-import { Task } from '../lib/task'
-import { Listr } from '../listr'
-import { PromptOptionsType, PromptTypes } from '../utils/prompt.interface'
+import { stateConstants } from '@constants/state.constants'
+import { Task } from '@lib/task'
+import { Listr } from '@root/index'
+import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
 
 export type ListrContext = any
 
@@ -43,7 +43,7 @@ export interface ListrTask<Ctx = ListrContext> {
   title?: string
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx>) => void | ListrTaskResult<Ctx>
   skip?: (ctx: Ctx) => void | boolean | string | Promise<boolean>
-  enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
+  enabled?: ((ctx: Ctx) => boolean | Promise<boolean>)
   bottomBar?: boolean | number
   persistentOutput?: boolean
 }

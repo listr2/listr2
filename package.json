@@ -15,12 +15,13 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "build": "tsc --declaration",
+    "prebuild": "rimraf tsconfig.build.tsbuildinfo && rimraf dist/",
+    "build": "tsc && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
     "lint": "eslint --ext .json,.ts,.js --fix src/",
     "dev:lint": "lint-staged",
-    "test": "NODE_ENV=test jest --verbose --forceExit --runInBand --config ./tests/jest.js",
+    "test": "NODE_ENV=test jest --verbose --config ./tests/jest.js",
     "test:cov": "NODE_ENV=test jest --coverage --config ./tests/jest.js",
-    "dev:test": "NODE_ENV=test node node_modules/.bin/jest --verbose --runInBand --forceExit --watchAll --config ./tests/jest.js"
+    "dev:test": "NODE_ENV=test jest --verbose --watchAll --config ./tests/jest.js"
   },
   "husky": {
     "hooks": {
@@ -71,13 +72,14 @@
     "@types/jest": "^25.2.1",
     "@types/node": "^13.9.5",
     "delay": "^4.3.0",
-    "enquirer-editor": "^1.0.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "jest": "^25.5.1",
     "lint-staged": "^10.0.9",
+    "rimraf": "^3.0.2",
     "ts-jest": "^25.4.0",
     "ts-node": "^8.8.1",
+    "tscpaths": "^0.0.9",
     "typescript": "^3.8.3"
   }
 }

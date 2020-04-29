@@ -2,6 +2,9 @@
 /node_modules
 /dist
 
+# tests
+/tests/coverage
+
 # Logs
 logs
 *.log

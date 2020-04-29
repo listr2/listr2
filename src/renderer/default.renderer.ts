@@ -5,8 +5,7 @@ import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
 
-import { ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr.interface'
-import { ListrContext } from './../interfaces/listr.interface'
+import { ListrOptions, ListrRenderer, ListrTaskObject, ListrContext } from '@interfaces/listr.interface'
 
 export class MultiLineRenderer implements ListrRenderer {
   static nonTTY = false
