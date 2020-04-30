@@ -1,3 +1,10 @@
+## [1.3.12](https://github.com/cenk1cenk2/listr2/compare/v1.3.11...v1.3.12) (2020-04-30)
+
+
+### Bug Fixes
+
+* **ignore:** note to self dont do late night commits ([56ff7b7](https://github.com/cenk1cenk2/listr2/commit/56ff7b79b010606c593348e6b27fcd455d1c2dcd))
+
 ## [1.3.11](https://github.com/cenk1cenk2/listr2/compare/v1.3.10...v1.3.11) (2020-04-30)
 
 
