@@ -10,7 +10,24 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 ![Demo](./demo/demo.gif)
 
 * [Changelog](./CHANGELOG.md)
+
 <!-- toc -->
+
+- [Extra Features](#extra-features)
+- [Task Manager](#task-manager)
+  - [Create A New Task Manager](#create-a-new-task-manager)
+  - [Add Tasks](#add-tasks)
+  - [Run Tasks that are in Queue](#run-tasks-that-are-in-queue)
+  - [Indent A Task](#indent-a-task)
+  - [Listr Wrapper](#listr-wrapper)
+- [Input Module](#input-module)
+  - [Directly access enquirer without explicitly installing in your project](#directly-access-enquirer-without-explicitly-installing-in-your-project)
+- [Inject Context](#inject-context)
+- [Bottom Bar For More Information](#bottom-bar-for-more-information)
+- [Tasks without Titles](#tasks-without-titles)
+- [Multi-Line Renderer](#multi-line-renderer)
+- [Fully-Typed](#fully-typed)
+
 <!-- tocstop -->
 
 # How to Use
