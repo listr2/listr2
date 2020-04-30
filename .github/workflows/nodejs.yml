@@ -46,3 +46,16 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --frozen-lockfile
     - run: yarn run build
+
+  semantic-release-mock:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Action For Semantic Release
+      uses: cycjimmy/semantic-release-action@v2.3.0
+      with:
+        branches: develop
+        dry_run: true
