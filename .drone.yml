@@ -2,32 +2,43 @@ kind: pipeline
 name: default
 
 trigger:
+  branch:
+    - master
   event:
-    - tag
+    - push
 
 steps:
-  - name: test
+  - name: lint
     image: node:current-alpine
     commands:
       - yarn --frozen-lockfile
       - yarn lint
+
+  - name: test
+    image: node:current-alpine
+    commands:
+      - yarn test
 
   - name: transpile
     image: node:current-alpine
     commands:
       - yarn build
 
-  - name: publish
-    image: node:current-alpine
-    commands:
-      - yarn global add npm-cli-login
-      - npm-cli-login -u $NPM_USERNAME -p $NPM_PASSWORD -e $NPM_EMAIL
-      - npm publish --access public
-      - npm logout
-    environment:
-      NPM_USERNAME:
-        from_secret: NPM_USERNAME
-      NPM_PASSWORD:
-        from_secret: NPM_PASSWORD
-      NPM_EMAIL:
-        from_secret: NPM_EMAIL
+  - name: semantic-release
+    image: cenk1cenk2/semantic-release-drone
+    settings:
+      mode: release
+      git_method: gh
+      git_user_name:
+        from_secret: GITHUB_USERNAME
+      git_user_email:
+        from_secret: GITHUB_EMAIL
+      github_token:
+        from_secret: GITHUB_TOKEN
+      npm_token:
+        from_secret: NPM_TOKEN
+    when:
+      branch:
+        - master
+      event:
+        - push

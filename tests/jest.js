@@ -19,16 +19,16 @@ function makeModuleNameMapper (srcPath, tsconfigPath) {
 }
 
 module.exports = {
-  moduleFileExtensions: [ 'js', 'json', 'ts' ],
-  rootDir: '.',
+  moduleFileExtensions: [ 'js', 'json', 'jsx', 'ts', 'tsx', 'node' ],
+  rootDir: '../',
   testEnvironment: 'node',
-  testRegex: '.spec.ts$',
+  testRegex: '(/tests/.*|/src/.*).(e2e-)?spec.tsx?$',
   transform: {
     '^.+\\.(t)s$': 'ts-jest'
   },
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.json'
+      tsConfig: '<rootDir>/tests/tsconfig.json'
     }
   },
   moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH)
