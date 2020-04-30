@@ -2,14 +2,14 @@ name: Pre-Deploy
 
 on:
   push:
-    branches: [ master, develop ]
+    branches: [ master, develop, alpha, beta, rc ]
 
 jobs:
   lint:
     runs-on: [ubuntu-latest]
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -18,6 +18,20 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --frozen-lockfile
     - run: yarn run lint
+
+  test:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile
+    - run: yarn run test
 
   build:
     runs-on: [ubuntu-latest]
@@ -32,17 +46,3 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --frozen-lockfile
     - run: yarn run build
-
-  test:
-    runs-on: [ubuntu-latest]
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn install --frozen-lockfile
-    - run: yarn run test

@@ -19,7 +19,7 @@ steps:
     commands:
       - yarn test
 
-  - name: transpile
+  - name: build
     image: node:current-alpine
     commands:
       - yarn build
