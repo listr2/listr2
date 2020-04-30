@@ -7,6 +7,8 @@ tsconfig*.json
 .eslintrc
 .drone.yml
 TODO.md
+.vscode/
+.github/
 
 # coverage
 coverage/
