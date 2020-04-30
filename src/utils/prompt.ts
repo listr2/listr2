@@ -3,9 +3,9 @@ import {
   AutoComplete, BasicAuth, Confirm, Editable, Form, Input, Invisible, List, MultiSelect, Numeral, Password, Quiz, Scale, Select, Snippet, Sort, Survey, Text, Toggle
 } from 'enquirer/lib/prompts'
 
-import { ListrError, PromptError } from '../interfaces/listr.interface'
-import { TaskWrapper } from '../lib/task-wrapper'
 import { PromptOptionsType, PromptSettings, PromptTypes } from './prompt.interface'
+import { ListrError, PromptError } from '@interfaces/listr.interface'
+import { TaskWrapper } from '@lib/task-wrapper'
 
 export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Prompt {
   let prompt: Prompt

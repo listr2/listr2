@@ -1,0 +1,74 @@
+import { Listr } from '@root/index'
+
+describe('skip a task', () => {
+
+  let log: jest.SpyInstance<void, string[][]>
+  let warn: jest.SpyInstance<void, string[][]>
+  let info: jest.SpyInstance<void, string[][]>
+
+  beforeEach(async () => {
+    log = jest.spyOn(console, 'log').mockImplementation()
+    warn = jest.spyOn(console, 'warn').mockImplementation()
+    info = jest.spyOn(console, 'info').mockImplementation()
+  })
+
+  afterEach(async () => {
+    jest.clearAllMocks()
+  })
+
+  it('should skip the task from internal call', async () => {
+    await new Listr([
+      {
+        task: async (ctx, task): Promise<void> => {
+          task.skip('skipped')
+        }
+      }
+    ], { renderer: 'test' }).run()
+
+    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(warn).toBeCalledWith('[SKIPPED] skipped')
+  })
+
+  it('skip to enable by context will work properly in serial', async () => {
+    await new Listr([
+      {
+        task: async (ctx, task): Promise<void> => {
+          ctx.test = true
+          task.skip('skipped')
+        }
+      },
+      {
+        enabled: (ctx): boolean => ctx.test,
+        task: async (ctx, task): Promise<void> => {
+          task.output = 'enabled'
+        }
+      }
+    ], { renderer: 'test', concurrent: false }).run()
+
+    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(warn).toBeCalledWith('[SKIPPED] skipped')
+    expect(info).toBeCalledWith('[DATA] enabled')
+  })
+
+  it('skip to enable by context will not work properly in concurrent', async () => {
+    await new Listr([
+      {
+        task: async (ctx, task): Promise<void> => {
+          ctx.test = true
+          task.skip('skipped')
+        }
+      },
+      {
+        enabled: (ctx): boolean => ctx.test,
+        task: async (ctx, task): Promise<void> => {
+          task.output = 'enabled'
+        }
+      }
+    ], { renderer: 'test', concurrent: true }).run()
+
+    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(warn).toBeCalledWith('[SKIPPED] skipped')
+    expect(info).not.toBeCalledWith('[DATA] enabled')
+  })
+
+})

@@ -1,5 +1,5 @@
-import { ListrEvent, ListrOptions, ListrRenderer, ListrTaskObject } from '../interfaces/listr.interface'
-import { Logger } from '../utils/logger'
+import { ListrEvent, ListrOptions, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
+import { Logger } from '@utils/logger'
 
 export class TestRenderer implements ListrRenderer {
   static nonTTY = true

@@ -9,10 +9,9 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 
 ![Demo](./demo/demo.gif)
 
-# Navigation
 * [Changelog](./CHANGELOG.md)
-* [How to Use](#how-to-use)
-* [Features](#extra-features)
+<!-- toc -->
+<!-- tocstop -->
 
 # How to Use
 

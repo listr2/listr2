@@ -3,10 +3,10 @@ import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
 import { v4 as uuidv4 } from 'uuid'
 
-import { stateConstants } from '../constants/state.constants'
-import { ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, StateConstants } from '../interfaces/listr.interface'
-import { getRenderer } from '../utils/renderer'
-import { Listr } from './../listr'
+import { stateConstants } from '@constants/state.constants'
+import { ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, StateConstants } from '@interfaces/listr.interface'
+import { Listr } from '@root/index'
+import { getRenderer } from '@utils/renderer'
 
 export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext> {
   public id: ListrTaskObject<Ctx>['id']

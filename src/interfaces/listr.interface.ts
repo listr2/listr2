@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs'
 import { Readable } from 'stream'
 
-import { stateConstants } from '../constants/state.constants'
-import { Task } from '../lib/task'
-import { Listr } from '../listr'
-import { PromptOptionsType, PromptTypes } from '../utils/prompt.interface'
+import { stateConstants } from '@constants/state.constants'
+import { Task } from '@lib/task'
+import { Listr } from '@root/index'
+import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
 
 export type ListrContext = any
 

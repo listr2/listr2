@@ -1,5 +1,5 @@
-import { ListrContext, ListrOptions, ListrTask } from './interfaces/listr.interface'
 import { Listr } from './listr'
+import { ListrContext, ListrOptions, ListrTask } from '@interfaces/listr.interface'
 
 export class Manager <InjectCtx = ListrContext> {
   // tasks

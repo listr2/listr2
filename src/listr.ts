@@ -1,10 +1,10 @@
 import pMap from 'p-map'
 
-import { stateConstants } from './constants/state.constants'
-import { ListrClass, ListrContext, ListrError, ListrOptions, ListrRenderer, ListrRendererClass, ListrTask } from './interfaces/listr.interface'
-import { Task } from './lib/task'
-import { TaskWrapper } from './lib/task-wrapper'
-import { getRenderer } from './utils/renderer'
+import { stateConstants } from '@constants/state.constants'
+import { ListrClass, ListrContext, ListrError, ListrOptions, ListrRenderer, ListrRendererClass, ListrTask } from '@interfaces/listr.interface'
+import { Task } from '@lib/task'
+import { TaskWrapper } from '@lib/task-wrapper'
+import { getRenderer } from '@utils/renderer'
 
 export class Listr<Ctx = ListrContext> implements ListrClass {
   public tasks: ListrClass['tasks'] = []

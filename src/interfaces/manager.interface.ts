@@ -1,5 +1,5 @@
-import { Listr } from '../listr'
-import { ListrContext, ListrTask, ListrOptions } from './listr.interface'
+import { ListrContext, ListrTask, ListrOptions } from '@interfaces/listr.interface'
+import { Listr } from '@root/index'
 
 export declare class ManagerClass <InjectCtx = ListrContext> {
   public options: ListrOptions<InjectCtx>

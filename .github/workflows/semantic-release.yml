@@ -1,0 +1,21 @@
+name: semantic-release
+
+on:
+  push:
+    branches: [ master, develop, alpha, beta, rc ]
+  pull_request:
+    branches: [ master, develop, alpha, beta, rc ]
+
+jobs:
+  semantic-release-mock:
+      runs-on: [ubuntu-latest]
+      steps:
+      - uses: actions/checkout@v2
+      - name: Action For Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        uses: cycjimmy/semantic-release-action@v2.3.0
+        with:
+          branches: develop
+          dry_run: true

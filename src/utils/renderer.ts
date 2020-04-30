@@ -1,8 +1,8 @@
-import { ListrContext, ListrRendererClass, ListrRendererValue } from '../interfaces/listr.interface'
-import { MultiLineRenderer } from '../renderer/default.renderer'
-import { SilentRenderer } from '../renderer/silent.renderer'
-import { VerboseRenderer } from '../renderer/verbose.renderer'
-import { TestRenderer } from './../renderer/test.renderer'
+import { ListrContext, ListrRendererClass, ListrRendererValue } from '@interfaces/listr.interface'
+import { MultiLineRenderer } from '@renderer/default.renderer'
+import { SilentRenderer } from '@renderer/silent.renderer'
+import { TestRenderer } from '@renderer/test.renderer'
+import { VerboseRenderer } from '@renderer/verbose.renderer'
 
 const renderers = {
   default: MultiLineRenderer,
