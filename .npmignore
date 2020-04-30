@@ -9,6 +9,8 @@ tsconfig*.json
 TODO.md
 .vscode/
 .github/
+release.config.js
+CHANGELOG.md
 
 # coverage
 coverage/
@@ -51,4 +53,4 @@ logs
 yarn.lock
 
 # tsbuild
-tsconfig.tsbuildinfo
+tsconfig*.tsbuildinfo
