@@ -1,3 +1,10 @@
+## [1.3.11](https://github.com/cenk1cenk2/listr2/compare/v1.3.10...v1.3.11) (2020-04-30)
+
+
+### Bug Fixes
+
+* **build:** ignored tests files ([16d8d93](https://github.com/cenk1cenk2/listr2/commit/16d8d9336fabbfb311a821744707e8ae55e80334))
+
 ## [1.3.10](https://github.com/cenk1cenk2/listr2/compare/v1.3.9...v1.3.10) (2020-04-30)
 
 
