@@ -51,7 +51,11 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     // Check if a task is enabled or disabled
     if (this.state === undefined) {
 
-      this.enabled = await this.enabledFn(ctx)
+      if (typeof this.enabledFn === 'function') {
+        this.enabled = await this.enabledFn(ctx)
+      } else {
+        this.enabled = this.enabledFn
+      }
 
       this.next({
         type: 'ENABLED',

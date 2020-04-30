@@ -43,7 +43,7 @@ export interface ListrTask<Ctx = ListrContext> {
   title?: string
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx>) => void | ListrTaskResult<Ctx>
   skip?: (ctx: Ctx) => void | boolean | string | Promise<boolean>
-  enabled?: ((ctx: Ctx) => boolean | Promise<boolean>)
+  enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
   bottomBar?: boolean | number
   persistentOutput?: boolean
 }

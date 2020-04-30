@@ -26,6 +26,7 @@ describe('logger', () => {
   let info: jest.SpyInstance<void, string[][]>
   let instances: jest.SpyInstance<void, string[][]>[]
   let logger: Logger
+  jest.mock('chalk')
 
   beforeEach(async () => {
     log = jest.spyOn(console, 'log').mockImplementation()
