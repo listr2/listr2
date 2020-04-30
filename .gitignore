@@ -32,7 +32,7 @@ logs
 !.vscode/extensions.json
 
 # tsbuild
-tsconfig.tsbuildinfo
+tsconfig*.tsbuildinfo
 
 # Node Package Manager
 .npm
