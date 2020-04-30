@@ -1,6 +1,3 @@
-import delay from 'delay'
-
-import { ListrTask } from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
 
 describe('exit on error', () => {
@@ -130,6 +127,37 @@ describe('exit on error', () => {
     expect(result).toBeFalsy()
     expect(log).toBeCalledTimes(2)
     expect(error).toBeCalledTimes(2)
+  })
+
+  it('should throw out an error if subtask in subtask fails while exit on error is disabled', async () => {
+    const task = new Listr([
+      {
+        task: (): Listr => new Listr([
+          {
+            task: (): Listr => new Listr([
+              {
+                task: (): void => {
+                  throw new Error('failed')
+                }
+              }
+            ])
+          }
+        ], { renderer: 'test', exitOnError: true })
+      }
+    ], { renderer: 'test', exitOnError: true })
+
+    let result: any
+    let crash: Error
+    try {
+      result = await task.run()
+    } catch (e) {
+      crash = e
+    }
+
+    expect(crash).toBeTruthy()
+    expect(result).toBeFalsy()
+    expect(log).toBeCalledTimes(3)
+    expect(error).toBeCalledTimes(3)
   })
 
 })

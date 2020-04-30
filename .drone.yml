@@ -29,6 +29,7 @@ steps:
     settings:
       mode: release
       git_method: gh
+      update_readme: true
       git_user_name:
         from_secret: GITHUB_USERNAME
       git_user_email:

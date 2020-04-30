@@ -44,15 +44,15 @@ export class Logger {
 
   private parseMessage (level: logLevels, message: string): string {
     // parse multi line messages
-    let multiLineMessage = message?.split('\n')
-    multiLineMessage = multiLineMessage?.map((msg) => {
+    let multiLineMessage = message.split('\n')
+    multiLineMessage = multiLineMessage.map((msg) => {
       // format messages
       return this.logColoring({
         level, message: msg
       })
     })
     // join back multi line messages
-    message = multiLineMessage?.join('\n')
+    message = multiLineMessage.join('\n')
 
     return message
   }
@@ -111,9 +111,9 @@ export class Logger {
         icon = '[TITLE]'
       }
       break
-    default:
-      icon = figures.pointer
-      break
+    // default:
+    //   icon = figures.pointer
+    //   break
     }
 
     return coloring(`${icon} ${message}`)
