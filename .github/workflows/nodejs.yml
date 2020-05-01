@@ -2,9 +2,9 @@ name: node-actions
 
 on:
   push:
-    branches: [ master, develop, alpha, beta, rc ]
+    branches: [ develop, alpha, beta, rc ]
   pull_request:
-    branches: [ master, develop, alpha, beta, rc ]
+    branches: [ develop, alpha, beta, rc ]
 
 jobs:
   lint:
