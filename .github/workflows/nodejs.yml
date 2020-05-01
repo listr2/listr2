@@ -1,10 +1,10 @@
 name: node-actions
-
 on:
   push:
-    branches: [ develop, alpha, beta, rc ]
-  pull_request:
-    branches: [ develop, alpha, beta, rc ]
+    branches:    
+      - '*'
+      - '*/*'
+      - '!master'
 
 jobs:
   lint:
