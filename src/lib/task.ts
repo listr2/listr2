@@ -22,7 +22,7 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
   private enabled: boolean
   private enabledFn: ListrTask['enabled']
 
-  constructor (public listr: Listr<Ctx>, public tasks: ListrTask, public injectedOptions: ListrOptions) {
+  constructor (public listr: Listr<Ctx, any>, public tasks: ListrTask, public injectedOptions: ListrOptions) {
 
     super()
 

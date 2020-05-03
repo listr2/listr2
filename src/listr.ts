@@ -1,19 +1,21 @@
 import pMap from 'p-map'
 
 import { stateConstants } from '@constants/state.constants'
-import { ListrClass, ListrContext, ListrError, ListrOptions, ListrRenderer, ListrRendererClass, ListrTask } from '@interfaces/listr.interface'
+import { ListrBaseClassOptions, ListrClass, ListrContext, ListrError, ListrRenderer, ListrRendererClass, ListrRendererValue, ListrTask } from '@interfaces/listr.interface'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
 
-export class Listr<Ctx = ListrContext> implements ListrClass {
-  public tasks: ListrClass['tasks'] = []
+export class Listr<Ctx = ListrContext, Renderer
+extends ListrRendererValue = ListrRendererValue, FallbackRenderer extends ListrRendererValue = ListrRendererValue>
+implements ListrClass<Ctx, Renderer, FallbackRenderer> {
+  public tasks: Task<Ctx>[] = []
   public err: ListrError[] = []
   public rendererClass: ListrRendererClass<Ctx>
   private concurrency: number
   private renderer: ListrRenderer
 
-  constructor (public task: ListrTask<Ctx> | ListrTask<Ctx>[], public options?: ListrOptions<Ctx>) {
+  constructor (public task: ListrTask<Ctx> | ListrTask<Ctx>[], public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>) {
     // assign over default options
     this.options = Object.assign({
       showSubtasks: true,

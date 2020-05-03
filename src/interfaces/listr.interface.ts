@@ -8,9 +8,9 @@ import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
 
 export type ListrContext = any
 
-export declare class ListrClass<Ctx = ListrContext> {
+export declare class ListrClass<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
   tasks: Task<Ctx>[]
-  constructor(task?: readonly ListrTask<Ctx>[], options?: ListrOptions<Ctx>)
+  constructor(task?: readonly ListrTask<Ctx>[], options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>)
   public run(ctx?: Ctx): Promise<Ctx>
   public add(tasks: ListrTask<Ctx> | readonly ListrTask<Ctx>[]): void
 }
@@ -58,19 +58,40 @@ export interface ListrTaskWrapper<Ctx = ListrContext> {
   prompt <T = any, P extends PromptTypes = PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T>
 }
 
-export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx> | Readable | Observable<any>
+export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx, 'silent', 'silent'> | Readable | Observable<any>
+
+export type ListrBaseClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> = ListrOptions<Ctx>
+& ListrDefaultRendererOptions<Renderer>
+& ListrDefaultNonTTYRendererOptions<FallbackRenderer>
 
 export interface ListrOptions<Ctx = ListrContext> {
   concurrent?: boolean | number
   exitOnError?: boolean
-  renderer?: ListrRendererValue<Ctx>
-  nonTTYRenderer?: ListrRendererValue<Ctx>
   showSubtasks?: boolean
   collapse?: boolean
   collapseSkips?: boolean
   clearOutput?: boolean
   ctx?: Ctx
 }
+
+type RendererOptions<T extends ListrRendererValue> = |
+T extends 'default' ? 'default' :
+  T extends 'test' ? 'test' :
+    T extends 'verbose' ? 'verbose':
+      T extends 'silent' ? 'silent':
+        never
+
+export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {
+  renderer?: T
+  rendererOptions?: RendererOptions<T>
+}
+
+export interface ListrDefaultNonTTYRendererOptions<T extends ListrRendererValue> {
+  nonTTYRenderer?: T
+  nonTTYRendererOptions?: RendererOptions<T>
+}
+
+export type ListrRendererOptions <Renderer extends ListrRendererValue> = ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<Renderer>
 
 export interface ListrEvent {
   type: ListrEventTypes
@@ -106,4 +127,4 @@ export type ListrEventTypes = 'TITLE' | 'STATE' | 'ENABLED' | 'SUBTASK' | 'DATA'
 
 export type StateConstants = stateConstants
 
-export type ListrRendererValue<Ctx> = 'silent' | 'default' | 'verbose' | 'test' | ListrRendererClass<Ctx>
+export type ListrRendererValue = 'silent' | 'default' | 'verbose' | 'test' | ListrRendererClass<any>

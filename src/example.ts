@@ -2,7 +2,7 @@
 import delay from 'delay'
 import { Observable } from 'rxjs'
 
-import { Listr, Manager } from './src'
+import { Listr, Manager } from '.'
 
 interface ListrCtx {
   yarn: boolean
@@ -23,7 +23,7 @@ async function main (): Promise<void> {
   let ctx: ListrCtx
 
   // Task structure
-  const tasks = new Listr<ListrCtx>([
+  const tasks = new Listr([
     {
       // You can nest Listr objects, as in the original but now you can also call a new listr class throught task.newListr and inject a type as well
       title: 'Concurrent sub test.',
@@ -113,7 +113,7 @@ async function main (): Promise<void> {
       }
     }
   ], {
-    exitOnError: false, renderer:'default', collapseSkips: false
+    exitOnError: false, renderer: 'verbose', rendererOptions: 'verbose', collapseSkips: false
   })
 
   // running the command returns the context object back
@@ -124,7 +124,7 @@ async function main (): Promise<void> {
   }
 
   // Inject context variables to other example.
-  const tasks2 = new Listr<ListrCtx>([
+  const tasks2 = new Listr([
     {
       // a test with injected context from other listr
       title: 'Got the context variables from the first listr.',
@@ -185,7 +185,9 @@ async function main (): Promise<void> {
 
   ], {
     // injected context
-    ctx
+    ctx,
+    renderer: 'silent',
+    rendererOptions: 'silent'
   })
 
   try {

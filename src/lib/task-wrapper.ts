@@ -1,7 +1,7 @@
 import through from 'through'
 
 import { stateConstants } from '@constants/state.constants'
-import { ListrError, ListrOptions, ListrTask, ListrTaskWrapper, StateConstants } from '@interfaces/listr.interface'
+import { ListrContext, ListrError, ListrOptions, ListrTask, ListrTaskWrapper, StateConstants } from '@interfaces/listr.interface'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
 import { createPrompt } from '@utils/prompt'
@@ -46,7 +46,7 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
     })
   }
 
-  public newListr<Ctx> (task: ListrTask<Ctx>[], options?: ListrOptions): Listr<Ctx> {
+  public newListr <Ctx = ListrContext> (task: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Listr<Ctx> {
     return new Listr<Ctx>(task, options)
   }
 
