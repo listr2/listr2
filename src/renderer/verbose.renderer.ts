@@ -3,6 +3,7 @@ import { Logger } from '@utils/logger'
 
 export class VerboseRenderer implements ListrRenderer {
   static nonTTY = true
+  static rendererOptions: { useIcons: boolean }
   private logger: Logger
 
   constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {

@@ -1,21 +1,19 @@
-import { ListrContext, ListrRendererClass, ListrRendererValue } from '@interfaces/listr.interface'
+import { ListrRendererClass, ListrRendererValue } from '@interfaces/listr.interface'
 import { MultiLineRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
-import { TestRenderer } from '@renderer/test.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 
 const renderers = {
   default: MultiLineRenderer,
   verbose: VerboseRenderer,
-  silent: SilentRenderer,
-  test: TestRenderer
+  silent: SilentRenderer
 }
 
-function isRendererSupported (renderer: ListrRendererClass<ListrContext>): boolean {
+function isRendererSupported (renderer: ListrRendererClass): boolean {
   return process.stdout.isTTY === true || renderer.nonTTY === true
 }
 
-function getRendererClass (renderer: ListrRendererValue): ListrRendererClass<ListrContext> {
+function getRendererClass (renderer: ListrRendererValue): ListrRendererClass {
   if (typeof renderer === 'string') {
     return renderers[renderer] || renderers.default
   }
@@ -23,7 +21,7 @@ function getRendererClass (renderer: ListrRendererValue): ListrRendererClass<Lis
   return typeof renderer === 'function' ? renderer : renderers.default
 }
 
-export function getRenderer (renderer: ListrRendererValue, fallbackRenderer?: ListrRendererValue): ListrRendererClass<ListrContext> {
+export function getRenderer (renderer: ListrRendererValue, fallbackRenderer?: ListrRendererValue): ListrRendererClass {
   let ret = getRendererClass(renderer)
 
   if (!isRendererSupported(ret)) {

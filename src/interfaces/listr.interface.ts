@@ -3,6 +3,9 @@ import { Readable } from 'stream'
 
 import { stateConstants } from '@constants/state.constants'
 import { Task } from '@lib/task'
+import { MultiLineRenderer } from '@renderer/default.renderer'
+import { SilentRenderer } from '@renderer/silent.renderer'
+import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { Listr } from '@root/index'
 import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
 
@@ -32,11 +35,11 @@ export interface ListrTaskObject<Ctx> extends Observable<ListrEvent> {
   isSkipped(): boolean
   isCompleted(): boolean
   isEnabled(): boolean
-  isBottomBar(): boolean
-  haspersistentOutput(): boolean
   isPrompt(): boolean
   hasFailed(): boolean
   hasTitle(): boolean
+  isBottomBar(): boolean
+  haspersistentOutput(): boolean
 }
 
 export interface ListrTask<Ctx = ListrContext> {
@@ -75,10 +78,10 @@ export interface ListrOptions<Ctx = ListrContext> {
 }
 
 type RendererOptions<T extends ListrRendererValue> = |
-T extends 'default' ? 'default' :
-  T extends 'test' ? 'test' :
-    T extends 'verbose' ? 'verbose':
-      T extends 'silent' ? 'silent':
+T extends 'default' ? typeof MultiLineRenderer.rendererOptions :
+  T extends 'verbose' ? typeof VerboseRenderer.rendererOptions:
+    T extends 'silent' ? typeof SilentRenderer.rendererOptions:
+      T extends ListrRendererClass ? T['rendererOptions'] :
         never
 
 export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {
@@ -91,7 +94,16 @@ export interface ListrDefaultNonTTYRendererOptions<T extends ListrRendererValue>
   nonTTYRendererOptions?: RendererOptions<T>
 }
 
-export type ListrRendererOptions <Renderer extends ListrRendererValue> = ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<Renderer>
+export type ListrRendererOptions <Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> =
+ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<FallbackRenderer>
+
+export interface ListrRendererClass {
+  rendererOptions: Record<string, any>
+  nonTTY: boolean
+  new(tasks: readonly ListrTaskObject<any>[], options: ListrOptions<any>): ListrRenderer
+}
+
+export type ListrRendererValue = 'silent' | 'default' | 'verbose' | ListrRendererClass
 
 export interface ListrEvent {
   type: ListrEventTypes
@@ -118,13 +130,6 @@ export class PromptError extends Error {
   }
 }
 
-export interface ListrRendererClass<Ctx> {
-  nonTTY: boolean
-  new(tasks: readonly ListrTaskObject<Ctx>[], options: ListrOptions<Ctx>): ListrRenderer
-}
-
 export type ListrEventTypes = 'TITLE' | 'STATE' | 'ENABLED' | 'SUBTASK' | 'DATA'
 
 export type StateConstants = stateConstants
-
-export type ListrRendererValue = 'silent' | 'default' | 'verbose' | 'test' | ListrRendererClass<any>

@@ -3,6 +3,7 @@ import delay from 'delay'
 import { Observable } from 'rxjs'
 
 import { Listr, Manager } from '.'
+import { MultiLineRenderer } from './renderer/default.renderer'
 
 interface ListrCtx {
   yarn: boolean
@@ -113,7 +114,7 @@ async function main (): Promise<void> {
       }
     }
   ], {
-    exitOnError: false, renderer: 'verbose', rendererOptions: 'verbose', collapseSkips: false
+    exitOnError: false, rendererOptions: { indentation: 5 }, collapseSkips: false
   })
 
   // running the command returns the context object back
@@ -186,8 +187,8 @@ async function main (): Promise<void> {
   ], {
     // injected context
     ctx,
-    renderer: 'silent',
-    rendererOptions: 'silent'
+    renderer: MultiLineRenderer,
+    rendererOptions: { indentation: 2 }
   })
 
   try {

@@ -7,11 +7,11 @@ import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
 
 export class Listr<Ctx = ListrContext, Renderer
-extends ListrRendererValue = ListrRendererValue, FallbackRenderer extends ListrRendererValue = ListrRendererValue>
+extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'>
 implements ListrClass<Ctx, Renderer, FallbackRenderer> {
   public tasks: Task<Ctx>[] = []
   public err: ListrError[] = []
-  public rendererClass: ListrRendererClass<Ctx>
+  public rendererClass: ListrRendererClass
   private concurrency: number
   private renderer: ListrRenderer
 

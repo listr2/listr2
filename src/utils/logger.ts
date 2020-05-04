@@ -111,9 +111,6 @@ export class Logger {
         icon = '[TITLE]'
       }
       break
-    // default:
-    //   icon = figures.pointer
-    //   break
     }
 
     return coloring(`${icon} ${message}`)

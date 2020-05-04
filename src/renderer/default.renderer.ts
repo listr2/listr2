@@ -9,6 +9,10 @@ import { ListrOptions, ListrRenderer, ListrTaskObject, ListrContext } from '@int
 
 export class MultiLineRenderer implements ListrRenderer {
   static nonTTY = false
+  static rendererOptions: {
+    indentation: number
+  }
+
   private id?: NodeJS.Timeout
   private indentation = 2
   private bottomBar: {[uuid: string]: {data?: string[], items?: number}} = {}
