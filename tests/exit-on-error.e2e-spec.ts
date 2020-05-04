@@ -26,7 +26,7 @@ describe('exit on error', () => {
           throw new Error('failed')
         }
       }
-    ], { renderer: 'test', exitOnError: true })
+    ], { renderer: 'verbose', exitOnError: true })
 
     let result: any
     let crash: Error
@@ -54,7 +54,7 @@ describe('exit on error', () => {
           throw new Error('failed')
         }
       }
-    ], { renderer: 'test', exitOnError: false })
+    ], { renderer: 'verbose', exitOnError: false })
 
     const result = await task.run()
 
@@ -72,9 +72,9 @@ describe('exit on error', () => {
               throw new Error('failed')
             }
           }
-        ], { renderer: 'test', exitOnError: false })
+        ], { exitOnError: false })
       }
-    ], { renderer: 'test', exitOnError: true })
+    ], { renderer: 'verbose', exitOnError: true })
 
     const result = await task.run()
 
@@ -92,9 +92,9 @@ describe('exit on error', () => {
               throw new Error('failed')
             }
           }
-        ], { renderer: 'test', exitOnError: true })
+        ], { exitOnError: true })
       }
-    ], { renderer: 'test', exitOnError: false })
+    ], { renderer: 'verbose', exitOnError: false })
 
     const result = await task.run()
 
@@ -111,9 +111,9 @@ describe('exit on error', () => {
               throw new Error('failed')
             }
           }
-        ], { renderer: 'test', exitOnError: true })
+        ], { exitOnError: true })
       }
-    ], { renderer: 'test', exitOnError: true })
+    ], { renderer: 'verbose', exitOnError: true })
 
     let result: any
     let crash: Error
@@ -142,9 +142,9 @@ describe('exit on error', () => {
               }
             ])
           }
-        ], { renderer: 'test', exitOnError: true })
+        ], { exitOnError: true })
       }
-    ], { renderer: 'test', exitOnError: true })
+    ], { renderer: 'verbose', exitOnError: true })
 
     let result: any
     let crash: Error

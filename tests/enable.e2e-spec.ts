@@ -21,7 +21,7 @@ describe('enable with context', () => {
           enabled: (): boolean => false,
           task: (): Promise<void> => Promise.resolve()
         }
-      ], { renderer: 'test' }).run()
+      ], { renderer: 'verbose' }).run()
 
       expect(log).toBeCalledTimes(0)
     })
@@ -33,7 +33,7 @@ describe('enable with context', () => {
           enabled: async (): Promise<boolean> => Promise.resolve(false),
           task: (): Promise<void> => Promise.resolve()
         }
-      ], { renderer: 'test' }).run()
+      ], { renderer: 'verbose' }).run()
 
       expect(log).toBeCalledTimes(0)
     })
@@ -49,7 +49,7 @@ describe('enable with context', () => {
           enabled: (): boolean => true,
           task: (): Promise<void> => Promise.resolve()
         }
-      ], { renderer: 'test' }).run()
+      ], { renderer: 'verbose' }).run()
 
       expect(log).toBeCalledTimes(2)
     })
@@ -61,7 +61,7 @@ describe('enable with context', () => {
           enabled: async (): Promise<boolean> => Promise.resolve(true),
           task: (): Promise<void> => Promise.resolve()
         }
-      ], { renderer: 'test' }).run()
+      ], { renderer: 'verbose' }).run()
 
       expect(log).toBeCalledTimes(2)
     })
@@ -83,7 +83,7 @@ describe('enable with context', () => {
           enabled: (ctx): boolean => ctx.enable,
           task: (): Promise<void> => Promise.resolve()
         }
-      ], { renderer: 'test', concurrent: true }).run()
+      ], { renderer: 'verbose', concurrent: true }).run()
 
       expect(log).toBeCalledTimes(2)
     })
@@ -96,7 +96,7 @@ describe('enable with context', () => {
           enabled: (ctx): boolean => ctx.enable,
           task: (): Promise<void> => Promise.resolve()
         }
-      ], { renderer: 'test' }).run(ctx)
+      ], { renderer: 'verbose' }).run(ctx)
 
       expect(log).toBeCalledTimes(0)
     })
