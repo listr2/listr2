@@ -1,4 +1,5 @@
-import { ListrRendererClass, ListrRendererValue } from '@interfaces/listr.interface'
+import { SupportedRenderer } from './renderer.interface'
+import { ListrRendererFactory, ListrRendererValue } from '@interfaces/listr.interface'
 import { MultiLineRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
@@ -9,11 +10,11 @@ const renderers = {
   silent: SilentRenderer
 }
 
-function isRendererSupported (renderer: ListrRendererClass): boolean {
+function isRendererSupported (renderer: ListrRendererFactory): boolean {
   return process.stdout.isTTY === true || renderer.nonTTY === true
 }
 
-function getRendererClass (renderer: ListrRendererValue): ListrRendererClass {
+function getRendererClass (renderer: ListrRendererValue): ListrRendererFactory {
   if (typeof renderer === 'string') {
     return renderers[renderer] || renderers.default
   }
@@ -21,12 +22,15 @@ function getRendererClass (renderer: ListrRendererValue): ListrRendererClass {
   return typeof renderer === 'function' ? renderer : renderers.default
 }
 
-export function getRenderer (renderer: ListrRendererValue, fallbackRenderer?: ListrRendererValue): ListrRendererClass {
+export function getRenderer (renderer: ListrRendererValue, fallbackRenderer?: ListrRendererValue): SupportedRenderer {
+  let returnValue: SupportedRenderer
   let ret = getRendererClass(renderer)
+  returnValue = { renderer: ret, nonTTY: false }
 
   if (!isRendererSupported(ret)) {
     ret = getRendererClass(fallbackRenderer)
+    returnValue = { renderer: ret, nonTTY: true }
   }
 
-  return ret
+  return returnValue
 }

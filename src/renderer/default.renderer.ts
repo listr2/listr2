@@ -5,20 +5,50 @@ import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
 
-import { ListrOptions, ListrRenderer, ListrTaskObject, ListrContext } from '@interfaces/listr.interface'
+import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 
 export class MultiLineRenderer implements ListrRenderer {
-  static nonTTY = false
-  static rendererOptions: {
-    indentation: number
+  public static nonTTY = false
+  public static rendererOptions: {
+    indentation?: number
+    clearOutput?: boolean
+    showSubtasks?: boolean
+    collapse?: boolean
+    collapseSkips?: boolean
+  } = {
+    indentation: 2,
+    clearOutput: false,
+    showSubtasks: true,
+    collapse: true,
+    collapseSkips: true
+  }
+  public static rendererTaskOptions: {
+    bottomBar?: boolean | number
+    persistentOutput?: boolean
   }
 
   private id?: NodeJS.Timeout
-  private indentation = 2
   private bottomBar: {[uuid: string]: {data?: string[], items?: number}} = {}
   private promptBar: string
 
-  constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {
+  constructor (public tasks: ListrTaskObject<any, typeof MultiLineRenderer>[], public options: typeof MultiLineRenderer['rendererOptions']) {
+    this.options = { ...MultiLineRenderer.rendererOptions, ...this.options }
+  }
+
+  public getTaskOptions (task: ListrTaskObject<any, typeof MultiLineRenderer>): typeof MultiLineRenderer['rendererTaskOptions'] {
+    return { ...MultiLineRenderer.rendererTaskOptions, ...task.rendererTaskOptions }
+  }
+
+  public isBottomBar (task: ListrTaskObject<any, typeof MultiLineRenderer>): boolean {
+    if (typeof this.getTaskOptions(task).bottomBar === 'number' || typeof this.getTaskOptions(task).bottomBar === 'boolean') {
+      return true
+    }
+  }
+
+  public hasPersistentOutput (task: ListrTaskObject<any, typeof MultiLineRenderer>): boolean {
+    if (this.getTaskOptions(task).persistentOutput === true) {
+      return true
+    }
   }
 
   public render (): void {
@@ -54,16 +84,19 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  private multiLineRenderer (tasks: ListrTaskObject<any>[], level = 0): string {
+  private multiLineRenderer (tasks: ListrTaskObject<any, typeof MultiLineRenderer>[], level = 0): string {
     let output: string[] = []
 
     for (const task of tasks) {
 
       if (task.isEnabled()) {
+
+        // Current Task Title
         if (task.hasTitle()) {
+
           // if task is skipped
-          if (task.isSkipped() && task?.options.collapseSkips) {
-            // CURRENT TASK TITLE and skip change the title
+          if (task.isSkipped() && this.options.collapseSkips) {
+            // Current Task Title and skip change the title
             task.title = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
           }
 
@@ -78,59 +111,70 @@ export class MultiLineRenderer implements ListrRenderer {
           }
         }
 
-        // CURRENT TASK OUTPUT
+        // Current Task Output
         if (task?.output) {
+
           if (task.isPending() && task.isPrompt()) {
+            // data output to prompt bar if prompt
             this.promptBar = task.output
 
-          } else if (task.isBottomBar() || !task.hasTitle()) {
+          } else if (this.isBottomBar(task) || !task.hasTitle()) {
+            // data output to bottom bar
             const data = this.dumpData(task, -1)
 
+            // create new if there is no persistent storage created for bottom bar
             if (!this.bottomBar[task.id]) {
               this.bottomBar[task.id] = {}
               this.bottomBar[task.id].data = []
 
-              this.bottomBar[task.id].items = typeof task.options.bottomBar === 'boolean' ? 1 : task.options.bottomBar
+              this.bottomBar[task.id].items = typeof this.getTaskOptions(task).bottomBar === 'boolean' ? 1 : this.getTaskOptions(task).bottomBar as number
             }
 
+            // persistent bottom bar and limit items in it
             if (!data?.some((element) => this.bottomBar[task.id].data.includes(element))) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
 
-          } else if (task.isPending() || task.haspersistentOutput()) {
+          } else if (task.isPending() || this.hasPersistentOutput(task)) {
+            // keep output if persistent output is set
             output = [ ...output, ...this.dumpData(task, level) ]
 
-          } else if (task.isSkipped() && task.options.collapseSkips === false) {
+          } else if (task.isSkipped() && this.options.collapseSkips === false) {
+            // show skip data if collapsing is not defined
             output = [ ...output, ...this.dumpData(task, level) ]
 
           }
 
         }
 
-        // SUBTASKS
+        // render subtasks, some complicated conditionals going on
         if (
           (
             task.isPending() || task.hasFailed()
           || task.isCompleted() && !task.hasTitle()
-          || task.isCompleted() && task.options.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.options.collapse === true)
-          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.options.collapse === false)
+          || task.isCompleted() && this.options.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true)
+          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false)
           || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())
           )
-        && task.options.showSubtasks !== false && task.hasSubtasks()
+        && this.options.showSubtasks !== false && task.hasSubtasks()
         ) {
+          // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
 
+          // render the subtasks as in the same way
           const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
           if (subtaskRender !== '') {
             output = [ ...output, subtaskRender ]
           }
         }
 
-        // TASK FINISHED CLEAN BOTTOM BARS
+        // after task is finished actions
         if (task.isCompleted() || task.hasFailed()) {
+          // clean up prompts
           this.promptBar = null
 
-          if (task.hasFailed() || (!task.hasTitle() || task.isBottomBar()) && task.haspersistentOutput() !== true) {
+          // clean up bottom bar items if not indicated otherwise
+          if (task.hasFailed() || (!task.hasTitle() || this.isBottomBar(task)) && this.hasPersistentOutput(task) !== true) {
             delete this.bottomBar[task.id]
           }
         }
@@ -165,8 +209,9 @@ export class MultiLineRenderer implements ListrRenderer {
     }
   }
 
-  private dumpData (task: ListrTaskObject<ListrContext>, level: number): string[] {
+  private dumpData (task: ListrTaskObject<ListrContext, typeof MultiLineRenderer>, level: number): string[] {
     const output: string[] = []
+
     if (typeof task.output === 'string') {
       // indent and color
       task.output.split('\n').filter(Boolean).forEach((line, i) => {
@@ -179,17 +224,17 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   private formatString (string: string, icon: string, level: number): string {
-    return `${indentString(`${icon} ${string}`, level * this.indentation)}`
+    return `${indentString(`${icon} ${string}`, level * this.options.indentation)}`
   }
 
   // eslint-disable-next-line complexity
-  private getSymbol (task: ListrTaskObject<ListrContext>, data = false): string {
+  private getSymbol (task: ListrTaskObject<ListrContext, typeof MultiLineRenderer>, data = false): string {
     if (!task.spinner && !data) {
       task.spinner = elegantSpinner()
     }
 
     if (task.isPending() && !data) {
-      return task.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.pointer) : chalk.yellowBright(task.spinner())
+      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.pointer) : chalk.yellowBright(task.spinner())
     }
 
     if (task.isCompleted() && !data) {
@@ -204,10 +249,10 @@ export class MultiLineRenderer implements ListrRenderer {
       return task.hasSubtasks() ? chalk.red(figures.pointer) : chalk.red(figures.cross)
     }
 
-    if (task.isSkipped() && !data && task.options.collapseSkips === false) {
+    if (task.isSkipped() && !data && this.options.collapseSkips === false) {
       return chalk.yellow(figures.warning)
 
-    } else if (task.isSkipped() && (data || task.options.collapseSkips)) {
+    } else if (task.isSkipped() && (data || this.options.collapseSkips)) {
       return chalk.yellow(figures.arrowDown)
 
     }

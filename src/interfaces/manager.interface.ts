@@ -1,9 +1,8 @@
-import { ListrContext, ListrTask, ListrOptions } from '@interfaces/listr.interface'
+import { ListrContext, ListrTask, ListrOptions, ListrBaseClassOptions } from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
 
 export declare class ManagerClass <InjectCtx = ListrContext> {
-  public options: ListrOptions<InjectCtx>
-  constructor(options?: ListrOptions<InjectCtx>)
+  constructor(options?: ListrBaseClassOptions<InjectCtx>)
   add<Ctx = ListrContext> (tasks: ListrTask<Ctx>[] | ((ctx?: Ctx) => ListrTask<Ctx>[]), options?: ListrOptions<Ctx>): void
   runAll<Ctx = InjectCtx>(options?: ListrOptions<Ctx>): Promise<Ctx>
   run<Ctx = InjectCtx>(tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Promise<Ctx>

@@ -1,17 +1,19 @@
 import pMap from 'p-map'
 
+import { ListrGetRendererOptions } from './interfaces/listr.interface'
 import { stateConstants } from '@constants/state.constants'
-import { ListrBaseClassOptions, ListrClass, ListrContext, ListrError, ListrRenderer, ListrRendererClass, ListrRendererValue, ListrTask } from '@interfaces/listr.interface'
+import { ListrBaseClassOptions, ListrClass, ListrContext, ListrError, ListrRenderer, ListrRendererFactory, ListrRendererValue, ListrTask } from '@interfaces/listr.interface'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
 
-export class Listr<Ctx = ListrContext, Renderer
-extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'>
+export class Listr
+<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default' | 'silent', FallbackRenderer extends ListrRendererValue = 'verbose' | 'silent'>
 implements ListrClass<Ctx, Renderer, FallbackRenderer> {
-  public tasks: Task<Ctx>[] = []
+  public tasks: Task<Ctx, ListrRendererFactory>[] = []
   public err: ListrError[] = []
-  public rendererClass: ListrRendererClass
+  public rendererClass: ListrRendererFactory
+  public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
   private concurrency: number
   private renderer: ListrRenderer
 
@@ -37,7 +39,15 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     }
 
     // get renderer class
-    this.rendererClass = getRenderer(this.options.renderer, this.options.nonTTYRenderer)
+    const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer)
+    this.rendererClass = renderer.renderer
+
+    // depending on the result pass the given options in
+    if (!renderer.nonTTY) {
+      this.rendererClassOptions = this.options.rendererOptions
+    } else {
+      this.rendererClassOptions = this.options.nonTTYRendererOptions
+    }
 
     // parse and add tasks
     this.add(task || [])
@@ -58,7 +68,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     const tasks = Array.isArray(task) ? task : [ task ]
 
     tasks.forEach((task): void => {
-      this.tasks.push(new Task(this, task, this.options))
+      this.tasks.push(new Task(this, task, this.options, Object.assign({}, this.rendererClassOptions, task.options)))
     })
   }
 
@@ -66,7 +76,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
 
     // start the renderer
     if (!this.renderer) {
-      this.renderer = new this.rendererClass(this.tasks, this.options)
+      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions)
     }
 
     this.renderer.render()
@@ -114,7 +124,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     }))
   }
 
-  private runTask (task: Task<Ctx>, context: Ctx, errors: ListrError[]): Promise<void> {
+  private runTask (task: Task<Ctx, this['rendererClass']>, context: Ctx, errors: ListrError[]): Promise<void> {
     if (!task.isEnabled()) {
       return Promise.resolve()
     }

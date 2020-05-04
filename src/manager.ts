@@ -1,14 +1,10 @@
 import { Listr } from './listr'
-import { ListrContext, ListrOptions, ListrTask } from '@interfaces/listr.interface'
+import { ListrContext, ListrOptions, ListrTask, ListrBaseClassOptions } from '@interfaces/listr.interface'
 
 export class Manager <InjectCtx = ListrContext> {
-  // tasks
-  public options: ListrOptions<InjectCtx>
   private tasks: ListrTask[] = []
 
-  constructor (options?: ListrOptions<InjectCtx>) {
-    this.options = Object.assign({ showSubtasks: true, collapse: false }, options)
-  }
+  constructor (public options?: ListrBaseClassOptions<InjectCtx>) { }
 
   set ctx (ctx: InjectCtx) {
     this.options.ctx = ctx
@@ -28,7 +24,7 @@ export class Manager <InjectCtx = ListrContext> {
     return ctx
   }
 
-  public newListr <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Listr<Ctx> {
+  public newListr <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrBaseClassOptions<Ctx>): Listr<Ctx> {
     return new Listr<Ctx>(tasks, options)
   }
 
@@ -53,7 +49,7 @@ export class Manager <InjectCtx = ListrContext> {
     return newTask
   }
 
-  public run <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrOptions<Ctx>): Promise<Ctx> {
+  public run <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrBaseClassOptions<Ctx>): Promise<Ctx> {
     options = { ...this.options, ...options } as ListrOptions<Ctx>
 
     return this.newListr<Ctx>(tasks, options).run()

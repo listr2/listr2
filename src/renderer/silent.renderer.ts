@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { ListrOptions, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
+import { ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 
 export class SilentRenderer implements ListrRenderer {
-  static nonTTY = true
-  static rendererOptions: never
+  public static nonTTY = true
+  public static rendererOptions: never
+  public static rendererTaskOptions: never
 
-  constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {}
+  constructor (public tasks: ListrTaskObject<any, typeof SilentRenderer>[], public options: typeof SilentRenderer['rendererOptions']) {}
 
   render (): void {}
 

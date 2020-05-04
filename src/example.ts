@@ -3,7 +3,6 @@ import delay from 'delay'
 import { Observable } from 'rxjs'
 
 import { Listr, Manager } from '.'
-import { MultiLineRenderer } from './renderer/default.renderer'
 
 interface ListrCtx {
   yarn: boolean
@@ -101,7 +100,8 @@ async function main (): Promise<void> {
           task: (ctx): void => {
             ctx.verbose = 'sometesting'
             throw new Error('Oh noes, i failed already.')
-          }
+          },
+          options: {}
         }
       ])
     },
@@ -114,7 +114,7 @@ async function main (): Promise<void> {
       }
     }
   ], {
-    exitOnError: false, rendererOptions: { indentation: 5 }, collapseSkips: false
+    exitOnError: false, rendererOptions: { }
   })
 
   // running the command returns the context object back
@@ -178,17 +178,21 @@ async function main (): Promise<void> {
             task.output = 'test persistent3'
 
           },
-          bottomBar: Infinity,
-          persistentOutput: true
+          options: {
+            bottomBar: Infinity,
+            persistentOutput: true
+          }
         }
-      ], { concurrent: true, collapse: false })
+      ], {
+        concurrent: true
+      })
     }
 
   ], {
     // injected context
     ctx,
-    renderer: MultiLineRenderer,
-    rendererOptions: { indentation: 2 }
+    renderer: 'default',
+    rendererOptions: { collapse: false }
   })
 
   try {
@@ -229,8 +233,8 @@ async function main (): Promise<void> {
         await delay(1200)
         task.output = 'Multiple output.'
         await delay(995)
-      },
-      bottomBar: 3
+      }
+      // bottomBar: 3
     },
     {
       title: 'Indented input',
@@ -273,7 +277,10 @@ async function main (): Promise<void> {
         title: 'Write to ctx.',
         task: (ctx): string => ctx.indent = 'bravo'
       }
-    ], { collapse: false, showSubtasks: true }, { title: 'This might be one level indendent.' }),
+    ], {
+      // collapse: false,
+      //  showSubtasks: true
+    }, { title: 'This might be one level indendent.' }),
     manager.indent<ListrCtx>([
       {
         title: 'Test',
@@ -283,7 +290,8 @@ async function main (): Promise<void> {
       }
     ], {}, { title: 'Indent title' })
   ], {
-    exitOnError: false, collapse: false
+    exitOnError: false
+    // , collapse: false
   })
 
   manager.add([
@@ -297,7 +305,9 @@ async function main (): Promise<void> {
         task: (ctx): string => ctx.indent = 'bravo'
       }
     ], {}, { title: 'I have a title and i am indented.' })
-  ], { collapse: true })
+  ], {
+    // collapse: true
+  })
 
   manager.add([
     manager.indent<ListrCtx>((ctx) => [
