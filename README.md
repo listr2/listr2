@@ -423,6 +423,8 @@ On | Output
 
 ## Custom Renderers
 
+## Migration from Version <v1.3.12
+
 
 ## Types
 Useful types are exported from the root. It is written with Typescript, so it will work great with any modern IDE/Editor.

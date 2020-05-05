@@ -5,7 +5,7 @@ import { Listr } from '@root/index'
 
 describe('concurrent execution', () => {
 
-  let tasks: ListrTask[]
+  let tasks: ListrTask<any, any>[]
   let log: jest.SpyInstance<void, string[][]>
 
   beforeEach(async () => {
@@ -50,7 +50,7 @@ describe('concurrent execution', () => {
   })
 
   it('should run tasks in parallel', async () => {
-    await new Listr(tasks, { concurrent: true, renderer: 'test' }).run()
+    await new Listr(tasks, { concurrent: true, renderer: 'verbose' }).run()
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
@@ -84,7 +84,7 @@ describe('concurrent execution', () => {
   })
 
   it('should limit the concurrency', async () => {
-    await new Listr(tasks, { concurrent: 2, renderer: 'test' }).run()
+    await new Listr(tasks, { concurrent: 2, renderer: 'verbose' }).run()
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
@@ -118,7 +118,7 @@ describe('concurrent execution', () => {
   })
 
   it('should run tasks sequentially', async () => {
-    await new Listr(tasks, { concurrent: false, renderer: 'test' }).run()
+    await new Listr(tasks, { concurrent: false, renderer: 'verbose' }).run()
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`

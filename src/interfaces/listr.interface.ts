@@ -48,7 +48,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   hasTitle(): boolean
 }
 
-export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
+export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
   title?: string
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
