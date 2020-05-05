@@ -10,9 +10,8 @@ Listr2
 
 This is the expanded and re-written in Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr).
 
-**It breaks backward compatability with [Listr](https://github.com/SamVerschueren/listr) after v1.3.12, albeit refactoring requires only moving renderer options to their own key, with respect to the [conversation on the original repository](https://github.com/SamVerschueren/listr/issues/143#issuecomment-623094930).**
-
 ![Demo](./demo/demo.gif)
+> **It breaks backward compatability with [Listr](https://github.com/SamVerschueren/listr) after v1.3.12, albeit refactoring requires only moving renderer options to their own key, with respect to the [conversation on the original repository](https://github.com/SamVerschueren/listr/issues/143#issuecomment-623094930).** You can find the README of compatible version [here](https://github.com/cenk1cenk2/listr2/tree/84ff9c70ba4aab16106d1e7114453ac5e0351ec0). Keep in mind that it will not get further bug fixes.
 
 * [Changelog](./CHANGELOG.md)
 <!-- toc -->
@@ -41,6 +40,11 @@ Check out `examples/` folder in the root of the repository for the code in demo 
 npm install listr2
 
 yarn add listr2
+
+# Install listr compatabile version
+npm install listr2@1.3.12
+
+yarn add listr2@1.3.12
 ```
 
 ## Create A New Listr
@@ -380,6 +384,8 @@ new Listr<Ctx>([
   ], { concurrent: false })
 ```
 
+### Subtasks
+
 ## Task Manager
 Task manager is a great way to create a custom tailored Listr class once and then utilize it more than once.
 
@@ -398,6 +404,20 @@ When the interrupt signal is caught Listr will render for one last time therefor
 You can disable this default behaviour by passing in the options for the root task `{ registerSignalListeners: false }`.
 
 ## Testing
+For testing purposes you can use the verbose renderer by passing in the option of `{ renderer: 'verbose' }`. This will generate text based and linear output which is required for testing.
+
+If you want to change the logger of the verbose renderer you can do that by passing a class implementing `Logger` class which is exported from the index and passing it through as a renderer option with `{ renderer: 'verbose', rendererOptions: { logger: MyLoggerClass } }`.
+
+Verbose renderer will always output predicted output with no fancy features.
+
+On | Output
+---------|----------
+ Task Started | \[STARTED\] ${TASK TITLE ?? 'Task without title.'}
+ Task Failure | \[FAILED\] ${TASK TITLE ?? 'Task without title.'}
+ Task Skipped | \[SKIPPED\] ${TASK TITLE ?? 'Task without title.'}
+ Task Successful | \[SUCCESS\] ${TASK TITLE ?? 'Task without title.'}
+ Spit Output | \[DATA\] ${TASK DATA}
+ Title Change | \[TITLE\] ${NEW TITLE}
 
 ## Custom Renderers
 
