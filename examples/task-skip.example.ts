@@ -6,11 +6,14 @@ interface Ctx {
   skip: boolean
 }
 
+const logger = new Logger({ useIcons: false })
+
 async function main (): Promise<void> {
-  const logger = new Logger({ useIcons: false })
+  let task: Listr<any>
+
   logger.start('Example for skipping a task from the results of function.')
 
-  const task = new Listr<Ctx>([
+  task = new Listr<Ctx>([
     {
       title: 'This task will execute.',
       task: (ctx, task): void => {
@@ -28,7 +31,7 @@ async function main (): Promise<void> {
 
   logger.start('Example for skipping a task by using context.')
 
-  const task2 = new Listr<Ctx>([
+  task = new Listr<Ctx>([
     {
       title: 'This task will execute.',
       task: (ctx): void => {
@@ -44,7 +47,7 @@ async function main (): Promise<void> {
   ], { concurrent: false })
 
   try {
-    const context = await task2.run()
+    const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch(e) {
     logger.fail(e)
@@ -52,7 +55,7 @@ async function main (): Promise<void> {
 
   logger.start('You can also not collapse the skip messages instead of changing the title by setting the collapseSkips option of the default renderer to false.')
 
-  const task2alt = new Listr<Ctx>([
+  task = new Listr<Ctx>([
     {
       title: 'This task will execute.',
       task: (ctx): void => {
@@ -68,13 +71,13 @@ async function main (): Promise<void> {
   ], { concurrent: false, rendererOptions: { collapseSkips: false } })
 
   try {
-    const context = await task2alt.run()
+    const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch(e) {
     logger.fail(e)
   }
 
-  const task3 = new Listr<Ctx>([
+  task = new Listr<Ctx>([
     {
       title: 'This task will execute.',
       task: (ctx): void => {
@@ -90,7 +93,7 @@ async function main (): Promise<void> {
   ], { concurrent: false })
 
   try {
-    const context = await task3.run()
+    const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch(e) {
     logger.fail(e)

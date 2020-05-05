@@ -15,7 +15,6 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 * [Changelog](./CHANGELOG.md)
 
 <!-- toc -->
-
 - [Extra Features](#extra-features)
 - [Task Manager](#task-manager)
   - [Create A New Task Manager](#create-a-new-task-manager)
@@ -106,41 +105,86 @@ You can also manually inject a context variable preset depending on the prior op
 
 **If all tasks are in a one big Listr list you do not have to inject context manually to the child tasks, since it is automatically injected as in the original.**
 
+## General Usage
 
+### Get User Input
+Input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
 
+So with running a `task.prompt` function, you can get access to any [enquirer](https://www.npmjs.com/package/enquirer) default prompts as well as using a custom enquirer prompt.
+
+To get a input you can assign the task a new prompt in an async function and write the response to the context.
+
+**It is not advisable to run prompts in a concurrent task because multiple prompts will clash and overwrite each others console output and when you do keyboard movements it will apply to the both.**
+
+Prompts, since their rendering is getting passed as a data output will render multiple times in verbose renderer since verbose renderer is not terminal-updating intended to be used in nonTTY environments. It will work any how albeit it might not look great.
+
+Prompts can either have a title or not but they will always be rendered at the end of the current console while using the default renderer.
+
+*Please refer to [examples section](examples/get-user-input.example.ts) for more detailed and further examples.*
+
+#### Create A Prompt
+To access the prompts just utilize the `task.prompt` jumper function. First argument takes in one of the default [enquirer](https://www.npmjs.com/package/enquirer) prompts as a string or you can also pass in a custom [enquirer](https://www.npmjs.com/package/enquirer) prompt class as well, while the second argument is the options for the given prompt.
+
+*Please note that I rewrote the types for enquirer, since some of them was failing for me. So it may have a chance of having some mistakes in it since I usually do not use all of them.*
 
 ```typescript
-import { Listr } from 'listr2'
-
-interface ListrCtx {
-  injectedContext: boolean
-}
-
-const tasks = new Listr<ListrCtx>(
-  [
-    {
-      // a title
-      title: 'Hello I am a title',
-      // an sync, async or observable function
-      task: async (ctx, task): Promise<void> => {}
-    }
-  ],
+new Listr<Ctx>([
   {
-    // throw in some options, all have a default
-    concurrent: false
-    exitOnError: true
-    renderer: ListrRendererValue<Ctx>
-    nonTTYRenderer: ListrRendererValue<Ctx>
-    showSubtasks: true
-    collapse: false
-    clearOutput: false
-    ctx: Ctx
+    title: 'This task will get your input.',
+    task: async (ctx, task): Promise<boolean> => ctx.input = await task.prompt<boolean>('Toggle', { message: 'Do you love me?' })
+  },
+  {
+    title: 'This task will get your input.',
+    task: async (ctx, task): Promise<void> => {
+      ctx.input = await task.prompt<boolean>('Toggle', { message: 'Do you love me?' })
+      // do something
+      if (ctx.input === false) {
+        throw new Error(':/')
+      }
+    }
   }
-)
-
-// and done!
-const ctx = await tasks.run()
+], { concurrent: false })
 ```
+
+#### Use an Custom Prompt
+You can either use a custom prompt out of the npm registry or custom-created one as long as it works with [enquirer](https://www.npmjs.com/package/enquirer), it will work expectedly. Instead of passing in the prompt name use the not-generated class.
+
+```typescript
+new Listr<Ctx>([
+  {
+     title: 'Custom prompt',
+     task: async (ctx, task): Promise<void> => {
+       ctx.testInput = await task.prompt(EditorPrompt, {
+         message: 'Write something in this enquirer custom prompt.',
+         initial: 'Start writing!',
+         validate: (response): boolean | string => {
+           if (response.split('\n').length < 4) {
+             return 'The bio must be at least 3 lines.'
+           }
+           return true
+         }
+       })
+     }
+   }
+  ], { concurrent: false })
+```
+
+#### Use Enquirer in Your Project Without Explicitly Installing It
+**I am planning to move enquirer to peer dependencies as an optional install, so this will likely go away in the near feature.**
+
+If you want to directly run it, and do not want to create a jumper function you can do as follows.
+
+```typescript
+import { createPrompt } from 'listr2'
+
+await createPrompt('Input', { message: 'Hey what is that?' }, { cancelCallback: () => { throw new Error('You made me mad now. Just should have answered me!') }})
+```
+
+### Enable a task
+
+### Skip a task
+
+### Show Output
 
 # Extra Features
 
@@ -211,17 +255,7 @@ myListr.run()
 
 ## Input Module
 
-Input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
 
-So with running a `task.prompt` function, you first select which kind of prompt that you will use and second one is the enquirer object which you can see more in detail in the designated npm page.
-
-To get a input you can assign the task a new prompt in an async function and write the response to the context.
-
-**It is not advisable to run prompts in a concurrent task because they will class and overwrite each others console output and when you do keyboard movements it will apply to the both.**
-
-It will render multiple times in verbose renderers, because the `enquirer`'s output is passed through the Listr itself as data. It will work anyway, but will not look that nice.
-
-Prompts can either have a title or not but they will always be rendered at the end of the current console while using the default renderer.
 
 ```typescript
 new Listr<ListrCtx>([
@@ -240,32 +274,7 @@ new Listr<ListrCtx>([
 ### Directly access enquirer without explicitly installing in your project
 If you want to use enquirer in your project, outside of the Listr, you can do it as follows.
 
-```typescript
-import { newPrompt, PromptTypes, PromptOptionsType } from 'listr2'
 
-export async function promptUser <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Promise<any>{
-  try {
-    return newPrompt(type, options).on('cancel', () => {
-      console.error('Cancelled prompt. Quitting.')
-      process.exit(20)
-    }).run()
-  } catch (e) {
-    console.error('There was a problem getting the answer of the last question. Quitting.')
-    console.debug(e.trace)
-    process.exit(20)
-  }
-}
-
-await promptUser('Input', { message: 'Hey what is that?' })
-  ```
-
-If you want to directly run it, and do not want to create a jumper function you can do as follows.
-
-```typescript
-import { createPrompt } from 'listr2'
-
-await createPrompt('Input', { message: 'Hey what is that?' })
-```
 
 ## Inject Context
 

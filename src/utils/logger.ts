@@ -44,7 +44,14 @@ export class Logger {
 
   private parseMessage (level: logLevels, message: string): string {
     // parse multi line messages
-    let multiLineMessage = message.split('\n')
+    let multiLineMessage: string[]
+
+    try {
+      multiLineMessage = message.split('\n')
+    } catch {
+      multiLineMessage = [ message ]
+    }
+
     multiLineMessage = multiLineMessage.map((msg) => {
       // format messages
       return this.logColoring({

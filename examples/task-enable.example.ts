@@ -6,11 +6,13 @@ interface Ctx {
   skip: boolean
 }
 
+const logger = new Logger({ useIcons: false })
+
 async function main (): Promise<void> {
-  const logger = new Logger({ useIcons: false })
+
   logger.start('Example for enabling a task by utilizing previous tasks and the general context.')
 
-  const task = new Listr<Ctx>([
+  const task: Listr<any> = new Listr<Ctx>([
     {
       title: 'This task will execute.',
       task: (ctx): void => {
