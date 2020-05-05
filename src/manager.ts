@@ -1,38 +1,47 @@
+import { ListrGetRendererClassFromValue } from './interfaces/listr.interface'
 import { Listr } from './listr'
-import { ListrContext, ListrOptions, ListrTask, ListrBaseClassOptions } from '@interfaces/listr.interface'
+import { ListrContext, ListrOptions, ListrTask, ListrBaseClassOptions, ListrRendererValue, ListrSubClassOptions } from '@interfaces/listr.interface'
 
-export class Manager <InjectCtx = ListrContext> {
-  private tasks: ListrTask[] = []
+export class Manager <InjectCtx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
+  private tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
 
-  constructor (public options?: ListrBaseClassOptions<InjectCtx>) { }
+  constructor (public options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>) { }
 
   set ctx (ctx: InjectCtx) {
     this.options.ctx = ctx
   }
 
-  public add <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[] | ((ctx?: Ctx) => ListrTask<Ctx>[]), options?: ListrOptions<Ctx>): void {
-    options = { ...this.options, ...options } as ListrOptions<Ctx>
+  public add <Ctx = InjectCtx>(
+    tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[] |
+    ((ctx?: Ctx) => ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]),
+    options?: ListrSubClassOptions<Ctx, Renderer>
+  ): void {
+    options = { ...this.options, ...options } as ListrSubClassOptions<Ctx, Renderer>
 
-    this.tasks = [ ...this.tasks, this.indent(tasks, options) ]
+    this.tasks = [ ...this.tasks, this.indent<Ctx>(tasks, options) ]
   }
 
-  public async runAll <Ctx = InjectCtx> (options?: ListrOptions<Ctx>): Promise<Ctx> {
-    options = { ...this.options, ...options } as ListrOptions<Ctx>
+  public async runAll (options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>): Promise<InjectCtx> {
+    options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
-    const ctx = await this.run<Ctx>(this.tasks, options)
+    const ctx = await this.run<InjectCtx>(this.tasks, options)
     this.tasks = []
     return ctx
   }
 
-  public newListr <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrBaseClassOptions<Ctx>): Listr<Ctx> {
-    return new Listr<Ctx>(tasks, options)
+  public newListr <Ctx = InjectCtx> (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<Ctx>): Listr<Ctx, any> {
+    return new Listr<Ctx, any>(tasks, options)
   }
 
   public indent <Ctx = InjectCtx>
-  (tasks: ListrTask<Ctx>[] | ((ctx?: Ctx) => ListrTask<Ctx>[]), options?: ListrOptions<Ctx>, taskOptions?: Omit<ListrTask, 'task'>): ListrTask<Ctx> {
+  (
+    tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[] |
+    ((ctx?: Ctx) => ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]),
+    options?: ListrOptions<Ctx>,
+    taskOptions?: Omit<ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>, 'task'>): ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> {
     options = { ...this.options, ...options } as ListrOptions<Ctx>
 
-    let newTask: ListrTask<Ctx>
+    let newTask: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>
     // type function or directly
     if (typeof tasks === 'function') {
       newTask = {
@@ -49,8 +58,8 @@ export class Manager <InjectCtx = ListrContext> {
     return newTask
   }
 
-  public run <Ctx = InjectCtx> (tasks: ListrTask<Ctx>[], options?: ListrBaseClassOptions<Ctx>): Promise<Ctx> {
-    options = { ...this.options, ...options } as ListrOptions<Ctx>
+  public run <Ctx = InjectCtx> (tasks: ListrTask<Ctx, any>[], options?: ListrBaseClassOptions<Ctx, any, any>): Promise<Ctx> {
+    options = { ...this.options, ...options } as ListrBaseClassOptions<Ctx, any, any>
 
     return this.newListr<Ctx>(tasks, options).run()
   }

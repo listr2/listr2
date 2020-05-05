@@ -23,9 +23,14 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   private enabled: boolean
-  private enabledFn: ListrTask['enabled']
+  private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
-  constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
+  constructor (
+    public listr: Listr<Ctx, any, any>,
+    public tasks: ListrTask<Ctx, any>,
+    public options: ListrOptions,
+    public rendererOptions: ListrGetRendererOptions<Renderer>
+  ) {
 
     super()
 
@@ -33,8 +38,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.id = uuidv4()
     this.title = this.tasks?.title
     this.task = this.tasks.task
-    // parse functions
-    this.skip = this.tasks?.skip || ((): boolean => false)
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
     this.enabledFn = this.tasks?.enabled || ((): boolean => true)
@@ -102,7 +105,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     }
   }
 
-  async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx>): Promise<void> {
+  async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void> {
     const handleResult = (result): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask
@@ -158,7 +161,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.state$ = stateConstants.PENDING
 
     // check if this function wants to be skipped
-    const skipped = this.skip(context)
+    let skipped: boolean | string
+    if (typeof this.skip === 'function') {
+      skipped = await this.skip(context)
+    }
     if (skipped) {
       if (typeof skipped === 'string') {
         this.output = skipped

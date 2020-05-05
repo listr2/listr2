@@ -4,8 +4,11 @@ Listr2
 [![Build Status](https://cd.ev.kilic.dev/api/badges/cenk1cenk2/listr2/status.svg)](https://cd.ev.kilic.dev/cenk1cenk2/listr2)
 [![Version](https://img.shields.io/npm/v/listr2.svg)](https://npmjs.org/package/listr2)
 [![Downloads/week](https://img.shields.io/npm/dw/listr2.svg)](https://npmjs.org/package/listr2)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-This is the expanded and re-written in Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr). Fully backwards compatible with the Listr itself but with more features.
+This is the expanded and re-written in Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr).
+
+**It breaks backward compatability with [Listr](https://github.com/SamVerschueren/listr) after v1.3.12, albeit refactoring requires only moving renderer options to their own key, with respect to the [talk on the original repository](https://github.com/SamVerschueren/listr/issues/143#issuecomment-623094930).**
 
 ![Demo](./demo/demo.gif)
 
@@ -32,7 +35,79 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 
 # How to Use
 
-Check out `example.ts` in the root of the repository for the code in demo or follow through with the readme.
+Check out `examples/` folder in the root of the repository for the code in demo or follow through with the readme.
+
+
+## Create A New Listr
+Create a new task list. It will return a Listr class.
+```typescript
+import { Listr } from 'listr2'
+
+interface Ctx {
+  /* some variables for internal use */
+}
+
+const tasks = new Listr<Ctx>([
+    /* tasks */
+  ], { /* options */ })
+```
+
+Then you can run this task lists as a async function and it will return the context that is used.
+```typescript
+try {
+  await tasks.run()
+} catch (e) {
+  // it will collect all the errors encountered if { exitOnError: false } is set as an option
+  // elsewise it will throw the first error encountered as expected
+  console.error(e)
+}
+```
+
+### Tasks
+```typescript
+export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
+  // A title can be given or omitted. For default renderer if the title is omitted,
+  title?: string
+  // A task can be a sync or async function that returns a string, readable stream or an observable or plain old void
+  // if it does actually return string, readable stream or an observable, task output will be refreshed with each data push
+  task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  // to skip the task programmatically, skip can be a sync or async function that returns a boolean or string
+  // if string is returned it will be showed as the skip message, else the task title will be used
+  skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
+  // to enable the task programmatically, this will show no messages comparing to skip and it will hide the tasks enabled depending on the context
+  // enabled can be external boolean, a sync or async function that returns a boolean
+  // pay in mind that context enabled functionallity might depend on other functions to finish first, therefore the list shall be treated as a async function
+  enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
+  // this will change depending on the available options on the renderer
+  // these renderer options are per task basis and does not affect global options
+  options?: ListrGetRendererTaskOptions<Renderer>
+}
+```
+
+### Options
+```typescript
+export interface ListrOptions<Ctx = ListrContext> {
+  // how many tasks can be run at the same time.
+  // false or 1 for synhronous task list, true or Infinity for compelete parallel operation, a number for limitting tasks that can run at the same time
+  concurrent?: boolean | number
+  // it will silently fail or throw out an error
+  exitOnError?: boolean
+  // inject a context from another operation
+  ctx?: Ctx
+}
+```
+
+## The Concept of Context
+Context is the variables that are shared across the task list. Even though external variables can be used to do the same operation, context gives a self-contained way to process internal tasks.
+
+A successful task will return the context back for further operation.
+
+You can also manually inject a context variable preset depending on the prior operations through the task options.
+
+**If all tasks are in a one big Listr list you do not have to inject context manually to the child tasks, since it is automatically injected as in the original.**
+
+
+
 
 ```typescript
 import { Listr } from 'listr2'

@@ -1,23 +1,38 @@
 import pMap from 'p-map'
 
-import { ListrGetRendererOptions } from './interfaces/listr.interface'
 import { stateConstants } from '@constants/state.constants'
-import { ListrBaseClassOptions, ListrClass, ListrContext, ListrError, ListrRenderer, ListrRendererFactory, ListrRendererValue, ListrTask } from '@interfaces/listr.interface'
+import {
+  ListrGetRendererOptions,
+  ListrGetRendererClassFromValue,
+  ListrDefaultRendererValue,
+  ListrFallbackRendererValue,
+  ListrBaseClassOptions,
+  ListrClass,
+  ListrContext,
+  ListrError,
+  ListrRenderer,
+  ListrRendererFactory,
+  ListrRendererValue,
+  ListrTask
+} from '@interfaces/listr.interface'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
 
 export class Listr
-<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default' | 'silent', FallbackRenderer extends ListrRendererValue = 'verbose' | 'silent'>
+<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue>
 implements ListrClass<Ctx, Renderer, FallbackRenderer> {
-  public tasks: Task<Ctx, ListrRendererFactory>[] = []
+  public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError[] = []
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
   private concurrency: number
   private renderer: ListrRenderer
 
-  constructor (public task: ListrTask<Ctx> | ListrTask<Ctx>[], public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>) {
+  constructor (
+    public task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[],
+    public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
+  ) {
     // assign over default options
     this.options = Object.assign({
       showSubtasks: true,
@@ -64,11 +79,16 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     }).setMaxListeners(0)
   }
 
-  public add (task: ListrTask | ListrTask[]): void {
+  public add (task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
     const tasks = Array.isArray(task) ? task : [ task ]
 
     tasks.forEach((task): void => {
-      this.tasks.push(new Task(this, task, this.options, Object.assign({}, this.rendererClassOptions, task.options)))
+      this.tasks.push(new Task(
+        this,
+        task,
+        this.options,
+        Object.assign({}, this.rendererClassOptions, task.options) as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>)
+      )
     })
   }
 
@@ -124,7 +144,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     }))
   }
 
-  private runTask (task: Task<Ctx, this['rendererClass']>, context: Ctx, errors: ListrError[]): Promise<void> {
+  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError[]): Promise<void> {
     if (!task.isEnabled()) {
       return Promise.resolve()
     }

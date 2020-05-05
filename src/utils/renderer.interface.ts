@@ -1,6 +1,6 @@
-import { ListrRendererClass } from '@interfaces/listr.interface'
+import { ListrRendererFactory } from '@interfaces/listr.interface'
 
 export interface SupportedRenderer {
-  renderer: ListrRendererClass
+  renderer: ListrRendererFactory
   nonTTY: boolean
 }
