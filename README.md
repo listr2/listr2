@@ -6,12 +6,12 @@ Listr2
 [![Downloads/week](https://img.shields.io/npm/dw/listr2.svg)](https://npmjs.org/package/listr2)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-**Create beautiful CLI interfaces and easy logical task lists that feels alive and interactive.**
+**Create beautiful CLI interfaces via easy and logical to implement task lists that feel alive and interactive.**
 
 This is the expanded and re-written in Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr).
 
 ![Demo](./demo/demo.gif)
-> **It breaks backward compatability with [Listr](https://github.com/SamVerschueren/listr) after v1.3.12, albeit refactoring requires only moving renderer options to their own key, with respect to the [conversation on the original repository](https://github.com/SamVerschueren/listr/issues/143#issuecomment-623094930).** You can find the README of compatible version [here](https://github.com/cenk1cenk2/listr2/tree/84ff9c70ba4aab16106d1e7114453ac5e0351ec0). Keep in mind that it will not get further bug fixes.
+> **It breaks backward compatibility with [Listr](https://github.com/SamVerschueren/listr) after v1.3.12, albeit refactoring requires only moving renderer options to their own key, concerning the [conversation on the original repository](https://github.com/SamVerschueren/listr/issues/143#issuecomment-623094930).** You can find the README of compatible version [here](https://github.com/cenk1cenk2/listr2/tree/84ff9c70ba4aab16106d1e7114453ac5e0351ec0). Keep in mind that it will not get further bug fixes.
 
 * [Changelog](./CHANGELOG.md)
 <!-- toc -->
@@ -33,10 +33,11 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 
 # How to Use
 
-Check out `examples/` folder in the root of the repository for the code in demo or follow through with the readme.
+Check out `examples/` folder in the root of the repository for the code in demo or follow through with this README.
 
 ## Install
 ```bash
+# Install the latest supported version
 npm install listr2
 
 yarn add listr2
@@ -48,7 +49,7 @@ yarn add listr2@1.3.12
 ```
 
 ## Create A New Listr
-Create a new task list. It will return a Listr class.
+Create a new task list. It will returns a Listr class.
 
 ```typescript
 import { Listr } from 'listr2'
@@ -130,9 +131,9 @@ A successful task will return the context back for further operation.
 
 You can also manually inject a context variable preset depending on the prior operations through the task options.
 
-**If all tasks are in a one big Listr list you do not have to inject context manually to the child tasks, since it is automatically injected as in the original.**
+**If all tasks are in one big Listr list you do not have to inject context manually to the child tasks since it is automatically injected as in the original.**
 
-If a outside variable wants to be injected inside the Listr itself it can be done in two ways.
+If an outside variable wants to be injected inside the Listr itself it can be done in two ways.
 - Injecting it as an option.
 ```typescript
 const ctx: Ctx = {}
@@ -153,23 +154,26 @@ try {
 
 ## General Usage
 
+### Subtasks
+
+
 ### Get User Input
-Input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
+The input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
 
 So with running a `task.prompt` function, you can get access to any [enquirer](https://www.npmjs.com/package/enquirer) default prompts as well as using a custom enquirer prompt.
 
-To get a input you can assign the task a new prompt in an async function and write the response to the context.
+To get an input you can assign the task a new prompt in an async function and write the response to the context.
 
-**It is not advisable to run prompts in a concurrent task because multiple prompts will clash and overwrite each others console output and when you do keyboard movements it will apply to the both.**
+**It is not advisable to run prompts in a concurrent task because multiple prompts will clash and overwrite each other's console output and when you do keyboard movements it will apply to them both.**
 
-Prompts, since their rendering is getting passed as a data output will render multiple times in verbose renderer since verbose renderer is not terminal-updating intended to be used in nonTTY environments. It will work any how albeit it might not look great.
+Prompts, since their rendering is getting passed as a data output will render multiple times in verbose renderer since verbose renderer is not terminal-updating intended to be used in nonTTY environments. It will work anyhow albeit it might not look great.
 
 Prompts can either have a title or not but they will always be rendered at the end of the current console while using the default renderer.
 
 *Please refer to [examples section](examples/get-user-input.example.ts) for more detailed and further examples.*
 
 #### Create A Prompt
-To access the prompts just utilize the `task.prompt` jumper function. First argument takes in one of the default [enquirer](https://www.npmjs.com/package/enquirer) prompts as a string or you can also pass in a custom [enquirer](https://www.npmjs.com/package/enquirer) prompt class as well, while the second argument is the options for the given prompt.
+To access the prompts just utilize the `task.prompt` jumper function. The first argument takes in one of the default [enquirer](https://www.npmjs.com/package/enquirer) prompts as a string or you can also pass in a custom [enquirer](https://www.npmjs.com/package/enquirer) prompt class as well, while the second argument is the options for the given prompt.
 
 Prompts always rendered at the bottom of the tasks when using the default renderer with one line return in between it and the tasks.
 
@@ -215,7 +219,7 @@ new Listr<Ctx>([
 ```
 
 #### Use Enquirer in Your Project Without Explicitly Installing It
-**I am planning to move enquirer to peer dependencies as an optional install, so this will likely go away in the near feature.**
+**I am planning to move enquirer to peer dependencies as an optional install, so this will likely go away in the near future.**
 
 If you want to directly run it, and do not want to create a jumper function you can do as follows.
 
@@ -228,7 +232,7 @@ await createPrompt('Input', { message: 'Hey what is that?' }, { cancelCallback: 
 ### Enable a Task
 Tasks can be enabled depending on the variables programmatically. This enables to skip them depending on the context. Not enabled tasks will never show up in the default renderer, but when or if they get enabled they will magically appear.
 
-*Please pay attention to asynchronous operation while designing an context enabled task list since it does not await for any variable in the context.*
+*Please pay attention to asynchronous operation while designing a context enabled task list since it does not await for any variable in the context.*
 
 *Please refer to [examples section](examples/task-enable.example.ts) for more detailed and further examples.*
 
@@ -250,11 +254,11 @@ new Listr<Ctx>([
 ```
 
 ### Skip a Task
-Skip is more less the same with enable when used at `Task` level. But the main difference is it will always render the given task. If it is skipped it render it as skipped.
+Skip is more or less the same with enable when used at `Task` level. But the main difference is it will always render the given task. If it is skipped it renders it as skipped.
 
 There are to main ways to skip a task. One is utilizing the `Task` so that instead of enabled it will show a visual output while the other one is inside the task.
 
-*Please pay attention to asynchronous operation while designing an context skipped task list since it does not await for any variable in the context.*
+*Please pay attention to asynchronous operation while designing a context skipped task list since it does not await for any variable in the context.*
 
 *Please refer to [examples section](examples/task-skip.example.ts) for more detailed and further examples.*
 
@@ -330,7 +334,7 @@ new Listr<Ctx>([
 ```
 
 #### Utilizing the Bottom Bar
-If task output to bottom bar is selected, it will create a bar at the end of the tasks leaving one line return space in between. Bottom bar can only be used in the default renderer.
+If task output to the bottom bar is selected, it will create a bar at the end of the tasks leaving one line return space in between. The bottom bar can only be used in the default renderer.
 
 Items count that is desired to be showed in the bottom bar can be set through `Task` option `bottomBar`.
 - If set to `true` it will only show the last output from the task.
@@ -382,27 +386,25 @@ new Listr<Ctx>([
   ], { concurrent: false })
 ```
 
-### Subtasks
-
 ## Task Manager
-Task manager is a great way to create a custom tailored Listr class once and then utilize it more than once.
+Task manager is a great way to create a custom-tailored Listr class once and then utilize it more than once.
 
 ## Generic Features
 
 ### Tasks Without Titles
-For default renderer all tasks that do not have titles will be hidden from the visual task list and executed behind. You can still set `task.title` inside the task wrapper programmatically afterwards, if you so desire.
+For default renderer, all tasks that do not have titles will be hidden from the visual task list and executed behind. You can still set `task.title` inside the task wrapper programmatically afterward, if you so desire.
 
-Since tasks can have subtasks as in the form of Listr classes again, if a task without a title does have subtasks with title it will be rendered one less level indented. So you can use this operation to change the indivudual options of the set of tasks like `exitOnError` or `concurrency` or even render properties, like while you do want collapse parent's subtasks after compeleted but do not want this for a given set of subtasks.
+Since tasks can have subtasks as in the form of Listr classes again, if a task without a title does have subtasks with the title it will be rendered one less level indented. So you can use this operation to change the individual options of the set of tasks like `exitOnError` or `concurrency` or even render properties, like while you do want collapse parent's subtasks after completed but do not want this for a given set of subtasks.
 
 For verbose renderer, since it is not updating, it will show tasks that do not have a title as `Task without title.`
 
 ### Signal Interrupt
-When the interrupt signal is caught Listr will render for one last time therefore you will always have clean exits. This registeres event listener `process.on('exit')`, therefore it will use a bit more of CPU cycles depending on the Listr task itself.
+When the interrupt signal is caught Listr will render for one last time therefore you will always have clean exits. This registers event listener `process.on('exit')`, therefore it will use a bit more of CPU cycles depending on the Listr task itself.
 
-You can disable this default behaviour by passing in the options for the root task `{ registerSignalListeners: false }`.
+You can disable this default behavior by passing in the options for the root task `{ registerSignalListeners: false }`.
 
 ## Testing
-For testing purposes you can use the verbose renderer by passing in the option of `{ renderer: 'verbose' }`. This will generate text based and linear output which is required for testing.
+For testing purposes you can use the verbose renderer by passing in the option of `{ renderer: 'verbose' }`. This will generate text-based and linear output which is required for testing.
 
 If you want to change the logger of the verbose renderer you can do that by passing a class implementing `Logger` class which is exported from the index and passing it through as a renderer option with `{ renderer: 'verbose', rendererOptions: { logger: MyLoggerClass } }`.
 
@@ -416,6 +418,8 @@ On | Output
  Task Successful | \[SUCCESS\] ${TASK TITLE ?? 'Task without title.'}
  Spit Output | \[DATA\] ${TASK OUTPUT}
  Title Change | \[TITLE\] ${NEW TITLE}
+
+## Log To A File
 
 ## Custom Renderers
 
