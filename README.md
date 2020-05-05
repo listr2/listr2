@@ -146,8 +146,6 @@ const tasks = new Listr<Ctx>([
 try {
   await tasks.run({ctx})
 } catch (e) {
-  // it will collect all the errors encountered if { exitOnError: false } is set as an option
-  // elsewise it will throw the first error encountered as expected
   console.error(e)
 }
 ```
@@ -416,7 +414,7 @@ On | Output
  Task Failure | \[FAILED\] ${TASK TITLE ?? 'Task without title.'}
  Task Skipped | \[SKIPPED\] ${TASK TITLE ?? 'Task without title.'}
  Task Successful | \[SUCCESS\] ${TASK TITLE ?? 'Task without title.'}
- Spit Output | \[DATA\] ${TASK DATA}
+ Spit Output | \[DATA\] ${TASK OUTPUT}
  Title Change | \[TITLE\] ${NEW TITLE}
 
 ## Custom Renderers

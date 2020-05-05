@@ -1,5 +1,6 @@
 import chalk from 'chalk'
 import cliCursor from 'cli-cursor'
+import cliTruncate from 'cli-truncate'
 import elegantSpinner from 'elegant-spinner'
 import figures from 'figures'
 import indentString from 'indent-string'
@@ -225,7 +226,7 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   private formatString (string: string, icon: string, level: number): string {
-    return `${indentString(`${icon} ${string}`, level * this.options.indentation)}`
+    return `${cliTruncate(indentString(`${icon} ${string}`, level * this.options.indentation), process.stdout.columns ?? Infinity)}`
   }
 
   // eslint-disable-next-line complexity
