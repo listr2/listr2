@@ -42,7 +42,8 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
       exitOnError: true,
       collapse: true,
       collapseSkips: true,
-      clearOutput: false
+      clearOutput: false,
+      registerSignalListeners: true
     }, options)
 
     // define parallel options
@@ -68,15 +69,19 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     this.add(task || [])
 
     // Graceful interrupt for render cleanup
-    process.on('SIGINT', async () => {
-      await Promise.all(this.tasks.map(async (task) => {
-        if (task.isPending()) {
-          task.state$ = stateConstants.FAILED
-        }
-      }))
-      this.renderer.end(new Error('Interrupted.'))
-      process.exit(127)
-    }).setMaxListeners(0)
+    if (this.options.registerSignalListeners === true) {
+
+      process.on('SIGINT', async () => {
+        await Promise.all(this.tasks.map(async (task) => {
+          if (task.isPending()) {
+            task.state$ = stateConstants.FAILED
+          }
+        }))
+        this.renderer.end(new Error('Interrupted.'))
+        process.exit(127)
+      }).setMaxListeners(0)
+
+    }
   }
 
   public add (task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
@@ -87,7 +92,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
         this,
         task,
         this.options,
-        Object.assign({}, this.rendererClassOptions, task.options) as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>)
+        { ...this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>, ...task.options })
       )
     })
   }

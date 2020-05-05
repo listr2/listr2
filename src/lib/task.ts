@@ -3,9 +3,9 @@ import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
 import { v4 as uuidv4 } from 'uuid'
 
-import { ListrRendererFactory, ListrGetRendererTaskOptions } from './../interfaces/listr.interface'
 import { stateConstants } from '@constants/state.constants'
 import {
+  ListrRendererFactory, ListrGetRendererTaskOptions,
   ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, ListrGetRendererOptions, StateConstants
 } from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
@@ -41,6 +41,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
     this.enabledFn = this.tasks?.enabled || ((): boolean => true)
+    // task options
+    this.rendererTaskOptions = this.tasks.options
   }
 
   set state$ (state: StateConstants) {
@@ -110,7 +112,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       if (result instanceof Listr) {
         // Detect the subtask
         // assign options
-        result.options = Object.assign(this.options, result.options)
+        result.options = { ...this.options, ...result.options }
 
         // switch to silent renderer since already rendering
         const rendererClass = getRenderer('silent')

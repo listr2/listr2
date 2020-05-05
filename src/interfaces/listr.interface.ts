@@ -69,7 +69,8 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
 export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx, ListrRendererFactory, any> | Readable | Observable<any>
 
 export type ListrBaseClassOptions
-<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> = ListrOptions<Ctx>
+<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> =
+ListrOptions<Ctx>
 & ListrDefaultRendererOptions<Renderer>
 & ListrDefaultNonTTYRendererOptions<FallbackRenderer>
 
@@ -82,6 +83,7 @@ export interface ListrOptions<Ctx = ListrContext> {
   concurrent?: boolean | number
   exitOnError?: boolean
   ctx?: Ctx
+  registerSignalListeners?: boolean
 }
 
 export type CreateClass<T> = new(...args: any[]) => T

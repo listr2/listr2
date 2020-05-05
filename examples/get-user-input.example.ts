@@ -9,7 +9,7 @@ interface Ctx {
 const logger = new Logger({ useIcons: false })
 
 async function main (): Promise<void> {
-  let task: Listr<any>
+  let task: Listr<Ctx>
 
   logger.start('Example for getting user input.')
 

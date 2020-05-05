@@ -40,15 +40,11 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   public isBottomBar (task: ListrTaskObject<any, typeof MultiLineRenderer>): boolean {
-    if (typeof this.getTaskOptions(task).bottomBar === 'number' || typeof this.getTaskOptions(task).bottomBar === 'boolean') {
-      return true
-    }
+    return typeof this.getTaskOptions(task).bottomBar === 'number' || typeof this.getTaskOptions(task).bottomBar === 'boolean'
   }
 
   public hasPersistentOutput (task: ListrTaskObject<any, typeof MultiLineRenderer>): boolean {
-    if (this.getTaskOptions(task).persistentOutput === true) {
-      return true
-    }
+    return this.getTaskOptions(task).persistentOutput === true
   }
 
   public render (): void {
@@ -127,7 +123,12 @@ export class MultiLineRenderer implements ListrRenderer {
               this.bottomBar[task.id] = {}
               this.bottomBar[task.id].data = []
 
-              this.bottomBar[task.id].items = typeof this.getTaskOptions(task).bottomBar === 'boolean' ? 1 : this.getTaskOptions(task).bottomBar as number
+              const bottomBar = this.getTaskOptions(task).bottomBar
+              if (typeof bottomBar === 'boolean') {
+                this.bottomBar[task.id].items = bottomBar === true ? 1 : 0
+              } else {
+                this.bottomBar[task.id].items = bottomBar
+              }
             }
 
             // persistent bottom bar and limit items in it

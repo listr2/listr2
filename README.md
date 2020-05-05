@@ -6,14 +6,15 @@ Listr2
 [![Downloads/week](https://img.shields.io/npm/dw/listr2.svg)](https://npmjs.org/package/listr2)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
+**Create beautiful CLI interfaces and easy logical task lists that feels alive and interactive.**
+
 This is the expanded and re-written in Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr).
 
-**It breaks backward compatability with [Listr](https://github.com/SamVerschueren/listr) after v1.3.12, albeit refactoring requires only moving renderer options to their own key, with respect to the [talk on the original repository](https://github.com/SamVerschueren/listr/issues/143#issuecomment-623094930).**
+**It breaks backward compatability with [Listr](https://github.com/SamVerschueren/listr) after v1.3.12, albeit refactoring requires only moving renderer options to their own key, with respect to the [conversation on the original repository](https://github.com/SamVerschueren/listr/issues/143#issuecomment-623094930).**
 
 ![Demo](./demo/demo.gif)
 
 * [Changelog](./CHANGELOG.md)
-
 <!-- toc -->
 - [Extra Features](#extra-features)
 - [Task Manager](#task-manager)
@@ -29,16 +30,22 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 - [Tasks without Titles](#tasks-without-titles)
 - [Multi-Line Renderer](#multi-line-renderer)
 - [Fully-Typed](#fully-typed)
-
 <!-- tocstop -->
 
 # How to Use
 
 Check out `examples/` folder in the root of the repository for the code in demo or follow through with the readme.
 
+## Install
+```bash
+npm install listr2
+
+yarn add listr2
+```
 
 ## Create A New Listr
 Create a new task list. It will return a Listr class.
+
 ```typescript
 import { Listr } from 'listr2'
 
@@ -88,11 +95,27 @@ export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
 export interface ListrOptions<Ctx = ListrContext> {
   // how many tasks can be run at the same time.
   // false or 1 for synhronous task list, true or Infinity for compelete parallel operation, a number for limitting tasks that can run at the same time
+  // defaults to false
   concurrent?: boolean | number
   // it will silently fail or throw out an error
+  // defaults to false
   exitOnError?: boolean
   // inject a context from another operation
+  // defaults to any
   ctx?: Ctx
+  // to have graceful exit on signal terminate and to inform the renderer all the tasks awaiting or processing are failed
+  // defaults to true
+  registerSignalListeners?: boolean
+  // select the renderer or inject a class yourself
+  // defaults to 'default' which is a updating renderer
+  renderer?: 'default' | 'verbose' | 'silent' | ListrRendererFactory
+  // renderer options depends on the selected renderer
+  rendererOptions?: ListrGetRendererOptions<T>
+  // renderer will fallback to the nonTTYRenderer on non-tty environments as the name suggest
+  // defaults to verbose
+  nonTTYRenderer?: 'default' | 'verbose' | 'silent' | ListrRendererFactory
+  // options for the non-tty renderer
+  nonTTYrendererOptions?: ListrGetRendererOptions<T>
 }
 ```
 
@@ -104,6 +127,27 @@ A successful task will return the context back for further operation.
 You can also manually inject a context variable preset depending on the prior operations through the task options.
 
 **If all tasks are in a one big Listr list you do not have to inject context manually to the child tasks, since it is automatically injected as in the original.**
+
+If a outside variable wants to be injected inside the Listr itself it can be done in two ways.
+- Injecting it as an option.
+```typescript
+const ctx: Ctx = {}
+
+const tasks = new Listr<Ctx>([
+    /* tasks */
+  ], { ctx })
+```
+- Injecting it at runtime.
+```typescript
+try {
+  await tasks.run({ctx})
+} catch (e) {
+  // it will collect all the errors encountered if { exitOnError: false } is set as an option
+  // elsewise it will throw the first error encountered as expected
+  console.error(e)
+}
+```
+
 
 ## General Usage
 
@@ -125,12 +169,13 @@ Prompts can either have a title or not but they will always be rendered at the e
 #### Create A Prompt
 To access the prompts just utilize the `task.prompt` jumper function. First argument takes in one of the default [enquirer](https://www.npmjs.com/package/enquirer) prompts as a string or you can also pass in a custom [enquirer](https://www.npmjs.com/package/enquirer) prompt class as well, while the second argument is the options for the given prompt.
 
+Prompts always rendered at the bottom of the tasks when using the default renderer with one line return in between it and the tasks.
+
 *Please note that I rewrote the types for enquirer, since some of them was failing for me. So it may have a chance of having some mistakes in it since I usually do not use all of them.*
 
 ```typescript
 new Listr<Ctx>([
   {
-    title: 'This task will get your input.',
     task: async (ctx, task): Promise<boolean> => ctx.input = await task.prompt<boolean>('Toggle', { message: 'Do you love me?' })
   },
   {
@@ -158,9 +203,7 @@ new Listr<Ctx>([
          message: 'Write something in this enquirer custom prompt.',
          initial: 'Start writing!',
          validate: (response): boolean | string => {
-           if (response.split('\n').length < 4) {
-             return 'The bio must be at least 3 lines.'
-           }
+          //  i do declare you valid!
            return true
          }
        })
@@ -180,161 +223,184 @@ import { createPrompt } from 'listr2'
 await createPrompt('Input', { message: 'Hey what is that?' }, { cancelCallback: () => { throw new Error('You made me mad now. Just should have answered me!') }})
 ```
 
-### Enable a task
+### Enable a Task
+Tasks can be enabled depending on the variables programmatically. This enables to skip them depending on the context. Not enabled tasks will never show up in the default renderer, but when or if they get enabled they will magically appear.
 
-### Skip a task
+*Please pay attention to asynchronous operation while designing an context enabled task list since it does not await for any variable in the context.*
+
+*Please refer to [examples section](examples/task-enable.example.ts) for more detailed and further examples.*
+
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute.',
+      task: (ctx): void => {
+        ctx.skip = true
+      }
+    },
+
+    {
+      title: 'This task will never execute.',
+      enabled: (ctx): boolean => !ctx.skip,
+      task: (): void => {}
+    }
+  ], { concurrent: false })
+```
+
+### Skip a Task
+Skip is more less the same with enable when used at `Task` level. But the main difference is it will always render the given task. If it is skipped it render it as skipped.
+
+There are to main ways to skip a task. One is utilizing the `Task` so that instead of enabled it will show a visual output while the other one is inside the task.
+
+*Please pay attention to asynchronous operation while designing an context skipped task list since it does not await for any variable in the context.*
+
+*Please refer to [examples section](examples/task-skip.example.ts) for more detailed and further examples.*
+
+Inside the task itself after some logic is done.
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): void => {
+        task.skip('I am skipping this tasks for reasons.')
+      }
+    }
+  ], { concurrent: false })
+```
+
+Through the task wrapper.
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute.',
+      task: (ctx): void => {
+        ctx.skip = true
+      }
+    },
+
+    {
+      title: 'This task will never execute.',
+      skip: (ctx): boolean => ctx.skip,
+      task: (): void => {}
+    }
+  ], { concurrent: false })
+```
+
+There are two rendering methods for the default renderer for skipping the task. The default behavior is to replace the task title with skip message if the skip function returns a string. You can select the other way around with `rendererOptions: { collapseSkips: false }` for the default renderer to show the skip message under the task title.
 
 ### Show Output
+Showing output from a task can be done in various ways.
 
-# Extra Features
+To keep the output when the task finishes while using default renderer, you can set `{ persistentOutput: true }` in the `Task`.
+
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute.',
+      task: async (ctx, task): Promise<void> => {
+        task.output = 'I will push an output. [0]'
+      },
+      options: { persistentOutput: true }
+    }
+  ], { concurrent: false })
+```
+
+*Please refer to [examples section](examples/show-output.example.ts) for more detailed and further examples.*
+
+#### Utilizing the Task Itself
+This will show the output in a small bar that can only show the last output from the task.
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute.',
+      task: async (ctx, task): Promise<void> => {
+        task.output = 'I will push an output. [0]'
+        await delay(500)
+
+        task.output = 'I will push an output. [1]'
+        await delay(500)
+
+        task.output = 'I will push an output. [2]'
+        await delay(500)
+      }
+    }
+  ], { concurrent: false })
+```
+
+#### Utilizing the Bottom Bar
+If task output to bottom bar is selected, it will create a bar at the end of the tasks leaving one line return space in between. Bottom bar can only be used in the default renderer.
+
+Items count that is desired to be showed in the bottom bar can be set through `Task` option `bottomBar`.
+- If set to `true` it will only show the last output from the task.
+- If it is set to a number it will limit the output to that number.
+- If set to `Infinity`, it will keep all the output.
+
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute.',
+      task: async (ctx, task): Promise<void> => {
+        task.output = 'I will push an output. [0]'
+        await delay(500)
+
+        task.output = 'I will push an output. [1]'
+        await delay(500)
+
+        task.output = 'I will push an output. [2]'
+        await delay(500)
+      },
+      options: {
+        bottomBar: Infinity
+      }
+    }
+  ], { concurrent: false })
+```
+
+#### Utilizing an Observable or Stream
+Since observables and streams are supported they can also be used to generate output.
+```typescript
+new Listr<Ctx>([
+    {
+      // Task can also handle and observable
+      title: 'Observable test.',
+      task: (): Observable<string> =>
+        new Observable((observer) => {
+          observer.next('test')
+
+          delay(500)
+            .then(() => {
+              observer.next('changed')
+              return delay(500)
+            })
+            .then(() => {
+              observer.complete()
+            })
+        })
+    }
+  ], { concurrent: false })
+```
 
 ## Task Manager
-I have added a task manager kind of thing that is utilizing the Listr to the mix since I usually use it this kind of way. This task manager consists of three execution steps as described below.
+Task manager is a great way to create a custom tailored Listr class once and then utilize it more than once.
 
-```typescript
-import { Manager } from 'listr2'
-```
+## Generic Features
 
-This enables user to push the tasks in a queue and execute them when needed. In my opinion this provides a more clean code interface, just to add everything to queue and execute at the end of the script, thats why I included it.
+### Tasks Without Titles
+For default renderer all tasks that do not have titles will be hidden from the visual task list and executed behind. You can still set `task.title` inside the task wrapper programmatically afterwards, if you so desire.
 
-### Create A New Task Manager
-* You can inject your type through the initial generation.
-* The only option for manager is the show run time, which shows the run time off only the middle async part.
+Since tasks can have subtasks as in the form of Listr classes again, if a task without a title does have subtasks with title it will be rendered one less level indented. So you can use this operation to change the indivudual options of the set of tasks like `exitOnError` or `concurrency` or even render properties, like while you do want collapse parent's subtasks after compeleted but do not want this for a given set of subtasks.
 
-```typescript
-private manager: Manager<Ctx> = new Manager<Ctx>()
-```
+For verbose renderer, since it is not updating, it will show tasks that do not have a title as `Task without title.`
 
-### Add Tasks
-```typescript
-manager.add([<--TASK-->])
-```
+### Signal Interrupt
+When the interrupt signal is caught Listr will render for one last time therefore you will always have clean exits. This registeres event listener `process.on('exit')`, therefore it will use a bit more of CPU cycles depending on the Listr task itself.
 
-### Run Tasks that are in Queue
-* This will also return the context object back.
+You can disable this default behaviour by passing in the options for the root task `{ registerSignalListeners: false }`.
 
-```typescript
-const ctx = await manager.runAll<Ctx>({ concurrent: true })
-```
-### Indent A Task
-To wrap a task around a new listr object with task manager, you can use ```manager.indent([], {...options})```. This way you can change the concurrency in a one big task lists.
+## Testing
 
-```typescript
-const ctx = await manager.runAll<Ctx>({ concurrent: true })
-
-manager.add<Ctx>([
-  {
-    title: 'Some task.',
-    task: (): void => {}
-  },
-  // this is equal to wrapping it inside task:(): Listr => new Listr(<-SOMETASK->)
-  manager.indent<Ctx>([
-    {
-      title: 'Some task.',
-      task: (): void => {}
-    },
-  ], { concurrent: true })
-], { concurrent: false })
-```
-
-### Listr Wrapper
-You can also use the method below to directly create a Listr class. This will just return a Listr class, which you need to run after.
-
-```typescript
-const myListr = manager.newListr<Ctx>([
-  {
-    title: 'Some task.',
-    task: (): void => {}
-  }
-], { concurrent: false })
-
-// then you can perform any class actions
-myListr.run()
-```
+## Custom Renderers
 
 
-## Input Module
-
-
-
-```typescript
-new Listr<ListrCtx>([
-    {
-      task: async (ctx, task): Promise<any> => ctx.testInput = await task.prompt('Input', { message: 'test' })
-    },
-    {
-      title: 'Dump prompt.',
-      task: (ctx,task): void => {
-        task.output = ctx.testInput
-      }
-    }
-  ])
-  ```
-
-### Directly access enquirer without explicitly installing in your project
-If you want to use enquirer in your project, outside of the Listr, you can do it as follows.
-
-
-
-## Inject Context
-
-Context which is the object that is being used while executing the actions in the Listr can now be enjected to the next Listr through using the custom options.
-
-**If all tasks are in a one big Listr class you dont have to inject context to the childs, since it is automatically injected as in the original.**
-
-```typescript
-// get the context from other listr object
-const ctx = manager.runAll()
-
-// and inject it to next via options
-new Listr<ListrCtx>([
-    {
-      title: 'Dump prompt.',
-      task: (ctx,task): void => {
-        task.output = ctx.testInput
-      }
-    }
-  ], {ctx})
-```
-
-## Bottom Bar For More Information
-
-Default renderer now supports a bottom bar to dump the output if desired. The output lenght can be limited through options of the task.
-
-**If title has no title, and generates output it will be pushed to the bottom bar instead.**
-
-Else you have to specicify explicitly to the dump the output to the bottom bar. Bottom bar output from the particular task will be cleared after the task finished, but with ```persistentOutput: true``` option it can be persistent.
-
-```typescript
-new Listr<ListrCtx>([
-    {
-      task: async (ctx, task): Promise<any> => {
-        task.output = 'Something'
-      },
-      bottomBar: Infinity, // bottom bar items to keep by this particular task, number | boolean. boolean true will set it to 1.
-      persistentOutput: true // defaults to false, has to be set explicitly if desired
-    },
-  ], {ctx})
-```
-
-## Tasks without Titles
-
-Tasks can be created without titles, and if any output is dumped it will be dumped to the bottom bar instead. If a task with no title is returns a new Listr task, it can be used to change the parallel task count and execute those particular tasks in order or in parallel. The subtasks of the untitled tasks will drop down one indentation level to be consistent. In the verbose renderer tasks with no-title will render as 'Task with no title.'
-
-```typescript
-new Listr<ListrCtx>([
-    {
-      task: async (ctx, task): Promise<any> => {
-        task.output = 'Something'
-      }
-    },
-  ], {})
-```
-
-## Multi-Line Renderer
-
-The default update renderer now supports multi-line rendering. Therefore implementations like pushing through multi-line data now works properly.
-
-## Fully-Typed
-
-Types are exported from the root.
+## Types
+Useful types are exported from the root. It is written with Typescript, so it will work great with any modern IDE/Editor.
