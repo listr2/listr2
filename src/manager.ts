@@ -1,8 +1,9 @@
 import { ListrGetRendererClassFromValue } from './interfaces/listr.interface'
 import { Listr } from './listr'
-import { ListrContext, ListrOptions, ListrTask, ListrBaseClassOptions, ListrRendererValue, ListrSubClassOptions } from '@interfaces/listr.interface'
+import { ListrContext, ListrOptions, ListrTask, ListrBaseClassOptions, ListrRendererValue, ListrSubClassOptions, ListrError } from '@interfaces/listr.interface'
 
 export class Manager <InjectCtx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
+  public err: ListrError[] = []
   private tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
 
   constructor (public options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>) { }
@@ -25,7 +26,10 @@ export class Manager <InjectCtx = ListrContext, Renderer extends ListrRendererVa
     options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
     const ctx = await this.run<InjectCtx>(this.tasks, options)
+
+    // clear out queues
     this.tasks = []
+
     return ctx
   }
 
@@ -58,10 +62,21 @@ export class Manager <InjectCtx = ListrContext, Renderer extends ListrRendererVa
     return newTask
   }
 
-  public run <Ctx = InjectCtx> (tasks: ListrTask<Ctx, any>[], options?: ListrBaseClassOptions<Ctx, any, any>): Promise<Ctx> {
+  public async run <Ctx = InjectCtx> (tasks: ListrTask<Ctx, any>[], options?: ListrBaseClassOptions<Ctx, any, any>): Promise<Ctx> {
     options = { ...this.options, ...options } as ListrBaseClassOptions<Ctx, any, any>
 
-    return this.newListr<Ctx>(tasks, options).run()
+    // create task
+    const task = this.newListr<Ctx>(tasks, options)
+    // run task
+    const ctx = await task.run()
+
+    // reset error queue
+    this.err = []
+
+    // add errors to manager
+    this.err = [ ...this.err, ...task.err ]
+
+    return ctx
   }
 
   // general utils

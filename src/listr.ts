@@ -35,14 +35,10 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
   ) {
     // assign over default options
     this.options = Object.assign({
-      showSubtasks: true,
       concurrent: false,
       renderer: 'default',
       nonTTYRenderer: 'verbose',
       exitOnError: true,
-      collapse: true,
-      collapseSkips: true,
-      clearOutput: false,
       registerSignalListeners: true
     }, options)
 

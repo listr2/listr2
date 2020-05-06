@@ -555,8 +555,172 @@ logger.fail(task.err)
 // will show all of the errors that are encountered through execution
 ```
 
+- ListrError which is thrown out of `task.err´ in prior example is in the structure of
+```typescript
+public message: string
+public errors?: Error[]
+public context?: any
+```
+
 ## Task Manager
 Task manager is a great way to create a custom-tailored Listr class once and then utilize it more than once.
+
+*Please refer to [examples section](examples/manager.example.ts) for more detailed and further examples.*
+
+### Basic Use-Case Scenerio
+- Create something like a manager factory with your own default settings
+```typescript
+export function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager<T> {
+  const myDefaultOptions: ListrBaseClassOptions = {
+    concurrent: false,
+    exitOnError: false,
+    rendererOptions: {
+      collapse: false,
+      collapseSkips: false
+    }
+  }
+  return new Manager({ ...myDefaultOptions, ...override })
+}
+```
+
+- Create your class that benefits from manager
+```typescript
+export class MyMainClass {
+  private tasks = TaskManagerFactory<Ctx>()
+
+  constructor () {
+    this.run()
+  }
+
+  private async run (): Promise<void> {
+    // CODE WILL GO HERE IN THIS EXAMPLE
+  }
+}
+```
+
+- Add multiple set of subtasks with their own options
+```typescript
+this.tasks.add([
+      {
+        title: 'A task running manager [0]',
+        task: async (): Promise<void> => {
+          throw new Error('Do not dare to run the second task.')
+        }
+      },
+      {
+        title: 'This will never run first one failed.',
+        task: async (): Promise<void> => {
+          await delay(2000)
+        }
+      }
+    ], { exitOnError: true, concurrent: false })
+```
+
+- Run the tasks. Running the tasks will clear the pending queue so you can go ahead and add more new tasks!
+```typescript
+try {
+  const ctx = await this.tasks.runAll()
+} catch (e) {
+  this.logger.fail(e)
+}
+```
+
+### More Functionality
+- Indenting tasks, to change options like `concurrency`, `exitOnError` and so on.
+```typescript
+this.tasks.add([
+      {
+        title: 'Some task that will run in sequential execution mode. [0]',
+        task: async (): Promise<void> => {
+          await delay(2000)
+        }
+      },
+      {
+        title: 'Some task that will run in sequential execution mode. [1]',
+        task: async (): Promise<void> => {
+          await delay(2000)
+        }
+      },
+      this.tasks.indent([
+        {
+          title: 'This will run in parallel. [0]',
+          task: async (): Promise<void> => {
+            await delay(2000)
+          }
+        },
+        {
+          title: 'This will run in parallel. [1]',
+          task: async (): Promise<void> => {
+            await delay(2000)
+          }
+        }
+      ])
+    ], { concurrent: true })
+```
+
+- Run a Task Directly, which will use the defaults settings you set in the manager.
+```typescript
+this.tasks.run([
+  {
+    title: 'I will survive, dont worry',
+    task: (): void => {
+      throw new Error('This will not crash since exitOnError is set to false eventhough default setting in Listr is false.')
+    }
+  }
+])
+```
+
+- Access the errors of the last task as in the Listr.
+```typescript
+this.tasks.run([
+  {
+    title: 'I will survive, dont worry',
+    task: (): void => {
+      throw new Error('This will not crash since exitOnError is set to false eventhough default setting in Listr is false.')
+    }
+  }
+])
+this.logger.data(this.tasks.err.toString())
+// will yield: ListrError: Task failed without crashing. with the error details in the object
+```
+
+- Access base Listr class directly, this will use the default Listr settings and just a mere jumper function for omiting the need the import the Listr class when using manager.
+```typescript
+try {
+  await this.tasks.newListr([
+    {
+      title: 'I will die now, goodbye my freinds.',
+      task: (): void => {
+        throw new Error('This will not crash since exitOnError is set to false eventhough default setting in Listr is false.')
+      }
+    }
+  ]).run()
+} catch (e) {
+  this.logger.fail(e)
+}
+```
+
+- Get Task Runtime, and tailor it as your own
+```typescript
+this.tasks.run([
+      {
+        task: async (ctx): Promise<void> => {
+          // start the clock
+          ctx.runTime = Date.now()
+        }
+      },
+      {
+        title: 'Running',
+        task: async (): Promise<void> => {
+          await delay(1000)
+        }
+      },
+      {
+        task: async (ctx, task): Promise<string> => task.title = this.tasks.getRuntime(ctx.runTime)
+      }
+    ], { concurrent: false })
+    // outputs: "1.001s" in seconds
+```
 
 ## Generic Features
 
@@ -728,6 +892,7 @@ To migrate from prior versions that are older than v1.3.12, which is advisable d
 - some of the types if initiated before assigning a Listr has to be fixed accordingly
 - test renderer also combined with verbose renderer and icons of the verbose renderer is disabled by default which makes them basically same thing, so I think verbose is a better name for it
 
+### Details
 - Renderer Options
   - Reason: *This was changed because of having all the renderer options that are mangled together and not respecting which renderer has been choosen. It also allows for custom renderers to have their own logic by exposing their options in a single class file rather than expecting that functionality from the project itself.*
   - Before <v1.3.12:
