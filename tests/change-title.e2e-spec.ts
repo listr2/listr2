@@ -22,7 +22,7 @@ describe('skip a task', () => {
           }
         }
       ],
-      { renderer: 'test' }
+      { renderer: 'verbose' }
     ).run()
 
     expect(info.mock.calls).toMatchInlineSnapshot(`
@@ -44,7 +44,7 @@ describe('skip a task', () => {
           }
         }
       ],
-      { renderer: 'test' }
+      { renderer: 'verbose' }
     ).run()
 
     expect(info.mock.calls).toMatchInlineSnapshot(`

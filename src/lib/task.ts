@@ -4,25 +4,33 @@ import { Stream } from 'stream'
 import { v4 as uuidv4 } from 'uuid'
 
 import { stateConstants } from '@constants/state.constants'
-import { ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, StateConstants } from '@interfaces/listr.interface'
+import {
+  ListrRendererFactory, ListrGetRendererTaskOptions,
+  ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, ListrGetRendererOptions, StateConstants
+} from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
 import { getRenderer } from '@utils/renderer'
 
-export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext> {
-  public id: ListrTaskObject<Ctx>['id']
-  public title: ListrTaskObject<Ctx>['title']
-  public task: ListrTaskObject<Ctx>['task']
-  public skip: ListrTaskObject<Ctx>['skip']
-  public subtasks: ListrTaskObject<Ctx>['subtasks']
-  public state: ListrTaskObject<Ctx>['state']
-  public output: ListrTaskObject<Ctx>['output']
+export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext, Renderer> {
+  public id: ListrTaskObject<Ctx, Renderer>['id']
+  public title: ListrTaskObject<Ctx, Renderer>['title']
+  public task: ListrTaskObject<Ctx, Renderer>['task']
+  public skip: ListrTaskObject<Ctx, Renderer>['skip']
+  public subtasks: ListrTaskObject<Ctx, any>['subtasks']
+  public state: ListrTaskObject<Ctx, Renderer>['state']
+  public output: ListrTaskObject<Ctx, Renderer>['output']
   public prompt: boolean | PromptError
-  public options: ListrTaskObject<Ctx>['options']
   public exitOnError: boolean
+  public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   private enabled: boolean
-  private enabledFn: ListrTask['enabled']
+  private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
-  constructor (public listr: Listr<Ctx>, public tasks: ListrTask, public injectedOptions: ListrOptions) {
+  constructor (
+    public listr: Listr<Ctx, any, any>,
+    public tasks: ListrTask<Ctx, any>,
+    public options: ListrOptions,
+    public rendererOptions: ListrGetRendererOptions<Renderer>
+  ) {
 
     super()
 
@@ -30,12 +38,11 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     this.id = uuidv4()
     this.title = this.tasks?.title
     this.task = this.tasks.task
-    this.options = Object.assign({ persistentOutput: this.tasks?.persistentOutput, bottomBar: this.tasks?.bottomBar }, this.injectedOptions)
-    // parse functions
-    this.skip = this.tasks?.skip || ((): boolean => false)
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
     this.enabledFn = this.tasks?.enabled || ((): boolean => true)
+    // task options
+    this.rendererTaskOptions = this.tasks.options
   }
 
   set state$ (state: StateConstants) {
@@ -88,18 +95,6 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     return this.enabled
   }
 
-  isBottomBar (): boolean {
-    if (typeof this?.options.bottomBar === 'number' || typeof this.options.bottomBar === 'boolean') {
-      return true
-    }
-  }
-
-  haspersistentOutput (): boolean {
-    if (this.options.persistentOutput === true) {
-      return true
-    }
-  }
-
   hasTitle (): boolean {
     return typeof this?.title === 'string'
   }
@@ -112,15 +107,16 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     }
   }
 
-  async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx>): Promise<void> {
+  async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void> {
     const handleResult = (result): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask
         // assign options
-        result.options = Object.assign(this.options, result.options)
+        result.options = { ...this.options, ...result.options }
 
         // switch to silent renderer since already rendering
-        result.rendererClass = getRenderer('silent')
+        const rendererClass = getRenderer('silent')
+        result.rendererClass = rendererClass.renderer
 
         // assign subtasks
         this.subtasks = result.tasks
@@ -167,7 +163,10 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
     this.state$ = stateConstants.PENDING
 
     // check if this function wants to be skipped
-    const skipped = this.skip(context)
+    let skipped: boolean | string
+    if (typeof this.skip === 'function') {
+      skipped = await this.skip(context)
+    }
     if (skipped) {
       if (typeof skipped === 'string') {
         this.output = skipped
@@ -210,10 +209,11 @@ export class Task<Ctx> extends Subject<ListrEvent> implements ListrTaskObject<Li
 
       wrapper.report(error)
 
+      // Do not exit when explicitely set to `false`
       if (this.listr.options.exitOnError !== false) {
-        // Do not exit when explicitely set to `false`
         throw error
       }
+
     } finally {
       // Mark the observable as completed
       this.complete()

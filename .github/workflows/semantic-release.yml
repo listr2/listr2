@@ -17,5 +17,20 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         uses: cycjimmy/semantic-release-action@v2.3.0
         with:
-          branches: develop
+          branches: |    
+            [
+              'develop', 
+              {
+                name: 'alpha', 
+                prerelease: true
+              },
+              {
+                name: 'beta', 
+                prerelease: true
+              },
+              {
+                name: 'rc', 
+                prerelease: true
+              }
+            ]
           dry_run: true

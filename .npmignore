@@ -11,7 +11,7 @@ TODO.md
 .github/
 release.config.js
 CHANGELOG.md
-
+examples/
 # coverage
 coverage/
 tests/

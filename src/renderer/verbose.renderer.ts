@@ -1,16 +1,21 @@
-import { ListrEvent, ListrOptions, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
+import { ListrEvent, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import { Logger } from '@utils/logger'
 
 export class VerboseRenderer implements ListrRenderer {
-  static nonTTY = true
+  public static nonTTY = true
+  public static rendererOptions: { useIcons?: boolean, logger?: new (...args: any) => Logger }
+  public static rendererTaskOptions: never
   private logger: Logger
 
-  constructor (public tasks: ListrTaskObject<any>[], public options: ListrOptions) {
-    this.logger = new Logger()
+  constructor (public tasks: ListrTaskObject<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
+    if (!this.options?.logger) {
+      this.logger = new Logger({ useIcons: this.options?.useIcons })
+    } else {
+      this.logger = new this.options.logger()
+    }
   }
 
   public render (): void {
-    // render data
     this.verboseRenderer(this.tasks)
   }
 
@@ -18,12 +23,13 @@ export class VerboseRenderer implements ListrRenderer {
   public end (): void {}
 
   // verbose renderer multi-level
-  private verboseRenderer (tasks: ListrTaskObject<any>[]): void {
+  private verboseRenderer (tasks: ListrTaskObject<any, typeof VerboseRenderer>[]): void {
     return tasks?.forEach((task) => {
       task.subscribe((event: ListrEvent) => {
         if (task.isEnabled()) {
-        // render lower level if multi-level
+
           if (event.type === 'SUBTASK' && task.hasSubtasks()) {
+            // render lower level if multi-level
             this.verboseRenderer(task.subtasks)
 
           } else if (event.type === 'STATE') {
@@ -39,6 +45,7 @@ export class VerboseRenderer implements ListrRenderer {
             }
 
           } else if (event.type === 'DATA') {
+
             // render if outputs data like states, fail, skip or data
             if (task.hasFailed()) {
               this.logger.fail(String(event.data))
@@ -49,6 +56,9 @@ export class VerboseRenderer implements ListrRenderer {
             } else {
               this.logger.data(String(event.data))
             }
+
+          } else if (event.type === 'TITLE') {
+            this.logger.title(String(event.data))
           }
         }
       }, (err) => {

@@ -57,7 +57,7 @@ describe('logger', () => {
   // })
 
   it('should log a verbose error fail message', async () => {
-    logger = new Logger({ direct: true })
+    logger = new Logger({ useIcons: false })
 
     logger.fail('test message')
 
@@ -91,7 +91,7 @@ describe('logger', () => {
   // })
 
   it('should log a verbose warn skip message', async () => {
-    logger = new Logger({ direct: true })
+    logger = new Logger({ useIcons: false })
 
     logger.skip('test message')
 
@@ -125,7 +125,7 @@ describe('logger', () => {
   // })
 
   it('should log a verbose log success message', async () => {
-    logger = new Logger({ direct: true })
+    logger = new Logger({ useIcons: false })
 
     logger.success('test message')
 
@@ -159,7 +159,7 @@ describe('logger', () => {
   // })
 
   it('should log a verbose info data message', async () => {
-    logger = new Logger({ direct: true })
+    logger = new Logger({ useIcons: false })
 
     logger.data('test message')
 
@@ -193,7 +193,7 @@ describe('logger', () => {
   // })
 
   it('should log a verbose log start message', async () => {
-    logger = new Logger({ direct: true })
+    logger = new Logger({ useIcons: false })
 
     logger.start('test message')
 
@@ -227,7 +227,7 @@ describe('logger', () => {
   // })
 
   it('should log a verbose info title message', async () => {
-    logger = new Logger({ direct: true })
+    logger = new Logger({ useIcons: false })
 
     logger.title('test message')
 
@@ -245,7 +245,7 @@ describe('logger', () => {
   })
 
   it('should log a multiline message without problems', async () => {
-    logger = new Logger({ direct: true })
+    logger = new Logger({ useIcons: false })
 
     // eslint-disable-next-line max-len
     logger.data('THIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE')

@@ -1,12 +1,11 @@
-import { ListrTask } from './../src/interfaces/listr.interface'
 import { Manager } from '@root/index'
 
 describe('skip a task', () => {
-  let manager: Manager
+  let manager: Manager<any, 'verbose'>
   let log: jest.SpyInstance<void, string[][]>
 
   beforeEach(async () => {
-    manager = new Manager<any>({ renderer: 'test' })
+    manager = new Manager<any, 'verbose'>({ renderer: 'verbose' })
 
     log = jest.spyOn(console, 'log').mockImplementation()
   })

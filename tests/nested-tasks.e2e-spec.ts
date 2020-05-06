@@ -4,8 +4,8 @@ import { ListrTask } from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
 
 describe('skip a task', () => {
-  let tasks: ListrTask[]
-  let subtasks: ListrTask[]
+  let tasks: ListrTask<any, any>[]
+  let subtasks: ListrTask<any, any>[]
   let log: jest.SpyInstance<void, string[][]>
 
   beforeEach(async () => {
@@ -63,7 +63,7 @@ describe('skip a task', () => {
           task: (): Listr => new Listr(subtasks, { concurrent: false })
         }
       ],
-      { concurrent: true, renderer: 'test' }
+      { concurrent: true, renderer: 'verbose' }
     ).run()
 
     expect(log.mock.calls).toMatchInlineSnapshot(`
@@ -135,7 +135,7 @@ describe('skip a task', () => {
           task: (): Listr => new Listr(subtasks, { concurrent: true })
         }
       ],
-      { concurrent: false, renderer: 'test' }
+      { concurrent: false, renderer: 'verbose' }
     ).run()
 
     expect(log.mock.calls).toMatchInlineSnapshot(`
