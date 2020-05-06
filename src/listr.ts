@@ -65,7 +65,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     this.add(task || [])
 
     // Graceful interrupt for render cleanup
-    if (this.options.registerSignalListeners === true) {
+    if (this.options.registerSignalListeners) {
 
       process.on('SIGINT', async () => {
         await Promise.all(this.tasks.map(async (task) => {

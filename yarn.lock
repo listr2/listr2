@@ -264,7 +264,7 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/eslint-config@0.2.5":
+"@cenk1cenk2/eslint-config@*":
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-0.2.5.tgz#06b87a990d5c7b3789d8c9f1f90c9effc1d49ff8"
   integrity sha512-OQb4WOQ7jf3rKa6fXOrGPuIsJLgY7JDx/JkDua0k2XA+u8KZs0AAmkFbqbVFiO4bPKQgppGrWFCn1IABqR/mMQ==
