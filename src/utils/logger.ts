@@ -5,7 +5,7 @@ import figures from 'figures'
 import { logLevels } from './logger.constants'
 
 export interface LoggerOptions {
-  direct: boolean
+  useIcons: boolean
 }
 
 export class Logger {
@@ -44,7 +44,14 @@ export class Logger {
 
   private parseMessage (level: logLevels, message: string): string {
     // parse multi line messages
-    let multiLineMessage = message.split('\n')
+    let multiLineMessage: string[]
+
+    try {
+      multiLineMessage = message.split('\n')
+    } catch {
+      multiLineMessage = [ message ]
+    }
+
     multiLineMessage = multiLineMessage.map((msg) => {
       // format messages
       return this.logColoring({
@@ -66,7 +73,7 @@ export class Logger {
     }
     switch (level) {
     case logLevels.fail:
-      if (!this.options?.direct) {
+      if (this.options?.useIcons) {
         coloring = chalk.red
         icon = figures.cross
       } else {
@@ -75,7 +82,7 @@ export class Logger {
 
       break
     case logLevels.skip:
-      if (!this.options?.direct) {
+      if (this.options?.useIcons) {
         coloring = chalk.yellow
         icon = figures.arrowDown
       } else {
@@ -83,7 +90,7 @@ export class Logger {
       }
       break
     case logLevels.success:
-      if (!this.options?.direct) {
+      if (this.options?.useIcons) {
         coloring = chalk.green
         icon = figures.tick
       } else {
@@ -91,29 +98,26 @@ export class Logger {
       }
       break
     case logLevels.data:
-      if (!this.options?.direct) {
+      if (this.options?.useIcons) {
         icon = figures.arrowRight
       } else {
         icon = '[DATA]'
       }
       break
     case logLevels.start:
-      if (!this.options?.direct) {
+      if (this.options?.useIcons) {
         icon = figures.pointer
       } else {
         icon = '[STARTED]'
       }
       break
     case logLevels.title:
-      if (!this.options?.direct) {
+      if (this.options?.useIcons) {
         icon = figures.checkboxOn
       } else {
         icon = '[TITLE]'
       }
       break
-    // default:
-    //   icon = figures.pointer
-    //   break
     }
 
     return coloring(`${icon} ${message}`)

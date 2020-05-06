@@ -23,11 +23,11 @@ async function main (): Promise<void> {
   let ctx: ListrCtx
 
   // Task structure
-  const tasks = new Listr<ListrCtx>([
+  const tasks = new Listr([
     {
       // You can nest Listr objects, as in the original but now you can also call a new listr class throught task.newListr and inject a type as well
       title: 'Concurrent sub test.',
-      task: (ctx, task): Listr => task.newListr<ListrCtx>([
+      task: (ctx, task): Listr => task.newListr([
         {
           // This can handle any async tasks
           title: 'Promise with changing output. [1.5s]',
@@ -42,7 +42,6 @@ async function main (): Promise<void> {
             await delay(500)
             task.title = 'I change the title now.'
           }
-
         },
         {
           title: 'Async task. [2s]',
@@ -94,15 +93,16 @@ async function main (): Promise<void> {
     {
       // Nested listr errors also reflect to the parent listr
       title: 'I will fail from inside.',
-      task: (ctx, task): Listr => task.newListr<ListrCtx>([
+      task: (ctx, task): Listr => task.newListr([
         {
           title: 'I am going to fail.',
           task: (ctx): void => {
             ctx.verbose = 'sometesting'
             throw new Error('Oh noes, i failed already.')
-          }
+          },
+          options: { }
         }
-      ])
+      ], { concurrent: true, rendererOptions:{ } })
     },
     {
       // You can enable tasks with a given condition
@@ -113,7 +113,7 @@ async function main (): Promise<void> {
       }
     }
   ], {
-    exitOnError: false, renderer:'default', collapseSkips: false
+    exitOnError: false, rendererOptions: {}, renderer: 'default'
   })
 
   // running the command returns the context object back
@@ -124,7 +124,7 @@ async function main (): Promise<void> {
   }
 
   // Inject context variables to other example.
-  const tasks2 = new Listr<ListrCtx>([
+  const tasks2 = new Listr([
     {
       // a test with injected context from other listr
       title: 'Got the context variables from the first listr.',
@@ -135,7 +135,7 @@ async function main (): Promise<void> {
     {
       // if you give no title to the current task, subtasks will be one less level
       // indendent to be inline with the current tasks, this way you can switch parallel and synchronous tasks
-      task: (ctx, task): Listr => task.newListr<ListrCtx>([
+      task: (ctx, task): Listr => task.newListr([
         {
           title: 'If title is empty task will be hidden, but subtasks will be one level less indented.',
           task: async (): Promise<void> => {
@@ -152,7 +152,7 @@ async function main (): Promise<void> {
       ], { concurrent: true })
     },
     {
-      task: (ctx, task): Listr => task.newListr<ListrCtx>([
+      task: (ctx, task): Listr => task.newListr([
         {
           // if you output from a task without a title, it will drop to the bottom bar instead.
           task: async (ctx, task): Promise<void> => {
@@ -177,15 +177,21 @@ async function main (): Promise<void> {
             task.output = 'test persistent3'
 
           },
-          bottomBar: Infinity,
-          persistentOutput: true
+          options: {
+            bottomBar: Infinity,
+            persistentOutput: true
+          }
         }
-      ], { concurrent: true, collapse: false })
+      ], {
+        concurrent: true
+      })
     }
 
   ], {
     // injected context
-    ctx
+    ctx,
+    renderer: 'default',
+    rendererOptions: { collapse: false }
   })
 
   try {
@@ -226,12 +232,12 @@ async function main (): Promise<void> {
         await delay(1200)
         task.output = 'Multiple output.'
         await delay(995)
-      },
-      bottomBar: 3
+      }
+      // bottomBar: 3
     },
     {
       title: 'Indented input',
-      task: (ctx, task): Listr => task.newListr<ListrCtx>([
+      task: (ctx, task): Listr => task.newListr([
         {
           task: async (ctx, task): Promise<any> =>{
             ctx.secondInput = await task.prompt<string>('Select',
@@ -270,7 +276,10 @@ async function main (): Promise<void> {
         title: 'Write to ctx.',
         task: (ctx): string => ctx.indent = 'bravo'
       }
-    ], { collapse: false, showSubtasks: true }, { title: 'This might be one level indendent.' }),
+    ], {
+      // collapse: false,
+      //  showSubtasks: true
+    }, { title: 'This might be one level indendent.' }),
     manager.indent<ListrCtx>([
       {
         title: 'Test',
@@ -280,7 +289,8 @@ async function main (): Promise<void> {
       }
     ], {}, { title: 'Indent title' })
   ], {
-    exitOnError: false, collapse: false
+    exitOnError: false
+    // , collapse: false
   })
 
   manager.add([
@@ -294,7 +304,9 @@ async function main (): Promise<void> {
         task: (ctx): string => ctx.indent = 'bravo'
       }
     ], {}, { title: 'I have a title and i am indented.' })
-  ], { collapse: true })
+  ], {
+    // collapse: true
+  })
 
   manager.add([
     manager.indent<ListrCtx>((ctx) => [

@@ -4,6 +4,9 @@ name: default
 trigger:
   branch:
     - master
+    - alpha
+    - beta
+    - rc
   event:
     - push
 
@@ -41,5 +44,8 @@ steps:
     when:
       branch:
         - master
+        - alpha
+        - beta
+        - rc
       event:
         - push

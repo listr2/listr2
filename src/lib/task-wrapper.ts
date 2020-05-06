@@ -1,15 +1,15 @@
 import through from 'through'
 
 import { stateConstants } from '@constants/state.constants'
-import { ListrError, ListrOptions, ListrTask, ListrTaskWrapper, StateConstants } from '@interfaces/listr.interface'
+import { ListrError, ListrRendererFactory, ListrSubClassOptions, ListrTask, ListrTaskWrapper, StateConstants } from '@interfaces/listr.interface'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
 import { createPrompt } from '@utils/prompt'
 import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
 
-export class TaskWrapper<Ctx> implements ListrTaskWrapper {
+export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
 
-  constructor (public task: Task<Ctx>, public errors: ListrError[]) {}
+  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[]) {}
 
   set title (title) {
     this.task.title = title
@@ -46,8 +46,8 @@ export class TaskWrapper<Ctx> implements ListrTaskWrapper {
     })
   }
 
-  public newListr<Ctx> (task: ListrTask<Ctx>[], options?: ListrOptions): Listr<Ctx> {
-    return new Listr<Ctx>(task, options)
+  public newListr (task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[], options?: ListrSubClassOptions<Ctx, Renderer>): Listr<Ctx, any, any> {
+    return new Listr<Ctx, any, any>(task, options)
   }
 
   public report (error: Error | ListrError): void {

@@ -23,7 +23,7 @@ describe('skip a task', () => {
           task.skip('skipped')
         }
       }
-    ], { renderer: 'test' }).run()
+    ], { renderer: 'verbose' }).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
     expect(warn).toBeCalledWith('[SKIPPED] skipped')
@@ -43,7 +43,7 @@ describe('skip a task', () => {
           task.output = 'enabled'
         }
       }
-    ], { renderer: 'test', concurrent: false }).run()
+    ], { renderer: 'verbose', concurrent: false }).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
     expect(warn).toBeCalledWith('[SKIPPED] skipped')
@@ -64,7 +64,7 @@ describe('skip a task', () => {
           task.output = 'enabled'
         }
       }
-    ], { renderer: 'test', concurrent: true }).run()
+    ], { renderer: 'verbose', concurrent: true }).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
     expect(warn).toBeCalledWith('[SKIPPED] skipped')
