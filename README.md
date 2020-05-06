@@ -760,9 +760,28 @@ To migrate from prior versions that are older than v1.3.12, which is advisable d
   - Reason: *Some of the types had to be changed due to compatability reasons with new autocomplete functionality of the dynamic renderer options.*
   - Before <v1.3.12:
   ```typescript
+  let task: Listr<Ctx>
+
+  task = new Listr(..., { renderer: 'verbose' })
   ```
   - After <v1.3.12:
   ```typescript
+  // this without the indication of verbose will now fail due to default renderer being 'default' for autocompleting goodness of the IDEs.
+  // So you have to overwrite it manually to 'verbose'.
+  // If it does not have a default you had to explicitly write { renderer: 'default' } everytime to have the auto complete feature
+  let task: Listr<Ctx, 'verbose'>
+
+  task = new Listr(..., { renderer: 'verbose' })
+  ```
+- Test renderer removed.
+  - Reason: *On non-tty environments that the verbose renderer is intended for there is no need to show icons. Since icons are now optional with the default being disabled for the verbose renderer, there is no need for a renderer that does have the same functionality since verbose and test are now basically the same thing. Verbose seemed a better name then test, so I had to remove test from the equation.*
+  - Before <v1.3.12:
+  ```typescript
+  const task = new Listr(..., { renderer: 'test' })
+  ```
+  - After <v1.3.12:
+  ```typescript
+  const task = new Listr(..., { renderer: 'verbose' })
   ```
 
 ## Types
