@@ -8,7 +8,7 @@ import logUpdate from 'log-update'
 
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 
-export class MultiLineRenderer implements ListrRenderer {
+export class DefaultRenderer implements ListrRenderer {
   public static nonTTY = false
   public static rendererOptions: {
     indentation?: number
@@ -32,19 +32,19 @@ export class MultiLineRenderer implements ListrRenderer {
   private bottomBar: {[uuid: string]: {data?: string[], items?: number}} = {}
   private promptBar: string
 
-  constructor (public tasks: ListrTaskObject<any, typeof MultiLineRenderer>[], public options: typeof MultiLineRenderer['rendererOptions']) {
-    this.options = { ...MultiLineRenderer.rendererOptions, ...this.options }
+  constructor (public tasks: ListrTaskObject<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions']) {
+    this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
   }
 
-  public getTaskOptions (task: ListrTaskObject<any, typeof MultiLineRenderer>): typeof MultiLineRenderer['rendererTaskOptions'] {
-    return { ...MultiLineRenderer.rendererTaskOptions, ...task.rendererTaskOptions }
+  public getTaskOptions (task: ListrTaskObject<any, typeof DefaultRenderer>): typeof DefaultRenderer['rendererTaskOptions'] {
+    return { ...DefaultRenderer.rendererTaskOptions, ...task.rendererTaskOptions }
   }
 
-  public isBottomBar (task: ListrTaskObject<any, typeof MultiLineRenderer>): boolean {
+  public isBottomBar (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     return typeof this.getTaskOptions(task).bottomBar === 'number' || typeof this.getTaskOptions(task).bottomBar === 'boolean'
   }
 
-  public hasPersistentOutput (task: ListrTaskObject<any, typeof MultiLineRenderer>): boolean {
+  public hasPersistentOutput (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     return this.getTaskOptions(task).persistentOutput === true
   }
 
@@ -81,7 +81,7 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  private multiLineRenderer (tasks: ListrTaskObject<any, typeof MultiLineRenderer>[], level = 0): string {
+  private multiLineRenderer (tasks: ListrTaskObject<any, typeof DefaultRenderer>[], level = 0): string {
     let output: string[] = []
 
     for (const task of tasks) {
@@ -211,7 +211,7 @@ export class MultiLineRenderer implements ListrRenderer {
     }
   }
 
-  private dumpData (task: ListrTaskObject<ListrContext, typeof MultiLineRenderer>, level: number): string[] {
+  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number): string[] {
     const output: string[] = []
 
     if (typeof task.output === 'string') {
@@ -230,7 +230,7 @@ export class MultiLineRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  private getSymbol (task: ListrTaskObject<ListrContext, typeof MultiLineRenderer>, data = false): string {
+  private getSymbol (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (!task.spinner && !data) {
       task.spinner = elegantSpinner()
     }

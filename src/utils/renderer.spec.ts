@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import rewire from 'rewire'
 
-import { MultiLineRenderer } from '@renderer/default.renderer'
+import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { getRenderer } from '@utils/renderer'
@@ -9,7 +9,7 @@ import { getRenderer } from '@utils/renderer'
 describe('renderers', () => {
 
   it('should return default renderer', async () => {
-    expect(getRenderer('default').renderer.name).toEqual(MultiLineRenderer.name)
+    expect(getRenderer('default').renderer.name).toEqual(DefaultRenderer.name)
   })
 
   it('should return default renderer', async () => {
@@ -34,14 +34,14 @@ describe('renderers', () => {
 
     renderer.__set__('isRendererSupported', jest.fn(() => true))
 
-    expect(renderer.__get__('getRenderer')('default', 'verbose').renderer.name).toEqual(MultiLineRenderer.name)
+    expect(renderer.__get__('getRenderer')('default', 'verbose').renderer.name).toEqual(DefaultRenderer.name)
     expect(renderer.__get__('isRendererSupported')).toBeCalledTimes(1)
   })
 
   it('should return default renderer when no renderer by that name exists', async () => {
     const renderer = rewire('@utils/renderer')
 
-    expect(renderer.__get__('getRendererClass')('does-not-exists').name).toEqual(MultiLineRenderer.name)
+    expect(renderer.__get__('getRendererClass')('does-not-exists').name).toEqual(DefaultRenderer.name)
   })
 
   it('should return default renderer when renderer by that name exists', async () => {

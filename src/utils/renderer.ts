@@ -1,11 +1,11 @@
 import { SupportedRenderer } from './renderer.interface'
 import { ListrRendererFactory, ListrRendererValue } from '@interfaces/listr.interface'
-import { MultiLineRenderer } from '@renderer/default.renderer'
+import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 
 const renderers = {
-  default: MultiLineRenderer,
+  default: DefaultRenderer,
   verbose: VerboseRenderer,
   silent: SilentRenderer
 }

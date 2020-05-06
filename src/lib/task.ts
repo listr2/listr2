@@ -209,10 +209,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
       wrapper.report(error)
 
+      // Do not exit when explicitely set to `false`
       if (this.listr.options.exitOnError !== false) {
-        // Do not exit when explicitely set to `false`
         throw error
       }
+
     } finally {
       // Mark the observable as completed
       this.complete()

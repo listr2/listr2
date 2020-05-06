@@ -155,7 +155,70 @@ try {
 ## General Usage
 
 ### Subtasks
+Any task can return a new Listr. But rather than calling it as `new Listr` to get the full autocompeletion features depending on the parent task's selected renderer, it is a better idea to call it through the `Task` itself by `task.newListr()`.
 
+*Please refer to [examples section](examples/subtasks.example.ts) for more detailed and further examples.*
+
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): Listr => task.newListr([
+        {
+          title: 'This is a subtask.',
+          task: async (): Promise<void> => {
+            await delay(3000)
+          }
+        }
+      ])
+    }
+  ], { concurrent: false })
+```
+
+You can change indivudual settings of the renderer on per-subtask basis.
+
+This includes renderer options as well as Listr options like `exitOnError`, `concurrent` to be set on a per subtask basis independent of the parent task, while it will always use the most adjacent setting.
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): Listr => task.newListr([
+        {
+          title: 'This is a subtask.',
+          task: async (): Promise<void> => {
+            await delay(3000)
+          }
+        },
+        {
+          title: 'This is an another subtask.',
+          task: async (): Promise<void> => {
+            await delay(2000)
+          }
+        }
+      ], { concurrent: true, rendererOptions: { collapse: true } })
+    },
+
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): Listr => task.newListr([
+        {
+          title: 'This is a subtask.',
+          task: async (): Promise<void> => {
+            await delay(3000)
+          }
+        },
+        {
+          title: 'This is an another subtask.',
+          task: async (): Promise<void> => {
+            await delay(2000)
+          }
+        }
+      ], { concurrent: true, rendererOptions: { collapse: false } })
+    }
+  ], { concurrent: false })
+```
+
+*Please refer to [Throw Errors Section](#Throw-Errors) for more detailed and further examples on how to handle silently failing errors.*
 
 ### Get User Input
 The input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
@@ -386,6 +449,112 @@ new Listr<Ctx>([
   ], { concurrent: false })
 ```
 
+### Throw Errors
+You can throw errors out of the tasks to show they are insuccessful. While this gives a visual output on the terminal, it also handles how to handle tasks that are failed. The default behaviour is any of the tasks have failed, it will deem itself as unsuccessful and exit. This behaviour can be changed with `exitOnError` option.
+
+- Throw out an error in serial execution mode will cause all of the upcoming tasks to be never executed.
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will fail.',
+      task: async (): Promise<void> => {
+        await delay(2000)
+        throw new Error('This task failed after 2 seconds.')
+      }
+    },
+    {
+      title: 'This task will never execute.',
+      task: (ctx, task): void => {
+        task.title = 'I will change my title if this executes.'
+      }
+    }
+  ], { concurrent: false })
+```
+
+- Throwing out an error while execution in parallel mode will immediately stop all the actions.
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will fail.',
+      task: async (): Promise<void> => {
+        await delay(2000)
+        throw new Error('This task failed after 2 seconds.')
+      }
+    },
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): void => {
+        task.title = 'I will change my title since it is concurrent.'
+      }
+    }
+  ], { concurrent: true })
+```
+
+- Default behavior can be changed with `exitOnError` option.
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will fail.',
+      task: async (): Promise<void> => {
+        await delay(2000)
+        throw new Error('This task failed after 2 seconds.')
+      }
+    },
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): void => {
+        task.title = 'I will change my title if this executes.'
+      }
+    }
+  ], { concurrent: false, exitOnError: false })
+```
+
+- `exitOnError` is subtask based so you can change it on the fly for given set of subtasks.
+```typescript
+new Listr<Ctx>([
+    {
+      title: 'This task will execute and not quit on errors.',
+      task: (ctx, task): Listr => task.newListr([
+        {
+          title: 'This is a subtask.',
+          task: async (): Promise<void> => {
+            throw new Error('I have failed [0]')
+          }
+        },
+        {
+          title: 'This is yet an another subtask and it will run.',
+          task: async (ctx, task): Promise<void> => {
+            task.title = 'I have succeeded.'
+          }
+        }
+      ], { exitOnError: false })
+    },
+    {
+      title: 'This task will execute.',
+      task: (): void => {
+        throw new Error('I will exit on error since I am a direct child of parent task.')
+      }
+    }
+  ], { concurrent: false, exitOnError: true })
+```
+
+- The error that makes the application to quit will be thrown out from the async function.
+```typescript
+try {
+  const context = await task.run()
+} catch(e) {
+  logger.fail(e)
+  // which will show the last error
+}
+```
+
+- Access all of the errors that makes the application quit or not through `task.err` which is an array of all the errors encountered.
+```typescript
+const task = new Listr(...)
+logger.fail(task.err)
+// will show all of the errors that are encountered through execution
+```
+
 ## Task Manager
 Task manager is a great way to create a custom-tailored Listr class once and then utilize it more than once.
 
@@ -419,12 +588,182 @@ On | Output
  Spit Output | \[DATA\] ${TASK OUTPUT}
  Title Change | \[TITLE\] ${NEW TITLE}
 
-## Log To A File
+## Default Renderers
+There are three main renderers which are 'default', 'verbose' and 'silent'. Default renderer is the one that can be seen in the demo, which is an updating renderer. But if the environment advirteses itself as non-tty it will fallback to the verbose renderer automatically. Verbose renderer is a text based renderer. It uses the silent renderer for the subtasks since the parent task already started a renderer. But silent renderer can also be used for processes that wants to have no output but just a task list.
+
+Depending on the selected renderer, `rendererOptions` as well as the `options` in the `Task` will change accordingly. It defaults to default renderer as mentioned with the fallback to verbose renderer on non-tty environments.
+
+- Options for the default renderer.
+  - Global
+  ```typescript
+  public static rendererOptions: {
+    indentation?: number
+    clearOutput?: boolean
+    showSubtasks?: boolean
+    collapse?: boolean
+    collapseSkips?: boolean
+  } = {
+    indentation: 2,
+    clearOutput: false,
+    showSubtasks: true,
+    collapse: true,
+    collapseSkips: true
+  }
+  ```
+  - Per-Task
+  ```typescript
+  public static rendererTaskOptions: {
+    bottomBar?: boolean | number
+    persistentOutput?: boolean
+  }
+  ```
+- Options for the verbose renderer.
+  - Global
+  ```typescript
+  public static rendererOptions: { useIcons?: boolean, logger?: new (...args: any) => Logger }
+  ```
+  - NONE
+- Options for the silent renderer.
+  - NONE
 
 ## Custom Renderers
+Creating a custom renderer with a beautiful interface can be done in one of two ways.
+
+- First create a Listr renderer class.
+```typescript
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { ListrRenderer, ListrTaskObject } from 'listr2'
+
+export class MyAmazingRenderer implements ListrRenderer {
+  // Designate this renderer as tty or nonTTY
+  public static nonTTY = true
+  // designate your renderer options that will be showed inside the `ListrOptions` as rendererOptions
+  public static rendererOptions: never
+  // designate your custom internal task-based options that will show as `options` in the task itself
+  public static rendererTaskOptions: never
+
+  // get tasks to be renderered and options of the renderer from the parent
+  constructor (public tasks: ListrTaskObject<any, typeof MyAmazingRenderer>[], public options: typeof MyAmazingRenderer['rendererOptions']) {}
+
+  // implement custom logic for render functionality
+  render (): void {}
+
+  // implement custom logic for end functionality
+  end (err): void {}
+}
+```
+
+- Then there is a branching here you can either use:
+  - Utilizing the task functions themselves. Take a look at [default renderer](src/renderer/default.renderer.ts) since it is implemented this way.
+  ```typescript
+  id: taskUUID
+  hasSubtasks(): boolean
+  isPending(): boolean
+  isSkipped(): boolean
+  isCompleted(): boolean
+  isEnabled(): boolean
+  isPrompt(): boolean
+  hasFailed(): boolean
+  hasTitle(): boolean
+  ```
+  - Observables, where `event` has `event.type` which can either be `SUBTASK`, `STATE`, `DATA` or `TITLE` and `event.data` depending on the `event.type`. Take a look at [verbose renderer](src/renderer/verbose.renderer.ts) since it is implemented this way.
+  ```typescript
+  tasks?.forEach((task) => {
+      task.subscribe((event: ListrEvent) => {
+        ...
+  ```
+  - Or if you so desire both!
+
+## Log To A File
+Logging to a file can be done utilizing a module like [winston](https://www.npmjs.com/package/winston). This can be obtained through using the verbose renderer and creating a custom logger class that implements `Logger` which is exported from the index.
+
+While calling a new Listr you can call it with `{ renderer: 'verbose', rendererOptions: { logger: MyLoggerClass } }`.
+
+```typescript
+import { logLevels, Logger } from 'listr2'
+
+export class MyLoggerClass implements Logger {
+
+  constructor (private options?: LoggerOptions) {}
+
+  /* CUSTOM LOGIC */
+  /* CUSTOM LOGIC */
+  /* CUSTOM LOGIC */
+
+  public fail (message: string): void {
+    message = this.parseMessage(logLevels.fail, message)
+    console.error(message)
+  }
+
+  public skip (message: string): void {
+    message = this.parseMessage(logLevels.skip, message)
+    console.warn(message)
+  }
+
+  public success (message: string): void {
+    message = this.parseMessage(logLevels.success, message)
+    console.log(message)
+  }
+
+  public data (message: string): void {
+    message = this.parseMessage(logLevels.data, message)
+    console.info(message)
+  }
+
+  public start (message: string): void {
+    message = this.parseMessage(logLevels.start, message)
+    console.log(message)
+  }
+
+  public title (message: string): void {
+    message = this.parseMessage(logLevels.title, message)
+    console.info(message)
+  }
+}
+```
 
 ## Migration from Version <v1.3.12
+To migrate from prior versions that are older than v1.3.12, which is advisable due to upcoming potential bug fixes:
+- rendererOptions has to be moved to their own key
+- some of the types if initiated before assigning a Listr has to be fixed accordingly
+- test renderer also combined with verbose renderer and icons of the verbose renderer is disabled by default which makes them basically same thing, so I think verbose is a better name for it
 
+- Renderer Options
+  - Reason: *This was changed because of having all the renderer options that are mangled together and not respecting which renderer has been choosen. It also allows for custom renderers to have their own logic by exposing their options in a single class file rather than expecting that functionality from the project itself.*
+  - Before <v1.3.12:
+  ```typescript
+    new Listr<Ctx>([
+    {
+      task: async (ctx, task): Promise<void> => {
+      },
+      persistentOutput: true
+    }
+  ], {
+    concurrent: false,
+    collapse: true
+  ```
+  - After <v1.3.12:
+  ```typescript
+    new Listr<Ctx>([
+    {
+      task: async (ctx, task): Promise<void> => {
+      },
+      options: { persistentOutput: true } // per task based options are moved to their own key
+    }
+  ], {
+    concurrent: false,
+    rendererOptions: { collapse: false }
+     // global renderer options moved to their own key
+    })
+  ```
+- Some of the types has been changed.
+  - Reason: *Some of the types had to be changed due to compatability reasons with new autocomplete functionality of the dynamic renderer options.*
+  - Before <v1.3.12:
+  ```typescript
+  ```
+  - After <v1.3.12:
+  ```typescript
+  ```
 
 ## Types
 Useful types are exported from the root. It is written with Typescript, so it will work great with any modern IDE/Editor.

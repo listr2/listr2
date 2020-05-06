@@ -3,7 +3,7 @@ import { Readable } from 'stream'
 
 import { stateConstants } from '@constants/state.constants'
 import { Task } from '@lib/task'
-import { MultiLineRenderer } from '@renderer/default.renderer'
+import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { Listr } from '@root/index'
@@ -12,7 +12,7 @@ import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
 export type ListrContext = any
 
 export type ListrDefaultRendererValue = 'default'
-export type ListrDefaultRenderer = typeof MultiLineRenderer
+export type ListrDefaultRenderer = typeof DefaultRenderer
 export type ListrFallbackRendererValue = 'verbose'
 export type ListrFallbackRenderer = typeof VerboseRenderer
 
@@ -89,28 +89,28 @@ export interface ListrOptions<Ctx = ListrContext> {
 export type CreateClass<T> = new(...args: any[]) => T
 
 export type ListrGetRendererClassFromValue<T extends ListrRendererValue> = |
-T extends 'default' ? typeof MultiLineRenderer :
+T extends 'default' ? typeof DefaultRenderer :
   T extends 'verbose' ? typeof VerboseRenderer :
     T extends 'silent' ? typeof SilentRenderer :
       T extends ListrRendererFactory ? T :
         never
 
 export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = |
-T extends MultiLineRenderer ? 'default' :
+T extends DefaultRenderer ? 'default' :
   T extends VerboseRenderer ? 'verbose' :
     T extends SilentRenderer ? 'silent' :
       T extends ListrRendererFactory ? T :
         never
 
 export type ListrGetRendererOptions<T extends ListrRendererValue> = |
-T extends 'default' ? typeof MultiLineRenderer['rendererOptions'] :
+T extends 'default' ? typeof DefaultRenderer['rendererOptions'] :
   T extends 'verbose' ? typeof VerboseRenderer['rendererOptions'] :
     T extends 'silent' ? typeof SilentRenderer['rendererOptions'] :
       T extends ListrRendererFactory ? T['rendererOptions'] :
         never
 
 export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = |
-T extends 'default' ? typeof MultiLineRenderer['rendererTaskOptions'] :
+T extends 'default' ? typeof DefaultRenderer['rendererTaskOptions'] :
   T extends 'verbose' ? typeof VerboseRenderer['rendererTaskOptions'] :
     T extends 'silent' ? typeof SilentRenderer['rendererTaskOptions'] :
       T extends ListrRendererFactory ? T['rendererTaskOptions'] :
@@ -153,8 +153,7 @@ export interface ListrEvent {
 }
 
 export class ListrError extends Error {
-  public errors?: ListrError[]
-  constructor (message) {
+  constructor (public message: string, public errors?: Error[], public context?: any) {
     super(message)
     this.name = 'ListrError'
   }

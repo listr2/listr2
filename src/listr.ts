@@ -110,7 +110,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     context = context || this.options?.ctx || Object.create({})
 
     // create new error queue
-    const errors = []
+    const errors: Error[] | ListrError[] = []
 
     // check if the items are enabled
     await this.checkAll(context)
@@ -123,23 +123,24 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
         return this.runTask(task, context, errors)
       }, { concurrency: this.concurrency })
 
-      if (errors.length > 0) {
-        const err = new ListrError('Something went wrong')
-        err.errors = errors
-        throw err
-      }
-
       this.renderer.end()
 
     } catch (error) {
-      error.context = context
-      this.renderer.end(error)
+      this.err.push(new ListrError(error, [ error ], context))
 
       if (this.options.exitOnError !== false) {
+        this.renderer.end(error)
         // Do not exit when explicitely set to `false`
         throw error
       }
+
+    } finally {
+      if (errors.length > 0) {
+        this.err.push(new ListrError('Task failed without crashing.', errors, context))
+      }
+
     }
+
     return context
   }
 
