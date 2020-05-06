@@ -660,7 +660,7 @@ this.tasks.add([
 
 - Run a Task Directly, which will use the defaults settings you set in the manager.
 ```typescript
-this.tasks.run([
+await this.tasks.run([
   {
     title: 'I will survive, dont worry',
     task: (): void => {
@@ -672,7 +672,7 @@ this.tasks.run([
 
 - Access the errors of the last task as in the Listr.
 ```typescript
-this.tasks.run([
+await this.tasks.run([
   {
     title: 'I will survive, dont worry',
     task: (): void => {
@@ -702,7 +702,7 @@ try {
 
 - Get Task Runtime, and tailor it as your own
 ```typescript
-this.tasks.run([
+await this.tasks.run([
       {
         task: async (ctx): Promise<void> => {
           // start the clock
@@ -786,7 +786,6 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
   ```typescript
   public static rendererOptions: { useIcons?: boolean, logger?: new (...args: any) => Logger }
   ```
-  - NONE
 - Options for the silent renderer.
   - NONE
 

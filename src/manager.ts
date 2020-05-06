@@ -41,7 +41,8 @@ export class Manager <Ctx = ListrContext, Renderer extends ListrRendererValue = 
     return ctx
   }
 
-  public newListr <InjectCtx, InjectRenderer extends ListrRendererValue = Renderer, InjectFallbackRenderer extends ListrRendererValue = FallbackRenderer> (
+  public newListr <InjectCtx, InjectRenderer extends ListrRendererValue = Renderer, InjectFallbackRenderer extends ListrRendererValue = FallbackRenderer>
+  (
     tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<InjectRenderer>>[],
     options?: ListrBaseClassOptions<InjectCtx, InjectRenderer, InjectFallbackRenderer>
   ): Listr<InjectCtx, InjectRenderer, InjectFallbackRenderer> {
