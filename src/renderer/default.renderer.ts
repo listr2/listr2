@@ -41,7 +41,9 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   public isBottomBar (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
-    return typeof this.getTaskOptions(task).bottomBar === 'number' || typeof this.getTaskOptions(task).bottomBar === 'boolean'
+    const bottomBar = this.getTaskOptions(task).bottomBar
+    return typeof bottomBar === 'number' && bottomBar !== 0 ||
+    typeof bottomBar === 'boolean' && bottomBar !== false
   }
 
   public hasPersistentOutput (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
@@ -126,7 +128,7 @@ export class DefaultRenderer implements ListrRenderer {
 
               const bottomBar = this.getTaskOptions(task).bottomBar
               if (typeof bottomBar === 'boolean') {
-                this.bottomBar[task.id].items = bottomBar === true ? 1 : 0
+                this.bottomBar[task.id].items = 1
               } else {
                 this.bottomBar[task.id].items = bottomBar
               }
@@ -183,7 +185,11 @@ export class DefaultRenderer implements ListrRenderer {
       }
     }
 
-    return output.join('\n')
+    if (output.length > 0) {
+      return output.join('\n')
+    } else {
+      return
+    }
   }
 
   private renderBottomBar (): string {
@@ -194,7 +200,10 @@ export class DefaultRenderer implements ListrRenderer {
           o[key] = {}
         }
 
-        o[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
+        o[key] = this.bottomBar[key]
+
+        this.bottomBar[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
+        o[key].data = this.bottomBar[key].data
         return o
       }, {})
 
