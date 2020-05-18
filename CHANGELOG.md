@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/cenk1cenk2/listr2/compare/v2.0.1...v2.0.2) (2020-05-18)
+
+
+### Bug Fixes
+
+* **deps:** rollback uuid to ^7 ([9ba257d](https://github.com/cenk1cenk2/listr2/commit/9ba257d9b19ce4534982baac358096fedb21f2b1)), closes [#25](https://github.com/cenk1cenk2/listr2/issues/25)
+
 ## [2.0.1](https://github.com/cenk1cenk2/listr2/compare/v2.0.0...v2.0.1) (2020-05-06)
 
 
