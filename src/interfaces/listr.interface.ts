@@ -142,8 +142,8 @@ export class ListrBaseRenderer implements ListrRenderer {
   public static rendererOptions: Record<string, any>
   public static rendererTaskOptions: Record<string, any>
   public static nonTTY: boolean
-  private tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[]
-  private options: typeof ListrBaseRenderer.rendererOptions
+  public tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[]
+  public options: typeof ListrBaseRenderer.rendererOptions
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
   constructor (tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions) {
     this.tasks = tasks
