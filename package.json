@@ -62,11 +62,11 @@
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
     "log-update": "^4.0.0",
+    "nanoid": "^3.1.9",
     "p-map": "^4.0.0",
     "pad": "^3.2.0",
     "rxjs": "^6.5.5",
-    "through": "^2.3.8",
-    "uuid": "^7.0.2"
+    "through": "^2.3.8"
   },
   "devDependencies": {
     "@cenk1cenk2/eslint-config": "*",
