@@ -138,6 +138,23 @@ export declare class ListrRenderer {
   public end(err?: Error): void
 }
 
+export class ListrBaseRenderer implements ListrRenderer {
+  public static rendererOptions: Record<string, any>
+  public static rendererTaskOptions: Record<string, any>
+  public static nonTTY: boolean
+  public tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[]
+  public options: typeof ListrBaseRenderer.rendererOptions
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
+  constructor (tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions) {
+    this.tasks = tasks
+    this.options = options
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
+  public render (): void {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
+  public end (err?: Error): void {}
+}
+
 export interface ListrRendererFactory {
   rendererOptions: Record<string, any>
   rendererTaskOptions: Record<string, any>
