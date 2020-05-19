@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/cenk1cenk2/listr2/compare/v2.0.2...v2.0.3) (2020-05-19)
+
+
+### Bug Fixes
+
+* **deps:** exchange uuid with nanoid ([2048b3d](https://github.com/cenk1cenk2/listr2/commit/2048b3d953ab5cab0cf67ffe26fa24fb987e6b6e)), closes [#25](https://github.com/cenk1cenk2/listr2/issues/25)
+
 ## [2.0.2](https://github.com/cenk1cenk2/listr2/compare/v2.0.1...v2.0.2) (2020-05-18)
 
 
