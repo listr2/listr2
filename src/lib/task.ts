@@ -1,7 +1,7 @@
 import sttoob from '@samverschueren/stream-to-observable'
-import { nanoid } from 'nanoid'
 import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
+import { v4 as uuid } from 'uuid'
 
 import { stateConstants } from '@constants/state.constants'
 import {
@@ -35,7 +35,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     super()
 
     // move to private parameters
-    this.id = nanoid()
+    this.id = uuid()
     this.title = this.tasks?.title
     this.task = this.tasks.task
     // parse functions
