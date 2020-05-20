@@ -54,7 +54,6 @@
   ],
   "dependencies": {
     "@samverschueren/stream-to-observable": "^0.3.0",
-    "@types/uuid": "^8.0.0",
     "chalk": "^4.0.0",
     "cli-cursor": "^3.1.0",
     "cli-truncate": "^2.1.0",
@@ -74,6 +73,7 @@
     "@types/jest": "^25.2.3",
     "@types/node": "^14.0.1",
     "@types/rewire": "^2.5.28",
+    "@types/uuid": "^7.0.2",
     "cz-conventional-changelog": "3.2.0",
     "delay": "^4.3.0",
     "eslint": "^7.0.0",
