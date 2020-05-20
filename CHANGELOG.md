@@ -1,3 +1,11 @@
+## [2.0.4](https://github.com/cenk1cenk2/listr2/compare/v2.0.3...v2.0.4) (2020-05-20)
+
+
+### Bug Fixes
+
+* **types:** match version of uuid ([33a1e80](https://github.com/cenk1cenk2/listr2/commit/33a1e8007a82015171ca55c86a71fbbc017d6e4d))
+* **uuid:** added implicit tests for 13.6, rollback to uuid working version ([75ade63](https://github.com/cenk1cenk2/listr2/commit/75ade636b63606ee243e2591e60e8e72b5f1c1ca)), closes [#28](https://github.com/cenk1cenk2/listr2/issues/28)
+
 ## [2.0.3](https://github.com/cenk1cenk2/listr2/compare/v2.0.2...v2.0.3) (2020-05-19)
 
 
