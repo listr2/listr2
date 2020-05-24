@@ -66,6 +66,7 @@
     "pad": "^3.2.0",
     "rxjs": "^6.5.5",
     "through": "^2.3.8",
+    "through2": "^3.0.1",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
@@ -78,9 +79,11 @@
     "delay": "^4.3.0",
     "eslint": "^7.0.0",
     "husky": "^4.2.5",
+    "ink": "^2.7.1",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.4",
     "prettier": "^2.0.5",
+    "react": "^16.13.1",
     "rewire": "^5.0.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.0.0",

@@ -1,3 +1,4 @@
+import { cursorTo } from 'readline'
 import through from 'through'
 
 import { stateConstants } from '@constants/state.constants'
@@ -74,26 +75,26 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   public async prompt <T = any, P extends PromptTypes = PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T> {
     this.task.prompt = true
 
-    let buffer = Buffer.alloc(64)
-
-    const outputStream = through((data) => {
-      buffer += data
-
-      // eslint-disable-next-line no-control-regex
-      const deleteMultiLineRegexp = new RegExp(/.*(\u001b\[[0-9]*G|\u0007).*/m)
-
-      if (deleteMultiLineRegexp.test(buffer.toString())) {
-        buffer = Buffer.alloc(64)
-
-      } else {
-        this.output = buffer.toString()
-
-      }
-    })
-
-    Object.assign(options, { stdout: outputStream })
+    Object.assign(options, { stdout: this.stdout() })
 
     return createPrompt.bind(this)(type, options)
+  }
+
+  public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
+    let buffer: string[] = []
+
+    return through((chunk: string) => {
+      // eslint-disable-next-line no-control-regex
+      const deleteMultiLineRegexp = new RegExp(/(?:\u001b\[([0-9]*)G|\u0007)/mg)
+
+      const test = chunk.match(deleteMultiLineRegexp)
+      console.log(test)
+
+      buffer = [ ...buffer, chunk ]
+
+      this.output = buffer.join('')
+
+    })
   }
 
   public run (ctx: Ctx): Promise<void> {

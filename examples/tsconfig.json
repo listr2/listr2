@@ -11,7 +11,8 @@
       "@lib/*": ["src/lib/*"],
       "@renderer/*": ["src/renderer/*"],
       "@utils/*": ["src/utils/*"]
-    }
+    },
+    "jsx": "react"
   },
   "include": ["../src", "../examples"],
   "exclude": ["node_modules", "dist"]

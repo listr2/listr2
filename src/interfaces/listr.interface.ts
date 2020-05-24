@@ -64,6 +64,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   skip(message: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
   prompt<T = any, P extends PromptTypes = PromptTypes>(type: P, options: PromptOptionsType<P>): Promise<T>
+  stdout(): NodeJS.WriteStream & NodeJS.WritableStream
 }
 
 export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx, ListrRendererFactory, any> | Readable | Observable<any>
