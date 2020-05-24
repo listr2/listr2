@@ -105,7 +105,7 @@ export class DefaultRenderer implements ListrRenderer {
 
           } else {
             // some sibling task but self has failed and this has stopped
-            output.push(this.formatString(task.title, chalk.red(figures.squareSmallFilled), level))
+            output.push(this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level))
 
           }
         }
@@ -245,37 +245,37 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     if (task.isPending() && !data) {
-      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.pointer) : chalk.yellowBright(task.spinner())
+      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.main.pointer) : chalk.yellowBright(task.spinner())
     }
 
     if (task.isCompleted() && !data) {
       if (task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())) {
-        return chalk.yellow(figures.warning)
+        return chalk.yellow(figures.main.warning)
       }
 
-      return chalk.green(figures.tick)
+      return chalk.green(figures.main.tick)
     }
 
     if (task.hasFailed() && !data) {
-      return task.hasSubtasks() ? chalk.red(figures.pointer) : chalk.red(figures.cross)
+      return task.hasSubtasks() ? chalk.red(figures.main.pointer) : chalk.red(figures.main.cross)
     }
 
     if (task.isSkipped() && !data && this.options.collapseSkips === false) {
-      return chalk.yellow(figures.warning)
+      return chalk.yellow(figures.main.warning)
 
     } else if (task.isSkipped() && (data || this.options.collapseSkips)) {
-      return chalk.yellow(figures.arrowDown)
+      return chalk.yellow(figures.main.arrowDown)
 
     }
 
     if (task.isPrompt()) {
-      return chalk.cyan(figures.questionMarkPrefix)
+      return chalk.cyan(figures.main.questionMarkPrefix)
     }
 
     if (!data) {
-      return chalk.dim(figures.squareSmallFilled)
+      return chalk.dim(figures.main.squareSmallFilled)
     } else {
-      return figures.pointerSmall
+      return figures.main.pointerSmall
     }
   }
 }

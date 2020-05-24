@@ -75,7 +75,7 @@ export class Logger {
     case logLevels.fail:
       if (this.options?.useIcons) {
         coloring = chalk.red
-        icon = figures.cross
+        icon = figures.main.cross
       } else {
         icon = '[FAILED]'
       }
@@ -84,7 +84,7 @@ export class Logger {
     case logLevels.skip:
       if (this.options?.useIcons) {
         coloring = chalk.yellow
-        icon = figures.arrowDown
+        icon = figures.main.arrowDown
       } else {
         icon ='[SKIPPED]'
       }
@@ -92,28 +92,28 @@ export class Logger {
     case logLevels.success:
       if (this.options?.useIcons) {
         coloring = chalk.green
-        icon = figures.tick
+        icon = figures.main.tick
       } else {
         icon = '[SUCCESS]'
       }
       break
     case logLevels.data:
       if (this.options?.useIcons) {
-        icon = figures.arrowRight
+        icon = figures.main.arrowRight
       } else {
         icon = '[DATA]'
       }
       break
     case logLevels.start:
       if (this.options?.useIcons) {
-        icon = figures.pointer
+        icon = figures.main.pointer
       } else {
         icon = '[STARTED]'
       }
       break
     case logLevels.title:
       if (this.options?.useIcons) {
-        icon = figures.checkboxOn
+        icon = figures.main.checkboxOn
       } else {
         icon = '[TITLE]'
       }
