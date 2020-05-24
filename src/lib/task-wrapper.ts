@@ -84,11 +84,24 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     let buffer: string[] = []
 
     return through((chunk: string) => {
+      // delete bell icon since it causes some problems
       // eslint-disable-next-line no-control-regex
-      const deleteMultiLineRegexp = new RegExp(/(?:\u001b\[([0-9]*)G|\u0007)/mg)
+      const bellIconRegexp = new RegExp(/\u0007/mg)
 
-      const test = chunk.match(deleteMultiLineRegexp)
-      console.log(test)
+      chunk.replace(bellIconRegexp, '')
+
+      // eslint-disable-next-line no-control-regex
+      const deleteMultiLineRegexp = new RegExp(/\u001b\[([0-9]*)G/mg)
+
+      const regexpIterator = chunk.matchAll(deleteMultiLineRegexp)
+      const matchedDeleteMultiLine = [ ...regexpIterator ]
+      matchedDeleteMultiLine.forEach((match) => {
+        if (match?.[1]) {
+          buffer = buffer.slice(-match?.[1])
+        }
+      })
+
+      chunk.replace(deleteMultiLineRegexp, '')
 
       buffer = [ ...buffer, chunk ]
 
