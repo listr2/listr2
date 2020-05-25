@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
-import { stateConstants } from '@constants/state.constants'
+import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'

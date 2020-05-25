@@ -25,8 +25,7 @@
       "@lib/*": ["lib/*"],
       "@renderer/*": ["renderer/*"],
       "@utils/*": ["utils/*"]
-    },
-    "jsx": "react"
+    }
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]

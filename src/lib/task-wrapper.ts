@@ -1,8 +1,8 @@
 /* eslint-disable no-control-regex */
 import through from 'through'
 
-import { stateConstants } from '@constants/state.constants'
 import { ListrError, ListrRendererFactory, ListrSubClassOptions, ListrTask, ListrTaskWrapper, StateConstants } from '@interfaces/listr.interface'
+import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
 import { createPrompt } from '@utils/prompt'

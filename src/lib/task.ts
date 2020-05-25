@@ -3,11 +3,11 @@ import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
 import { v4 as uuid } from 'uuid'
 
-import { stateConstants } from '@constants/state.constants'
 import {
   ListrRendererFactory, ListrGetRendererTaskOptions,
   ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, ListrGetRendererOptions, StateConstants
 } from '@interfaces/listr.interface'
+import { stateConstants } from '@interfaces/state.constants'
 import { Listr } from '@root/index'
 import { getRenderer } from '@utils/renderer'
 

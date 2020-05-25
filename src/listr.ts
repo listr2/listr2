@@ -1,21 +1,18 @@
 import pMap from 'p-map'
 import { Subject } from 'rxjs'
 
-import { stateConstants } from '@constants/state.constants'
 import {
-  ListrGetRendererOptions,
-  ListrGetRendererClassFromValue,
-  ListrDefaultRendererValue,
-  ListrFallbackRendererValue,
   ListrBaseClassOptions,
   ListrClass,
-  ListrContext,
-  ListrError,
+  ListrContext, ListrDefaultRendererValue,
+  ListrError, ListrFallbackRendererValue, ListrGetRendererClassFromValue, ListrGetRendererOptions,
   ListrRenderer,
   ListrRendererFactory,
   ListrRendererValue,
-  ListrTask
+  ListrTask,
+  ListrTaskObject
 } from '@interfaces/listr.interface'
+import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
@@ -27,7 +24,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
   public err: ListrError[] = []
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
-  public renderHook$: Subject<void> = new Subject<void>()
+  public renderHook$: ListrTaskObject<any, any>['renderHook$'] = new Subject()
   private concurrency: number
   private renderer: ListrRenderer
 
