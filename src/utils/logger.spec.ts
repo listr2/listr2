@@ -1,7 +1,11 @@
 import { Logger } from './logger'
 
-function testForAllExcept (instances: jest.SpyInstance<void, string[][]>[], one: jest.SpyInstance<void, string[][]>,
-  times: number, callback?: { onOne?: () => void, onRest?: () => void }): void {
+function testForAllExcept (
+  instances: jest.SpyInstance<void, string[][]>[],
+  one: jest.SpyInstance<void, string[][]>,
+  times: number,
+  callback?: { onOne?: () => void, onRest?: () => void }
+): void {
   instances.splice(instances.indexOf(one), 1)
 
   expect(one).toBeCalledTimes(times)
@@ -16,7 +20,6 @@ function testForAllExcept (instances: jest.SpyInstance<void, string[][]>[], one:
       callback.onRest()
     }
   })
-
 }
 
 describe('logger', () => {
@@ -248,7 +251,10 @@ describe('logger', () => {
     logger = new Logger({ useIcons: false })
 
     // eslint-disable-next-line max-len
-    logger.data('THIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE')
+    logger.data(
+      // eslint-disable-next-line max-len
+      'THIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE'
+    )
 
     testForAllExcept(instances, info, 1, {
       onOne: () => {
@@ -272,7 +278,5 @@ describe('logger', () => {
         `)
       }
     })
-
   })
-
 })

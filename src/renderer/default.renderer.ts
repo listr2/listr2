@@ -1,7 +1,6 @@
 import chalk from 'chalk'
 import cliCursor from 'cli-cursor'
 import cliTruncate from 'cli-truncate'
-import elegantSpinner from 'elegant-spinner'
 import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
@@ -29,10 +28,16 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private id?: NodeJS.Timeout
-  private bottomBar: {[uuid: string]: {data?: string[], items?: number}} = {}
+  private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
   private promptBar: string
+  private spinner: string[] = process.platform === 'win32' ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
+  private spinnerPosition = 0
 
-  constructor (public tasks: ListrTaskObject<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions']) {
+  constructor (
+    public tasks: ListrTaskObject<any, typeof DefaultRenderer>[],
+    public options: typeof DefaultRenderer['rendererOptions'],
+    public renderHook$?: ListrTaskObject<any, any>['renderHook$']
+  ) {
     this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
   }
 
@@ -42,8 +47,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   public isBottomBar (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     const bottomBar = this.getTaskOptions(task).bottomBar
-    return typeof bottomBar === 'number' && bottomBar !== 0 ||
-    typeof bottomBar === 'boolean' && bottomBar !== false
+    return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false
   }
 
   public hasPersistentOutput (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
@@ -59,14 +63,20 @@ export class DefaultRenderer implements ListrRenderer {
     // hide cursor
     cliCursor.hide()
 
+    const updateRender = (): void => logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
     this.id = setInterval(() => {
-      logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
+      this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
+      updateRender()
     }, 100)
+
+    this.renderHook$.subscribe(() => {
+      updateRender()
+    })
   }
 
   public end (): void {
+    clearInterval(this.id)
     if (this.id) {
-      clearInterval(this.id)
       this.id = undefined
     }
 
@@ -87,12 +97,9 @@ export class DefaultRenderer implements ListrRenderer {
     let output: string[] = []
 
     for (const task of tasks) {
-
       if (task.isEnabled()) {
-
         // Current Task Title
         if (task.hasTitle()) {
-
           // if task is skipped
           if (task.isSkipped() && this.options.collapseSkips) {
             // Current Task Title and skip change the title
@@ -102,21 +109,17 @@ export class DefaultRenderer implements ListrRenderer {
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
             // normal state
             output.push(this.formatString(task.title, this.getSymbol(task), level))
-
           } else {
             // some sibling task but self has failed and this has stopped
             output.push(this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level))
-
           }
         }
 
         // Current Task Output
         if (task?.output) {
-
           if (task.isPending() && task.isPrompt()) {
             // data output to prompt bar if prompt
             this.promptBar = task.output
-
           } else if (this.isBottomBar(task) || !task.hasTitle()) {
             // data output to bottom bar
             const data = this.dumpData(task, -1)
@@ -138,29 +141,25 @@ export class DefaultRenderer implements ListrRenderer {
             if (!data?.some((element) => this.bottomBar[task.id].data.includes(element))) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
-
           } else if (task.isPending() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
             output = [ ...output, ...this.dumpData(task, level) ]
-
           } else if (task.isSkipped() && this.options.collapseSkips === false) {
             // show skip data if collapsing is not defined
             output = [ ...output, ...this.dumpData(task, level) ]
-
           }
-
         }
 
         // render subtasks, some complicated conditionals going on
         if (
-          (
-            task.isPending() || task.hasFailed()
-          || task.isCompleted() && !task.hasTitle()
-          || task.isCompleted() && this.options.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true)
-          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false)
-          || task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())
-          )
-        && this.options.showSubtasks !== false && task.hasSubtasks()
+          (task.isPending() ||
+            task.hasFailed() ||
+            task.isCompleted() && !task.hasTitle() ||
+            task.isCompleted() && this.options.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
+            task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
+            task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())) &&
+          this.options.showSubtasks !== false &&
+          task.hasSubtasks()
         ) {
           // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
@@ -208,7 +207,7 @@ export class DefaultRenderer implements ListrRenderer {
       }, {})
 
       // render the bar
-      const returnRender = Object.values(this.bottomBar).reduce((o, value )=> o = [ ...o, ...value.data ], [])
+      const returnRender = Object.values(this.bottomBar).reduce((o, value) => o = [ ...o, ...value.data ], [])
 
       return [ '\n', ...returnRender ].join('\n')
     }
@@ -225,10 +224,13 @@ export class DefaultRenderer implements ListrRenderer {
 
     if (typeof task.output === 'string') {
       // indent and color
-      task.output.split('\n').filter(Boolean).forEach((line, i) => {
-        const icon = i === 0 ? this.getSymbol(task, true) : ' '
-        output.push(this.formatString(line, icon, level +1))
-      })
+      task.output
+        .split('\n')
+        .filter(Boolean)
+        .forEach((line, i) => {
+          const icon = i === 0 ? this.getSymbol(task, true) : ' '
+          output.push(this.formatString(line, icon, level + 1))
+        })
     }
 
     return output
@@ -240,12 +242,8 @@ export class DefaultRenderer implements ListrRenderer {
 
   // eslint-disable-next-line complexity
   private getSymbol (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, data = false): string {
-    if (!task.spinner && !data) {
-      task.spinner = elegantSpinner()
-    }
-
     if (task.isPending() && !data) {
-      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.main.pointer) : chalk.yellowBright(task.spinner())
+      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.main.pointer) : chalk.yellowBright(this.spinner[this.spinnerPosition])
     }
 
     if (task.isCompleted() && !data) {
@@ -262,10 +260,8 @@ export class DefaultRenderer implements ListrRenderer {
 
     if (task.isSkipped() && !data && this.options.collapseSkips === false) {
       return chalk.yellow(figures.main.warning)
-
     } else if (task.isSkipped() && (data || this.options.collapseSkips)) {
       return chalk.yellow(figures.main.arrowDown)
-
     }
 
     if (task.isPrompt()) {

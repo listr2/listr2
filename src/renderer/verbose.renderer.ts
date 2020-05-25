@@ -25,45 +25,38 @@ export class VerboseRenderer implements ListrRenderer {
   // verbose renderer multi-level
   private verboseRenderer (tasks: ListrTaskObject<any, typeof VerboseRenderer>[]): void {
     return tasks?.forEach((task) => {
-      task.subscribe((event: ListrEvent) => {
-        if (task.isEnabled()) {
+      task.subscribe(
+        (event: ListrEvent) => {
+          if (task.isEnabled()) {
+            if (event.type === 'SUBTASK' && task.hasSubtasks()) {
+              // render lower level if multi-level
+              this.verboseRenderer(task.subtasks)
+            } else if (event.type === 'STATE') {
+              // render depending on the state
+              const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
 
-          if (event.type === 'SUBTASK' && task.hasSubtasks()) {
-            // render lower level if multi-level
-            this.verboseRenderer(task.subtasks)
-
-          } else if (event.type === 'STATE') {
-          // render depending on the state
-            const taskTitle = task.hasTitle() ? task.title: 'Task without title.'
-
-            if (task.isPending()) {
-              this.logger.start(taskTitle)
-
-            } else if (task.isCompleted()) {
-              this.logger.success(taskTitle)
-
+              if (task.isPending()) {
+                this.logger.start(taskTitle)
+              } else if (task.isCompleted()) {
+                this.logger.success(taskTitle)
+              }
+            } else if (event.type === 'DATA') {
+              // render if outputs data like states, fail, skip or data
+              if (task.hasFailed()) {
+                this.logger.fail(String(event.data))
+              } else if (task.isSkipped()) {
+                this.logger.skip(String(event.data))
+              } else {
+                this.logger.data(String(event.data))
+              }
+            } else if (event.type === 'TITLE') {
+              this.logger.title(String(event.data))
             }
-
-          } else if (event.type === 'DATA') {
-
-            // render if outputs data like states, fail, skip or data
-            if (task.hasFailed()) {
-              this.logger.fail(String(event.data))
-
-            } else if (task.isSkipped()) {
-              this.logger.skip(String(event.data))
-
-            } else {
-              this.logger.data(String(event.data))
-            }
-
-          } else if (event.type === 'TITLE') {
-            this.logger.title(String(event.data))
           }
+        },
+        (err) => {
+          this.logger.fail(err)
         }
-      }, (err) => {
-        this.logger.fail(err)
-      }
       )
     })
   }

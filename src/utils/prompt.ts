@@ -1,13 +1,31 @@
 import { Prompt } from 'enquirer'
 import {
-  AutoComplete, BasicAuth, Confirm, Editable, Form, Input, Invisible, List, MultiSelect, Numeral, Password, Quiz, Scale, Select, Snippet, Sort, Survey, Text, Toggle
+  AutoComplete,
+  BasicAuth,
+  Confirm,
+  Editable,
+  Form,
+  Input,
+  Invisible,
+  List,
+  MultiSelect,
+  Numeral,
+  Password,
+  Quiz,
+  Scale,
+  Select,
+  Snippet,
+  Sort,
+  Survey,
+  Text,
+  Toggle
 } from 'enquirer/lib/prompts'
 
 import { PromptOptionsType, PromptSettings, PromptTypes } from './prompt.interface'
 import { ListrError, PromptError } from '@interfaces/listr.interface'
 import { TaskWrapper } from '@lib/task-wrapper'
 
-export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Prompt {
+export function newPrompt<T extends PromptTypes> (type: T, options: PromptOptionsType<T>): Prompt {
   let prompt: Prompt
   switch (type.toString().toLocaleLowerCase()) {
   case 'autocomplete':
@@ -73,7 +91,7 @@ export function newPrompt <T extends PromptTypes> (type: T, options: PromptOptio
   return prompt
 }
 
-type PromptClass = new(options: any) => Prompt
+type PromptClass = new (options: any) => Prompt
 function isPromptClass (SomeClass: any): SomeClass is PromptClass {
   try {
     new SomeClass({})
@@ -83,7 +101,7 @@ function isPromptClass (SomeClass: any): SomeClass is PromptClass {
   }
 }
 
-export function createPrompt <T extends PromptTypes> (type: T | PromptClass, options: PromptOptionsType<T>, settings?: PromptSettings): Promise<any> {
+export function createPrompt<T extends PromptTypes> (type: T | PromptClass, options: PromptOptionsType<T>, settings?: PromptSettings): Promise<any> {
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
   if (settings?.cancelCallback) {
@@ -98,19 +116,15 @@ export function createPrompt <T extends PromptTypes> (type: T | PromptClass, opt
   } else {
     return newPrompt(type, options).on('cancel', cancelCallback.bind(this)).run()
   }
-
 }
 
 function defaultCancelCallback (settings: PromptSettings): string | Error | PromptError {
   const errorMsg = 'Cancelled prompt.'
   if (settings?.error === true) {
     throw new PromptError(errorMsg)
-
   } else if (this instanceof TaskWrapper) {
     this.task.prompt = new PromptError(errorMsg)
-
   } else {
     return errorMsg
-
   }
 }

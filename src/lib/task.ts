@@ -3,11 +3,21 @@ import { Observable, Subject } from 'rxjs'
 import { Stream } from 'stream'
 import { v4 as uuid } from 'uuid'
 
-import { stateConstants } from '@constants/state.constants'
 import {
-  ListrRendererFactory, ListrGetRendererTaskOptions,
-  ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, ListrGetRendererOptions, StateConstants
+  ListrRendererFactory,
+  ListrGetRendererTaskOptions,
+  ListrContext,
+  ListrError,
+  ListrEvent,
+  ListrOptions,
+  ListrTask,
+  ListrTaskObject,
+  ListrTaskWrapper,
+  PromptError,
+  ListrGetRendererOptions,
+  StateConstants
 } from '@interfaces/listr.interface'
+import { stateConstants } from '@interfaces/state.constants'
 import { Listr } from '@root/index'
 import { getRenderer } from '@utils/renderer'
 
@@ -22,16 +32,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public prompt: boolean | PromptError
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
+  public renderHook$: Subject<void>
   private enabled: boolean
   private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
-  constructor (
-    public listr: Listr<Ctx, any, any>,
-    public tasks: ListrTask<Ctx, any>,
-    public options: ListrOptions,
-    public rendererOptions: ListrGetRendererOptions<Renderer>
-  ) {
-
+  constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
     // move to private parameters
@@ -43,6 +48,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.enabledFn = this.tasks?.enabled || ((): boolean => true)
     // task options
     this.rendererTaskOptions = this.tasks.options
+
+    this.renderHook$ = this.listr.renderHook$
+    this.subscribe(() => {
+      this.renderHook$.next()
+    })
   }
 
   set state$ (state: StateConstants) {
@@ -57,7 +67,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   async check (ctx: Ctx): Promise<void> {
     // Check if a task is enabled or disabled
     if (this.state === undefined) {
-
       if (typeof this.enabledFn === 'function') {
         this.enabled = await this.enabledFn(ctx)
       } else {
@@ -117,6 +126,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         // switch to silent renderer since already rendering
         const rendererClass = getRenderer('silent')
         result.rendererClass = rendererClass.renderer
+        result.renderHook$.subscribe((): void => {
+          this.renderHook$.next()
+        })
 
         // assign subtasks
         this.subtasks = result.tasks
@@ -125,18 +137,15 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
         result = result.run(context)
 
-      // eslint-disable-next-line no-empty
+        // eslint-disable-next-line no-empty
       } else if (this.isPrompt()) {
         // do nothing, it is already being handled
-
       } else if (result instanceof Promise) {
         // Detect promise
         result = result.then(handleResult)
-
       } else if (result instanceof Stream.Readable) {
         // Detect stream
         result = sttoob(result)
-
       } else if (result instanceof Observable) {
         // Detect Observable
         result = new Promise((resolve, reject) => {
@@ -184,9 +193,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       if (this.isPending()) {
         this.state$ = stateConstants.COMPLETED
       }
-
     } catch (error) {
-
       // mark task as failed
       this.state$ = stateConstants.FAILED
 
@@ -213,7 +220,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       if (this.listr.options.exitOnError !== false) {
         throw error
       }
-
     } finally {
       // Mark the observable as completed
       this.complete()

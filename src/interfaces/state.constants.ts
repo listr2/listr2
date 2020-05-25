@@ -1,6 +1,6 @@
 export enum stateConstants {
   'PENDING' = 'PENDING',
-  'COMPLETED'= 'COMPLETED',
+  'COMPLETED' = 'COMPLETED',
   'FAILED' = 'FAILED',
   'SKIPPED' = 'SKIPPED'
 }
