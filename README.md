@@ -34,6 +34,7 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
     - [Utilizing the Task Itself](#utilizing-the-task-itself)
     - [Utilizing the Bottom Bar](#utilizing-the-bottom-bar)
     - [Utilizing an Observable or Stream](#utilizing-an-observable-or-stream)
+    - [Passing the Output Through as a Stream](#passing-the-output-through-as-a-stream)
   - [Throw Errors](#throw-errors)
 - [Task Manager](#task-manager)
   - [Basic Use-Case Scenerio](#basic-use-case-scenerio)
@@ -44,9 +45,9 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 - [Testing](#testing)
 - [Default Renderers](#default-renderers)
 - [Custom Renderers](#custom-renderers)
+- [Render Hooks](#render-hooks)
 - [Log To A File](#log-to-a-file)
-- [Migration from Version <v1.3.12](#migration-from-version-v1312)
-  - [Details](#details)
+- [Migration from Version v1](#migration-from-version-v1)
 - [Types](#types)
 
 <!-- tocstop -->

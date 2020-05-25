@@ -1,3 +1,15 @@
+# [2.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0-beta.1) (2020-05-25)
+
+
+### Bug Fixes
+
+* **figures:** made microsoft icons to use the fancy ones, even though it may fail in some cases ([f0e5817](https://github.com/cenk1cenk2/listr2/commit/f0e581706e59d9b96da9bd050a1ad3638b59c2aa)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
+
+
+### Features
+
+* **renderer:** added hook and stdout support ([bd73c68](https://github.com/cenk1cenk2/listr2/commit/bd73c68b9eb21cd100a266ce05ba36af0c727a4f)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
+
 ## [2.0.4](https://github.com/cenk1cenk2/listr2/compare/v2.0.3...v2.0.4) (2020-05-20)
 
 
