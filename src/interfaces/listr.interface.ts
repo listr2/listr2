@@ -16,8 +16,11 @@ export type ListrDefaultRenderer = typeof DefaultRenderer
 export type ListrFallbackRendererValue = 'verbose'
 export type ListrFallbackRenderer = typeof VerboseRenderer
 
-export declare class ListrClass
-<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
+export declare class ListrClass<
+  Ctx = ListrContext,
+  Renderer extends ListrRendererValue = ListrDefaultRendererValue,
+  FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue
+> {
   tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[]
   constructor(task?: readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>)
   public run(ctx?: Ctx): Promise<Ctx>
@@ -69,16 +72,14 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
 
 export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx, ListrRendererFactory, any> | Readable | Observable<any>
 
-export type ListrBaseClassOptions
-<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> =
-ListrOptions<Ctx>
-& ListrDefaultRendererOptions<Renderer>
-& ListrDefaultNonTTYRendererOptions<FallbackRenderer>
+export type ListrBaseClassOptions<
+  Ctx = ListrContext,
+  Renderer extends ListrRendererValue = ListrDefaultRendererValue,
+  FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue
+> = ListrOptions<Ctx> & ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<FallbackRenderer>
 
-export type ListrSubClassOptions
-<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> =
-ListrOptions<Ctx>
-& Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>
+export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> = ListrOptions<Ctx> &
+Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>
 
 export interface ListrOptions<Ctx = ListrContext> {
   concurrent?: boolean | number
@@ -87,35 +88,47 @@ export interface ListrOptions<Ctx = ListrContext> {
   registerSignalListeners?: boolean
 }
 
-export type CreateClass<T> = new(...args: any[]) => T
+export type CreateClass<T> = new (...args: any[]) => T
 
-export type ListrGetRendererClassFromValue<T extends ListrRendererValue> = |
-T extends 'default' ? typeof DefaultRenderer :
-  T extends 'verbose' ? typeof VerboseRenderer :
-    T extends 'silent' ? typeof SilentRenderer :
-      T extends ListrRendererFactory ? T :
-        never
+export type ListrGetRendererClassFromValue<T extends ListrRendererValue> = T extends 'default'
+  ? typeof DefaultRenderer
+  : T extends 'verbose'
+    ? typeof VerboseRenderer
+    : T extends 'silent'
+      ? typeof SilentRenderer
+      : T extends ListrRendererFactory
+        ? T
+        : never
 
-export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = |
-T extends DefaultRenderer ? 'default' :
-  T extends VerboseRenderer ? 'verbose' :
-    T extends SilentRenderer ? 'silent' :
-      T extends ListrRendererFactory ? T :
-        never
+export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = T extends DefaultRenderer
+  ? 'default'
+  : T extends VerboseRenderer
+    ? 'verbose'
+    : T extends SilentRenderer
+      ? 'silent'
+      : T extends ListrRendererFactory
+        ? T
+        : never
 
-export type ListrGetRendererOptions<T extends ListrRendererValue> = |
-T extends 'default' ? typeof DefaultRenderer['rendererOptions'] :
-  T extends 'verbose' ? typeof VerboseRenderer['rendererOptions'] :
-    T extends 'silent' ? typeof SilentRenderer['rendererOptions'] :
-      T extends ListrRendererFactory ? T['rendererOptions'] :
-        never
+export type ListrGetRendererOptions<T extends ListrRendererValue> = T extends 'default'
+  ? typeof DefaultRenderer['rendererOptions']
+  : T extends 'verbose'
+    ? typeof VerboseRenderer['rendererOptions']
+    : T extends 'silent'
+      ? typeof SilentRenderer['rendererOptions']
+      : T extends ListrRendererFactory
+        ? T['rendererOptions']
+        : never
 
-export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = |
-T extends 'default' ? typeof DefaultRenderer['rendererTaskOptions'] :
-  T extends 'verbose' ? typeof VerboseRenderer['rendererTaskOptions'] :
-    T extends 'silent' ? typeof SilentRenderer['rendererTaskOptions'] :
-      T extends ListrRendererFactory ? T['rendererTaskOptions'] :
-        never
+export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = T extends 'default'
+  ? typeof DefaultRenderer['rendererTaskOptions']
+  : T extends 'verbose'
+    ? typeof VerboseRenderer['rendererTaskOptions']
+    : T extends 'silent'
+      ? typeof SilentRenderer['rendererTaskOptions']
+      : T extends ListrRendererFactory
+        ? T['rendererTaskOptions']
+        : never
 
 export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {
   renderer?: T
@@ -127,8 +140,8 @@ export interface ListrDefaultNonTTYRendererOptions<T extends ListrRendererValue>
   nonTTYRendererOptions?: ListrGetRendererOptions<T>
 }
 
-export type ListrRendererOptions <Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> =
-ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<FallbackRenderer>
+export type ListrRendererOptions<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> = ListrDefaultRendererOptions<Renderer> &
+ListrDefaultNonTTYRendererOptions<FallbackRenderer>
 
 export declare class ListrRenderer {
   public static rendererOptions: Record<string, any>
@@ -160,7 +173,7 @@ export interface ListrRendererFactory {
   rendererOptions: Record<string, any>
   rendererTaskOptions: Record<string, any>
   nonTTY: boolean
-  new(tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>): ListrRenderer
+  new (tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>): ListrRenderer
 }
 
 export type ListrRendererValue = 'silent' | 'default' | 'verbose' | ListrRendererFactory

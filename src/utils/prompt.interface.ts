@@ -2,14 +2,7 @@ import Enquirer from 'enquirer'
 
 import { PromptError } from '@interfaces/listr.interface'
 
-export type PromptOptions =
-  | ArrayPromptOptions
-  | BooleanPromptOptions
-  | StringPromptOptions
-  | NumberPromptOptions
-  | SnippetPromptOptions
-  | SortPromptOptions
-  | BasePromptOptions
+export type PromptOptions = ArrayPromptOptions | BooleanPromptOptions | StringPromptOptions | NumberPromptOptions | SnippetPromptOptions | SortPromptOptions | BasePromptOptions
 
 interface BasePromptOptions {
   name?: string | (() => string)
@@ -87,47 +80,65 @@ interface TogglePromptOptions extends BasePromptOptions {
 }
 
 export type PromptTypes =
-| 'AutoComplete'
-| 'BasicAuth'
-| 'Confirm'
-| 'Editable'
-| 'Form'
-| 'Input'
-| 'Invisible'
-| 'List'
-| 'MultiSelect'
-| 'Numeral'
-| 'Password'
-| 'Quiz'
-| 'Scale'
-| 'Select'
-| 'Snippet'
-| 'Sort'
-| 'Survey'
-| 'Text'
-| 'Toggle'
+  | 'AutoComplete'
+  | 'BasicAuth'
+  | 'Confirm'
+  | 'Editable'
+  | 'Form'
+  | 'Input'
+  | 'Invisible'
+  | 'List'
+  | 'MultiSelect'
+  | 'Numeral'
+  | 'Password'
+  | 'Quiz'
+  | 'Scale'
+  | 'Select'
+  | 'Snippet'
+  | 'Sort'
+  | 'Survey'
+  | 'Text'
+  | 'Toggle'
 
-export type PromptOptionsType<T> =
-  T extends 'AutoComplete' ? ArrayPromptOptions :
-    T extends 'BasicAuth' ? StringPromptOptions :
-      T extends 'Confirm' ? BooleanPromptOptions :
-        T extends 'Editable' ? ArrayPromptOptions :
-          T extends 'Form' ? ArrayPromptOptions :
-            T extends 'Input' ? StringPromptOptions :
-              T extends 'Invisible' ? StringPromptOptions :
-                T extends 'List' ? ArrayPromptOptions :
-                  T extends 'MultiSelect' ? ArrayPromptOptions :
-                    T extends 'Numeral' ? NumberPromptOptions :
-                      T extends 'Password' ? StringPromptOptions :
-                        T extends 'Quiz' ? QuizPromptOptions :
-                          T extends 'Scale' ? ScalePromptOptions :
-                            T extends 'Select' ? ArrayPromptOptions :
-                              T extends 'Snippet' ? SnippetPromptOptions :
-                                T extends 'Sort' ? SortPromptOptions:
-                                  T extends 'Survey' ? ArrayPromptOptions :
-                                    T extends 'Text' ? StringPromptOptions:
-                                      T extends 'Toggle'? TogglePromptOptions :
-                                        any
+export type PromptOptionsType<T> = T extends 'AutoComplete'
+  ? ArrayPromptOptions
+  : T extends 'BasicAuth'
+    ? StringPromptOptions
+    : T extends 'Confirm'
+      ? BooleanPromptOptions
+      : T extends 'Editable'
+        ? ArrayPromptOptions
+        : T extends 'Form'
+          ? ArrayPromptOptions
+          : T extends 'Input'
+            ? StringPromptOptions
+            : T extends 'Invisible'
+              ? StringPromptOptions
+              : T extends 'List'
+                ? ArrayPromptOptions
+                : T extends 'MultiSelect'
+                  ? ArrayPromptOptions
+                  : T extends 'Numeral'
+                    ? NumberPromptOptions
+                    : T extends 'Password'
+                      ? StringPromptOptions
+                      : T extends 'Quiz'
+                        ? QuizPromptOptions
+                        : T extends 'Scale'
+                          ? ScalePromptOptions
+                          : T extends 'Select'
+                            ? ArrayPromptOptions
+                            : T extends 'Snippet'
+                              ? SnippetPromptOptions
+                              : T extends 'Sort'
+                                ? SortPromptOptions
+                                : T extends 'Survey'
+                                  ? ArrayPromptOptions
+                                  : T extends 'Text'
+                                    ? StringPromptOptions
+                                    : T extends 'Toggle'
+                                      ? TogglePromptOptions
+                                      : any
 
 export interface PromptSettings {
   error?: boolean

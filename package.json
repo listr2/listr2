@@ -17,8 +17,7 @@
   "scripts": {
     "prebuild": "rimraf tsconfig.build.tsbuildinfo && rimraf dist/",
     "build": "tsc -P tsconfig.build.json && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
-    "lint": "yarn lint:staged src/",
-    "lint:staged": "eslint --ext .json,.ts,.js --fix",
+    "lint": "prettier --write src/ && eslint --ext .json,.ts,.js --fix src/",
     "test": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.js",
     "test:cov": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.js",
     "dev:test": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.js"
@@ -31,7 +30,8 @@
   },
   "lint-staged": {
     "src/*.{ts,js, json}": [
-      "yarn lint"
+      "prettier --write",
+      "eslint --ext .json,.ts,.js --fix"
     ]
   },
   "keywords": [

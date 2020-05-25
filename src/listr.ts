@@ -4,8 +4,12 @@ import { Subject } from 'rxjs'
 import {
   ListrBaseClassOptions,
   ListrClass,
-  ListrContext, ListrDefaultRendererValue,
-  ListrError, ListrFallbackRendererValue, ListrGetRendererClassFromValue, ListrGetRendererOptions,
+  ListrContext,
+  ListrDefaultRendererValue,
+  ListrError,
+  ListrFallbackRendererValue,
+  ListrGetRendererClassFromValue,
+  ListrGetRendererOptions,
   ListrRenderer,
   ListrRendererFactory,
   ListrRendererValue,
@@ -17,8 +21,7 @@ import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
 
-export class Listr
-<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue>
+export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue>
 implements ListrClass<Ctx, Renderer, FallbackRenderer> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError[] = []
@@ -33,13 +36,16 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
   ) {
     // assign over default options
-    this.options = Object.assign({
-      concurrent: false,
-      renderer: 'default',
-      nonTTYRenderer: 'verbose',
-      exitOnError: true,
-      registerSignalListeners: true
-    }, options)
+    this.options = Object.assign(
+      {
+        concurrent: false,
+        renderer: 'default',
+        nonTTYRenderer: 'verbose',
+        exitOnError: true,
+        registerSignalListeners: true
+      },
+      options
+    )
 
     // define parallel options
     this.concurrency = 1
@@ -65,17 +71,19 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
 
     // Graceful interrupt for render cleanup
     if (this.options.registerSignalListeners) {
-
-      process.on('SIGINT', async () => {
-        await Promise.all(this.tasks.map(async (task) => {
-          if (task.isPending()) {
-            task.state$ = stateConstants.FAILED
-          }
-        }))
-        this.renderer.end(new Error('Interrupted.'))
-        process.exit(127)
-      }).setMaxListeners(0)
-
+      process
+        .on('SIGINT', async () => {
+          await Promise.all(
+            this.tasks.map(async (task) => {
+              if (task.isPending()) {
+                task.state$ = stateConstants.FAILED
+              }
+            })
+          )
+          this.renderer.end(new Error('Interrupted.'))
+          process.exit(127)
+        })
+        .setMaxListeners(0)
     }
   }
 
@@ -83,17 +91,11 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     const tasks = Array.isArray(task) ? task : [ task ]
 
     tasks.forEach((task): void => {
-      this.tasks.push(new Task(
-        this,
-        task,
-        this.options,
-        { ...this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>, ...task.options })
-      )
+      this.tasks.push(new Task(this, task, this.options, { ...(this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>), ...task.options }))
     })
   }
 
   public async run (context?: Ctx): Promise<Ctx> {
-
     // start the renderer
     if (!this.renderer) {
       this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.renderHook$)
@@ -112,14 +114,17 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
 
     // run tasks
     try {
-      await pMap(this.tasks, async (task): Promise<void> => {
-        await this.checkAll(context)
+      await pMap(
+        this.tasks,
+        async (task): Promise<void> => {
+          await this.checkAll(context)
 
-        return this.runTask(task, context, errors)
-      }, { concurrency: this.concurrency })
+          return this.runTask(task, context, errors)
+        },
+        { concurrency: this.concurrency }
+      )
 
       this.renderer.end()
-
     } catch (error) {
       this.err.push(new ListrError(error, [ error ], context))
 
@@ -128,21 +133,21 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
         // Do not exit when explicitely set to `false`
         throw error
       }
-
     } finally {
       if (errors.length > 0) {
         this.err.push(new ListrError('Task failed without crashing.', errors, context))
       }
-
     }
 
     return context
   }
 
   private checkAll (context): Promise<void[]> {
-    return Promise.all(this.tasks.map((task) => {
-      task.check(context)
-    }))
+    return Promise.all(
+      this.tasks.map((task) => {
+        task.check(context)
+      })
+    )
   }
 
   private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError[]): Promise<void> {
@@ -152,5 +157,4 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
 
     return new TaskWrapper(task, errors).run(context)
   }
-
 }

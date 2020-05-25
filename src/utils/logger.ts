@@ -9,7 +9,6 @@ export interface LoggerOptions {
 }
 
 export class Logger {
-
   constructor (private options?: LoggerOptions) {}
 
   public fail (message: string): void {
@@ -55,7 +54,8 @@ export class Logger {
     multiLineMessage = multiLineMessage.map((msg) => {
       // format messages
       return this.logColoring({
-        level, message: msg
+        level,
+        message: msg
       })
     })
     // join back multi line messages
@@ -64,7 +64,7 @@ export class Logger {
     return message
   }
 
-  private logColoring ({ level, message }: {level: logLevels, message: string}): string {
+  private logColoring ({ level, message }: { level: logLevels, message: string }): string {
     let icon: string
 
     // do the coloring
@@ -86,7 +86,7 @@ export class Logger {
         coloring = chalk.yellow
         icon = figures.main.arrowDown
       } else {
-        icon ='[SKIPPED]'
+        icon = '[SKIPPED]'
       }
       break
     case logLevels.success:

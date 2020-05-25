@@ -9,7 +9,6 @@ import { createPrompt } from '@utils/prompt'
 import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
 
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
-
   constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[]) {}
 
   set title (title) {
@@ -19,7 +18,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
       type: 'TITLE',
       data: title
     })
-
   }
 
   get title (): string {
@@ -33,7 +31,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
       type: 'DATA',
       data
     })
-
   }
 
   get output (): string {
@@ -47,7 +44,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
       type: 'STATE',
       data
     })
-
   }
 
   public newListr (task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[], options?: ListrSubClassOptions<Ctx, Renderer>): Listr<Ctx, any, any> {
@@ -64,7 +60,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
       this.errors.push(error)
       this.output = error.message || this.task?.title || 'Task with no title.'
     }
-
   }
 
   public skip (message: string): void {
@@ -75,7 +70,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
-  public async prompt <T = any, P extends PromptTypes = PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T> {
+  public async prompt<T = any, P extends PromptTypes = PromptTypes>(type: P, options: PromptOptionsType<P>): Promise<T> {
     this.task.prompt = true
 
     Object.assign(options, { stdout: this.stdout() })
@@ -84,19 +79,14 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   }
 
   public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
-
     return through((chunk: string) => {
-
-      const pattern = new RegExp(
-        '(?:\\u001b|\\u009b)\\[[\\=><~/#&.:=?%@~_-]*[0-9]*[\\a-ln-tqyz=><~/#&.:=?%@~_-]+',
-        'gmi')
+      const pattern = new RegExp('(?:\\u001b|\\u009b)\\[[\\=><~/#&.:=?%@~_-]*[0-9]*[\\a-ln-tqyz=><~/#&.:=?%@~_-]+', 'gmi')
 
       chunk = chunk.replace(pattern, '')
       chunk = chunk.replace(new RegExp(/\u0007/, 'gmi'), '')
       if (chunk !== '') {
         this.output = chunk
       }
-
     })
   }
 
