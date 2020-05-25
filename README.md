@@ -469,6 +469,67 @@ new Listr<Ctx>([
   ], { concurrent: false })
 ```
 
+#### Passing the Output Through as a Stream
+Since `process.stdout` method is controlled by `log-update` to create a refreshing interface, for anything else that might need to output data and can use `Writeable` streams, `task.stdout()` will create a new punch-hole to redirect all the write requests to `task.output`. This is esspecially benefical for external libraries like `enquirer`, which is already integrated or something like `ink`.
+
+**Supported for >v2.1.0.**
+
+*This unfortunetly relies on cleaning all ANSI escape charachters, since currently I do not find a good way to sandbox them inside `log-update` which utilizes the cursor position by itself. So use this with caution, because it will only render the last chunk in a stream as well as cleaning up all the ANSI escape charachters except for styles.*
+
+```typescript
+import { Box, Color, render } from 'ink'
+import React, { Fragment, useEffect, useState } from 'react'
+
+import { Listr } from 'Listr2'
+import { Logger } from '@utils/logger'
+
+type Ctx = {}
+
+const logger = new Logger({ useIcons: false })
+
+async function main (): Promise<void> {
+  let task: Listr<Ctx, 'default'>
+
+  task = new Listr<Ctx, 'default'>([
+    {
+      title: 'This task will show INK as output.',
+      task: async (ctx, task): Promise<any> => {
+        const Counter = () => {
+          const [ counter, setCounter ] = useState(0)
+
+          useEffect(() => {
+            const timer = setInterval(() => {
+              setCounter((previousCounter) => previousCounter + 1)
+            }, 100)
+
+            return (): void => {
+              clearInterval(timer)
+            }
+          }, [])
+
+          return <Color green>{counter} tests passed</Color>
+        }
+
+        const { unmount, waitUntilExit } = render(<Counter />, task.stdout())
+
+        setTimeout(unmount, 2000)
+
+        return waitUntilExit()
+      },
+    }
+  ], { concurrent: false })
+
+   try {
+    const context = await task.run()
+    console.log(`Context: ${JSON.stringify(context)}`)
+  } catch(e) {
+    console.error(e)
+  }
+}
+
+main()
+```
+
 ### Throw Errors
 You can throw errors out of the tasks to show they are insuccessful. While this gives a visual output on the terminal, it also handles how to handle tasks that are failed. The default behaviour is any of the tasks have failed, it will deem itself as unsuccessful and exit. This behaviour can be changed with `exitOnError` option.
 
@@ -767,7 +828,7 @@ On | Output
 ---------|----------
  Task Started | \[STARTED\] ${TASK TITLE ?? 'Task without title.'}
  Task Failure | \[FAILED\] ${TASK TITLE ?? 'Task without title.'}
- Task Skipped | \[SKIPPED\] ${TASK TITLE ?? 'Task without title.'}
+ Task Skipped | \[SKIPPED\] ${SKIP MESSAGE ?? TASK TITLE ?? 'Task without title.'}
  Task Successful | \[SUCCESS\] ${TASK TITLE ?? 'Task without title.'}
  Spit Output | \[DATA\] ${TASK OUTPUT}
  Title Change | \[TITLE\] ${NEW TITLE}
@@ -857,6 +918,28 @@ export class MyAmazingRenderer implements ListrRenderer {
   ```
   - Or if you so desire both!
 
+## Render Hooks
+Additional to rendering through `task.subscribe` or with a given interval, a renderer can also render on demand via a observable passed through the renderer.
+
+Render hook can be the third optional variable of a given renderer, while using it is always optional.
+```typescript
+constructor (
+    public tasks: ListrTaskObject<any, typeof DefaultRenderer>[],
+    public options: typeof DefaultRenderer['rendererOptions'],
+    public renderHook$?: ListrTaskObject<any, any>['renderHook$']
+  )
+```
+
+Render hook is a void subject, which can be used to trigger re-render dynamically when any changes occur in the underneath.
+
+```typescript
+this.renderHook$.subscribe(() => {
+  /* DO SOME RENDER MAGIC like render() */
+})
+```
+
+**Supported for >v2.1.0.**
+
 ## Log To A File
 Logging to a file can be done utilizing a module like [winston](https://www.npmjs.com/package/winston). This can be obtained through using the verbose renderer and creating a custom logger class that implements `Logger` which is exported from the index.
 
@@ -905,68 +988,13 @@ export class MyLoggerClass implements Logger {
 }
 ```
 
-## Migration from Version <v1.3.12
+## Migration from Version v1
 To migrate from prior versions that are older than v1.3.12, which is advisable due to upcoming potential bug fixes:
 - rendererOptions has to be moved to their own key
 - some of the types if initiated before assigning a Listr has to be fixed accordingly
 - test renderer also combined with verbose renderer and icons of the verbose renderer is disabled by default which makes them basically same thing, so I think verbose is a better name for it
 
-### Details
-- Renderer Options
-  - Reason: *This was changed because of having all the renderer options that are mangled together and not respecting which renderer has been choosen. It also allows for custom renderers to have their own logic by exposing their options in a single class file rather than expecting that functionality from the project itself.*
-  - Before <v1.3.12:
-  ```typescript
-    new Listr<Ctx>([
-    {
-      task: async (ctx, task): Promise<void> => {
-      },
-      persistentOutput: true
-    }
-  ], {
-    concurrent: false,
-    collapse: true
-  ```
-  - After <v1.3.12:
-  ```typescript
-    new Listr<Ctx>([
-    {
-      task: async (ctx, task): Promise<void> => {
-      },
-      options: { persistentOutput: true } // per task based options are moved to their own key
-    }
-  ], {
-    concurrent: false,
-    rendererOptions: { collapse: false }
-     // global renderer options moved to their own key
-    })
-  ```
-- Some of the types has been changed.
-  - Reason: *Some of the types had to be changed due to compatability reasons with new autocomplete functionality of the dynamic renderer options.*
-  - Before <v1.3.12:
-  ```typescript
-  let task: Listr<Ctx>
-
-  task = new Listr(..., { renderer: 'verbose' })
-  ```
-  - After <v1.3.12:
-  ```typescript
-  // this without the indication of verbose will now fail due to default renderer being 'default' for autocompleting goodness of the IDEs.
-  // So you have to overwrite it manually to 'verbose'.
-  // If it does not have a default you had to explicitly write { renderer: 'default' } everytime to have the auto complete feature
-  let task: Listr<Ctx, 'verbose'>
-
-  task = new Listr(..., { renderer: 'verbose' })
-  ```
-- Test renderer removed.
-  - Reason: *On non-tty environments that the verbose renderer is intended for there is no need to show icons. Since icons are now optional with the default being disabled for the verbose renderer, there is no need for a renderer that does have the same functionality since verbose and test are now basically the same thing. Verbose seemed a better name then test, so I had to remove test from the equation.*
-  - Before <v1.3.12:
-  ```typescript
-  const task = new Listr(..., { renderer: 'test' })
-  ```
-  - After <v1.3.12:
-  ```typescript
-  const task = new Listr(..., { renderer: 'verbose' })
-  ```
+Please checkout [the entry in changelog.](./CHANGELOG.md#200-2020-05-06)
 
 ## Types
 Useful types are exported from the root. It is written with Typescript, so it will work great with any modern IDE/Editor.
