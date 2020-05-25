@@ -1,7 +1,6 @@
 import chalk from 'chalk'
 import cliCursor from 'cli-cursor'
 import cliTruncate from 'cli-truncate'
-import elegantSpinner from 'elegant-spinner'
 import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
@@ -31,8 +30,16 @@ export class DefaultRenderer implements ListrRenderer {
   private id?: NodeJS.Timeout
   private bottomBar: {[uuid: string]: {data?: string[], items?: number}} = {}
   private promptBar: string
+  private spinner: string[] = process.platform === 'win32' ?
+    [ '-', '\\', '|', '/' ] :
+    [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
+  private spinnerPosition = 0
 
-  constructor (public tasks: ListrTaskObject<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions']) {
+  constructor (
+    public tasks: ListrTaskObject<any, typeof DefaultRenderer>[],
+    public options: typeof DefaultRenderer['rendererOptions'],
+    public renderHook$?: ListrTaskObject<any, any>['renderHook$']
+  ) {
     this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
   }
 
@@ -59,14 +66,20 @@ export class DefaultRenderer implements ListrRenderer {
     // hide cursor
     cliCursor.hide()
 
+    const updateRender = (): void => logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
     this.id = setInterval(() => {
-      logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
+      this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
+      updateRender()
     }, 100)
+
+    this.renderHook$.subscribe(() => {
+      updateRender()
+    })
   }
 
   public end (): void {
+    clearInterval(this.id)
     if (this.id) {
-      clearInterval(this.id)
       this.id = undefined
     }
 
@@ -240,12 +253,8 @@ export class DefaultRenderer implements ListrRenderer {
 
   // eslint-disable-next-line complexity
   private getSymbol (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, data = false): string {
-    if (!task.spinner && !data) {
-      task.spinner = elegantSpinner()
-    }
-
     if (task.isPending() && !data) {
-      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.main.pointer) : chalk.yellowBright(task.spinner())
+      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.main.pointer) : chalk.yellowBright(this.spinner[this.spinnerPosition])
     }
 
     if (task.isCompleted() && !data) {

@@ -57,31 +57,28 @@
     "chalk": "^4.0.0",
     "cli-cursor": "^3.1.0",
     "cli-truncate": "^2.1.0",
-    "elegant-spinner": "^2.0.0",
     "enquirer": "^2.3.5",
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
     "log-update": "^4.0.0",
     "p-map": "^4.0.0",
-    "pad": "^3.2.0",
     "rxjs": "^6.5.5",
     "through": "^2.3.8",
-    "through2": "^3.0.1",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
     "@cenk1cenk2/eslint-config": "*",
     "@types/jest": "^25.2.3",
-    "@types/node": "^14.0.1",
+    "@types/node": "^14.0.5",
     "@types/rewire": "^2.5.28",
     "@types/uuid": "^7.0.2",
     "cz-conventional-changelog": "3.2.0",
     "delay": "^4.3.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "husky": "^4.2.5",
     "ink": "^2.7.1",
     "jest": "^26.0.1",
-    "lint-staged": "^10.2.4",
+    "lint-staged": "^10.2.6",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "rewire": "^5.0.0",
@@ -90,7 +87,7 @@
     "ts-node": "^8.10.1",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.3"
   },
   "config": {
     "commitizen": {

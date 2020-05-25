@@ -57,6 +57,74 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
+  logger.start('More complicated prompt.')
+  task = new Listr<Ctx>([
+    {
+      title: 'This task will get your input.',
+      task: async (ctx, task): Promise<void> => {
+        ctx.input = await task.prompt<boolean>('Select', { message: 'Do you love me?', choices: [ 'test', 'test', 'test', 'test' ] })
+      }
+    }
+  ], { concurrent: false })
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch(e) {
+    logger.fail(e)
+  }
+
+  logger.start('Very complicated prompt.')
+  task = new Listr<Ctx>([
+    {
+      title: 'This task will get your input.',
+      task: async (ctx, task): Promise<void> => {
+        ctx.input = await task.prompt<boolean>('Survey', {
+          name: 'experience',
+          message: 'Please rate your experience',
+          scale: [
+            { name: '1', message: 'Strongly Disagree' },
+            { name: '2', message: 'Disagree' },
+            { name: '3', message: 'Neutral' },
+            { name: '4', message: 'Agree' },
+            { name: '5', message: 'Strongly Agree' }
+          ],
+          margin: [ 0, 0, 2, 1 ],
+          choices: [
+            {
+              name: 'interface',
+              message: 'The website has a friendly interface.'
+            },
+            {
+              name: 'navigation',
+              message: 'The website is easy to navigate.'
+            },
+            {
+              name: 'images',
+              message: 'The website usually has good images.'
+            },
+            {
+              name: 'upload',
+              message: 'The website makes it easy to upload images.'
+            },
+            {
+              name: 'colors',
+              message: 'The website has a pleasing color palette.'
+            }
+          ]
+
+        })
+      }
+    }
+  ], { concurrent: false })
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch(e) {
+    logger.fail(e)
+  }
+
 }
 
 main()

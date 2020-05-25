@@ -49,6 +49,11 @@ interface StringPromptOptions extends BasePromptOptions {
   multiline?: boolean
 }
 
+interface ScalePromptOptions extends ArrayPromptOptions {
+  scale: StringPromptOptions[]
+  margin: [number, number, number, number]
+}
+
 interface NumberPromptOptions extends BasePromptOptions {
   min?: number
   max?: number
@@ -115,7 +120,7 @@ export type PromptOptionsType<T> =
                     T extends 'Numeral' ? NumberPromptOptions :
                       T extends 'Password' ? StringPromptOptions :
                         T extends 'Quiz' ? QuizPromptOptions :
-                          T extends 'Scale' ? ArrayPromptOptions :
+                          T extends 'Scale' ? ScalePromptOptions :
                             T extends 'Select' ? ArrayPromptOptions :
                               T extends 'Snippet' ? SnippetPromptOptions :
                                 T extends 'Sort' ? SortPromptOptions:

@@ -22,6 +22,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public prompt: boolean | PromptError
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
+  public renderHook$: Subject<void>
   private enabled: boolean
   private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
@@ -43,6 +44,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.enabledFn = this.tasks?.enabled || ((): boolean => true)
     // task options
     this.rendererTaskOptions = this.tasks.options
+
+    this.renderHook$ = this.listr.renderHook$
+    this.subscribe(() => { this.renderHook$.next() })
+
   }
 
   set state$ (state: StateConstants) {
@@ -52,6 +57,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       type: 'STATE',
       data: state
     })
+
   }
 
   async check (ctx: Ctx): Promise<void> {
@@ -69,6 +75,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         data: this.enabled
       })
     }
+
   }
 
   hasSubtasks (): boolean {
@@ -117,6 +124,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         // switch to silent renderer since already rendering
         const rendererClass = getRenderer('silent')
         result.rendererClass = rendererClass.renderer
+        result.renderHook$.subscribe((): void => { this.renderHook$.next() })
 
         // assign subtasks
         this.subtasks = result.tasks

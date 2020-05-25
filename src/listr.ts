@@ -1,4 +1,5 @@
 import pMap from 'p-map'
+import { Subject } from 'rxjs'
 
 import { stateConstants } from '@constants/state.constants'
 import {
@@ -26,6 +27,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
   public err: ListrError[] = []
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
+  public renderHook$: Subject<void> = new Subject<void>()
   private concurrency: number
   private renderer: ListrRenderer
 
@@ -97,7 +99,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
 
     // start the renderer
     if (!this.renderer) {
-      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions)
+      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.renderHook$)
     }
 
     this.renderer.render()

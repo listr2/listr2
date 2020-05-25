@@ -1,4 +1,4 @@
-import { cursorTo } from 'readline'
+/* eslint-disable no-control-regex */
 import through from 'through'
 
 import { stateConstants } from '@constants/state.constants'
@@ -19,6 +19,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
       type: 'TITLE',
       data: title
     })
+
   }
 
   get title (): string {
@@ -32,6 +33,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
       type: 'DATA',
       data
     })
+
   }
 
   get output (): string {
@@ -45,6 +47,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
       type: 'STATE',
       data
     })
+
   }
 
   public newListr (task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[], options?: ListrSubClassOptions<Ctx, Renderer>): Listr<Ctx, any, any> {
@@ -81,31 +84,18 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   }
 
   public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
-    let buffer: string[] = []
 
     return through((chunk: string) => {
-      // delete bell icon since it causes some problems
-      // eslint-disable-next-line no-control-regex
-      const bellIconRegexp = new RegExp(/\u0007/mg)
 
-      chunk.replace(bellIconRegexp, '')
+      const pattern = new RegExp(
+        '(?:\\u001b|\\u009b)\\[[\\=><~/#&.:=?%@~_-]*[0-9]*[\\a-ln-tqyz=><~/#&.:=?%@~_-]+',
+        'gmi')
 
-      // eslint-disable-next-line no-control-regex
-      const deleteMultiLineRegexp = new RegExp(/\u001b\[([0-9]*)G/mg)
-
-      const regexpIterator = chunk.matchAll(deleteMultiLineRegexp)
-      const matchedDeleteMultiLine = [ ...regexpIterator ]
-      matchedDeleteMultiLine.forEach((match) => {
-        if (match?.[1]) {
-          buffer = buffer.slice(-match?.[1])
-        }
-      })
-
-      chunk.replace(deleteMultiLineRegexp, '')
-
-      buffer = [ ...buffer, chunk ]
-
-      this.output = buffer.join('')
+      chunk = chunk.replace(pattern, '')
+      chunk = chunk.replace(new RegExp(/\u0007/, 'gmi'), '')
+      if (chunk !== '') {
+        this.output = chunk
+      }
 
     })
   }

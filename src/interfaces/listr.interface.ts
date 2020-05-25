@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs'
+import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
 import { stateConstants } from '@constants/state.constants'
@@ -37,7 +37,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   options: ListrOptions
   rendererOptions: ListrGetRendererOptions<Renderer>
   rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
-  spinner?: () => string
+  renderHook$: Subject<void>
   hasSubtasks(): boolean
   isPending(): boolean
   isSkipped(): boolean
@@ -64,7 +64,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   skip(message: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
   prompt<T = any, P extends PromptTypes = PromptTypes>(type: P, options: PromptOptionsType<P>): Promise<T>
-  stdout(): NodeJS.WriteStream & NodeJS.WritableStream
+  stdout(): NodeJS.WritableStream
 }
 
 export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx, ListrRendererFactory, any> | Readable | Observable<any>
@@ -160,7 +160,7 @@ export interface ListrRendererFactory {
   rendererOptions: Record<string, any>
   rendererTaskOptions: Record<string, any>
   nonTTY: boolean
-  new(tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions): ListrRenderer
+  new(tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>): ListrRenderer
 }
 
 export type ListrRendererValue = 'silent' | 'default' | 'verbose' | ListrRendererFactory
