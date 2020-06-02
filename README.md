@@ -23,10 +23,10 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
   - [Subtasks](#subtasks)
   - [Get User Input](#get-user-input)
 - [Attention: Enquirer is a optional dependency. Please install it first.](#attention-enquirer-is-a-optional-dependency-please-install-it-first)
-    - [Create A Prompt](#create-a-prompt)
-      - [Single Prompt](#single-prompt)
-      - [Multiple Prompts](#multiple-prompts)
-    - [Use an Custom Prompt](#use-an-custom-prompt)
+  - [Create A Prompt](#create-a-prompt)
+    - [Single Prompt](#single-prompt)
+    - [Multiple Prompts](#multiple-prompts)
+  - [Use an Custom Prompt](#use-an-custom-prompt)
   - [Enable a Task](#enable-a-task)
   - [Skip a Task](#skip-a-task)
   - [Show Output](#show-output)
@@ -278,7 +278,7 @@ _Please refer to [Throw Errors Section](#Throw-Errors) for more detailed and fur
 
 The input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
 
-> ## Attention: Enquirer is a optional dependency. Please install it first.
+> **Attention: Enquirer is a optional dependency. Please install it first.**
 
 So with running a `task.prompt` function, you can get access to any [enquirer](https://www.npmjs.com/package/enquirer) default prompts as well as using a custom enquirer prompt.
 
@@ -300,7 +300,7 @@ Prompts always rendered at the bottom of the tasks when using the default render
 
 _Please note that I rewrote the types for enquirer, since some of them was failing for me. So it may have a chance of having some mistakes in it since I usually do not use all of them._
 
-**>v2.1.0, defining the prompt style has been changed a little..**
+**>v2.1.0, defining the prompt style has been changed a little. It know requires type to be integrated inside the prompt itself, instead of passing two variables. Custom prompts still work the same way.**
 
 ##### Single Prompt
 
@@ -327,7 +327,7 @@ new Listr<Ctx>(
 
 ##### Multiple Prompts
 
-**Important: If you want to pass in an array of prompts, becareful that you should name them. This gets handled to return the single value directly in non-array variation of prompts by internal trickery.**
+**Important: If you want to pass in an array of prompts, becareful that you should name them, this is also enforced by Typescript as well. This is not true for single prompts, since they only return a single value, it will be directly gets passed to the assigned variable.**
 
 ```typescript
 new Listr<Ctx>(
