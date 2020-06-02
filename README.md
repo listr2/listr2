@@ -276,6 +276,8 @@ _Please refer to [Throw Errors Section](#Throw-Errors) for more detailed and fur
 
 The input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
 
+> ## Attention: Enquirer is a optional dependency. Please install it first.
+
 So with running a `task.prompt` function, you can get access to any [enquirer](https://www.npmjs.com/package/enquirer) default prompts as well as using a custom enquirer prompt.
 
 To get an input you can assign the task a new prompt in an async function and write the response to the context.
@@ -296,6 +298,10 @@ Prompts always rendered at the bottom of the tasks when using the default render
 
 _Please note that I rewrote the types for enquirer, since some of them was failing for me. So it may have a chance of having some mistakes in it since I usually do not use all of them._
 
+**>v2.1.0, defining the prompt style has been changed a little..**
+
+##### Single Prompt
+
 ```typescript
 new Listr<Ctx>(
   [
@@ -309,6 +315,34 @@ new Listr<Ctx>(
         // do something
         if (ctx.input === false) {
           throw new Error(':/')
+        }
+      }
+    }
+  ],
+  { concurrent: false }
+)
+```
+
+##### Multiple Prompts
+
+**Important: If you want to pass in an array of prompts, becareful that you should name them. This gets handled to return the single value directly in non-array variation of prompts by internal trickery.**
+
+```typescript
+new Listr<Ctx>(
+  [
+    {
+      title: 'This task will get your input.',
+      task: async (ctx, task): Promise<void> => {
+        ctx.input = await task.prompt<{ first: boolean; second: boolean }>([
+          { type: 'Toggle', name: 'first', message: 'Do you love me?' },
+          { type: 'Toggle', name: 'second', message: 'Do you love me?' }
+        ])
+        // do something
+        if (ctx.input.first === false) {
+          logger.log('oh okay')
+        }
+        if (ctx.input.second === false) {
+          throw new Error('You did not had to tell me for the second time')
         }
       }
     }

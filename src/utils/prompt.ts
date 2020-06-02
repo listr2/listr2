@@ -20,11 +20,11 @@ export async function createPrompt (options: PromptOptions | PromptOptions[], se
   }
 
   options = options.reduce((o, option) => {
-    return [ ...o, Object.assign(option, { stdout: this.stdout(), onCancel: cancelCallback.bind(this)(settings) }) ]
+    return [ ...o, Object.assign(option, { stdout: this.stdout(), onCancel: cancelCallback.bind(this, settings) }) ]
   }, [])
 
   try {
-    const { prompt } = (await import('enquirer') as any).default
+    const { prompt } = ((await import('enquirer')) as any).default
     // if this is a custom prompt
     return prompt(options as any)
   } catch (e) {

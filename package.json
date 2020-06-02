@@ -73,7 +73,6 @@
     "@types/uuid": "^7.0.2",
     "cz-conventional-changelog": "3.2.0",
     "delay": "^4.3.0",
-    "enquirer": "^2.3.5",
     "eslint": "^7.1.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
@@ -86,6 +85,9 @@
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
     "typescript": "^3.9.3"
+  },
+  "optionalDependencies": {
+    "enquirer": ">= 2.3.0 < 3"
   },
   "config": {
     "commitizen": {
