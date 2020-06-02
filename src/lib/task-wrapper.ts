@@ -6,7 +6,7 @@ import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
 import { createPrompt } from '@utils/prompt'
-import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
+import { PromptOptions } from '@utils/prompt.interface'
 
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
   constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[]) {}
@@ -70,12 +70,16 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
-  public async prompt<T = any, P extends PromptTypes = PromptTypes>(type: P, options: PromptOptionsType<P>): Promise<T> {
+  public async prompt<T = any>(options: PromptOptions | PromptOptions[]): Promise<T> {
     this.task.prompt = true
 
-    Object.assign(options, { stdout: this.stdout() })
+    const response = await createPrompt.bind(this)(options)
 
-    return createPrompt.bind(this)(type, options)
+    if (Object.keys(response).length === 1) {
+      return response.default
+    } else {
+      return response
+    }
   }
 
   public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {

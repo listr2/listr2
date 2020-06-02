@@ -200,7 +200,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
-        error = new Error('Cancelled the prompt.')
+        error = new Error(this.prompt.message)
       }
 
       // report error

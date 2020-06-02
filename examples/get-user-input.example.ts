@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Listr } from '@root/index'
+import { Listr } from '../src/index'
 import { Logger } from '@utils/logger'
 
 interface Ctx {
-  input: boolean
+  input: boolean | Record<string, boolean>
 }
 
 const logger = new Logger({ useIcons: false })
@@ -16,12 +16,19 @@ async function main (): Promise<void> {
   task = new Listr<Ctx>([
     {
       title: 'This task will get your input.',
-      task: async (ctx, task): Promise<boolean> => ctx.input = await task.prompt<boolean>('Toggle', { message: 'Do you love me?' })
+      task: async (ctx, task): Promise<Record<string, boolean>> => ctx.input = await task.prompt<{ test: boolean, other: boolean }>([
+        {
+          type: 'Toggle', name: 'test', message: 'test input?'
+        },
+        {
+          type: 'Toggle', name: 'other', message: 'other input?'
+        }
+      ])
     },
     {
       title: 'Now I will show the input value.',
       task: (ctx, task): void => {
-        task.output = String(ctx.input)
+        task.output = JSON.stringify(ctx.input)
       },
       options: {
         persistentOutput: true
@@ -41,7 +48,7 @@ async function main (): Promise<void> {
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt<boolean>('Toggle', { message: 'Do you love me?' })
+        ctx.input = await task.prompt<boolean>({ type: 'Toggle', message: 'Do you love me?' })
         // do something
         if (ctx.input === false) {
           throw new Error(':/')
@@ -62,7 +69,9 @@ async function main (): Promise<void> {
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt<boolean>('Select', { message: 'Do you love me?', choices: [ 'test', 'test', 'test', 'test' ] })
+        ctx.input = await task.prompt<boolean>({
+          type: 'Select', message: 'Do you love me?', choices: [ 'test', 'test', 'test', 'test' ]
+        })
       }
     }
   ], { concurrent: false })
@@ -79,7 +88,8 @@ async function main (): Promise<void> {
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt<boolean>('Survey', {
+        ctx.input = await task.prompt({
+          type: 'Survey',
           name: 'experience',
           message: 'Please rate your experience',
           scale: [
