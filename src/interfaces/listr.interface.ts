@@ -7,7 +7,7 @@ import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { Listr } from '@root/index'
-import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
+import { PromptOptions } from '@utils/prompt.interface'
 
 export type ListrContext = any
 
@@ -66,7 +66,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   report(error: Error): void
   skip(message: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
-  prompt<T = any, P extends PromptTypes = PromptTypes>(type: P, options: PromptOptionsType<P>): Promise<T>
+  prompt<T = any>(options: PromptOptions | PromptOptions[]): Promise<T>
   stdout(): NodeJS.WritableStream
 }
 

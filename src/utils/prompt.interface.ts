@@ -2,7 +2,15 @@ import Enquirer from 'enquirer'
 
 import { PromptError } from '@interfaces/listr.interface'
 
-export type PromptOptions = ArrayPromptOptions | BooleanPromptOptions | StringPromptOptions | NumberPromptOptions | SnippetPromptOptions | SortPromptOptions | BasePromptOptions
+export type PromptOptions = Unionize<
+{
+  [K in PromptTypes]-?: { type: K } & PromptOptionsType<K>
+}
+>
+
+export type Unionize<T extends object> = {
+  [P in keyof T]: T[P]
+}[keyof T]
 
 interface BasePromptOptions {
   name?: string | (() => string)
@@ -70,6 +78,11 @@ interface SortPromptOptions extends BasePromptOptions {
   numbered?: boolean
 }
 
+interface SurveyPromptOptions extends ArrayPromptOptions {
+  scale: BasePromptOptions[]
+  margin: [number, number, number, number]
+}
+
 interface QuizPromptOptions extends ArrayPromptOptions {
   correctChoice: number
 }
@@ -133,12 +146,14 @@ export type PromptOptionsType<T> = T extends 'AutoComplete'
                               : T extends 'Sort'
                                 ? SortPromptOptions
                                 : T extends 'Survey'
-                                  ? ArrayPromptOptions
+                                  ? SurveyPromptOptions
                                   : T extends 'Text'
                                     ? StringPromptOptions
                                     : T extends 'Toggle'
                                       ? TogglePromptOptions
-                                      : any
+                                      : T extends Enquirer.Prompt
+                                        ? any
+                                        : any
 
 export interface PromptSettings {
   error?: boolean
