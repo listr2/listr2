@@ -1,3 +1,11 @@
+# [2.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.1...v2.1.0-beta.2) (2020-06-02)
+
+
+### Features
+
+* **prompt:** make prompt module optional, be more compatible to underlying enqurier ([64cecc1](https://github.com/cenk1cenk2/listr2/commit/64cecc10049f5802a6e7a71071ec698e1226bdc2)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
+* **prompt:** use enquirer directly ([b34e9d0](https://github.com/cenk1cenk2/listr2/commit/b34e9d0b2ef9b0cbf723759c5a236eca8ac86af0)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
+
 # [2.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0-beta.1) (2020-05-25)
 
 
