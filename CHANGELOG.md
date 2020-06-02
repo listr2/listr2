@@ -1,3 +1,10 @@
+# [2.1.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.3...v2.1.0-beta.4) (2020-06-02)
+
+
+### Bug Fixes
+
+* **prompt:** enquirer to peer ([cae55e9](https://github.com/cenk1cenk2/listr2/commit/cae55e962faf54f3ddadc6c220567a316c8ee15b))
+
 # [2.1.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.2...v2.1.0-beta.3) (2020-06-02)
 
 
