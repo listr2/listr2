@@ -2,9 +2,9 @@ import Enquirer from 'enquirer'
 
 import { PromptError } from '@interfaces/listr.interface'
 
-export type PromptOptions = Unionize<
+export type PromptOptions<T extends boolean = false> = Unionize<
 {
-  [K in PromptTypes]-?: { type: K } & PromptOptionsType<K>
+  [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
 }
 >
 
@@ -13,7 +13,6 @@ export type Unionize<T extends object> = {
 }[keyof T]
 
 interface BasePromptOptions {
-  name?: string | (() => string)
   message: string | (() => string) | (() => Promise<string>)
   initial?: boolean | number | string | (() => string) | (() => Promise<string>)
   required?: boolean
@@ -27,8 +26,12 @@ interface BasePromptOptions {
   onCancel?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
 }
 
+interface BasePromptOptionsWithName extends BasePromptOptions {
+  name: string | (() => string)
+}
+
 interface ArrayPromptOptions extends BasePromptOptions {
-  choices: string[] | BasePromptOptions[]
+  choices: string[] | BasePromptOptionsWithName[]
   maxChoices?: number
   muliple?: boolean
   initial?: number
@@ -52,7 +55,7 @@ interface StringPromptOptions extends BasePromptOptions {
 
 interface ScalePromptOptions extends ArrayPromptOptions {
   scale: StringPromptOptions[]
-  margin: [number, number, number, number]
+  margin?: [number, number, number, number]
 }
 
 interface NumberPromptOptions extends BasePromptOptions {
@@ -68,7 +71,7 @@ interface NumberPromptOptions extends BasePromptOptions {
 
 interface SnippetPromptOptions extends BasePromptOptions {
   newline?: string
-  fields: Partial<BasePromptOptions>[]
+  fields: Partial<BasePromptOptionsWithName>[]
   template: string
 }
 
@@ -79,7 +82,7 @@ interface SortPromptOptions extends BasePromptOptions {
 }
 
 interface SurveyPromptOptions extends ArrayPromptOptions {
-  scale: BasePromptOptions[]
+  scale: BasePromptOptionsWithName[]
   margin: [number, number, number, number]
 }
 

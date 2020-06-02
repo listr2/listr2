@@ -2,7 +2,7 @@ import { PromptOptions, PromptSettings } from './prompt.interface'
 import { PromptError } from '@interfaces/listr.interface'
 import { TaskWrapper } from '@root/lib/task-wrapper'
 
-export async function createPrompt (options: PromptOptions | PromptOptions[], settings?: PromptSettings): Promise<any> {
+export async function createPrompt (options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
   if (settings?.cancelCallback) {

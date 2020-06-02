@@ -90,7 +90,6 @@ async function main (): Promise<void> {
       task: async (ctx, task): Promise<void> => {
         ctx.input = await task.prompt({
           type: 'Survey',
-          name: 'experience',
           message: 'Please rate your experience',
           scale: [
             { name: '1', message: 'Strongly Disagree' },

@@ -70,7 +70,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
-  public async prompt<T = any>(options: PromptOptions | PromptOptions[]): Promise<T> {
+  public async prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T> {
     this.task.prompt = true
 
     const response = await createPrompt.bind(this)(options)
