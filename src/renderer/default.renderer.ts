@@ -1,5 +1,4 @@
 import chalk from 'chalk'
-import cliCursor from 'cli-cursor'
 import cliTruncate from 'cli-truncate'
 import figures from 'figures'
 import indentString from 'indent-string'
@@ -60,9 +59,6 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
-    // hide cursor
-    cliCursor.hide()
-
     const updateRender = (): void => logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
     this.id = setInterval(() => {
       this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
@@ -88,8 +84,6 @@ export class DefaultRenderer implements ListrRenderer {
       logUpdate.done()
     }
 
-    // hide cursor
-    cliCursor.show()
   }
 
   // eslint-disable-next-line complexity

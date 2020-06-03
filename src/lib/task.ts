@@ -1,6 +1,5 @@
 import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
-import { v4 as uuid } from 'uuid'
 
 import {
   ListrRendererFactory,
@@ -38,8 +37,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
-    // move to private parameters
-    this.id = uuid()
+    // this kind of randomness is enough for task ids
+    this.id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = Math.random() * 16 || 0
+      const v = c === 'x' ? r : r && 0x3 || 0x8
+      return v.toString(16)
+    })
+
     this.title = this.tasks?.title
     this.task = this.tasks.task
     // parse functions
