@@ -16,14 +16,14 @@ interface BasePromptOptions {
   message: string | (() => string) | (() => Promise<string>)
   initial?: boolean | number | string | (() => string) | (() => Promise<string>)
   required?: boolean
-  skip?: ((state: object) => boolean | Promise<boolean>) | boolean
   stdin?: NodeJS.ReadStream
   stdout?: NodeJS.WriteStream
-  format?(value: any): any | Promise<any>
-  result?(value: any): any | Promise<any>
-  validate?(value: any): boolean | Promise<boolean> | string | Promise<string>
-  onSubmit?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
-  onCancel?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
+  skip? (value: any): boolean | Promise<boolean>
+  format? (value: any): any | Promise<any>
+  result? (value: any): any | Promise<any>
+  validate? (value: any, state: any): boolean | Promise<boolean> | string | Promise<string>
+  onSubmit? (name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
+  onCancel? (name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
 }
 
 interface BasePromptOptionsWithName extends BasePromptOptions {

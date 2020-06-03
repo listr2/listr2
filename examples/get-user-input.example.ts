@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+import Enquirer from 'enquirer'
+
 import { Listr } from '../src/index'
 import { Logger } from '@utils/logger'
 
@@ -18,10 +20,24 @@ async function main (): Promise<void> {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<Record<string, boolean>> => ctx.input = await task.prompt<{ test: boolean, other: boolean }>([
         {
-          type: 'Toggle', name: 'test', message: 'test input?'
+          type: 'Select',
+          name: 'first',
+          message: 'Please select something',
+          choices: [ 'A', 'B', 'C' ],
+          validate: (response): boolean | string => {
+            //  i do declare you valid!
+            if (response === 'A') {
+              return true
+            }
+          }
         },
         {
-          type: 'Toggle', name: 'other', message: 'other input?'
+          type: 'Input',
+          name: 'second',
+          message: 'Please type something in:',
+          skip: (answers: { first: string }): boolean => {
+            return answers.first === 'A'
+          }
         }
       ])
     },
@@ -34,7 +50,7 @@ async function main (): Promise<void> {
         persistentOutput: true
       }
     }
-  ], { concurrent: false })
+  ], { concurrent: false, renderer: 'verbose' as 'default' })
 
   try {
     const context = await task.run()
