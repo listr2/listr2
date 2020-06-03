@@ -45,7 +45,7 @@ async function main (): Promise<void> {
         persistentOutput: true
       }
     }
-  ], { concurrent: false, renderer: 'verbose' as 'default' })
+  ], { concurrent: false })
 
   try {
     const context = await task.run()
