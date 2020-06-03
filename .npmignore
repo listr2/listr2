@@ -12,6 +12,8 @@ TODO.md
 release.config.js
 CHANGELOG.md
 examples/
+.prettierrc*
+
 # coverage
 coverage/
 tests/

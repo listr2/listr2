@@ -2,25 +2,36 @@ import Enquirer from 'enquirer'
 
 import { PromptError } from '@interfaces/listr.interface'
 
-export type PromptOptions = ArrayPromptOptions | BooleanPromptOptions | StringPromptOptions | NumberPromptOptions | SnippetPromptOptions | SortPromptOptions | BasePromptOptions
+export type PromptOptions<T extends boolean = false> = Unionize<
+{
+  [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
+}
+>
+
+export type Unionize<T extends object> = {
+  [P in keyof T]: T[P]
+}[keyof T]
 
 interface BasePromptOptions {
-  name?: string | (() => string)
   message: string | (() => string) | (() => Promise<string>)
   initial?: boolean | number | string | (() => string) | (() => Promise<string>)
   required?: boolean
-  skip?: ((state: object) => boolean | Promise<boolean>) | boolean
   stdin?: NodeJS.ReadStream
   stdout?: NodeJS.WriteStream
+  skip?(value: any): boolean | Promise<boolean>
   format?(value: any): any | Promise<any>
   result?(value: any): any | Promise<any>
-  validate?(value: any): boolean | Promise<boolean> | string | Promise<string>
+  validate?(value: any, state: any): boolean | Promise<boolean> | string | Promise<string>
   onSubmit?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
   onCancel?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
 }
 
+interface BasePromptOptionsWithName extends BasePromptOptions {
+  name: string | (() => string)
+}
+
 interface ArrayPromptOptions extends BasePromptOptions {
-  choices: string[] | BasePromptOptions[]
+  choices: string[] | BasePromptOptionsWithName[]
   maxChoices?: number
   muliple?: boolean
   initial?: number
@@ -44,7 +55,7 @@ interface StringPromptOptions extends BasePromptOptions {
 
 interface ScalePromptOptions extends ArrayPromptOptions {
   scale: StringPromptOptions[]
-  margin: [number, number, number, number]
+  margin?: [number, number, number, number]
 }
 
 interface NumberPromptOptions extends BasePromptOptions {
@@ -60,7 +71,7 @@ interface NumberPromptOptions extends BasePromptOptions {
 
 interface SnippetPromptOptions extends BasePromptOptions {
   newline?: string
-  fields: Partial<BasePromptOptions>[]
+  fields: Partial<BasePromptOptionsWithName>[]
   template: string
 }
 
@@ -68,6 +79,11 @@ interface SortPromptOptions extends BasePromptOptions {
   hint?: string
   drag?: boolean
   numbered?: boolean
+}
+
+interface SurveyPromptOptions extends ArrayPromptOptions {
+  scale: BasePromptOptionsWithName[]
+  margin: [number, number, number, number]
 }
 
 interface QuizPromptOptions extends ArrayPromptOptions {
@@ -133,12 +149,14 @@ export type PromptOptionsType<T> = T extends 'AutoComplete'
                               : T extends 'Sort'
                                 ? SortPromptOptions
                                 : T extends 'Survey'
-                                  ? ArrayPromptOptions
+                                  ? SurveyPromptOptions
                                   : T extends 'Text'
                                     ? StringPromptOptions
                                     : T extends 'Toggle'
                                       ? TogglePromptOptions
-                                      : any
+                                      : T extends Enquirer.Prompt
+                                        ? any
+                                        : any
 
 export interface PromptSettings {
   error?: boolean
