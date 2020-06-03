@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import Enquirer from 'enquirer'
-
 import { Listr } from '../src/index'
 import { Logger } from '@utils/logger'
 
@@ -34,10 +32,7 @@ async function main (): Promise<void> {
         {
           type: 'Input',
           name: 'second',
-          message: 'Please type something in:',
-          skip: (answers: { first: string }): boolean => {
-            return answers.first === 'A'
-          }
+          message: 'Please type something in:'
         }
       ])
     },
