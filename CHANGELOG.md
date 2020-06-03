@@ -1,3 +1,13 @@
+# [2.1.0-beta.6](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.5...v2.1.0-beta.6) (2020-06-03)
+
+
+### Bug Fixes
+
+* **deps:** remove trivial deps ([de8dec0](https://github.com/cenk1cenk2/listr2/commit/de8dec09b45fa09ddc8afb1d7742846ba3b620dd))
+* **deps:** remove unnecassary types ([b37f416](https://github.com/cenk1cenk2/listr2/commit/b37f416fbed04d531b1dca5495d7008ecedf4ab5))
+* **deps:** updated deps to latest ([c4ad38f](https://github.com/cenk1cenk2/listr2/commit/c4ad38f32510d598a4c93d19ca517eef81c841a2))
+* **stream:** fixed streams added example ([614d89f](https://github.com/cenk1cenk2/listr2/commit/614d89fc1b64e7a586a7a590233d4dce1696b7b4)), closes [#37](https://github.com/cenk1cenk2/listr2/issues/37)
+
 # [2.1.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.4...v2.1.0-beta.5) (2020-06-03)
 
 
