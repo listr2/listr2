@@ -67,7 +67,6 @@
     "@types/jest": "^25.2.3",
     "@types/node": "^14.0.5",
     "@types/rewire": "^2.5.28",
-    "@types/uuid": "^7.0.2",
     "cz-conventional-changelog": "3.2.0",
     "delay": "^4.3.0",
     "enquirer": "^2.3.5",
