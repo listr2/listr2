@@ -1,6 +1,5 @@
-import sttoob from '@samverschueren/stream-to-observable'
 import { Observable, Subject } from 'rxjs'
-import { Stream } from 'stream'
+import { Readable } from 'stream'
 import { v4 as uuid } from 'uuid'
 
 import {
@@ -143,9 +142,20 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       } else if (result instanceof Promise) {
         // Detect promise
         result = result.then(handleResult)
-      } else if (result instanceof Stream.Readable) {
+      } else if (result instanceof Readable) {
         // Detect stream
-        result = sttoob(result)
+        result = new Promise((resolve, reject) => {
+          result.on('data', (data: Buffer) => {
+            this.output = data.toString()
+
+            this.next({
+              type: 'DATA',
+              data: data.toString()
+            })
+          })
+          result.on('error', (error: Error) => reject(error))
+          result.on('end', () => resolve())
+        })
       } else if (result instanceof Observable) {
         // Detect Observable
         result = new Promise((resolve, reject) => {

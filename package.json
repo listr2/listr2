@@ -53,7 +53,6 @@
     "idle"
   ],
   "dependencies": {
-    "@samverschueren/stream-to-observable": "^0.3.0",
     "chalk": "^4.0.0",
     "cli-cursor": "^3.1.0",
     "cli-truncate": "^2.1.0",

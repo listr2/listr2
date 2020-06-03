@@ -542,6 +542,8 @@ new Listr<Ctx>(
 
 Since observables and streams are supported they can also be used to generate output.
 
+_Please refer to [examples section](examples/stream.example.ts) for more detailed and further examples._
+
 ```typescript
 new Listr<Ctx>(
   [
