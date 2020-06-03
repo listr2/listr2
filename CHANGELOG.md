@@ -1,3 +1,10 @@
+# [2.1.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.4...v2.1.0-beta.5) (2020-06-03)
+
+
+### Bug Fixes
+
+* **prompt:** types ([110130a](https://github.com/cenk1cenk2/listr2/commit/110130a6c0a6b3443362cd8fc018e18b6ef5fbbc))
+
 # [2.1.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.3...v2.1.0-beta.4) (2020-06-02)
 
 
