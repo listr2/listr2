@@ -2,32 +2,36 @@ import Enquirer from 'enquirer'
 
 import { PromptError } from '@interfaces/listr.interface'
 
-export type PromptOptions =
-  | ArrayPromptOptions
-  | BooleanPromptOptions
-  | StringPromptOptions
-  | NumberPromptOptions
-  | SnippetPromptOptions
-  | SortPromptOptions
-  | BasePromptOptions
+export type PromptOptions<T extends boolean = false> = Unionize<
+{
+  [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
+}
+>
+
+export type Unionize<T extends object> = {
+  [P in keyof T]: T[P]
+}[keyof T]
 
 interface BasePromptOptions {
-  name?: string | (() => string)
   message: string | (() => string) | (() => Promise<string>)
   initial?: boolean | number | string | (() => string) | (() => Promise<string>)
   required?: boolean
-  skip?: ((state: object) => boolean | Promise<boolean>) | boolean
   stdin?: NodeJS.ReadStream
   stdout?: NodeJS.WriteStream
+  skip?(value: any): boolean | Promise<boolean>
   format?(value: any): any | Promise<any>
   result?(value: any): any | Promise<any>
-  validate?(value: any): boolean | Promise<boolean> | string | Promise<string>
+  validate?(value: any, state: any): boolean | Promise<boolean> | string | Promise<string>
   onSubmit?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
   onCancel?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
 }
 
+interface BasePromptOptionsWithName extends BasePromptOptions {
+  name: string | (() => string)
+}
+
 interface ArrayPromptOptions extends BasePromptOptions {
-  choices: string[] | BasePromptOptions[]
+  choices: string[] | BasePromptOptionsWithName[]
   maxChoices?: number
   muliple?: boolean
   initial?: number
@@ -49,6 +53,11 @@ interface StringPromptOptions extends BasePromptOptions {
   multiline?: boolean
 }
 
+interface ScalePromptOptions extends ArrayPromptOptions {
+  scale: StringPromptOptions[]
+  margin?: [number, number, number, number]
+}
+
 interface NumberPromptOptions extends BasePromptOptions {
   min?: number
   max?: number
@@ -62,7 +71,7 @@ interface NumberPromptOptions extends BasePromptOptions {
 
 interface SnippetPromptOptions extends BasePromptOptions {
   newline?: string
-  fields: Partial<BasePromptOptions>[]
+  fields: Partial<BasePromptOptionsWithName>[]
   template: string
 }
 
@@ -70,6 +79,11 @@ interface SortPromptOptions extends BasePromptOptions {
   hint?: string
   drag?: boolean
   numbered?: boolean
+}
+
+interface SurveyPromptOptions extends ArrayPromptOptions {
+  scale: BasePromptOptionsWithName[]
+  margin: [number, number, number, number]
 }
 
 interface QuizPromptOptions extends ArrayPromptOptions {
@@ -82,47 +96,67 @@ interface TogglePromptOptions extends BasePromptOptions {
 }
 
 export type PromptTypes =
-| 'AutoComplete'
-| 'BasicAuth'
-| 'Confirm'
-| 'Editable'
-| 'Form'
-| 'Input'
-| 'Invisible'
-| 'List'
-| 'MultiSelect'
-| 'Numeral'
-| 'Password'
-| 'Quiz'
-| 'Scale'
-| 'Select'
-| 'Snippet'
-| 'Sort'
-| 'Survey'
-| 'Text'
-| 'Toggle'
+  | 'AutoComplete'
+  | 'BasicAuth'
+  | 'Confirm'
+  | 'Editable'
+  | 'Form'
+  | 'Input'
+  | 'Invisible'
+  | 'List'
+  | 'MultiSelect'
+  | 'Numeral'
+  | 'Password'
+  | 'Quiz'
+  | 'Scale'
+  | 'Select'
+  | 'Snippet'
+  | 'Sort'
+  | 'Survey'
+  | 'Text'
+  | 'Toggle'
 
-export type PromptOptionsType<T> =
-  T extends 'AutoComplete' ? ArrayPromptOptions :
-    T extends 'BasicAuth' ? StringPromptOptions :
-      T extends 'Confirm' ? BooleanPromptOptions :
-        T extends 'Editable' ? ArrayPromptOptions :
-          T extends 'Form' ? ArrayPromptOptions :
-            T extends 'Input' ? StringPromptOptions :
-              T extends 'Invisible' ? StringPromptOptions :
-                T extends 'List' ? ArrayPromptOptions :
-                  T extends 'MultiSelect' ? ArrayPromptOptions :
-                    T extends 'Numeral' ? NumberPromptOptions :
-                      T extends 'Password' ? StringPromptOptions :
-                        T extends 'Quiz' ? QuizPromptOptions :
-                          T extends 'Scale' ? ArrayPromptOptions :
-                            T extends 'Select' ? ArrayPromptOptions :
-                              T extends 'Snippet' ? SnippetPromptOptions :
-                                T extends 'Sort' ? SortPromptOptions:
-                                  T extends 'Survey' ? ArrayPromptOptions :
-                                    T extends 'Text' ? StringPromptOptions:
-                                      T extends 'Toggle'? TogglePromptOptions :
-                                        any
+export type PromptOptionsType<T> = T extends 'AutoComplete'
+  ? ArrayPromptOptions
+  : T extends 'BasicAuth'
+    ? StringPromptOptions
+    : T extends 'Confirm'
+      ? BooleanPromptOptions
+      : T extends 'Editable'
+        ? ArrayPromptOptions
+        : T extends 'Form'
+          ? ArrayPromptOptions
+          : T extends 'Input'
+            ? StringPromptOptions
+            : T extends 'Invisible'
+              ? StringPromptOptions
+              : T extends 'List'
+                ? ArrayPromptOptions
+                : T extends 'MultiSelect'
+                  ? ArrayPromptOptions
+                  : T extends 'Numeral'
+                    ? NumberPromptOptions
+                    : T extends 'Password'
+                      ? StringPromptOptions
+                      : T extends 'Quiz'
+                        ? QuizPromptOptions
+                        : T extends 'Scale'
+                          ? ScalePromptOptions
+                          : T extends 'Select'
+                            ? ArrayPromptOptions
+                            : T extends 'Snippet'
+                              ? SnippetPromptOptions
+                              : T extends 'Sort'
+                                ? SortPromptOptions
+                                : T extends 'Survey'
+                                  ? SurveyPromptOptions
+                                  : T extends 'Text'
+                                    ? StringPromptOptions
+                                    : T extends 'Toggle'
+                                      ? TogglePromptOptions
+                                      : T extends Enquirer.Prompt
+                                        ? any
+                                        : any
 
 export interface PromptSettings {
   error?: boolean

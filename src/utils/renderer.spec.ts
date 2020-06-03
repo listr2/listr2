@@ -7,7 +7,6 @@ import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { getRenderer } from '@utils/renderer'
 
 describe('renderers', () => {
-
   it('should return default renderer', async () => {
     expect(getRenderer('default').renderer.name).toEqual(DefaultRenderer.name)
   })
@@ -23,7 +22,10 @@ describe('renderers', () => {
   it('should return verbose renderer if non-tty', async () => {
     const renderer = rewire('@utils/renderer')
 
-    renderer.__set__('isRendererSupported', jest.fn(() => false))
+    renderer.__set__(
+      'isRendererSupported',
+      jest.fn(() => false)
+    )
 
     expect(renderer.__get__('getRenderer')('default', 'verbose').renderer.name).toEqual(VerboseRenderer.name)
     expect(renderer.__get__('isRendererSupported')).toBeCalledTimes(1)
@@ -32,7 +34,10 @@ describe('renderers', () => {
   it('should return default renderer if tty', async () => {
     const renderer = rewire('@utils/renderer')
 
-    renderer.__set__('isRendererSupported', jest.fn(() => true))
+    renderer.__set__(
+      'isRendererSupported',
+      jest.fn(() => true)
+    )
 
     expect(renderer.__get__('getRenderer')('default', 'verbose').renderer.name).toEqual(DefaultRenderer.name)
     expect(renderer.__get__('isRendererSupported')).toBeCalledTimes(1)

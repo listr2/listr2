@@ -1,13 +1,21 @@
-import sttoob from '@samverschueren/stream-to-observable'
 import { Observable, Subject } from 'rxjs'
-import { Stream } from 'stream'
-import { v4 as uuid } from 'uuid'
+import { Readable } from 'stream'
 
-import { stateConstants } from '@constants/state.constants'
 import {
-  ListrRendererFactory, ListrGetRendererTaskOptions,
-  ListrContext, ListrError, ListrEvent, ListrOptions, ListrTask, ListrTaskObject, ListrTaskWrapper, PromptError, ListrGetRendererOptions, StateConstants
+  ListrRendererFactory,
+  ListrGetRendererTaskOptions,
+  ListrContext,
+  ListrError,
+  ListrEvent,
+  ListrOptions,
+  ListrTask,
+  ListrTaskObject,
+  ListrTaskWrapper,
+  PromptError,
+  ListrGetRendererOptions,
+  StateConstants
 } from '@interfaces/listr.interface'
+import { stateConstants } from '@interfaces/state.constants'
 import { Listr } from '@root/index'
 import { getRenderer } from '@utils/renderer'
 
@@ -22,20 +30,20 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public prompt: boolean | PromptError
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
+  public renderHook$: Subject<void>
   private enabled: boolean
   private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
-  constructor (
-    public listr: Listr<Ctx, any, any>,
-    public tasks: ListrTask<Ctx, any>,
-    public options: ListrOptions,
-    public rendererOptions: ListrGetRendererOptions<Renderer>
-  ) {
-
+  constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
-    // move to private parameters
-    this.id = uuid()
+    // this kind of randomness is enough for task ids
+    this.id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = Math.random() * 16 || 0
+      const v = c === 'x' ? r : r && 0x3 || 0x8
+      return v.toString(16)
+    })
+
     this.title = this.tasks?.title
     this.task = this.tasks.task
     // parse functions
@@ -43,6 +51,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.enabledFn = this.tasks?.enabled || ((): boolean => true)
     // task options
     this.rendererTaskOptions = this.tasks.options
+
+    this.renderHook$ = this.listr.renderHook$
+    this.subscribe(() => {
+      this.renderHook$.next()
+    })
   }
 
   set state$ (state: StateConstants) {
@@ -57,7 +70,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   async check (ctx: Ctx): Promise<void> {
     // Check if a task is enabled or disabled
     if (this.state === undefined) {
-
       if (typeof this.enabledFn === 'function') {
         this.enabled = await this.enabledFn(ctx)
       } else {
@@ -117,6 +129,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         // switch to silent renderer since already rendering
         const rendererClass = getRenderer('silent')
         result.rendererClass = rendererClass.renderer
+        result.renderHook$.subscribe((): void => {
+          this.renderHook$.next()
+        })
 
         // assign subtasks
         this.subtasks = result.tasks
@@ -125,18 +140,26 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
         result = result.run(context)
 
-      // eslint-disable-next-line no-empty
+        // eslint-disable-next-line no-empty
       } else if (this.isPrompt()) {
         // do nothing, it is already being handled
-
       } else if (result instanceof Promise) {
         // Detect promise
         result = result.then(handleResult)
-
-      } else if (result instanceof Stream.Readable) {
+      } else if (result instanceof Readable) {
         // Detect stream
-        result = sttoob(result)
+        result = new Promise((resolve, reject) => {
+          result.on('data', (data: Buffer) => {
+            this.output = data.toString()
 
+            this.next({
+              type: 'DATA',
+              data: data.toString()
+            })
+          })
+          result.on('error', (error: Error) => reject(error))
+          result.on('end', () => resolve())
+        })
       } else if (result instanceof Observable) {
         // Detect Observable
         result = new Promise((resolve, reject) => {
@@ -184,16 +207,14 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       if (this.isPending()) {
         this.state$ = stateConstants.COMPLETED
       }
-
     } catch (error) {
-
       // mark task as failed
       this.state$ = stateConstants.FAILED
 
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
-        error = new Error('Cancelled the prompt.')
+        error = new Error(this.prompt.message)
       }
 
       // report error
@@ -213,7 +234,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       if (this.listr.options.exitOnError !== false) {
         throw error
       }
-
     } finally {
       // Mark the observable as completed
       this.complete()

@@ -1,14 +1,14 @@
+/* eslint-disable no-control-regex */
 import through from 'through'
 
-import { stateConstants } from '@constants/state.constants'
 import { ListrError, ListrRendererFactory, ListrSubClassOptions, ListrTask, ListrTaskWrapper, StateConstants } from '@interfaces/listr.interface'
+import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
 import { createPrompt } from '@utils/prompt'
-import { PromptOptionsType, PromptTypes } from '@utils/prompt.interface'
+import { PromptOptions } from '@utils/prompt.interface'
 
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
-
   constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[]) {}
 
   set title (title) {
@@ -60,7 +60,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
       this.errors.push(error)
       this.output = error.message || this.task?.title || 'Task with no title.'
     }
-
   }
 
   public skip (message: string): void {
@@ -71,29 +70,30 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
-  public async prompt <T = any, P extends PromptTypes = PromptTypes> (type: P, options: PromptOptionsType<P>): Promise<T> {
+  public async prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T> {
     this.task.prompt = true
 
-    let buffer = Buffer.alloc(64)
+    const response = await createPrompt.bind(this)(options)
 
-    const outputStream = through((data) => {
-      buffer += data
+    if (Object.keys(response).length === 1) {
+      return response.default
+    } else {
+      return response
+    }
+  }
 
-      // eslint-disable-next-line no-control-regex
-      const deleteMultiLineRegexp = new RegExp(/.*(\u001b\[[0-9]*G|\u0007).*/m)
+  public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
+    return through((chunk: string) => {
+      const pattern = new RegExp('(?:\\u001b|\\u009b)\\[[\\=><~/#&.:=?%@~_-]*[0-9]*[\\a-ln-tqyz=><~/#&.:=?%@~_-]+', 'gmi')
 
-      if (deleteMultiLineRegexp.test(buffer.toString())) {
-        buffer = Buffer.alloc(64)
+      chunk = chunk.toString()
 
-      } else {
-        this.output = buffer.toString()
-
+      chunk = chunk.replace(pattern, '')
+      chunk = chunk.replace(new RegExp(/\u0007/, 'gmi'), '')
+      if (chunk !== '') {
+        this.output = chunk
       }
     })
-
-    Object.assign(options, { stdout: outputStream })
-
-    return createPrompt.bind(this)(type, options)
   }
 
   public run (ctx: Ctx): Promise<void> {
