@@ -86,6 +86,8 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     return through((chunk: string) => {
       const pattern = new RegExp('(?:\\u001b|\\u009b)\\[[\\=><~/#&.:=?%@~_-]*[0-9]*[\\a-ln-tqyz=><~/#&.:=?%@~_-]+', 'gmi')
 
+      chunk = chunk.toString()
+
       chunk = chunk.replace(pattern, '')
       chunk = chunk.replace(new RegExp(/\u0007/, 'gmi'), '')
       if (chunk !== '') {

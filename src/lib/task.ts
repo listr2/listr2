@@ -1,7 +1,5 @@
-import sttoob from '@samverschueren/stream-to-observable'
 import { Observable, Subject } from 'rxjs'
-import { Stream } from 'stream'
-import { v4 as uuid } from 'uuid'
+import { Readable } from 'stream'
 
 import {
   ListrRendererFactory,
@@ -39,8 +37,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
-    // move to private parameters
-    this.id = uuid()
+    // this kind of randomness is enough for task ids
+    this.id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = Math.random() * 16 || 0
+      const v = c === 'x' ? r : r && 0x3 || 0x8
+      return v.toString(16)
+    })
+
     this.title = this.tasks?.title
     this.task = this.tasks.task
     // parse functions
@@ -143,9 +146,20 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       } else if (result instanceof Promise) {
         // Detect promise
         result = result.then(handleResult)
-      } else if (result instanceof Stream.Readable) {
+      } else if (result instanceof Readable) {
         // Detect stream
-        result = sttoob(result)
+        result = new Promise((resolve, reject) => {
+          result.on('data', (data: Buffer) => {
+            this.output = data.toString()
+
+            this.next({
+              type: 'DATA',
+              data: data.toString()
+            })
+          })
+          result.on('error', (error: Error) => reject(error))
+          result.on('end', () => resolve())
+        })
       } else if (result instanceof Observable) {
         // Detect Observable
         result = new Promise((resolve, reject) => {

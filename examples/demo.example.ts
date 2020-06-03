@@ -6,7 +6,9 @@ async function main (): Promise<void> {
   await new Listr([
     {
       title: 'Geting you on-board.',
-      task: async (ctx, task): Promise<boolean> => ctx.user = await task.prompt('Toggle', { message: 'Do you want to create beautiful CLI interfaces?', initial: true })
+      task: async (ctx, task): Promise<boolean> => ctx.user = await task.prompt({
+        type: 'Toggle', message: 'Do you want to create beautiful CLI interfaces?', initial: true
+      })
     },
 
     {
