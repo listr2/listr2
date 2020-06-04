@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/cenk1cenk2/listr2/compare/v2.1.0...v2.1.1) (2020-06-04)
+
+
+### Bug Fixes
+
+* **streams:** add legacy streams to accepted types ([f63dd52](https://github.com/cenk1cenk2/listr2/commit/f63dd52167c2babada80ff5d092843ead2ca86e7))
+
 # [2.1.0](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0) (2020-06-03)
 
 
