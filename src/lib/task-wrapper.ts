@@ -73,13 +73,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   public async prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T> {
     this.task.prompt = true
 
-    const response = await createPrompt.bind(this)(options)
-
-    if (Object.keys(response).length === 1) {
-      return response.default
-    } else {
-      return response
-    }
+    return createPrompt.bind(this)(options)
   }
 
   public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {

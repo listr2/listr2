@@ -26,7 +26,13 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   try {
     const { prompt } = ((await import('enquirer')) as any).default
     // if this is a custom prompt
-    return prompt(options as any)
+    const response = await prompt(options as any)
+
+    if (Object.keys(response).length === 1) {
+      return response.default
+    } else {
+      return response
+    }
   } catch (e) {
     this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
   }
