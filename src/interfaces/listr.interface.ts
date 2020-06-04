@@ -70,7 +70,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   stdout(): NodeJS.WritableStream
 }
 
-export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx, ListrRendererFactory, any> | Readable | Observable<any>
+export type ListrTaskResult<Ctx> = string | Promise<any> | ListrClass<Ctx, ListrRendererFactory, any> | Readable | NodeJS.ReadableStream | Observable<any>
 
 export type ListrBaseClassOptions<
   Ctx = ListrContext,
