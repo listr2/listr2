@@ -20,7 +20,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   }
 
   options = options.reduce((o, option) => {
-    return [ ...o, Object.assign(option, { stdout: this.stdout(), onCancel: cancelCallback.bind(this, settings) }) ]
+    return [ ...o, Object.assign(option, { stdout: settings.stdout ?? this.stdout(), onCancel: cancelCallback.bind(this, settings) }) ]
   }, [])
 
   try {
