@@ -1,4 +1,6 @@
 import Enquirer from 'enquirer'
+import { WriteStream } from 'fs'
+import { Writable } from 'stream'
 
 import { PromptError } from '@interfaces/listr.interface'
 
@@ -161,4 +163,5 @@ export type PromptOptionsType<T> = T extends 'AutoComplete'
 export interface PromptSettings {
   error?: boolean
   cancelCallback?: (settings?: PromptSettings) => string | Error | PromptError | void
+  stdout?: WriteStream | Writable
 }
