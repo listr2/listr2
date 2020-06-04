@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/cenk1cenk2/listr2/compare/v2.1.1...v2.1.2) (2020-06-04)
+
+
+### Bug Fixes
+
+* **prompt:** added option to call prompt from outside for my applicatiosn ([27dbdfa](https://github.com/cenk1cenk2/listr2/commit/27dbdfa5068eed7570293468455515ed1c7860ba))
+
 ## [2.1.1](https://github.com/cenk1cenk2/listr2/compare/v2.1.0...v2.1.1) (2020-06-04)
 
 
