@@ -1,3 +1,11 @@
+## [2.1.3](https://github.com/cenk1cenk2/listr2/compare/v2.1.2...v2.1.3) (2020-06-04)
+
+
+### Bug Fixes
+
+* **enquirer:** moved prompt flattening around again for my own scripts ([a40a569](https://github.com/cenk1cenk2/listr2/commit/a40a569785dec64d14186fa997bf8bebcd219390))
+* **enquirer:** optional stdout ([703658f](https://github.com/cenk1cenk2/listr2/commit/703658f3fe84f91e74173932c91b609380d40c59))
+
 ## [2.1.2](https://github.com/cenk1cenk2/listr2/compare/v2.1.1...v2.1.2) (2020-06-04)
 
 
