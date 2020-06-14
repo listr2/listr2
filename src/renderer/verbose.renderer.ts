@@ -3,7 +3,12 @@ import { Logger } from '@utils/logger'
 
 export class VerboseRenderer implements ListrRenderer {
   public static nonTTY = true
-  public static rendererOptions: { useIcons?: boolean, logger?: new (...args: any) => Logger }
+  public static rendererOptions: {
+    useIcons?: boolean
+    logger?: new (...args: any) => Logger
+    logEmptyTitle?: boolean
+    logTitleChange?: boolean
+  }
   public static rendererTaskOptions: never
   private logger: Logger
 
@@ -32,13 +37,15 @@ export class VerboseRenderer implements ListrRenderer {
               // render lower level if multi-level
               this.verboseRenderer(task.subtasks)
             } else if (event.type === 'STATE') {
-              // render depending on the state
-              const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
+              if (this.options?.logEmptyTitle !== false) {
+                // render depending on the state
+                const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
 
-              if (task.isPending()) {
-                this.logger.start(taskTitle)
-              } else if (task.isCompleted()) {
-                this.logger.success(taskTitle)
+                if (task.isPending()) {
+                  this.logger.start(taskTitle)
+                } else if (task.isCompleted()) {
+                  this.logger.success(taskTitle)
+                }
               }
             } else if (event.type === 'DATA') {
               // render if outputs data like states, fail, skip or data
@@ -49,7 +56,7 @@ export class VerboseRenderer implements ListrRenderer {
               } else {
                 this.logger.data(String(event.data))
               }
-            } else if (event.type === 'TITLE') {
+            } else if (event.type === 'TITLE' && this.options?.logTitleChange !== false) {
               this.logger.title(String(event.data))
             }
           }
