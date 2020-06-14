@@ -21,6 +21,8 @@ export class VerboseRenderer implements ListrRenderer {
     } else {
       this.logger = new this.options.logger()
     }
+
+    this.options = { ...VerboseRenderer.rendererOptions, ...this.options }
   }
 
   public render (): void {
