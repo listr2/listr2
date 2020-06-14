@@ -1,3 +1,10 @@
+## [2.1.6](https://github.com/cenk1cenk2/listr2/compare/v2.1.5...v2.1.6) (2020-06-14)
+
+
+### Bug Fixes
+
+* **renderer:** add defaults ([8d3436d](https://github.com/cenk1cenk2/listr2/commit/8d3436d74dfe904f1259f85cfa251445f5c58e84))
+
 ## [2.1.5](https://github.com/cenk1cenk2/listr2/compare/v2.1.4...v2.1.5) (2020-06-14)
 
 
