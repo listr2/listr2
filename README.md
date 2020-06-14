@@ -1020,7 +1020,12 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
 - Options for the verbose renderer.
   - Global
   ```typescript
-  public static rendererOptions: { useIcons?: boolean, logger?: new (...args: any) => Logger }
+  public static rendererOptions: {
+    useIcons?: boolean
+    logger?: new (...args: any) => Logger
+    logEmptyTitle?: boolean
+    logTitleChange?: boolean
+  }
   ```
 - Options for the silent renderer.
   - NONE

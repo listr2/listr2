@@ -83,7 +83,6 @@ export class DefaultRenderer implements ListrRenderer {
     } else {
       logUpdate.done()
     }
-
   }
 
   // eslint-disable-next-line complexity

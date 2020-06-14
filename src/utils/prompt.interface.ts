@@ -20,10 +20,12 @@ interface BasePromptOptions {
   required?: boolean
   stdin?: NodeJS.ReadStream
   stdout?: NodeJS.WriteStream
+  header?: string
+  footer?: string
   skip?(value: any): boolean | Promise<boolean>
   format?(value: any): any | Promise<any>
   result?(value: any): any | Promise<any>
-  validate?(value: any, state: any): boolean | Promise<boolean> | string | Promise<string>
+  validate?(value: any, state: any): boolean | Promise<boolean> | string | Promise<string> | Promise<string | boolean>
   onSubmit?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
   onCancel?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
 }
