@@ -1,3 +1,11 @@
+## [2.1.4](https://github.com/cenk1cenk2/listr2/compare/v2.1.3...v2.1.4) (2020-06-14)
+
+
+### Bug Fixes
+
+* **added verbose renderer options:** added new options of log empty title and title change ([5a5eb79](https://github.com/cenk1cenk2/listr2/commit/5a5eb79e5d9097b84fc74722de85c6f60e0f288e))
+* **types:** enquirer types ([d309d91](https://github.com/cenk1cenk2/listr2/commit/d309d91241ec85f52d54b974f6391f7c640ea1ae))
+
 ## [2.1.3](https://github.com/cenk1cenk2/listr2/compare/v2.1.2...v2.1.3) (2020-06-04)
 
 
