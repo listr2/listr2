@@ -8,6 +8,9 @@ export class VerboseRenderer implements ListrRenderer {
     logger?: new (...args: any) => Logger
     logEmptyTitle?: boolean
     logTitleChange?: boolean
+  } = {
+    logEmptyTitle: true,
+    logTitleChange: true
   }
   public static rendererTaskOptions: never
   private logger: Logger
