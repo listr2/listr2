@@ -1,3 +1,10 @@
+## [2.1.5](https://github.com/cenk1cenk2/listr2/compare/v2.1.4...v2.1.5) (2020-06-14)
+
+
+### Bug Fixes
+
+* **renderer:** verbose renderer defaults ([3246fe1](https://github.com/cenk1cenk2/listr2/commit/3246fe1deb19dd2878d5c86ee2ca98d9a7b2f26a))
+
 ## [2.1.4](https://github.com/cenk1cenk2/listr2/compare/v2.1.3...v2.1.4) (2020-06-14)
 
 
