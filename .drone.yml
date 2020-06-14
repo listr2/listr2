@@ -28,7 +28,7 @@ steps:
       - yarn build
 
   - name: semantic-release
-    image: cenk1cenk2/semantic-release-drone
+    image: cenk1cenk2/drone-semantic-release
     settings:
       mode: release
       git_method: gh
