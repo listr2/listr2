@@ -42,7 +42,7 @@ export class VerboseRenderer implements ListrRenderer {
               // render lower level if multi-level
               this.verboseRenderer(task.subtasks)
             } else if (event.type === 'STATE') {
-              if (this.options?.logEmptyTitle !== false) {
+              if (this.options?.logEmptyTitle !== false || task.hasTitle()) {
                 // render depending on the state
                 const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
 
@@ -61,8 +61,10 @@ export class VerboseRenderer implements ListrRenderer {
               } else {
                 this.logger.data(String(event.data))
               }
-            } else if (event.type === 'TITLE' && this.options?.logTitleChange !== false) {
-              this.logger.title(String(event.data))
+            } else if (event.type === 'TITLE' ) {
+              if (this.options?.logTitleChange !== false) {
+                this.logger.title(String(event.data))
+              }
             }
           }
         },
