@@ -29,6 +29,22 @@ describe('skip a task', () => {
     expect(warn).toBeCalledWith('[SKIPPED] skipped')
   })
 
+  it('should skip the task from skip method', async () => {
+    await new Listr([
+      {
+        skip() {
+          return 'skipped'
+        },
+        task: async (ctx, task): Promise<void> => {
+          
+        }
+      }
+    ], { renderer: 'verbose' }).run()
+
+    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(warn).toBeCalledWith('[SKIPPED] skipped')
+  })
+
   it('skip to enable by context will work properly in serial', async () => {
     await new Listr([
       {

@@ -50,6 +50,8 @@ export class VerboseRenderer implements ListrRenderer {
                   this.logger.start(taskTitle)
                 } else if (task.isCompleted()) {
                   this.logger.success(taskTitle)
+                } else if (task.isSkipped()) {
+                  this.logger.skip(task.output)
                 }
               }
             } else if (event.type === 'DATA') {
@@ -61,7 +63,7 @@ export class VerboseRenderer implements ListrRenderer {
               } else {
                 this.logger.data(String(event.data))
               }
-            } else if (event.type === 'TITLE' ) {
+            } else if (event.type === 'TITLE') {
               if (this.options?.logTitleChange !== false) {
                 this.logger.title(String(event.data))
               }
