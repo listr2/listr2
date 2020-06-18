@@ -1,14 +1,5 @@
 import { Listr } from './listr'
-import {
-  ListrGetRendererClassFromValue,
-  ListrContext,
-  ListrOptions,
-  ListrTask,
-  ListrBaseClassOptions,
-  ListrRendererValue,
-  ListrSubClassOptions,
-  ListrError
-} from '@interfaces/listr.interface'
+import { ListrBaseClassOptions, ListrContext, ListrError, ListrGetRendererClassFromValue, ListrRendererValue, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
 
 export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
   public err: ListrError[] = []
@@ -49,10 +40,10 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
 
   public indent<InjectCtx = Ctx>(
     tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[] | ((ctx?: InjectCtx) => ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[]),
-    options?: ListrOptions<InjectCtx>,
+    options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>,
     taskOptions?: Omit<ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>, 'task'>
   ): ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>> {
-    options = { ...this.options, ...options } as ListrOptions<InjectCtx>
+    options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
     let newTask: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>
     // type function or directly
