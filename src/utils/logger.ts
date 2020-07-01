@@ -18,7 +18,7 @@ export class Logger {
 
   public skip (message: string): void {
     message = this.parseMessage(logLevels.skip, message)
-    console.warn(message)
+    console.info(message)
   }
 
   public success (message: string): void {
