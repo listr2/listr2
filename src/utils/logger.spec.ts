@@ -43,22 +43,6 @@ describe('logger', () => {
     jest.clearAllMocks()
   })
 
-  // it('should log a error fail message', async () => {
-  //   logger.fail('test message')
-
-  //   testForAllExcept(instances, error, 1, {
-  //     onOne: () => {
-  //       expect(error.mock.calls).toMatchInlineSnapshot(`
-  //       Array [
-  //         Array [
-  //           "[31m✖ test message[39m",
-  //         ],
-  //       ]
-  //       `)
-  //     }
-  //   })
-  // })
-
   it('should log a verbose error fail message', async () => {
     logger = new Logger({ useIcons: false })
 
@@ -77,30 +61,14 @@ describe('logger', () => {
     })
   })
 
-  // it('should log a warn skip message', async () => {
-  //   logger.skip('test message')
-
-  //   testForAllExcept(instances, warn, 1, {
-  //     onOne: () => {
-  //       expect(warn.mock.calls).toMatchInlineSnapshot(`
-  //       Array [
-  //         Array [
-  //           "[33m↓ test message[39m",
-  //         ],
-  //       ]
-  //       `)
-  //     }
-  //   })
-  // })
-
   it('should log a verbose warn skip message', async () => {
     logger = new Logger({ useIcons: false })
 
     logger.skip('test message')
 
-    testForAllExcept(instances, warn, 1, {
+    testForAllExcept(instances, info, 1, {
       onOne: () => {
-        expect(warn.mock.calls).toMatchInlineSnapshot(`
+        expect(info.mock.calls).toMatchInlineSnapshot(`
         Array [
           Array [
             "[SKIPPED] test message",
@@ -110,22 +78,6 @@ describe('logger', () => {
       }
     })
   })
-
-  // it('should log a log success message', async () => {
-  //   logger.success('test message')
-
-  //   testForAllExcept(instances, log, 1, {
-  //     onOne: () => {
-  //       expect(log.mock.calls).toMatchInlineSnapshot(`
-  //       Array [
-  //         Array [
-  //           "[32m✔ test message[39m",
-  //         ],
-  //       ]
-  //       `)
-  //     }
-  //   })
-  // })
 
   it('should log a verbose log success message', async () => {
     logger = new Logger({ useIcons: false })
@@ -145,22 +97,6 @@ describe('logger', () => {
     })
   })
 
-  // it('should log a info data message', async () => {
-  //   logger.data('test message')
-
-  //   testForAllExcept(instances, info, 1, {
-  //     onOne: () => {
-  //       expect(info.mock.calls).toMatchInlineSnapshot(`
-  //       Array [
-  //         Array [
-  //           "→ test message",
-  //         ],
-  //       ]
-  //       `)
-  //     }
-  //   })
-  // })
-
   it('should log a verbose info data message', async () => {
     logger = new Logger({ useIcons: false })
 
@@ -179,22 +115,6 @@ describe('logger', () => {
     })
   })
 
-  // it('should log a log start message', async () => {
-  //   logger.start('test message')
-
-  //   testForAllExcept(instances, log, 1, {
-  //     onOne: () => {
-  //       expect(log.mock.calls).toMatchInlineSnapshot(`
-  //       Array [
-  //         Array [
-  //           "❯ test message",
-  //         ],
-  //       ]
-  //       `)
-  //     }
-  //   })
-  // })
-
   it('should log a verbose log start message', async () => {
     logger = new Logger({ useIcons: false })
 
@@ -212,22 +132,6 @@ describe('logger', () => {
       }
     })
   })
-
-  // it('should log a info title message', async () => {
-  //   logger.title('test message')
-
-  //   testForAllExcept(instances, info, 1, {
-  //     onOne: () => {
-  //       expect(info.mock.calls).toMatchInlineSnapshot(`
-  //       Array [
-  //         Array [
-  //           "☒ test message",
-  //         ],
-  //       ]
-  //       `)
-  //     }
-  //   })
-  // })
 
   it('should log a verbose info title message', async () => {
     logger = new Logger({ useIcons: false })

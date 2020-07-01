@@ -26,23 +26,24 @@ describe('skip a task', () => {
     ], { renderer: 'verbose' }).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
-    expect(warn).toBeCalledWith('[SKIPPED] skipped')
+    expect(info).toBeCalledWith('[SKIPPED] skipped')
   })
 
   it('should skip the task from skip method', async () => {
     await new Listr([
       {
-        skip() {
+        skip (): string {
           return 'skipped'
         },
-        task: async (ctx, task): Promise<void> => {
-          
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        task: async (): Promise<void> => {
+
         }
       }
     ], { renderer: 'verbose' }).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
-    expect(warn).toBeCalledWith('[SKIPPED] skipped')
+    expect(info).toBeCalledWith('[SKIPPED] skipped')
   })
 
   it('skip to enable by context will work properly in serial', async () => {
@@ -62,7 +63,7 @@ describe('skip a task', () => {
     ], { renderer: 'verbose', concurrent: false }).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
-    expect(warn).toBeCalledWith('[SKIPPED] skipped')
+    expect(info).toBeCalledWith('[SKIPPED] skipped')
     expect(info).toBeCalledWith('[DATA] enabled')
   })
 
@@ -83,7 +84,7 @@ describe('skip a task', () => {
     ], { renderer: 'verbose', concurrent: true }).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
-    expect(warn).toBeCalledWith('[SKIPPED] skipped')
+    expect(info).toBeCalledWith('[SKIPPED] skipped')
     expect(info).not.toBeCalledWith('[DATA] enabled')
   })
 
