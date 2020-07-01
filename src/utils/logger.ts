@@ -18,7 +18,7 @@ export class Logger {
 
   public skip (message: string): void {
     message = this.parseMessage(logLevels.skip, message)
-    console.warn(message)
+    console.info(message)
   }
 
   public success (message: string): void {
@@ -41,7 +41,7 @@ export class Logger {
     console.info(message)
   }
 
-  private parseMessage (level: logLevels, message: string): string {
+  protected parseMessage (level: logLevels, message: string): string {
     // parse multi line messages
     let multiLineMessage: string[]
 
@@ -64,7 +64,7 @@ export class Logger {
     return message
   }
 
-  private logColoring ({ level, message }: { level: logLevels, message: string }): string {
+  protected logColoring ({ level, message }: { level: logLevels, message: string }): string {
     let icon: string
 
     // do the coloring

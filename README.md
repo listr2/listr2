@@ -1112,10 +1112,12 @@ Logging to a file can be done utilizing a module like [winston](https://www.npmj
 While calling a new Listr you can call it with `{ renderer: 'verbose', rendererOptions: { logger: MyLoggerClass } }`.
 
 ```typescript
-import { logLevels, Logger } from 'listr2'
+import { logLevels, Logger, LoggerOptions } from 'listr2'
 
-export class MyLoggerClass implements Logger {
-  constructor(private options?: LoggerOptions) {}
+export class MyLoggerClass extends Logger {
+  constructor(private options?: LoggerOptions) {
+    // This is not needed if you don't use these options in your custom logger
+  }
 
   /* CUSTOM LOGIC */
   /* CUSTOM LOGIC */
