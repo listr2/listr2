@@ -1,3 +1,10 @@
+## [2.1.8](https://github.com/cenk1cenk2/listr2/compare/v2.1.7...v2.1.8) (2020-06-17)
+
+
+### Bug Fixes
+
+* **renderer:** add skip to verbose output ([f577df0](https://github.com/cenk1cenk2/listr2/commit/f577df08720a6602a46b9eec457a9d55321d89d7))
+
 ## [2.1.7](https://github.com/cenk1cenk2/listr2/compare/v2.1.6...v2.1.7) (2020-06-14)
 
 
