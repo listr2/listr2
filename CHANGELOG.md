@@ -1,3 +1,25 @@
+## [2.2.1](https://github.com/cenk1cenk2/listr2/compare/v2.2.0...v2.2.1) (2020-07-18)
+
+
+### Bug Fixes
+
+* **prompts:** added return when prompt error ([6c89e56](https://github.com/cenk1cenk2/listr2/commit/6c89e562713686a1748a0436aef3c2ae43c6c555))
+* **prompts:** fixed prompt error message when enquirer is not installed optionally ([8fc5849](https://github.com/cenk1cenk2/listr2/commit/8fc58492bcac3fb5520360c7c8d1e5c2156b74fc))
+
+# [2.2.0](https://github.com/cenk1cenk2/listr2/compare/v2.1.9...v2.2.0) (2020-07-03)
+
+
+### Features
+
+* display elegant spinner on Windows Terminal ([a86868b](https://github.com/cenk1cenk2/listr2/commit/a86868b7638f5b63b64f70e7559ace07d598c84a))
+
+## [2.1.9](https://github.com/cenk1cenk2/listr2/compare/v2.1.8...v2.1.9) (2020-07-01)
+
+
+### Bug Fixes
+
+* **manager:** manager type problem with indent ([9444d3d](https://github.com/cenk1cenk2/listr2/commit/9444d3dcc5c7d1d72aa424441cc0b150effedebd))
+
 ## [2.1.9-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.1.8...v2.1.9-beta.1) (2020-06-18)
 
 
