@@ -31,6 +31,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
 
   } catch (e) {
     this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
+    return
   }
 
   try {
