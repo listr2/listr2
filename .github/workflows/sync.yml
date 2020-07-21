@@ -17,4 +17,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         FROM_BRANCH:  master
         TO_BRANCH: develop
-        PULL_REQUEST_TITLE: '[sync] {fromBranch} to {toBranch} [skip ci]'
+        PULL_REQUEST_TITLE: '[sync] master to develop [skip ci]'
