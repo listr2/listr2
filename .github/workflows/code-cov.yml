@@ -3,7 +3,7 @@ name: code-coverage
 on: [push, pull_request]
 
 jobs:
-  build:
+  code-coverage:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,7 +14,7 @@ jobs:
           node-version: 14.x
       - run: yarn install --frozen-lockfile
       - name: report coverage
-        uses: ziishaned/jest-reporter-action@v0.0.1
+        uses: ChristiaanScheermeijer/jest-reporter-action@v0.4.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           test-command: 'yarn test:cov'
