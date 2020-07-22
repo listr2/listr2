@@ -43,6 +43,7 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
     - [Signal Interrupt](#signal-interrupt)
   - [Testing](#testing)
   - [Default Renderers](#default-renderers)
+  - [Renderer Fallback](#renderer-fallback)
   - [Custom Renderers](#custom-renderers)
   - [Render Hooks](#render-hooks)
   - [Log To A File](#log-to-a-file)
