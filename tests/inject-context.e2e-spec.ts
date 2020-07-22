@@ -3,12 +3,16 @@ import { Listr } from '@root/index'
 
 describe('show inject context', () => {
   let info: jest.SpyInstance<void, string[][]>
+  let log: jest.SpyInstance<void, string[][]>
 
   beforeEach(async () => {
     info = jest.spyOn(console, 'info').mockImplementation()
+    log = jest.spyOn(console, 'log').mockImplementation()
   })
 
   afterEach(async () => {
+    info.mockClear()
+    log.mockClear()
     jest.clearAllMocks()
   })
 
