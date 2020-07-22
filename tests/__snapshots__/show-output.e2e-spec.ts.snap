@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`show output from task should have persistent output: test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd-err 1`] = `Array []`;
+exports[`show output from task should have persistent output: oYHBlOYGg8juKRkaqigY617eyLbGMuDd-err 1`] = `Array []`;
 
-exports[`show output from task should have persistent output: test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd-exit 1`] = `Array []`;
+exports[`show output from task should have persistent output: oYHBlOYGg8juKRkaqigY617eyLbGMuDd-exit 1`] = `Array []`;
 
-exports[`show output from task should have persistent output: test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd-out 1`] = `
+exports[`show output from task should have persistent output: oYHBlOYGg8juKRkaqigY617eyLbGMuDd-out 1`] = `
 Array [
   Array [
     "◼ This task will execute.  
@@ -42,11 +42,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should indent long multiline output with persistent output: test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-err 1`] = `Array []`;
+exports[`show output from task should indent long multiline output with persistent output: j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-err 1`] = `Array []`;
 
-exports[`show output from task should indent long multiline output with persistent output: test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-exit 1`] = `Array []`;
+exports[`show output from task should indent long multiline output with persistent output: j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-exit 1`] = `Array []`;
 
-exports[`show output from task should indent long multiline output with persistent output: test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-out 1`] = `
+exports[`show output from task should indent long multiline output with persistent output: j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-out 1`] = `
 Array [
   Array [
     "◼ This task will execute.  
@@ -89,11 +89,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should limit output to bottom bar persistently: test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-err 1`] = `Array []`;
+exports[`show output from task should limit output to bottom bar persistently: d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-err 1`] = `Array []`;
 
-exports[`show output from task should limit output to bottom bar persistently: test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-exit 1`] = `Array []`;
+exports[`show output from task should limit output to bottom bar persistently: d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-exit 1`] = `Array []`;
 
-exports[`show output from task should limit output to bottom bar persistently: test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-out 1`] = `
+exports[`show output from task should limit output to bottom bar persistently: d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-out 1`] = `
 Array [
   Array [
     "◼ This task will execute.  
@@ -134,11 +134,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should output to bottom bar 2 times at most and delete the prior tasks output when finished: test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-err 1`] = `Array []`;
+exports[`show output from task should output to bottom bar 2 times at most and delete the prior tasks output when finished: NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-err 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar 2 times at most and delete the prior tasks output when finished: test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-exit 1`] = `Array []`;
+exports[`show output from task should output to bottom bar 2 times at most and delete the prior tasks output when finished: NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-exit 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar 2 times at most and delete the prior tasks output when finished: test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-out 1`] = `
+exports[`show output from task should output to bottom bar 2 times at most and delete the prior tasks output when finished: NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-out 1`] = `
 Array [
   Array [
     "◼ This task will execute.  
@@ -223,11 +223,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should output to bottom bar from task with no title persistently: test-e2e-iI52S3WPytorU9EZKPar2AiBrLAZTVut-err 1`] = `Array []`;
+exports[`show output from task should output to bottom bar from task with no title persistently: iI52S3WPytorU9EZKPar2AiBrLAZTVut-err 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar from task with no title persistently: test-e2e-iI52S3WPytorU9EZKPar2AiBrLAZTVut-exit 1`] = `Array []`;
+exports[`show output from task should output to bottom bar from task with no title persistently: iI52S3WPytorU9EZKPar2AiBrLAZTVut-exit 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar from task with no title persistently: test-e2e-iI52S3WPytorU9EZKPar2AiBrLAZTVut-out 1`] = `
+exports[`show output from task should output to bottom bar from task with no title persistently: iI52S3WPytorU9EZKPar2AiBrLAZTVut-out 1`] = `
 Array [
   Array [
     "  
@@ -265,11 +265,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should output to bottom bar from task with no title: test-e2e-JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-err 1`] = `Array []`;
+exports[`show output from task should output to bottom bar from task with no title: JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-err 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar from task with no title: test-e2e-JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-exit 1`] = `Array []`;
+exports[`show output from task should output to bottom bar from task with no title: JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-exit 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar from task with no title: test-e2e-JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-out 1`] = `
+exports[`show output from task should output to bottom bar from task with no title: JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-out 1`] = `
 Array [
   Array [
     "  
@@ -307,11 +307,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should output to bottom bar persistently: test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-err 1`] = `Array []`;
+exports[`show output from task should output to bottom bar persistently: HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-err 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar persistently: test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-exit 1`] = `Array []`;
+exports[`show output from task should output to bottom bar persistently: HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-exit 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar persistently: test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-out 1`] = `
+exports[`show output from task should output to bottom bar persistently: HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-out 1`] = `
 Array [
   Array [
     "◼ This task will execute.  
@@ -361,11 +361,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should output to bottom bar: test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat-err 1`] = `Array []`;
+exports[`show output from task should output to bottom bar: 767BkeBTfR1lrS2ANYYH7CLWPATxqyat-err 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar: test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat-exit 1`] = `Array []`;
+exports[`show output from task should output to bottom bar: 767BkeBTfR1lrS2ANYYH7CLWPATxqyat-exit 1`] = `Array []`;
 
-exports[`show output from task should output to bottom bar: test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat-out 1`] = `
+exports[`show output from task should output to bottom bar: 767BkeBTfR1lrS2ANYYH7CLWPATxqyat-out 1`] = `
 Array [
   Array [
     "◼ This task will execute.  
@@ -407,11 +407,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should output to from an observable: test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-err 1`] = `Array []`;
+exports[`show output from task should output to from an observable: SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-err 1`] = `Array []`;
 
-exports[`show output from task should output to from an observable: test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-exit 1`] = `Array []`;
+exports[`show output from task should output to from an observable: SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-exit 1`] = `Array []`;
 
-exports[`show output from task should output to from an observable: test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-out 1`] = `
+exports[`show output from task should output to from an observable: SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-out 1`] = `
 Array [
   Array [
     "◼ Observable test.  
@@ -442,11 +442,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should yield example output: test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11-err 1`] = `Array []`;
+exports[`show output from task should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-err 1`] = `Array []`;
 
-exports[`show output from task should yield example output: test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `Array []`;
+exports[`show output from task should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `Array []`;
 
-exports[`show output from task should yield example output: test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11-out 1`] = `
+exports[`show output from task should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-out 1`] = `
 Array [
   Array [
     "◼ This task will execute.  

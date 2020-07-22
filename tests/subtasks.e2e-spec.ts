@@ -25,7 +25,7 @@ describe('show output from task', () => {
     jest.clearAllMocks()
   })
 
-  // test-e2e-JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
+  // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
   it('should create a set of subtasks', async () => {
     await new Listr(
       [
@@ -53,12 +53,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-exit')
   })
 
-  // test-e2e-3ygUxrTkCDLDfDrXzF1ocWR6626jaL0kA
+  // 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0kA
   it('should be able to change concurrency setting in subtask, second subtask should finish first', async () => {
     await new Listr(
       [
@@ -87,12 +87,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-exit')
   })
 
-  // test-e2e-8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
+  // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
   it('should be able to change collapse settings', async () => {
     await new Listr(
       [
@@ -140,9 +140,9 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-exit')
   })
 
 })

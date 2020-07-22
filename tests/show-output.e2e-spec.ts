@@ -26,7 +26,7 @@ describe('show output from task', () => {
     jest.clearAllMocks()
   })
 
-  // test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11
+  // rMG224TBrLk3ocYtKidc1D4AyZtEHm11
   it('should yield example output', async () => {
     await new Listr(
       [
@@ -52,12 +52,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('rMG224TBrLk3ocYtKidc1D4AyZtEHm11-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('rMG224TBrLk3ocYtKidc1D4AyZtEHm11-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit')
   })
 
-  // test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd
+  // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
   it('should have persistent output', async () => {
     await new Listr(
       [
@@ -81,12 +81,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('oYHBlOYGg8juKRkaqigY617eyLbGMuDd-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('oYHBlOYGg8juKRkaqigY617eyLbGMuDd-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('oYHBlOYGg8juKRkaqigY617eyLbGMuDd-exit')
   })
 
-  // test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat
+  // 767BkeBTfR1lrS2ANYYH7CLWPATxqyat
   it('should output to bottom bar', async () => {
     await new Listr(
       [
@@ -110,12 +110,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('767BkeBTfR1lrS2ANYYH7CLWPATxqyat-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('767BkeBTfR1lrS2ANYYH7CLWPATxqyat-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('767BkeBTfR1lrS2ANYYH7CLWPATxqyat-exit')
   })
 
-  // test-e2e-JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP
+  // JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP
   it('should output to bottom bar from task with no title', async () => {
     await new Listr(
       [
@@ -138,12 +138,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-exit')
   })
 
-  // test-e2e-iI52S3WPytorU9EZKPar2AiBrLAZTVut
+  // iI52S3WPytorU9EZKPar2AiBrLAZTVut
   it('should output to bottom bar from task with no title persistently', async () => {
     await new Listr(
       [
@@ -166,12 +166,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-iI52S3WPytorU9EZKPar2AiBrLAZTVut-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-iI52S3WPytorU9EZKPar2AiBrLAZTVut-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-iI52S3WPytorU9EZKPar2AiBrLAZTVut-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('iI52S3WPytorU9EZKPar2AiBrLAZTVut-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('iI52S3WPytorU9EZKPar2AiBrLAZTVut-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('iI52S3WPytorU9EZKPar2AiBrLAZTVut-exit')
   })
 
-  // test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA
+  // HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA
   it('should output to bottom bar persistently', async () => {
     await new Listr(
       [
@@ -195,12 +195,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-exit')
   })
 
-  // test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5
+  // d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5
   it('should limit output to bottom bar persistently', async () => {
     await new Listr(
       [
@@ -224,12 +224,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-exit')
   })
 
-  // test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus
+  // NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus
   it('should output to bottom bar 2 times at most and delete the prior tasks output when finished', async () => {
     await new Listr(
       [
@@ -268,12 +268,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-exit')
   })
 
-  // test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
+  // SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
   it('should output to from an observable', async () => {
     await new Listr(
       [
@@ -300,12 +300,12 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-exit')
   })
 
-  // test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
+  // j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
   it('should indent long multiline output with persistent output', async () => {
     await new Listr(
       [
@@ -327,9 +327,9 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(mockStdout.mock.calls).toMatchSnapshot('test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-exit')
   })
 
 })
