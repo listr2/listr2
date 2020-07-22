@@ -1,6 +1,5 @@
 import delay from 'delay'
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
-import { Observable } from 'rxjs'
 
 import { Listr } from '@root/index'
 

@@ -7,35 +7,35 @@ exports[`show output from task should have persistent output: test-e2e-oYHBlOYGg
 exports[`show output from task should have persistent output: test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+    "[2K[1A[2K[G❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[G❯ This task will execute.
   › I will push an output. [0]  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
   › I will push an output. [1]  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
   › I will push an output. [2]  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
   › I will push an output. [2]  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
   › I will push an output. [2] 
 ",
   ],
@@ -49,15 +49,15 @@ exports[`show output from task should indent long multiline output with persiste
 exports[`show output from task should indent long multiline output with persistent output: test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+    "[2K[1A[2K[G❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[G❯ This task will execute.
   › This is along long long long long long long long long long long long long l…
     long long long long long long long long long long long long long long long …
     long long long long long long long long long long long long long long long …
@@ -67,7 +67,7 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
   › This is along long long long long long long long long long long long long l…
     long long long long long long long long long long long long long long long …
     long long long long long long long long long long long long long long long …
@@ -77,7 +77,7 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
   › This is along long long long long long long long long long long long long l…
     long long long long long long long long long long long long long long long …
     long long long long long long long long long long long long long long long …
@@ -96,39 +96,39 @@ exports[`show output from task should limit output to bottom bar persistently: t
 exports[`show output from task should limit output to bottom bar persistently: test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+    "[2K[1A[2K[G❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [1]
 › I will push an output. [2] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[32m✔[39m This task will execute. 
+    "[2K[1A[2K[G✔ This task will execute. 
 ",
   ],
 ]
@@ -141,81 +141,81 @@ exports[`show output from task should output to bottom bar 2 times at most and d
 exports[`show output from task should output to bottom bar 2 times at most and delete the prior tasks output when finished: test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[2m◼[22m This task will execute.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[G◼ This task will execute.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-[2m◼[22m This task will execute. 
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-[2m◼[22m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute. 
 
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-[2m◼[22m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute. 
 
 › I will push an output. [2] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.  
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute. 
 
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute. 
 
 › I will push an output. [2] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[32m✔[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute. 
 
 › I will push an output. [2] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[32m✔[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute. 
 
 › I will push an output. [2]
 ",
@@ -314,28 +314,28 @@ exports[`show output from task should output to bottom bar persistently: test-e2
 exports[`show output from task should output to bottom bar persistently: test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+    "[2K[1A[2K[G❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1]
@@ -343,7 +343,7 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1]
@@ -351,7 +351,7 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1]
@@ -368,28 +368,28 @@ exports[`show output from task should output to bottom bar: test-e2e-767BkeBTfR1
 exports[`show output from task should output to bottom bar: test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+    "[2K[1A[2K[G❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1]
@@ -397,11 +397,11 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[32m✔[39m This task will execute. 
+    "[2K[1A[2K[G✔ This task will execute. 
 ",
   ],
 ]
@@ -414,29 +414,29 @@ exports[`show output from task should output to from an observable: test-e2e-SM8
 exports[`show output from task should output to from an observable: test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m Observable test.  
+    "◼ Observable test.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m Observable test.  
+    "[2K[1A[2K[G❯ Observable test.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m Observable test.
+    "[2K[1A[2K[G❯ Observable test.
   › test  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m Observable test.
+    "[2K[1A[2K[1A[2K[G❯ Observable test.
   › changed  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m Observable test.  
+    "[2K[1A[2K[1A[2K[G✔ Observable test.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[32m✔[39m Observable test. 
+    "[2K[1A[2K[G✔ Observable test. 
 ",
   ],
 ]
@@ -449,34 +449,34 @@ exports[`show output from task should yield example output: test-e2e-rMG224TBrLk
 exports[`show output from task should yield example output: test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+    "[2K[1A[2K[G❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[G❯ This task will execute.
   › I will push an output. [0]  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
   › I will push an output. [1]  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
   › I will push an output. [2]  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.  
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[32m✔[39m This task will execute. 
+    "[2K[1A[2K[G✔ This task will execute. 
 ",
   ],
 ]

@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import chalk from 'chalk'
 import figures from 'figures'
 
 import { logLevels } from './logger.constants'
+import chalk from '@utils/chalk'
 
 export interface LoggerOptions {
   useIcons: boolean

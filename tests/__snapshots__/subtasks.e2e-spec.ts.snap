@@ -7,131 +7,131 @@ exports[`show output from task should be able to change collapse settings: test-
 exports[`show output from task should be able to change collapse settings: test-e2e-8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[2m◼[22m This task will execute.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[G◼ This task will execute.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
 
-[2m◼[22m This task will execute.  
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [2m◼[22m This is a subtask.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [2m◼[22m This is a subtask.
-  [2m◼[22m This is an another subtask.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [33m❯[39m This is a subtask.
-  [2m◼[22m This is an another subtask.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [2m◼[22m This is an another subtask.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [33m❯[39m This is an another subtask.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is an another subtask.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [32m✔[39m This is an another subtask.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[2m◼[22m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.  
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
   
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.
-  [2m◼[22m This is a subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ◼ This is a subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.
-  [2m◼[22m This is a subtask.
-  [2m◼[22m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.
-  [33m❯[39m This is a subtask.
-  [2m◼[22m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [2m◼[22m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [33m❯[39m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [32m✔[39m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[32m✔[39m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[32m✔[39m This task will execute. 
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute. 
 ",
   ],
 ]
@@ -144,59 +144,59 @@ exports[`show output from task should be able to change concurrency setting in s
 exports[`show output from task should be able to change concurrency setting in subtask, second subtask should finish first: test-e2e-3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+    "[2K[1A[2K[G❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[G❯ This task will execute.
   
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [2m◼[22m This is a subtask.  
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [2m◼[22m This is a subtask.
-  [2m◼[22m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [33m❯[39m This is a subtask.
-  [2m◼[22m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [33m❯[39m This is a subtask.
-  [33m❯[39m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ❯ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [33m❯[39m This is a subtask.
-  [32m✔[39m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ✔ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [32m✔[39m This is an another subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[32m✔[39m This task will execute. 
+    "[2K[1A[2K[G✔ This task will execute. 
 ",
   ],
 ]
@@ -209,59 +209,59 @@ exports[`show output from task should create a set of subtasks: test-e2e-JQYWVb3
 exports[`show output from task should create a set of subtasks: test-e2e-JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-out 1`] = `
 Array [
   Array [
-    "[2m◼[22m This task will execute.  
+    "◼ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+    "[2K[1A[2K[G❯ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[33m❯[39m This task will execute.
+    "[2K[1A[2K[G❯ This task will execute.
   
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [2m◼[22m This is a subtask.  
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [2m◼[22m This is a subtask.
-  [2m◼[22m This is a subtask.  
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [33m❯[39m This is a subtask.
-  [2m◼[22m This is a subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [2m◼[22m This is a subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is a subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [33m❯[39m This is a subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is a subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-  [32m✔[39m This is a subtask.
-  [32m✔[39m This is a subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is a subtask.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G[32m✔[39m This task will execute. 
+    "[2K[1A[2K[G✔ This task will execute. 
 ",
   ],
 ]
