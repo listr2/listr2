@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/cenk1cenk2/listr2/compare/v2.3.0...v2.3.1) (2020-07-22)
+
+
+### Bug Fixes
+
+* **readme:** added badge for npm ([61f6bc3](https://github.com/cenk1cenk2/listr2/commit/61f6bc36a5df27b80d61233dd0880326b93b7d5a))
+
 # [2.3.0](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0) (2020-07-22)
 
 
