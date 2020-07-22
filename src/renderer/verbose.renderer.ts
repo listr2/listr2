@@ -4,11 +4,16 @@ import { Logger } from '@utils/logger'
 export class VerboseRenderer implements ListrRenderer {
   public static nonTTY = true
   public static rendererOptions: {
+    // useIcons instead of text for log level
     useIcons?: boolean
+    // inject a custom loger
     logger?: new (...args: any) => Logger
+    // log tasks with empty titles
     logEmptyTitle?: boolean
+    // log title changes
     logTitleChange?: boolean
   } = {
+    useIcons: false,
     logEmptyTitle: true,
     logTitleChange: true
   }

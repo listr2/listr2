@@ -88,7 +88,9 @@ export interface ListrOptions<Ctx = ListrContext> {
   ctx?: Ctx
   registerSignalListeners?: boolean
   rendererFallback?: boolean | (() => boolean)
-  enquirer?: Enquirer
+  injectWrapper?: {
+    enquirer?: Enquirer
+  }
 }
 
 export type CreateClass<T> = new (...args: any[]) => T

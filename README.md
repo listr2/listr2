@@ -154,8 +154,11 @@ export interface ListrOptions<Ctx = ListrContext> {
   nonTTYrendererOptions?: ListrGetRendererOptions<T>
   // instead of creating a custom method and overwriting the renderer value, you can create a function or pass in a boolean to evaluate when to fallback to nonTTYRenderer
   rendererFallback?: boolean | (() => boolean)
-  // pass in enquirer for testing purposes mostly, see: https://github.com/cenk1cenk2/listr2/issues/66
-  enquirer: Enquirer
+  // inject items to wrapper level
+  injectWrapper?: {
+    // pass in enquirer for testing purposes mostly, see: https://github.com/cenk1cenk2/listr2/issues/66
+    enquirer?: Enquirer
+  }
 }
 ```
 
@@ -1003,23 +1006,33 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
   - Global
   ```typescript
   public static rendererOptions: {
+    // indentation per level
     indentation?: number
+    // clear output when task finishes
     clearOutput?: boolean
+    // show subtasks
     showSubtasks?: boolean
+    // collapse subtasks after finish
     collapse?: boolean
+    // collapse skips in to single message
     collapseSkips?: boolean
+    // only update via renderhook
+    lazy?: boolean
   } = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
     collapse: true,
-    collapseSkips: true
+    collapseSkips: true,
+    lazy: false
   }
   ```
   - Per-Task
   ```typescript
   public static rendererTaskOptions: {
+    // write task output to bottom bar
     bottomBar?: boolean | number
+    // keep output after task finishes
     persistentOutput?: boolean
   }
   ```
@@ -1027,10 +1040,18 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
   - Global
   ```typescript
   public static rendererOptions: {
+    // useIcons instead of text for log level
     useIcons?: boolean
+    // inject a custom loger
     logger?: new (...args: any) => Logger
+    // log tasks with empty titles
     logEmptyTitle?: boolean
+    // log title changes
     logTitleChange?: boolean
+  } = {
+    useIcons: false,
+    logEmptyTitle: true,
+    logTitleChange: true
   }
   ```
 - Options for the silent renderer.

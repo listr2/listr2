@@ -13,6 +13,7 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
     cancelCallback = defaultCancelCallback
   }
 
+  // assign default if there is single prompt
   if (!Array.isArray(options)) {
     options = options = [ { ...options, name: 'default' } ]
   } else if (options.length === 1) {
@@ -21,6 +22,7 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
     }, [])
   }
 
+  // assign default enquirer options
   options = options.reduce((o, option) => {
     return [ ...o, Object.assign(option, { stdout: settings?.stdout ?? this.stdout(), onCancel: cancelCallback.bind(this, settings) }) ]
   }, [])
@@ -37,6 +39,7 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
     }
   }
 
+  // return default name if it is single prompt
   const response = (await prompt(options as any)) as any
 
   if (Object.keys(response).length === 1) {

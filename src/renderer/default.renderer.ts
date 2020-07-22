@@ -9,20 +9,30 @@ import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.
 export class DefaultRenderer implements ListrRenderer {
   public static nonTTY = false
   public static rendererOptions: {
+    // indentation per level
     indentation?: number
+    // clear output when task finishes
     clearOutput?: boolean
+    // show subtasks
     showSubtasks?: boolean
+    // collapse subtasks after finish
     collapse?: boolean
+    // collapse skips in to single message
     collapseSkips?: boolean
+    // only update via renderhook
+    lazy?: boolean
   } = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
     collapse: true,
-    collapseSkips: true
+    collapseSkips: true,
+    lazy: false
   }
   public static rendererTaskOptions: {
+    // write task output to bottom bar
     bottomBar?: boolean | number
+    // keep output after task finishes
     persistentOutput?: boolean
   }
 
@@ -60,10 +70,13 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     const updateRender = (): void => logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
-    this.id = setInterval(() => {
-      this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
-      updateRender()
-    }, 100)
+
+    if (!this.options?.lazy) {
+      this.id = setInterval(() => {
+        this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
+        updateRender()
+      }, 100)
+    }
 
     this.renderHook$.subscribe(() => {
       updateRender()
@@ -236,7 +249,9 @@ export class DefaultRenderer implements ListrRenderer {
   // eslint-disable-next-line complexity
   private getSymbol (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isPending() && !data) {
-      return this.options.showSubtasks !== false && task.hasSubtasks() ? chalk.yellow(figures.main.pointer) : chalk.yellowBright(this.spinner[this.spinnerPosition])
+      return this.options.showSubtasks !== false && task.hasSubtasks() || this.options?.lazy ?
+        chalk.yellow(figures.main.pointer) :
+        chalk.yellowBright(this.spinner[this.spinnerPosition])
     }
 
     if (task.isCompleted() && !data) {

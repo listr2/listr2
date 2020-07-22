@@ -162,7 +162,7 @@ async function main (): Promise<void> {
         task.title = 'Created a beautiful CLI interface!'
       }
     }
-  ]).run()
+  ], { }).run()
 }
 
 main()
