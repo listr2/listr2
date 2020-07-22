@@ -58,61 +58,31 @@ Array [
   ],
   Array [
     "[2K[1A[2K[G[33m❯[39m This task will execute.
-  › This is along long long long long long long long long long long long long lo
-ng long long long long long long long long long long long long long long long lo
-ng long long long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
+  › This is along long long long long long long long long long long long long l…
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
     multi line output.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-  › This is along long long long long long long long long long long long long lo
-ng long long long long long long long long long long long long long long long lo
-ng long long long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+  › This is along long long long long long long long long long long long long l…
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
     multi line output.  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-  › This is along long long long long long long long long long long long long lo
-ng long long long long long long long long long long long long long long long lo
-ng long long long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
-    long long long long long long long long long long long long long long long l
-ong long long long long long long long long long long long long long long long l
-ong long long long long long long long long 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+  › This is along long long long long long long long long long long long long l…
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
+    long long long long long long long long long long long long long long long …
     multi line output. 
 ",
   ],
@@ -126,35 +96,39 @@ exports[`show output from task should limit output to bottom bar persistently: t
 exports[`show output from task should limit output to bottom bar persistently: test-e2e-d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-out 1`] = `
 Array [
   Array [
-    "  
+    "[2m◼[22m This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G 
+    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G[33m❯[39m This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
 
 › I will push an output. [1]
 › I will push an output. [2] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G 
+    "[2K[1A[2K[G[32m✔[39m This task will execute. 
 ",
   ],
 ]
@@ -167,51 +141,81 @@ exports[`show output from task should output to bottom bar 2 times at most and d
 exports[`show output from task should output to bottom bar 2 times at most and delete the prior tasks output when finished: test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-out 1`] = `
 Array [
   Array [
-    "  
+    "[2m◼[22m This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G 
+    "[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will execute. 
 
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will execute. 
 
 › I will push an output. [2] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G  
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[2m◼[22m This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will execute. 
 
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will execute. 
 
 › I will push an output. [2] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[32m✔[39m This task will execute. 
+
+› I will push an output. [2] 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[32m✔[39m This task will execute. 
 
 › I will push an output. [2]
 ",
@@ -310,24 +314,28 @@ exports[`show output from task should output to bottom bar persistently: test-e2
 exports[`show output from task should output to bottom bar persistently: test-e2e-HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-out 1`] = `
 Array [
   Array [
-    "  
+    "[2m◼[22m This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G 
+    "[2K[1A[2K[G[33m❯[39m This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G[33m❯[39m This task will execute. 
 
 › I will push an output. [0] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1] 
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1]
@@ -335,7 +343,15 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G 
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute. 
+
+› I will push an output. [0]
+› I will push an output. [1]
+› I will push an output. [2] 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute. 
 
 › I will push an output. [0]
 › I will push an output. [1]

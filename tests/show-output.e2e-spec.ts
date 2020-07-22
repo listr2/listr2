@@ -176,6 +176,7 @@ describe('show output from task', () => {
     await new Listr(
       [
         {
+          title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
@@ -204,6 +205,7 @@ describe('show output from task', () => {
     await new Listr(
       [
         {
+          title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
@@ -232,6 +234,7 @@ describe('show output from task', () => {
     await new Listr(
       [
         {
+          title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
@@ -246,6 +249,7 @@ describe('show output from task', () => {
         },
 
         {
+          title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)

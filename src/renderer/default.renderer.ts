@@ -243,7 +243,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private formatString (string: string, icon: string, level: number): string {
-    return `${cliTruncate(indentString(`${icon} ${string}`, level * this.options.indentation), process.stdout.columns ?? Infinity)}`
+    return `${cliTruncate(indentString(`${icon} ${string}`, level * this.options.indentation), process.stdout.columns ?? 80)}`
   }
 
   // eslint-disable-next-line complexity

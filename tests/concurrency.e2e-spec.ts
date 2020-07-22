@@ -104,10 +104,10 @@ describe('concurrent execution', () => {
           "[STARTED] 4",
         ],
         Array [
-          "[SUCCESS] 3",
+          "[SUCCESS] 4",
         ],
         Array [
-          "[SUCCESS] 4",
+          "[SUCCESS] 3",
         ],
       ]
     `)
