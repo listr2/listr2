@@ -1,3 +1,10 @@
+# [2.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2020-07-22)
+
+
+### Features
+
+* added lazy option to default renderer. moved enquirer to inject wrapper key from root ([78f3984](https://github.com/cenk1cenk2/listr2/commit/78f3984c19cd31f45edf5fbc8e8bfa5380104331))
+
 # [2.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0-beta.1) (2020-07-22)
 
 
