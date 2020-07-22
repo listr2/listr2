@@ -1,5 +1,9 @@
 name: code-coverage
 
+on:
+  pull_request:
+    branches: [master, develop, alpha, beta, rc]
+
 jobs:
   semantic-release-mock:
     runs-on: [ubuntu-latest]
