@@ -2,19 +2,19 @@ name: synchronize
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Sync branches
-      uses: TreTuna/sync-branches@1.2.0
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        FROM_BRANCH:  master
-        TO_BRANCH: develop
-        PULL_REQUEST_TITLE: '[sync] master to develop [skip ci]'
+      - name: Sync branches
+        uses: TreTuna/sync-branches@1.2.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FROM_BRANCH: master
+          TO_BRANCH: develop
+          PULL_REQUEST_TITLE: "[sync] master to develop [skip ci]"

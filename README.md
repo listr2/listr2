@@ -1,6 +1,6 @@
 # Listr2
 
-[![Build Status](https://drone.kilic.dev/api/badges/cenk1cenk2/listr2/status.svg)](https://drone.kilic.dev/cenk1cenk2/listr2) [![Version](https://img.shields.io/npm/v/listr2.svg)](https://npmjs.org/package/listr2) [![Downloads/week](https://img.shields.io/npm/dw/listr2.svg)](https://npmjs.org/package/listr2) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Build Status](https://drone.kilic.dev/api/badges/cenk1cenk2/listr2/status.svg)](https://drone.kilic.dev/cenk1cenk2/listr2) [![Version](https://img.shields.io/npm/v/listr2.svg)](https://npmjs.org/package/listr2) [![Downloads/week](https://img.shields.io/npm/dw/listr2.svg)](https://npmjs.org/package/listr2) [![Dependencies](https://img.shields.io/librariesio/release/npm/listr2)](https://npmjs.org/package/listr2) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 **Create beautiful CLI interfaces via easy and logical to implement task lists that feel alive and interactive.**
 
@@ -43,6 +43,7 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
     - [Signal Interrupt](#signal-interrupt)
   - [Testing](#testing)
   - [Default Renderers](#default-renderers)
+  - [Renderer Fallback](#renderer-fallback)
   - [Custom Renderers](#custom-renderers)
   - [Render Hooks](#render-hooks)
   - [Log To A File](#log-to-a-file)
@@ -151,6 +152,13 @@ export interface ListrOptions<Ctx = ListrContext> {
   nonTTYRenderer?: 'default' | 'verbose' | 'silent' | ListrRendererFactory
   // options for the non-tty renderer
   nonTTYrendererOptions?: ListrGetRendererOptions<T>
+  // instead of creating a custom method and overwriting the renderer value, you can create a function or pass in a boolean to evaluate when to fallback to nonTTYRenderer
+  rendererFallback?: boolean | (() => boolean)
+  // inject items to wrapper level
+  injectWrapper?: {
+    // pass in enquirer for testing purposes mostly, see: https://github.com/cenk1cenk2/listr2/issues/66
+    enquirer?: Enquirer
+  }
 }
 ```
 
@@ -998,23 +1006,33 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
   - Global
   ```typescript
   public static rendererOptions: {
+    // indentation per level
     indentation?: number
+    // clear output when task finishes
     clearOutput?: boolean
+    // show subtasks
     showSubtasks?: boolean
+    // collapse subtasks after finish
     collapse?: boolean
+    // collapse skips in to single message
     collapseSkips?: boolean
+    // only update via renderhook
+    lazy?: boolean
   } = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
     collapse: true,
-    collapseSkips: true
+    collapseSkips: true,
+    lazy: false
   }
   ```
   - Per-Task
   ```typescript
   public static rendererTaskOptions: {
+    // write task output to bottom bar
     bottomBar?: boolean | number
+    // keep output after task finishes
     persistentOutput?: boolean
   }
   ```
@@ -1022,14 +1040,49 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
   - Global
   ```typescript
   public static rendererOptions: {
+    // useIcons instead of text for log level
     useIcons?: boolean
+    // inject a custom loger
     logger?: new (...args: any) => Logger
+    // log tasks with empty titles
     logEmptyTitle?: boolean
+    // log title changes
     logTitleChange?: boolean
+  } = {
+    useIcons: false,
+    logEmptyTitle: true,
+    logTitleChange: true
   }
   ```
 - Options for the silent renderer.
   - NONE
+
+## Renderer Fallback
+
+There are times other than nonTTY environments that you want to use a verbose renderer instead of the default renderer.
+
+For these times you needed to create a `getRenderer` kind of method and return the renderer value to renderer. But with the added complexity of the types, it is a bit more buggy to show it returns `default` for autocompelete purposes.
+
+You can now pass in a function that returns a boolean, or directly a boolean for automatically stepping down to the `nonTTYRenderer` when the condition is met.
+
+```typescript
+task = new Listr<Ctx>(
+  [
+    {
+      title: 'This task will execute.',
+      task: async (): Promise<void> => {
+        await delay(500)
+      },
+      options: { persistentOutput: true }
+    }
+  ],
+  { concurrent: false, rendererFallback: (): boolean => 3 < 1 }
+)
+```
+
+_Please refer to [examples section](examples/renderer-fallback.example.ts) for more detailed and further examples._
+
+**Supported for >v2.3.0.**
 
 ## Custom Renderers
 

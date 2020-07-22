@@ -1,0 +1,434 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-err 1`] = `Array []`;
+
+exports[`show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-exit 1`] = `Array []`;
+
+exports[`show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G◼ This task will execute.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ◼ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask. 
+",
+  ],
+]
+`;
+
+exports[`show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-err 1`] = `Array []`;
+
+exports[`show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-exit 1`] = `Array []`;
+
+exports[`show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ❯ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ✔ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G✔ This task will execute. 
+",
+  ],
+]
+`;
+
+exports[`show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-err 1`] = `Array []`;
+
+exports[`show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-exit 1`] = `Array []`;
+
+exports[`show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute and not quit on errors.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G◼ This task will execute and not quit on errors.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ❯ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ◼ This is yet an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ This is yet an another subtask.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ I have succeeded.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+❯ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ exit  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ exit 
+",
+  ],
+]
+`;
+
+exports[`show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-err 1`] = `Array []`;
+
+exports[`show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-exit 1`] = `Array []`;
+
+exports[`show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G✔ This task will execute. 
+",
+  ],
+]
+`;

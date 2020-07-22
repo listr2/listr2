@@ -4,7 +4,7 @@ import { PromptOptions, PromptSettings } from './prompt.interface'
 import { PromptError } from '@interfaces/listr.interface'
 import { TaskWrapper } from '@root/lib/task-wrapper'
 
-export async function createPrompt (options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
+export async function createPrompt (this: TaskWrapper<any, any>, options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
   if (settings?.cancelCallback) {
@@ -13,6 +13,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
     cancelCallback = defaultCancelCallback
   }
 
+  // assign default if there is single prompt
   if (!Array.isArray(options)) {
     options = options = [ { ...options, name: 'default' } ]
   } else if (options.length === 1) {
@@ -21,29 +22,30 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
     }, [])
   }
 
+  // assign default enquirer options
   options = options.reduce((o, option) => {
     return [ ...o, Object.assign(option, { stdout: settings?.stdout ?? this.stdout(), onCancel: cancelCallback.bind(this, settings) }) ]
   }, [])
 
   let prompt: Enquirer['prompt']
-  try {
-    ({ prompt } = ((await import('enquirer')) as any).default)
-
-  } catch (e) {
-    this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
-    return
+  if (settings?.enquirer) {
+    ({ prompt } = settings.enquirer)
+  } else {
+    try {
+      ({ prompt } = ((await import('enquirer')) as any).default)
+    } catch (e) {
+      this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
+      throw new Error(e)
+    }
   }
 
-  try {
-    const response = await prompt(options as any) as any
+  // return default name if it is single prompt
+  const response = (await prompt(options as any)) as any
 
-    if (Object.keys(response).length === 1) {
-      return response.default
-    } else {
-      return response
-    }
-  } catch {
-    this.task.prompt = new PromptError('Can not get user input.')
+  if (Object.keys(response).length === 1) {
+    return response.default
+  } else {
+    return response
   }
 }
 

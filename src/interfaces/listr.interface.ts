@@ -1,3 +1,4 @@
+import Enquirer from 'enquirer'
 import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
@@ -22,9 +23,9 @@ export declare class ListrClass<
   FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue
 > {
   tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[]
-  constructor(task?: readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>)
-  public run(ctx?: Ctx): Promise<Ctx>
-  public add(tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void
+  constructor (task?: readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>)
+  public run (ctx?: Ctx): Promise<Ctx>
+  public add (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void
 }
 
 export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends Observable<ListrEvent> {
@@ -86,6 +87,10 @@ export interface ListrOptions<Ctx = ListrContext> {
   exitOnError?: boolean
   ctx?: Ctx
   registerSignalListeners?: boolean
+  rendererFallback?: boolean | (() => boolean)
+  injectWrapper?: {
+    enquirer?: Enquirer
+  }
 }
 
 export type CreateClass<T> = new (...args: any[]) => T
@@ -147,9 +152,9 @@ export declare class ListrRenderer {
   public static rendererOptions: Record<string, any>
   public static rendererTaskOptions: Record<string, any>
   public static nonTTY: boolean
-  constructor(tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions)
-  public render(): void
-  public end(err?: Error): void
+  constructor (tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions)
+  public render (): void
+  public end (err?: Error): void
 }
 
 export class ListrBaseRenderer implements ListrRenderer {

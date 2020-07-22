@@ -15,23 +15,28 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "prebuild": "rimraf tsconfig.build.tsbuildinfo && rimraf dist/",
+    "prebuild": "rimraf tsconfig*.tsbuildinfo && rimraf dist/",
     "build": "tsc -P tsconfig.build.json && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
-    "lint": "prettier --write src/ && eslint --ext .json,.ts,.js --fix src/",
-    "test": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.js",
-    "test:cov": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.js",
-    "dev:test": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.js"
+    "lint": "prettier --write src/ && eslint --ext .ts,.js,.tsx,.jsx --fix src/",
+    "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/",
+    "test": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.js",
+    "test:cov": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.config.js",
+    "dev:test": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.js"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "pre-push": "yarn test"
     }
   },
   "lint-staged": {
-    "src/*.{ts,js, json}": [
+    "./*.{ts,js,tsx,jsx}": [
       "prettier --write",
-      "eslint --ext .json,.ts,.js --fix"
+      "eslint --fix"
+    ],
+    "./*.{json,md}": [
+      "prettier --write"
     ]
   },
   "keywords": [
@@ -63,8 +68,8 @@
     "through": "^2.3.8"
   },
   "devDependencies": {
-    "@cenk1cenk2/eslint-config": "*",
-    "@types/jest": "^25.2.3",
+    "@cenk1cenk2/eslint-config": "^0.3.2",
+    "@types/jest": "^26.0.0",
     "@types/node": "^14.0.9",
     "@types/rewire": "^2.5.28",
     "cz-conventional-changelog": "3.2.0",
@@ -73,6 +78,7 @@
     "eslint": "^7.1.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "jest-mock-process": "^1.4.0",
     "lint-staged": "^10.2.8",
     "prettier": "^2.0.5",
     "rewire": "^5.0.0",

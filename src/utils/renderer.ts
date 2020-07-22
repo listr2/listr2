@@ -1,5 +1,5 @@
 import { SupportedRenderer } from './renderer.interface'
-import { ListrRendererFactory, ListrRendererValue } from '@interfaces/listr.interface'
+import { ListrRendererFactory, ListrRendererValue, ListrOptions } from '@interfaces/listr.interface'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
@@ -22,12 +22,20 @@ function getRendererClass (renderer: ListrRendererValue): ListrRendererFactory {
   return typeof renderer === 'function' ? renderer : renderers.default
 }
 
-export function getRenderer (renderer: ListrRendererValue, fallbackRenderer?: ListrRendererValue): SupportedRenderer {
+export function getRenderer (renderer: ListrRendererValue, fallbackRenderer?: ListrRendererValue, fallbackCondition?: ListrOptions['rendererFallback']): SupportedRenderer {
   let returnValue: SupportedRenderer
   let ret = getRendererClass(renderer)
+
   returnValue = { renderer: ret, nonTTY: false }
 
-  if (!isRendererSupported(ret)) {
+  let evaluateFallback: boolean
+  if (typeof fallbackCondition === 'function') {
+    evaluateFallback = fallbackCondition()
+  } else {
+    evaluateFallback = fallbackCondition
+  }
+
+  if (!isRendererSupported(ret) || evaluateFallback) {
     ret = getRendererClass(fallbackRenderer)
     returnValue = { renderer: ret, nonTTY: true }
   }

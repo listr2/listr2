@@ -13,6 +13,7 @@ const logger = new Logger({ useIcons: false })
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
+  // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
   logger.start('Example for subtasks.')
 
   task = new Listr<Ctx>([
@@ -36,6 +37,8 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
+  // 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0kA
+  // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
   logger.start('Example for subtasks with different renderer options.')
 
   task = new Listr<Ctx>([
@@ -112,6 +115,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
+  // 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY
   logger.start('Example for subtasks that change exit on error.')
 
   task = new Listr<Ctx>([
