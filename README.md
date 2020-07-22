@@ -151,6 +151,10 @@ export interface ListrOptions<Ctx = ListrContext> {
   nonTTYRenderer?: 'default' | 'verbose' | 'silent' | ListrRendererFactory
   // options for the non-tty renderer
   nonTTYrendererOptions?: ListrGetRendererOptions<T>
+  // instead of creating a custom method and overwriting the renderer value, you can create a function or pass in a boolean to evaluate when to fallback to nonTTYRenderer
+  rendererFallback?: boolean | (() => boolean)
+  // pass in enquirer for testing purposes mostly, see: https://github.com/cenk1cenk2/listr2/issues/66
+  enquirer: Enquirer
 }
 ```
 
@@ -1030,6 +1034,33 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
   ```
 - Options for the silent renderer.
   - NONE
+
+## Renderer Fallback
+
+There are times other than nonTTY environments that you want to use a verbose renderer instead of the default renderer.
+
+For these times you needed to create a `getRenderer` kind of method and return the renderer value to renderer. But with the added complexity of the types, it is a bit more buggy to show it returns `default` for autocompelete purposes.
+
+You can now pass in a function that returns a boolean, or directly a boolean for automatically stepping down to the `nonTTYRenderer` when the condition is met.
+
+```typescript
+task = new Listr<Ctx>(
+  [
+    {
+      title: 'This task will execute.',
+      task: async (): Promise<void> => {
+        await delay(500)
+      },
+      options: { persistentOutput: true }
+    }
+  ],
+  { concurrent: false, rendererFallback: (): boolean => 3 < 1 }
+)
+```
+
+_Please refer to [examples section](examples/renderer-fallback.example.ts) for more detailed and further examples._
+
+**Supported for >v2.3.0.**
 
 ## Custom Renderers
 

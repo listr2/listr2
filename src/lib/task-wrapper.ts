@@ -1,7 +1,7 @@
 /* eslint-disable no-control-regex */
 import through from 'through'
 
-import { ListrError, ListrRendererFactory, ListrSubClassOptions, ListrTask, ListrTaskWrapper, StateConstants } from '@interfaces/listr.interface'
+import { ListrError, ListrRendererFactory, ListrSubClassOptions, ListrTask, ListrTaskWrapper, StateConstants, ListrBaseClassOptions } from '@interfaces/listr.interface'
 import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
@@ -9,9 +9,9 @@ import { createPrompt } from '@utils/prompt'
 import { PromptOptions } from '@utils/prompt.interface'
 
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
-  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[]) {}
+  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
 
-  set title (title) {
+  set title (title: string) {
     this.task.title = title
 
     this.task.next({
@@ -73,7 +73,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   public async prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T> {
     this.task.prompt = true
 
-    return createPrompt.bind(this)(options)
+    return createPrompt.bind(this)(options, { enquirer: this.options.enquirer })
   }
 
   public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {

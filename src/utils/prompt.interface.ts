@@ -10,13 +10,13 @@ export type PromptOptions<T extends boolean = false> = Unionize<
 }
 >
 
-export type Unionize<T extends object> = {
+export type Unionize<T extends Record<string, unknown>> = {
   [P in keyof T]: T[P]
 }[keyof T]
 
 interface BasePromptOptions {
   message: string | (() => string) | (() => Promise<string>)
-  initial?: boolean | number | string | (() => string) | (() => Promise<string>)
+  initial?: boolean | number | number[] | string | (() => string) | (() => Promise<string>)
   required?: boolean
   stdin?: NodeJS.ReadStream
   stdout?: NodeJS.WriteStream
@@ -37,8 +37,8 @@ interface BasePromptOptionsWithName extends BasePromptOptions {
 interface ArrayPromptOptions extends BasePromptOptions {
   choices: string[] | BasePromptOptionsWithName[]
   maxChoices?: number
-  muliple?: boolean
-  initial?: number
+  multiple?: boolean
+  initial?: number | number[]
   delay?: number
   separator?: boolean
   sort?: boolean
@@ -166,4 +166,5 @@ export interface PromptSettings {
   error?: boolean
   cancelCallback?: (settings?: PromptSettings) => string | Error | PromptError | void
   stdout?: WriteStream | Writable
+  enquirer?: Enquirer
 }

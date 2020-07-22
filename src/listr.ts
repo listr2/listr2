@@ -56,7 +56,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     }
 
     // get renderer class
-    const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer)
+    const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback)
     this.rendererClass = renderer.renderer
 
     // depending on the result pass the given options in
@@ -155,6 +155,6 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
       return Promise.resolve()
     }
 
-    return new TaskWrapper(task, errors).run(context)
+    return new TaskWrapper(task, errors, this.options).run(context)
   }
 }

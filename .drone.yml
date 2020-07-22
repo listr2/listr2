@@ -15,7 +15,7 @@ steps:
     image: node:current-alpine
     commands:
       - yarn --frozen-lockfile
-      - yarn lint
+      - yarn lint:check
 
   - name: test
     image: node:current-alpine

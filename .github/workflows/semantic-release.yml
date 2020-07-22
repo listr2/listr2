@@ -2,14 +2,14 @@ name: semantic-release
 
 on:
   push:
-    branches: [ develop, alpha, beta, rc ]
+    branches: [develop, alpha, beta, rc]
   pull_request:
-    branches: [ develop, alpha, beta, rc ]
+    branches: [develop, alpha, beta, rc]
 
 jobs:
   semantic-release-mock:
-      runs-on: [ubuntu-latest]
-      steps:
+    runs-on: [ubuntu-latest]
+    steps:
       - uses: actions/checkout@v2
       - name: Action For Semantic Release
         env:
@@ -17,19 +17,19 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         uses: cycjimmy/semantic-release-action@v2.3.0
         with:
-          branches: |    
+          branches: |
             [
-              'develop', 
+              'develop',
               {
-                name: 'alpha', 
+                name: 'alpha',
                 prerelease: true
               },
               {
-                name: 'beta', 
+                name: 'beta',
                 prerelease: true
               },
               {
-                name: 'rc', 
+                name: 'rc',
                 prerelease: true
               }
             ]
