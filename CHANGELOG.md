@@ -1,3 +1,18 @@
+# [2.3.0](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* **colors:** disable colors for test ([b81ee08](https://github.com/cenk1cenk2/listr2/commit/b81ee087fd11f9ee8b96b305d9a76fb7b245ca9c))
+* **deps:** update all minor package updates ([aba8cf2](https://github.com/cenk1cenk2/listr2/commit/aba8cf20abbf6c81cd98be41099254ba6c30a19b))
+* **truncate:** fix truncate to 80 on columns unknown ([3454aed](https://github.com/cenk1cenk2/listr2/commit/3454aedbc4282550f79f4e65fe34ab14fbe06e4e))
+
+
+### Features
+
+* added lazy option to default renderer. moved enquirer to inject wrapper key from root ([78f3984](https://github.com/cenk1cenk2/listr2/commit/78f3984c19cd31f45edf5fbc8e8bfa5380104331))
+* **prompts:** added external enquirer injection for testing, fallback condition, fixed catching err ([a0bf6fd](https://github.com/cenk1cenk2/listr2/commit/a0bf6fd444caf69b0231f710099e367840c0ed15)), closes [#66](https://github.com/cenk1cenk2/listr2/issues/66) [#67](https://github.com/cenk1cenk2/listr2/issues/67) [#68](https://github.com/cenk1cenk2/listr2/issues/68)
+
 # [2.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2020-07-22)
 
 
