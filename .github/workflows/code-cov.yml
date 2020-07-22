@@ -1,15 +1,20 @@
 name: code-coverage
 
-on:
-  pull_request:
-    branches: [master, develop, alpha, beta, rc]
+on: [push, pull_request]
 
 jobs:
-  semantic-release-mock:
-    runs-on: [ubuntu-latest]
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: mattallty/jest-github-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+      - name: install node.js
+        uses: actions/setup-node@v1
         with:
+          node-version: 14.x
+      - run: yarn install --frozen-lockfile
+      - name: report coverage
+        uses: ziishaned/jest-reporter-action@v0.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           test-command: 'yarn test:cov'
