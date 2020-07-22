@@ -1,0 +1,20 @@
+name: code-coverage
+
+on: [pull_request]
+
+jobs:
+  code-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: install node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: yarn install --frozen-lockfile
+      - name: report coverage
+        uses: ChristiaanScheermeijer/jest-reporter-action@v0.4.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          test-command: 'yarn test:cov'
