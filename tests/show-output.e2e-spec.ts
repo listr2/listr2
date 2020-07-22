@@ -41,6 +41,9 @@ describe('show output from task', () => {
 
             task.output = 'I will push an output. [2]'
             await delay(5)
+          },
+          options: {
+            persistentOutput: false
           }
         }
       ],

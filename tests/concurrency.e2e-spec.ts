@@ -4,7 +4,6 @@ import { ListrTask } from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
 
 describe('concurrent execution', () => {
-
   let tasks: ListrTask<any, any>[]
   let log: jest.SpyInstance<void, string[][]>
 
@@ -12,7 +11,6 @@ describe('concurrent execution', () => {
     log = jest.spyOn(console, 'log').mockImplementation()
 
     tasks = [
-
       {
         title: '1',
         task: async (): Promise<void> => {
@@ -40,9 +38,7 @@ describe('concurrent execution', () => {
           await delay(1)
         }
       }
-
     ]
-
   })
 
   afterEach(async () => {
@@ -54,33 +50,33 @@ describe('concurrent execution', () => {
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
-        "[STARTED] 1",
-      ],
-      Array [
-        "[STARTED] 2",
-      ],
-      Array [
-        "[STARTED] 3",
-      ],
-      Array [
-        "[STARTED] 4",
-      ],
-      Array [
-        "[SUCCESS] 4",
-      ],
-      Array [
-        "[SUCCESS] 3",
-      ],
-      Array [
-        "[SUCCESS] 2",
-      ],
-      Array [
-        "[SUCCESS] 1",
-      ],
-    ]
-      `)
+          Array [
+            Array [
+              "[STARTED] 1",
+            ],
+            Array [
+              "[STARTED] 2",
+            ],
+            Array [
+              "[STARTED] 3",
+            ],
+            Array [
+              "[STARTED] 4",
+            ],
+            Array [
+              "[SUCCESS] 4",
+            ],
+            Array [
+              "[SUCCESS] 3",
+            ],
+            Array [
+              "[SUCCESS] 2",
+            ],
+            Array [
+              "[SUCCESS] 1",
+            ],
+          ]
+          `)
   })
 
   it('should limit the concurrency', async () => {
@@ -88,32 +84,32 @@ describe('concurrent execution', () => {
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
-    Array [
       Array [
-        "[STARTED] 1",
-      ],
-      Array [
-        "[STARTED] 2",
-      ],
-      Array [
-        "[SUCCESS] 2",
-      ],
-      Array [
-        "[STARTED] 3",
-      ],
-      Array [
-        "[SUCCESS] 1",
-      ],
-      Array [
-        "[STARTED] 4",
-      ],
-      Array [
-        "[SUCCESS] 4",
-      ],
-      Array [
-        "[SUCCESS] 3",
-      ],
-    ]
+        Array [
+          "[STARTED] 1",
+        ],
+        Array [
+          "[STARTED] 2",
+        ],
+        Array [
+          "[SUCCESS] 2",
+        ],
+        Array [
+          "[STARTED] 3",
+        ],
+        Array [
+          "[SUCCESS] 1",
+        ],
+        Array [
+          "[STARTED] 4",
+        ],
+        Array [
+          "[SUCCESS] 3",
+        ],
+        Array [
+          "[SUCCESS] 4",
+        ],
+      ]
     `)
   })
 
@@ -122,33 +118,32 @@ describe('concurrent execution', () => {
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
-        "[STARTED] 1",
-      ],
-      Array [
-        "[SUCCESS] 1",
-      ],
-      Array [
-        "[STARTED] 2",
-      ],
-      Array [
-        "[SUCCESS] 2",
-      ],
-      Array [
-        "[STARTED] 3",
-      ],
-      Array [
-        "[SUCCESS] 3",
-      ],
-      Array [
-        "[STARTED] 4",
-      ],
-      Array [
-        "[SUCCESS] 4",
-      ],
-    ]
-    `)
+          Array [
+            Array [
+              "[STARTED] 1",
+            ],
+            Array [
+              "[SUCCESS] 1",
+            ],
+            Array [
+              "[STARTED] 2",
+            ],
+            Array [
+              "[SUCCESS] 2",
+            ],
+            Array [
+              "[STARTED] 3",
+            ],
+            Array [
+              "[SUCCESS] 3",
+            ],
+            Array [
+              "[STARTED] 4",
+            ],
+            Array [
+              "[SUCCESS] 4",
+            ],
+          ]
+        `)
   })
-
 })
