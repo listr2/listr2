@@ -13,7 +13,7 @@ const logger = new Logger({ useIcons: false })
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
-  // test-e2e-JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
+  // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
   logger.start('Example for subtasks.')
 
   task = new Listr<Ctx>([
@@ -37,8 +37,8 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
-  // test-e2e-3ygUxrTkCDLDfDrXzF1ocWR6626jaL0kA
-  // test-e2e-8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
+  // 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0kA
+  // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
   logger.start('Example for subtasks with different renderer options.')
 
   task = new Listr<Ctx>([

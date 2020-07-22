@@ -14,7 +14,7 @@ const logger = new Logger({ useIcons: false })
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
-  // test-e2e-rMG224TBrLk3ocYtKidc1D4AyZtEHm11
+  // rMG224TBrLk3ocYtKidc1D4AyZtEHm11
   logger.start('Example output from a task.')
 
   task = new Listr<Ctx>([
@@ -40,7 +40,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
-  // test-e2e-oYHBlOYGg8juKRkaqigY617eyLbGMuDd
+  // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
   logger.start('Example output with task with persistent output.')
 
   task = new Listr<Ctx>([
@@ -67,7 +67,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
-  // test-e2e-767BkeBTfR1lrS2ANYYH7CLWPATxqyat
+  // 767BkeBTfR1lrS2ANYYH7CLWPATxqyat
   logger.start('Example output to bottom bar from a task.')
 
   task = new Listr<Ctx>([
@@ -96,7 +96,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
-  // test-e2e-JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP
+  // JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP
   logger.start('Example output from a task with no title.')
 
   task = new Listr<Ctx>([
@@ -121,7 +121,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
-  // test-e2e-NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus
+  // NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus
   logger.start('Example persistent output from a task.')
 
   task = new Listr<Ctx>([
@@ -169,7 +169,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
-  // test-e2e-SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
+  // SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
   logger.start('Example output from a observable.')
 
   task = new Listr<Ctx>([
@@ -199,7 +199,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
-  // test-e2e-j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
+  // j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
   logger.start('Example long multiline output with task with persistent output.')
 
   task = new Listr<Ctx>([
