@@ -14,28 +14,28 @@ describe('concurrent execution', () => {
       {
         title: '1',
         task: async (): Promise<void> => {
-          await delay(20)
+          await delay(28)
         }
       },
 
       {
         title: '2',
         task: async (): Promise<void> => {
-          await delay(15)
+          await delay(16)
         }
       },
 
       {
         title: '3',
         task: async (): Promise<void> => {
-          await delay(10)
+          await delay(9)
         }
       },
 
       {
         title: '4',
         task: async (): Promise<void> => {
-          await delay(1)
+          await delay(0)
         }
       }
     ]
@@ -80,7 +80,7 @@ describe('concurrent execution', () => {
   })
 
   it('should limit the concurrency', async () => {
-    await new Listr(tasks, { concurrent: 2, renderer: 'verbose' }).run()
+    await new Listr(tasks, { concurrent: 3, renderer: 'verbose' }).run()
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
@@ -92,13 +92,10 @@ describe('concurrent execution', () => {
           "[STARTED] 2",
         ],
         Array [
-          "[SUCCESS] 2",
-        ],
-        Array [
           "[STARTED] 3",
         ],
         Array [
-          "[SUCCESS] 1",
+          "[SUCCESS] 3",
         ],
         Array [
           "[STARTED] 4",
@@ -107,7 +104,10 @@ describe('concurrent execution', () => {
           "[SUCCESS] 4",
         ],
         Array [
-          "[SUCCESS] 3",
+          "[SUCCESS] 2",
+        ],
+        Array [
+          "[SUCCESS] 1",
         ],
       ]
     `)

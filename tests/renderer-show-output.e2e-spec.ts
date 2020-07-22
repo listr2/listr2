@@ -13,6 +13,8 @@ describe('show output from task', () => {
   // eslint-disable-next-line @typescript-eslint/ban-types
   let mockStderr: jest.SpyInstance<boolean, [string, string?, Function?]>
 
+  process.stdout.isTTY = true
+
   beforeEach(async () => {
     mockExit = mockProcessExit()
     mockStdout = mockProcessStdout()
@@ -48,7 +50,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -77,7 +79,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -106,7 +108,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -134,7 +136,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -162,7 +164,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -191,7 +193,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -220,7 +222,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -264,7 +266,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -296,7 +298,7 @@ describe('show output from task', () => {
 
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -316,14 +318,14 @@ describe('show output from task', () => {
             const mid = 'long '
             const end = 'multi line output.'
             task.output = start + mid.repeat(40) + '\n'+ mid.repeat(40) + '\n'+ mid.repeat(40) + '\n'+ mid.repeat(40) + '\n'+ mid.repeat(40) + '\n' + end
-            await delay(500)
+            await delay(5)
           },
           options: { persistentOutput: true }
         }
 
       ],
       {
-        concurrent: false, nonTTYRenderer: 'default', nonTTYRendererOptions: { lazy: true }
+        concurrent: false, rendererOptions: { lazy: true }
       }
     ).run()
 

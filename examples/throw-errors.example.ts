@@ -129,6 +129,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
+  // H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM
   logger.data('You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
   logger.fail(task.err.toString())
 }

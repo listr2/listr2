@@ -115,6 +115,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
+  // 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY
   logger.start('Example for subtasks that change exit on error.')
 
   task = new Listr<Ctx>([

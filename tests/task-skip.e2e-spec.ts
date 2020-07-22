@@ -3,12 +3,10 @@ import { Listr } from '@root/index'
 describe('skip a task', () => {
 
   let log: jest.SpyInstance<void, string[][]>
-  let warn: jest.SpyInstance<void, string[][]>
   let info: jest.SpyInstance<void, string[][]>
 
   beforeEach(async () => {
     log = jest.spyOn(console, 'log').mockImplementation()
-    warn = jest.spyOn(console, 'warn').mockImplementation()
     info = jest.spyOn(console, 'info').mockImplementation()
   })
 

@@ -11,6 +11,7 @@ const logger = new Logger({ useIcons: false })
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
+  // JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU
   logger.start('Example for enabling a task by utilizing previous tasks and the general context.')
 
   task = new Listr<Ctx>([
@@ -35,6 +36,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
+  // 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB
   logger.start('A more complex enable example with subtasks.')
   task = new Listr<Ctx>([
     {
