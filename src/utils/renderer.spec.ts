@@ -31,6 +31,28 @@ describe('renderers', () => {
     expect(renderer.__get__('isRendererSupported')).toBeCalledTimes(1)
   })
 
+  it('should evaluate the fallback and return fallback renderer', async () => {
+    const renderer = rewire('@utils/renderer')
+
+    renderer.__set__(
+      'isRendererSupported',
+      jest.fn(() => true)
+    )
+
+    expect(renderer.__get__('getRenderer')('default', 'verbose', 3 > 0).renderer.name).toEqual(VerboseRenderer.name)
+  })
+
+  it('should evaluate the fallback and return default renderer', async () => {
+    const renderer = rewire('@utils/renderer')
+
+    renderer.__set__(
+      'isRendererSupported',
+      jest.fn(() => true)
+    )
+
+    expect(renderer.__get__('getRenderer')('default', 'verbose', 3 < 0).renderer.name).toEqual(DefaultRenderer.name)
+  })
+
   it('should return default renderer if tty', async () => {
     const renderer = rewire('@utils/renderer')
 

@@ -24,7 +24,7 @@ async function main (): Promise<void> {
       },
       options: { persistentOutput: true }
     }
-  ], { concurrent: false, rendererFallback: (): boolean => 3 > 1 })
+  ], { concurrent: false, rendererFallback: (): boolean => 3 > 0 })
 
   try {
     const context = await task.run()
@@ -43,7 +43,7 @@ async function main (): Promise<void> {
       },
       options: { persistentOutput: true }
     }
-  ], { concurrent: false, rendererFallback: (): boolean => 3 < 1 })
+  ], { concurrent: false, rendererFallback: (): boolean => 3 < 0 })
 
   try {
     const context = await task.run()
