@@ -19,9 +19,9 @@
     "build": "tsc -P tsconfig.build.json && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
     "lint": "prettier --write src/ && eslint --ext .ts,.js,.tsx,.jsx --fix src/",
     "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/",
-    "test": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.js",
-    "test:cov": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.config.js",
-    "dev:test": "NODE_ENV=test ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.js"
+    "test": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.js",
+    "test:cov": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.config.js",
+    "dev:test": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.js"
   },
   "husky": {
     "hooks": {
