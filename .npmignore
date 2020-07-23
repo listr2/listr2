@@ -13,6 +13,7 @@ release.config.js
 CHANGELOG.md
 examples/
 .prettierrc*
+renovate.json
 
 # badges
 .badges/
