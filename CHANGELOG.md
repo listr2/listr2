@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/cenk1cenk2/listr2/compare/v2.3.1...v2.3.2) (2020-07-23)
+
+
+### Bug Fixes
+
+* **tests:** change env variable for tests, esspecially chalk because node_env test is more common ([5c7c9ca](https://github.com/cenk1cenk2/listr2/commit/5c7c9caf33eb5141d46cf79cd7176826807b9e50))
+
 ## [2.3.1](https://github.com/cenk1cenk2/listr2/compare/v2.3.0...v2.3.1) (2020-07-22)
 
 
