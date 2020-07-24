@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/cenk1cenk2/listr2/compare/v2.3.2...v2.3.3) (2020-07-24)
+
+
+### Bug Fixes
+
+* **prompts:** removed prompt bind type to use it in other scripts directly ([655334a](https://github.com/cenk1cenk2/listr2/commit/655334a256524cb8099c189868bb8f30dc784b90))
+
 ## [2.3.2](https://github.com/cenk1cenk2/listr2/compare/v2.3.1...v2.3.2) (2020-07-23)
 
 
