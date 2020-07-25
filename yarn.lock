@@ -636,9 +636,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*", "@types/node@^14.0.9":
-  version "14.0.25"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.25.tgz#7ad8b00a1206d6c9e94810e49f3115f0bcc30456"
-  integrity sha512-okMqUHqrMlGOxfDZliX1yFX5MV6qcd5PpRz96XYtjkM0Ws/hwg23FMUqt6pETrVRZS+EKUB5HY19mmo54EuQbA==
+  version "14.0.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.26.tgz#22a3b8a46510da8944b67bfc27df02c34a35331c"
+  integrity sha512-W+fpe5s91FBGE0pEa0lnqGLL4USgpLgs4nokw16SrBBco/gQxuua7KnArSEOd5iaMqbbSHV10vUDkJYJJqpXKA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -3405,9 +3405,9 @@ lint-staged@^10.2.8:
     stringify-object "^3.3.0"
 
 listr2@^2.1.0:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.3.2.tgz#918dabaad2def14246abc7d54d607f03c59ec407"
-  integrity sha512-/KxSjXQzkMkeVT3Tl2gPwmQPLmOv81l29p+a0+I3mLHs1PjOjgkWuc6Y6d1oGBGXWj57/IVeVMbZ+9Hlr3P/pQ==
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.3.3.tgz#ee9f4d95dd325ad1ae89fe7327f2a4f4498224b5"
+  integrity sha512-vU2eiFEzUEaDjgwRJ/n8RB79K2cBcaTw1DigIGHnXGp/BEeQqxGwiM8R17Itit5l2ykrrST11kw2l9vSpCbqUQ==
   dependencies:
     chalk "^4.0.0"
     cli-truncate "^2.1.0"
