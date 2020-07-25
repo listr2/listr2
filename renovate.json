@@ -3,5 +3,8 @@
   "extends": [
     "@cenk1cenk2",
     "@cenk1cenk2:branchDevelop"
+  ],
+  "ignorePresets": [
+    "@cenk1cenk2:noTests"
   ]
 }
