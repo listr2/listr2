@@ -11,10 +11,14 @@ trigger:
     - push
 
 steps:
-  - name: lint
+  - name: install
     image: node:current-alpine
     commands:
       - yarn --frozen-lockfile
+      
+  - name: lint
+    image: node:current-alpine
+    commands:
       - yarn lint:check
 
   - name: test
