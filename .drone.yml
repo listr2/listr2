@@ -20,7 +20,13 @@ steps:
   - name: test
     image: node:current-alpine
     commands:
-      - yarn test
+      - yarn test:cov
+      
+  - name: code-coverage
+    image: node:current-alpine
+    commands:
+      - yarn global add codecov 
+      - codecov
 
   - name: build
     image: node:current-alpine
