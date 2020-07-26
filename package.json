@@ -68,13 +68,13 @@
     "through": "^2.3.8"
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "1.0.2",
-    "@cenk1cenk2/eslint-config": "^0.4.0",
+    "@cenk1cenk2/cz-cc": "1.0.3",
+    "@cenk1cenk2/eslint-config": "^0.4.1",
     "@types/jest": "^26.0.0",
     "@types/node": "^14.0.9",
     "@types/rewire": "^2.5.28",
-    "delay": "^4.3.0",
-    "enquirer": "^2.3.5",
+    "delay": "^4.4.0",
+    "enquirer": "^2.3.6",
     "eslint": "^7.1.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
@@ -87,7 +87,7 @@
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.7"
   },
   "peerDependencies": {
     "enquirer": ">= 2.3.0 < 3"
