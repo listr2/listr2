@@ -29,6 +29,7 @@ steps:
   - name: code-coverage
     image: node:current-alpine
     commands:
+      - apk add --no-cache --no-progress git
       - yarn global add codecov 
       - codecov -f coverage/lcov.info
 
