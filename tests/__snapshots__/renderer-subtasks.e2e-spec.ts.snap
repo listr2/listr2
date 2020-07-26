@@ -368,6 +368,89 @@ Array [
 ]
 `;
 
+exports[`show subtasks should be able to render subtasks with no title with correct indentation: 9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-err 1`] = `Array []`;
+
+exports[`show subtasks should be able to render subtasks with no title with correct indentation: 9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-exit 1`] = `Array []`;
+
+exports[`show subtasks should be able to render subtasks with no title with correct indentation: 9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G◼ This task will execute.
+◼ This task will execute a task without titles.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute a task without titles.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute a task without titles. 
+
+› output 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute a task without titles. 
+
+› output
+› some more output 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute a task without titles. 
+
+› output
+› some more output
+› even more output 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will execute a task without titles. 
+
+› output
+› some more output
+› even more output 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute a task without titles. 
+
+› output
+› some more output
+› even more output 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute a task without titles. 
+
+› output
+› some more output
+› even more output 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute a task without titles. 
+
+› output
+› some more output
+› even more output
+",
+  ],
+]
+`;
+
 exports[`show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-err 1`] = `Array []`;
 
 exports[`show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-exit 1`] = `Array []`;

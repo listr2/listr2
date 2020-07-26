@@ -158,21 +158,28 @@ export class DefaultRenderer implements ListrRenderer {
 
         // render subtasks, some complicated conditionals going on
         if (
+          // check if renderer option is on first
+          this.options.showSubtasks !== false &&
+          // if it doesnt have subtasks no need to check
+          task.hasSubtasks() &&
           (task.isPending() ||
             task.hasFailed() ||
             task.isCompleted() && !task.hasTitle() ||
-            task.isCompleted() && this.options.collapse === false && task.hasSubtasks() && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
-            task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
-            task.isCompleted() && task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())) &&
-          this.options.showSubtasks !== false &&
-          task.hasSubtasks()
+            // have to be completed and have subtasks
+            task.isCompleted() && this.options.collapse === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
+            // if any of the subtasks have the collapse option of
+            task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
+            // if any of the subtasks has failed
+            task.subtasks.some((subtask) => subtask.hasFailed())) &&
+          // if all the subtasks have no title at all
+          !task.subtasks.every((subtask) => !subtask.hasTitle())
         ) {
           // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
 
           // render the subtasks as in the same way
           const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
-          if (subtaskRender !== '') {
+          if (subtaskRender?.trim() !== '') {
             output = [ ...output, subtaskRender ]
           }
         }
