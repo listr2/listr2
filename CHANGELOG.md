@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/cenk1cenk2/listr2/compare/v2.3.3...v2.3.4) (2020-07-26)
+
+
+### Bug Fixes
+
+* **default-renderer:** fixed the issue when there is all empty subtasks and it leaves one extra space ([57b0809](https://github.com/cenk1cenk2/listr2/commit/57b08097bdd83bca40fbd89cd823fc1d175fa612))
+
 ## [2.3.3](https://github.com/cenk1cenk2/listr2/compare/v2.3.2...v2.3.3) (2020-07-24)
 
 
