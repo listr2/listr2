@@ -1,3 +1,11 @@
+## [2.3.5](https://github.com/cenk1cenk2/listr2/compare/v2.3.4...v2.3.5) (2020-07-26)
+
+
+### Bug Fixes
+
+* **default-renderer:** renderer to show spinner if all subtasks has no title ([58aaadc](https://github.com/cenk1cenk2/listr2/commit/58aaadc08924ea4657caa86850c5d9040fb9d1f5))
+* **deps:** update all minor dependency updates ([4fccbc4](https://github.com/cenk1cenk2/listr2/commit/4fccbc4382c3b41e374070166a1ecb558ab77c66))
+
 ## [2.3.4](https://github.com/cenk1cenk2/listr2/compare/v2.3.3...v2.3.4) (2020-07-26)
 
 
