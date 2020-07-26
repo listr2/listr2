@@ -197,4 +197,58 @@ describe('show subtasks', () => {
 
   })
 
+  // 9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc
+  it('should be able to render subtasks with no title with correct indentation', async () => {
+    try {
+      await new Listr(
+        [
+          {
+            title: 'This task will execute.',
+            task: (ctx, task): void => {
+              task.output = 'output'
+              task.output = 'some more output'
+              task.output = 'even more output'
+            },
+            options: {
+              bottomBar: Infinity,
+              persistentOutput: true
+            }
+          },
+
+          {
+            title: 'This task will execute a task without titles.',
+            task: (ctx, task): Listr => task.newListr([
+              {
+                task: async (): Promise<void> => {
+                  await delay(10)
+                }
+              },
+              {
+                task: async (): Promise<void> => {
+                  await delay(10)
+                }
+              },
+              {
+                task: async (): Promise<void> => {
+                  await delay(10)
+                }
+              }
+            ], { exitOnError: false })
+          }
+        ],
+        {
+          concurrent: false, exitOnError: true, rendererOptions: { lazy: true }
+        }
+      ).run()
+
+    } catch(e) {
+      expect(e).toBeTruthy()
+    }
+
+    expect(mockStdout.mock.calls).toMatchSnapshot('9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-exit')
+
+  })
+
 })
