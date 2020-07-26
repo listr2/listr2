@@ -263,6 +263,22 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@cenk1cenk2/cz-cc@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.0.2.tgz#8ff4fd2f2e248109029888ddfd41ffa98c241af9"
+  integrity sha512-IIDYgBwTNz9AfgUJfePd6hQYYOzZVehBhX8bOAZi9CCxO2E8MJC+00XYiql7ftdKF5zs6rrVOwtXsX+RNxUdZg==
+  dependencies:
+    chalk "^4.1.0"
+    commitizen "^4.0.3"
+    conventional-commit-types "^3.0.0"
+    enquirer "^2.3.6"
+    listr2 "^2.3.3"
+    lodash.map "^4.5.1"
+    longest "^2.0.1"
+    word-wrap "^1.0.3"
+  optionalDependencies:
+    "@commitlint/load" "^9.1.1"
+
 "@cenk1cenk2/eslint-config@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-0.4.0.tgz#defe52aca228acfd2cdd9605b362165ff222f835"
@@ -287,7 +303,7 @@
   resolved "https://registry.yarnpkg.com/@commitlint/execute-rule/-/execute-rule-9.1.1.tgz#59bfe018d85545881e4bd1a47f9cd155b2df4c2c"
   integrity sha512-kCncHMXfVDfmUx1NExl7T+s7udAWEOh039DFGR9R5MWoy+zm2cJsCdsbWFFuNbcPWCKor57ywdIUN2t048P6Yg==
 
-"@commitlint/load@>6.1.1":
+"@commitlint/load@>6.1.1", "@commitlint/load@^9.1.1":
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-9.1.1.tgz#8b1580ab821729bbe197e95f960e7cee966402ae"
   integrity sha512-RCIX44M8nq3bW98vuxA6C2rM0wAnZlneFls2OVi5l2BvD/rsQ2R9CZYwPt/MYU6RbwMmlGhkuHdScwK6pJeUqA==
@@ -636,9 +652,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*", "@types/node@^14.0.9":
-  version "14.0.25"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.25.tgz#7ad8b00a1206d6c9e94810e49f3115f0bcc30456"
-  integrity sha512-okMqUHqrMlGOxfDZliX1yFX5MV6qcd5PpRz96XYtjkM0Ws/hwg23FMUqt6pETrVRZS+EKUB5HY19mmo54EuQbA==
+  version "14.0.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.26.tgz#22a3b8a46510da8944b67bfc27df02c34a35331c"
+  integrity sha512-W+fpe5s91FBGE0pEa0lnqGLL4USgpLgs4nokw16SrBBco/gQxuua7KnArSEOd5iaMqbbSHV10vUDkJYJJqpXKA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1608,7 +1624,7 @@ end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enquirer@^2.3.5:
+enquirer@^2.3.5, enquirer@^2.3.6:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/enquirer/-/enquirer-2.3.6.tgz#2a7fe5dd634a1e4125a975ec994ff5456dc3734d"
   integrity sha512-yjNnPr315/FjS4zIsUxYguYUPP2e1NK4d7E7ZOLiyYCcbFBiTMyID+2wvm2w6+pZ/odMA7cRkjhsPbltwBOrLg==
@@ -3404,10 +3420,10 @@ lint-staged@^10.2.8:
     string-argv "0.3.1"
     stringify-object "^3.3.0"
 
-listr2@^2.1.0:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.3.2.tgz#918dabaad2def14246abc7d54d607f03c59ec407"
-  integrity sha512-/KxSjXQzkMkeVT3Tl2gPwmQPLmOv81l29p+a0+I3mLHs1PjOjgkWuc6Y6d1oGBGXWj57/IVeVMbZ+9Hlr3P/pQ==
+listr2@^2.1.0, listr2@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.3.3.tgz#ee9f4d95dd325ad1ae89fe7327f2a4f4498224b5"
+  integrity sha512-vU2eiFEzUEaDjgwRJ/n8RB79K2cBcaTw1DigIGHnXGp/BEeQqxGwiM8R17Itit5l2ykrrST11kw2l9vSpCbqUQ==
   dependencies:
     chalk "^4.0.0"
     cli-truncate "^2.1.0"
