@@ -28,6 +28,9 @@ steps:
       
   - name: code-coverage
     image: node:current-alpine
+    environment:
+      CODECOV_TOKEN:
+        from_secret: CODECOV_TOKEN
     commands:
       - apk add --no-cache --no-progress git
       - yarn global add codecov 
@@ -44,7 +47,7 @@ steps:
       mode: release
       git_method: gh
       git_user_email:
-        from_secret: GITHUB_EMAIL
+        from_secret: GITHUB_USERNAME
       github_token:
         from_secret: GITHUB_TOKEN
       npm_token:
