@@ -30,7 +30,7 @@ steps:
     image: node:current-alpine
     commands:
       - yarn global add codecov 
-      - codecov
+      - codecov -f coverage/coverage.lcov
 
   - name: build
     image: node:current-alpine
