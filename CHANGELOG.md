@@ -1,3 +1,21 @@
+# [2.4.0](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0) (2020-07-27)
+
+
+### Bug Fixes
+
+* **deps:** removed bundle of rxjs ([a103acb](https://github.com/cenk1cenk2/listr2/commit/a103acb040cd8b89c67dea17b5aa9e63730af269))
+* **rxjs:** retry for rxjs export with webpack ([ac537e5](https://github.com/cenk1cenk2/listr2/commit/ac537e5beb2c096acdbb6cb2725f9d7aa434a26d))
+
+
+### Features
+
+* **build:** bundle rxjs with webpack, reduce total bundle size, since i started to use this everywhere ([4cc922a](https://github.com/cenk1cenk2/listr2/commit/4cc922a94a21899973aeca371e4078fa9205e053))
+
+
+### Reverts
+
+* **deps:** rxjs bundle ([4067164](https://github.com/cenk1cenk2/listr2/commit/4067164ed993368997986223bbec3c22059f27b8))
+
 # [2.4.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.2...v2.4.0-beta.3) (2020-07-27)
 
 
