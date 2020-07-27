@@ -1,13 +1,17 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/utils/rxjs.ts',
+  entry: {
+    'utils/rxjs': path.join(__dirname, '/src/utils/rxjs.ts')
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist/'),
+    filename: '[name].js',
+    library: 'default',
+    libraryTarget: 'commonjs'
+  },
   resolve: {
     extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
   },
-  mode: 'production',
-  output: {
-    filename: 'rxjs.js',
-    path: path.resolve(__dirname, 'dist/utils/')
-  }
+  mode: 'production'
 }
