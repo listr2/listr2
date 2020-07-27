@@ -1,3 +1,15 @@
+# [2.4.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.2...v2.4.0-beta.3) (2020-07-27)
+
+
+### Bug Fixes
+
+* **deps:** removed bundle of rxjs ([a103acb](https://github.com/cenk1cenk2/listr2/commit/a103acb040cd8b89c67dea17b5aa9e63730af269))
+
+
+### Reverts
+
+* **deps:** rxjs bundle ([4067164](https://github.com/cenk1cenk2/listr2/commit/4067164ed993368997986223bbec3c22059f27b8))
+
 # [2.4.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.1...v2.4.0-beta.2) (2020-07-27)
 
 
