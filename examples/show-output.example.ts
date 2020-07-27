@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import delay from 'delay'
-import { Observable } from 'rxjs'
 
 import { Listr } from '@root/index'
 import { Logger } from '@utils/logger'
+import { Observable } from '@utils/rxjs'
 
 interface Ctx {
   skip: boolean

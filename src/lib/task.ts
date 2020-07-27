@@ -1,4 +1,3 @@
-import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
 import {
@@ -18,6 +17,7 @@ import {
 import { stateConstants } from '@interfaces/state.constants'
 import { Listr } from '@root/index'
 import { getRenderer } from '@utils/renderer'
+import { Observable, Subject } from '@utils/rxjs'
 
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext, Renderer> {
   public id: ListrTaskObject<Ctx, Renderer>['id']

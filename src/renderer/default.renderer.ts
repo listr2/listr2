@@ -162,8 +162,7 @@ export class DefaultRenderer implements ListrRenderer {
           this.options.showSubtasks !== false &&
           // if it doesnt have subtasks no need to check
           task.hasSubtasks() &&
-          (
-            task.isPending() ||
+          (task.isPending() ||
             task.hasFailed() ||
             task.isCompleted() && !task.hasTitle() ||
             // have to be completed and have subtasks
@@ -171,8 +170,7 @@ export class DefaultRenderer implements ListrRenderer {
             // if any of the subtasks have the collapse option of
             task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
             // if any of the subtasks has failed
-            task.subtasks.some((subtask) => subtask.hasFailed())
-          )
+            task.subtasks.some((subtask) => subtask.hasFailed()))
         ) {
           // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
