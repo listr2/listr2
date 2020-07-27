@@ -15,7 +15,7 @@ steps:
     image: node:current-alpine
     commands:
       - yarn --frozen-lockfile
-      
+
   - name: lint
     image: node:current-alpine
     commands:
@@ -25,7 +25,7 @@ steps:
     image: node:current-alpine
     commands:
       - yarn test:cov
-      
+
   - name: code-coverage
     image: node:current-alpine
     environment:
@@ -33,7 +33,7 @@ steps:
         from_secret: CODECOV_TOKEN
     commands:
       - apk add --no-cache --no-progress git
-      - yarn global add codecov 
+      - yarn global add codecov
       - codecov -f coverage/lcov.info
 
   - name: build
