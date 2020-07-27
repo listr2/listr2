@@ -2,6 +2,7 @@ import cliTruncate from 'cli-truncate'
 import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
+import { EOL } from 'os'
 
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import chalk from '@utils/chalk'
@@ -162,7 +163,8 @@ export class DefaultRenderer implements ListrRenderer {
           this.options.showSubtasks !== false &&
           // if it doesnt have subtasks no need to check
           task.hasSubtasks() &&
-          (task.isPending() ||
+          (
+            task.isPending() ||
             task.hasFailed() ||
             task.isCompleted() && !task.hasTitle() ||
             // have to be completed and have subtasks
@@ -170,14 +172,15 @@ export class DefaultRenderer implements ListrRenderer {
             // if any of the subtasks have the collapse option of
             task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
             // if any of the subtasks has failed
-            task.subtasks.some((subtask) => subtask.hasFailed()))
+            task.subtasks.some((subtask) => subtask.hasFailed())
+          )
         ) {
           // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
 
           // render the subtasks as in the same way
           const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
-          if (subtaskRender?.trim() !== '') {
+          if (subtaskRender?.trim() !== '' && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
             output = [ ...output, subtaskRender ]
           }
         }
