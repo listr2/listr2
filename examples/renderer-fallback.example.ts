@@ -1,6 +1,5 @@
-import delay from 'delay'
-import { Observable } from 'rxjs'
 /* eslint-disable @typescript-eslint/no-empty-function */
+import delay from 'delay'
 
 import { Listr } from '@root/index'
 import { Logger } from '@utils/logger'
