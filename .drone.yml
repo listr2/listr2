@@ -24,7 +24,7 @@ steps:
   - name: test
     image: node:current-alpine
     commands:
-      - yarn test:cov
+      - yarn test
 
   # - name: code-coverage
   #   image: node:current-alpine
