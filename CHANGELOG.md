@@ -1,3 +1,12 @@
+## [2.3.6](https://github.com/cenk1cenk2/listr2/compare/v2.3.5...v2.3.6) (2020-07-27)
+
+
+### Bug Fixes
+
+* remove unused import ([46a72c7](https://github.com/cenk1cenk2/listr2/commit/46a72c7d16d5ae882e4fa23e9064b3f0ad008792))
+* **default-renderer:** fix output rendering with empty subtasks ([8299c3f](https://github.com/cenk1cenk2/listr2/commit/8299c3fe8324bdade582e1e0052a4463039f52e3))
+* **default-renderer:** output from subtask of subtask ([4096e62](https://github.com/cenk1cenk2/listr2/commit/4096e62f058082f15cc494c6a406cd0bdef4e641))
+
 ## [2.3.5](https://github.com/cenk1cenk2/listr2/compare/v2.3.4...v2.3.5) (2020-07-26)
 
 
