@@ -70,6 +70,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     this.add(task || [])
 
     // Graceful interrupt for render cleanup
+    /* istanbul ignore if */
     if (this.options.registerSignalListeners) {
       process
         .on('SIGINT', async () => {

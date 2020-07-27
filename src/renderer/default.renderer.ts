@@ -71,6 +71,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     const updateRender = (): void => logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
 
+    /* istanbul ignore if */
     if (!this.options?.lazy) {
       this.id = setInterval(() => {
         this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
@@ -162,8 +163,7 @@ export class DefaultRenderer implements ListrRenderer {
           this.options.showSubtasks !== false &&
           // if it doesnt have subtasks no need to check
           task.hasSubtasks() &&
-          (
-            task.isPending() ||
+          (task.isPending() ||
             task.hasFailed() ||
             task.isCompleted() && !task.hasTitle() ||
             // have to be completed and have subtasks
@@ -171,8 +171,7 @@ export class DefaultRenderer implements ListrRenderer {
             // if any of the subtasks have the collapse option of
             task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
             // if any of the subtasks has failed
-            task.subtasks.some((subtask) => subtask.hasFailed())
-          )
+            task.subtasks.some((subtask) => subtask.hasFailed()))
         ) {
           // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
@@ -277,10 +276,6 @@ export class DefaultRenderer implements ListrRenderer {
       return chalk.yellow(figures.main.warning)
     } else if (task.isSkipped() && (data || this.options.collapseSkips)) {
       return chalk.yellow(figures.main.arrowDown)
-    }
-
-    if (task.isPrompt()) {
-      return chalk.cyan(figures.main.questionMarkPrefix)
     }
 
     if (!data) {

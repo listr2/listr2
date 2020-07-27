@@ -80,7 +80,7 @@ describe('concurrent execution', () => {
   })
 
   it('should limit the concurrency', async () => {
-    await new Listr(tasks, { concurrent: 3, renderer: 'verbose' }).run()
+    await new Listr(tasks, { concurrent: 1, renderer: 'verbose' }).run()
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
@@ -89,7 +89,13 @@ describe('concurrent execution', () => {
           "[STARTED] 1",
         ],
         Array [
+          "[SUCCESS] 1",
+        ],
+        Array [
           "[STARTED] 2",
+        ],
+        Array [
+          "[SUCCESS] 2",
         ],
         Array [
           "[STARTED] 3",
@@ -102,12 +108,6 @@ describe('concurrent execution', () => {
         ],
         Array [
           "[SUCCESS] 4",
-        ],
-        Array [
-          "[SUCCESS] 2",
-        ],
-        Array [
-          "[SUCCESS] 1",
         ],
       ]
     `)
