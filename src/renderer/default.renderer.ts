@@ -170,9 +170,7 @@ export class DefaultRenderer implements ListrRenderer {
             // if any of the subtasks have the collapse option of
             task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
             // if any of the subtasks has failed
-            task.subtasks.some((subtask) => subtask.hasFailed())) &&
-          // if all the subtasks have no title at all
-          !task.subtasks.every((subtask) => !subtask.hasTitle())
+            task.subtasks.some((subtask) => subtask.hasFailed()))
         ) {
           // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
