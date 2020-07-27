@@ -2,7 +2,6 @@ import cliTruncate from 'cli-truncate'
 import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
-import { EOL } from 'os'
 
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import chalk from '@utils/chalk'
