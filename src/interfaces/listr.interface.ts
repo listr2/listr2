@@ -1,4 +1,5 @@
 import Enquirer from 'enquirer'
+import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
 import { stateConstants } from '@interfaces/state.constants'
@@ -8,7 +9,6 @@ import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { Listr } from '@root/index'
 import { PromptOptions } from '@utils/prompt.interface'
-import { Observable, Subject } from '@utils/rxjs'
 
 export type ListrContext = any
 
