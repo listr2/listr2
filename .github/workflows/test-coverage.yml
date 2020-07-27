@@ -1,7 +1,6 @@
 name: test-coverage
 on:
   push:
-  pull_request:
 
 jobs:
   test-coverage:

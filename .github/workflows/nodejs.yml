@@ -2,10 +2,9 @@ name: node-actions
 on:
   push:
     branches:
-      - "*"
-      - "*/*"
-      - "!master"
-  pull_request:
+      - '*'
+      - '*/*'
+      - '!master'
 
 jobs:
   lint:
