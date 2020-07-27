@@ -1,3 +1,10 @@
+# [2.4.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.1...v2.4.0-beta.2) (2020-07-27)
+
+
+### Bug Fixes
+
+* **rxjs:** retry for rxjs export with webpack ([ac537e5](https://github.com/cenk1cenk2/listr2/commit/ac537e5beb2c096acdbb6cb2725f9d7aa434a26d))
+
 # [2.4.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0-beta.1) (2020-07-27)
 
 
