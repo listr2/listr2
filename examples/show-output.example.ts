@@ -3,7 +3,7 @@ import delay from 'delay'
 
 import { Listr } from '@root/index'
 import { Logger } from '@utils/logger'
-import { Observable } from '@utils/rxjs'
+import { Observable } from 'rxjs'
 
 interface Ctx {
   skip: boolean

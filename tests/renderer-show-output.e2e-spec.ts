@@ -2,7 +2,7 @@ import delay from 'delay'
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
 import { Listr } from '@root/index'
-import { Observable } from '@utils/rxjs'
+import { Observable } from 'rxjs'
 
 describe('show output from task', () => {
   let mockExit: jest.SpyInstance<never, [number?]>

@@ -1,4 +1,5 @@
 import pMap from 'p-map'
+import { Subject } from 'rxjs'
 
 import {
   ListrBaseClassOptions,
@@ -19,7 +20,6 @@ import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
-import { Subject } from '@utils/rxjs'
 
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue>
 implements ListrClass<Ctx, Renderer, FallbackRenderer> {
@@ -70,6 +70,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     this.add(task || [])
 
     // Graceful interrupt for render cleanup
+    /* istanbul ignore if */
     if (this.options.registerSignalListeners) {
       process
         .on('SIGINT', async () => {

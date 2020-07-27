@@ -1,4 +1,5 @@
 import Enquirer from 'enquirer'
+import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
 import { stateConstants } from '@interfaces/state.constants'
@@ -8,7 +9,6 @@ import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { Listr } from '@root/index'
 import { PromptOptions } from '@utils/prompt.interface'
-import { Observable, Subject } from '@utils/rxjs'
 
 export type ListrContext = any
 
@@ -157,13 +157,14 @@ export declare class ListrRenderer {
   public end (err?: Error): void
 }
 
-export class ListrBaseRenderer implements ListrRenderer {
+export class ListrBaseRenderer implements ListrRenderer /* istanbul ignore next */ {
   public static rendererOptions: Record<string, any>
   public static rendererTaskOptions: Record<string, any>
   public static nonTTY: boolean
   public tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[]
   public options: typeof ListrBaseRenderer.rendererOptions
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
+  /* istanbul ignore next */
   constructor (tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions) {
     this.tasks = tasks
     this.options = options
