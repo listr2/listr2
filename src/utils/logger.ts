@@ -73,6 +73,7 @@ export class Logger {
     }
     switch (level) {
     case logLevels.fail:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.red
         icon = figures.main.cross
@@ -82,6 +83,7 @@ export class Logger {
 
       break
     case logLevels.skip:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.yellow
         icon = figures.main.arrowDown
@@ -90,6 +92,7 @@ export class Logger {
       }
       break
     case logLevels.success:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.green
         icon = figures.main.tick
@@ -98,6 +101,7 @@ export class Logger {
       }
       break
     case logLevels.data:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.arrowRight
       } else {
@@ -105,6 +109,7 @@ export class Logger {
       }
       break
     case logLevels.start:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.pointer
       } else {
@@ -112,6 +117,7 @@ export class Logger {
       }
       break
     case logLevels.title:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.checkboxOn
       } else {

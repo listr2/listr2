@@ -71,6 +71,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     const updateRender = (): void => logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
 
+    /* istanbul ignore if */
     if (!this.options?.lazy) {
       this.id = setInterval(() => {
         this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
@@ -275,10 +276,6 @@ export class DefaultRenderer implements ListrRenderer {
       return chalk.yellow(figures.main.warning)
     } else if (task.isSkipped() && (data || this.options.collapseSkips)) {
       return chalk.yellow(figures.main.arrowDown)
-    }
-
-    if (task.isPrompt()) {
-      return chalk.cyan(figures.main.questionMarkPrefix)
     }
 
     if (!data) {

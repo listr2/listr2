@@ -21,6 +21,7 @@ export class VerboseRenderer implements ListrRenderer {
   private logger: Logger
 
   constructor (public tasks: ListrTaskObject<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
+    /* istanbul ignore else */
     if (!this.options?.logger) {
       this.logger = new Logger({ useIcons: this.options?.useIcons })
     } else {
