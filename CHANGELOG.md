@@ -1,3 +1,10 @@
+# [2.4.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0-beta.1) (2020-07-27)
+
+
+### Features
+
+* **build:** bundle rxjs with webpack, reduce total bundle size, since i started to use this everywhere ([4cc922a](https://github.com/cenk1cenk2/listr2/commit/4cc922a94a21899973aeca371e4078fa9205e053))
+
 ## [2.3.6](https://github.com/cenk1cenk2/listr2/compare/v2.3.5...v2.3.6) (2020-07-27)
 
 
