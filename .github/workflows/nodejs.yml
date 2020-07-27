@@ -47,6 +47,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - run: yarn install --frozen-lockfile
       - run: yarn run test:cov
       - run: npx codecov -f coverage/lcov.info
