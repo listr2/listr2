@@ -26,15 +26,15 @@ steps:
     commands:
       - yarn test:cov
 
-  - name: code-coverage
-    image: node:current-alpine
-    environment:
-      CODECOV_TOKEN:
-        from_secret: CODECOV_TOKEN
-    commands:
-      - apk add --no-cache --no-progress git
-      - yarn global add codecov
-      - codecov -f coverage/lcov.info
+  # - name: code-coverage
+  #   image: node:current-alpine
+  #   environment:
+  #     CODECOV_TOKEN:
+  #       from_secret: CODECOV_TOKEN
+  #   commands:
+  #     - apk add --no-cache --no-progress git
+  #     - yarn global add codecov
+  #     - codecov -f coverage/lcov.info
 
   - name: build
     image: node:current-alpine
