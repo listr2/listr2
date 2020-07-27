@@ -2,9 +2,9 @@ name: node-actions
 on:
   push:
     branches:
-      - '*'
-      - '*/*'
-      - '!master'
+      - "*"
+      - "*/*"
+      - "!master"
 
 jobs:
   lint:
@@ -22,10 +22,11 @@ jobs:
       - run: yarn run lint:check
 
   test:
-    runs-on: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node-version: [10.x, 12.x, 13.x, 14.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -34,6 +35,22 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
       - run: yarn run test
+
+  test-coverage:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install --frozen-lockfile
+      - run: yarn run test:cov
+      - run: yarn global add codecov
+      - run: codecov -f coverage/lcov.info
 
   build:
     runs-on: [ubuntu-latest]
