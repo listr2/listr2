@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/cenk1cenk2/listr2/compare/v2.4.0...v2.4.1) (2020-07-29)
+
+
+### Bug Fixes
+
+* **default-renderer:** added a tiny fix when persistent bottom bar is enabled and task is skipped ([d6a25a8](https://github.com/cenk1cenk2/listr2/commit/d6a25a886224bf6d0ac3c3a7253901f1fb74dc59))
+
 # [2.4.0](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0) (2020-07-27)
 
 
