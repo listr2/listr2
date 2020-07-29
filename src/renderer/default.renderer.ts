@@ -145,7 +145,7 @@ export class DefaultRenderer implements ListrRenderer {
             }
 
             // persistent bottom bar and limit items in it
-            if (!data?.some((element) => this.bottomBar[task.id].data.includes(element))) {
+            if (!data?.some((element) => this.bottomBar[task.id].data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
           } else if (task.isPending() || this.hasPersistentOutput(task)) {
