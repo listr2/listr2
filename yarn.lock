@@ -263,16 +263,16 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/cz-cc@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.0.4.tgz#bf2c6926d269c2eb19602fab096822dd42002145"
-  integrity sha512-Gr+p7Dra+LESYqUPjVbaCWCXwHblS+Hy6wzQ5wzXt+03+dz9Bw7QM9qeWIl1d/W/eMyRjgQ9u7RMoLprmNbiLw==
+"@cenk1cenk2/cz-cc@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.0.5.tgz#7782aa4b01c659d07586f4286bca4e8395db5a45"
+  integrity sha512-czTIYyRWW/2JYw7tST960a5i/d+wN2IBkWrHeq4qdXArGLlNFyJA7QUrqXKJgUyw1wXYYCaD019pupUOE2WkNQ==
   dependencies:
     chalk "^4.1.0"
     commitizen "^4.1.2"
     conventional-commit-types "^3.0.0"
     enquirer "^2.3.6"
-    listr2 "^2.4.0"
+    listr2 "^2.4.1"
     lodash.map "^4.6.0"
     longest "^2.0.1"
     word-wrap "^1.2.3"
@@ -3446,10 +3446,24 @@ lint-staged@^10.2.11:
     string-argv "0.3.1"
     stringify-object "^3.3.0"
 
-listr2@^2.1.0, listr2@^2.4.0:
+listr2@^2.1.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.4.0.tgz#aadb094f1f16a96bb9c4dc9b9c3e1d24b1709803"
   integrity sha512-Hj2ECZdAxDkuYFtIKE35PgdMSqMp0muIhJRG5EyV5pOWFEUmKUG+fhfFrvIUNGBQvvi7wQ41eKTxDBisfvDjFQ==
+  dependencies:
+    chalk "^4.1.0"
+    cli-truncate "^2.1.0"
+    figures "^3.2.0"
+    indent-string "^4.0.0"
+    log-update "^4.0.0"
+    p-map "^4.0.0"
+    rxjs "^6.6.0"
+    through "^2.3.8"
+
+listr2@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.4.1.tgz#006fc94ae77b3195403cbf3a4a563e2d6366224f"
+  integrity sha512-8pYsCZCztr5+KAjReLyBeGhLV0vaQ2Du/eMe/ux9QAfQl7efiWejM1IWjALh0zHIRYuIbhQ8N2KztZ4ci56pnQ==
   dependencies:
     chalk "^4.1.0"
     cli-truncate "^2.1.0"
