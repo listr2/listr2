@@ -63,7 +63,7 @@
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
     "log-update": "^4.0.0",
-    "rxjs": "^6.6.0",
+    "rxjs": "^6.6.2",
     "p-map": "^4.0.0",
     "through": "^2.3.8"
   },
