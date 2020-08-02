@@ -17,24 +17,25 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   // assign default if there is single prompt
   /* istanbul ignore else if */
   if (!Array.isArray(options)) {
-    options = options = [ { ...options, name: 'default' } ]
+    options = [ { ...options, name: 'default' } ]
+
   } else if (options.length === 1) {
     options = options.reduce((o, option) => {
       return [ ...o, Object.assign(option, { name: 'default' }) ]
     }, [])
   }
 
-  // assign default enquirer options
-  options = options.reduce((o, option) => {
+  // assign default enquirer options}
+  options = (options as any[]).reduce((o, option) => {
     return [ ...o, Object.assign(option, { stdout: settings?.stdout ?? this.stdout(), onCancel: cancelCallback.bind(this, settings) }) ]
   }, [])
 
-  let prompt: Enquirer['prompt']
+  let enquirer: Enquirer
   if (settings?.enquirer) {
-    ({ prompt } = settings.enquirer)
+    enquirer = settings.enquirer
   } else {
     try {
-      ({ prompt } = ((await import('enquirer')) as any).default)
+      enquirer = ((await import('enquirer')) as any).default
     } catch (e) /* istanbul ignore next */ {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
       throw new Error(e)
@@ -42,7 +43,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   }
 
   // return default name if it is single prompt
-  const response = (await prompt(options as any)) as any
+  const response = (await enquirer.prompt(options as any)) as any
 
   if (Object.keys(response).length === 1) {
     return response.default

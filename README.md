@@ -366,13 +366,19 @@ new Listr<Ctx>(
 You can either use a custom prompt out of the npm registry or custom-created one as long as it works with [enquirer](https://www.npmjs.com/package/enquirer), it will work expectedly. Instead of passing in the prompt name use the not-generated class.
 
 ```typescript
+import Enquirer from 'enquirer'
+import EditorPrompt from 'enquirer-editor'
+
+const enquirer = new Enquirer()
+enquirer.register('editor', Editor)
+
 new Listr<Ctx>(
   [
     {
       title: 'Custom prompt',
       task: async (ctx, task): Promise<void> => {
         ctx.testInput = await task.prompt({
-          type: EditorPrompt,
+          type: 'editor',
           message: 'Write something in this enquirer custom prompt.',
           initial: 'Start writing!',
           validate: (response): boolean | string => {
@@ -383,9 +389,11 @@ new Listr<Ctx>(
       }
     }
   ],
-  { concurrent: false }
+  { concurrent: false, injectWrapper: { enquirer } }
 )
 ```
+
+**This is changed for > v2.4.2, but would not consider it a breaking change because it was somewhat not working.**
 
 ### Enable a Task
 

@@ -4,11 +4,22 @@ import { Writable } from 'stream'
 
 import { PromptError } from '@interfaces/listr.interface'
 
-export type PromptOptions<T extends boolean = false> = Unionize<
-{
-  [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
-}
->
+export type PromptOptions<T extends boolean = false> =
+  Unionize<
+  {
+    [K in PromptTypes]-?: T extends true ?
+      { type: K } & PromptOptionsType<K> & { name: string | (() => string) }:
+      { type: K } & PromptOptionsType<K>
+  }
+  >
+  |
+  (
+    {
+      type: string
+    } & T extends true ?
+      PromptOptionsType<string> & { name: string | (() => string) }:
+      PromptOptionsType<string>
+  )
 
 export type Unionize<T extends Record<string, unknown>> = {
   [P in keyof T]: T[P]
@@ -140,7 +151,7 @@ export type PromptOptionsType<T> = T extends 'AutoComplete'
                   ? ArrayPromptOptions
                   : T extends 'Numeral'
                     ? NumberPromptOptions
-                    : T extends 'Password'
+                    : T extends'Password'
                       ? StringPromptOptions
                       : T extends 'Quiz'
                         ? QuizPromptOptions
@@ -158,8 +169,8 @@ export type PromptOptionsType<T> = T extends 'AutoComplete'
                                     ? StringPromptOptions
                                     : T extends 'Toggle'
                                       ? TogglePromptOptions
-                                      : T extends Enquirer.Prompt
-                                        ? any
+                                      : T extends string
+                                        ? BasePromptOptions & Record<string, unknown>
                                         : any
 
 export interface PromptSettings {

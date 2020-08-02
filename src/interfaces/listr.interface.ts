@@ -89,7 +89,9 @@ export interface ListrOptions<Ctx = ListrContext> {
   registerSignalListeners?: boolean
   rendererFallback?: boolean | (() => boolean)
   injectWrapper?: {
-    enquirer?: typeof Enquirer
+    // this is what enquirer returns lets go along with it
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    enquirer?: Enquirer<object>
   }
 }
 
