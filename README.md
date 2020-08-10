@@ -154,10 +154,15 @@ export interface ListrOptions<Ctx = ListrContext> {
   nonTTYrendererOptions?: ListrGetRendererOptions<T>
   // instead of creating a custom method and overwriting the renderer value, you can create a function or pass in a boolean to evaluate when to fallback to nonTTYRenderer
   rendererFallback?: boolean | (() => boolean)
+  // same as fallback this time it will do silent renderer
+  rendererSilent?: boolean | (() => boolean)
+  // disable color from chalk compeletely, may be beneficial in multi platform CI/CD environments
+  // it is also possible to disable color via environment variables by setting LISTR_DISABLE_COLOR=1
+  disableColor?: boolean
   // inject items to wrapper level
   injectWrapper?: {
     // pass in enquirer for testing purposes mostly, see: https://github.com/cenk1cenk2/listr2/issues/66
-    enquirer?: Enquirer
+    enquirer?: Enquirer<object>
   }
 }
 ```
@@ -365,27 +370,42 @@ new Listr<Ctx>(
 
 You can either use a custom prompt out of the npm registry or custom-created one as long as it works with [enquirer](https://www.npmjs.com/package/enquirer), it will work expectedly. Instead of passing in the prompt name use the not-generated class.
 
+**Since for my use-case I inject the `{ name: 'default' }` for convience while having only one prompt. It sometimes goes crazy with the custom prompts and it is advised to use array prompt object instead.**
+
 ```typescript
+import Enquirer from 'enquirer'
+import EditorPrompt from 'enquirer-editor'
+
+const enquirer = new Enquirer()
+enquirer.register('editor', Editor)
+
 new Listr<Ctx>(
   [
     {
       title: 'Custom prompt',
       task: async (ctx, task): Promise<void> => {
-        ctx.testInput = await task.prompt({
-          type: EditorPrompt,
-          message: 'Write something in this enquirer custom prompt.',
-          initial: 'Start writing!',
-          validate: (response): boolean | string => {
-            //  i do declare you valid!
-            return true
-          }
-        })
+        ctx.testInput = (
+          await task.prompt([
+            {
+              type: 'editor',
+              name: 'default',
+              message: 'Write something in this enquirer custom prompt.',
+              initial: 'Start writing!',
+              validate: (response): boolean | string => {
+                //  i do declare you valid!
+                return true
+              }
+            }
+          ])
+        ).default
       }
     }
   ],
-  { concurrent: false }
+  { concurrent: false, injectWrapper: { enquirer } }
 )
 ```
+
+**This is changed for > v2.4.2, but would not consider it a breaking change because it was somewhat not working.**
 
 ### Enable a Task
 
@@ -1077,6 +1097,23 @@ task = new Listr<Ctx>(
     }
   ],
   { concurrent: false, rendererFallback: (): boolean => 3 < 1 }
+)
+```
+
+This is also true for if you want to get the silent renderer directly. But this time you have to pass in `rendererSilent` variable to the options.
+
+```typescript
+task = new Listr<Ctx>(
+  [
+    {
+      title: 'This task will execute.',
+      task: async (): Promise<void> => {
+        await delay(500)
+      },
+      options: { persistentOutput: true }
+    }
+  ],
+  { concurrent: false, rendererSilent: (): boolean => 3 < 1 }
 )
 ```
 
