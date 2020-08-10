@@ -370,6 +370,8 @@ new Listr<Ctx>(
 
 You can either use a custom prompt out of the npm registry or custom-created one as long as it works with [enquirer](https://www.npmjs.com/package/enquirer), it will work expectedly. Instead of passing in the prompt name use the not-generated class.
 
+**Since for my use-case I inject the `{ name: 'default' }` for convience while having only one prompt. It sometimes goes crazy with the custom prompts and it is advised to use array prompt object instead.**
+
 ```typescript
 import Enquirer from 'enquirer'
 import EditorPrompt from 'enquirer-editor'
@@ -382,15 +384,20 @@ new Listr<Ctx>(
     {
       title: 'Custom prompt',
       task: async (ctx, task): Promise<void> => {
-        ctx.testInput = await task.prompt({
-          type: 'editor',
-          message: 'Write something in this enquirer custom prompt.',
-          initial: 'Start writing!',
-          validate: (response): boolean | string => {
-            //  i do declare you valid!
-            return true
-          }
-        })
+        ctx.testInput = (
+          await task.prompt([
+            {
+              type: 'editor',
+              name: 'default',
+              message: 'Write something in this enquirer custom prompt.',
+              initial: 'Start writing!',
+              validate: (response): boolean | string => {
+                //  i do declare you valid!
+                return true
+              }
+            }
+          ])
+        ).default
       }
     }
   ],
