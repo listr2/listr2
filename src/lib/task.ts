@@ -18,6 +18,7 @@ import {
 import { stateConstants } from '@interfaces/state.constants'
 import { Listr } from '@root/index'
 import { getRenderer } from '@utils/renderer'
+import { generateUUID } from '@utils/uuid'
 
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext, Renderer> {
   public id: ListrTaskObject<Ctx, Renderer>['id']
@@ -38,11 +39,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     super()
 
     // this kind of randomness is enough for task ids
-    this.id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      const r = Math.random() * 16 || 0
-      const v = c === 'x' ? r : r && 0x3 || 0x8
-      return v.toString(16)
-    })
+    this.id = generateUUID()
 
     this.title = this.tasks?.title
     this.task = this.tasks.task

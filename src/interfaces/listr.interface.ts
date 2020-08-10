@@ -88,8 +88,11 @@ export interface ListrOptions<Ctx = ListrContext> {
   ctx?: Ctx
   registerSignalListeners?: boolean
   rendererFallback?: boolean | (() => boolean)
+  rendererSilent?: boolean | (() => boolean)
+  disableColor?: boolean
   injectWrapper?: {
-    enquirer?: typeof Enquirer
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    enquirer?: Enquirer<object>
   }
 }
 
@@ -157,22 +160,16 @@ export declare class ListrRenderer {
   public end (err?: Error): void
 }
 
-export class ListrBaseRenderer implements ListrRenderer /* istanbul ignore next */ {
+export declare class ListrBaseRenderer implements ListrRenderer /* istanbul ignore next */ {
   public static rendererOptions: Record<string, any>
   public static rendererTaskOptions: Record<string, any>
   public static nonTTY: boolean
   public tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[]
   public options: typeof ListrBaseRenderer.rendererOptions
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
   /* istanbul ignore next */
-  constructor (tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions) {
-    this.tasks = tasks
-    this.options = options
-  }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-  public render (): void {}
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-  public end (err?: Error): void {}
+  constructor (tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions)
+  public render (): void
+  public end (err?: Error): void
 }
 
 export interface ListrRendererFactory {

@@ -68,4 +68,46 @@ describe('fallback renderer', () => {
 
     expect(task.rendererClass.name).toMatchInlineSnapshot('"VerboseRenderer"')
   })
+
+  it('should be silent renderer with function', async () => {
+    const task = new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async (): Promise<void> => {},
+          options: { persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false,
+        renderer: 'default',
+        nonTTYRenderer: 'verbose',
+        ctx: { test: true },
+        rendererSilent: (): boolean => 3 > 0
+      }
+    )
+
+    expect(task.rendererClass.name).toMatchInlineSnapshot('"SilentRenderer"')
+  })
+
+  it('should be silent renderer with boolean', async () => {
+    const task = new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async (): Promise<void> => {},
+          options: { persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false,
+        renderer: 'default',
+        nonTTYRenderer: 'verbose',
+        ctx: { test: true },
+        rendererSilent: true
+      }
+    )
+
+    expect(task.rendererClass.name).toMatchInlineSnapshot('"SilentRenderer"')
+  })
 })
