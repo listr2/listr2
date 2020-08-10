@@ -1,3 +1,16 @@
+# [2.5.0](https://github.com/cenk1cenk2/listr2/compare/v2.4.1...v2.5.0) (2020-08-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency rxjs to ^6.6.2 ([5175991](https://github.com/cenk1cenk2/listr2/commit/5175991e471a2c4a3f6621026657744ae59c9b43))
+* **prompt:** enquirer custom prompts ([6317ec6](https://github.com/cenk1cenk2/listr2/commit/6317ec6d4aac2f3467dd6dc37a98f05baeb244b6))
+
+
+### Features
+
+* **renderer:** added disable color and enable silent renderer via options ([74f91c2](https://github.com/cenk1cenk2/listr2/commit/74f91c2269316b2bac22bb450c14972e0dd56dde))
+
 ## [2.4.1](https://github.com/cenk1cenk2/listr2/compare/v2.4.0...v2.4.1) (2020-07-29)
 
 
