@@ -1,3 +1,10 @@
+## [2.5.1](https://github.com/cenk1cenk2/listr2/compare/v2.5.0...v2.5.1) (2020-08-10)
+
+
+### Bug Fixes
+
+* **prompt:** fixed an issue with one prompt not returning default ([375a441](https://github.com/cenk1cenk2/listr2/commit/375a441cfc560b550c639fe4b977ee2d74aad755))
+
 # [2.5.0](https://github.com/cenk1cenk2/listr2/compare/v2.4.1...v2.5.0) (2020-08-10)
 
 
