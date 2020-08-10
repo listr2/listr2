@@ -56,7 +56,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     }
 
     // get renderer class
-    const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback)
+    const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
     this.rendererClass = renderer.renderer
 
     // depending on the result pass the given options in
@@ -85,6 +85,11 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
           process.exit(127)
         })
         .setMaxListeners(0)
+    }
+
+    // disable color programatically for CI purposes
+    if (this.options?.disableColor) {
+      process.env.LISTR_DISABLE_COLOR = '1'
     }
   }
 

@@ -22,11 +22,23 @@ function getRendererClass (renderer: ListrRendererValue): ListrRendererFactory {
   return typeof renderer === 'function' ? renderer : renderers.default
 }
 
-export function getRenderer (renderer: ListrRendererValue, fallbackRenderer?: ListrRendererValue, fallbackCondition?: ListrOptions['rendererFallback']): SupportedRenderer {
+export function getRenderer (
+  renderer: ListrRendererValue,
+  fallbackRenderer?: ListrRendererValue,
+  fallbackCondition?: ListrOptions['rendererFallback'],
+  silentCondition?: ListrOptions['rendererSilent']
+): SupportedRenderer {
   let returnValue: SupportedRenderer
   let ret = getRendererClass(renderer)
 
   returnValue = { renderer: ret, nonTTY: false }
+
+  let evaluateSilent: boolean
+  if (typeof silentCondition === 'function') {
+    evaluateSilent = silentCondition()
+  } else {
+    evaluateSilent = silentCondition
+  }
 
   let evaluateFallback: boolean
   if (typeof fallbackCondition === 'function') {
@@ -35,9 +47,14 @@ export function getRenderer (renderer: ListrRendererValue, fallbackRenderer?: Li
     evaluateFallback = fallbackCondition
   }
 
-  if (!isRendererSupported(ret) || evaluateFallback) {
+  if (evaluateSilent) {
+    ret = getRendererClass('silent')
+    returnValue = { renderer: ret, nonTTY: true }
+
+  } else if (!isRendererSupported(ret) || evaluateFallback) {
     ret = getRendererClass(fallbackRenderer)
     returnValue = { renderer: ret, nonTTY: true }
+
   }
 
   return returnValue

@@ -18,7 +18,6 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   /* istanbul ignore else if */
   if (!Array.isArray(options)) {
     options = [ { ...options, name: 'default' } ]
-
   } else if (options.length === 1) {
     options = options.reduce((o, option) => {
       return [ ...o, Object.assign(option, { name: 'default' }) ]
@@ -32,6 +31,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
 
   let enquirer: Enquirer
   if (settings?.enquirer) {
+    // injected enquirer
     enquirer = settings.enquirer
   } else {
     try {
@@ -55,11 +55,11 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
 function defaultCancelCallback (settings: PromptSettings): string | Error | PromptError | void {
   const errorMsg = 'Cancelled prompt.'
 
-  if (settings?.error === true) /* istanbul ignore next */ {
-    throw new Error(errorMsg)
+  if (settings?.error === true) {
+    /* istanbul ignore next */ throw new Error(errorMsg)
   } else if (this instanceof TaskWrapper) {
     this.task.prompt = new PromptError(errorMsg)
-  } else /* istanbul ignore next */ {
+  } /* istanbul ignore next */ else {
     return errorMsg
   }
 }

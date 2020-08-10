@@ -154,10 +154,15 @@ export interface ListrOptions<Ctx = ListrContext> {
   nonTTYrendererOptions?: ListrGetRendererOptions<T>
   // instead of creating a custom method and overwriting the renderer value, you can create a function or pass in a boolean to evaluate when to fallback to nonTTYRenderer
   rendererFallback?: boolean | (() => boolean)
+  // same as fallback this time it will do silent renderer
+  rendererSilent?: boolean | (() => boolean)
+  // disable color from chalk compeletely, may be beneficial in multi platform CI/CD environments
+  // it is also possible to disable color via environment variables by setting LISTR_DISABLE_COLOR=1
+  disableColor?: boolean
   // inject items to wrapper level
   injectWrapper?: {
     // pass in enquirer for testing purposes mostly, see: https://github.com/cenk1cenk2/listr2/issues/66
-    enquirer?: Enquirer
+    enquirer?: Enquirer<object>
   }
 }
 ```
@@ -1085,6 +1090,23 @@ task = new Listr<Ctx>(
     }
   ],
   { concurrent: false, rendererFallback: (): boolean => 3 < 1 }
+)
+```
+
+This is also true for if you want to get the silent renderer directly. But this time you have to pass in `rendererSilent` variable to the options.
+
+```typescript
+task = new Listr<Ctx>(
+  [
+    {
+      title: 'This task will execute.',
+      task: async (): Promise<void> => {
+        await delay(500)
+      },
+      options: { persistentOutput: true }
+    }
+  ],
+  { concurrent: false, rendererSilent: (): boolean => 3 < 1 }
 )
 ```
 
