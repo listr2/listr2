@@ -45,7 +45,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   // return default name if it is single prompt
   const response = (await enquirer.prompt(options as any)) as any
 
-  if (Object.keys(response).length === 1) {
+  if (options.length === 1) {
     return response.default
   } else {
     return response
