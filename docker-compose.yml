@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  node:
+    image: cenk1cenk2/lerna-dev:latest
+    environment:
+      - SERVICES=.
+    volumes:
+      - .:/data/app

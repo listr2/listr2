@@ -201,7 +201,7 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }, injectWrapper: { enquirer: Enquirer }
+        concurrent: false, rendererOptions: { lazy: true }, injectWrapper: { enquirer: new Enquirer() }
       }
     ).run()
 

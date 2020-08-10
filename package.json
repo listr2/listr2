@@ -16,7 +16,11 @@
   },
   "scripts": {
     "prebuild": "rimraf tsconfig*.tsbuildinfo && rimraf dist/",
-    "build": "tsc -P tsconfig.build.json && tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
+    "build": "tsc -P tsconfig.build.json",
+    "postbuild": "tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
+    "dev:build": "yarn prebuild && tsc -p tsconfig.json && yarn postbuild",
+    "dev:start": "yarn dev:build && TS_NODE_PROJECT='tsconfig.paths.json' tsc-watch --noClear --onSuccess \"yarn dev:start:onSuccess\"",
+    "dev:start:onSuccess": "yarn postbuild",
     "lint": "prettier --write src/ && eslint --ext .ts,.js,.tsx,.jsx --fix src/",
     "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/",
     "test": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.js",
@@ -63,8 +67,8 @@
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
     "log-update": "^4.0.0",
-    "rxjs": "^6.6.0",
     "p-map": "^4.0.0",
+    "rxjs": "^6.6.0",
     "through": "^2.3.8"
   },
   "devDependencies": {
@@ -86,6 +90,7 @@
     "ts-jest": "^26.1.3",
     "ts-loader": "^8.0.1",
     "ts-node": "^8.10.2",
+    "tsc-watch": "^4.2.9",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
     "typescript": "^3.9.7"

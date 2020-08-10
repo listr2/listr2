@@ -26,7 +26,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   }
 
   // assign default enquirer options}
-  options = (options as any[]).reduce((o, option) => {
+  options = options.reduce((o, option) => {
     return [ ...o, Object.assign(option, { stdout: settings?.stdout ?? this.stdout(), onCancel: cancelCallback.bind(this, settings) }) ]
   }, [])
 
