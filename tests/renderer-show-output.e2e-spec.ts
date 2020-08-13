@@ -1,8 +1,8 @@
 import delay from 'delay'
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
+import { Observable } from 'rxjs'
 
 import { Listr } from '@root/index'
-import { Observable } from 'rxjs'
 
 describe('show output from task', () => {
   let mockExit: jest.SpyInstance<never, [number?]>
@@ -332,6 +332,37 @@ describe('show output from task', () => {
     expect(mockStdout.mock.calls).toMatchSnapshot('j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-out')
     expect(mockStderr.mock.calls).toMatchSnapshot('j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-err')
     expect(mockExit.mock.calls).toMatchSnapshot('j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-exit')
+  })
+
+  // MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv
+  it.each([ true, false ])('should have persistent output on task fail with bottom bar %s', async (input) => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async (ctx, task): Promise<void> => {
+            task.output = 'I will push an output. [0]'
+            await delay(5)
+
+            task.output = 'I will push an output. [1]'
+            await delay(5)
+
+            task.output = 'I will push an output. [2]'
+            await delay(5)
+
+            throw new Error('This task has failed')
+          },
+          options: { bottomBar: input, persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false, rendererOptions: { lazy: true }, exitOnError: false
+      }
+    ).run()
+
+    expect(mockStdout.mock.calls).toMatchSnapshot('MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-exit')
   })
 
 })
