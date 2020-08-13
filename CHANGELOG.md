@@ -1,3 +1,10 @@
+## [2.5.2-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.5.1...v2.5.2-beta.1) (2020-08-13)
+
+
+### Bug Fixes
+
+* keep persistent output on error ([de7e661](https://github.com/cenk1cenk2/listr2/commit/de7e661c15f9fba020e66cd098426f47cf08c1db))
+
 ## [2.5.1](https://github.com/cenk1cenk2/listr2/compare/v2.5.0...v2.5.1) (2020-08-10)
 
 
