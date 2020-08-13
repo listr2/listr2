@@ -1054,6 +1054,8 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     bottomBar?: boolean | number
     // keep output after task finishes
     persistentOutput?: boolean
+    // keep output even if task errors
+    persistentErrorOutput?: boolean
   }
   ```
 - Options for the verbose renderer.

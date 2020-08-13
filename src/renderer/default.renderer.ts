@@ -34,6 +34,8 @@ export class DefaultRenderer implements ListrRenderer {
     bottomBar?: boolean | number
     // keep output after task finishes
     persistentOutput?: boolean
+    // keep output even if task errors
+    persistentErrorOutput?: boolean
   }
 
   private id?: NodeJS.Timeout
@@ -61,6 +63,10 @@ export class DefaultRenderer implements ListrRenderer {
 
   public hasPersistentOutput (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     return this.getTaskOptions(task).persistentOutput === true
+  }
+
+  public hasPersistentErrorOutput (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
+    return this.getTaskOptions(task).persistentErrorOutput === true
   }
 
   public render (): void {
@@ -190,7 +196,7 @@ export class DefaultRenderer implements ListrRenderer {
 
           // clean up bottom bar items if not indicated otherwise
           if (task.hasFailed() || (!task.hasTitle() || this.isBottomBar(task)) && this.hasPersistentOutput(task) !== true) {
-            delete this.bottomBar[task.id]
+            if (!this.hasPersistentErrorOutput(task)) delete this.bottomBar[task.id]
           }
         }
       }
