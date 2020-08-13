@@ -31,11 +31,14 @@ export declare class ListrClass<
 export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends Observable<ListrEvent> {
   id: string
   title?: string
+  originalTitle?: string
   output?: string
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
   subtasks: ListrTaskObject<Ctx, any>[]
   state: string
+  startTime?: number
+  duration?: string
   check: (ctx: Ctx) => void
   run: (ctx: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>) => Promise<void>
   options: ListrOptions

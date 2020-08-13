@@ -6,6 +6,28 @@ import logUpdate from 'log-update'
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import chalk from '@utils/chalk'
 
+export const getTiming = (task: ListrTaskObject<any, typeof DefaultRenderer>): string => {
+  if (task.duration) {
+    return task.duration
+  }
+
+  if (!task.startTime) {
+    return ''
+  }
+
+  const duration = Date.now() - task.startTime
+
+  const seconds = Math.floor(duration / 1000)
+  const minutes = Math.floor(seconds / 60)
+  const hours = Math.floor(minutes / 60)
+
+  const hoursS = hours < 10 ? '0' + hours : hours
+  const minutesS = minutes < 10 ? '0' + minutes : minutes
+  const secondsS = seconds < 10 ? '0' + seconds : seconds
+
+  return `[${hours > 0 ? `${hoursS}:` : ''}${minutesS}:${secondsS}]`
+}
+
 export class DefaultRenderer implements ListrRenderer {
   public static nonTTY = false
   public static rendererOptions: {
@@ -21,13 +43,16 @@ export class DefaultRenderer implements ListrRenderer {
     collapseSkips?: boolean
     // only update via renderhook
     lazy?: boolean
+    // show the timer for each task
+    showTimer?: boolean
   } = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
     collapse: true,
     collapseSkips: true,
-    lazy: false
+    lazy: false,
+    showTimer: false
   }
   public static rendererTaskOptions: {
     // write task output to bottom bar
@@ -69,13 +94,32 @@ export class DefaultRenderer implements ListrRenderer {
     return this.getTaskOptions(task).persistentErrorOutput === true
   }
 
+  public trackTaskTiming (tasks: ListrTaskObject<any, typeof DefaultRenderer>[]): void {
+    for (const task of tasks) {
+      task.subscribe((event) => {
+        if (event.type === 'SUBTASK') {
+          this.trackTaskTiming(task.subtasks)
+        } else if (event.type === 'STATE') {
+          if (task.isPending()) {
+            task.startTime = Date.now()
+          } else if (task.isCompleted() || task.hasFailed()) {
+            task.duration = getTiming(task)
+          }
+        }
+      })
+    }
+  }
+
   public render (): void {
     // Do not render if we are already rendering
     if (this.id) {
       return
     }
 
-    const updateRender = (): void => logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
+    const updateRender = (): void => {
+      if (this.options.showTimer) this.trackTaskTiming(this.tasks)
+      logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
+    }
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
@@ -117,6 +161,13 @@ export class DefaultRenderer implements ListrRenderer {
           if (task.isSkipped() && this.options.collapseSkips) {
             // Current Task Title and skip change the title
             task.title = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
+          }
+
+          if (this.options.showTimer && !task.isSkipped()) {
+            const timing = ` ${chalk.gray(getTiming(task))}`
+            if (!task.originalTitle) task.originalTitle = task.title
+
+            task.title = `${task.originalTitle.trim()} ${timing}`
           }
 
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
