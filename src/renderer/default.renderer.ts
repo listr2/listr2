@@ -21,19 +21,24 @@ export class DefaultRenderer implements ListrRenderer {
     collapseSkips?: boolean
     // only update via renderhook
     lazy?: boolean
+    // show duration for all tasks overwrites per task options
+    showTimer?: boolean
   } = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
     collapse: true,
     collapseSkips: true,
-    lazy: false
+    lazy: false,
+    showTimer: false
   }
   public static rendererTaskOptions: {
     // write task output to bottom bar
     bottomBar?: boolean | number
     // keep output after task finishes
     persistentOutput?: boolean
+    // show timer per task
+    showTimer?: boolean
   }
 
   private id?: NodeJS.Timeout
@@ -61,6 +66,30 @@ export class DefaultRenderer implements ListrRenderer {
 
   public hasPersistentOutput (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     return this.getTaskOptions(task).persistentOutput === true
+  }
+
+  public hasTimer (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
+    return this.getTaskOptions(task).showTimer === true
+  }
+
+  public getTaskTime (task: ListrTaskObject<any, typeof DefaultRenderer>): string {
+    const seconds = Math.floor(task.duration / 1000)
+    const minutes = Math.floor(seconds / 60)
+
+    let parsedTime: string
+    if (seconds === 0 && minutes === 0) {
+      parsedTime = `0.${Math.floor(task.duration / 100)}s`
+    }
+
+    if (seconds > 0) {
+      parsedTime = `${seconds % 60}s`
+    }
+
+    if (minutes > 0) {
+      parsedTime = `${minutes}m${parsedTime}`
+    }
+
+    return chalk.dim(`[${parsedTime}]`)
   }
 
   public render (): void {
@@ -110,7 +139,7 @@ export class DefaultRenderer implements ListrRenderer {
           // if task is skipped
           if (task.isSkipped() && this.options.collapseSkips) {
             // Current Task Title and skip change the title
-            task.title = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
+            task.title = !task.isSkipped() ? `${task?.cleanTitle}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
           }
 
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
@@ -191,6 +220,11 @@ export class DefaultRenderer implements ListrRenderer {
           // clean up bottom bar items if not indicated otherwise
           if (!this.hasPersistentOutput(task)) {
             delete this.bottomBar[task.id]
+          }
+
+          // only run if task is succesfully compeleted
+          if (task.isCompleted() && task.hasTitle() && this.options.showTimer || this.hasTimer(task)) {
+            task.title = `${task?.cleanTitle} ${this.getTaskTime(task)}`
           }
         }
       }

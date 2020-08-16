@@ -23,6 +23,8 @@ import { generateUUID } from '@utils/uuid'
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext, Renderer> {
   public id: ListrTaskObject<Ctx, Renderer>['id']
   public title: ListrTaskObject<Ctx, Renderer>['title']
+  public cleanTitle: ListrTaskObject<Ctx, Renderer>['cleanTitle']
+  public duration: ListrTaskObject<Ctx, Renderer>['duration']
   public task: ListrTaskObject<Ctx, Renderer>['task']
   public skip: ListrTaskObject<Ctx, Renderer>['skip']
   public subtasks: ListrTaskObject<Ctx, any>['subtasks']
@@ -42,6 +44,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.id = generateUUID()
 
     this.title = this.tasks?.title
+    this.cleanTitle = this.title
+
     this.task = this.tasks.task
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
@@ -178,6 +182,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       return result
     }
 
+    const startTime = Date.now()
+
     // finish the task first
     // Promise.resolve()
     this.state$ = stateConstants.PENDING
@@ -202,6 +208,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       await handleResult(this.task(context, wrapper))
 
       if (this.isPending()) {
+        this.duration = Date.now() - startTime
         this.state$ = stateConstants.COMPLETED
       }
     } catch (error) {

@@ -1038,13 +1038,16 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     collapseSkips?: boolean
     // only update via renderhook
     lazy?: boolean
+    // show duration for all tasks overwrites per task options
+    showTimer?: boolean
   } = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
     collapse: true,
     collapseSkips: true,
-    lazy: false
+    lazy: false,
+    showTimer: false
   }
   ```
   - Per-Task
@@ -1054,6 +1057,8 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     bottomBar?: boolean | number
     // keep output after task finishes
     persistentOutput?: boolean
+    // show timer per task
+    showTimer?: boolean
   }
   ```
 - Options for the verbose renderer.
