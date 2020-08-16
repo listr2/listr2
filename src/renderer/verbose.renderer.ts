@@ -56,23 +56,29 @@ export class VerboseRenderer implements ListrRenderer {
                   this.logger.start(taskTitle)
                 } else if (task.isCompleted()) {
                   this.logger.success(taskTitle)
-                } else if (task.isSkipped()) {
-                  this.logger.skip(task.output)
                 }
+
               }
             } else if (event.type === 'DATA') {
-              // render if outputs data like states, fail, skip or data
-              if (task.hasFailed()) {
-                this.logger.fail(String(event.data))
-              } else if (task.isSkipped()) {
-                this.logger.skip(String(event.data))
-              } else {
-                this.logger.data(String(event.data))
-              }
+              this.logger.data(String(event.data))
+
             } else if (event.type === 'TITLE') {
               if (this.options?.logTitleChange !== false) {
                 this.logger.title(String(event.data))
               }
+
+            } else if (event.type === 'MESSAGE') {
+
+              if (event.data?.error) {
+                // error message
+                this.logger.fail(String(event.data.error))
+
+              } else if (event.data?.skip) {
+                // skip message
+                this.logger.skip(String(event.data.skip))
+
+              }
+
             }
           }
         },

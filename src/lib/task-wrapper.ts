@@ -1,7 +1,16 @@
 /* eslint-disable no-control-regex */
 import through from 'through'
 
-import { ListrError, ListrRendererFactory, ListrSubClassOptions, ListrTask, ListrTaskWrapper, StateConstants, ListrBaseClassOptions } from '@interfaces/listr.interface'
+import {
+  ListrError,
+  ListrRendererFactory,
+  ListrSubClassOptions,
+  ListrTask,
+  ListrTaskWrapper,
+  StateConstants,
+  ListrBaseClassOptions,
+  ListrTaskObject
+} from '@interfaces/listr.interface'
 import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
@@ -11,13 +20,8 @@ import { PromptOptions } from '@utils/prompt.interface'
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
   constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
 
-  set title (title: string) {
-    this.task.title = title
-
-    this.task.next({
-      type: 'TITLE',
-      data: title
-    })
+  set title (data: string) {
+    this.task.title$ = data
   }
 
   /* istanbul ignore next */
@@ -26,12 +30,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   }
 
   set output (data: string) {
-    this.task.output = data
-
-    this.task.next({
-      type: 'DATA',
-      data
-    })
+    this.task.output$ = data
   }
 
   /* istanbul ignore next */
@@ -40,12 +39,11 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   }
 
   set state (data: StateConstants) {
-    this.task.state = data
+    this.task.state$ = data
+  }
 
-    this.task.next({
-      type: 'STATE',
-      data
-    })
+  set message (data: ListrTaskObject<Ctx, Renderer>['message']) {
+    this.task.message$ = data
   }
 
   public newListr (task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[], options?: ListrSubClassOptions<Ctx, Renderer>): Listr<Ctx, any, any> {
@@ -57,11 +55,11 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     if (error instanceof ListrError) {
       for (const err of error.errors) {
         this.errors.push(err)
-        this.output = err.message || this.task?.title || 'Task with no title.'
+        this.message = { error: err.message || this.task?.title || 'Task with no title.' }
       }
     } else {
       this.errors.push(error)
-      this.output = error.message || this.task?.title || 'Task with no title.'
+      this.message = { error: error.message || this.task?.title || 'Task with no title.' }
     }
   }
 
@@ -69,7 +67,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     this.state = stateConstants.SKIPPED
 
     if (message) {
-      this.output = message || this.task?.title || 'Task with no title.'
+      this.message = { skip: message || this.task?.title || 'Task with no title.' }
     }
   }
 
