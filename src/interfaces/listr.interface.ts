@@ -33,11 +33,15 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   title?: string
   cleanTitle?: string
   output?: string
-  duration: number
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
   subtasks: ListrTaskObject<Ctx, any>[]
   state: string
+  message: {
+    duration?: number
+    error?: string
+    skip?: string
+  }
   check: (ctx: Ctx) => void
   run: (ctx: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>) => Promise<void>
   options: ListrOptions
@@ -183,9 +187,12 @@ export interface ListrRendererFactory {
 
 export type ListrRendererValue = 'silent' | 'default' | 'verbose' | ListrRendererFactory
 
-export interface ListrEvent {
-  type: ListrEventTypes
+export type ListrEvent = {
+  type: Exclude<ListrEventTypes, 'MESSAGE'>
   data?: string | boolean
+} | {
+  type: 'MESSAGE'
+  data: ListrTaskObject<any, any>['message']
 }
 
 export class ListrError extends Error {
@@ -202,6 +209,6 @@ export class PromptError extends Error {
   }
 }
 
-export type ListrEventTypes = 'TITLE' | 'STATE' | 'ENABLED' | 'SUBTASK' | 'DATA'
+export type ListrEventTypes = 'TITLE' | 'STATE' | 'ENABLED' | 'SUBTASK' | 'DATA' | 'MESSAGE'
 
 export type StateConstants = stateConstants

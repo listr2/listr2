@@ -73,12 +73,12 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   public getTaskTime (task: ListrTaskObject<any, typeof DefaultRenderer>): string {
-    const seconds = Math.floor(task.duration / 1000)
+    const seconds = Math.floor(task.message.duration / 1000)
     const minutes = Math.floor(seconds / 60)
 
     let parsedTime: string
     if (seconds === 0 && minutes === 0) {
-      parsedTime = `0.${Math.floor(task.duration / 100)}s`
+      parsedTime = `0.${Math.floor(task.message.duration / 100)}s`
     }
 
     if (seconds > 0) {
@@ -136,18 +136,21 @@ export class DefaultRenderer implements ListrRenderer {
       if (task.isEnabled()) {
         // Current Task Title
         if (task.hasTitle()) {
-          // if task is skipped
-          if (task.isSkipped() && this.options.collapseSkips) {
-            // Current Task Title and skip change the title
-            task.title = !task.isSkipped() ? `${task?.cleanTitle}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
-          }
-
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
             // normal state
-            output.push(this.formatString(task.title, this.getSymbol(task), level))
+            output = [ ...output, this.formatString(task.title, this.getSymbol(task), level) ]
           } else {
             // some sibling task but self has failed and this has stopped
-            output.push(this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level))
+            output = [ ...output, this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level) ]
+          }
+
+          // if task is skipped
+          if (task.isSkipped() && this.options.collapseSkips) {
+          // Current Task Title and skip change the title
+            task.title = !task.message.skip ? `${task.cleanTitle} ` : `${task.message.skip} ` + chalk.dim('[SKIPPED]')
+          } else if (task.isSkipped() && this.options.collapseSkips === false) {
+          // show skip data if collapsing is not defined
+            output = [ ...output, ...this.dumpData(task, level, 'skip') ]
           }
         }
 
@@ -177,11 +180,9 @@ export class DefaultRenderer implements ListrRenderer {
             if (!data?.some((element) => this.bottomBar[task.id].data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
+
           } else if (task.isPending() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
-            output = [ ...output, ...this.dumpData(task, level) ]
-          } else if (task.isSkipped() && this.options.collapseSkips === false) {
-            // show skip data if collapsing is not defined
             output = [ ...output, ...this.dumpData(task, level) ]
           }
         }
@@ -265,12 +266,25 @@ export class DefaultRenderer implements ListrRenderer {
     }
   }
 
-  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number): string[] {
+  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string[] {
     const output: string[] = []
 
-    if (typeof task.output === 'string') {
+    let data: string | boolean
+    switch (source) {
+    case 'output':
+      data = task.output
+      break
+    case 'skip':
+      data = task.message.skip
+      break
+    case 'error':
+      data = task.message.error
+      break
+    }
+
+    if (typeof data === 'string') {
       // indent and color
-      task.output
+      data
         .split('\n')
         .filter(Boolean)
         .forEach((line, i) => {

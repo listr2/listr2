@@ -77,7 +77,7 @@ Array [
   ],
   Array [
     "[2K[1A[2K[1A[2K[G✔ This task will execute.
-↓ This task will never execute. [SKIPPED]  
+↓ This task will never execute.  
 ",
   ],
   Array [
@@ -103,11 +103,11 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[G↓ undefined [SKIPPED]  
+    "[2K[1A[2K[G↓ This task will execute.  
 ",
   ],
   Array [
-    "[2K[1A[2K[G↓ I am skipping this tasks for reasons. [SKIPPED]  
+    "[2K[1A[2K[G↓ This task will execute.   
 ",
   ],
   Array [
@@ -149,7 +149,7 @@ Array [
   ],
   Array [
     "[2K[1A[2K[1A[2K[G✔ This task will execute.
-↓ I will be skipped! [SKIPPED]  
+↓ This task will never execute.  
 ",
   ],
   Array [
