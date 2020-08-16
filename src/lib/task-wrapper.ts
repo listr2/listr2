@@ -46,8 +46,19 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     this.task.message$ = data
   }
 
-  public newListr (task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[], options?: ListrSubClassOptions<Ctx, Renderer>): Listr<Ctx, any, any> {
-    return new Listr<Ctx, any, any>(task, options)
+  public newListr (
+    task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[] | ((parent: this) => ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]),
+    options?: ListrSubClassOptions<Ctx, Renderer>
+  ): Listr<Ctx, any, any> {
+    let tasks: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]
+
+    if (typeof task === 'function') {
+      tasks = task(this)
+    } else {
+      tasks = task
+    }
+
+    return new Listr<Ctx, any, any>(tasks, options)
   }
 
   public report (error: Error | ListrError): void {

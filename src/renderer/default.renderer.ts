@@ -146,10 +146,10 @@ export class DefaultRenderer implements ListrRenderer {
 
           // if task is skipped
           if (task.isSkipped() && this.options.collapseSkips) {
-          // Current Task Title and skip change the title
+            // Current Task Title and skip change the title
             task.title = !task.message.skip ? `${task.cleanTitle} ` : `${task.message.skip} ` + chalk.dim('[SKIPPED]')
           } else if (task.isSkipped() && this.options.collapseSkips === false) {
-          // show skip data if collapsing is not defined
+            // show skip data if collapsing is not defined
             output = [ ...output, ...this.dumpData(task, level, 'skip') ]
           }
         }
@@ -180,7 +180,6 @@ export class DefaultRenderer implements ListrRenderer {
             if (!data?.some((element) => this.bottomBar[task.id].data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
-
           } else if (task.isPending() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
             output = [ ...output, ...this.dumpData(task, level) ]
