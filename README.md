@@ -22,6 +22,7 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
   - [The Concept of Context](#the-concept-of-context)
   - [General Usage](#general-usage)
     - [Subtasks](#subtasks)
+      - [Access Parent Task from Subtasks](#access-parent-task-from-subtasks)
     - [Get User Input](#get-user-input)
       - [Create A Prompt](#create-a-prompt)
         - [Single Prompt](#single-prompt)

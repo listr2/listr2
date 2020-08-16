@@ -1,3 +1,17 @@
+# [2.6.0](https://github.com/cenk1cenk2/listr2/compare/v2.5.1...v2.6.0) (2020-08-16)
+
+
+### Bug Fixes
+
+* keep persistent output on error ([de7e661](https://github.com/cenk1cenk2/listr2/commit/de7e661c15f9fba020e66cd098426f47cf08c1db))
+
+
+### Features
+
+* **listr:** accessing parent task ([544a130](https://github.com/cenk1cenk2/listr2/commit/544a1304ff5e642621ae1ed14358947b04cb3f91)), closes [#141](https://github.com/cenk1cenk2/listr2/issues/141)
+* isolated error and skip messages ([5b8735d](https://github.com/cenk1cenk2/listr2/commit/5b8735d53ba7325e0d3a5aa1ec5989b1cc353610))
+* **default-renderer:** added timer to renderer ([4b8d757](https://github.com/cenk1cenk2/listr2/commit/4b8d757648153305090d00c3f885fec3ac5a0fe0))
+
 ## [2.5.1](https://github.com/cenk1cenk2/listr2/compare/v2.5.0...v2.5.1) (2020-08-10)
 
 
