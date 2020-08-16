@@ -50,11 +50,9 @@ export function getRenderer (
   if (evaluateSilent) {
     ret = getRendererClass('silent')
     returnValue = { renderer: ret, nonTTY: true }
-
   } else if (!isRendererSupported(ret) || evaluateFallback) {
     ret = getRendererClass(fallbackRenderer)
     returnValue = { renderer: ret, nonTTY: true }
-
   }
 
   return returnValue

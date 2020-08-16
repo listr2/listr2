@@ -287,6 +287,67 @@ new Listr<Ctx>(
 
 _Please refer to [Throw Errors Section](#Throw-Errors) for more detailed and further examples on how to handle silently failing errors._
 
+#### Access Parent Task from Subtasks
+
+You can access parent task class from subtasks via passing a function to `task.newListr`. This way you can change the title of the parent task or access its functionallity. Skipping will not work reliably since the tasks run asynchronously. But added in for useful case of changing titles from subtasks with bringing it up in the [issue #141](https://github.com/cenk1cenk2/listr2/issues/141).
+
+```typescript
+new Listr<Ctx>(
+  [
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): Listr =>
+        task.newListr(
+          (parent) => [
+            {
+              title: 'This is a subtask.',
+              task: async (): Promise<void> => {
+                await delay(3000)
+                parent.title = 'I am changing title from subtask.'
+              }
+            },
+            {
+              title: 'This is an another subtask.',
+              task: async (): Promise<void> => {
+                await delay(2000)
+              }
+            }
+          ],
+          { concurrent: true }
+        )
+    },
+
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): Listr =>
+        task.newListr(
+          (parent) => [
+            {
+              title: 'This is a subtask.',
+              task: async (): Promise<void> => {
+                await delay(3000)
+                parent.skip('This will skip the parent.')
+              }
+            },
+            {
+              title: 'This is an another subtask.',
+              task: async (): Promise<void> => {
+                await delay(2000)
+              }
+            }
+          ],
+          { concurrent: true, rendererOptions: { collapse: false } }
+        )
+    }
+  ],
+  { concurrent: false }
+)
+```
+
+_Please refer to [examples section](examples/access-parent-task.example.ts) for more detailed and further examples._
+
+**Supported for >v2.6.0.**
+
 ### Get User Input
 
 The input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
@@ -1038,13 +1099,16 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     collapseSkips?: boolean
     // only update via renderhook
     lazy?: boolean
+    // show duration for all tasks overwrites per task options
+    showTimer?: boolean
   } = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
     collapse: true,
     collapseSkips: true,
-    lazy: false
+    lazy: false,
+    showTimer: false
   }
   ```
   - Per-Task
@@ -1054,6 +1118,8 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     bottomBar?: boolean | number
     // keep output after task finishes
     persistentOutput?: boolean
+    // show timer per task
+    showTimer?: boolean
   }
   ```
 - Options for the verbose renderer.

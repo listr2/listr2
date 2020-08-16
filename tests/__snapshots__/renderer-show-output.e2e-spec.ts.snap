@@ -1,5 +1,105 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`show output from task should have persistent output on task fail with bottom bar false: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-err 1`] = `Array []`;
+
+exports[`show output from task should have persistent output on task fail with bottom bar false: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-exit 1`] = `Array []`;
+
+exports[`show output from task should have persistent output on task fail with bottom bar false: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [2]  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task will execute.
+  › I will push an output. [2]  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task has failed
+  › I will push an output. [2]  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task has failed
+  › I will push an output. [2] 
+",
+  ],
+]
+`;
+
+exports[`show output from task should have persistent output on task fail with bottom bar true: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-err 1`] = `Array []`;
+
+exports[`show output from task should have persistent output on task fail with bottom bar true: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-exit 1`] = `Array []`;
+
+exports[`show output from task should have persistent output on task fail with bottom bar true: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute. 
+
+› I will push an output. [0] 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute. 
+
+› I will push an output. [1] 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute. 
+
+› I will push an output. [2] 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute. 
+
+› I will push an output. [2] 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G✖ This task has failed 
+
+› I will push an output. [2] 
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G✖ This task has failed 
+
+› I will push an output. [2]
+",
+  ],
+]
+`;
+
 exports[`show output from task should have persistent output: oYHBlOYGg8juKRkaqigY617eyLbGMuDd-err 1`] = `Array []`;
 
 exports[`show output from task should have persistent output: oYHBlOYGg8juKRkaqigY617eyLbGMuDd-exit 1`] = `Array []`;

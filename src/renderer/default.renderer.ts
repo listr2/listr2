@@ -21,19 +21,24 @@ export class DefaultRenderer implements ListrRenderer {
     collapseSkips?: boolean
     // only update via renderhook
     lazy?: boolean
+    // show duration for all tasks overwrites per task options
+    showTimer?: boolean
   } = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
     collapse: true,
     collapseSkips: true,
-    lazy: false
+    lazy: false,
+    showTimer: false
   }
   public static rendererTaskOptions: {
     // write task output to bottom bar
     bottomBar?: boolean | number
     // keep output after task finishes
     persistentOutput?: boolean
+    // show timer per task
+    showTimer?: boolean
   }
 
   private id?: NodeJS.Timeout
@@ -61,6 +66,30 @@ export class DefaultRenderer implements ListrRenderer {
 
   public hasPersistentOutput (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     return this.getTaskOptions(task).persistentOutput === true
+  }
+
+  public hasTimer (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
+    return this.getTaskOptions(task).showTimer === true
+  }
+
+  public getTaskTime (task: ListrTaskObject<any, typeof DefaultRenderer>): string {
+    const seconds = Math.floor(task.message.duration / 1000)
+    const minutes = Math.floor(seconds / 60)
+
+    let parsedTime: string
+    if (seconds === 0 && minutes === 0) {
+      parsedTime = `0.${Math.floor(task.message.duration / 100)}s`
+    }
+
+    if (seconds > 0) {
+      parsedTime = `${seconds % 60}s`
+    }
+
+    if (minutes > 0) {
+      parsedTime = `${minutes}m${parsedTime}`
+    }
+
+    return chalk.dim(`[${parsedTime}]`)
   }
 
   public render (): void {
@@ -107,18 +136,21 @@ export class DefaultRenderer implements ListrRenderer {
       if (task.isEnabled()) {
         // Current Task Title
         if (task.hasTitle()) {
+          if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
+            // normal state
+            output = [ ...output, this.formatString(task.title, this.getSymbol(task), level) ]
+          } else {
+            // some sibling task but self has failed and this has stopped
+            output = [ ...output, this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level) ]
+          }
+
           // if task is skipped
           if (task.isSkipped() && this.options.collapseSkips) {
             // Current Task Title and skip change the title
-            task.title = !task.isSkipped() ? `${task?.title}` : `${task?.output} ${chalk.dim('[SKIPPED]')}`
-          }
-
-          if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
-            // normal state
-            output.push(this.formatString(task.title, this.getSymbol(task), level))
-          } else {
-            // some sibling task but self has failed and this has stopped
-            output.push(this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level))
+            task.title = !task.message.skip ? `${task.cleanTitle} ` : `${task.message.skip} ` + chalk.dim('[SKIPPED]')
+          } else if (task.isSkipped() && this.options.collapseSkips === false) {
+            // show skip data if collapsing is not defined
+            output = [ ...output, ...this.dumpData(task, level, 'skip') ]
           }
         }
 
@@ -151,9 +183,6 @@ export class DefaultRenderer implements ListrRenderer {
           } else if (task.isPending() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
             output = [ ...output, ...this.dumpData(task, level) ]
-          } else if (task.isSkipped() && this.options.collapseSkips === false) {
-            // show skip data if collapsing is not defined
-            output = [ ...output, ...this.dumpData(task, level) ]
           }
         }
 
@@ -184,13 +213,18 @@ export class DefaultRenderer implements ListrRenderer {
         }
 
         // after task is finished actions
-        if (task.isCompleted() || task.hasFailed()) {
+        if (task.isCompleted() || task.hasFailed() || task.isSkipped()) {
           // clean up prompts
           this.promptBar = null
 
           // clean up bottom bar items if not indicated otherwise
-          if (task.hasFailed() || (!task.hasTitle() || this.isBottomBar(task)) && this.hasPersistentOutput(task) !== true) {
+          if (!this.hasPersistentOutput(task)) {
             delete this.bottomBar[task.id]
+          }
+
+          // only run if task is succesfully compeleted
+          if (task.isCompleted() && task.hasTitle() && this.options.showTimer || this.hasTimer(task)) {
+            task.title = `${task?.cleanTitle} ${this.getTaskTime(task)}`
           }
         }
       }
@@ -231,12 +265,25 @@ export class DefaultRenderer implements ListrRenderer {
     }
   }
 
-  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number): string[] {
+  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string[] {
     const output: string[] = []
 
-    if (typeof task.output === 'string') {
+    let data: string | boolean
+    switch (source) {
+    case 'output':
+      data = task.output
+      break
+    case 'skip':
+      data = task.message.skip
+      break
+    case 'error':
+      data = task.message.error
+      break
+    }
+
+    if (typeof data === 'string') {
       // indent and color
-      task.output
+      data
         .split('\n')
         .filter(Boolean)
         .forEach((line, i) => {

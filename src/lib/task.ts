@@ -22,12 +22,14 @@ import { generateUUID } from '@utils/uuid'
 
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext, Renderer> {
   public id: ListrTaskObject<Ctx, Renderer>['id']
-  public title: ListrTaskObject<Ctx, Renderer>['title']
+  public cleanTitle: ListrTaskObject<Ctx, Renderer>['cleanTitle']
   public task: ListrTaskObject<Ctx, Renderer>['task']
   public skip: ListrTaskObject<Ctx, Renderer>['skip']
   public subtasks: ListrTaskObject<Ctx, any>['subtasks']
   public state: ListrTaskObject<Ctx, Renderer>['state']
   public output: ListrTaskObject<Ctx, Renderer>['output']
+  public title: ListrTaskObject<Ctx, Renderer>['title']
+  public message: ListrTaskObject<Ctx, Renderer>['message'] = {}
   public prompt: boolean | PromptError
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
@@ -42,6 +44,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.id = generateUUID()
 
     this.title = this.tasks?.title
+    this.cleanTitle = this.title
+
     this.task = this.tasks.task
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
@@ -61,6 +65,33 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.next({
       type: 'STATE',
       data: state
+    })
+  }
+
+  set output$ (data: string) {
+    this.output = data
+
+    this.next({
+      type: 'DATA',
+      data
+    })
+  }
+
+  set message$ (data: ListrTaskObject<Ctx, Renderer>['message']) {
+    this.message = { ...this.message, ...data }
+
+    this.next({
+      type: 'MESSAGE',
+      data
+    })
+  }
+
+  set title$ (title: string) {
+    this.title = title
+
+    this.next({
+      type: 'TITLE',
+      data: title
     })
   }
 
@@ -147,12 +178,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         // Detect stream
         result = new Promise((resolve, reject) => {
           result.on('data', (data: Buffer) => {
-            this.output = data.toString()
-
-            this.next({
-              type: 'DATA',
-              data: data.toString()
-            })
+            this.output$ = data.toString()
           })
           result.on('error', (error: Error) => reject(error))
           result.on('end', () => resolve())
@@ -162,12 +188,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         result = new Promise((resolve, reject) => {
           result.subscribe({
             next: (data) => {
-              this.output = data
-
-              this.next({
-                type: 'DATA',
-                data
-              })
+              this.output$ = data
             },
             error: reject,
             complete: resolve
@@ -178,6 +199,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       return result
     }
 
+    const startTime = Date.now()
+
     // finish the task first
     // Promise.resolve()
     this.state$ = stateConstants.PENDING
@@ -187,12 +210,16 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     if (typeof this.skip === 'function') {
       skipped = await this.skip(context)
     }
+
     if (skipped) {
       if (typeof skipped === 'string') {
-        this.output = skipped
+        this.message$ = { skip: skipped }
       } else if (this.hasTitle()) {
-        this.output = this.title
+        this.message$ = { skip: this.title }
+      } else {
+        this.message$ = { skip: 'Skipped task without a title.' }
       }
+
       this.state$ = stateConstants.SKIPPED
       return
     }
@@ -202,6 +229,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       await handleResult(this.task(context, wrapper))
 
       if (this.isPending()) {
+        this.message$ = { duration: Date.now() - startTime }
         this.state$ = stateConstants.COMPLETED
       }
     } catch (error) {
