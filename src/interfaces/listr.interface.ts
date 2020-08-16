@@ -31,7 +31,9 @@ export declare class ListrClass<
 export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends Observable<ListrEvent> {
   id: string
   title?: string
+  cleanTitle?: string
   output?: string
+  duration: number
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
   subtasks: ListrTaskObject<Ctx, any>[]
