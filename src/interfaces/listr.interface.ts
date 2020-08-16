@@ -69,7 +69,10 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
 export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   title: string
   output: string
-  newListr(task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[], options?: ListrSubClassOptions<Ctx, Renderer>): Listr<Ctx, any, any>
+  newListr(
+    task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[] | ((parent: this) => ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]),
+    options?: ListrSubClassOptions<Ctx, Renderer>
+  ): Listr<Ctx, any, any>
   report(error: Error): void
   skip(message: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
@@ -187,13 +190,15 @@ export interface ListrRendererFactory {
 
 export type ListrRendererValue = 'silent' | 'default' | 'verbose' | ListrRendererFactory
 
-export type ListrEvent = {
-  type: Exclude<ListrEventTypes, 'MESSAGE'>
-  data?: string | boolean
-} | {
-  type: 'MESSAGE'
-  data: ListrTaskObject<any, any>['message']
-}
+export type ListrEvent =
+  | {
+    type: Exclude<ListrEventTypes, 'MESSAGE'>
+    data?: string | boolean
+  }
+  | {
+    type: 'MESSAGE'
+    data: ListrTaskObject<any, any>['message']
+  }
 
 export class ListrError extends Error {
   constructor (public message: string, public errors?: Error[], public context?: any) {
