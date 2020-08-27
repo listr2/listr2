@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/cenk1cenk2/listr2/compare/v2.6.0...v2.6.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* new version for replicate.npmjs ([09dcb9c](https://github.com/cenk1cenk2/listr2/commit/09dcb9cbcafb7222222560c84cd8e0a08916ef1b))
+
 # [2.6.0](https://github.com/cenk1cenk2/listr2/compare/v2.5.1...v2.6.0) (2020-08-16)
 
 
