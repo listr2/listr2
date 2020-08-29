@@ -1,3 +1,10 @@
+## [2.6.2](https://github.com/cenk1cenk2/listr2/compare/v2.6.1...v2.6.2) (2020-08-29)
+
+
+### Bug Fixes
+
+* **default-renderer:** timer with title change ([6cf1eec](https://github.com/cenk1cenk2/listr2/commit/6cf1eec57346246120cb5e75282da9e10ebe3748))
+
 ## [2.6.1](https://github.com/cenk1cenk2/listr2/compare/v2.6.0...v2.6.1) (2020-08-27)
 
 
