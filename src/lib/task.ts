@@ -88,6 +88,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
   set title$ (title: string) {
     this.title = title
+    this.cleanTitle = title
 
     this.next({
       type: 'TITLE',
