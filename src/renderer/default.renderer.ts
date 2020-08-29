@@ -223,7 +223,7 @@ export class DefaultRenderer implements ListrRenderer {
           }
 
           // only run if task is succesfully compeleted
-          if (task.isCompleted() && task.hasTitle() && this.options.showTimer || this.hasTimer(task)) {
+          if (task.isCompleted() && task.hasTitle() && (this.options.showTimer || this.hasTimer(task))) {
             task.title = `${task?.cleanTitle} ${this.getTaskTime(task)}`
           }
         }

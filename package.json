@@ -21,6 +21,7 @@
     "dev:build": "yarn prebuild && tsc -p tsconfig.json && yarn postbuild",
     "dev:start": "yarn dev:build && TS_NODE_PROJECT='tsconfig.paths.json' tsc-watch --noClear --onSuccess \"yarn postbuild\"",
     "example": "ts-node -r tsconfig-paths/register",
+    "clean": "rimraf node_modules yarn.lock",
     "lint": "prettier --write src/ && eslint --ext .ts,.js,.tsx,.jsx --fix src/",
     "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/",
     "test": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.js",

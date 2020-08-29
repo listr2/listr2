@@ -52,7 +52,8 @@ async function main (): Promise<void> {
 
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async (ctx, task): Promise<void> => {
+        task.title = 'Changing task title.'
         await delay(200)
       }
     }
