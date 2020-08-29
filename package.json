@@ -73,7 +73,7 @@
     "through": "^2.3.8"
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^1.1.3",
+    "@cenk1cenk2/cz-cc": "^1.1.5",
     "@cenk1cenk2/eslint-config": "^0.4.9",
     "@types/jest": "^26.0.10",
     "@types/node": "^14.6.1",
