@@ -263,10 +263,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/cz-cc@^1.1.3":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.1.4.tgz#cf949e087f134121cb6fe742a9d3c0d13a2d057c"
-  integrity sha512-8+BInfygioSzke8MmJcQDzVhkIbk8jLIfTjn3nzPufsTlyzcoHGWy6JW1+whYP3jr5LwIAmGC+uJDeCPBgb4sw==
+"@cenk1cenk2/cz-cc@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.1.5.tgz#a7e7d109f8972467826a0ab6d97fccccc075654d"
+  integrity sha512-p0+O72VxoDR4PV9MttM1CWsfVu3+OCVVag3VjYj2QZJdFgycczuinwMVQ0xh11VHfDuIzRBeX+h9YYmeBmX1cg==
   dependencies:
     chalk "^4.1.0"
     commitizen "^4.2.1"
@@ -275,11 +275,11 @@
     enquirer-editor "^1.0.0"
     enquirer-prompt-editor "^2.0.1"
     find-git-root "^1.0.4"
-    listr2 "^2.6.1"
+    listr2 "^2.6.2"
     lodash.map "^4.6.0"
     word-wrap "^1.2.3"
   optionalDependencies:
-    "@commitlint/load" "^9.1.1"
+    "@commitlint/load" "^9.1.2"
 
 "@cenk1cenk2/eslint-config@^0.4.9":
   version "0.4.9"
@@ -305,7 +305,7 @@
   resolved "https://registry.yarnpkg.com/@commitlint/execute-rule/-/execute-rule-9.1.2.tgz#74a77eae50c8d2e5766822061ddf0df1b4f08027"
   integrity sha512-NGbeo0KCVYo1yj9vVPFHv6RGFpIF6wcQxpFYUKGIzZVV9Vz1WyiKS689JXa99Dt1aN0cZlEJJLnTNDIgYls0Vg==
 
-"@commitlint/load@>6.1.1", "@commitlint/load@^9.1.1":
+"@commitlint/load@>6.1.1", "@commitlint/load@^9.1.2":
   version "9.1.2"
   resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-9.1.2.tgz#c79634e8805ab35f318c535fdbda748288bf5395"
   integrity sha512-FPL82xBuF7J3EJ57kLVoligQP4BFRwrknooP+vNT787AXmQ/Fddc/iYYwHwy67pNkk5N++/51UyDl/CqiHb6nA==
@@ -3548,10 +3548,24 @@ lint-staged@^10.2.13:
     string-argv "0.3.1"
     stringify-object "^3.3.0"
 
-listr2@^2.6.0, listr2@^2.6.1:
+listr2@^2.6.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.6.1.tgz#fbbabd8eea723924df7530042c1990b346e81706"
   integrity sha512-1aPX9GkS+W0aHfPUDedJqeqj0DOe1605NaNoqdwEYw/UF2UbZgCIIMpXXZALeG/8xzwMBztguzQEubU5Xw1Qbw==
+  dependencies:
+    chalk "^4.1.0"
+    cli-truncate "^2.1.0"
+    figures "^3.2.0"
+    indent-string "^4.0.0"
+    log-update "^4.0.0"
+    p-map "^4.0.0"
+    rxjs "^6.6.2"
+    through "^2.3.8"
+
+listr2@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-2.6.2.tgz#4912eb01e1e2dd72ec37f3895a56bf2622d6f36a"
+  integrity sha512-6x6pKEMs8DSIpA/tixiYY2m/GcbgMplMVmhQAaLFxEtNSKLeWTGjtmU57xvv6QCm2XcqzyNXL/cTSVf4IChCRA==
   dependencies:
     chalk "^4.1.0"
     cli-truncate "^2.1.0"
