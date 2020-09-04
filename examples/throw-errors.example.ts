@@ -132,6 +132,33 @@ async function main (): Promise<void> {
   // H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM
   logger.data('You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
   logger.fail(task.err.toString())
+
+  logger.start('Example for not collapsing errors and show them as output.')
+
+  task = new Listr<Ctx>([
+    {
+      title: 'This task will fail.',
+      task: async (): Promise<void> => {
+        await delay(2000)
+        throw new Error('This task failed after 2 seconds.')
+      }
+    },
+    {
+      title: 'This task will execute.',
+      task: (ctx, task): void => {
+        task.title = 'I will change my title if this executes.'
+      }
+    }
+  ], {
+    concurrent: false, exitOnError: false, rendererOptions: { collapseErrors: false }
+  })
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch(e) {
+    logger.fail(e)
+  }
 }
 
 main()

@@ -1,8 +1,9 @@
-version: '3.7'
+version: "3.7"
 services:
   node:
     image: cenk1cenk2/lerna-dev:latest
     environment:
       - SERVICES=.
+      - PREFIX_LABEL=false
     volumes:
       - .:/data/app

@@ -66,6 +66,12 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       type: 'STATE',
       data: state
     })
+
+    if (this.hasSubtasks()) {
+      this.subtasks.forEach((subtask) => {
+        subtask.state = state
+      })
+    }
   }
 
   set output$ (data: string) {
@@ -251,7 +257,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
       if (!this.hasSubtasks()) {
         // Do not show the message if we have subtasks as the error is already shown in the subtask
-        this.title = error.message
+        this.message$ = { error: error.message }
       }
 
       wrapper.report(error)

@@ -19,6 +19,8 @@ export class DefaultRenderer implements ListrRenderer {
     collapse?: boolean
     // collapse skips in to single message
     collapseSkips?: boolean
+    // collapse error messages in to the title
+    collapseErrors?: boolean
     // only update via renderhook
     lazy?: boolean
     // show duration for all tasks overwrites per task options
@@ -29,6 +31,7 @@ export class DefaultRenderer implements ListrRenderer {
     showSubtasks: true,
     collapse: true,
     collapseSkips: true,
+    collapseErrors: true,
     lazy: false,
     showTimer: false
   }
@@ -137,21 +140,30 @@ export class DefaultRenderer implements ListrRenderer {
         // Current Task Title
         if (task.hasTitle()) {
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
-            // normal state
-            output = [ ...output, this.formatString(task.title, this.getSymbol(task), level) ]
+            // if task is skipped
+            if (task.isSkipped() && this.options.collapseSkips) {
+            // Current Task Title and skip change the title
+              output = [ ...output, this.formatString(!task.message.skip ? `${task.cleanTitle} ` : `${task.message.skip} ` + chalk.dim('[SKIPPED]'), this.getSymbol(task), level) ]
+            } else if (task.hasFailed() && this.options.collapseErrors) {
+            // Current Task Title and skip change the title
+              output = [ ...output, this.formatString(!task.message.error ? task.cleanTitle : `${task.message.error}`, this.getSymbol(task), level) ]
+            } else {
+              // normal state
+              output = [ ...output, this.formatString(task.title, this.getSymbol(task), level) ]
+            }
           } else {
             // some sibling task but self has failed and this has stopped
             output = [ ...output, this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level) ]
           }
+        }
 
-          // if task is skipped
-          if (task.isSkipped() && this.options.collapseSkips) {
-            // Current Task Title and skip change the title
-            task.title = !task.message.skip ? `${task.cleanTitle} ` : `${task.message.skip} ` + chalk.dim('[SKIPPED]')
-          } else if (task.isSkipped() && this.options.collapseSkips === false) {
-            // show skip data if collapsing is not defined
-            output = [ ...output, ...this.dumpData(task, level, 'skip') ]
-          }
+        // without the collapse option for skip and errors
+        if (task.isSkipped() && this.options.collapseSkips === false) {
+          // show skip data if collapsing is not defined
+          output = [ ...output, ...this.dumpData(task, level, 'skip') ]
+        } else if (task.hasFailed() && this.options.collapseErrors === false) {
+          // show skip data if collapsing is not defined
+          output = [ ...output, ...this.dumpData(task, level, 'error') ]
         }
 
         // Current Task Output
