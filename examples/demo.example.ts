@@ -3,6 +3,48 @@ import delay from 'delay'
 import { Listr } from '@root/index'
 
 async function main (): Promise<void> {
+
+  await new Listr(
+    [
+      {
+        title: 'This task will execute and not quit on errors.',
+        task: (ctx, task): Listr => task.newListr([
+          {
+            title: 'This is a subtask.',
+            task: async (): Promise<void> => {
+              await delay(500)
+              throw new Error('I have failed [0]')
+            }
+          },
+          {
+            title: 'This is an another subtask.',
+            task: async (): Promise<void> => {
+              await delay(500)
+              throw new Error('I have failed [1]')
+            }
+          },
+          {
+            title: 'This is yet an another subtask.',
+            task: async (ctx, task): Promise<void> => {
+              await delay(500)
+              task.title = 'I have succeeded.'
+            }
+          }
+        ], { exitOnError: false })
+      },
+      {
+        title: 'This task will execute.',
+        task: async (): Promise<any> => {
+          await delay(500)
+          throw new Error('exit')
+        }
+      }
+    ],
+    {
+      concurrent: false, exitOnError: true, rendererOptions: { lazy: false }
+    }
+  ).run()
+
   await new Listr([
     {
       title: 'Geting you on-board.',
