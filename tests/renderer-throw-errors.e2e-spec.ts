@@ -48,7 +48,9 @@ describe('show throw error', () => {
           }
         ],
         {
-          concurrent: false, exitOnError: true, rendererOptions: { lazy: true }
+          concurrent: false,
+          exitOnError: true,
+          rendererOptions: { lazy: true }
         }
       ).run()
     } catch (e) {
@@ -82,7 +84,9 @@ describe('show throw error', () => {
           }
         ],
         {
-          concurrent: false, exitOnError: false, rendererOptions: { lazy: true }
+          concurrent: false,
+          exitOnError: false,
+          rendererOptions: { lazy: true }
         }
       ).run()
     } catch (e) {
@@ -103,26 +107,30 @@ describe('show throw error', () => {
         [
           {
             title: 'This task will execute and not quit on errors.',
-            task: (ctx, task): Listr => task.newListr([
-              {
-                title: 'This is a subtask.',
-                task: async (): Promise<void> => {
-                  throw new Error('I have failed [0]')
-                }
-              },
-              {
-                title: 'This is an another subtask.',
-                task: async (): Promise<void> => {
-                  throw new Error('I have failed [1]')
-                }
-              },
-              {
-                title: 'This is yet an another subtask.',
-                task: async (ctx, task): Promise<void> => {
-                  task.title = 'I have succeeded.'
-                }
-              }
-            ], { exitOnError: false })
+            task: (ctx, task): Listr =>
+              task.newListr(
+                [
+                  {
+                    title: 'This is a subtask.',
+                    task: async (): Promise<void> => {
+                      throw new Error('I have failed [0]')
+                    }
+                  },
+                  {
+                    title: 'This is an another subtask.',
+                    task: async (): Promise<void> => {
+                      throw new Error('I have failed [1]')
+                    }
+                  },
+                  {
+                    title: 'This is yet an another subtask.',
+                    task: async (ctx, task): Promise<void> => {
+                      task.title = 'I have succeeded.'
+                    }
+                  }
+                ],
+                { exitOnError: false }
+              )
           },
           {
             title: 'This task will execute.',
@@ -132,7 +140,9 @@ describe('show throw error', () => {
           }
         ],
         {
-          concurrent: false, exitOnError: true, rendererOptions: { lazy: true }
+          concurrent: false,
+          exitOnError: true,
+          rendererOptions: { lazy: true }
         }
       ).run()
     } catch (e) {
@@ -152,26 +162,30 @@ describe('show throw error', () => {
       [
         {
           title: 'This task will execute and not quit on errors.',
-          task: (ctx, task): Listr => task.newListr([
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                throw new Error('I have failed [0]')
-              }
-            },
-            {
-              title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
-                throw new Error('I have failed [1]')
-              }
-            },
-            {
-              title: 'This is yet an another subtask.',
-              task: async (ctx, task): Promise<void> => {
-                task.title = 'I have succeeded.'
-              }
-            }
-          ], { exitOnError: false })
+          task: (ctx, task): Listr =>
+            task.newListr(
+              [
+                {
+                  title: 'This is a subtask.',
+                  task: async (): Promise<void> => {
+                    throw new Error('I have failed [0]')
+                  }
+                },
+                {
+                  title: 'This is an another subtask.',
+                  task: async (): Promise<void> => {
+                    throw new Error('I have failed [1]')
+                  }
+                },
+                {
+                  title: 'This is yet an another subtask.',
+                  task: async (ctx, task): Promise<void> => {
+                    task.title = 'I have succeeded.'
+                  }
+                }
+              ],
+              { exitOnError: false }
+            )
         },
         {
           title: 'This task will execute.',
@@ -181,7 +195,9 @@ describe('show throw error', () => {
         }
       ],
       {
-        concurrent: false, exitOnError: true, rendererOptions: { lazy: true }
+        concurrent: false,
+        exitOnError: true,
+        rendererOptions: { lazy: true }
       }
     )
 
@@ -195,4 +211,75 @@ describe('show throw error', () => {
     expect(task.err).toMatchSnapshot('H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM')
   })
 
+  // 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H
+  it('should throw out an error in the data field with collapse errors false', async () => {
+    let err: Error
+    try {
+      await new Listr(
+        [
+          {
+            title: 'This task will fail.',
+            task: async (): Promise<void> => {
+              await delay(20)
+              throw new Error('This task failed after 2 seconds.')
+            }
+          },
+          {
+            title: 'This task will never execute.',
+            task: (ctx, task): void => {
+              task.title = 'I will change my title if this executes.'
+            }
+          }
+        ],
+        {
+          concurrent: false,
+          exitOnError: true,
+          rendererOptions: { lazy: true, collapseErrors: false }
+        }
+      ).run()
+    } catch (e) {
+      err = e
+    }
+
+    expect(err).toBeTruthy()
+    expect(mockStdout.mock.calls).toMatchSnapshot('03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-exit')
+  })
+
+  // lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH
+  it('should show the default task title when failed with showErrorMessage of', async () => {
+    let err: Error
+    try {
+      await new Listr(
+        [
+          {
+            title: 'This task will fail.',
+            task: async (): Promise<void> => {
+              await delay(20)
+              throw new Error('This task failed after 2 seconds.')
+            }
+          },
+          {
+            title: 'This task will never execute.',
+            task: (ctx, task): void => {
+              task.title = 'I will change my title if this executes.'
+            }
+          }
+        ],
+        {
+          concurrent: false,
+          exitOnError: true,
+          rendererOptions: { lazy: true, showErrorMessage: false }
+        }
+      ).run()
+    } catch (e) {
+      err = e
+    }
+
+    expect(err).toBeTruthy()
+    expect(mockStdout.mock.calls).toMatchSnapshot('lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-exit')
+  })
 })

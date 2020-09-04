@@ -16,24 +16,28 @@ async function main (): Promise<void> {
   // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
   logger.start('Example for subtasks.')
 
-  task = new Listr<Ctx>([
-    {
-      title: 'This task will execute.',
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'This is a subtask.',
-          task: async (): Promise<void> => {
-            await delay(3000)
-          }
-        }
-      ])
-    }
-  ], { concurrent: false })
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: (ctx, task): Listr =>
+          task.newListr([
+            {
+              title: 'This is a subtask.',
+              task: async (): Promise<void> => {
+                await delay(3000)
+              }
+            }
+          ])
+      }
+    ],
+    { concurrent: false }
+  )
 
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch(e) {
+  } catch (e) {
     logger.fail(e)
   }
 
@@ -41,119 +45,144 @@ async function main (): Promise<void> {
   // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
   logger.start('Example for subtasks with different renderer options.')
 
-  task = new Listr<Ctx>([
-    {
-      title: 'This task will execute.',
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'This is a subtask.',
-          task: async (): Promise<void> => {
-            await delay(3000)
-          }
-        },
-        {
-          title: 'This is an another subtask.',
-          task: async (): Promise<void> => {
-            await delay(2000)
-          }
-        }
-      ], { concurrent: true })
-    },
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: (ctx, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(3000)
+                }
+              },
+              {
+                title: 'This is an another subtask.',
+                task: async (): Promise<void> => {
+                  await delay(2000)
+                }
+              }
+            ],
+            { concurrent: true }
+          )
+      },
 
-    {
-      title: 'This task will execute.',
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'This is a subtask.',
-          task: async (): Promise<void> => {
-            await delay(3000)
-          }
-        },
-        {
-          title: 'This is an another subtask.',
-          task: async (): Promise<void> => {
-            await delay(2000)
-          }
-        }
-      ], { concurrent: true, rendererOptions: { collapse: false } })
-    }
-  ], { concurrent: false })
+      {
+        title: 'This task will execute.',
+        task: (ctx, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(3000)
+                }
+              },
+              {
+                title: 'This is an another subtask.',
+                task: async (): Promise<void> => {
+                  await delay(2000)
+                }
+              }
+            ],
+            { concurrent: true, rendererOptions: { collapse: false } }
+          )
+      }
+    ],
+    { concurrent: false }
+  )
 
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch(e) {
+  } catch (e) {
     logger.fail(e)
   }
 
   logger.start('Example for subtasks with different disabled rendering from parent.')
 
-  task = new Listr<Ctx>([
-    {
-      title: 'This task will execute but will not render subtasks.',
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'This is a subtask.',
-          task: async (): Promise<void> => {
-            await delay(3000)
-          }
-        },
-        {
-          title: 'This is an another subtask.',
-          task: async (): Promise<void> => {
-            await delay(2000)
-          }
-        }
-      ], { concurrent: true })
-    }
-  ], { concurrent: false, rendererOptions: { showSubtasks: false } })
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute but will not render subtasks.',
+        task: (ctx, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(3000)
+                }
+              },
+              {
+                title: 'This is an another subtask.',
+                task: async (): Promise<void> => {
+                  await delay(2000)
+                }
+              }
+            ],
+            { concurrent: true }
+          )
+      }
+    ],
+    { concurrent: false, rendererOptions: { showSubtasks: false } }
+  )
 
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch(e) {
+  } catch (e) {
     logger.fail(e)
   }
 
   // 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY
   logger.start('Example for subtasks that change exit on error.')
 
-  task = new Listr<Ctx>([
-    {
-      title: 'This task will execute and not quit on errors.',
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'This is a subtask.',
-          task: async (): Promise<void> => {
-            throw new Error('I have failed [0]')
-          }
-        },
-        {
-          title: 'This is an another subtask.',
-          task: async (): Promise<void> => {
-            throw new Error('I have failed [1]')
-          }
-        },
-        {
-          title: 'This is yet an another subtask.',
-          task: async (ctx, task): Promise<void> => {
-            task.title = 'I have succeeded.'
-          }
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute and not quit on errors.',
+        task: (ctx, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  throw new Error('I have failed [0]')
+                }
+              },
+              {
+                title: 'This is an another subtask.',
+                task: async (): Promise<void> => {
+                  throw new Error('I have failed [1]')
+                }
+              },
+              {
+                title: 'This is yet an another subtask.',
+                task: async (ctx, task): Promise<void> => {
+                  task.title = 'I have succeeded.'
+                }
+              }
+            ],
+            { exitOnError: false }
+          )
+      },
+      {
+        title: 'This task will execute.',
+        task: (): void => {
+          throw new Error('I will exit on error since I am a direct child of parent task.')
         }
-      ], { exitOnError: false })
-    },
-    {
-      title: 'This task will execute.',
-      task: (): void => {
-        throw new Error('I will exit on error since I am a direct child of parent task.')
       }
-    }
-  ], { concurrent: false, exitOnError: true })
+    ],
+    { concurrent: false, exitOnError: true }
+  )
 
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch(e) {
+  } catch (e) {
     logger.fail(e)
   }
 

@@ -28,19 +28,16 @@ describe('show output from task', () => {
   })
 
   it('should add a single task', async () => {
-    const ctx = await new Listr(
-      {
-        title: 'This task will execute.',
-        task: (ctx, task): Listr =>
-          task.newListr([
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-              }
-            }
-          ])
-      }
-    ).run()
+    const ctx = await new Listr({
+      title: 'This task will execute.',
+      task: (ctx, task): Listr =>
+        task.newListr([
+          {
+            title: 'This is a subtask.',
+            task: async (): Promise<void> => {}
+          }
+        ])
+    }).run()
 
     expect(ctx).toBeTruthy()
   })
