@@ -130,6 +130,11 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
         { concurrency: this.concurrency }
       )
 
+      // catch errors do which do not crash through exitOnError: false
+      if (errors.length > 0) {
+        this.err.push(new ListrError('Task failed without crashing.', errors, context))
+      }
+
       this.renderer.end()
     } catch (error) {
       this.err.push(new ListrError(error, [ error ], context))
@@ -138,10 +143,6 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
         this.renderer.end(error)
         // Do not exit when explicitely set to `false`
         throw error
-      }
-    } finally {
-      if (errors.length > 0) {
-        this.err.push(new ListrError('Task failed without crashing.', errors, context))
       }
     }
 

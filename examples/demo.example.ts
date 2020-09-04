@@ -3,208 +3,189 @@ import delay from 'delay'
 import { Listr } from '@root/index'
 
 async function main (): Promise<void> {
-
   await new Listr(
     [
       {
-        title: 'This task will execute and not quit on errors.',
-        task: (ctx, task): Listr => task.newListr([
-          {
-            title: 'This is a subtask.',
-            task: async (): Promise<void> => {
-              await delay(500)
-              throw new Error('I have failed [0]')
-            }
-          },
-          {
-            title: 'This is an another subtask.',
-            task: async (): Promise<void> => {
-              await delay(500)
-              throw new Error('I have failed [1]')
-            }
-          },
-          {
-            title: 'This is yet an another subtask.',
-            task: async (ctx, task): Promise<void> => {
-              await delay(500)
-              task.title = 'I have succeeded.'
-            }
-          }
-        ], { exitOnError: false })
+        title: 'Geting you on-board.',
+        task: async (ctx, task): Promise<boolean> =>
+          ctx.user = await task.prompt({
+            type: 'Toggle',
+            message: 'Do you want to create beautiful CLI interfaces?',
+            initial: true
+          })
       },
+
       {
-        title: 'This task will execute.',
-        task: async (): Promise<any> => {
-          await delay(500)
-          throw new Error('exit')
+        title: 'Doing initial configuration',
+        skip: (ctx): boolean => !ctx.user,
+        task: (ctx, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'Spinning up a new project...',
+                task: async (ctx, task): Promise<void> => {
+                  await delay(2000)
+                  task.output = 'Created a new project.'
+                }
+              },
+
+              {
+                title: 'Install Listr2...',
+                task: async (ctx, task): Promise<void> => {
+                  task.output = 'Installing Listr2...'
+                  await delay(2000)
+                  task.output = 'Listr2 installed.'
+                }
+              },
+
+              {
+                title: 'Follow through the README and the examples.',
+                task: async (ctx, task): Promise<void> => {
+                  task.output = 'Going through the README'
+                  task.output = 'Create a new Listr'
+                  await delay(500)
+                  task.output = 'The Concept of Context'
+                  await delay(500)
+                  task.output = 'Subtasks'
+                  await delay(500)
+                  task.output = 'Get User Input'
+                  await delay(500)
+                  task.output = 'Enable a Task'
+                  await delay(500)
+                  task.output = 'Skip a Task'
+                  await delay(500)
+                  task.output = 'Show Output'
+                  await delay(500)
+                  task.output = 'Throw Errors'
+                  await delay(500)
+                  task.output = 'Task Manager'
+                  await delay(500)
+                },
+                options: {
+                  bottomBar: 3
+                }
+              }
+            ],
+            { concurrent: true, rendererOptions: { collapse: false } }
+          )
+      },
+
+      {
+        title: 'Utilizing a intuative way to create task lists!',
+        enabled: (ctx): boolean => ctx.user,
+        task: (ctx, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'Showing some output',
+                task: async (): Promise<void> => {
+                  await delay(2000)
+                }
+              },
+
+              {
+                title: 'Enabling events depending on context',
+                task: async (): Promise<void> => {
+                  await delay(1000)
+                }
+              },
+
+              {
+                title: 'Throwing some errors',
+                task: async (ctx, task): Promise<void> => {
+                  await delay(2500)
+                  task.skip('No errors at all!')
+                }
+              }
+            ],
+            { concurrent: true, rendererOptions: { collapse: false } }
+          )
+      },
+
+      {
+        title: 'Writing some code!',
+        enabled: (ctx): boolean => ctx.user,
+        task: (ctx, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'More code',
+                task: async (): Promise<void> => {
+                  await delay(2000)
+                }
+              },
+
+              {
+                title: 'Oh no the types!',
+                task: async (): Promise<void> => {
+                  await delay(1000)
+                }
+              },
+
+              {
+                title: 'Some tests are needed too!',
+                task: async (): Promise<void> => {
+                  await delay(2500)
+                }
+              },
+
+              {
+                title: 'CI/CD configuration is a must',
+                task: async (): Promise<void> => {
+                  await delay(2500)
+                }
+              }
+            ],
+            { concurrent: false, rendererOptions: { collapse: true } }
+          )
+      },
+
+      {
+        title: 'Pulling some hair out.',
+        task: (ctx, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'Lots of bugs to fix',
+                task: async (): Promise<void> => {
+                  await delay(1000)
+                  throw new Error('Can not find the bugs :/')
+                }
+              },
+
+              {
+                title: 'Some type errors',
+                task: async (): Promise<void> => {
+                  await delay(1000)
+                  throw new Error('This type can not be assigned to type with, oh noes')
+                }
+              },
+
+              {
+                title: 'Getting some help from Google.',
+                task: async (ctx, task): Promise<void> => {
+                  await delay(500)
+                  task.title = 'I have found the answers to the universe!'
+                }
+              }
+            ],
+            {
+              concurrent: true,
+              exitOnError: false
+            }
+          )
+      },
+
+      {
+        title: 'In the end it will all be worth it!',
+        task: async (ctx, task): Promise<void> => {
+          await delay(1000)
+          task.title = 'Created a beautiful CLI interface!'
         }
       }
     ],
-    {
-      concurrent: false, exitOnError: true, rendererOptions: { lazy: false }
-    }
+    {}
   ).run()
-
-  await new Listr([
-    {
-      title: 'Geting you on-board.',
-      task: async (ctx, task): Promise<boolean> => ctx.user = await task.prompt({
-        type: 'Toggle', message: 'Do you want to create beautiful CLI interfaces?', initial: true
-      })
-    },
-
-    {
-      title: 'Doing initial configuration',
-      skip: (ctx): boolean => !ctx.user,
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'Spinning up a new project...',
-          task: async (ctx, task): Promise<void> => {
-            await delay(2000)
-            task.output = 'Created a new project.'
-          }
-        },
-
-        {
-          title: 'Install Listr2...',
-          task: async (ctx, task): Promise<void> => {
-            task.output = 'Installing Listr2...'
-            await delay(2000)
-            task.output = 'Listr2 installed.'
-          }
-        },
-
-        {
-          title: 'Follow through the README and the examples.',
-          task: async (ctx, task): Promise<void> => {
-            task.output = 'Going through the README'
-            task.output = 'Create a new Listr'
-            await delay(500)
-            task.output = 'The Concept of Context'
-            await delay(500)
-            task.output = 'Subtasks'
-            await delay(500)
-            task.output = 'Get User Input'
-            await delay(500)
-            task.output = 'Enable a Task'
-            await delay(500)
-            task.output = 'Skip a Task'
-            await delay(500)
-            task.output = 'Show Output'
-            await delay(500)
-            task.output = 'Throw Errors'
-            await delay(500)
-            task.output = 'Task Manager'
-            await delay(500)
-          },
-          options: {
-            bottomBar: 3
-          }
-        }
-      ], { concurrent: true, rendererOptions: { collapse: false } })
-    },
-
-    {
-      title: 'Utilizing a intuative way to create task lists!',
-      enabled: (ctx): boolean => ctx.user,
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'Showing some output',
-          task: async (): Promise<void> => {
-            await delay(2000)
-          }
-        },
-
-        {
-          title: 'Enabling events depending on context',
-          task: async (): Promise<void> => {
-            await delay(1000)
-          }
-        },
-
-        {
-          title: 'Throwing some errors',
-          task: async (ctx, task): Promise<void> => {
-            await delay(2500)
-            task.skip('No errors at all!')
-          }
-        }
-      ], { concurrent: true, rendererOptions: { collapse: false } })
-    },
-
-    {
-      title: 'Writing some code!',
-      enabled: (ctx): boolean => ctx.user,
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'More code',
-          task: async (): Promise<void> => {
-            await delay(2000)
-          }
-        },
-
-        {
-          title: 'Oh no the types!',
-          task: async (): Promise<void> => {
-            await delay(1000)
-          }
-        },
-
-        {
-          title: 'Some tests are needed too!',
-          task: async (): Promise<void> => {
-            await delay(2500)
-          }
-        },
-
-        {
-          title: 'CI/CD configuration is a must',
-          task: async (): Promise<void> => {
-            await delay(2500)
-          }
-        }
-      ], { concurrent: false, rendererOptions: { collapse: true } })
-    },
-
-    {
-      title: 'Pulling some hair out.',
-      task: (ctx, task): Listr => task.newListr([
-        {
-          title: 'Lots of bugs to fix',
-          task: async (): Promise<void> => {
-            await delay(1000)
-            throw new Error('Can not find the bugs :/')
-          }
-        },
-
-        {
-          title: 'Some type errors',
-          task: async (): Promise<void> => {
-            await delay(1000)
-            throw new Error('This type can not be assigned to type with, oh noes')
-          }
-        },
-
-        {
-          title: 'Getting some help from Google.',
-          task: async (ctx, task): Promise<void> => {
-            await delay(500)
-            task.title = 'I have found the answers to the universe!'
-          }
-        }
-      ], {
-        concurrent: true, exitOnError: false
-      })
-    },
-
-    {
-      title: 'In the end it will all be worth it!',
-      task: async (ctx, task): Promise<void> => {
-        await delay(1000)
-        task.title = 'Created a beautiful CLI interface!'
-      }
-    }
-  ], { }).run()
 }
 
 main()

@@ -39,7 +39,8 @@ describe('show task skip', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -66,7 +67,8 @@ describe('show task skip', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -93,7 +95,8 @@ describe('show task skip', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true, collapseSkips: false }
+        concurrent: false,
+        rendererOptions: { lazy: true, collapseSkips: false }
       }
     ).run()
 
@@ -120,7 +123,8 @@ describe('show task skip', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -129,4 +133,69 @@ describe('show task skip', () => {
     expect(mockExit.mock.calls).toMatchSnapshot('BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-exit')
   })
 
+  // omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB
+  it('should skip without a suffix', async () => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: (ctx, task): void => {
+            task.skip('I am skipping this tasks for reasons.')
+          }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true, suffixSkips: false }
+      }
+    ).run()
+
+    expect(mockStdout.mock.calls).toMatchSnapshot('omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB-exit')
+  })
+
+  // c4Q9Hk2x725caX6F6qXGMgyUQh36HQls
+  it('should show the original title of the task', async () => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: (ctx, task): void => {
+            task.skip('I am skipping this tasks for reasons.')
+          }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true, showSkipMessage: false }
+      }
+    ).run()
+
+    expect(mockStdout.mock.calls).toMatchSnapshot('c4Q9Hk2x725caX6F6qXGMgyUQh36HQls-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('c4Q9Hk2x725caX6F6qXGMgyUQh36HQls-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('c4Q9Hk2x725caX6F6qXGMgyUQh36HQls-exit')
+  })
+
+  // 3n2w67J8KnAihH5KaGDGnHe2O9xawvnx
+  it('should show the original title of the task when skipped with empty message', async () => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: (ctx, task): void => {
+            task.skip()
+          }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true, showSkipMessage: false }
+      }
+    ).run()
+
+    expect(mockStdout.mock.calls).toMatchSnapshot('3n2w67J8KnAihH5KaGDGnHe2O9xawvnx-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('3n2w67J8KnAihH5KaGDGnHe2O9xawvnx-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('3n2w67J8KnAihH5KaGDGnHe2O9xawvnx-exit')
+  })
 })

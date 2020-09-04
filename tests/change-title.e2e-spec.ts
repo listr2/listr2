@@ -55,5 +55,4 @@ describe('skip a task', () => {
       ]
     `)
   })
-
 })

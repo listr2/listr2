@@ -5,5 +5,7 @@ services:
     environment:
       - SERVICES=.
       - PREFIX_LABEL=false
+    ports:
+      - 9229:9229
     volumes:
       - .:/data/app

@@ -10,8 +10,7 @@ else
 fi
 
 if [ -z "$2" ]; then
-  echo "You should pass the snapshot id to view it."
-  exit
+  echo "You can pass the snapshot id to view it."
 fi
 
 echo "$SEPERATOR"
@@ -23,5 +22,9 @@ for f in $FILES; do
   echo "$SEPERATOR"
   echo
   # take action on each file. $f store current file name
-  cat $f | sed -e 's/\x1b\[[0-9?]\+[^m0-9?]//g' | sed -n "/$2/,\$p" | less
+  if [ ! -z "$2" ]; then
+    cat $f | sed -e 's/\x1b\[[0-9?]\+[^m0-9?]//g' | sed -n "/$2/,\$p" | less
+  else
+    cat $f | sed -e 's/\x1b\[[0-9?]\+[^m0-9?]//g' | less
+  fi
 done

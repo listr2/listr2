@@ -1,14 +1,15 @@
 {
   "version": "0.2.0",
-  "configurations": [{
-    "type": "node",
-    "request": "launch",
-    "name": "Launch Program",
-    "runtimeArgs": ["--no-lazy", "-r", "ts-node/register", "-r", "tsconfig-paths/register"],
-    "args": ["${file}"],
-    "cwd": "${workspaceFolder}",
-    "protocol": "inspector",
-    "sourceMaps": true,
-    "console": "integratedTerminal"
-  }]
+  "configurations": [
+    {
+      "name": "attach",
+      "port": 9229,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "localRoot": "${workspaceFolder}}",
+      "remoteRoot": "/data/app",
+      "sourceMaps": true,
+      "type": "pwa-node"
+    }
+  ]
 }

@@ -2,6 +2,7 @@ import cliTruncate from 'cli-truncate'
 import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
+import { EOL } from 'os'
 
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import chalk from '@utils/chalk'
@@ -17,10 +18,16 @@ export class DefaultRenderer implements ListrRenderer {
     showSubtasks?: boolean
     // collapse subtasks after finish
     collapse?: boolean
-    // collapse skips in to single message
+    // collapse skip messages in to single message in task title
     collapseSkips?: boolean
-    // collapse error messages in to the title
+    // show skip messages or show the original title of the task when in collapseSkips Mode
+    showSkipMessage?: boolean
+    // suffix skip messages with [SKIPPED] when in collapseSkips mode
+    suffixSkips?: boolean
+    // collapse error messages in to single message in task title
     collapseErrors?: boolean
+    // shows the thrown error message or show the original title of the task when in collapseErrors mode
+    showErrorMessage?: boolean
     // only update via renderhook
     lazy?: boolean
     // show duration for all tasks overwrites per task options
@@ -31,10 +38,14 @@ export class DefaultRenderer implements ListrRenderer {
     showSubtasks: true,
     collapse: true,
     collapseSkips: true,
+    showSkipMessage: true,
+    suffixSkips: true,
     collapseErrors: true,
+    showErrorMessage: true,
     lazy: false,
     showTimer: false
   }
+
   public static rendererTaskOptions: {
     // write task output to bottom bar
     bottomBar?: boolean | number
@@ -95,13 +106,44 @@ export class DefaultRenderer implements ListrRenderer {
     return chalk.dim(`[${parsedTime}]`)
   }
 
+  public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
+    options = {
+      ...{
+        tasks: true,
+        bottomBar: true,
+        prompt: true
+      },
+      ...options
+    }
+
+    const render: string[] = []
+
+    const renderTasks = this.multiLineRenderer(this.tasks)
+    const renderBottomBar = this.renderBottomBar()
+    const renderPrompt = this.renderPrompt()
+
+    if (options.tasks && renderTasks?.trim().length > 0) {
+      render.push(renderTasks)
+    }
+
+    if (options.bottomBar && renderBottomBar?.trim().length > 0) {
+      render.push((render.length > 0 ? EOL : '') + renderBottomBar)
+    }
+
+    if (options.prompt && renderPrompt?.trim().length > 0) {
+      render.push((render.length > 0 ? EOL : '') + renderPrompt)
+    }
+
+    return render.length > 0 ? render.join(EOL) : ''
+  }
+
   public render (): void {
     // Do not render if we are already rendering
     if (this.id) {
       return
     }
 
-    const updateRender = (): void => logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar(), this.renderPrompt())
+    const updateRender = (): void => logUpdate(this.createRender())
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
@@ -122,17 +164,18 @@ export class DefaultRenderer implements ListrRenderer {
       this.id = undefined
     }
 
-    logUpdate(this.multiLineRenderer(this.tasks), this.renderBottomBar())
+    // clear log updater
+    logUpdate.clear()
+    logUpdate.done()
 
-    if (this.options.clearOutput) {
-      logUpdate.clear()
-    } else {
-      logUpdate.done()
+    // directly write to process.stdout, since logupdate only can update the seen height of terminal
+    if (!this.options.clearOutput) {
+      process.stdout.write(this.createRender({ prompt: false }) + EOL)
     }
   }
 
-  // eslint-disable-next-line complexity
-  private multiLineRenderer (tasks: ListrTaskObject<any, typeof DefaultRenderer>[], level = 0): string {
+  // eslint-disable-next-line
+  private multiLineRenderer(tasks: ListrTaskObject<any, typeof DefaultRenderer>[], level = 0): string {
     let output: string[] = []
 
     for (const task of tasks) {
@@ -141,12 +184,22 @@ export class DefaultRenderer implements ListrRenderer {
         if (task.hasTitle()) {
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
             // if task is skipped
-            if (task.isSkipped() && this.options.collapseSkips) {
-            // Current Task Title and skip change the title
-              output = [ ...output, this.formatString(!task.message.skip ? `${task.cleanTitle} ` : `${task.message.skip} ` + chalk.dim('[SKIPPED]'), this.getSymbol(task), level) ]
-            } else if (task.hasFailed() && this.options.collapseErrors) {
-            // Current Task Title and skip change the title
-              output = [ ...output, this.formatString(!task.message.error ? task.cleanTitle : `${task.message.error}`, this.getSymbol(task), level) ]
+            if (task.hasFailed() && this.options.collapseErrors) {
+              // current task title and skip change the title
+              output = [ ...output, this.formatString(task.message.error && this.options.showErrorMessage ? task.message.error : task.title, this.getSymbol(task), level) ]
+            } else if (task.isSkipped() && this.options.collapseSkips) {
+              // current task title and skip change the title
+              output = [
+                ...output,
+                this.formatString(
+                  (task.message.skip && this.options.showSkipMessage ? task.message.skip : task.title) + (this.options.suffixSkips ? chalk.dim(' [SKIPPED]') : ''),
+                  this.getSymbol(task),
+                  level
+                )
+              ]
+            } else if (task.isCompleted() && task.hasTitle() && (this.options.showTimer || this.hasTimer(task))) {
+              // task with timer
+              output = [ ...output, this.formatString(`${task?.title} ${this.getTaskTime(task)}`, this.getSymbol(task), level) ]
             } else {
               // normal state
               output = [ ...output, this.formatString(task.title, this.getSymbol(task), level) ]
@@ -158,12 +211,12 @@ export class DefaultRenderer implements ListrRenderer {
         }
 
         // without the collapse option for skip and errors
-        if (task.isSkipped() && this.options.collapseSkips === false) {
-          // show skip data if collapsing is not defined
-          output = [ ...output, ...this.dumpData(task, level, 'skip') ]
-        } else if (task.hasFailed() && this.options.collapseErrors === false) {
+        if (task.hasFailed() && this.options.collapseErrors === false) {
           // show skip data if collapsing is not defined
           output = [ ...output, ...this.dumpData(task, level, 'error') ]
+        } else if (task.isSkipped() && this.options.collapseSkips === false) {
+          // show skip data if collapsing is not defined
+          output = [ ...output, ...this.dumpData(task, level, 'skip') ]
         }
 
         // Current Task Output
@@ -233,17 +286,12 @@ export class DefaultRenderer implements ListrRenderer {
           if (!this.hasPersistentOutput(task)) {
             delete this.bottomBar[task.id]
           }
-
-          // only run if task is succesfully compeleted
-          if (task.isCompleted() && task.hasTitle() && (this.options.showTimer || this.hasTimer(task))) {
-            task.title = `${task?.cleanTitle} ${this.getTaskTime(task)}`
-          }
         }
       }
     }
 
     if (output.length > 0) {
-      return output.join('\n')
+      return output.join(EOL)
     } else {
       return
     }
@@ -264,16 +312,15 @@ export class DefaultRenderer implements ListrRenderer {
         return o
       }, {})
 
-      // render the bar
-      const returnRender = Object.values(this.bottomBar).reduce((o, value) => o = [ ...o, ...value.data ], [])
-
-      return [ '\n', ...returnRender ].join('\n')
+      return Object.values(this.bottomBar)
+        .reduce((o, value) => o = [ ...o, ...value.data ], [])
+        .join(EOL)
     }
   }
 
   private renderPrompt (): string {
     if (this.promptBar) {
-      return `\n\n${this.promptBar}`
+      return this.promptBar
     }
   }
 
@@ -293,10 +340,10 @@ export class DefaultRenderer implements ListrRenderer {
       break
     }
 
-    if (typeof data === 'string') {
+    if (typeof data === 'string' && data.trim() !== '') {
       // indent and color
       data
-        .split('\n')
+        .split(EOL)
         .filter(Boolean)
         .forEach((line, i) => {
           const icon = i === 0 ? this.getSymbol(task, true) : ' '
@@ -308,7 +355,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private formatString (string: string, icon: string, level: number): string {
-    return `${cliTruncate(indentString(`${icon} ${string}`, level * this.options.indentation), process.stdout.columns ?? 80)}`
+    return `${cliTruncate(indentString(`${icon} ${string.trim()}`, level * this.options.indentation), process.stdout.columns ?? 80)}`
   }
 
   // eslint-disable-next-line complexity

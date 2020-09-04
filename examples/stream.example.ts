@@ -18,25 +18,27 @@ async function main (): Promise<void> {
   logger.start('Example output from a task.')
 
   // eslint-disable-next-line prefer-const
-  task = new Listr<Ctx>([
-    {
-      title: 'This task will execute.',
-      task: async (): Promise<Readable> => {
-        return spawn('ls').stdout
-      },
-      options: {
-        persistentOutput: true
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (): Promise<Readable> => {
+          return spawn('ls').stdout
+        },
+        options: {
+          persistentOutput: true
+        }
       }
-    }
-  ], { concurrent: false })
+    ],
+    { concurrent: false }
+  )
 
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch(e) {
+  } catch (e) {
     logger.fail(e)
   }
-
 }
 
 main()

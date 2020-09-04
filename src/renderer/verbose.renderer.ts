@@ -47,7 +47,6 @@ export class VerboseRenderer implements ListrRenderer {
             if (event.type === 'SUBTASK' && task.hasSubtasks()) {
               // render lower level if multi-level
               this.verboseRenderer(task.subtasks)
-
             } else if (event.type === 'STATE') {
               if (this.options?.logEmptyTitle !== false || task.hasTitle()) {
                 // render depending on the state
@@ -61,12 +60,10 @@ export class VerboseRenderer implements ListrRenderer {
               }
             } else if (event.type === 'DATA') {
               this.logger.data(String(event.data))
-
             } else if (event.type === 'TITLE') {
               if (this.options?.logTitleChange !== false) {
                 this.logger.title(String(event.data))
               }
-
             } else if (event.type === 'MESSAGE') {
               if (event.data?.error) {
                 // error message
@@ -75,7 +72,6 @@ export class VerboseRenderer implements ListrRenderer {
                 // skip message
                 this.logger.skip(String(event.data.skip))
               }
-
             }
           }
         },

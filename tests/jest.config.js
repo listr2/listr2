@@ -3,7 +3,7 @@ const path = require('path')
 const TS_CONFIG_PATH = path.join(process.cwd(), 'tsconfig.json')
 const SRC_PATH = path.join(process.cwd(), 'src')
 
-function makeModuleNameMapper (srcPath, tsconfigPath) {
+function makeModuleNameMapper(srcPath, tsconfigPath) {
   // Get paths from tsconfig
   const { paths } = require(tsconfigPath).compilerOptions
 
@@ -19,7 +19,7 @@ function makeModuleNameMapper (srcPath, tsconfigPath) {
 }
 
 module.exports = {
-  moduleFileExtensions: [ 'js', 'json', 'jsx', 'ts', 'tsx', 'node' ],
+  moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
   rootDir: '../',
   testEnvironment: 'node',
   testRegex: '(/tests/.*|/src/.*).(e2e-)?spec.tsx?$',

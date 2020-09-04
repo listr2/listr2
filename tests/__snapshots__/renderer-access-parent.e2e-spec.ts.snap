@@ -7,65 +7,68 @@ exports[`show subtasks should be able to change the title of parent from subtask
 exports[`show subtasks should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-out 1`] = `
 Array [
   Array [
-    "◼ This task will execute.  
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.  
+    "◼ This task will execute.
 ",
   ],
   Array [
     "[2K[1A[2K[G❯ This task will execute.
-  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ◼ This is a subtask.  
+    "[2K[1A[2K[G❯ This task will execute.
+
 ",
   ],
   Array [
     "[2K[1A[2K[1A[2K[G❯ This task will execute.
   ◼ This is a subtask.
-  ◼ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
 ",
   ],
   Array [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
   ❯ This is a subtask.
-  ◼ This is a subtask.  
+  ◼ This is a subtask.
 ",
   ],
   Array [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ❯ This is a subtask.
-  ◼ This is a subtask.  
+  ◼ This is a subtask.
 ",
   ],
   Array [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ✔ This is a subtask.
-  ◼ This is a subtask.  
+  ◼ This is a subtask.
 ",
   ],
   Array [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ✔ This is a subtask.
-  ❯ This is a subtask.  
+  ❯ This is a subtask.
 ",
   ],
   Array [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ✔ This is a subtask.
-  ✔ This is a subtask.  
+  ✔ This is a subtask.
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G✔ Title changed from subtask.  
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ Title changed from subtask.
 ",
   ],
   Array [
-    "[2K[1A[2K[G✔ Title changed from subtask. 
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "✔ Title changed from subtask.
 ",
   ],
 ]
@@ -78,49 +81,48 @@ exports[`show subtasks should be able to skip parent from subtask: OCO3TQJ8pmRRR
 exports[`show subtasks should be able to skip parent from subtask: OCO3TQJ8pmRRRbv018gpCLgSEDnvFBOz-out 1`] = `
 Array [
   Array [
-    "◼ This task will execute.  
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.  
+    "◼ This task will execute.
 ",
   ],
   Array [
     "[2K[1A[2K[G❯ This task will execute.
-  
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ◼ This is a subtask.  
+    "[2K[1A[2K[G❯ This task will execute.
+
 ",
   ],
   Array [
     "[2K[1A[2K[1A[2K[G❯ This task will execute.
   ◼ This is a subtask.
-  ◼ This is a subtask.  
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
 ",
   ],
   Array [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
   ❯ This is a subtask.
-  ◼ This is a subtask.  
+  ◼ This is a subtask.
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G↓ This task will execute.  
+    "[2K[1A[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
 ",
   ],
   Array [
-    "[2K[1A[2K[G↓ This task will execute.   
+    "[2K[1A[2K[G↓ Title changed from subtask. [SKIPPED]
 ",
   ],
   Array [
-    "[2K[1A[2K[G↓ Title changed from subtask. [SKIPPED]  
-",
+    "[2K[1A[2K[G",
   ],
   Array [
-    "[2K[1A[2K[G↓ Title changed from subtask. [SKIPPED] 
+    "↓ Title changed from subtask. [SKIPPED]
 ",
   ],
 ]

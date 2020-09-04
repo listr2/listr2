@@ -2,17 +2,17 @@ import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
 import {
-  ListrRendererFactory,
-  ListrGetRendererTaskOptions,
   ListrContext,
   ListrError,
   ListrEvent,
+  ListrGetRendererOptions,
+  ListrGetRendererTaskOptions,
   ListrOptions,
+  ListrRendererFactory,
   ListrTask,
   ListrTaskObject,
   ListrTaskWrapper,
   PromptError,
-  ListrGetRendererOptions,
   StateConstants
 } from '@interfaces/listr.interface'
 import { stateConstants } from '@interfaces/state.constants'
@@ -22,7 +22,6 @@ import { generateUUID } from '@utils/uuid'
 
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext, Renderer> {
   public id: ListrTaskObject<Ctx, Renderer>['id']
-  public cleanTitle: ListrTaskObject<Ctx, Renderer>['cleanTitle']
   public task: ListrTaskObject<Ctx, Renderer>['task']
   public skip: ListrTaskObject<Ctx, Renderer>['skip']
   public subtasks: ListrTaskObject<Ctx, any>['subtasks']
@@ -44,7 +43,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.id = generateUUID()
 
     this.title = this.tasks?.title
-    this.cleanTitle = this.title
 
     this.task = this.tasks.task
     // parse functions
@@ -67,10 +65,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       data: state
     })
 
-    if (this.hasSubtasks()) {
-      this.subtasks.forEach((subtask) => {
-        subtask.state = state
-      })
+    // cancel the subtasks if this has already failed
+    if (this.hasSubtasks() && this.hasFailed()) {
+      for (const subtask of this.subtasks as Task<any, any>[]) {
+        if (subtask.state === stateConstants.PENDING) {
+          subtask.state$ = stateConstants.FAILED
+        }
+      }
     }
   }
 
@@ -94,7 +95,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
   set title$ (title: string) {
     this.title = title
-    this.cleanTitle = title
 
     this.next({
       type: 'TITLE',
@@ -253,11 +253,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       if (error instanceof ListrError) {
         wrapper.report(error)
         return
-      }
-
-      if (!this.hasSubtasks()) {
-        // Do not show the message if we have subtasks as the error is already shown in the subtask
-        this.message$ = { error: error.message }
       }
 
       wrapper.report(error)
