@@ -154,11 +154,11 @@ Array [
 ]
 `;
 
-exports[`show output from task should use the passed in enquirer: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-err 1`] = `Array []`;
+exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-err 1`] = `Array []`;
 
-exports[`show output from task should use the passed in enquirer: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `Array []`;
+exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `Array []`;
 
-exports[`show output from task should use the passed in enquirer: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-out 1`] = `
+exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-out 1`] = `
 Array [
   Array [
     "◼ This task will execute.

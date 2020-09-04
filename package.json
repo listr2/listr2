@@ -41,7 +41,7 @@
       "eslint --fix"
     ],
     "./*.{json,md}": [
-      "prettier --write"
+      "prettier --loglevel warn --write"
     ]
   },
   "keywords": [
