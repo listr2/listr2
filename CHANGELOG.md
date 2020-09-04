@@ -1,3 +1,43 @@
+# [3.0.0](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0) (2020-09-04)
+
+
+### Bug Fixes
+
+* fix subtasks rendering ([c11aea0](https://github.com/cenk1cenk2/listr2/commit/c11aea05e4ca749e4c92cdd69d358765a43451c4))
+* lost message ([c5cc510](https://github.com/cenk1cenk2/listr2/commit/c5cc51028c2d9dccd28ea1f635288f4e5ba38f0d)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163) [#163](https://github.com/cenk1cenk2/listr2/issues/163)
+
+
+### Features
+
+* **default-renderer:** added collapse errors changed the renderer a bit ([514fc87](https://github.com/cenk1cenk2/listr2/commit/514fc87bb2595cc1a09cb865d60a380b0f71a9ec)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163)
+
+
+### Performance Improvements
+
+* changed last rendering method ([bd38146](https://github.com/cenk1cenk2/listr2/commit/bd38146c692127abb09cd754f2be0aac306efda4))
+
+
+### BREAKING CHANGES
+
+* Tests might break with this release, if they directly rely on
+default-renderer. Especially the snapshot testing will get hit.
+
+- default-renderer now utilizes different EOL depending on the platform.
+- The last rendering method has been changed therefore it will leave a
+  empty line before doing the last render which is the log-update clean
+  functionallity, before writing it with process.stdout.
+- Outputted data now gets better trimmed which might cause testing to
+  not match.
+- More consistent spacing is introduced for rendering the subtasks,
+  bottom bar and the prompt bar.
+
+- error-collection was not working as expected but it might now cause
+  some tests to fail.
+
+Overall there are no breaking changes introduced to the code directly
+but it might cause the tests which rely on default-renderer, since the
+rendering method is almost completely revised.
+
 # [3.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0-beta.1) (2020-09-04)
 
 
