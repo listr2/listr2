@@ -15,58 +15,67 @@ async function main (): Promise<void> {
 
   logger.start('Renderer fallback when conditions is true.')
 
-  task = new Listr<Ctx>([
-    {
-      title: 'This task will execute.',
-      task: async (): Promise<void> => {
-        await delay(500)
-      },
-      options: { persistentOutput: true }
-    }
-  ], { concurrent: false, rendererFallback: (): boolean => 3 > 0 })
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (): Promise<void> => {
+          await delay(500)
+        },
+        options: { persistentOutput: true }
+      }
+    ],
+    { concurrent: false, rendererFallback: (): boolean => 3 > 0 }
+  )
 
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch(e) {
+  } catch (e) {
     logger.fail(e)
   }
 
   logger.start('Renderer fallback when conditions is false.')
 
-  task = new Listr<Ctx>([
-    {
-      title: 'This task will execute.',
-      task: async (): Promise<void> => {
-        await delay(500)
-      },
-      options: { persistentOutput: true }
-    }
-  ], { concurrent: false, rendererFallback: (): boolean => 3 < 0 })
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (): Promise<void> => {
+          await delay(500)
+        },
+        options: { persistentOutput: true }
+      }
+    ],
+    { concurrent: false, rendererFallback: (): boolean => 3 < 0 }
+  )
 
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch(e) {
+  } catch (e) {
     logger.fail(e)
   }
 
   logger.start('Fallback try with function.')
 
-  task = new Listr<Ctx>([
-    {
-      title: 'This task will execute.',
-      task: async (): Promise<void> => {
-        await delay(500)
-      },
-      options: { persistentOutput: true }
-    }
-  ], { concurrent: false, rendererFallback: someTestFunction })
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (): Promise<void> => {
+          await delay(500)
+        },
+        options: { persistentOutput: true }
+      }
+    ],
+    { concurrent: false, rendererFallback: someTestFunction }
+  )
 
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch(e) {
+  } catch (e) {
     logger.fail(e)
   }
 }

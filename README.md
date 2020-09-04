@@ -1096,8 +1096,16 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     showSubtasks?: boolean
     // collapse subtasks after finish
     collapse?: boolean
-    // collapse skips in to single message
+    // collapse skip messages in to single message in task title
     collapseSkips?: boolean
+    // show skip messages or show the original title of the task when in collapseSkips Mode
+    showSkipMessage?: boolean
+    // suffix skip messages with [SKIPPED] when in collapseSkips mode
+    suffixSkips?: boolean
+    // collapse error messages in to single message in task title
+    collapseErrors?: boolean
+    // shows the thrown error message or show the original title of the task when in collapseErrors mode
+    showErrorMessage?: boolean
     // only update via renderhook
     lazy?: boolean
     // show duration for all tasks overwrites per task options
@@ -1108,6 +1116,10 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     showSubtasks: true,
     collapse: true,
     collapseSkips: true,
+    showSkipMessage: true,
+    suffixSkips: true,
+    collapseErrors: true,
+    showErrorMessage: true,
     lazy: false,
     showTimer: false
   }

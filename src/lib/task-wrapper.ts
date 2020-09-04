@@ -74,7 +74,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
-  public skip (message: string): void {
+  public skip (message?: string): void {
     this.state = stateConstants.SKIPPED
 
     if (message) {

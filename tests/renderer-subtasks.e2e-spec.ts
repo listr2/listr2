@@ -33,25 +33,27 @@ describe('show subtasks', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr => task.newListr([
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(30)
-              }
-            },
+          task: (ctx, task): Listr =>
+            task.newListr([
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(30)
+                }
+              },
 
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(30)
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(30)
+                }
               }
-            }
-          ])
+            ])
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -66,26 +68,30 @@ describe('show subtasks', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr => task.newListr([
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(30)
-              }
-            },
+          task: (ctx, task): Listr =>
+            task.newListr(
+              [
+                {
+                  title: 'This is a subtask.',
+                  task: async (): Promise<void> => {
+                    await delay(30)
+                  }
+                },
 
-            {
-              title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
-                await delay(20)
-              }
-            }
-          ], { concurrent: true })
+                {
+                  title: 'This is an another subtask.',
+                  task: async (): Promise<void> => {
+                    await delay(20)
+                  }
+                }
+              ],
+              { concurrent: true }
+            )
         }
-
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -100,45 +106,50 @@ describe('show subtasks', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr => task.newListr([
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(30)
-              }
-            },
+          task: (ctx, task): Listr =>
+            task.newListr([
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(30)
+                }
+              },
 
-            {
-              title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
-                await delay(20)
+              {
+                title: 'This is an another subtask.',
+                task: async (): Promise<void> => {
+                  await delay(20)
+                }
               }
-            }
-          ])
+            ])
         },
 
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr => task.newListr([
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(30)
-              }
-            },
+          task: (ctx, task): Listr =>
+            task.newListr(
+              [
+                {
+                  title: 'This is a subtask.',
+                  task: async (): Promise<void> => {
+                    await delay(30)
+                  }
+                },
 
-            {
-              title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
-                await delay(20)
-              }
-            }
-          ], { rendererOptions: { collapse: false } })
+                {
+                  title: 'This is an another subtask.',
+                  task: async (): Promise<void> => {
+                    await delay(20)
+                  }
+                }
+              ],
+              { rendererOptions: { collapse: false } }
+            )
         }
-
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true, collapse: true }
+        concurrent: false,
+        rendererOptions: { lazy: true, collapse: true }
       }
     ).run()
 
@@ -154,26 +165,30 @@ describe('show subtasks', () => {
         [
           {
             title: 'This task will execute and not quit on errors.',
-            task: (ctx, task): Listr => task.newListr([
-              {
-                title: 'This is a subtask.',
-                task: async (): Promise<void> => {
-                  throw new Error('I have failed [0]')
-                }
-              },
-              {
-                title: 'This is an another subtask.',
-                task: async (): Promise<void> => {
-                  throw new Error('I have failed [1]')
-                }
-              },
-              {
-                title: 'This is yet an another subtask.',
-                task: async (ctx, task): Promise<void> => {
-                  task.title = 'I have succeeded.'
-                }
-              }
-            ], { exitOnError: false })
+            task: (ctx, task): Listr =>
+              task.newListr(
+                [
+                  {
+                    title: 'This is a subtask.',
+                    task: async (): Promise<void> => {
+                      throw new Error('I have failed [0]')
+                    }
+                  },
+                  {
+                    title: 'This is an another subtask.',
+                    task: async (): Promise<void> => {
+                      throw new Error('I have failed [1]')
+                    }
+                  },
+                  {
+                    title: 'This is yet an another subtask.',
+                    task: async (ctx, task): Promise<void> => {
+                      task.title = 'I have succeeded.'
+                    }
+                  }
+                ],
+                { exitOnError: false }
+              )
           },
           {
             title: 'This task will execute.',
@@ -183,18 +198,18 @@ describe('show subtasks', () => {
           }
         ],
         {
-          concurrent: false, exitOnError: true, rendererOptions: { lazy: true }
+          concurrent: false,
+          exitOnError: true,
+          rendererOptions: { lazy: true }
         }
       ).run()
-
-    } catch(e) {
+    } catch (e) {
       expect(e).toBeTruthy()
     }
 
     expect(mockStdout.mock.calls).toMatchSnapshot('12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-out')
     expect(mockStderr.mock.calls).toMatchSnapshot('12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-err')
     expect(mockExit.mock.calls).toMatchSnapshot('12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-exit')
-
   })
 
   // 9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc
@@ -217,38 +232,41 @@ describe('show subtasks', () => {
 
           {
             title: 'This task will execute a task without titles.',
-            task: (ctx, task): Listr => task.newListr([
-              {
-                task: async (): Promise<void> => {
-                  await delay(10)
-                }
-              },
-              {
-                task: async (): Promise<void> => {
-                  await delay(10)
-                }
-              },
-              {
-                task: async (): Promise<void> => {
-                  await delay(10)
-                }
-              }
-            ], { exitOnError: false })
+            task: (ctx, task): Listr =>
+              task.newListr(
+                [
+                  {
+                    task: async (): Promise<void> => {
+                      await delay(10)
+                    }
+                  },
+                  {
+                    task: async (): Promise<void> => {
+                      await delay(10)
+                    }
+                  },
+                  {
+                    task: async (): Promise<void> => {
+                      await delay(10)
+                    }
+                  }
+                ],
+                { exitOnError: false }
+              )
           }
         ],
         {
-          concurrent: false, exitOnError: true, rendererOptions: { lazy: true }
+          concurrent: false,
+          exitOnError: true,
+          rendererOptions: { lazy: true }
         }
       ).run()
-
-    } catch(e) {
+    } catch (e) {
       expect(e).toBeTruthy()
     }
 
     expect(mockStdout.mock.calls).toMatchSnapshot('9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-out')
     expect(mockStderr.mock.calls).toMatchSnapshot('9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-err')
     expect(mockExit.mock.calls).toMatchSnapshot('9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-exit')
-
   })
-
 })

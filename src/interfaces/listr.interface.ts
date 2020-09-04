@@ -31,7 +31,6 @@ export declare class ListrClass<
 export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends Observable<ListrEvent> {
   id: string
   title?: string
-  cleanTitle?: string
   output?: string
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
@@ -74,7 +73,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     options?: ListrSubClassOptions<Ctx, Renderer>
   ): Listr<Ctx, any, any>
   report(error: Error): void
-  skip(message: string): void
+  skip(message?: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
   prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T>
   stdout(): NodeJS.WritableStream

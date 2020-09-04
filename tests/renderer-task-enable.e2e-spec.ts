@@ -45,7 +45,8 @@ describe('show task enable', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -67,22 +68,27 @@ describe('show task enable', () => {
 
         {
           title: 'This task will show subtasks.',
-          task: (ctx, task): Listr => task.newListr([
-            {
-              title: 'This task will execute.',
-              task: (): void => { }
-            },
+          task: (ctx, task): Listr =>
+            task.newListr(
+              [
+                {
+                  title: 'This task will execute.',
+                  task: (): void => {}
+                },
 
-            {
-              title: 'This task will never execute.',
-              enabled: (ctx): boolean => !ctx.skip,
-              task: (): void => {}
-            }
-          ], { rendererOptions: { collapse: false }, concurrent: true })
+                {
+                  title: 'This task will never execute.',
+                  enabled: (ctx): boolean => !ctx.skip,
+                  task: (): void => {}
+                }
+              ],
+              { rendererOptions: { collapse: false }, concurrent: true }
+            )
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -90,5 +96,4 @@ describe('show task enable', () => {
     expect(mockStderr.mock.calls).toMatchSnapshot('2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-err')
     expect(mockExit.mock.calls).toMatchSnapshot('2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-exit')
   })
-
 })

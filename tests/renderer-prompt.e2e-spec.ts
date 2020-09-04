@@ -4,7 +4,6 @@ import Enquirer from 'enquirer'
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
 import { Listr } from '@root/index'
-import { createPrompt } from '@utils/prompt'
 
 enum KEYS {
   ENTER = '\x0D',
@@ -56,7 +55,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -101,7 +101,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -132,7 +133,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     )
 
@@ -181,6 +183,7 @@ describe('show output from task', () => {
   //   ).rejects.toThrowError('Cancelled prompt.')
   // })
 
+  // t3VXfqT0crsCYRzqYYWZGllN6oNARZcn
   it('should use the passed in enquirer', async () => {
     const ctx = await new Listr(
       [
@@ -201,14 +204,15 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }, injectWrapper: { enquirer: new Enquirer() }
+        concurrent: false,
+        rendererOptions: { lazy: true },
+        injectWrapper: { enquirer: new Enquirer() }
       }
     ).run()
 
     expect(ctx).toStrictEqual({ output: 'test' })
-    expect(mockStdout.mock.calls).toMatchSnapshot('HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit')
+    expect(mockStdout.mock.calls).toMatchSnapshot('t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit')
   })
-
 })

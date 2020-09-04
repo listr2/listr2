@@ -33,26 +33,28 @@ describe('show subtasks', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr => task.newListr((parent) => [
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(20)
-                parent.title = 'Title changed from subtask.'
-              }
-            },
+          task: (ctx, task): Listr =>
+            task.newListr((parent) => [
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(20)
+                  parent.title = 'Title changed from subtask.'
+                }
+              },
 
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(30)
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(30)
+                }
               }
-            }
-          ])
+            ])
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -67,26 +69,28 @@ describe('show subtasks', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr => task.newListr((parent) => [
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(20)
-                parent.skip('Title changed from subtask.')
-              }
-            },
+          task: (ctx, task): Listr =>
+            task.newListr((parent) => [
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(20)
+                  parent.skip('Title changed from subtask.')
+                }
+              },
 
-            {
-              title: 'This is a subtask.',
-              task: async (): Promise<void> => {
-                await delay(30)
+              {
+                title: 'This is a subtask.',
+                task: async (): Promise<void> => {
+                  await delay(30)
+                }
               }
-            }
-          ])
+            ])
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -94,5 +98,4 @@ describe('show subtasks', () => {
     expect(mockStderr.mock.calls).toMatchSnapshot('OCO3TQJ8pmRRRbv018gpCLgSEDnvFBOz-err')
     expect(mockExit.mock.calls).toMatchSnapshot('OCO3TQJ8pmRRRbv018gpCLgSEDnvFBOz-exit')
   })
-
 })

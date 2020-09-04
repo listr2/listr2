@@ -50,7 +50,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -79,7 +80,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -108,7 +110,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -136,7 +139,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -164,7 +168,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -193,7 +198,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -222,7 +228,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -266,7 +273,8 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -295,10 +303,10 @@ describe('show output from task', () => {
                 })
             })
         }
-
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -317,15 +325,15 @@ describe('show output from task', () => {
             const start = 'This is a'
             const mid = 'long '
             const end = 'multi line output.'
-            task.output = start + mid.repeat(40) + '\n'+ mid.repeat(40) + '\n'+ mid.repeat(40) + '\n'+ mid.repeat(40) + '\n'+ mid.repeat(40) + '\n' + end
+            task.output = start + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + end
             await delay(5)
           },
           options: { persistentOutput: true }
         }
-
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }
+        concurrent: false,
+        rendererOptions: { lazy: true }
       }
     ).run()
 
@@ -356,7 +364,9 @@ describe('show output from task', () => {
         }
       ],
       {
-        concurrent: false, rendererOptions: { lazy: true }, exitOnError: false
+        concurrent: false,
+        rendererOptions: { lazy: true },
+        exitOnError: false
       }
     ).run()
 
@@ -364,5 +374,4 @@ describe('show output from task', () => {
     expect(mockStderr.mock.calls).toMatchSnapshot('MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-err')
     expect(mockExit.mock.calls).toMatchSnapshot('MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-exit')
   })
-
 })

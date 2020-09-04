@@ -22,11 +22,11 @@
     "dev:start": "yarn dev:build && TS_NODE_PROJECT='tsconfig.paths.json' tsc-watch --noClear --onSuccess \"yarn postbuild\"",
     "example": "ts-node -r tsconfig-paths/register",
     "clean": "rimraf node_modules yarn.lock",
-    "lint": "prettier --write src/ && eslint --ext .ts,.js,.tsx,.jsx --fix src/",
+    "lint": "prettier --loglevel warn --write src/ tests/ examples/ && eslint --ext .ts,.js,.tsx,.jsx --fix src/ tests/ examples/",
     "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/",
     "test": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.js",
     "test:cov": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.config.js",
-    "dev:test": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.js"
+    "dev:test": "LISTR_DISABLE_COLOR=1 TS_NODE_PROJECT=tests/tsconfig.json node --inspect=0.0.0.0:${DEBUG_PORT:-9229} -r tsconfig-paths/register -r ts-node/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.js"
   },
   "husky": {
     "hooks": {
@@ -37,11 +37,11 @@
   },
   "lint-staged": {
     "./*.{ts,js,tsx,jsx}": [
-      "prettier --write",
+      "prettier --loglevel warn --write",
       "eslint --fix"
     ],
     "./*.{json,md}": [
-      "prettier --write"
+      "prettier --loglevel warn --write"
     ]
   },
   "keywords": [
