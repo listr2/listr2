@@ -264,9 +264,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@cenk1cenk2/cz-cc@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.2.1.tgz#d210192cd395aef30b57ea14718e81c1acaed415"
-  integrity sha512-r/txZKi++mFS2BMsJyBmwkNrtQIKvwqsfD3t9Dy5YExoiO+/Sg6ypDyQYJcjoGIpP7yGmogUu1L4dfLX73zZ1g==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.2.2.tgz#2cbd0fedbca56b61d679da5f2531b0025d4332be"
+  integrity sha512-ng1weLD/ro6zj9QnZo8Yd2JewssGrH7AH10YYScezsQITcEXcqIYNSsKp/tmDikliYyz/yn86qs8wTxYKlLr3Q==
   dependencies:
     chalk "^4.1.0"
     commitizen "^4.2.1"
@@ -275,7 +275,7 @@
     enquirer-editor "^1.0.0"
     enquirer-prompt-editor "^2.0.1"
     find-git-root "^1.0.4"
-    listr2 "^3.0.0"
+    listr2 "^3.0.1"
     lodash.map "^4.6.0"
     word-wrap "^1.2.3"
   optionalDependencies:
@@ -3579,10 +3579,10 @@ listr2@^2.6.0:
     rxjs "^6.6.2"
     through "^2.3.8"
 
-listr2@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.0.0.tgz#d2c4f9aba6b35acea35898d8389aaa4a13511142"
-  integrity sha512-Wz0bhug+d5kq5IWe+A6scvvaPtiW140aGu0PbG8sgnWuw4wRirps2AnNQmY/k+Tf9YTnjm9qSfyKz3FLiFpS1A==
+listr2@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.0.1.tgz#53f16cd137e998e482b29bb3a20f25b3de3c8518"
+  integrity sha512-IthBs6VAHARRLLoLwTCHsgR3FxywNTjLbdpOFisUD+MP6/bMAa54i9k/zudl1qSyvLcR3UzAwrFnyVczceqYfA==
   dependencies:
     chalk "^4.1.0"
     cli-truncate "^2.1.0"
