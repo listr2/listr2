@@ -530,3 +530,189 @@ Array [
   ],
 ]
 `;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: false, showSubtasks: false }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-err 1`] = `Array []`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: false, showSubtasks: false }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-exit 1`] = `Array []`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: false, showSubtasks: false }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+  › bye
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+  › bye
+",
+  ],
+]
+`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: false, showSubtasks: true }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-err 1`] = `Array []`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: false, showSubtasks: true }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-exit 1`] = `Array []`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: false, showSubtasks: true }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✖ This is a subtask.
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✖ This is a subtask.
+    › bye
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+  ✖ This is a subtask.
+    › bye
+  ◼ This is a subtask.
+",
+  ],
+]
+`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: true, showSubtasks: false }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-err 1`] = `Array []`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: true, showSubtasks: false }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-exit 1`] = `Array []`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: true, showSubtasks: false }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ bye
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ bye
+",
+  ],
+]
+`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: true, showSubtasks: true }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-err 1`] = `Array []`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: true, showSubtasks: true }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-exit 1`] = `Array []`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: { collapseErrors: true, showSubtasks: true }: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✖ This is a subtask.
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✖ bye
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G❯ bye
+  ✖ bye
+  ◼ This is a subtask.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ bye
+  ✖ bye
+  ◼ This is a subtask.
+",
+  ],
+]
+`;

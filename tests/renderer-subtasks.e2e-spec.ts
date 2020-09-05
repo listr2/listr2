@@ -269,4 +269,54 @@ describe('show subtasks', () => {
     expect(mockStderr.mock.calls).toMatchSnapshot('9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-err')
     expect(mockExit.mock.calls).toMatchSnapshot('9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-exit')
   })
+
+  // oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR
+  it.each([
+    { collapseErrors: true, showSubtasks: true },
+    { collapseErrors: true, showSubtasks: false },
+    { collapseErrors: false, showSubtasks: false },
+    { collapseErrors: false, showSubtasks: true }
+  ])('should output the task error in parent task with collapseErrors: %s', async (cases) => {
+    try {
+      await new Listr(
+        [
+          {
+            title: 'This task will execute.',
+            task: (ctx, task): Listr =>
+              task.newListr([
+                {
+                  title: 'This is a subtask.',
+                  task: async (): Promise<void> => {
+                    await delay(3)
+                    throw new Error('bye')
+                  }
+                },
+
+                {
+                  title: 'This is a subtask.',
+                  task: async (): Promise<void> => {
+                    await delay(3)
+                  }
+                }
+              ])
+          }
+        ],
+        {
+          concurrent: true,
+          exitOnError: true,
+          rendererOptions: {
+            lazy: true,
+            showSubtasks: cases.showSubtasks,
+            collapseErrors: cases.collapseErrors
+          }
+        }
+      ).run()
+    } catch (e) {
+      expect(e).toBeTruthy()
+    }
+
+    expect(mockStdout.mock.calls).toMatchSnapshot('oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-exit')
+  })
 })

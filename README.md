@@ -1098,13 +1098,13 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     collapse?: boolean
     // collapse skip messages in to single message in task title
     collapseSkips?: boolean
-    // show skip messages or show the original title of the task when in collapseSkips Mode
+    // show skip messages or show the original title of the task, this will also disable collapseSkips mode
     showSkipMessage?: boolean
     // suffix skip messages with [SKIPPED] when in collapseSkips mode
     suffixSkips?: boolean
     // collapse error messages in to single message in task title
     collapseErrors?: boolean
-    // shows the thrown error message or show the original title of the task when in collapseErrors mode
+    // shows the thrown error message or show the original title of the task, this will also disable collapseErrors mode
     showErrorMessage?: boolean
     // only update via renderhook
     lazy?: boolean
