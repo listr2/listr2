@@ -271,12 +271,7 @@ describe('show subtasks', () => {
   })
 
   // oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR
-  it.each([
-    { collapseErrors: true, showSubtasks: true },
-    { collapseErrors: true, showSubtasks: false },
-    { collapseErrors: false, showSubtasks: false },
-    { collapseErrors: false, showSubtasks: true }
-  ])('should output the task error in parent task with collapseErrors: %s', async (cases) => {
+  it.each([ [ true, false ] ])('should output the task error in parent task with collapseErrors: %s and show subtasks: true', async (cases) => {
     try {
       await new Listr(
         [
@@ -306,8 +301,8 @@ describe('show subtasks', () => {
           exitOnError: true,
           rendererOptions: {
             lazy: true,
-            showSubtasks: cases.showSubtasks,
-            collapseErrors: cases.collapseErrors
+            showSubtasks: true,
+            collapseErrors: cases
           }
         }
       ).run()
@@ -318,5 +313,50 @@ describe('show subtasks', () => {
     expect(mockStdout.mock.calls).toMatchSnapshot('oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-out')
     expect(mockStderr.mock.calls).toMatchSnapshot('oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-err')
     expect(mockExit.mock.calls).toMatchSnapshot('oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-exit')
+  })
+
+  // bcaTpU40igebiNC4Koho5ObSuJxhYPsJ
+  it.each([ true, false ])('should output the task error in parent task with: collapseErrors: %s showsubtasks: true', async (cases) => {
+    try {
+      await new Listr(
+        [
+          {
+            title: 'This task will execute.',
+            task: (ctx, task): Listr =>
+              task.newListr([
+                {
+                  title: 'This is a subtask.',
+                  task: async (): Promise<void> => {
+                    await delay(3)
+                    throw new Error('bye')
+                  }
+                },
+
+                {
+                  title: 'This is a subtask.',
+                  task: async (): Promise<void> => {
+                    await delay(3)
+                  }
+                }
+              ])
+          }
+        ],
+        {
+          concurrent: true,
+          exitOnError: true,
+          rendererOptions: {
+            lazy: true,
+            showSubtasks: true,
+            collapseErrors: cases
+          }
+        }
+      ).run()
+    } catch (e) {
+      expect(e).toBeTruthy()
+    }
+
+    expect(mockStdout.mock.calls).toMatchSnapshot('bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-exit')
   })
 })
