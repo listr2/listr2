@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/cenk1cenk2/listr2/compare/v3.0.0...v3.0.1) (2020-09-05)
+
+
+### Bug Fixes
+
+* **default-renderer:** added some fixes to swallowing error output in collapseErrors: [secure] mode and showErrorMessage ([b0c2bb7](https://github.com/cenk1cenk2/listr2/commit/b0c2bb7d11cd3b3e9cdffdaa4a6a2dfab725a0c7))
+
 # [3.0.0](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0) (2020-09-04)
 
 
