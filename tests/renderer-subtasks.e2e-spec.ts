@@ -271,7 +271,7 @@ describe('show subtasks', () => {
   })
 
   // oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR
-  it.each([ [ true, false ] ])('should output the task error in parent task with collapseErrors: %s and show subtasks: true', async (cases) => {
+  it.each([ [ true, false ] ])('should output the task error in parent task with collapseErrors: %s and show subtasks: false', async (cases) => {
     try {
       await new Listr(
         [
@@ -301,7 +301,7 @@ describe('show subtasks', () => {
           exitOnError: true,
           rendererOptions: {
             lazy: true,
-            showSubtasks: true,
+            showSubtasks: false,
             collapseErrors: cases
           }
         }
