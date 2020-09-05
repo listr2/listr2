@@ -20,13 +20,13 @@ export class DefaultRenderer implements ListrRenderer {
     collapse?: boolean
     // collapse skip messages in to single message in task title
     collapseSkips?: boolean
-    // show skip messages or show the original title of the task when in collapseSkips Mode
+    // show skip messages or show the original title of the task, this will also disable collapseSkips mode
     showSkipMessage?: boolean
     // suffix skip messages with [SKIPPED] when in collapseSkips mode
     suffixSkips?: boolean
     // collapse error messages in to single message in task title
     collapseErrors?: boolean
-    // shows the thrown error message or show the original title of the task when in collapseErrors mode
+    // shows the thrown error message or show the original title of the task, this will also disable collapseErrors mode
     showErrorMessage?: boolean
     // only update via renderhook
     lazy?: boolean
@@ -210,13 +210,17 @@ export class DefaultRenderer implements ListrRenderer {
           }
         }
 
-        // without the collapse option for skip and errors
-        if (task.hasFailed() && this.options.collapseErrors === false) {
-          // show skip data if collapsing is not defined
-          output = [ ...output, ...this.dumpData(task, level, 'error') ]
-        } else if (task.isSkipped() && this.options.collapseSkips === false) {
-          // show skip data if collapsing is not defined
-          output = [ ...output, ...this.dumpData(task, level, 'skip') ]
+        // task should not have subtasks since subtasks will handle the error already
+        // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
+        if (!task.hasSubtasks() || !this.options.showSubtasks) {
+          // without the collapse option for skip and errors
+          if (task.hasFailed() && this.options.collapseErrors === false && (this.options.showErrorMessage || !this.options.showSubtasks)) {
+            // show skip data if collapsing is not defined
+            output = [ ...output, ...this.dumpData(task, level, 'error') ]
+          } else if (task.isSkipped() && this.options.collapseSkips === false && (this.options.showSkipMessage || !this.options.showSubtasks)) {
+            // show skip data if collapsing is not defined
+            output = [ ...output, ...this.dumpData(task, level, 'skip') ]
+          }
         }
 
         // Current Task Output
@@ -338,6 +342,11 @@ export class DefaultRenderer implements ListrRenderer {
     case 'error':
       data = task.message.error
       break
+    }
+
+    // dont return anything on some occasions
+    if (task.hasTitle() && source === 'error' && data === task.title) {
+      return
     }
 
     if (typeof data === 'string' && data.trim() !== '') {
