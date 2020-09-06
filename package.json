@@ -69,7 +69,7 @@
     "indent-string": "^4.0.0",
     "log-update": "^4.0.0",
     "p-map": "^4.0.0",
-    "rxjs": "^6.6.2",
+    "rxjs": "^6.6.3",
     "through": "^2.3.8"
   },
   "devDependencies": {
