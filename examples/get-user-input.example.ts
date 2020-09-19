@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+import delay from 'delay'
+
 import { Listr } from '../src/index'
 import { Logger } from '@utils/logger'
 
@@ -150,6 +152,33 @@ async function main (): Promise<void> {
       }
     ],
     { concurrent: false }
+  )
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch (e) {
+    logger.fail(e)
+  }
+
+  logger.start('Skipping a prompt.')
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (ctx, task): Promise<void> => {
+          delay(10).then(() => task.skip('Skip this task.'))
+          ctx.input = await task.prompt({
+            type: 'Input',
+            message: 'Give me some input.'
+          })
+        }
+      }
+    ],
+    {
+      concurrent: false,
+      rendererFallback: true
+    }
   )
 
   try {

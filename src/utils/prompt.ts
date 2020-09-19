@@ -1,10 +1,12 @@
 import Enquirer from 'enquirer'
 
+import { StateConstants } from './../interfaces/listr.interface'
 import { PromptOptions, PromptSettings } from './prompt.interface'
 import { PromptError } from '@interfaces/listr.interface'
+import { stateConstants } from '@root/interfaces/state.constants'
 import { TaskWrapper } from '@root/lib/task-wrapper'
 
-export async function createPrompt (options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
+export async function createPrompt (this: TaskWrapper<any, any>, options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
   /* istanbul ignore if */
@@ -43,6 +45,16 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   }
 
   // return default name if it is single prompt
+  enquirer.once('prompt', (prompt) => {
+    this.task.subscribe((event) => {
+      if (event.type === 'STATE' && (event.data === stateConstants.SKIPPED || event.data === stateConstants.FAILED)) {
+        this.task.prompt = false
+        prompt.cancel()
+      }
+    })
+  })
+
+  this.task.prompt = true
   const response = (await enquirer.prompt(options as any)) as any
 
   if (options.length === 1) {
