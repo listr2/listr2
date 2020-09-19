@@ -263,7 +263,7 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/cz-cc@^1.2.1":
+"@cenk1cenk2/cz-cc@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.2.2.tgz#2cbd0fedbca56b61d679da5f2531b0025d4332be"
   integrity sha512-ng1weLD/ro6zj9QnZo8Yd2JewssGrH7AH10YYScezsQITcEXcqIYNSsKp/tmDikliYyz/yn86qs8wTxYKlLr3Q==
@@ -281,16 +281,16 @@
   optionalDependencies:
     "@commitlint/load" "^9.1.2"
 
-"@cenk1cenk2/eslint-config@^0.4.9":
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-0.4.9.tgz#4a5ff733791a5ada8fe8cf4c250560aac88a4489"
-  integrity sha512-XmNrL7vgP7f3xXwuJ39dc9OSXXLG6dWxsPMa7hglRRkIsnxBPVnzblfYaviARJHBHpiYq8IDJbtsjAjNrqGx2A==
+"@cenk1cenk2/eslint-config@^0.4.11":
+  version "0.4.11"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-0.4.11.tgz#22a67322bae1d61f726ac0e75e1f94be4cc5583f"
+  integrity sha512-qPDQr8poUGOy5WKcfGtxaLrkfbZoQRPgoebbSb3B95iLD1T3nOlR0yMGSu17HKA+EZxvQWjvfdKq7bvA3kfd2w==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^3.10.1"
     "@typescript-eslint/parser" "^3.10.1"
     eslint-config-react "^1.1.7"
     eslint-plugin-import "^2.22.0"
-    eslint-plugin-react-hooks "^4.1.0"
+    eslint-plugin-react-hooks "^4.1.2"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -1850,10 +1850,10 @@ eslint-plugin-import@^2.22.0:
     resolve "^1.17.0"
     tsconfig-paths "^3.9.0"
 
-eslint-plugin-react-hooks@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.1.0.tgz#6323fbd5e650e84b2987ba76370523a60f4e7925"
-  integrity sha512-36zilUcDwDReiORXmcmTc6rRumu9JIM3WjSvV0nclHoUQ0CNrX866EwONvLR/UqaeqFutbAnVu8PEmctdo2SRQ==
+eslint-plugin-react-hooks@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.1.2.tgz#2eb53731d11c95826ef7a7272303eabb5c9a271e"
+  integrity sha512-ykUeqkGyUGgwTtk78C0o8UG2fzwmgJ0qxBGPp2WqRKsTwcLuVf01kTDRAtOsd4u6whX2XOC8749n2vPydP82fg==
 
 eslint-scope@^5.0.0, eslint-scope@^5.1.0:
   version "5.1.0"
