@@ -154,6 +154,34 @@ Array [
 ]
 `;
 
+exports[`show output from task should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-err 1`] = `Array []`;
+
+exports[`show output from task should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `Array []`;
+
+exports[`show output from task should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-out 1`] = `
+Array [
+  Array [
+    "◼ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G❯ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G✔ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "✔ This task will execute.
+",
+  ],
+]
+`;
+
 exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-err 1`] = `Array []`;
 
 exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `Array []`;

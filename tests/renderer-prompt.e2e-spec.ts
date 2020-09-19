@@ -215,4 +215,31 @@ describe('show output from task', () => {
     expect(mockStderr.mock.calls).toMatchSnapshot('t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-err')
     expect(mockExit.mock.calls).toMatchSnapshot('t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit')
   })
+
+  // 8QRF9bQEdSKkH62yUKbteKnrpevTbGan
+  it('should use skip enquirer', async () => {
+    const ctx = await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async (ctx, task): Promise<void> => {
+            delay(10).then(() => task.skip())
+            ctx.output = await task.prompt({
+              type: 'Input',
+              message: 'Give me some input.'
+            })
+          }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true }
+      }
+    ).run()
+
+    expect(ctx).toStrictEqual({ output: 'test' })
+    expect(mockStdout.mock.calls).toMatchSnapshot('8QRF9bQEdSKkH62yUKbteKnrpevTbGan-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('8QRF9bQEdSKkH62yUKbteKnrpevTbGan-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit')
+  })
 })
