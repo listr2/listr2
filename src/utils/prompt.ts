@@ -68,6 +68,7 @@ export async function createPrompt(this: TaskWrapper<any, any>, options: PromptO
 }
 
 export function destroyPrompt(this: TaskWrapper<any, any>, throwError = false) {
+  if (!this.promptInstance) return // If there's no prompt, can't cancel
   if (throwError) this.promptInstance.cancel()
   this.promptInstance.submit()
 }
