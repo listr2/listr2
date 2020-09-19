@@ -1,52 +1,61 @@
 /* eslint-disable no-control-regex */
-import through from 'through'
-
 import {
+  ListrBaseClassOptions,
   ListrError,
   ListrRendererFactory,
   ListrSubClassOptions,
   ListrTask,
+  ListrTaskObject,
   ListrTaskWrapper,
-  StateConstants,
-  ListrBaseClassOptions,
-  ListrTaskObject
+  StateConstants
 } from '@interfaces/listr.interface'
 import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
-import { createPrompt } from '@utils/prompt'
-import { PromptOptions } from '@utils/prompt.interface'
+import { createPrompt, destroyPrompt } from '@utils/prompt'
+import { PromptInstance, PromptOptions } from '@utils/prompt.interface'
+import through from 'through'
 
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
-  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
+  constructor(public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
 
-  set title (data: string) {
+  set title(data: string) {
     this.task.title$ = data
   }
 
   /* istanbul ignore next */
-  get title (): string {
+  get title(): string {
     return this.task.title
   }
 
-  set output (data: string) {
+  _promptInstance: PromptInstance
+  set promptInstance(data: PromptInstance) {
+    this._promptInstance = data
+  }
+
+  /* istanbul ignore next */
+  get promptInstance(): PromptInstance {
+    return this._promptInstance
+  }
+
+  set output(data: string) {
     this.task.output$ = data
   }
 
   /* istanbul ignore next */
-  get output (): string {
+  get output(): string {
     return this.task.output
   }
 
-  set state (data: StateConstants) {
+  set state(data: StateConstants) {
     this.task.state$ = data
   }
 
-  set message (data: ListrTaskObject<Ctx, Renderer>['message']) {
+  set message(data: ListrTaskObject<Ctx, Renderer>['message']) {
     this.task.message$ = data
   }
 
-  public newListr (
+  public newListr(
     task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[] | ((parent: this) => ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]),
     options?: ListrSubClassOptions<Ctx, Renderer>
   ): Listr<Ctx, any, any> {
@@ -61,7 +70,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     return new Listr<Ctx, any, any>(tasks, options)
   }
 
-  public report (error: Error | ListrError): void {
+  public report(error: Error | ListrError): void {
     /* istanbul ignore if */
     if (error instanceof ListrError) {
       for (const err of error.errors) {
@@ -74,7 +83,11 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
-  public skip (message?: string): void {
+  public cancelPrompt(throwError = false): void {
+    return destroyPrompt.bind(this)(throwError)
+  }
+
+  public skip(message?: string): void {
     this.state = stateConstants.SKIPPED
 
     if (message) {
@@ -86,7 +99,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     return createPrompt.bind(this)(options, { ...this.options?.injectWrapper })
   }
 
-  public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
+  public stdout(): NodeJS.WriteStream & NodeJS.WritableStream {
     return through((chunk: string) => {
       const pattern = new RegExp('(?:\\u001b|\\u009b)\\[[\\=><~/#&.:=?%@~_-]*[0-9]*[\\a-ln-tqyz=><~/#&.:=?%@~_-]+', 'gmi')
 
@@ -100,7 +113,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     })
   }
 
-  public run (ctx: Ctx): Promise<void> {
+  public run(ctx: Ctx): Promise<void> {
     return this.task.run(ctx, this)
   }
 }
