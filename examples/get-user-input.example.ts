@@ -183,8 +183,7 @@ async function main (): Promise<void> {
       }
     ],
     {
-      concurrent: false,
-      rendererFallback: false
+      concurrent: false
     }
   )
 
