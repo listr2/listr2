@@ -37,7 +37,7 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
     enquirer = settings.enquirer
   } else {
     try {
-      enquirer = ((await import('enquirer')) as any).default
+      enquirer = new (await import('enquirer')).default()
     } catch (e) /* istanbul ignore next */ {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
       throw new Error(e)
@@ -47,9 +47,9 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
   // return default name if it is single prompt
   enquirer.once('prompt', (prompt) => {
     this.task.subscribe((event) => {
-      if (event.type === 'STATE' && (event.data === stateConstants.SKIPPED || event.data === stateConstants.FAILED)) {
+      if (event.type === 'STATE' && event.data === stateConstants.SKIPPED) {
         this.task.prompt = false
-        prompt.cancel()
+        prompt.submit()
       }
     })
   })
@@ -68,7 +68,8 @@ function defaultCancelCallback (settings: PromptSettings): string | Error | Prom
   const errorMsg = 'Cancelled prompt.'
 
   if (settings?.error === true) {
-    /* istanbul ignore next */ throw new Error(errorMsg)
+    /* istanbul ignore next */
+    throw new Error(errorMsg)
   } else if (this instanceof TaskWrapper) {
     this.task.prompt = new PromptError(errorMsg)
   } /* istanbul ignore next */ else {

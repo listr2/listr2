@@ -165,18 +165,43 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[G❯ This task will execute.
+    "[2K[1A[2K[G◼ This task will execute.
+◼ Another task.
 ",
   ],
   Array [
-    "[2K[1A[2K[G✔ This task will execute.
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ Another task.
 ",
   ],
   Array [
-    "[2K[1A[2K[G",
+    "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ Another task.
+
+[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+",
   ],
   Array [
-    "✔ This task will execute.
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+◼ Another task.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+❯ Another task.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+✔ Another task.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "↓ This task will execute. [SKIPPED]
+✔ Another task.
 ",
   ],
 ]

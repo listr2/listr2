@@ -167,17 +167,24 @@ async function main (): Promise<void> {
       {
         title: 'This task will execute.',
         task: async (ctx, task): Promise<void> => {
-          delay(10).then(() => task.skip('Skip this task.'))
+          delay(1000).then(() => task.skip('Skip this task.'))
           ctx.input = await task.prompt({
             type: 'Input',
             message: 'Give me some input.'
           })
         }
+      },
+
+      {
+        title: 'Another task.',
+        task: async (): Promise<void> => {
+          await delay(1000)
+        }
       }
     ],
     {
       concurrent: false,
-      rendererFallback: true
+      rendererFallback: false
     }
   )
 

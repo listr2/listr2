@@ -229,6 +229,13 @@ describe('show output from task', () => {
               message: 'Give me some input.'
             })
           }
+        },
+
+        {
+          title: 'Another task.',
+          task: async (): Promise<void> => {
+            await delay(10)
+          }
         }
       ],
       {
@@ -237,7 +244,7 @@ describe('show output from task', () => {
       }
     ).run()
 
-    expect(ctx).toStrictEqual({ output: 'test' })
+    expect(ctx).toStrictEqual({ output: '' })
     expect(mockStdout.mock.calls).toMatchSnapshot('8QRF9bQEdSKkH62yUKbteKnrpevTbGan-out')
     expect(mockStderr.mock.calls).toMatchSnapshot('8QRF9bQEdSKkH62yUKbteKnrpevTbGan-err')
     expect(mockExit.mock.calls).toMatchSnapshot('8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit')
