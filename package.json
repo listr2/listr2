@@ -74,7 +74,7 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.2.2",
-    "@cenk1cenk2/eslint-config": "^0.4.11",
+    "@cenk1cenk2/eslint-config": "^0.4.12",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.1",
     "@types/rewire": "^2.5.28",
