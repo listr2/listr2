@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import delay from 'delay'
-
-import { Listr } from '../src/index'
 import { Logger } from '@utils/logger'
+import delay from 'delay'
+import { Listr } from '../src/index'
 
 interface Ctx {
   input: boolean | Record<string, boolean>
@@ -10,7 +9,7 @@ interface Ctx {
 
 const logger = new Logger({ useIcons: false })
 
-async function main (): Promise<void> {
+async function main(): Promise<void> {
   let task: Listr<Ctx>
 
   logger.start('Example for getting user input.')
@@ -20,12 +19,12 @@ async function main (): Promise<void> {
       {
         title: 'This task will get your input.',
         task: async (ctx, task): Promise<Record<string, boolean>> =>
-          ctx.input = await task.prompt<{ test: boolean, other: boolean }>([
+          (ctx.input = await task.prompt<{ test: boolean; other: boolean }>([
             {
               type: 'Select',
               name: 'first',
               message: 'Please select something',
-              choices: [ 'A', 'B', 'C' ],
+              choices: ['A', 'B', 'C'],
               validate: (response): boolean | string => {
                 //  i do declare you valid!
                 if (response === 'A') {
@@ -38,7 +37,7 @@ async function main (): Promise<void> {
               name: 'second',
               message: 'Please type something in:'
             }
-          ])
+          ]))
       },
       {
         title: 'Now I will show the input value.',
@@ -93,7 +92,7 @@ async function main (): Promise<void> {
           ctx.input = await task.prompt<boolean>({
             type: 'Select',
             message: 'Do you love me?',
-            choices: [ 'test', 'test', 'test', 'test' ]
+            choices: ['test', 'test', 'test', 'test']
           })
         }
       }
@@ -124,7 +123,7 @@ async function main (): Promise<void> {
               { name: '4', message: 'Agree' },
               { name: '5', message: 'Strongly Agree' }
             ],
-            margin: [ 0, 0, 2, 1 ],
+            margin: [0, 0, 2, 1],
             choices: [
               {
                 name: 'interface',
@@ -178,6 +177,62 @@ async function main (): Promise<void> {
       {
         title: 'Another task.',
         task: async (): Promise<void> => {
+          await delay(1000)
+        }
+      }
+    ],
+    {
+      concurrent: false
+    }
+  )
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch (e) {
+    logger.fail(e)
+  }
+
+  logger.start('Canceling a prompt.')
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute and cancel the prompts.',
+        task: async (ctx, task): Promise<void> => {
+          delay(1000).then(() => task.cancelPrompt())
+          ctx.input = await task.prompt({
+            type: 'Input',
+            message: 'Give me input before it disappears.'
+          })
+
+          delay(1000).then(() => task.cancelPrompt())
+          ctx.input = await task.prompt([
+            {
+              name: 'hello',
+              type: 'Input',
+              message: 'This one will disappear.'
+            },
+            {
+              name: 'hello2',
+              type: 'Input',
+              message: "But this one won't."
+            }
+          ])
+
+          delay(1000).then(() => task.cancelPrompt(true))
+          ctx.input = await task.prompt({
+            type: 'Input',
+            message: 'This input will throw an error :/.'
+          })
+        }
+      },
+      {
+        title: 'Another task.',
+        task: async (ctx, task): Promise<void> => {
+          ctx.input = await task.prompt({
+            type: 'Input',
+            message: 'Prompt afterwards.'
+          })
           await delay(1000)
         }
       }

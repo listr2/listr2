@@ -28,6 +28,7 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
         - [Single Prompt](#single-prompt)
         - [Multiple Prompts](#multiple-prompts)
       - [Use an Custom Prompt](#use-an-custom-prompt)
+      - [Canceling a prompt](#cancel-a-prompt)
     - [Enable a Task](#enable-a-task)
     - [Skip a Task](#skip-a-task)
     - [Show Output](#show-output)
@@ -37,7 +38,7 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
       - [Passing the Output Through as a Stream](#passing-the-output-through-as-a-stream)
     - [Throw Errors](#throw-errors)
   - [Task Manager](#task-manager)
-    - [Basic Use-Case Scenerio](#basic-use-case-scenerio)
+    - [Basic Use-Case Scenario](#basic-use-case-scenerio)
     - [More Functionality](#more-functionality)
   - [Generic Features](#generic-features)
     - [Tasks Without Titles](#tasks-without-titles)
@@ -118,7 +119,7 @@ export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
   skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
   // to enable the task programmatically, this will show no messages comparing to skip and it will hide the tasks enabled depending on the context
   // enabled can be external boolean, a sync or async function that returns a boolean
-  // pay in mind that context enabled functionallity might depend on other functions to finish first, therefore the list shall be treated as a async function
+  // pay in mind that context enabled functionality might depend on other functions to finish first, therefore the list shall be treated as a async function
   enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
   // this will change depending on the available options on the renderer
   // these renderer options are per task basis and does not affect global options
@@ -131,7 +132,7 @@ export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
 ```typescript
 export interface ListrOptions<Ctx = ListrContext> {
   // how many tasks can be run at the same time.
-  // false or 1 for synhronous task list, true or Infinity for compelete parallel operation, a number for limitting tasks that can run at the same time
+  // false or 1 for synchronous task list, true or Infinity for compelete parallel operation, a number for limitting tasks that can run at the same time
   // defaults to false
   concurrent?: boolean | number
   // it will silently fail or throw out an error
@@ -231,7 +232,7 @@ new Listr<Ctx>(
 )
 ```
 
-You can change indivudual settings of the renderer on per-subtask basis.
+You can change individual settings of the renderer on per-subtask basis.
 
 This includes renderer options as well as Listr options like `exitOnError`, `concurrent` to be set on a per subtask basis independent of the parent task, while it will always use the most adjacent setting.
 
@@ -290,7 +291,7 @@ _Please refer to [Throw Errors Section](#Throw-Errors) for more detailed and fur
 
 #### Access Parent Task from Subtasks
 
-You can access parent task class from subtasks via passing a function to `task.newListr`. This way you can change the title of the parent task or access its functionallity. Skipping will not work reliably since the tasks run asynchronously. But added in for useful case of changing titles from subtasks with bringing it up in the [issue #141](https://github.com/cenk1cenk2/listr2/issues/141).
+You can access parent task class from subtasks via passing a function to `task.newListr`. This way you can change the title of the parent task or access its functionality. Skipping will not work reliably since the tasks run asynchronously. But added in for useful case of changing titles from subtasks with bringing it up in the [issue #141](https://github.com/cenk1cenk2/listr2/issues/141).
 
 ```typescript
 new Listr<Ctx>(
@@ -402,7 +403,7 @@ new Listr<Ctx>(
 
 ##### Multiple Prompts
 
-**Important: If you want to pass in an array of prompts, becareful that you should name them, this is also enforced by Typescript as well. This is not true for single prompts, since they only return a single value, it will be directly gets passed to the assigned variable.**
+**Important: If you want to pass in an array of prompts, be careful that you should name them, this is also enforced by Typescript as well. This is not true for single prompts, since they only return a single value, it will be directly gets passed to the assigned variable.**
 
 ```typescript
 new Listr<Ctx>(
@@ -432,7 +433,7 @@ new Listr<Ctx>(
 
 You can either use a custom prompt out of the npm registry or custom-created one as long as it works with [enquirer](https://www.npmjs.com/package/enquirer), it will work expectedly. Instead of passing in the prompt name use the not-generated class.
 
-**Since for my use-case I inject the `{ name: 'default' }` for convience while having only one prompt. It sometimes goes crazy with the custom prompts and it is advised to use array prompt object instead.**
+**Since for my use-case I inject the `{ name: 'default' }` for convenience while having only one prompt. It sometimes goes crazy with the custom prompts and it is advised to use array prompt object instead.**
 
 ```typescript
 import Enquirer from 'enquirer'
@@ -468,6 +469,37 @@ new Listr<Ctx>(
 ```
 
 **This is changed for > v2.4.2, but would not consider it a breaking change because it was somewhat not working.**
+
+#### Cancel a prompt
+
+You can cancel a prompt while it's display with the task's provided `cancelPrompt` function
+
+```typescript
+import Enquirer from 'enquirer'
+import EditorPrompt from 'enquirer-editor'
+import delay from 'delay'
+
+const enquirer = new Enquirer()
+enquirer.register('editor', Editor)
+
+new Listr<Ctx>(
+  [
+    {
+      title: 'Custom prompt',
+      task: async (ctx, task): Promise<void> => {
+        // Cancel the prompt after 5 seconds
+        delay(5000).then(() => task.cancelPrompt())
+
+        ctx.input = await task.prompt({
+          type: 'Input',
+          message: 'Give me input before it disappears.'
+        })
+      }
+    }
+  ],
+  { concurrent: false, injectWrapper: { enquirer } }
+)
+```
 
 ### Enable a Task
 
@@ -662,11 +694,11 @@ new Listr<Ctx>(
 
 #### Passing the Output Through as a Stream
 
-Since `process.stdout` method is controlled by `log-update` to create a refreshing interface, for anything else that might need to output data and can use `Writeable` streams, `task.stdout()` will create a new punch-hole to redirect all the write requests to `task.output`. This is esspecially benefical for external libraries like `enquirer`, which is already integrated or something like `ink`.
+Since `process.stdout` method is controlled by `log-update` to create a refreshing interface, for anything else that might need to output data and can use `Writeable` streams, `task.stdout()` will create a new punch-hole to redirect all the write requests to `task.output`. This is especially beneficial for external libraries like `enquirer`, which is already integrated or something like `ink`.
 
 **Supported for >v2.1.0.**
 
-_This unfortunetly relies on cleaning all ANSI escape charachters, since currently I do not find a good way to sandbox them inside `log-update` which utilizes the cursor position by itself. So use this with caution, because it will only render the last chunk in a stream as well as cleaning up all the ANSI escape charachters except for styles._
+_This unfortunately relies on cleaning all ANSI escape characters, since currently I do not find a good way to sandbox them inside `log-update` which utilizes the cursor position by itself. So use this with caution, because it will only render the last chunk in a stream as well as cleaning up all the ANSI escape characters except for styles._
 
 ```typescript
 import { Box, Color, render } from 'ink'
@@ -727,7 +759,7 @@ main()
 
 ### Throw Errors
 
-You can throw errors out of the tasks to show they are insuccessful. While this gives a visual output on the terminal, it also handles how to handle tasks that are failed. The default behaviour is any of the tasks have failed, it will deem itself as unsuccessful and exit. This behaviour can be changed with `exitOnError` option.
+You can throw errors out of the tasks to show they are unsuccessful. While this gives a visual output on the terminal, it also handles how to handle tasks that are failed. The default behavior is any of the tasks have failed, it will deem itself as unsuccessful and exit. This behavior can be changed with `exitOnError` option.
 
 - Throw out an error in serial execution mode will cause all of the upcoming tasks to be never executed.
 
@@ -868,7 +900,7 @@ Task manager is a great way to create a custom-tailored Listr class once and the
 
 _Please refer to [examples section](examples/manager.example.ts) for more detailed and further examples._
 
-### Basic Use-Case Scenerio
+### Basic Use-Case Scenario
 
 - Create something like a manager factory with your own default settings
 
@@ -1000,7 +1032,7 @@ this.logger.data(this.tasks.err.toString())
 // will yield: ListrError: Task failed without crashing. with the error details in the object
 ```
 
-- Access base Listr class directly, this will use the default Listr settings and just a mere jumper function for omiting the need the import the Listr class when using manager.
+- Access base Listr class directly, this will use the default Listr settings and just a mere jumper function for omitting the need the import the Listr class when using manager.
 
 ```typescript
 try {
@@ -1080,7 +1112,7 @@ Verbose renderer will always output predicted output with no fancy features.
 
 ## Default Renderers
 
-There are three main renderers which are 'default', 'verbose' and 'silent'. Default renderer is the one that can be seen in the demo, which is an updating renderer. But if the environment advirteses itself as non-tty it will fallback to the verbose renderer automatically. Verbose renderer is a text based renderer. It uses the silent renderer for the subtasks since the parent task already started a renderer. But silent renderer can also be used for processes that wants to have no output but just a task list.
+There are three main renderers which are 'default', 'verbose' and 'silent'. Default renderer is the one that can be seen in the demo, which is an updating renderer. But if the environment advertises itself as non-tty it will fallback to the verbose renderer automatically. Verbose renderer is a text based renderer. It uses the silent renderer for the subtasks since the parent task already started a renderer. But silent renderer can also be used for processes that wants to have no output but just a task list.
 
 Depending on the selected renderer, `rendererOptions` as well as the `options` in the `Task` will change accordingly. It defaults to default renderer as mentioned with the fallback to verbose renderer on non-tty environments.
 

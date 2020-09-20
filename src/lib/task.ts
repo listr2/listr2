@@ -1,7 +1,3 @@
-import Enquirer from 'enquirer'
-import { Observable, Subject } from 'rxjs'
-import { Readable } from 'stream'
-
 import {
   ListrContext,
   ListrError,
@@ -18,8 +14,11 @@ import {
 } from '@interfaces/listr.interface'
 import { stateConstants } from '@interfaces/state.constants'
 import { Listr } from '@root/index'
+import { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
 import { generateUUID } from '@utils/uuid'
+import { Observable, Subject } from 'rxjs'
+import { Readable } from 'stream'
 
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext, Renderer> {
   public id: ListrTaskObject<Ctx, Renderer>['id']
@@ -30,14 +29,14 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public output: ListrTaskObject<Ctx, Renderer>['output']
   public title: ListrTaskObject<Ctx, Renderer>['title']
   public message: ListrTaskObject<Ctx, Renderer>['message'] = {}
-  public prompt: boolean | PromptError
+  public prompt: undefined | PromptInstance | PromptError
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   public renderHook$: Subject<void>
   private enabled: boolean
   private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
-  constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
+  constructor(public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
     // this kind of randomness is enough for task ids
@@ -58,7 +57,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     })
   }
 
-  set state$ (state: StateConstants) {
+  set state$(state: StateConstants) {
     this.state = state
 
     this.next({
@@ -76,7 +75,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     }
   }
 
-  set output$ (data: string) {
+  set output$(data: string) {
     this.output = data
 
     this.next({
@@ -85,7 +84,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     })
   }
 
-  set message$ (data: ListrTaskObject<Ctx, Renderer>['message']) {
+  set message$(data: ListrTaskObject<Ctx, Renderer>['message']) {
     this.message = { ...this.message, ...data }
 
     this.next({
@@ -94,7 +93,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     })
   }
 
-  set title$ (title: string) {
+  set title$(title: string) {
     this.title = title
 
     this.next({
@@ -103,7 +102,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     })
   }
 
-  async check (ctx: Ctx): Promise<void> {
+  async check(ctx: Ctx): Promise<void> {
     // Check if a task is enabled or disabled
     if (this.state === undefined) {
       if (typeof this.enabledFn === 'function') {
@@ -119,35 +118,35 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     }
   }
 
-  hasSubtasks (): boolean {
+  hasSubtasks(): boolean {
     return this.subtasks?.length > 0
   }
 
-  isPending (): boolean {
+  isPending(): boolean {
     return this.state === stateConstants.PENDING
   }
 
-  isSkipped (): boolean {
+  isSkipped(): boolean {
     return this.state === stateConstants.SKIPPED
   }
 
-  isCompleted (): boolean {
+  isCompleted(): boolean {
     return this.state === stateConstants.COMPLETED
   }
 
-  hasFailed (): boolean {
+  hasFailed(): boolean {
     return this.state === stateConstants.FAILED
   }
 
-  isEnabled (): boolean {
+  isEnabled(): boolean {
     return this.enabled
   }
 
-  hasTitle (): boolean {
+  hasTitle(): boolean {
     return typeof this?.title === 'string'
   }
 
-  isPrompt (): boolean {
+  isPrompt(): boolean {
     if (this.prompt) {
       return true
     } else {
@@ -155,7 +154,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     }
   }
 
-  async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void> {
+  async run(context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void> {
     const handleResult = (result): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask
