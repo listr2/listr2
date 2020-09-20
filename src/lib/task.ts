@@ -17,6 +17,7 @@ import {
 } from '@interfaces/listr.interface'
 import { stateConstants } from '@interfaces/state.constants'
 import { Listr } from '@root/index'
+import { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
 import { generateUUID } from '@utils/uuid'
 
@@ -29,7 +30,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public output: ListrTaskObject<Ctx, Renderer>['output']
   public title: ListrTaskObject<Ctx, Renderer>['title']
   public message: ListrTaskObject<Ctx, Renderer>['message'] = {}
-  public prompt: boolean | PromptError
+  public prompt: undefined | PromptInstance | PromptError
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   public renderHook$: Subject<void>

@@ -73,7 +73,7 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     /* istanbul ignore if */
     if (this.options.registerSignalListeners) {
       process
-        .on('SIGINT', async () => {
+        .once('SIGINT', async () => {
           await Promise.all(
             this.tasks.map(async (task) => {
               if (task.isPending()) {

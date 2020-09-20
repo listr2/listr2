@@ -76,6 +76,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   skip(message?: string): void
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
   prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T>
+  cancelPrompt(throwError?: boolean): void
   stdout(): NodeJS.WritableStream
 }
 

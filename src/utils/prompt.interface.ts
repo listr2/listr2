@@ -174,3 +174,8 @@ export interface PromptSettings {
   stdout?: WriteStream | Writable
   enquirer?: Enquirer
 }
+
+export interface PromptInstance extends Omit<BasePromptOptions, 'onCancel' | 'onSubmit'> {
+  submit(): void
+  cancel(err?: string): void
+}
