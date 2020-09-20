@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Logger } from '@utils/logger'
 import delay from 'delay'
+
 import { Listr } from '../src/index'
+import { Logger } from '@utils/logger'
 
 interface Ctx {
   input: boolean | Record<string, boolean>
@@ -9,7 +10,7 @@ interface Ctx {
 
 const logger = new Logger({ useIcons: false })
 
-async function main(): Promise<void> {
+async function main (): Promise<void> {
   let task: Listr<Ctx>
 
   logger.start('Example for getting user input.')
@@ -19,12 +20,12 @@ async function main(): Promise<void> {
       {
         title: 'This task will get your input.',
         task: async (ctx, task): Promise<Record<string, boolean>> =>
-          (ctx.input = await task.prompt<{ test: boolean; other: boolean }>([
+          ctx.input = await task.prompt<{ test: boolean, other: boolean }>([
             {
               type: 'Select',
               name: 'first',
               message: 'Please select something',
-              choices: ['A', 'B', 'C'],
+              choices: [ 'A', 'B', 'C' ],
               validate: (response): boolean | string => {
                 //  i do declare you valid!
                 if (response === 'A') {
@@ -37,7 +38,7 @@ async function main(): Promise<void> {
               name: 'second',
               message: 'Please type something in:'
             }
-          ]))
+          ])
       },
       {
         title: 'Now I will show the input value.',
@@ -92,7 +93,7 @@ async function main(): Promise<void> {
           ctx.input = await task.prompt<boolean>({
             type: 'Select',
             message: 'Do you love me?',
-            choices: ['test', 'test', 'test', 'test']
+            choices: [ 'test', 'test', 'test', 'test' ]
           })
         }
       }
@@ -123,7 +124,7 @@ async function main(): Promise<void> {
               { name: '4', message: 'Agree' },
               { name: '5', message: 'Strongly Agree' }
             ],
-            margin: [0, 0, 2, 1],
+            margin: [ 0, 0, 2, 1 ],
             choices: [
               {
                 name: 'interface',
@@ -215,7 +216,7 @@ async function main(): Promise<void> {
             {
               name: 'hello2',
               type: 'Input',
-              message: "But this one won't."
+              message: 'But this one won\'t.'
             }
           ])
 

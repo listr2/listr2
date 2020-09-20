@@ -1,19 +1,20 @@
-import { PromptError } from '@interfaces/listr.interface'
 import Enquirer from 'enquirer'
 import { WriteStream } from 'fs'
 import { Writable } from 'stream'
 
+import { PromptError } from '@interfaces/listr.interface'
+
 export type PromptOptions<T extends boolean = false> =
   | Unionize<
-      {
-        [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
-      }
-    >
+  {
+    [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
+  }
+  >
   | ({
-      type: string
-    } & T extends true
-      ? PromptOptionsType<string> & { name: string | (() => string) }
-      : PromptOptionsType<string>)
+    type: string
+  } & T extends true
+    ? PromptOptionsType<string> & { name: string | (() => string) }
+    : PromptOptionsType<string>)
 
 export type Unionize<T extends Record<string, unknown>> = {
   [P in keyof T]: T[P]
@@ -128,44 +129,44 @@ export type PromptTypes =
 export type PromptOptionsType<T> = T extends 'AutoComplete'
   ? ArrayPromptOptions
   : T extends 'BasicAuth'
-  ? StringPromptOptions
-  : T extends 'Confirm'
-  ? BooleanPromptOptions
-  : T extends 'Editable'
-  ? ArrayPromptOptions
-  : T extends 'Form'
-  ? ArrayPromptOptions
-  : T extends 'Input'
-  ? StringPromptOptions
-  : T extends 'Invisible'
-  ? StringPromptOptions
-  : T extends 'List'
-  ? ArrayPromptOptions
-  : T extends 'MultiSelect'
-  ? ArrayPromptOptions
-  : T extends 'Numeral'
-  ? NumberPromptOptions
-  : T extends 'Password'
-  ? StringPromptOptions
-  : T extends 'Quiz'
-  ? QuizPromptOptions
-  : T extends 'Scale'
-  ? ScalePromptOptions
-  : T extends 'Select'
-  ? ArrayPromptOptions
-  : T extends 'Snippet'
-  ? SnippetPromptOptions
-  : T extends 'Sort'
-  ? SortPromptOptions
-  : T extends 'Survey'
-  ? SurveyPromptOptions
-  : T extends 'Text'
-  ? StringPromptOptions
-  : T extends 'Toggle'
-  ? TogglePromptOptions
-  : T extends string
-  ? BasePromptOptions & Record<string, unknown>
-  : any
+    ? StringPromptOptions
+    : T extends 'Confirm'
+      ? BooleanPromptOptions
+      : T extends 'Editable'
+        ? ArrayPromptOptions
+        : T extends 'Form'
+          ? ArrayPromptOptions
+          : T extends 'Input'
+            ? StringPromptOptions
+            : T extends 'Invisible'
+              ? StringPromptOptions
+              : T extends 'List'
+                ? ArrayPromptOptions
+                : T extends 'MultiSelect'
+                  ? ArrayPromptOptions
+                  : T extends 'Numeral'
+                    ? NumberPromptOptions
+                    : T extends 'Password'
+                      ? StringPromptOptions
+                      : T extends 'Quiz'
+                        ? QuizPromptOptions
+                        : T extends 'Scale'
+                          ? ScalePromptOptions
+                          : T extends 'Select'
+                            ? ArrayPromptOptions
+                            : T extends 'Snippet'
+                              ? SnippetPromptOptions
+                              : T extends 'Sort'
+                                ? SortPromptOptions
+                                : T extends 'Survey'
+                                  ? SurveyPromptOptions
+                                  : T extends 'Text'
+                                    ? StringPromptOptions
+                                    : T extends 'Toggle'
+                                      ? TogglePromptOptions
+                                      : T extends string
+                                        ? BasePromptOptions & Record<string, unknown>
+                                        : any
 
 export interface PromptSettings {
   error?: boolean

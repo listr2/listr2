@@ -1,3 +1,7 @@
+import Enquirer from 'enquirer'
+import { Observable, Subject } from 'rxjs'
+import { Readable } from 'stream'
+
 import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { DefaultRenderer } from '@renderer/default.renderer'
@@ -5,9 +9,6 @@ import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { Listr } from '@root/index'
 import { PromptOptions } from '@utils/prompt.interface'
-import Enquirer from 'enquirer'
-import { Observable, Subject } from 'rxjs'
-import { Readable } from 'stream'
 
 export type ListrContext = any
 
@@ -22,9 +23,9 @@ export declare class ListrClass<
   FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue
 > {
   tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[]
-  constructor(task?: readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>)
-  public run(ctx?: Ctx): Promise<Ctx>
-  public add(tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void
+  constructor (task?: readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>)
+  public run (ctx?: Ctx): Promise<Ctx>
+  public add (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | readonly ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void
 }
 
 export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends Observable<ListrEvent> {
@@ -88,7 +89,7 @@ export type ListrBaseClassOptions<
 > = ListrOptions<Ctx> & ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<FallbackRenderer>
 
 export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> = ListrOptions<Ctx> &
-  Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>
+Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>
 
 export interface ListrOptions<Ctx = ListrContext> {
   concurrent?: boolean | number
@@ -109,42 +110,42 @@ export type CreateClass<T> = new (...args: any[]) => T
 export type ListrGetRendererClassFromValue<T extends ListrRendererValue> = T extends 'default'
   ? typeof DefaultRenderer
   : T extends 'verbose'
-  ? typeof VerboseRenderer
-  : T extends 'silent'
-  ? typeof SilentRenderer
-  : T extends ListrRendererFactory
-  ? T
-  : never
+    ? typeof VerboseRenderer
+    : T extends 'silent'
+      ? typeof SilentRenderer
+      : T extends ListrRendererFactory
+        ? T
+        : never
 
 export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = T extends DefaultRenderer
   ? 'default'
   : T extends VerboseRenderer
-  ? 'verbose'
-  : T extends SilentRenderer
-  ? 'silent'
-  : T extends ListrRendererFactory
-  ? T
-  : never
+    ? 'verbose'
+    : T extends SilentRenderer
+      ? 'silent'
+      : T extends ListrRendererFactory
+        ? T
+        : never
 
 export type ListrGetRendererOptions<T extends ListrRendererValue> = T extends 'default'
   ? typeof DefaultRenderer['rendererOptions']
   : T extends 'verbose'
-  ? typeof VerboseRenderer['rendererOptions']
-  : T extends 'silent'
-  ? typeof SilentRenderer['rendererOptions']
-  : T extends ListrRendererFactory
-  ? T['rendererOptions']
-  : never
+    ? typeof VerboseRenderer['rendererOptions']
+    : T extends 'silent'
+      ? typeof SilentRenderer['rendererOptions']
+      : T extends ListrRendererFactory
+        ? T['rendererOptions']
+        : never
 
 export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = T extends 'default'
   ? typeof DefaultRenderer['rendererTaskOptions']
   : T extends 'verbose'
-  ? typeof VerboseRenderer['rendererTaskOptions']
-  : T extends 'silent'
-  ? typeof SilentRenderer['rendererTaskOptions']
-  : T extends ListrRendererFactory
-  ? T['rendererTaskOptions']
-  : never
+    ? typeof VerboseRenderer['rendererTaskOptions']
+    : T extends 'silent'
+      ? typeof SilentRenderer['rendererTaskOptions']
+      : T extends ListrRendererFactory
+        ? T['rendererTaskOptions']
+        : never
 
 export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {
   renderer?: T
@@ -157,15 +158,15 @@ export interface ListrDefaultNonTTYRendererOptions<T extends ListrRendererValue>
 }
 
 export type ListrRendererOptions<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> = ListrDefaultRendererOptions<Renderer> &
-  ListrDefaultNonTTYRendererOptions<FallbackRenderer>
+ListrDefaultNonTTYRendererOptions<FallbackRenderer>
 
 export declare class ListrRenderer {
   public static rendererOptions: Record<string, any>
   public static rendererTaskOptions: Record<string, any>
   public static nonTTY: boolean
-  constructor(tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions)
-  public render(): void
-  public end(err?: Error): void
+  constructor (tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions)
+  public render (): void
+  public end (err?: Error): void
 }
 
 export declare class ListrBaseRenderer implements ListrRenderer /* istanbul ignore next */ {
@@ -175,9 +176,9 @@ export declare class ListrBaseRenderer implements ListrRenderer /* istanbul igno
   public tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[]
   public options: typeof ListrBaseRenderer.rendererOptions
   /* istanbul ignore next */
-  constructor(tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions)
-  public render(): void
-  public end(err?: Error): void
+  constructor (tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions)
+  public render (): void
+  public end (err?: Error): void
 }
 
 export interface ListrRendererFactory {
@@ -191,23 +192,23 @@ export type ListrRendererValue = 'silent' | 'default' | 'verbose' | ListrRendere
 
 export type ListrEvent =
   | {
-      type: Exclude<ListrEventTypes, 'MESSAGE'>
-      data?: string | boolean
-    }
+    type: Exclude<ListrEventTypes, 'MESSAGE'>
+    data?: string | boolean
+  }
   | {
-      type: 'MESSAGE'
-      data: ListrTaskObject<any, any>['message']
-    }
+    type: 'MESSAGE'
+    data: ListrTaskObject<any, any>['message']
+  }
 
 export class ListrError extends Error {
-  constructor(public message: string, public errors?: Error[], public context?: any) {
+  constructor (public message: string, public errors?: Error[], public context?: any) {
     super(message)
     this.name = 'ListrError'
   }
 }
 
 export class PromptError extends Error {
-  constructor(message) {
+  constructor (message) {
     super(message)
     this.name = 'PromptError'
   }
