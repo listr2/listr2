@@ -1,10 +1,11 @@
 import Enquirer from 'enquirer'
 
-import { PromptOptions, PromptSettings } from './prompt.interface'
+import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
 import { PromptError } from '@interfaces/listr.interface'
+import { stateConstants } from '@root/interfaces/state.constants'
 import { TaskWrapper } from '@root/lib/task-wrapper'
 
-export async function createPrompt (options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
+export async function createPrompt (this: TaskWrapper<any, any>, options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
   /* istanbul ignore if */
@@ -35,16 +36,31 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
     enquirer = settings.enquirer
   } else {
     try {
-      enquirer = ((await import('enquirer')) as any).default
+      enquirer = new (await import('enquirer')).default()
     } catch (e) /* istanbul ignore next */ {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
       throw new Error(e)
     }
   }
 
-  // return default name if it is single prompt
+  // Capture the prompt instance so we can use it later
+  enquirer.on('prompt', (prompt: PromptInstance) => this.task.prompt = prompt)
+
+  // Clear the prompt instance once it's submitted
+  // Can't use on cancel, since that might hold a PromptError object
+  enquirer.on('submit', () => this.task.prompt = undefined)
+
+  this.task.subscribe((event) => {
+    if (event.type === 'STATE' && event.data === stateConstants.SKIPPED) {
+      if (this.task.prompt && !(this.task.prompt instanceof PromptError)) {
+        this.task.prompt.submit()
+      }
+    }
+  })
+
   const response = (await enquirer.prompt(options as any)) as any
 
+  // return default name if it is single prompt
   if (options.length === 1) {
     return response.default
   } else {
@@ -52,11 +68,25 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
   }
 }
 
+export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false): void {
+  if (!this.task.prompt || this.task.prompt instanceof PromptError) {
+    // If there's no prompt, can't cancel
+    return
+  }
+
+  if (throwError) {
+    this.task.prompt.cancel()
+  } else {
+    this.task.prompt.submit()
+  }
+}
+
 function defaultCancelCallback (settings: PromptSettings): string | Error | PromptError | void {
   const errorMsg = 'Cancelled prompt.'
 
   if (settings?.error === true) {
-    /* istanbul ignore next */ throw new Error(errorMsg)
+    /* istanbul ignore next */
+    throw new Error(errorMsg)
   } else if (this instanceof TaskWrapper) {
     this.task.prompt = new PromptError(errorMsg)
   } /* istanbul ignore next */ else {

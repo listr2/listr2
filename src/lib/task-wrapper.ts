@@ -2,19 +2,19 @@
 import through from 'through'
 
 import {
+  ListrBaseClassOptions,
   ListrError,
   ListrRendererFactory,
   ListrSubClassOptions,
   ListrTask,
+  ListrTaskObject,
   ListrTaskWrapper,
-  StateConstants,
-  ListrBaseClassOptions,
-  ListrTaskObject
+  StateConstants
 } from '@interfaces/listr.interface'
 import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
-import { createPrompt } from '@utils/prompt'
+import { createPrompt, destroyPrompt } from '@utils/prompt'
 import { PromptOptions } from '@utils/prompt.interface'
 
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
@@ -74,6 +74,10 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
+  public cancelPrompt (throwError = false): void {
+    return destroyPrompt.bind(this)(throwError)
+  }
+
   public skip (message?: string): void {
     this.state = stateConstants.SKIPPED
 
@@ -83,8 +87,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   }
 
   public async prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T> {
-    this.task.prompt = true
-
     return createPrompt.bind(this)(options, { ...this.options?.injectWrapper })
   }
 
