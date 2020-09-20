@@ -43,20 +43,20 @@ export async function createPrompt(this: TaskWrapper<any, any>, options: PromptO
   }
 
   // Capture the prompt instance so we can use it later
-  enquirer.once('prompt', (prompt: PromptInstance) => (this.promptInstance = prompt))
+  enquirer.once('prompt', (prompt: PromptInstance) => (this.task.prompt = prompt))
 
-  // Clear the prompt instance
-  enquirer.once('cancel', () => (this.promptInstance = undefined))
-  enquirer.once('submit', () => (this.promptInstance = undefined))
+  // Clear the prompt instance once it's submitted
+  // Can't use on cancel, since that might hold a PromptError object
+  enquirer.once('submit', () => (this.task.prompt = undefined))
 
   this.task.subscribe((event) => {
     if (event.type === 'STATE' && event.data === stateConstants.SKIPPED) {
-      this.task.prompt = false
-      this.promptInstance.submit()
+      if (this.task.prompt && !(this.task.prompt instanceof PromptError)) {
+        this.task.prompt.submit()
+      }
     }
   })
 
-  this.task.prompt = true
   const response = (await enquirer.prompt(options as any)) as any
 
   // return default name if it is single prompt
@@ -68,9 +68,9 @@ export async function createPrompt(this: TaskWrapper<any, any>, options: PromptO
 }
 
 export function destroyPrompt(this: TaskWrapper<any, any>, throwError = false) {
-  if (!this.promptInstance) return // If there's no prompt, can't cancel
-  if (throwError) this.promptInstance.cancel()
-  this.promptInstance.submit()
+  if (!this.task.prompt || this.task.prompt instanceof PromptError) return // If there's no prompt, can't cancel
+  if (throwError) this.task.prompt.cancel()
+  this.task.prompt.submit()
 }
 
 function defaultCancelCallback(settings: PromptSettings): string | Error | PromptError | void {

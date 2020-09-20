@@ -13,7 +13,7 @@ import { stateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
 import { createPrompt, destroyPrompt } from '@utils/prompt'
-import { PromptInstance, PromptOptions } from '@utils/prompt.interface'
+import { PromptOptions } from '@utils/prompt.interface'
 import through from 'through'
 
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
@@ -26,16 +26,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   /* istanbul ignore next */
   get title(): string {
     return this.task.title
-  }
-
-  _promptInstance: PromptInstance
-  set promptInstance(data: PromptInstance) {
-    this._promptInstance = data
-  }
-
-  /* istanbul ignore next */
-  get promptInstance(): PromptInstance {
-    return this._promptInstance
   }
 
   set output(data: string) {
