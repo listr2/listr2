@@ -1,3 +1,18 @@
+# [3.1.0](https://github.com/cenk1cenk2/listr2/compare/v3.0.1...v3.1.0) (2020-09-20)
+
+
+### Bug Fixes
+
+* **prompt:** prompt.submit instead of prompt.cancel to not throw error ([b758dac](https://github.com/cenk1cenk2/listr2/commit/b758dace3ddc3ff731b2689c7b4fd1a467ff90f9))
+* trying for adding skip functionality to prompt ([71924c9](https://github.com/cenk1cenk2/listr2/commit/71924c97b4a79077934530c02a6dcd3ecd968741)), closes [#173](https://github.com/cenk1cenk2/listr2/issues/173)
+* trying for fix ([79ba2bb](https://github.com/cenk1cenk2/listr2/commit/79ba2bb2005a3d646c9e5fafc1347fdc4a369cc7))
+* **deps:** update dependency rxjs to ^6.6.3 ([6664562](https://github.com/cenk1cenk2/listr2/commit/6664562749eb422436166f73668de12c0d0297ec))
+
+
+### Features
+
+* code style for cancel prompt ([4737669](https://github.com/cenk1cenk2/listr2/commit/4737669ec2ce75d46afef3402760fb959f1b7424)), closes [#173](https://github.com/cenk1cenk2/listr2/issues/173)
+
 ## [3.0.1](https://github.com/cenk1cenk2/listr2/compare/v3.0.0...v3.0.1) (2020-09-05)
 
 
