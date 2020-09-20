@@ -206,10 +206,18 @@ async function main(): Promise<void> {
           })
 
           delay(1000).then(() => task.cancelPrompt())
-          ctx.input = await task.prompt({
-            type: 'Input',
-            message: 'This one will disappear too.'
-          })
+          ctx.input = await task.prompt([
+            {
+              name: 'hello',
+              type: 'Input',
+              message: 'This one will disappear.'
+            },
+            {
+              name: 'hello2',
+              type: 'Input',
+              message: "But this one won't."
+            }
+          ])
 
           delay(1000).then(() => task.cancelPrompt(true))
           ctx.input = await task.prompt({

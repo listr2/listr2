@@ -43,11 +43,11 @@ export async function createPrompt(this: TaskWrapper<any, any>, options: PromptO
   }
 
   // Capture the prompt instance so we can use it later
-  enquirer.once('prompt', (prompt: PromptInstance) => (this.task.prompt = prompt))
+  enquirer.on('prompt', (prompt: PromptInstance) => (this.task.prompt = prompt))
 
   // Clear the prompt instance once it's submitted
   // Can't use on cancel, since that might hold a PromptError object
-  enquirer.once('submit', () => (this.task.prompt = undefined))
+  enquirer.on('submit', () => (this.task.prompt = undefined))
 
   this.task.subscribe((event) => {
     if (event.type === 'STATE' && event.data === stateConstants.SKIPPED) {
