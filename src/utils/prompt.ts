@@ -25,9 +25,16 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
     }, [])
   }
 
-  // assign default enquirer options}
+  // assign default enquirer options
   options = options.reduce((o, option) => {
-    return [ ...o, Object.assign(option, { stdout: settings?.stdout ?? this.stdout(), onCancel: cancelCallback.bind(this, settings) }) ]
+    return [
+      ...o,
+      Object.assign(option, {
+        // this is for outside calls, if it is not called from taskwrapper with bind
+        stdout: this instanceof TaskWrapper ? settings?.stdout ?? this.stdout() : process.stdout,
+        onCancel: cancelCallback.bind(this, settings)
+      })
+    ]
   }, [])
 
   let enquirer: Enquirer
@@ -87,11 +94,10 @@ export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false):
 function defaultCancelCallback (settings: PromptSettings): string | Error | PromptError | void {
   const errorMsg = 'Cancelled prompt.'
 
-  if (settings?.error === true) {
-    /* istanbul ignore next */
-    throw new Error(errorMsg)
-  } else if (this instanceof TaskWrapper) {
+  if (this instanceof TaskWrapper) {
     this.task.prompt = new PromptError(errorMsg)
+  } /* istanbul ignore next */ else if (settings?.error !== false) {
+    throw new Error(errorMsg)
   } /* istanbul ignore next */ else {
     return errorMsg
   }
