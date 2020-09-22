@@ -1,3 +1,11 @@
+## [3.1.1](https://github.com/cenk1cenk2/listr2/compare/v3.1.0...v3.1.1) (2020-09-22)
+
+
+### Bug Fixes
+
+* **prompt:** make prompt outside used ([2a61ac8](https://github.com/cenk1cenk2/listr2/commit/2a61ac80c5121ee020abc5b268c540eefad3738d))
+* **prompt:** reenabled external use ([2408aa1](https://github.com/cenk1cenk2/listr2/commit/2408aa1391fb65f07cbcade698a0e834d38b2231))
+
 # [3.1.0](https://github.com/cenk1cenk2/listr2/compare/v3.0.1...v3.1.0) (2020-09-20)
 
 
