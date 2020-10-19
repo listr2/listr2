@@ -3,7 +3,6 @@ import { Subject } from 'rxjs'
 
 import {
   ListrBaseClassOptions,
-  ListrClass,
   ListrContext,
   ListrDefaultRendererValue,
   ListrError,
@@ -21,8 +20,7 @@ import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
 
-export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue>
-implements ListrClass<Ctx, Renderer, FallbackRenderer> {
+export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError[] = []
   public rendererClass: ListrRendererFactory
