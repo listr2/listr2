@@ -148,6 +148,7 @@ export class DefaultRenderer implements ListrRenderer {
     return this.getTaskOptions(task).showTimer === true
   }
 
+  /* istanbul ignore next */
   public getTaskTime (task: ListrTaskObject<any, typeof DefaultRenderer>): string {
     const seconds = Math.floor(task.message.duration / 1000)
     const minutes = Math.floor(seconds / 60)
@@ -207,6 +208,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     const updateRender = (): void => logUpdate(this.createRender())
 
+    /* istanbul ignore if */
     if (!this.options?.lazy) {
       this.id = setInterval(() => {
         this.spinnerPosition = ++this.spinnerPosition % this.spinner.length

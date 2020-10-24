@@ -88,6 +88,7 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
   }
 
   // general utils
+  /* istanbul ignore next */
   public getRuntime (pipetime: number): string {
     return `${Math.round(Date.now() - pipetime) / 1000}s`
   }

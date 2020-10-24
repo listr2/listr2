@@ -47,7 +47,7 @@ export class Logger {
 
     try {
       multiLineMessage = message.split('\n')
-    } catch {
+    } catch /* istanbul ignore next */ {
       multiLineMessage = [ message ]
     }
 
@@ -73,6 +73,7 @@ export class Logger {
     }
     switch (level) {
     case LogLevels.fail:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.red
         icon = figures.main.cross
@@ -82,6 +83,7 @@ export class Logger {
 
       break
     case LogLevels.skip:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.yellow
         icon = figures.main.arrowDown
@@ -90,6 +92,7 @@ export class Logger {
       }
       break
     case LogLevels.success:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.green
         icon = figures.main.tick
@@ -98,6 +101,7 @@ export class Logger {
       }
       break
     case LogLevels.data:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.arrowRight
       } else {
@@ -105,6 +109,7 @@ export class Logger {
       }
       break
     case LogLevels.start:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.pointer
       } else {
@@ -112,6 +117,7 @@ export class Logger {
       }
       break
     case LogLevels.title:
+      /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.checkboxOn
       } else {

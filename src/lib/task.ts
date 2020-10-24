@@ -110,7 +110,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     if (this.state === undefined) {
       if (typeof this.enabledFn === 'function') {
         this.enabled = await this.enabledFn(ctx)
-      } else {
+      } /* istanbul ignore next */ else {
         this.enabled = this.enabledFn
       }
 
@@ -253,6 +253,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       }
 
       // report error
+      /* istanbul ignore if */
       if (error instanceof ListrError) {
         wrapper.report(error)
         return

@@ -68,9 +68,11 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
 
     // parse and add tasks
+    /* istanbul ignore next */
     this.add(task || [])
 
     // Graceful interrupt for render cleanup
+    /* istanbul ignore if */
     if (this.options.registerSignalListeners) {
       process
         .once('SIGINT', async () => {
@@ -88,6 +90,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
 
     // disable color programatically for CI purposes
+    /* istanbul ignore if */
     if (this.options?.disableColor) {
       process.env.LISTR_DISABLE_COLOR = '1'
     }
