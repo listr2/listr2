@@ -1,22 +1,9 @@
-const path = require('path')
+const { join } = require('path')
+const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { readFileSync } = require('fs')
 
-const TS_CONFIG_PATH = path.join(process.cwd(), 'tsconfig.json')
-const SRC_PATH = path.join(process.cwd(), 'src')
-
-function makeModuleNameMapper(srcPath, tsconfigPath) {
-  // Get paths from tsconfig
-  const { paths } = require(tsconfigPath).compilerOptions
-
-  const aliases = {}
-
-  // Iterate over paths and convert them into moduleNameMapper format
-  Object.keys(paths).forEach((item) => {
-    const key = item.replace('/*', '/(.*)')
-    const path = paths[item][0].replace('/*', '/$1')
-    aliases[key] = srcPath + '/' + path
-  })
-  return aliases
-}
+const TS_CONFIG_PATH = join(process.cwd(), 'tsconfig.json')
+const SRC_PATH = 'src'
 
 module.exports = {
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
@@ -28,8 +15,10 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tests/tsconfig.json'
+      tsconfig: '<rootDir>/tests/tsconfig.json'
     }
   },
-  moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH)
+  moduleNameMapper: pathsToModuleNameMapper(JSON.parse(readFileSync(TS_CONFIG_PATH)).compilerOptions.paths, {
+    prefix: `<rootDir>/${SRC_PATH}`
+  })
 }

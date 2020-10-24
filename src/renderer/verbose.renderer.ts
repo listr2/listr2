@@ -37,7 +37,7 @@ export class VerboseRenderer implements ListrRenderer {
   constructor (public tasks: ListrTaskObject<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
     if (!this.options?.logger) {
       this.logger = new Logger({ useIcons: this.options?.useIcons })
-    } else {
+    } /* istanbul ignore next */ else {
       this.logger = new this.options.logger()
     }
 
@@ -88,7 +88,7 @@ export class VerboseRenderer implements ListrRenderer {
             }
           }
         },
-        (err) => {
+        /* istanbul ignore next */ (err) => {
           this.logger.fail(err)
         }
       )

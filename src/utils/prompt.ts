@@ -16,16 +16,18 @@ import { TaskWrapper } from '@lib/task-wrapper'
 export async function createPrompt (this: TaskWrapper<any, any>, options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
+
+  /* istanbul ignore if */
   if (settings?.cancelCallback) {
     cancelCallback = settings.cancelCallback
-  } else {
+  } /* istanbul ignore next */ else {
     cancelCallback = defaultCancelCallback
   }
 
   // assign default if there is single prompt
   if (!Array.isArray(options)) {
     options = [ { ...options, name: 'default' } ]
-  } else if (options.length === 1) {
+  } /* istanbul ignore next */ else if (options.length === 1) {
     options = options.reduce((o, option) => {
       return [ ...o, Object.assign(option, { name: 'default' }) ]
     }, [])
@@ -50,7 +52,7 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
   } else {
     try {
       enquirer = new (await import('enquirer')).default()
-    } catch (e) {
+    } /* istanbul ignore next */ catch (e) {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
       throw new Error(e)
     }
@@ -84,6 +86,7 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
   }
 }
 
+/* istanbul ignore next */
 export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false): void {
   if (!this.task.prompt || this.task.prompt instanceof PromptError) {
     // If there's no prompt, can't cancel
@@ -102,9 +105,9 @@ function defaultCancelCallback (settings: PromptSettings): string | Error | Prom
 
   if (this instanceof TaskWrapper) {
     this.task.prompt = new PromptError(errorMsg)
-  } else if (settings?.error !== false) {
+  } /* istanbul ignore next */ else if (settings?.error !== false) {
     throw new Error(errorMsg)
-  } else {
+  } /* istanbul ignore next */ else {
     return errorMsg
   }
 }

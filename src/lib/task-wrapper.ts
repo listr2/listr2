@@ -18,6 +18,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     this.task.title$ = data
   }
 
+  /* istanbul ignore next */
   get title (): string {
     return this.task.title
   }
@@ -26,6 +27,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     this.task.output$ = data
   }
 
+  /* istanbul ignore next */
   get output (): string {
     return this.task.output
   }
@@ -54,6 +56,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   }
 
   public report (error: Error | ListrError): void {
+    /* istanbul ignore if */
     if (error instanceof ListrError) {
       for (const err of error.errors) {
         this.errors.push(err)
@@ -65,6 +68,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
+  /* istanbul ignore next */
   public cancelPrompt (throwError = false): void {
     return destroyPrompt.bind(this)(throwError)
   }
