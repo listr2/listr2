@@ -2,26 +2,39 @@ import { ListrEvent, ListrRenderer, ListrTaskObject } from '@interfaces/listr.in
 import { Logger } from '@utils/logger'
 
 export class VerboseRenderer implements ListrRenderer {
+  /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
+  /** renderer options for the verbose renderer */
   public static rendererOptions: {
-    // useIcons instead of text for log level
+    /**
+     * useIcons instead of text for log level
+     * @default false
+     */
     useIcons?: boolean
-    // inject a custom loger
+    /**
+     * inject a custom loger
+     */
     logger?: new (...args: any) => Logger
-    // log tasks with empty titles
+    /**
+     * log tasks with empty titles
+     * @default true
+     */
     logEmptyTitle?: boolean
-    // log title changes
+    /**
+     * log title changes
+     * @default true
+     */
     logTitleChange?: boolean
   } = {
     useIcons: false,
     logEmptyTitle: true,
     logTitleChange: true
   }
+  /** per task options for the verbose renderer */
   public static rendererTaskOptions: never
   private logger: Logger
 
   constructor (public tasks: ListrTaskObject<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
-    /* istanbul ignore else */
     if (!this.options?.logger) {
       this.logger = new Logger({ useIcons: this.options?.useIcons })
     } else {

@@ -1,22 +1,16 @@
 /* eslint-disable no-control-regex */
 import through from 'through'
 
-import {
-  ListrBaseClassOptions,
-  ListrError,
-  ListrRendererFactory,
-  ListrSubClassOptions,
-  ListrTask,
-  ListrTaskObject,
-  ListrTaskWrapper,
-  StateConstants
-} from '@interfaces/listr.interface'
-import { stateConstants } from '@interfaces/state.constants'
+import { ListrBaseClassOptions, ListrError, ListrRendererFactory, ListrSubClassOptions, ListrTask, ListrTaskObject, ListrTaskWrapper } from '@interfaces/listr.interface'
+import { StateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { Listr } from '@root/index'
 import { createPrompt, destroyPrompt } from '@utils/prompt'
 import { PromptOptions } from '@utils/prompt.interface'
 
+/**
+ * Extend the task to have more functionality while accesing from the outside.
+ */
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements ListrTaskWrapper<Ctx, Renderer> {
   constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
 
@@ -24,7 +18,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     this.task.title$ = data
   }
 
-  /* istanbul ignore next */
   get title (): string {
     return this.task.title
   }
@@ -33,7 +26,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     this.task.output$ = data
   }
 
-  /* istanbul ignore next */
   get output (): string {
     return this.task.output
   }
@@ -62,7 +54,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   }
 
   public report (error: Error | ListrError): void {
-    /* istanbul ignore if */
     if (error instanceof ListrError) {
       for (const err of error.errors) {
         this.errors.push(err)
@@ -79,7 +70,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
   }
 
   public skip (message?: string): void {
-    this.state = stateConstants.SKIPPED
+    this.state = StateConstants.SKIPPED
 
     if (message) {
       this.message = { skip: message || this.task?.title || 'Task with no title.' }

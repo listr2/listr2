@@ -3,7 +3,6 @@ import { Subject } from 'rxjs'
 
 import {
   ListrBaseClassOptions,
-  ListrClass,
   ListrContext,
   ListrDefaultRendererValue,
   ListrError,
@@ -16,13 +15,15 @@ import {
   ListrTask,
   ListrTaskObject
 } from '@interfaces/listr.interface'
-import { stateConstants } from '@interfaces/state.constants'
+import { StateConstants } from '@interfaces/state.constants'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
 
-export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue>
-implements ListrClass<Ctx, Renderer, FallbackRenderer> {
+/**
+ * Creates a new set of Listr2 task list.
+ */
+export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError[] = []
   public rendererClass: ListrRendererFactory
@@ -70,14 +71,13 @@ implements ListrClass<Ctx, Renderer, FallbackRenderer> {
     this.add(task || [])
 
     // Graceful interrupt for render cleanup
-    /* istanbul ignore if */
     if (this.options.registerSignalListeners) {
       process
         .once('SIGINT', async () => {
           await Promise.all(
             this.tasks.map(async (task) => {
               if (task.isPending()) {
-                task.state$ = stateConstants.FAILED
+                task.state$ = StateConstants.FAILED
               }
             })
           )

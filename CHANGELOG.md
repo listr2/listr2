@@ -1,503 +1,421 @@
 ## [3.1.1](https://github.com/cenk1cenk2/listr2/compare/v3.1.0...v3.1.1) (2020-09-22)
 
-
 ### Bug Fixes
 
-* **prompt:** make prompt outside used ([2a61ac8](https://github.com/cenk1cenk2/listr2/commit/2a61ac80c5121ee020abc5b268c540eefad3738d))
-* **prompt:** reenabled external use ([2408aa1](https://github.com/cenk1cenk2/listr2/commit/2408aa1391fb65f07cbcade698a0e834d38b2231))
+- **prompt:** make prompt outside used ([2a61ac8](https://github.com/cenk1cenk2/listr2/commit/2a61ac80c5121ee020abc5b268c540eefad3738d))
+- **prompt:** reenabled external use ([2408aa1](https://github.com/cenk1cenk2/listr2/commit/2408aa1391fb65f07cbcade698a0e834d38b2231))
 
 # [3.1.0](https://github.com/cenk1cenk2/listr2/compare/v3.0.1...v3.1.0) (2020-09-20)
 
-
 ### Bug Fixes
 
-* **prompt:** prompt.submit instead of prompt.cancel to not throw error ([b758dac](https://github.com/cenk1cenk2/listr2/commit/b758dace3ddc3ff731b2689c7b4fd1a467ff90f9))
-* trying for adding skip functionality to prompt ([71924c9](https://github.com/cenk1cenk2/listr2/commit/71924c97b4a79077934530c02a6dcd3ecd968741)), closes [#173](https://github.com/cenk1cenk2/listr2/issues/173)
-* trying for fix ([79ba2bb](https://github.com/cenk1cenk2/listr2/commit/79ba2bb2005a3d646c9e5fafc1347fdc4a369cc7))
-* **deps:** update dependency rxjs to ^6.6.3 ([6664562](https://github.com/cenk1cenk2/listr2/commit/6664562749eb422436166f73668de12c0d0297ec))
-
+- **prompt:** prompt.submit instead of prompt.cancel to not throw error ([b758dac](https://github.com/cenk1cenk2/listr2/commit/b758dace3ddc3ff731b2689c7b4fd1a467ff90f9))
+- trying for adding skip functionality to prompt ([71924c9](https://github.com/cenk1cenk2/listr2/commit/71924c97b4a79077934530c02a6dcd3ecd968741)), closes [#173](https://github.com/cenk1cenk2/listr2/issues/173)
+- trying for fix ([79ba2bb](https://github.com/cenk1cenk2/listr2/commit/79ba2bb2005a3d646c9e5fafc1347fdc4a369cc7))
+- **deps:** update dependency rxjs to ^6.6.3 ([6664562](https://github.com/cenk1cenk2/listr2/commit/6664562749eb422436166f73668de12c0d0297ec))
 
 ### Features
 
-* code style for cancel prompt ([4737669](https://github.com/cenk1cenk2/listr2/commit/4737669ec2ce75d46afef3402760fb959f1b7424)), closes [#173](https://github.com/cenk1cenk2/listr2/issues/173)
+- code style for cancel prompt ([4737669](https://github.com/cenk1cenk2/listr2/commit/4737669ec2ce75d46afef3402760fb959f1b7424)), closes [#173](https://github.com/cenk1cenk2/listr2/issues/173)
 
 ## [3.0.1](https://github.com/cenk1cenk2/listr2/compare/v3.0.0...v3.0.1) (2020-09-05)
 
-
 ### Bug Fixes
 
-* **default-renderer:** added some fixes to swallowing error output in collapseErrors: [secure] mode and showErrorMessage ([b0c2bb7](https://github.com/cenk1cenk2/listr2/commit/b0c2bb7d11cd3b3e9cdffdaa4a6a2dfab725a0c7))
+- **default-renderer:** added some fixes to swallowing error output in collapseErrors: [secure] mode and showErrorMessage ([b0c2bb7](https://github.com/cenk1cenk2/listr2/commit/b0c2bb7d11cd3b3e9cdffdaa4a6a2dfab725a0c7))
 
 # [3.0.0](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0) (2020-09-04)
 
-
 ### Bug Fixes
 
-* fix subtasks rendering ([c11aea0](https://github.com/cenk1cenk2/listr2/commit/c11aea05e4ca749e4c92cdd69d358765a43451c4))
-* lost message ([c5cc510](https://github.com/cenk1cenk2/listr2/commit/c5cc51028c2d9dccd28ea1f635288f4e5ba38f0d)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163) [#163](https://github.com/cenk1cenk2/listr2/issues/163)
-
+- fix subtasks rendering ([c11aea0](https://github.com/cenk1cenk2/listr2/commit/c11aea05e4ca749e4c92cdd69d358765a43451c4))
+- lost message ([c5cc510](https://github.com/cenk1cenk2/listr2/commit/c5cc51028c2d9dccd28ea1f635288f4e5ba38f0d)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163) [#163](https://github.com/cenk1cenk2/listr2/issues/163)
 
 ### Features
 
-* **default-renderer:** added collapse errors changed the renderer a bit ([514fc87](https://github.com/cenk1cenk2/listr2/commit/514fc87bb2595cc1a09cb865d60a380b0f71a9ec)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163)
-
+- **default-renderer:** added collapse errors changed the renderer a bit ([514fc87](https://github.com/cenk1cenk2/listr2/commit/514fc87bb2595cc1a09cb865d60a380b0f71a9ec)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163)
 
 ### Performance Improvements
 
-* changed last rendering method ([bd38146](https://github.com/cenk1cenk2/listr2/commit/bd38146c692127abb09cd754f2be0aac306efda4))
-
+- changed last rendering method ([bd38146](https://github.com/cenk1cenk2/listr2/commit/bd38146c692127abb09cd754f2be0aac306efda4))
 
 ### BREAKING CHANGES
 
-* Tests might break with this release, if they directly rely on
-default-renderer. Especially the snapshot testing will get hit.
+- Tests might break with this release, if they directly rely on default-renderer. Especially the snapshot testing will get hit.
 
-- default-renderer now utilizes different EOL depending on the platform.
-- The last rendering method has been changed therefore it will leave a
-  empty line before doing the last render which is the log-update clean
-  functionallity, before writing it with process.stdout.
-- Outputted data now gets better trimmed which might cause testing to
-  not match.
-- More consistent spacing is introduced for rendering the subtasks,
-  bottom bar and the prompt bar.
+* default-renderer now utilizes different EOL depending on the platform.
+* The last rendering method has been changed therefore it will leave a empty line before doing the last render which is the log-update clean functionallity, before writing it with process.stdout.
+* Outputted data now gets better trimmed which might cause testing to not match.
+* More consistent spacing is introduced for rendering the subtasks, bottom bar and the prompt bar.
 
-- error-collection was not working as expected but it might now cause
-  some tests to fail.
+* error-collection was not working as expected but it might now cause some tests to fail.
 
-Overall there are no breaking changes introduced to the code directly
-but it might cause the tests which rely on default-renderer, since the
-rendering method is almost completely revised.
+Overall there are no breaking changes introduced to the code directly but it might cause the tests which rely on default-renderer, since the rendering method is almost completely revised.
 
 # [3.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0-beta.1) (2020-09-04)
 
-
 ### Bug Fixes
 
-* fix subtasks rendering ([c11aea0](https://github.com/cenk1cenk2/listr2/commit/c11aea05e4ca749e4c92cdd69d358765a43451c4))
-* lost message ([c5cc510](https://github.com/cenk1cenk2/listr2/commit/c5cc51028c2d9dccd28ea1f635288f4e5ba38f0d)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163) [#163](https://github.com/cenk1cenk2/listr2/issues/163)
-
+- fix subtasks rendering ([c11aea0](https://github.com/cenk1cenk2/listr2/commit/c11aea05e4ca749e4c92cdd69d358765a43451c4))
+- lost message ([c5cc510](https://github.com/cenk1cenk2/listr2/commit/c5cc51028c2d9dccd28ea1f635288f4e5ba38f0d)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163) [#163](https://github.com/cenk1cenk2/listr2/issues/163)
 
 ### Features
 
-* **default-renderer:** added collapse errors changed the renderer a bit ([514fc87](https://github.com/cenk1cenk2/listr2/commit/514fc87bb2595cc1a09cb865d60a380b0f71a9ec)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163)
-
+- **default-renderer:** added collapse errors changed the renderer a bit ([514fc87](https://github.com/cenk1cenk2/listr2/commit/514fc87bb2595cc1a09cb865d60a380b0f71a9ec)), closes [#163](https://github.com/cenk1cenk2/listr2/issues/163)
 
 ### Performance Improvements
 
-* changed last rendering method ([bd38146](https://github.com/cenk1cenk2/listr2/commit/bd38146c692127abb09cd754f2be0aac306efda4))
-
+- changed last rendering method ([bd38146](https://github.com/cenk1cenk2/listr2/commit/bd38146c692127abb09cd754f2be0aac306efda4))
 
 ### BREAKING CHANGES
 
-* Tests might break with this release, if they directly rely on
-default-renderer. Especially the snapshot testing will get hit.
+- Tests might break with this release, if they directly rely on default-renderer. Especially the snapshot testing will get hit.
 
-- default-renderer now utilizes different EOL depending on the platform.
-- The last rendering method has been changed therefore it will leave a
-  empty line before doing the last render which is the log-update clean
-  functionallity, before writing it with process.stdout.
-- Outputted data now gets better trimmed which might cause testing to
-  not match.
-- More consistent spacing is introduced for rendering the subtasks,
-  bottom bar and the prompt bar.
+* default-renderer now utilizes different EOL depending on the platform.
+* The last rendering method has been changed therefore it will leave a empty line before doing the last render which is the log-update clean functionallity, before writing it with process.stdout.
+* Outputted data now gets better trimmed which might cause testing to not match.
+* More consistent spacing is introduced for rendering the subtasks, bottom bar and the prompt bar.
 
-- error-collection was not working as expected but it might now cause
-  some tests to fail.
+* error-collection was not working as expected but it might now cause some tests to fail.
 
-Overall there are no breaking changes introduced to the code directly
-but it might cause the tests which rely on default-renderer, since the
-rendering method is almost completely revised.
+Overall there are no breaking changes introduced to the code directly but it might cause the tests which rely on default-renderer, since the rendering method is almost completely revised.
 
 ## [2.6.2](https://github.com/cenk1cenk2/listr2/compare/v2.6.1...v2.6.2) (2020-08-29)
 
-
 ### Bug Fixes
 
-* **default-renderer:** timer with title change ([6cf1eec](https://github.com/cenk1cenk2/listr2/commit/6cf1eec57346246120cb5e75282da9e10ebe3748))
+- **default-renderer:** timer with title change ([6cf1eec](https://github.com/cenk1cenk2/listr2/commit/6cf1eec57346246120cb5e75282da9e10ebe3748))
 
 ## [2.6.1](https://github.com/cenk1cenk2/listr2/compare/v2.6.0...v2.6.1) (2020-08-27)
 
-
 ### Bug Fixes
 
-* new version for replicate.npmjs ([09dcb9c](https://github.com/cenk1cenk2/listr2/commit/09dcb9cbcafb7222222560c84cd8e0a08916ef1b))
+- new version for replicate.npmjs ([09dcb9c](https://github.com/cenk1cenk2/listr2/commit/09dcb9cbcafb7222222560c84cd8e0a08916ef1b))
 
 # [2.6.0](https://github.com/cenk1cenk2/listr2/compare/v2.5.1...v2.6.0) (2020-08-16)
 
-
 ### Bug Fixes
 
-* keep persistent output on error ([de7e661](https://github.com/cenk1cenk2/listr2/commit/de7e661c15f9fba020e66cd098426f47cf08c1db))
-
+- keep persistent output on error ([de7e661](https://github.com/cenk1cenk2/listr2/commit/de7e661c15f9fba020e66cd098426f47cf08c1db))
 
 ### Features
 
-* **listr:** accessing parent task ([544a130](https://github.com/cenk1cenk2/listr2/commit/544a1304ff5e642621ae1ed14358947b04cb3f91)), closes [#141](https://github.com/cenk1cenk2/listr2/issues/141)
-* isolated error and skip messages ([5b8735d](https://github.com/cenk1cenk2/listr2/commit/5b8735d53ba7325e0d3a5aa1ec5989b1cc353610))
-* **default-renderer:** added timer to renderer ([4b8d757](https://github.com/cenk1cenk2/listr2/commit/4b8d757648153305090d00c3f885fec3ac5a0fe0))
+- **listr:** accessing parent task ([544a130](https://github.com/cenk1cenk2/listr2/commit/544a1304ff5e642621ae1ed14358947b04cb3f91)), closes [#141](https://github.com/cenk1cenk2/listr2/issues/141)
+- isolated error and skip messages ([5b8735d](https://github.com/cenk1cenk2/listr2/commit/5b8735d53ba7325e0d3a5aa1ec5989b1cc353610))
+- **default-renderer:** added timer to renderer ([4b8d757](https://github.com/cenk1cenk2/listr2/commit/4b8d757648153305090d00c3f885fec3ac5a0fe0))
 
 ## [2.5.1](https://github.com/cenk1cenk2/listr2/compare/v2.5.0...v2.5.1) (2020-08-10)
 
-
 ### Bug Fixes
 
-* **prompt:** fixed an issue with one prompt not returning default ([375a441](https://github.com/cenk1cenk2/listr2/commit/375a441cfc560b550c639fe4b977ee2d74aad755))
+- **prompt:** fixed an issue with one prompt not returning default ([375a441](https://github.com/cenk1cenk2/listr2/commit/375a441cfc560b550c639fe4b977ee2d74aad755))
 
 # [2.5.0](https://github.com/cenk1cenk2/listr2/compare/v2.4.1...v2.5.0) (2020-08-10)
 
-
 ### Bug Fixes
 
-* **deps:** update dependency rxjs to ^6.6.2 ([5175991](https://github.com/cenk1cenk2/listr2/commit/5175991e471a2c4a3f6621026657744ae59c9b43))
-* **prompt:** enquirer custom prompts ([6317ec6](https://github.com/cenk1cenk2/listr2/commit/6317ec6d4aac2f3467dd6dc37a98f05baeb244b6))
-
+- **deps:** update dependency rxjs to ^6.6.2 ([5175991](https://github.com/cenk1cenk2/listr2/commit/5175991e471a2c4a3f6621026657744ae59c9b43))
+- **prompt:** enquirer custom prompts ([6317ec6](https://github.com/cenk1cenk2/listr2/commit/6317ec6d4aac2f3467dd6dc37a98f05baeb244b6))
 
 ### Features
 
-* **renderer:** added disable color and enable silent renderer via options ([74f91c2](https://github.com/cenk1cenk2/listr2/commit/74f91c2269316b2bac22bb450c14972e0dd56dde))
+- **renderer:** added disable color and enable silent renderer via options ([74f91c2](https://github.com/cenk1cenk2/listr2/commit/74f91c2269316b2bac22bb450c14972e0dd56dde))
 
 ## [2.4.1](https://github.com/cenk1cenk2/listr2/compare/v2.4.0...v2.4.1) (2020-07-29)
 
-
 ### Bug Fixes
 
-* **default-renderer:** added a tiny fix when persistent bottom bar is enabled and task is skipped ([d6a25a8](https://github.com/cenk1cenk2/listr2/commit/d6a25a886224bf6d0ac3c3a7253901f1fb74dc59))
+- **default-renderer:** added a tiny fix when persistent bottom bar is enabled and task is skipped ([d6a25a8](https://github.com/cenk1cenk2/listr2/commit/d6a25a886224bf6d0ac3c3a7253901f1fb74dc59))
 
 # [2.4.0](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0) (2020-07-27)
 
-
 ### Bug Fixes
 
-* **deps:** removed bundle of rxjs ([a103acb](https://github.com/cenk1cenk2/listr2/commit/a103acb040cd8b89c67dea17b5aa9e63730af269))
-* **rxjs:** retry for rxjs export with webpack ([ac537e5](https://github.com/cenk1cenk2/listr2/commit/ac537e5beb2c096acdbb6cb2725f9d7aa434a26d))
-
+- **deps:** removed bundle of rxjs ([a103acb](https://github.com/cenk1cenk2/listr2/commit/a103acb040cd8b89c67dea17b5aa9e63730af269))
+- **rxjs:** retry for rxjs export with webpack ([ac537e5](https://github.com/cenk1cenk2/listr2/commit/ac537e5beb2c096acdbb6cb2725f9d7aa434a26d))
 
 ### Features
 
-* **build:** bundle rxjs with webpack, reduce total bundle size, since i started to use this everywhere ([4cc922a](https://github.com/cenk1cenk2/listr2/commit/4cc922a94a21899973aeca371e4078fa9205e053))
-
+- **build:** bundle rxjs with webpack, reduce total bundle size, since i started to use this everywhere ([4cc922a](https://github.com/cenk1cenk2/listr2/commit/4cc922a94a21899973aeca371e4078fa9205e053))
 
 ### Reverts
 
-* **deps:** rxjs bundle ([4067164](https://github.com/cenk1cenk2/listr2/commit/4067164ed993368997986223bbec3c22059f27b8))
+- **deps:** rxjs bundle ([4067164](https://github.com/cenk1cenk2/listr2/commit/4067164ed993368997986223bbec3c22059f27b8))
 
 # [2.4.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.2...v2.4.0-beta.3) (2020-07-27)
 
-
 ### Bug Fixes
 
-* **deps:** removed bundle of rxjs ([a103acb](https://github.com/cenk1cenk2/listr2/commit/a103acb040cd8b89c67dea17b5aa9e63730af269))
-
+- **deps:** removed bundle of rxjs ([a103acb](https://github.com/cenk1cenk2/listr2/commit/a103acb040cd8b89c67dea17b5aa9e63730af269))
 
 ### Reverts
 
-* **deps:** rxjs bundle ([4067164](https://github.com/cenk1cenk2/listr2/commit/4067164ed993368997986223bbec3c22059f27b8))
+- **deps:** rxjs bundle ([4067164](https://github.com/cenk1cenk2/listr2/commit/4067164ed993368997986223bbec3c22059f27b8))
 
 # [2.4.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.1...v2.4.0-beta.2) (2020-07-27)
 
-
 ### Bug Fixes
 
-* **rxjs:** retry for rxjs export with webpack ([ac537e5](https://github.com/cenk1cenk2/listr2/commit/ac537e5beb2c096acdbb6cb2725f9d7aa434a26d))
+- **rxjs:** retry for rxjs export with webpack ([ac537e5](https://github.com/cenk1cenk2/listr2/commit/ac537e5beb2c096acdbb6cb2725f9d7aa434a26d))
 
 # [2.4.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0-beta.1) (2020-07-27)
 
-
 ### Features
 
-* **build:** bundle rxjs with webpack, reduce total bundle size, since i started to use this everywhere ([4cc922a](https://github.com/cenk1cenk2/listr2/commit/4cc922a94a21899973aeca371e4078fa9205e053))
+- **build:** bundle rxjs with webpack, reduce total bundle size, since i started to use this everywhere ([4cc922a](https://github.com/cenk1cenk2/listr2/commit/4cc922a94a21899973aeca371e4078fa9205e053))
 
 ## [2.3.6](https://github.com/cenk1cenk2/listr2/compare/v2.3.5...v2.3.6) (2020-07-27)
 
-
 ### Bug Fixes
 
-* remove unused import ([46a72c7](https://github.com/cenk1cenk2/listr2/commit/46a72c7d16d5ae882e4fa23e9064b3f0ad008792))
-* **default-renderer:** fix output rendering with empty subtasks ([8299c3f](https://github.com/cenk1cenk2/listr2/commit/8299c3fe8324bdade582e1e0052a4463039f52e3))
-* **default-renderer:** output from subtask of subtask ([4096e62](https://github.com/cenk1cenk2/listr2/commit/4096e62f058082f15cc494c6a406cd0bdef4e641))
+- remove unused import ([46a72c7](https://github.com/cenk1cenk2/listr2/commit/46a72c7d16d5ae882e4fa23e9064b3f0ad008792))
+- **default-renderer:** fix output rendering with empty subtasks ([8299c3f](https://github.com/cenk1cenk2/listr2/commit/8299c3fe8324bdade582e1e0052a4463039f52e3))
+- **default-renderer:** output from subtask of subtask ([4096e62](https://github.com/cenk1cenk2/listr2/commit/4096e62f058082f15cc494c6a406cd0bdef4e641))
 
 ## [2.3.5](https://github.com/cenk1cenk2/listr2/compare/v2.3.4...v2.3.5) (2020-07-26)
 
-
 ### Bug Fixes
 
-* **default-renderer:** renderer to show spinner if all subtasks has no title ([58aaadc](https://github.com/cenk1cenk2/listr2/commit/58aaadc08924ea4657caa86850c5d9040fb9d1f5))
-* **deps:** update all minor dependency updates ([4fccbc4](https://github.com/cenk1cenk2/listr2/commit/4fccbc4382c3b41e374070166a1ecb558ab77c66))
+- **default-renderer:** renderer to show spinner if all subtasks has no title ([58aaadc](https://github.com/cenk1cenk2/listr2/commit/58aaadc08924ea4657caa86850c5d9040fb9d1f5))
+- **deps:** update all minor dependency updates ([4fccbc4](https://github.com/cenk1cenk2/listr2/commit/4fccbc4382c3b41e374070166a1ecb558ab77c66))
 
 ## [2.3.4](https://github.com/cenk1cenk2/listr2/compare/v2.3.3...v2.3.4) (2020-07-26)
 
-
 ### Bug Fixes
 
-* **default-renderer:** fixed the issue when there is all empty subtasks and it leaves one extra space ([57b0809](https://github.com/cenk1cenk2/listr2/commit/57b08097bdd83bca40fbd89cd823fc1d175fa612))
+- **default-renderer:** fixed the issue when there is all empty subtasks and it leaves one extra space ([57b0809](https://github.com/cenk1cenk2/listr2/commit/57b08097bdd83bca40fbd89cd823fc1d175fa612))
 
 ## [2.3.3](https://github.com/cenk1cenk2/listr2/compare/v2.3.2...v2.3.3) (2020-07-24)
 
-
 ### Bug Fixes
 
-* **prompts:** removed prompt bind type to use it in other scripts directly ([655334a](https://github.com/cenk1cenk2/listr2/commit/655334a256524cb8099c189868bb8f30dc784b90))
+- **prompts:** removed prompt bind type to use it in other scripts directly ([655334a](https://github.com/cenk1cenk2/listr2/commit/655334a256524cb8099c189868bb8f30dc784b90))
 
 ## [2.3.2](https://github.com/cenk1cenk2/listr2/compare/v2.3.1...v2.3.2) (2020-07-23)
 
-
 ### Bug Fixes
 
-* **tests:** change env variable for tests, esspecially chalk because node_env test is more common ([5c7c9ca](https://github.com/cenk1cenk2/listr2/commit/5c7c9caf33eb5141d46cf79cd7176826807b9e50))
+- **tests:** change env variable for tests, esspecially chalk because node_env test is more common ([5c7c9ca](https://github.com/cenk1cenk2/listr2/commit/5c7c9caf33eb5141d46cf79cd7176826807b9e50))
 
 ## [2.3.1](https://github.com/cenk1cenk2/listr2/compare/v2.3.0...v2.3.1) (2020-07-22)
 
-
 ### Bug Fixes
 
-* **readme:** added badge for npm ([61f6bc3](https://github.com/cenk1cenk2/listr2/commit/61f6bc36a5df27b80d61233dd0880326b93b7d5a))
+- **readme:** added badge for npm ([61f6bc3](https://github.com/cenk1cenk2/listr2/commit/61f6bc36a5df27b80d61233dd0880326b93b7d5a))
 
 # [2.3.0](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0) (2020-07-22)
 
-
 ### Bug Fixes
 
-* **colors:** disable colors for test ([b81ee08](https://github.com/cenk1cenk2/listr2/commit/b81ee087fd11f9ee8b96b305d9a76fb7b245ca9c))
-* **deps:** update all minor package updates ([aba8cf2](https://github.com/cenk1cenk2/listr2/commit/aba8cf20abbf6c81cd98be41099254ba6c30a19b))
-* **truncate:** fix truncate to 80 on columns unknown ([3454aed](https://github.com/cenk1cenk2/listr2/commit/3454aedbc4282550f79f4e65fe34ab14fbe06e4e))
-
+- **colors:** disable colors for test ([b81ee08](https://github.com/cenk1cenk2/listr2/commit/b81ee087fd11f9ee8b96b305d9a76fb7b245ca9c))
+- **deps:** update all minor package updates ([aba8cf2](https://github.com/cenk1cenk2/listr2/commit/aba8cf20abbf6c81cd98be41099254ba6c30a19b))
+- **truncate:** fix truncate to 80 on columns unknown ([3454aed](https://github.com/cenk1cenk2/listr2/commit/3454aedbc4282550f79f4e65fe34ab14fbe06e4e))
 
 ### Features
 
-* added lazy option to default renderer. moved enquirer to inject wrapper key from root ([78f3984](https://github.com/cenk1cenk2/listr2/commit/78f3984c19cd31f45edf5fbc8e8bfa5380104331))
-* **prompts:** added external enquirer injection for testing, fallback condition, fixed catching err ([a0bf6fd](https://github.com/cenk1cenk2/listr2/commit/a0bf6fd444caf69b0231f710099e367840c0ed15)), closes [#66](https://github.com/cenk1cenk2/listr2/issues/66) [#67](https://github.com/cenk1cenk2/listr2/issues/67) [#68](https://github.com/cenk1cenk2/listr2/issues/68)
+- added lazy option to default renderer. moved enquirer to inject wrapper key from root ([78f3984](https://github.com/cenk1cenk2/listr2/commit/78f3984c19cd31f45edf5fbc8e8bfa5380104331))
+- **prompts:** added external enquirer injection for testing, fallback condition, fixed catching err ([a0bf6fd](https://github.com/cenk1cenk2/listr2/commit/a0bf6fd444caf69b0231f710099e367840c0ed15)), closes [#66](https://github.com/cenk1cenk2/listr2/issues/66) [#67](https://github.com/cenk1cenk2/listr2/issues/67) [#68](https://github.com/cenk1cenk2/listr2/issues/68)
 
 # [2.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2020-07-22)
 
-
 ### Features
 
-* added lazy option to default renderer. moved enquirer to inject wrapper key from root ([78f3984](https://github.com/cenk1cenk2/listr2/commit/78f3984c19cd31f45edf5fbc8e8bfa5380104331))
+- added lazy option to default renderer. moved enquirer to inject wrapper key from root ([78f3984](https://github.com/cenk1cenk2/listr2/commit/78f3984c19cd31f45edf5fbc8e8bfa5380104331))
 
 # [2.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0-beta.1) (2020-07-22)
 
-
 ### Bug Fixes
 
-* **deps:** update all minor package updates ([aba8cf2](https://github.com/cenk1cenk2/listr2/commit/aba8cf20abbf6c81cd98be41099254ba6c30a19b))
-
+- **deps:** update all minor package updates ([aba8cf2](https://github.com/cenk1cenk2/listr2/commit/aba8cf20abbf6c81cd98be41099254ba6c30a19b))
 
 ### Features
 
-* **prompts:** added external enquirer injection for testing, fallback condition, fixed catching err ([a0bf6fd](https://github.com/cenk1cenk2/listr2/commit/a0bf6fd444caf69b0231f710099e367840c0ed15)), closes [#66](https://github.com/cenk1cenk2/listr2/issues/66) [#67](https://github.com/cenk1cenk2/listr2/issues/67) [#68](https://github.com/cenk1cenk2/listr2/issues/68)
+- **prompts:** added external enquirer injection for testing, fallback condition, fixed catching err ([a0bf6fd](https://github.com/cenk1cenk2/listr2/commit/a0bf6fd444caf69b0231f710099e367840c0ed15)), closes [#66](https://github.com/cenk1cenk2/listr2/issues/66) [#67](https://github.com/cenk1cenk2/listr2/issues/67) [#68](https://github.com/cenk1cenk2/listr2/issues/68)
 
 ## [2.2.1](https://github.com/cenk1cenk2/listr2/compare/v2.2.0...v2.2.1) (2020-07-18)
 
-
 ### Bug Fixes
 
-* **prompts:** added return when prompt error ([6c89e56](https://github.com/cenk1cenk2/listr2/commit/6c89e562713686a1748a0436aef3c2ae43c6c555))
-* **prompts:** fixed prompt error message when enquirer is not installed optionally ([8fc5849](https://github.com/cenk1cenk2/listr2/commit/8fc58492bcac3fb5520360c7c8d1e5c2156b74fc))
+- **prompts:** added return when prompt error ([6c89e56](https://github.com/cenk1cenk2/listr2/commit/6c89e562713686a1748a0436aef3c2ae43c6c555))
+- **prompts:** fixed prompt error message when enquirer is not installed optionally ([8fc5849](https://github.com/cenk1cenk2/listr2/commit/8fc58492bcac3fb5520360c7c8d1e5c2156b74fc))
 
 # [2.2.0](https://github.com/cenk1cenk2/listr2/compare/v2.1.9...v2.2.0) (2020-07-03)
 
-
 ### Features
 
-* display elegant spinner on Windows Terminal ([a86868b](https://github.com/cenk1cenk2/listr2/commit/a86868b7638f5b63b64f70e7559ace07d598c84a))
+- display elegant spinner on Windows Terminal ([a86868b](https://github.com/cenk1cenk2/listr2/commit/a86868b7638f5b63b64f70e7559ace07d598c84a))
 
 ## [2.1.9](https://github.com/cenk1cenk2/listr2/compare/v2.1.8...v2.1.9) (2020-07-01)
 
-
 ### Bug Fixes
 
-* **manager:** manager type problem with indent ([9444d3d](https://github.com/cenk1cenk2/listr2/commit/9444d3dcc5c7d1d72aa424441cc0b150effedebd))
+- **manager:** manager type problem with indent ([9444d3d](https://github.com/cenk1cenk2/listr2/commit/9444d3dcc5c7d1d72aa424441cc0b150effedebd))
 
 ## [2.1.9-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.1.8...v2.1.9-beta.1) (2020-06-18)
 
-
 ### Bug Fixes
 
-* **manager:** manager type problem with indent ([9444d3d](https://github.com/cenk1cenk2/listr2/commit/9444d3dcc5c7d1d72aa424441cc0b150effedebd))
+- **manager:** manager type problem with indent ([9444d3d](https://github.com/cenk1cenk2/listr2/commit/9444d3dcc5c7d1d72aa424441cc0b150effedebd))
 
 ## [2.1.8](https://github.com/cenk1cenk2/listr2/compare/v2.1.7...v2.1.8) (2020-06-17)
 
-
 ### Bug Fixes
 
-* **renderer:** add skip to verbose output ([f577df0](https://github.com/cenk1cenk2/listr2/commit/f577df08720a6602a46b9eec457a9d55321d89d7))
+- **renderer:** add skip to verbose output ([f577df0](https://github.com/cenk1cenk2/listr2/commit/f577df08720a6602a46b9eec457a9d55321d89d7))
 
 ## [2.1.7](https://github.com/cenk1cenk2/listr2/compare/v2.1.6...v2.1.7) (2020-06-14)
 
-
 ### Bug Fixes
 
-* **renderer:** verbose renderer ([794f966](https://github.com/cenk1cenk2/listr2/commit/794f9667f8d2b1715f76a841dcb73f47bf8d6aca))
+- **renderer:** verbose renderer ([794f966](https://github.com/cenk1cenk2/listr2/commit/794f9667f8d2b1715f76a841dcb73f47bf8d6aca))
 
 ## [2.1.6](https://github.com/cenk1cenk2/listr2/compare/v2.1.5...v2.1.6) (2020-06-14)
 
-
 ### Bug Fixes
 
-* **renderer:** add defaults ([8d3436d](https://github.com/cenk1cenk2/listr2/commit/8d3436d74dfe904f1259f85cfa251445f5c58e84))
+- **renderer:** add defaults ([8d3436d](https://github.com/cenk1cenk2/listr2/commit/8d3436d74dfe904f1259f85cfa251445f5c58e84))
 
 ## [2.1.5](https://github.com/cenk1cenk2/listr2/compare/v2.1.4...v2.1.5) (2020-06-14)
 
-
 ### Bug Fixes
 
-* **renderer:** verbose renderer defaults ([3246fe1](https://github.com/cenk1cenk2/listr2/commit/3246fe1deb19dd2878d5c86ee2ca98d9a7b2f26a))
+- **renderer:** verbose renderer defaults ([3246fe1](https://github.com/cenk1cenk2/listr2/commit/3246fe1deb19dd2878d5c86ee2ca98d9a7b2f26a))
 
 ## [2.1.4](https://github.com/cenk1cenk2/listr2/compare/v2.1.3...v2.1.4) (2020-06-14)
 
-
 ### Bug Fixes
 
-* **added verbose renderer options:** added new options of log empty title and title change ([5a5eb79](https://github.com/cenk1cenk2/listr2/commit/5a5eb79e5d9097b84fc74722de85c6f60e0f288e))
-* **types:** enquirer types ([d309d91](https://github.com/cenk1cenk2/listr2/commit/d309d91241ec85f52d54b974f6391f7c640ea1ae))
+- **added verbose renderer options:** added new options of log empty title and title change ([5a5eb79](https://github.com/cenk1cenk2/listr2/commit/5a5eb79e5d9097b84fc74722de85c6f60e0f288e))
+- **types:** enquirer types ([d309d91](https://github.com/cenk1cenk2/listr2/commit/d309d91241ec85f52d54b974f6391f7c640ea1ae))
 
 ## [2.1.3](https://github.com/cenk1cenk2/listr2/compare/v2.1.2...v2.1.3) (2020-06-04)
 
-
 ### Bug Fixes
 
-* **enquirer:** moved prompt flattening around again for my own scripts ([a40a569](https://github.com/cenk1cenk2/listr2/commit/a40a569785dec64d14186fa997bf8bebcd219390))
-* **enquirer:** optional stdout ([703658f](https://github.com/cenk1cenk2/listr2/commit/703658f3fe84f91e74173932c91b609380d40c59))
+- **enquirer:** moved prompt flattening around again for my own scripts ([a40a569](https://github.com/cenk1cenk2/listr2/commit/a40a569785dec64d14186fa997bf8bebcd219390))
+- **enquirer:** optional stdout ([703658f](https://github.com/cenk1cenk2/listr2/commit/703658f3fe84f91e74173932c91b609380d40c59))
 
 ## [2.1.2](https://github.com/cenk1cenk2/listr2/compare/v2.1.1...v2.1.2) (2020-06-04)
 
-
 ### Bug Fixes
 
-* **prompt:** added option to call prompt from outside for my applicatiosn ([27dbdfa](https://github.com/cenk1cenk2/listr2/commit/27dbdfa5068eed7570293468455515ed1c7860ba))
+- **prompt:** added option to call prompt from outside for my applicatiosn ([27dbdfa](https://github.com/cenk1cenk2/listr2/commit/27dbdfa5068eed7570293468455515ed1c7860ba))
 
 ## [2.1.1](https://github.com/cenk1cenk2/listr2/compare/v2.1.0...v2.1.1) (2020-06-04)
 
-
 ### Bug Fixes
 
-* **streams:** add legacy streams to accepted types ([f63dd52](https://github.com/cenk1cenk2/listr2/commit/f63dd52167c2babada80ff5d092843ead2ca86e7))
+- **streams:** add legacy streams to accepted types ([f63dd52](https://github.com/cenk1cenk2/listr2/commit/f63dd52167c2babada80ff5d092843ead2ca86e7))
 
 # [2.1.0](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0) (2020-06-03)
 
-
 ### Bug Fixes
 
-* **deps:** remove trivial deps ([de8dec0](https://github.com/cenk1cenk2/listr2/commit/de8dec09b45fa09ddc8afb1d7742846ba3b620dd))
-* **deps:** remove unnecassary types ([b37f416](https://github.com/cenk1cenk2/listr2/commit/b37f416fbed04d531b1dca5495d7008ecedf4ab5))
-* **deps:** updated deps to latest ([c4ad38f](https://github.com/cenk1cenk2/listr2/commit/c4ad38f32510d598a4c93d19ca517eef81c841a2))
-* **figures:** made microsoft icons to use the fancy ones, even though it may fail in some cases ([f0e5817](https://github.com/cenk1cenk2/listr2/commit/f0e581706e59d9b96da9bd050a1ad3638b59c2aa)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
-* **prompt:** enquirer to peer ([cae55e9](https://github.com/cenk1cenk2/listr2/commit/cae55e962faf54f3ddadc6c220567a316c8ee15b))
-* **prompt:** types ([110130a](https://github.com/cenk1cenk2/listr2/commit/110130a6c0a6b3443362cd8fc018e18b6ef5fbbc))
-* **prompts:** fixed type for array prompts, added name as mandatory ([a08b1e4](https://github.com/cenk1cenk2/listr2/commit/a08b1e4a9b80fd542384ef3a5dbc111dead0bd6c))
-* **stream:** fixed streams added example ([614d89f](https://github.com/cenk1cenk2/listr2/commit/614d89fc1b64e7a586a7a590233d4dce1696b7b4)), closes [#37](https://github.com/cenk1cenk2/listr2/issues/37)
-
+- **deps:** remove trivial deps ([de8dec0](https://github.com/cenk1cenk2/listr2/commit/de8dec09b45fa09ddc8afb1d7742846ba3b620dd))
+- **deps:** remove unnecassary types ([b37f416](https://github.com/cenk1cenk2/listr2/commit/b37f416fbed04d531b1dca5495d7008ecedf4ab5))
+- **deps:** updated deps to latest ([c4ad38f](https://github.com/cenk1cenk2/listr2/commit/c4ad38f32510d598a4c93d19ca517eef81c841a2))
+- **figures:** made microsoft icons to use the fancy ones, even though it may fail in some cases ([f0e5817](https://github.com/cenk1cenk2/listr2/commit/f0e581706e59d9b96da9bd050a1ad3638b59c2aa)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
+- **prompt:** enquirer to peer ([cae55e9](https://github.com/cenk1cenk2/listr2/commit/cae55e962faf54f3ddadc6c220567a316c8ee15b))
+- **prompt:** types ([110130a](https://github.com/cenk1cenk2/listr2/commit/110130a6c0a6b3443362cd8fc018e18b6ef5fbbc))
+- **prompts:** fixed type for array prompts, added name as mandatory ([a08b1e4](https://github.com/cenk1cenk2/listr2/commit/a08b1e4a9b80fd542384ef3a5dbc111dead0bd6c))
+- **stream:** fixed streams added example ([614d89f](https://github.com/cenk1cenk2/listr2/commit/614d89fc1b64e7a586a7a590233d4dce1696b7b4)), closes [#37](https://github.com/cenk1cenk2/listr2/issues/37)
 
 ### Features
 
-* **prompt:** make prompt module optional, be more compatible to underlying enqurier ([64cecc1](https://github.com/cenk1cenk2/listr2/commit/64cecc10049f5802a6e7a71071ec698e1226bdc2)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
-* **prompt:** use enquirer directly ([b34e9d0](https://github.com/cenk1cenk2/listr2/commit/b34e9d0b2ef9b0cbf723759c5a236eca8ac86af0)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
-* **renderer:** added hook and stdout support ([bd73c68](https://github.com/cenk1cenk2/listr2/commit/bd73c68b9eb21cd100a266ce05ba36af0c727a4f)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
+- **prompt:** make prompt module optional, be more compatible to underlying enqurier ([64cecc1](https://github.com/cenk1cenk2/listr2/commit/64cecc10049f5802a6e7a71071ec698e1226bdc2)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
+- **prompt:** use enquirer directly ([b34e9d0](https://github.com/cenk1cenk2/listr2/commit/b34e9d0b2ef9b0cbf723759c5a236eca8ac86af0)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
+- **renderer:** added hook and stdout support ([bd73c68](https://github.com/cenk1cenk2/listr2/commit/bd73c68b9eb21cd100a266ce05ba36af0c727a4f)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
 
 # [2.1.0-beta.6](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.5...v2.1.0-beta.6) (2020-06-03)
 
-
 ### Bug Fixes
 
-* **deps:** remove trivial deps ([de8dec0](https://github.com/cenk1cenk2/listr2/commit/de8dec09b45fa09ddc8afb1d7742846ba3b620dd))
-* **deps:** remove unnecassary types ([b37f416](https://github.com/cenk1cenk2/listr2/commit/b37f416fbed04d531b1dca5495d7008ecedf4ab5))
-* **deps:** updated deps to latest ([c4ad38f](https://github.com/cenk1cenk2/listr2/commit/c4ad38f32510d598a4c93d19ca517eef81c841a2))
-* **stream:** fixed streams added example ([614d89f](https://github.com/cenk1cenk2/listr2/commit/614d89fc1b64e7a586a7a590233d4dce1696b7b4)), closes [#37](https://github.com/cenk1cenk2/listr2/issues/37)
+- **deps:** remove trivial deps ([de8dec0](https://github.com/cenk1cenk2/listr2/commit/de8dec09b45fa09ddc8afb1d7742846ba3b620dd))
+- **deps:** remove unnecassary types ([b37f416](https://github.com/cenk1cenk2/listr2/commit/b37f416fbed04d531b1dca5495d7008ecedf4ab5))
+- **deps:** updated deps to latest ([c4ad38f](https://github.com/cenk1cenk2/listr2/commit/c4ad38f32510d598a4c93d19ca517eef81c841a2))
+- **stream:** fixed streams added example ([614d89f](https://github.com/cenk1cenk2/listr2/commit/614d89fc1b64e7a586a7a590233d4dce1696b7b4)), closes [#37](https://github.com/cenk1cenk2/listr2/issues/37)
 
 # [2.1.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.4...v2.1.0-beta.5) (2020-06-03)
 
-
 ### Bug Fixes
 
-* **prompt:** types ([110130a](https://github.com/cenk1cenk2/listr2/commit/110130a6c0a6b3443362cd8fc018e18b6ef5fbbc))
+- **prompt:** types ([110130a](https://github.com/cenk1cenk2/listr2/commit/110130a6c0a6b3443362cd8fc018e18b6ef5fbbc))
 
 # [2.1.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.3...v2.1.0-beta.4) (2020-06-02)
 
-
 ### Bug Fixes
 
-* **prompt:** enquirer to peer ([cae55e9](https://github.com/cenk1cenk2/listr2/commit/cae55e962faf54f3ddadc6c220567a316c8ee15b))
+- **prompt:** enquirer to peer ([cae55e9](https://github.com/cenk1cenk2/listr2/commit/cae55e962faf54f3ddadc6c220567a316c8ee15b))
 
 # [2.1.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.2...v2.1.0-beta.3) (2020-06-02)
 
-
 ### Bug Fixes
 
-* **prompts:** fixed type for array prompts, added name as mandatory ([a08b1e4](https://github.com/cenk1cenk2/listr2/commit/a08b1e4a9b80fd542384ef3a5dbc111dead0bd6c))
+- **prompts:** fixed type for array prompts, added name as mandatory ([a08b1e4](https://github.com/cenk1cenk2/listr2/commit/a08b1e4a9b80fd542384ef3a5dbc111dead0bd6c))
 
 # [2.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.1...v2.1.0-beta.2) (2020-06-02)
 
-
 ### Features
 
-* **prompt:** make prompt module optional, be more compatible to underlying enqurier ([64cecc1](https://github.com/cenk1cenk2/listr2/commit/64cecc10049f5802a6e7a71071ec698e1226bdc2)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
-* **prompt:** use enquirer directly ([b34e9d0](https://github.com/cenk1cenk2/listr2/commit/b34e9d0b2ef9b0cbf723759c5a236eca8ac86af0)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
+- **prompt:** make prompt module optional, be more compatible to underlying enqurier ([64cecc1](https://github.com/cenk1cenk2/listr2/commit/64cecc10049f5802a6e7a71071ec698e1226bdc2)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
+- **prompt:** use enquirer directly ([b34e9d0](https://github.com/cenk1cenk2/listr2/commit/b34e9d0b2ef9b0cbf723759c5a236eca8ac86af0)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
 
 # [2.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0-beta.1) (2020-05-25)
 
-
 ### Bug Fixes
 
-* **figures:** made microsoft icons to use the fancy ones, even though it may fail in some cases ([f0e5817](https://github.com/cenk1cenk2/listr2/commit/f0e581706e59d9b96da9bd050a1ad3638b59c2aa)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
-
+- **figures:** made microsoft icons to use the fancy ones, even though it may fail in some cases ([f0e5817](https://github.com/cenk1cenk2/listr2/commit/f0e581706e59d9b96da9bd050a1ad3638b59c2aa)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
 
 ### Features
 
-* **renderer:** added hook and stdout support ([bd73c68](https://github.com/cenk1cenk2/listr2/commit/bd73c68b9eb21cd100a266ce05ba36af0c727a4f)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
+- **renderer:** added hook and stdout support ([bd73c68](https://github.com/cenk1cenk2/listr2/commit/bd73c68b9eb21cd100a266ce05ba36af0c727a4f)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
 
 ## [2.0.4](https://github.com/cenk1cenk2/listr2/compare/v2.0.3...v2.0.4) (2020-05-20)
 
-
 ### Bug Fixes
 
-* **types:** match version of uuid ([33a1e80](https://github.com/cenk1cenk2/listr2/commit/33a1e8007a82015171ca55c86a71fbbc017d6e4d))
-* **uuid:** added implicit tests for 13.6, rollback to uuid working version ([75ade63](https://github.com/cenk1cenk2/listr2/commit/75ade636b63606ee243e2591e60e8e72b5f1c1ca)), closes [#28](https://github.com/cenk1cenk2/listr2/issues/28)
+- **types:** match version of uuid ([33a1e80](https://github.com/cenk1cenk2/listr2/commit/33a1e8007a82015171ca55c86a71fbbc017d6e4d))
+- **uuid:** added implicit tests for 13.6, rollback to uuid working version ([75ade63](https://github.com/cenk1cenk2/listr2/commit/75ade636b63606ee243e2591e60e8e72b5f1c1ca)), closes [#28](https://github.com/cenk1cenk2/listr2/issues/28)
 
 ## [2.0.3](https://github.com/cenk1cenk2/listr2/compare/v2.0.2...v2.0.3) (2020-05-19)
 
-
 ### Bug Fixes
 
-* **deps:** exchange uuid with nanoid ([2048b3d](https://github.com/cenk1cenk2/listr2/commit/2048b3d953ab5cab0cf67ffe26fa24fb987e6b6e)), closes [#25](https://github.com/cenk1cenk2/listr2/issues/25)
+- **deps:** exchange uuid with nanoid ([2048b3d](https://github.com/cenk1cenk2/listr2/commit/2048b3d953ab5cab0cf67ffe26fa24fb987e6b6e)), closes [#25](https://github.com/cenk1cenk2/listr2/issues/25)
 
 ## [2.0.2](https://github.com/cenk1cenk2/listr2/compare/v2.0.1...v2.0.2) (2020-05-18)
 
-
 ### Bug Fixes
 
-* **deps:** rollback uuid to ^7 ([9ba257d](https://github.com/cenk1cenk2/listr2/commit/9ba257d9b19ce4534982baac358096fedb21f2b1)), closes [#25](https://github.com/cenk1cenk2/listr2/issues/25)
+- **deps:** rollback uuid to ^7 ([9ba257d](https://github.com/cenk1cenk2/listr2/commit/9ba257d9b19ce4534982baac358096fedb21f2b1)), closes [#25](https://github.com/cenk1cenk2/listr2/issues/25)
 
 ## [2.0.1](https://github.com/cenk1cenk2/listr2/compare/v2.0.0...v2.0.1) (2020-05-06)
 
-
 ### Bug Fixes
 
-* **manager:** fixed manager types ([10d74e9](https://github.com/cenk1cenk2/listr2/commit/10d74e9f481fee689f103a08c42c3c60d0fb2bc1)), closes [#22](https://github.com/cenk1cenk2/listr2/issues/22)
-* **manager:** fixed types for manager ([033c7d1](https://github.com/cenk1cenk2/listr2/commit/033c7d180431a7039c9c38a8537b43fc5615f50e))
+- **manager:** fixed manager types ([10d74e9](https://github.com/cenk1cenk2/listr2/commit/10d74e9f481fee689f103a08c42c3c60d0fb2bc1)), closes [#22](https://github.com/cenk1cenk2/listr2/issues/22)
+- **manager:** fixed types for manager ([033c7d1](https://github.com/cenk1cenk2/listr2/commit/033c7d180431a7039c9c38a8537b43fc5615f50e))
 
 # [2.0.0](https://github.com/cenk1cenk2/listr2/compare/v1.3.12...v2.0.0) (2020-05-06)
 
-
 ### Bug Fixes
 
-* **default-renderer:** added back cli truncate ([22132a5](https://github.com/cenk1cenk2/listr2/commit/22132a5b022ef58a4a463e48af062f54631a3b9d))
-* **error-collection:** fixed error collection on non-failing tasks ([4239094](https://github.com/cenk1cenk2/listr2/commit/4239094a7947cf60d8d030c45aaf75710637a40c))
-* **manager:** added error context ([4f8f387](https://github.com/cenk1cenk2/listr2/commit/4f8f387a576bc83947fd90e83f27de827b9f9d08))
-* **manager:** fixed manager ([57dcd7f](https://github.com/cenk1cenk2/listr2/commit/57dcd7f8362589f2a43b645920cf158c2cb8d591))
-* **types:** fix ([b3ee9be](https://github.com/cenk1cenk2/listr2/commit/b3ee9be0f895e8927c825b3993cc847d360e709d))
-* fixed types for isolated renderer options ([4521832](https://github.com/cenk1cenk2/listr2/commit/452183240c55984db57551082aa049e4799a2425))
-
+- **default-renderer:** added back cli truncate ([22132a5](https://github.com/cenk1cenk2/listr2/commit/22132a5b022ef58a4a463e48af062f54631a3b9d))
+- **error-collection:** fixed error collection on non-failing tasks ([4239094](https://github.com/cenk1cenk2/listr2/commit/4239094a7947cf60d8d030c45aaf75710637a40c))
+- **manager:** added error context ([4f8f387](https://github.com/cenk1cenk2/listr2/commit/4f8f387a576bc83947fd90e83f27de827b9f9d08))
+- **manager:** fixed manager ([57dcd7f](https://github.com/cenk1cenk2/listr2/commit/57dcd7f8362589f2a43b645920cf158c2cb8d591))
+- **types:** fix ([b3ee9be](https://github.com/cenk1cenk2/listr2/commit/b3ee9be0f895e8927c825b3993cc847d360e709d))
+- fixed types for isolated renderer options ([4521832](https://github.com/cenk1cenk2/listr2/commit/452183240c55984db57551082aa049e4799a2425))
 
 ### Features
 
-* **release:** ready to update to new version ([50fb773](https://github.com/cenk1cenk2/listr2/commit/50fb773128073b1ec312fea3121a2f93e9270271)), closes [#19](https://github.com/cenk1cenk2/listr2/issues/19) [#18](https://github.com/cenk1cenk2/listr2/issues/18)
-* **renderer-options:** started to isolate the renderer options instead of writing them directly ([95f7f87](https://github.com/cenk1cenk2/listr2/commit/95f7f8749445e45a90d3f4346eb4cd0625e9593e))
-
+- **release:** ready to update to new version ([50fb773](https://github.com/cenk1cenk2/listr2/commit/50fb773128073b1ec312fea3121a2f93e9270271)), closes [#19](https://github.com/cenk1cenk2/listr2/issues/19) [#18](https://github.com/cenk1cenk2/listr2/issues/18)
+- **renderer-options:** started to isolate the renderer options instead of writing them directly ([95f7f87](https://github.com/cenk1cenk2/listr2/commit/95f7f8749445e45a90d3f4346eb4cd0625e9593e))
 
 ### BREAKING CHANGES
 
-* **release:** - Renderer Options
-  - Reason: *This was changed because of having all the renderer options that are mangled together and not respecting which renderer has been choosen. It also allows for custom renderers to have their own logic by exposing their options in a single class file rather than expecting that functionality from the project itself.*
+- **release:** - Renderer Options
+  - Reason: _This was changed because of having all the renderer options that are mangled together and not respecting which renderer has been choosen. It also allows for custom renderers to have their own logic by exposing their options in a single class file rather than expecting that functionality from the project itself._
   - Before <v1.3.12:
   ```typescript
     new Listr<Ctx>([
@@ -512,27 +430,34 @@ rendering method is almost completely revised.
   ```
   - After <v1.3.12:
   ```typescript
-    new Listr<Ctx>([
+  new Listr<Ctx>(
+    [
+      {
+        task: async (ctx, task): Promise<void> => {},
+        options: { persistentOutput: true } // per task based options are moved to their own key
+      }
+    ],
     {
-      task: async (ctx, task): Promise<void> => {
-      },
-      options: { persistentOutput: true } // per task based options are moved to their own key
+      concurrent: [secure],
+      rendererOptions: { collapse: [secure] }
+      // global renderer options moved to their own key
     }
-  ], {
-    concurrent: [secure],
-    rendererOptions: { collapse: [secure] }
-     // global renderer options moved to their own key
-    })
+  )
   ```
-- Some of the types has been changed.
-  - Reason: *Some of the types had to be changed due to compatability reasons with new autocomplete functionality of the dynamic renderer options.*
+
+* Some of the types has been changed.
+
+  - Reason: _Some of the types had to be changed due to compatability reasons with new autocomplete functionality of the dynamic renderer options._
   - Before <v1.3.12:
+
   ```typescript
   let task: Listr<Ctx>
 
   task = new Listr(..., { renderer: 'verbose' })
   ```
+
   - After <v1.3.12:
+
   ```typescript
   // this without the indication of verbose will now fail due to default renderer being 'default' for autocompleting goodness of the IDEs.
   // So you have to overwrite it manually to 'verbose'.
@@ -541,8 +466,9 @@ rendering method is almost completely revised.
 
   task = new Listr(..., { renderer: 'verbose' })
   ```
-- Test renderer removed.
-  - Reason: *On non-tty environments that the verbose renderer is intended for there is no need to show icons. Since icons are now optional with the default being disabled for the verbose renderer, there is no need for a renderer that does have the same functionality since verbose and test are now basically the same thing. Verbose seemed a better name then test, so I had to remove test from the equation.*
+
+* Test renderer removed.
+  - Reason: _On non-tty environments that the verbose renderer is intended for there is no need to show icons. Since icons are now optional with the default being disabled for the verbose renderer, there is no need for a renderer that does have the same functionality since verbose and test are now basically the same thing. Verbose seemed a better name then test, so I had to remove test from the equation._
   - Before <v1.3.12:
   ```typescript
   const task = new Listr(..., { renderer: 'test' })
@@ -554,33 +480,28 @@ rendering method is almost completely revised.
 
 ## [1.3.12](https://github.com/cenk1cenk2/listr2/compare/v1.3.11...v1.3.12) (2020-04-30)
 
-
 ### Bug Fixes
 
-* **ignore:** note to self dont do late night commits ([56ff7b7](https://github.com/cenk1cenk2/listr2/commit/56ff7b79b010606c593348e6b27fcd455d1c2dcd))
+- **ignore:** note to self dont do late night commits ([56ff7b7](https://github.com/cenk1cenk2/listr2/commit/56ff7b79b010606c593348e6b27fcd455d1c2dcd))
 
 ## [1.3.11](https://github.com/cenk1cenk2/listr2/compare/v1.3.10...v1.3.11) (2020-04-30)
 
-
 ### Bug Fixes
 
-* **build:** ignored tests files ([16d8d93](https://github.com/cenk1cenk2/listr2/commit/16d8d9336fabbfb311a821744707e8ae55e80334))
+- **build:** ignored tests files ([16d8d93](https://github.com/cenk1cenk2/listr2/commit/16d8d9336fabbfb311a821744707e8ae55e80334))
 
 ## [1.3.10](https://github.com/cenk1cenk2/listr2/compare/v1.3.9...v1.3.10) (2020-04-30)
 
-
 ### Bug Fixes
 
-* **tests:** add tests to npm ignore ([83cd9d3](https://github.com/cenk1cenk2/listr2/commit/83cd9d3c1270dc8f48458d329b01ed638eff6340))
+- **tests:** add tests to npm ignore ([83cd9d3](https://github.com/cenk1cenk2/listr2/commit/83cd9d3c1270dc8f48458d329b01ed638eff6340))
 
 ## [1.3.9](https://github.com/cenk1cenk2/listr2/compare/v1.3.8...v1.3.9) (2020-04-30)
 
-
 ### Bug Fixes
 
-* added e2e and unit tests, not comprehensive ([4d3076b](https://github.com/cenk1cenk2/listr2/commit/4d3076b80c2adb7a22388178f3e31690dec37534))
-
+- added e2e and unit tests, not comprehensive ([4d3076b](https://github.com/cenk1cenk2/listr2/commit/4d3076b80c2adb7a22388178f3e31690dec37534))
 
 ### Reverts
 
-* **task:** revert back to enable boolean for not breaking compatability ([45b6c32](https://github.com/cenk1cenk2/listr2/commit/45b6c32fe451e138bad36f95d4d9ade1b49f45a2))
+- **task:** revert back to enable boolean for not breaking compatability ([45b6c32](https://github.com/cenk1cenk2/listr2/commit/45b6c32fe451e138bad36f95d4d9ade1b49f45a2))

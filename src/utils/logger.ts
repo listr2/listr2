@@ -1,47 +1,47 @@
 /* eslint-disable no-console */
 import figures from 'figures'
 
-import { logLevels } from './logger.constants'
+import { LogLevels } from './logger.constants'
+import { LoggerOptions } from './logger.interface'
 import chalk from '@utils/chalk'
 
-export interface LoggerOptions {
-  useIcons: boolean
-}
-
+/**
+ * A internal logger for using in the verbose renderer mostly.
+ */
 export class Logger {
   constructor (private options?: LoggerOptions) {}
 
   public fail (message: string): void {
-    message = this.parseMessage(logLevels.fail, message)
+    message = this.parseMessage(LogLevels.fail, message)
     console.error(message)
   }
 
   public skip (message: string): void {
-    message = this.parseMessage(logLevels.skip, message)
+    message = this.parseMessage(LogLevels.skip, message)
     console.info(message)
   }
 
   public success (message: string): void {
-    message = this.parseMessage(logLevels.success, message)
+    message = this.parseMessage(LogLevels.success, message)
     console.log(message)
   }
 
   public data (message: string): void {
-    message = this.parseMessage(logLevels.data, message)
+    message = this.parseMessage(LogLevels.data, message)
     console.info(message)
   }
 
   public start (message: string): void {
-    message = this.parseMessage(logLevels.start, message)
+    message = this.parseMessage(LogLevels.start, message)
     console.log(message)
   }
 
   public title (message: string): void {
-    message = this.parseMessage(logLevels.title, message)
+    message = this.parseMessage(LogLevels.title, message)
     console.info(message)
   }
 
-  protected parseMessage (level: logLevels, message: string): string {
+  protected parseMessage (level: LogLevels, message: string): string {
     // parse multi line messages
     let multiLineMessage: string[]
 
@@ -64,7 +64,7 @@ export class Logger {
     return message
   }
 
-  protected logColoring ({ level, message }: { level: logLevels, message: string }): string {
+  protected logColoring ({ level, message }: { level: LogLevels, message: string }): string {
     let icon: string
 
     // do the coloring
@@ -72,8 +72,7 @@ export class Logger {
       return input
     }
     switch (level) {
-    case logLevels.fail:
-      /* istanbul ignore if */
+    case LogLevels.fail:
       if (this.options?.useIcons) {
         coloring = chalk.red
         icon = figures.main.cross
@@ -82,8 +81,7 @@ export class Logger {
       }
 
       break
-    case logLevels.skip:
-      /* istanbul ignore if */
+    case LogLevels.skip:
       if (this.options?.useIcons) {
         coloring = chalk.yellow
         icon = figures.main.arrowDown
@@ -91,8 +89,7 @@ export class Logger {
         icon = '[SKIPPED]'
       }
       break
-    case logLevels.success:
-      /* istanbul ignore if */
+    case LogLevels.success:
       if (this.options?.useIcons) {
         coloring = chalk.green
         icon = figures.main.tick
@@ -100,24 +97,21 @@ export class Logger {
         icon = '[SUCCESS]'
       }
       break
-    case logLevels.data:
-      /* istanbul ignore if */
+    case LogLevels.data:
       if (this.options?.useIcons) {
         icon = figures.main.arrowRight
       } else {
         icon = '[DATA]'
       }
       break
-    case logLevels.start:
-      /* istanbul ignore if */
+    case LogLevels.start:
       if (this.options?.useIcons) {
         icon = figures.main.pointer
       } else {
         icon = '[STARTED]'
       }
       break
-    case logLevels.title:
-      /* istanbul ignore if */
+    case LogLevels.title:
       if (this.options?.useIcons) {
         icon = figures.main.checkboxOn
       } else {
