@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/cenk1cenk2/listr2/compare/v3.2.0...v3.2.1) (2020-10-24)
+
+
+### Bug Fixes
+
+* improve tests and disable the unnecassary cases ([929a616](https://github.com/cenk1cenk2/listr2/commit/929a6164444d7790f1a4bdd058378fc50b76e28d))
+
 # [3.2.0](https://github.com/cenk1cenk2/listr2/compare/v3.1.1...v3.2.0) (2020-10-24)
 
 
