@@ -12,15 +12,17 @@ import {
   ListrTask,
   ListrTaskObject,
   ListrTaskWrapper,
-  PromptError,
-  StateConstants
+  PromptError
 } from '@interfaces/listr.interface'
-import { stateConstants } from '@interfaces/state.constants'
+import { StateConstants } from '@interfaces/state.constants'
 import { Listr } from '@root/index'
 import { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
 import { generateUUID } from '@utils/uuid'
 
+/**
+ * Create a task from the given set of variables and make it runnable.
+ */
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> implements ListrTaskObject<ListrContext, Renderer> {
   public id: ListrTaskObject<Ctx, Renderer>['id']
   public task: ListrTaskObject<Ctx, Renderer>['task']
@@ -69,8 +71,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     // cancel the subtasks if this has already failed
     if (this.hasSubtasks() && this.hasFailed()) {
       for (const subtask of this.subtasks as Task<any, any>[]) {
-        if (subtask.state === stateConstants.PENDING) {
-          subtask.state$ = stateConstants.FAILED
+        if (subtask.state === StateConstants.PENDING) {
+          subtask.state$ = StateConstants.FAILED
         }
       }
     }
@@ -124,19 +126,19 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   }
 
   isPending (): boolean {
-    return this.state === stateConstants.PENDING
+    return this.state === StateConstants.PENDING
   }
 
   isSkipped (): boolean {
-    return this.state === stateConstants.SKIPPED
+    return this.state === StateConstants.SKIPPED
   }
 
   isCompleted (): boolean {
-    return this.state === stateConstants.COMPLETED
+    return this.state === StateConstants.COMPLETED
   }
 
   hasFailed (): boolean {
-    return this.state === stateConstants.FAILED
+    return this.state === StateConstants.FAILED
   }
 
   isEnabled (): boolean {
@@ -211,7 +213,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
     // finish the task first
     // Promise.resolve()
-    this.state$ = stateConstants.PENDING
+    this.state$ = StateConstants.PENDING
 
     // check if this function wants to be skipped
     let skipped: boolean | string
@@ -228,7 +230,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         this.message$ = { skip: 'Skipped task without a title.' }
       }
 
-      this.state$ = stateConstants.SKIPPED
+      this.state$ = StateConstants.SKIPPED
       return
     }
 
@@ -238,11 +240,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
       if (this.isPending()) {
         this.message$ = { duration: Date.now() - startTime }
-        this.state$ = stateConstants.COMPLETED
+        this.state$ = StateConstants.COMPLETED
       }
     } catch (error) {
       // mark task as failed
-      this.state$ = stateConstants.FAILED
+      this.state$ = StateConstants.FAILED
 
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {

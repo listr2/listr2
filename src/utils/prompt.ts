@@ -2,13 +2,20 @@ import Enquirer from 'enquirer'
 
 import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
 import { PromptError } from '@interfaces/listr.interface'
-import { stateConstants } from '@root/interfaces/state.constants'
-import { TaskWrapper } from '@root/lib/task-wrapper'
+import { StateConstants } from '@interfaces/state.constants'
+import { TaskWrapper } from '@lib/task-wrapper'
 
+/**
+ * Create a new prompt with Enquirer externally.
+ * This extends enquirer so you dont have to give a name to single prompts and such so it is also
+ * useful to use externally.
+ * @param this
+ * @param options
+ * @param settings
+ */
 export async function createPrompt (this: TaskWrapper<any, any>, options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
-  /* istanbul ignore if */
   if (settings?.cancelCallback) {
     cancelCallback = settings.cancelCallback
   } else {
@@ -16,7 +23,6 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
   }
 
   // assign default if there is single prompt
-  /* istanbul ignore else if */
   if (!Array.isArray(options)) {
     options = [ { ...options, name: 'default' } ]
   } else if (options.length === 1) {
@@ -44,7 +50,7 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
   } else {
     try {
       enquirer = new (await import('enquirer')).default()
-    } catch (e) /* istanbul ignore next */ {
+    } catch (e) {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
       throw new Error(e)
     }
@@ -60,7 +66,7 @@ export async function createPrompt (this: TaskWrapper<any, any>, options: Prompt
     enquirer.on('submit', () => this.task.prompt = undefined)
 
     this.task.subscribe((event) => {
-      if (event.type === 'STATE' && event.data === stateConstants.SKIPPED) {
+      if (event.type === 'STATE' && event.data === StateConstants.SKIPPED) {
         if (this.task.prompt && !(this.task.prompt instanceof PromptError)) {
           this.task.prompt.submit()
         }
@@ -96,9 +102,9 @@ function defaultCancelCallback (settings: PromptSettings): string | Error | Prom
 
   if (this instanceof TaskWrapper) {
     this.task.prompt = new PromptError(errorMsg)
-  } /* istanbul ignore next */ else if (settings?.error !== false) {
+  } else if (settings?.error !== false) {
     throw new Error(errorMsg)
-  } /* istanbul ignore next */ else {
+  } else {
     return errorMsg
   }
 }

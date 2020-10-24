@@ -1,5 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export enum stateConstants {
+/** Available task states. */
+export enum StateConstants {
   'PENDING' = 'PENDING',
   'COMPLETED' = 'COMPLETED',
   'FAILED' = 'FAILED',

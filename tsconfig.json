@@ -7,7 +7,7 @@
     "resolveJsonModule": true,
     "declaration": true,
     "sourceMap": false,
-    "removeComments": true,
+    "removeComments": false,
     "noUnusedLocals": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

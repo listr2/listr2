@@ -1,6 +1,11 @@
 import { Listr } from './listr'
 import { ListrBaseClassOptions, ListrContext, ListrError, ListrGetRendererClassFromValue, ListrRendererValue, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
 
+/**
+ * Creates a new Listr2 task manager.
+ *
+ * Useful for creating a single instace of Listr2 with pre-set settings.
+ */
 export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
   public err: ListrError[] = []
   private tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
@@ -83,9 +88,7 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
   }
 
   // general utils
-  /* istanbul ignore next */
   public getRuntime (pipetime: number): string {
-    /* istanbul ignore next */
     return `${Math.round(Date.now() - pipetime) / 1000}s`
   }
 }

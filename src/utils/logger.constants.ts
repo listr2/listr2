@@ -1,5 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export enum logLevels {
+/** Default loglevels for the logger */
+export enum LogLevels {
   silent = 'silent',
   fail = 'fail',
   skip = 'skip',
