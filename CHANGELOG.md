@@ -1,3 +1,15 @@
+# [3.2.0](https://github.com/cenk1cenk2/listr2/compare/v3.1.1...v3.2.0) (2020-10-24)
+
+
+### Bug Fixes
+
+* fixed a tiny bug with newlistr ([51e4071](https://github.com/cenk1cenk2/listr2/commit/51e4071dd11c09d5cec4c0fafbf3368a7b165af7))
+
+
+### Features
+
+* Implemented some jsdoc style docs ([788fb99](https://github.com/cenk1cenk2/listr2/commit/788fb995da5a82a56d47d473dd3ed98a8c7cc457)), closes [#172](https://github.com/cenk1cenk2/listr2/issues/172)
+
 ## [3.1.1](https://github.com/cenk1cenk2/listr2/compare/v3.1.0...v3.1.1) (2020-09-22)
 
 ### Bug Fixes
