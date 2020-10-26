@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/cenk1cenk2/listr2/compare/v3.2.1...v3.2.2) (2020-10-26)
+
+
+### Bug Fixes
+
+* **prompt:** update task wrapper as this requirement for external use ([f0c0146](https://github.com/cenk1cenk2/listr2/commit/f0c01466d033a70560dd046362623b2fc4022da9))
+
 ## [3.2.1](https://github.com/cenk1cenk2/listr2/compare/v3.2.0...v3.2.1) (2020-10-24)
 
 
