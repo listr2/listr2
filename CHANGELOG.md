@@ -1,3 +1,10 @@
+## [3.2.3](https://github.com/cenk1cenk2/listr2/compare/v3.2.2...v3.2.3) (2020-11-26)
+
+
+### Bug Fixes
+
+* update deps and fix typescript resolve ([836b8fd](https://github.com/cenk1cenk2/listr2/commit/836b8fde33a0d4bb8b2995ef3bad72dbf25a2a75))
+
 ## [3.2.2](https://github.com/cenk1cenk2/listr2/compare/v3.2.1...v3.2.2) (2020-10-26)
 
 
