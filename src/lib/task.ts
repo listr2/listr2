@@ -191,7 +191,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
             this.output$ = data.toString()
           })
           result.on('error', (error: Error) => reject(error))
-          result.on('end', () => resolve())
+          result.on('end', () => resolve(null))
         })
       } else if (result instanceof Observable) {
         // Detect Observable
