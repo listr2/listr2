@@ -271,10 +271,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/cz-cc@^1.2.7":
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.2.7.tgz#90ccf65c45e850828d945e36077047eb66ae4a7d"
-  integrity sha512-cMWBT/jSwXBhqQ4dfbKFkgaDBjdSiq8JSaU7iJtNGBcZz2rcvotVwD0jp98q6e+j/HBKhdZ5AGhZSJ7r1ksBtw==
+"@cenk1cenk2/cz-cc@^1.2.8":
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.2.8.tgz#31ad090d262721dbdec24e5be75576369e6df2cf"
+  integrity sha512-RdrIRKOQ0poB4aTUHOImuFW4yS6WIaMDYjgameIARi/bR3BUmYn9Cex1+ugTBte2KueG9AxoOSInifyK2OD/Xw==
   dependencies:
     chalk "^4.1.0"
     commitizen "^4.2.2"
@@ -283,7 +283,7 @@
     enquirer-editor "^1.0.0"
     enquirer-prompt-editor "^2.0.1"
     find-git-root "^1.0.4"
-    listr2 "^3.2.2"
+    listr2 "^3.2.3"
     lodash.map "^4.6.0"
     word-wrap "^1.2.3"
   optionalDependencies:
@@ -3682,6 +3682,20 @@ listr2@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.2.2.tgz#d20feb75015e506992b55af40722ba1af168b8f1"
   integrity sha512-AajqcZEUikF2ioph6PfH3dIuxJclhr3i3kHgTOP0xeXdWQohrvJAAmqVcV43/GI987HFY/vzT73jYXoa4esDHg==
+  dependencies:
+    chalk "^4.1.0"
+    cli-truncate "^2.1.0"
+    figures "^3.2.0"
+    indent-string "^4.0.0"
+    log-update "^4.0.0"
+    p-map "^4.0.0"
+    rxjs "^6.6.3"
+    through "^2.3.8"
+
+listr2@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.2.3.tgz#ef9e0d790862f038dde8a9837be552b1adfd1c07"
+  integrity sha512-vUb80S2dSUi8YxXahO8/I/s29GqnOL8ozgHVLjfWQXa03BNEeS1TpBLjh2ruaqq5ufx46BRGvfymdBSuoXET5w==
   dependencies:
     chalk "^4.1.0"
     cli-truncate "^2.1.0"
