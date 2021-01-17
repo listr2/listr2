@@ -3,6 +3,7 @@ import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
 import { EOL } from 'os'
+import cliWrap from 'wrap-ansi'
 
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import chalk from '@utils/chalk'
@@ -78,6 +79,19 @@ export class DefaultRenderer implements ListrRenderer {
      * @default false
      */
     showTimer?: boolean
+    /**
+     * removes empty lines from the data output
+     *
+     * @default true
+     */
+    removeEmptyLines?: boolean
+    /**
+     * formats data output depending on your requirements.
+     * log-update mostly breaks if there is no wrap, so there is many options to choose your preference
+     *
+     * @default 'truncate'
+     */
+    formatOutput?: 'truncate' | 'wrap' | 'wordWrap'
   } = {
     indentation: 2,
     clearOutput: false,
@@ -89,7 +103,9 @@ export class DefaultRenderer implements ListrRenderer {
     collapseErrors: true,
     showErrorMessage: true,
     lazy: false,
-    showTimer: false
+    showTimer: false,
+    removeEmptyLines: true,
+    formatOutput: 'truncate'
   }
 
   /** per task options for the default renderer */
@@ -412,22 +428,47 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
-    if (typeof data === 'string' && data.trim() !== '') {
-      // indent and color
-      data
-        .split(EOL)
-        .filter(Boolean)
-        .forEach((line, i) => {
-          const icon = i === 0 ? this.getSymbol(task, true) : ' '
-          output.push(this.formatString(line, icon, level + 1))
-        })
+    if (typeof data === 'string') {
+      const icon = this.getSymbol(task, true)
+
+      output.push(this.formatString(data, icon, level + 1))
     }
 
     return output
   }
 
   private formatString (string: string, icon: string, level: number): string {
-    return `${cliTruncate(indentString(`${icon} ${string.trim()}`, level * this.options.indentation), process.stdout.columns ?? 80)}`
+    string = `${icon} ${string.trim()}`
+    const columns = process.stdout.columns ?? 80
+
+    switch (this.options.formatOutput) {
+    case 'truncate':
+      string = cliTruncate(string, columns)
+      break
+    case 'wrap':
+      string = cliWrap(string, columns, { hard: true, trim: false })
+      break
+    case 'wordWrap':
+      string = cliWrap(string, columns, {
+        hard: true,
+        wordWrap: true,
+        trim: false
+      })
+      break
+    default:
+      throw new Error('Format option for the renderer is wrong.')
+    }
+
+    // indent the other lines since there is a icon in the first one
+    let parsedString = string.split(EOL).map((line, i) => {
+      return i > 0 ? '  ' + line : line
+    })
+
+    if (this.options.removeEmptyLines) {
+      parsedString = string.split(EOL).filter(Boolean)
+    }
+
+    return indentString(parsedString.join(EOL), level * this.options.indentation)
   }
 
   // eslint-disable-next-line complexity

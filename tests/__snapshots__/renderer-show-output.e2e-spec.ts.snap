@@ -169,43 +169,20 @@ Array [
     "[2K[1A[2K[G❯ This task will execute.
   › This is along long long long long long long long long long long long long lo
 n…
-    long long long long long long long long long long long long long long long l
-o…
-    long long long long long long long long long long long long long long long l
-o…
-    long long long long long long long long long long long long long long long l
-o…
-    long long long long long long long long long long long long long long long l
-o…
-    multi line output.
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
   › This is along long long long long long long long long long long long long lo
 n…
-    long long long long long long long long long long long long long long long l
-o…
-    long long long long long long long long long long long long long long long l
-o…
-    long long long long long long long long long long long long long long long l
-o…
-    long long long long long long long long long long long long long long long l
-o…
-    multi line output.
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+    "[2K[1A[2K[1A[2K[1A[2K[G",
   ],
   Array [
     "✔ This task will execute.
   › This is along long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long long lo…
-    long long long long long long long long long long long long long long long lo…
-    long long long long long long long long long long long long long long long lo…
-    long long long long long long long long long long long long long long long lo…
-    multi line output.
 ",
   ],
 ]
