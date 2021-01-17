@@ -6,5 +6,6 @@ export enum LogLevels {
   success = 'success',
   data = 'data',
   start = 'start',
-  title = 'title'
+  title = 'title',
+  rollback = 'rollback'
 }

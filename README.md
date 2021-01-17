@@ -108,21 +108,44 @@ try {
 ### Tasks
 
 ```typescript
-export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
-  // A title can be given or omitted. For default renderer if the title is omitted,
+export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
+  /**
+   * Title of the task.
+   *
+   * Give this task a title if you want to track it by name in the current renderer.
+   * Tasks without a title will tend to hide themselves in the default renderer and useful for
+   * things like prompts and such.
+   */
   title?: string
-  // A task can be a sync or async function that returns a string, readable stream or an observable or plain old void
-  // if it does actually return string, readable stream or an observable, task output will be refreshed with each data push
+  /**
+   * The task itself.
+   *
+   * Task can be a sync or async function, an Observable or a Stream.
+   */
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
-  // to skip the task programmatically, skip can be a sync or async function that returns a boolean or string
-  // if string is returned it will be showed as the skip message, else the task title will be used
+  /**
+   * Runs a specific event if the current task or any of the subtasks has failed.
+   * Mostly useful for rollback purposes for subtasks.
+   */
+  rollback?: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  /**
+   * Skip this task depending on the context.
+   *
+   * The function that has been passed in will be evaluated at the runtime when task tries to initially run.
+   */
   skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
-  // to enable the task programmatically, this will show no messages comparing to skip and it will hide the tasks enabled depending on the context
-  // enabled can be external boolean, a sync or async function that returns a boolean
-  // pay in mind that context enabled functionality might depend on other functions to finish first, therefore the list shall be treated as a async function
+  /**
+   * Enable a task depending on the context.
+   *
+   * The function that has been passed in will be evaluated at the initial creation of the Listr class.
+   */
   enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
-  // this will change depending on the available options on the renderer
-  // these renderer options are per task basis and does not affect global options
+  /**
+   * Per task options, depending on the selected renderer.
+   *
+   * This options depend on the implementation of selected renderer. If selected renderer has no options it will
+   * be displayed as never.
+   */
   options?: ListrGetRendererTaskOptions<Renderer>
 }
 ```
@@ -130,40 +153,61 @@ export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
 ### Options
 
 ```typescript
+/**
+ * Options to set the behavior of this base task.
+ */
 export interface ListrOptions<Ctx = ListrContext> {
-  // how many tasks can be run at the same time.
-  // false or 1 for synchronous task list, true or Infinity for compelete parallel operation, a number for limitting tasks that can run at the same time
-  // defaults to false
+  /**
+   * Concurrency will set how many tasks will be run in parallel.
+   *
+   * @default false > Default is to run everything synchronously.
+   *
+   * `true` will set it to `Infinity`, `false` will set it to synchronous.
+   * If you pass in a `number` it will limit it at that number.
+   */
   concurrent?: boolean | number
-  // it will silently fail or throw out an error
-  // defaults to false
+  /**
+   * Determine the behavior of exiting on errors.
+   *
+   * @default true > exit on any error comming from the tasks.
+   */
   exitOnError?: boolean
-  // inject a context from another operation
-  // defaults to any
+  /**
+   * Determine the behaviour of exiting after rollback actions.
+   *
+   * @default true > exit after rolling back tasks
+   */
+  exitAfterRollback?: boolean
+  /**
+   * To inject a context through this options wrapper. Mostly useful when combined with manager.
+   * @default any
+   */
   ctx?: Ctx
-  // to have graceful exit on signal terminate and to inform the renderer all the tasks awaiting or processing are failed
-  // defaults to true
+  /**
+   * By default, Listr2 will track SIGINIT signal to update the renderer one last time before compeletely failing.
+   * @default true
+   */
   registerSignalListeners?: boolean
-  // select the renderer or inject a class yourself
-  // defaults to 'default' which is a updating renderer
-  renderer?: 'default' | 'verbose' | 'silent' | ListrRendererFactory
-  // renderer options depends on the selected renderer
-  rendererOptions?: ListrGetRendererOptions<T>
-  // renderer will fallback to the nonTTYRenderer on non-tty environments as the name suggest
-  // defaults to verbose
-  nonTTYRenderer?: 'default' | 'verbose' | 'silent' | ListrRendererFactory
-  // options for the non-tty renderer
-  nonTTYrendererOptions?: ListrGetRendererOptions<T>
-  // instead of creating a custom method and overwriting the renderer value, you can create a function or pass in a boolean to evaluate when to fallback to nonTTYRenderer
+  /**
+   * Determine the certain condition required to use the non-tty renderer.
+   * @default null > handled internally
+   */
   rendererFallback?: boolean | (() => boolean)
-  // same as fallback this time it will do silent renderer
+  /**
+   * Determine the certain condition required to use the silent renderer.
+   * @default null > handled internally
+   */
   rendererSilent?: boolean | (() => boolean)
-  // disable color from chalk compeletely, may be beneficial in multi platform CI/CD environments
-  // it is also possible to disable color via environment variables by setting LISTR_DISABLE_COLOR=1
+  /**
+   * Disabling the color, useful for tests and such.
+   * @default false
+   */
   disableColor?: boolean
-  // inject items to wrapper level
+  /**
+   * Inject data directly to TaskWrapper.
+   */
   injectWrapper?: {
-    // pass in enquirer for testing purposes mostly, see: https://github.com/cenk1cenk2/listr2/issues/66
+    // eslint-disable-next-line @typescript-eslint/ban-types
     enquirer?: Enquirer<object>
   }
 }
@@ -893,6 +937,72 @@ public message: string
 public errors?: Error[]
 public context?: any
 ```
+
+### Rollback
+
+If you want to rollback a task or execute a callback if its subtasks failed, or the task itself failed, you can create a entry just like the the task itself with the same variables called `rollback`. Rollback will only execute if the task itself has marked as failed.
+
+_Please refer to [examples section](examples/rollback.example.ts) for more detailed and further examples._
+
+- Rollback by default is to throw an exception and stop the execution of the upcoming tasks. But this can be overwritten by `{ exitAfterRollback: false }` option. This is a main Listr option which acts indeferent of the `exitOnError`.
+- This is not very useful when it comes to the singular tasks that can utilize a try/catch block, but when it is not possible it is easier to use this.
+- When rollback is activated the default renderer will change the spinner color to red, if the rollback successfully concludes then it will be a red back arrow, else it would be like a normal error where it will show the error from the rollback action itself.
+- Since when you return new listr as a subtask list, it is not the easiest and most convient to access the on fail action, and each subtask should be handled seperately.
+
+If you want to execute something after the any of the subtasks fail, you can check out the example below.
+
+```typescript
+task = new Listr<Ctx>(
+  [
+    {
+      title: 'Something with rollback.',
+      task: (_, task): Listr =>
+        task.newListr(
+          [
+            {
+              title: 'This task will fail.',
+              task: async (): Promise<void> => {
+                await delay(2000)
+                throw new Error('This task failed after 2 seconds.')
+              }
+            },
+            {
+              title: 'This task will execute.',
+              task: (_, task): void => {
+                task.title = 'I will change my title if this executes.'
+              }
+            }
+          ],
+          { exitOnError: true }
+        ),
+      rollback: async (_, task): Promise<void> => {
+        task.title = 'I am trying to rollback stuff, previous action failed.'
+
+        await delay(1000)
+
+        task.title = 'Doing something other than this.'
+
+        await delay(1000)
+
+        task.title = 'Some actions required rollback stuff.'
+      }
+    }
+  ],
+  {
+    concurrent: false,
+    exitOnError: true
+  }
+)
+
+try {
+  const context = await task.run()
+  logger.success(`Context: ${JSON.stringify(context)}`)
+} catch (e) {
+  logger.fail(e)
+}
+```
+
+**Supported for >v3.4.0. Related issue [#257](https://github.com/cenk1cenk2/listr2/issues/257).**
 
 ## Task Manager
 

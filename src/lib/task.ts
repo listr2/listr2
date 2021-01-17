@@ -121,35 +121,43 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     }
   }
 
-  hasSubtasks (): boolean {
+  public hasSubtasks (): boolean {
     return this.subtasks?.length > 0
   }
 
-  isPending (): boolean {
+  public isPending (): boolean {
     return this.state === StateConstants.PENDING
   }
 
-  isSkipped (): boolean {
+  public isSkipped (): boolean {
     return this.state === StateConstants.SKIPPED
   }
 
-  isCompleted (): boolean {
+  public isCompleted (): boolean {
     return this.state === StateConstants.COMPLETED
   }
 
-  hasFailed (): boolean {
+  public hasFailed (): boolean {
     return this.state === StateConstants.FAILED
   }
 
-  isEnabled (): boolean {
+  public isRollingBack (): boolean {
+    return this.state === StateConstants.ROLLING_BACK
+  }
+
+  public hasRolledBack (): boolean {
+    return this.state === StateConstants.ROLLED_BACK
+  }
+
+  public isEnabled (): boolean {
     return this.enabled
   }
 
-  hasTitle (): boolean {
+  public hasTitle (): boolean {
     return typeof this?.title === 'string'
   }
 
-  isPrompt (): boolean {
+  public isPrompt (): boolean {
     if (this.prompt) {
       return true
     } else {
@@ -158,7 +166,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   }
 
   async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void> {
-    const handleResult = (result): Promise<any> => {
+    const handleResult = (result: any): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask
         // assign options
@@ -197,7 +205,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         // Detect Observable
         result = new Promise((resolve, reject) => {
           result.subscribe({
-            next: (data) => {
+            next: (data: string) => {
               this.output$ = data
             },
             error: reject,
@@ -212,7 +220,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     const startTime = Date.now()
 
     // finish the task first
-    // Promise.resolve()
     this.state$ = StateConstants.PENDING
 
     // check if this function wants to be skipped
@@ -243,27 +250,52 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         this.state$ = StateConstants.COMPLETED
       }
     } catch (error) {
-      // mark task as failed
-      this.state$ = StateConstants.FAILED
-
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
         error = new Error(this.prompt.message)
       }
 
-      // report error
-      /* istanbul ignore if */
-      if (error instanceof ListrError) {
+      // execute the task on error function
+      if (this.tasks?.rollback) {
         wrapper.report(error)
-        return
-      }
 
-      wrapper.report(error)
+        try {
+          this.state$ = StateConstants.ROLLING_BACK
 
-      // Do not exit when explicitely set to `false`
-      if (this.listr.options.exitOnError !== false) {
-        throw error
+          await this.tasks.rollback(context, wrapper)
+
+          this.state$ = StateConstants.ROLLED_BACK
+
+          this.message$ = { rollback: this.title }
+        } catch (err) {
+          this.state$ = StateConstants.FAILED
+
+          wrapper.report(err)
+
+          throw error
+        }
+
+        if (this.listr.options?.exitAfterRollback !== false) {
+          // Do not exit when explicitely set to `false`
+          throw new Error(this.title)
+        }
+      } else {
+        /* istanbul ignore if */
+        if (error instanceof ListrError) {
+          return
+        }
+
+        // mark task as failed
+        this.state$ = StateConstants.FAILED
+
+        // report error
+        wrapper.report(error)
+
+        if (this.listr.options.exitOnError !== false) {
+          // Do not exit when explicitely set to `false`
+          throw error
+        }
       }
     } finally {
       // Mark the observable as completed

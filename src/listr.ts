@@ -43,6 +43,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
         renderer: 'default',
         nonTTYRenderer: 'verbose',
         exitOnError: true,
+        exitAfterRollback: true,
         registerSignalListeners: true
       },
       options
@@ -140,7 +141,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
       this.renderer.end()
     } catch (error) {
-      this.err.push(new ListrError(error, [ error ], context))
+      this.err.push(new ListrError(typeof error?.message === 'string' ? error.message : error, [ error ], context))
 
       if (this.options.exitOnError !== false) {
         this.renderer.end(error)
@@ -152,7 +153,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     return context
   }
 
-  private checkAll (context): Promise<void[]> {
+  private checkAll (context: any): Promise<void[]> {
     return Promise.all(
       this.tasks.map((task) => {
         task.check(context)

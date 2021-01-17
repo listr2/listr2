@@ -322,7 +322,7 @@ describe('show subtasks', () => {
         [
           {
             title: 'This task will execute.',
-            task: (ctx, task): Listr =>
+            task: (_, task): Listr =>
               task.newListr([
                 {
                   title: 'This is a subtask.',

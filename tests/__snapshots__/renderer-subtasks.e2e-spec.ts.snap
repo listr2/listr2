@@ -546,14 +546,10 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[G❯ bye
-",
-  ],
-  Array [
     "[2K[1A[2K[G",
   ],
   Array [
-    "❯ bye
+    "❯ This task will execute.
 ",
   ],
 ]
@@ -670,16 +666,10 @@ Array [
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ bye
-  ✖ bye
-  ◼ This is a subtask.
-",
-  ],
-  Array [
     "[2K[1A[2K[1A[2K[1A[2K[G",
   ],
   Array [
-    "❯ bye
+    "❯ This task will execute.
   ✖ bye
   ◼ This is a subtask.
 ",
