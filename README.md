@@ -37,6 +37,7 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
       - [Utilizing an Observable or Stream](#utilizing-an-observable-or-stream)
       - [Passing the Output Through as a Stream](#passing-the-output-through-as-a-stream)
     - [Throw Errors](#throw-errors)
+    - [Rollback](#rollback)
   - [Task Manager](#task-manager)
     - [Basic Use-Case Scenario](#basic-use-case-scenario)
     - [More Functionality](#more-functionality)
