@@ -151,6 +151,24 @@ describe('logger', () => {
     })
   })
 
+  it('should log a verbose error rollback message', async () => {
+    logger = new Logger({ useIcons: false })
+
+    logger.rollback('test message')
+
+    testForAllExcept(instances, warn, 1, {
+      onOne: () => {
+        expect(warn.mock.calls).toMatchInlineSnapshot(`
+        Array [
+          Array [
+            "[ROLLBACK] test message",
+          ],
+        ]
+        `)
+      }
+    })
+  })
+
   it('should log a multiline message without problems', async () => {
     logger = new Logger({ useIcons: false })
 
