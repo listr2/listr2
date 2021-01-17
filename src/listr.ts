@@ -152,7 +152,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     return context
   }
 
-  private checkAll (context): Promise<void[]> {
+  private checkAll (context: any): Promise<void[]> {
     return Promise.all(
       this.tasks.map((task) => {
         task.check(context)
