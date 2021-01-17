@@ -50,7 +50,6 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
   - [Render Hooks](#render-hooks)
   - [Log To A File](#log-to-a-file)
   - [Migration from Version v1](#migration-from-version-v1)
-  - [Types](#types)
 
 <!-- tocstop -->
 
