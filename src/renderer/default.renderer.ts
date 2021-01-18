@@ -374,6 +374,7 @@ export class DefaultRenderer implements ListrRenderer {
       }
     }
 
+    output = output.filter(Boolean)
     if (output.length > 0) {
       return output.join(EOL)
     } else {
@@ -398,6 +399,7 @@ export class DefaultRenderer implements ListrRenderer {
 
       return Object.values(this.bottomBar)
         .reduce((o, value) => o = [ ...o, ...value.data ], [])
+        .filter(Boolean)
         .join(EOL)
     }
   }
