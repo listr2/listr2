@@ -443,7 +443,8 @@ export class DefaultRenderer implements ListrRenderer {
     str = `${icon} ${str}`
     let parsedStr: string[]
 
-    const columns = process.stdout.columns ? process.stdout.columns - level * this.options.indentation : 80 - level * this.options.indentation
+    let columns = process.stdout.columns ? process.stdout.columns : 80
+    columns = columns - level * this.options.indentation - 2
 
     switch (this.options.formatOutput) {
     case 'truncate':
@@ -453,7 +454,7 @@ export class DefaultRenderer implements ListrRenderer {
       break
 
     case 'wrap':
-      parsedStr = cliWrap(str, columns, { hard: true, trim: false })
+      parsedStr = cliWrap(str, columns, { hard: true })
         .split(EOL)
         .map((s, i) => this.indentMultilineOutput(s, i))
       break
@@ -461,8 +462,7 @@ export class DefaultRenderer implements ListrRenderer {
     case 'wordWrap':
       parsedStr = cliWrap(str, columns, {
         hard: true,
-        wordWrap: true,
-        trim: false
+        wordWrap: true
       })
         .split(EOL)
         .map((s, i) => this.indentMultilineOutput(s, i))
