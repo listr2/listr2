@@ -1,3 +1,12 @@
+# [3.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2021-01-18)
+
+
+### Bug Fixes
+
+* add more filtering for empty lines ([8bc1671](https://github.com/cenk1cenk2/listr2/commit/8bc1671d58aba6d067ce03fd4882352a9a402bb4))
+* some fixes for truncation and word wrapping ([18c279a](https://github.com/cenk1cenk2/listr2/commit/18c279a6a5a5b1273e7d372c16f264acf8593a4e))
+* update truncating and word wrap column thingies ([f8662b9](https://github.com/cenk1cenk2/listr2/commit/f8662b9c03d6138409945ce946389235b8e1bafb))
+
 # [3.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0-beta.1) (2021-01-17)
 
 
