@@ -153,6 +153,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   public isBottomBar (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     const bottomBar = this.getTaskOptions(task).bottomBar
+
     return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false
   }
 
@@ -295,10 +296,10 @@ export class DefaultRenderer implements ListrRenderer {
           // without the collapse option for skip and errors
           if (task.hasFailed() && this.options.collapseErrors === false && (this.options.showErrorMessage || !this.options.showSubtasks)) {
             // show skip data if collapsing is not defined
-            output = [ ...output, ...this.dumpData(task, level, 'error') ]
+            output = [ ...output, this.dumpData(task, level, 'error') ]
           } else if (task.isSkipped() && this.options.collapseSkips === false && (this.options.showSkipMessage || !this.options.showSubtasks)) {
             // show skip data if collapsing is not defined
-            output = [ ...output, ...this.dumpData(task, level, 'skip') ]
+            output = [ ...output, this.dumpData(task, level, 'skip') ]
           }
         }
 
@@ -309,7 +310,7 @@ export class DefaultRenderer implements ListrRenderer {
             this.promptBar = task.output
           } else if (this.isBottomBar(task) || !task.hasTitle()) {
             // data output to bottom bar
-            const data = this.dumpData(task, -1)
+            const data = [ this.dumpData(task, -1) ]
 
             // create new if there is no persistent storage created for bottom bar
             if (!this.bottomBar[task.id]) {
@@ -325,12 +326,12 @@ export class DefaultRenderer implements ListrRenderer {
             }
 
             // persistent bottom bar and limit items in it
-            if (!data?.some((element) => this.bottomBar[task.id].data.includes(element)) && !task.isSkipped()) {
+            if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
           } else if (task.isPending() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
-            output = [ ...output, ...this.dumpData(task, level) ]
+            output = [ ...output, this.dumpData(task, level) ]
           }
         }
 
@@ -407,9 +408,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
   }
 
-  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string[] {
-    const output: string[] = []
-
+  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string {
     let data: string | boolean
     switch (source) {
     case 'output':
@@ -429,46 +428,58 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     if (typeof data === 'string') {
-      const icon = this.getSymbol(task, true)
-
-      output.push(this.formatString(data, icon, level + 1))
+      return this.formatString(data, this.getSymbol(task, true), level + 1)
     }
-
-    return output
   }
 
-  private formatString (string: string, icon: string, level: number): string {
-    string = `${icon} ${string.trim()}`
-    const columns = process.stdout.columns ?? 80
+  private formatString (str: string, icon: string, level: number): string {
+    // we dont like empty data around here
+    if (str.trim() === '') {
+      return
+    }
+
+    str = `${icon} ${str}`
+    let parsedStr: string[]
+
+    const columns = process.stdout.columns ? process.stdout.columns - level * this.options.indentation : 80 - level * this.options.indentation
 
     switch (this.options.formatOutput) {
     case 'truncate':
-      string = cliTruncate(string, columns)
+      parsedStr = str.split(EOL).map((s, i) => {
+        return cliTruncate(this.indentMultilineOutput(s, i), columns)
+      })
       break
+
     case 'wrap':
-      string = cliWrap(string, columns, { hard: true, trim: false })
+      parsedStr = cliWrap(str, columns, { hard: true, trim: false })
+        .split(EOL)
+        .map((s, i) => this.indentMultilineOutput(s, i))
       break
+
     case 'wordWrap':
-      string = cliWrap(string, columns, {
+      parsedStr = cliWrap(str, columns, {
         hard: true,
         wordWrap: true,
         trim: false
       })
+        .split(EOL)
+        .map((s, i) => this.indentMultilineOutput(s, i))
       break
+
     default:
       throw new Error('Format option for the renderer is wrong.')
     }
 
-    // indent the other lines since there is a icon in the first one
-    let parsedString = string.split(EOL).map((line, i) => {
-      return i > 0 ? '  ' + line : line
-    })
-
+    // this removes the empty lines
     if (this.options.removeEmptyLines) {
-      parsedString = string.split(EOL).filter(Boolean)
+      parsedStr = parsedStr.filter(Boolean)
     }
 
-    return indentString(parsedString.join(EOL), level * this.options.indentation)
+    return indentString(parsedStr.join(EOL), level * this.options.indentation)
+  }
+
+  private indentMultilineOutput (str: string, i: number): string {
+    return i > 0 ? indentString(str.trim(), 2, { includeEmptyLines: false }) : str.trim()
   }
 
   // eslint-disable-next-line complexity

@@ -228,13 +228,117 @@ async function main (): Promise<void> {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
-          task.output = start + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + end
+          task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
           await delay(500)
         },
         options: { persistentOutput: true }
       }
     ],
     { concurrent: false }
+  )
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch (e) {
+    logger.fail(e)
+  }
+
+  logger.start('Example long multiline output with task with persistent output and wrap.')
+
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (ctx, task): Promise<void> => {
+          const start = 'This is a'
+          const mid = 'long '
+          const end = 'multi line output.'
+          task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
+          await delay(500)
+        },
+        options: { persistentOutput: true }
+      }
+    ],
+    { concurrent: false, rendererOptions: { formatOutput: 'wrap' } }
+  )
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch (e) {
+    logger.fail(e)
+  }
+
+  logger.start('Example long multiline output with task with persistent output and word wrap.')
+
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (ctx, task): Promise<void> => {
+          const start = 'This is a'
+          const mid = 'long '
+          const end = 'multi line output.'
+          task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
+          await delay(500)
+        },
+        options: { persistentOutput: true }
+      }
+    ],
+    { concurrent: false, rendererOptions: { formatOutput: 'wordWrap' } }
+  )
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch (e) {
+    logger.fail(e)
+  }
+
+  logger.start('Example long multiline output with task with persistent output and with skipping empty lines.')
+
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (ctx, task): Promise<void> => {
+          const start = 'This is a'
+          const mid = 'long '
+          const end = 'multi line output.'
+          task.output = start + mid.repeat(100) + '\n' + '\n' + '\n' + mid.repeat(100) + end
+          await delay(500)
+        },
+        options: { persistentOutput: true }
+      }
+    ],
+    { concurrent: false, rendererOptions: { removeEmptyLines: true } }
+  )
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch (e) {
+    logger.fail(e)
+  }
+
+  logger.start('Example long multiline output with task with persistent output and without skipping empty lines.')
+
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (ctx, task): Promise<void> => {
+          const start = 'This is a'
+          const mid = 'long '
+          const end = 'multi line output.'
+          task.output = start + mid.repeat(100) + '\n' + '\n' + '\n' + mid.repeat(100) + end
+          await delay(500)
+        },
+        options: { persistentOutput: true }
+      }
+    ],
+    { concurrent: false, rendererOptions: { removeEmptyLines: false } }
   )
 
   try {
