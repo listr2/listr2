@@ -4,7 +4,7 @@ echo "Read terminal ANSI snapshots with cat."
 SEPERATOR="------------------------"
 
 if [ -z "$1" ]; then
-  FILE=*
+  FILE=tests/__snapshots__/*.snap
 else
   FILE=$1
 fi
@@ -15,7 +15,7 @@ fi
 
 echo "$SEPERATOR"
 
-FILES=__snapshots__/$FILE.snap
+FILES=$FILE
 
 for f in $FILES; do
   echo "Processing test snapshot: $f"

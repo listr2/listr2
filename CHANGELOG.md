@@ -1,3 +1,17 @@
+# [3.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0-beta.1) (2021-01-17)
+
+
+### Bug Fixes
+
+* drone stupidity ([3baa018](https://github.com/cenk1cenk2/listr2/commit/3baa018b5984d1c13aa4ebeb2cabba2764fa4ba2))
+* fix drone ([af43b84](https://github.com/cenk1cenk2/listr2/commit/af43b840a7c8446b22d7e1dcb4dc527dfcac89d9))
+* force build ([bc6cb28](https://github.com/cenk1cenk2/listr2/commit/bc6cb285f2cf17da5b12067279a87d6275397b98))
+
+
+### Features
+
+* added rollback stuff ([d80c060](https://github.com/cenk1cenk2/listr2/commit/d80c06052a1fdad3dcefda68ef3446d659ba191b))
+
 ## [3.2.3](https://github.com/cenk1cenk2/listr2/compare/v3.2.2...v3.2.3) (2020-11-26)
 
 

@@ -266,7 +266,10 @@ export class DefaultRenderer implements ListrRenderer {
             // if task is skipped
             if (task.hasFailed() && this.options.collapseErrors) {
               // current task title and skip change the title
-              output = [ ...output, this.formatString(task.message.error && this.options.showErrorMessage ? task.message.error : task.title, this.getSymbol(task), level) ]
+              output = [
+                ...output,
+                this.formatString(!task.hasSubtasks() && task.message.error && this.options.showErrorMessage ? task.message.error : task.title, this.getSymbol(task), level)
+              ]
             } else if (task.isSkipped() && this.options.collapseSkips) {
               // current task title and skip change the title
               output = [
@@ -349,7 +352,9 @@ export class DefaultRenderer implements ListrRenderer {
             // if any of the subtasks have the collapse option of
             task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
             // if any of the subtasks has failed
-            task.subtasks.some((subtask) => subtask.hasFailed()))
+            task.subtasks.some((subtask) => subtask.hasFailed()) ||
+            // if any of the subtasks rolled back
+            task.subtasks.some((subtask) => subtask.hasRolledBack()))
         ) {
           // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
@@ -362,7 +367,7 @@ export class DefaultRenderer implements ListrRenderer {
         }
 
         // after task is finished actions
-        if (task.isCompleted() || task.hasFailed() || task.isSkipped()) {
+        if (task.isCompleted() || task.hasFailed() || task.isSkipped() || task.hasRolledBack()) {
           // clean up prompts
           this.promptBar = null
 
@@ -498,6 +503,14 @@ export class DefaultRenderer implements ListrRenderer {
       }
 
       return chalk.green(figures.main.tick)
+    }
+
+    if (task.isRollingBack() && !data) {
+      return this.options?.lazy ? chalk.red(figures.main.warning) : chalk.red(this.spinner[this.spinnerPosition])
+    }
+
+    if (task.hasRolledBack() && !data) {
+      return chalk.red(figures.main.arrowLeft)
     }
 
     if (task.hasFailed() && !data) {

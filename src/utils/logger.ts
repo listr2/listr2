@@ -41,6 +41,12 @@ export class Logger {
     console.info(message)
   }
 
+  public rollback (message: string): void {
+    message = this.parseMessage(LogLevels.rollback, message)
+
+    console.warn(message)
+  }
+
   protected parseMessage (level: LogLevels, message: string): string {
     // parse multi line messages
     let multiLineMessage: string[]
@@ -122,6 +128,15 @@ export class Logger {
         icon = figures.main.checkboxOn
       } else {
         icon = '[TITLE]'
+      }
+      break
+    case LogLevels.rollback:
+      /* istanbul ignore if */
+      if (this.options?.useIcons) {
+        coloring = chalk.red
+        icon = figures.main.arrowLeft
+      } else {
+        icon = '[ROLLBACK]'
       }
       break
     }
