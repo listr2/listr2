@@ -52,7 +52,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
    * This requires a seperate channel for messages like error, skip or runtime messages to further utilize in the renderers.
    */
   message: {
-    /** Run time of the task, if it has been succesfully resolved. */
+    /** Run time of the task, if it has been successfully resolved. */
     duration?: number
     /** Error message of the task, if it has been failed. */
     error?: string
@@ -81,11 +81,11 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   isPending: () => boolean
   /** Returns whether this task is skipped. */
   isSkipped: () => boolean
-  /** Returns whether this task has been compeleted. */
+  /** Returns whether this task has been completed. */
   isCompleted: () => boolean
   /** Returns whether this task has an active rollback task going on. */
   isRollingBack: () => boolean
-  /** Returns whether the rollback action was succesfull. */
+  /** Returns whether the rollback action was successful. */
   hasRolledBack: () => boolean
   /** Returns whether enabled function resolves to true. */
   isEnabled: () => boolean

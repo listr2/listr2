@@ -91,7 +91,7 @@ export class DefaultRenderer implements ListrRenderer {
      *
      * @default 'truncate'
      */
-    formatOutput?: 'truncate' | 'wrap' | 'wordWrap'
+    formatOutput?: 'truncate' | 'wrap'
   } = {
     indentation: 2,
     clearOutput: false,
@@ -460,15 +460,6 @@ export class DefaultRenderer implements ListrRenderer {
 
     case 'wrap':
       parsedStr = cliWrap(str, columns, { hard: true })
-        .split(EOL)
-        .map((s, i) => this.indentMultilineOutput(s, i))
-      break
-
-    case 'wordWrap':
-      parsedStr = cliWrap(str, columns, {
-        hard: true,
-        wordWrap: true
-      })
         .split(EOL)
         .map((s, i) => this.indentMultilineOutput(s, i))
       break
