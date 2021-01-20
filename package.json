@@ -75,7 +75,7 @@
     "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^1.3.0",
+    "@cenk1cenk2/cz-cc": "^1.3.1",
     "@cenk1cenk2/eslint-config": "^0.4.30",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
