@@ -37,6 +37,7 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
       - [Utilizing an Observable or Stream](#utilizing-an-observable-or-stream)
       - [Passing the Output Through as a Stream](#passing-the-output-through-as-a-stream)
     - [Throw Errors](#throw-errors)
+    - [Rollback](#rollback)
   - [Task Manager](#task-manager)
     - [Basic Use-Case Scenario](#basic-use-case-scenario)
     - [More Functionality](#more-functionality)
@@ -54,6 +55,8 @@ This is the expanded and re-written in Typescript version of the beautiful plugi
 
 <!-- tocstop -->
 
+---
+
 # How to Use
 
 Check out `examples/` folder in the root of the repository for the code in demo or follow through with this README.
@@ -62,14 +65,9 @@ Check out `examples/` folder in the root of the repository for the code in demo 
 
 ```bash
 # Install the latest supported version
-npm install listr2
-
 yarn add listr2
 
-# Install listr compatabile version
-npm install listr2@1.3.12
-
-yarn add listr2@1.3.12
+npm install listr2
 ```
 
 ## Create A New Listr
@@ -108,21 +106,44 @@ try {
 ### Tasks
 
 ```typescript
-export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
-  // A title can be given or omitted. For default renderer if the title is omitted,
+export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
+  /**
+   * Title of the task.
+   *
+   * Give this task a title if you want to track it by name in the current renderer.
+   * Tasks without a title will tend to hide themselves in the default renderer and useful for
+   * things like prompts and such.
+   */
   title?: string
-  // A task can be a sync or async function that returns a string, readable stream or an observable or plain old void
-  // if it does actually return string, readable stream or an observable, task output will be refreshed with each data push
+  /**
+   * The task itself.
+   *
+   * Task can be a sync or async function, an Observable or a Stream.
+   */
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
-  // to skip the task programmatically, skip can be a sync or async function that returns a boolean or string
-  // if string is returned it will be showed as the skip message, else the task title will be used
+  /**
+   * Runs a specific event if the current task or any of the subtasks has failed.
+   * Mostly useful for rollback purposes for subtasks.
+   */
+  rollback?: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  /**
+   * Skip this task depending on the context.
+   *
+   * The function that has been passed in will be evaluated at the runtime when task tries to initially run.
+   */
   skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
-  // to enable the task programmatically, this will show no messages comparing to skip and it will hide the tasks enabled depending on the context
-  // enabled can be external boolean, a sync or async function that returns a boolean
-  // pay in mind that context enabled functionality might depend on other functions to finish first, therefore the list shall be treated as a async function
+  /**
+   * Enable a task depending on the context.
+   *
+   * The function that has been passed in will be evaluated at the initial creation of the Listr class.
+   */
   enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
-  // this will change depending on the available options on the renderer
-  // these renderer options are per task basis and does not affect global options
+  /**
+   * Per task options, depending on the selected renderer.
+   *
+   * This options depend on the implementation of selected renderer. If selected renderer has no options it will
+   * be displayed as never.
+   */
   options?: ListrGetRendererTaskOptions<Renderer>
 }
 ```
@@ -130,40 +151,60 @@ export interface ListrTask<Ctx, Renderer extends ListrRendererFactory> {
 ### Options
 
 ```typescript
+/**
+ * Options to set the behavior of this base task.
+ */
 export interface ListrOptions<Ctx = ListrContext> {
-  // how many tasks can be run at the same time.
-  // false or 1 for synchronous task list, true or Infinity for compelete parallel operation, a number for limitting tasks that can run at the same time
-  // defaults to false
+  /**
+   * Concurrency will set how many tasks will be run in parallel.
+   *
+   * @default false > Default is to run everything synchronously.
+   *
+   * `true` will set it to `Infinity`, `false` will set it to synchronous.
+   * If you pass in a `number` it will limit it at that number.
+   */
   concurrent?: boolean | number
-  // it will silently fail or throw out an error
-  // defaults to false
+  /**
+   * Determine the behavior of exiting on errors.
+   *
+   * @default true > exit on any error comming from the tasks.
+   */
   exitOnError?: boolean
-  // inject a context from another operation
-  // defaults to any
+  /**
+   * Determine the behaviour of exiting after rollback actions.
+   *
+   * @default true > exit after rolling back tasks
+   */
+  exitAfterRollback?: boolean
+  /**
+   * To inject a context through this options wrapper. Mostly useful when combined with manager.
+   * @default any
+   */
   ctx?: Ctx
-  // to have graceful exit on signal terminate and to inform the renderer all the tasks awaiting or processing are failed
-  // defaults to true
+  /**
+   * By default, Listr2 will track SIGINIT signal to update the renderer one last time before compeletely failing.
+   * @default true
+   */
   registerSignalListeners?: boolean
-  // select the renderer or inject a class yourself
-  // defaults to 'default' which is a updating renderer
-  renderer?: 'default' | 'verbose' | 'silent' | ListrRendererFactory
-  // renderer options depends on the selected renderer
-  rendererOptions?: ListrGetRendererOptions<T>
-  // renderer will fallback to the nonTTYRenderer on non-tty environments as the name suggest
-  // defaults to verbose
-  nonTTYRenderer?: 'default' | 'verbose' | 'silent' | ListrRendererFactory
-  // options for the non-tty renderer
-  nonTTYrendererOptions?: ListrGetRendererOptions<T>
-  // instead of creating a custom method and overwriting the renderer value, you can create a function or pass in a boolean to evaluate when to fallback to nonTTYRenderer
+  /**
+   * Determine the certain condition required to use the non-tty renderer.
+   * @default null > handled internally
+   */
   rendererFallback?: boolean | (() => boolean)
-  // same as fallback this time it will do silent renderer
+  /**
+   * Determine the certain condition required to use the silent renderer.
+   * @default null > handled internally
+   */
   rendererSilent?: boolean | (() => boolean)
-  // disable color from chalk compeletely, may be beneficial in multi platform CI/CD environments
-  // it is also possible to disable color via environment variables by setting LISTR_DISABLE_COLOR=1
+  /**
+   * Disabling the color, useful for tests and such.
+   * @default false
+   */
   disableColor?: boolean
-  // inject items to wrapper level
+  /**
+   * Inject data directly to TaskWrapper.
+   */
   injectWrapper?: {
-    // pass in enquirer for testing purposes mostly, see: https://github.com/cenk1cenk2/listr2/issues/66
     enquirer?: Enquirer<object>
   }
 }
@@ -208,7 +249,7 @@ try {
 
 ### Subtasks
 
-Any task can return a new Listr. But rather than calling it as `new Listr` to get the full autocompeletion features depending on the parent task's selected renderer, it is a better idea to call it through the `Task` itself by `task.newListr()`.
+Any task can return a new Listr. But rather than calling it as `new Listr` to get the full auto-completion features depending on the parent task's selected renderer, it is a better idea to call it through the `Task` itself by `task.newListr()`.
 
 _Please refer to [examples section](examples/subtasks.example.ts) for more detailed and further examples._
 
@@ -354,7 +395,9 @@ _Please refer to [examples section](examples/access-parent-task.example.ts) for 
 
 The input module uses the beautiful [enquirer](https://www.npmjs.com/package/enquirer).
 
-> **Attention: Enquirer is a optional dependency. Please install it first.**
+**Attention: Enquirer is a optional dependency. Please install it first.**
+
+> **I did not add this as a peer dependency because in JavaScript you do not need it at all, but it will complain in Typescript, even though you are not using it, since I am importing types from it, so if you are not using it please install it as development dependency, if you use prompts, you should install it anyhow.**
 
 So with running a `task.prompt` function, you can get access to any [enquirer](https://www.npmjs.com/package/enquirer) default prompts as well as using a custom enquirer prompt.
 
@@ -433,8 +476,6 @@ new Listr<Ctx>(
 
 You can either use a custom prompt out of the npm registry or custom-created one as long as it works with [enquirer](https://www.npmjs.com/package/enquirer), it will work expectedly. Instead of passing in the prompt name use the not-generated class.
 
-**Since for my use-case I inject the `{ name: 'default' }` for convenience while having only one prompt. It sometimes goes crazy with the custom prompts and it is advised to use array prompt object instead.**
-
 ```typescript
 import Enquirer from 'enquirer'
 import EditorPrompt from 'enquirer-editor'
@@ -447,20 +488,14 @@ new Listr<Ctx>(
     {
       title: 'Custom prompt',
       task: async (ctx, task): Promise<void> => {
-        ctx.testInput = (
-          await task.prompt([
-            {
-              type: 'editor',
-              name: 'default',
-              message: 'Write something in this enquirer custom prompt.',
-              initial: 'Start writing!',
-              validate: (response): boolean | string => {
-                //  i do declare you valid!
-                return true
-              }
-            }
-          ])
-        ).default
+        ctx.testInput = await task.prompt({
+          type: 'editor',
+          message: 'Write something in this enquirer custom prompt.',
+          initial: 'Start writing!',
+          validate: (response): boolean | string => {
+            return true
+          }
+        })
       }
     }
   ],
@@ -472,7 +507,7 @@ new Listr<Ctx>(
 
 #### Cancel a prompt
 
-You can cancel a prompt while it's display with the task's provided `cancelPrompt` function
+You can cancel a prompt while it's display with the task's provided `cancelPrompt` function.
 
 ```typescript
 import Enquirer from 'enquirer'
@@ -505,7 +540,7 @@ new Listr<Ctx>(
 
 Tasks can be enabled depending on the variables programmatically. This enables to skip them depending on the context. Not enabled tasks will never show up in the default renderer, but when or if they get enabled they will magically appear.
 
-_Please pay attention to asynchronous operation while designing a context enabled task list since it does not await for any variable in the context._
+**Please pay attention to asynchronous operation while designing a context enabled task list since it does not await for any variable in the context.**
 
 _Please refer to [examples section](examples/task-enable.example.ts) for more detailed and further examples._
 
@@ -535,7 +570,7 @@ Skip is more or less the same with enable when used at `Task` level. But the mai
 
 There are to main ways to skip a task. One is utilizing the `Task` so that instead of enabled it will show a visual output while the other one is inside the task.
 
-_Please pay attention to asynchronous operation while designing a context skipped task list since it does not await for any variable in the context._
+**Please pay attention to asynchronous operation while designing a context skipped task list since it does not await for any variable in the context.**
 
 _Please refer to [examples section](examples/task-skip.example.ts) for more detailed and further examples._
 
@@ -894,6 +929,72 @@ public errors?: Error[]
 public context?: any
 ```
 
+### Rollback
+
+If you want to rollback a task or execute a callback if its subtasks failed, or the task itself failed, you can create a entry just like the the task itself with the same variables called `rollback`. Rollback will only execute if the task itself has marked as failed. Related issue is [#257](https://github.com/cenk1cenk2/listr2/issues/257).
+
+_Please refer to [examples section](examples/rollback.example.ts) for more detailed and further examples._
+
+- Rollback by default is to throw an exception and stop the execution of the upcoming tasks. But this can be overwritten by `{ exitAfterRollback: false }` option. This is a main Listr option which acts indeferent of the `exitOnError`.
+- This is not very useful when it comes to the singular tasks that can utilize a try/catch block, but when it is not possible it is easier to use this.
+- When rollback is activated the default renderer will change the spinner color to red, if the rollback successfully concludes then it will be a red back arrow, else it would be like a normal error where it will show the error from the rollback action itself.
+- Since when you return new listr as a subtask list, it is not the easiest and most convient to access the on fail action, and each subtask should be handled seperately.
+
+If you want to execute something after the any of the subtasks fail, you can check out the example below.
+
+```typescript
+task = new Listr<Ctx>(
+  [
+    {
+      title: 'Something with rollback.',
+      task: (_, task): Listr =>
+        task.newListr(
+          [
+            {
+              title: 'This task will fail.',
+              task: async (): Promise<void> => {
+                await delay(2000)
+                throw new Error('This task failed after 2 seconds.')
+              }
+            },
+            {
+              title: 'This task will execute.',
+              task: (_, task): void => {
+                task.title = 'I will change my title if this executes.'
+              }
+            }
+          ],
+          { exitOnError: true }
+        ),
+      rollback: async (_, task): Promise<void> => {
+        task.title = 'I am trying to rollback stuff, previous action failed.'
+
+        await delay(1000)
+
+        task.title = 'Doing something other than this.'
+
+        await delay(1000)
+
+        task.title = 'Some actions required rollback stuff.'
+      }
+    }
+  ],
+  {
+    concurrent: false,
+    exitOnError: true
+  }
+)
+
+try {
+  const context = await task.run()
+  logger.success(`Context: ${JSON.stringify(context)}`)
+} catch (e) {
+  logger.fail(e)
+}
+```
+
+**Supported for >v3.4.0.**
+
 ## Task Manager
 
 Task manager is a great way to create a custom-tailored Listr class once and then utilize it more than once.
@@ -1109,6 +1210,7 @@ Verbose renderer will always output predicted output with no fancy features.
 | Task Successful | \[SUCCESS\] \${TASK TITLE ?? 'Task without title.'}                 |
 | Spit Output     | \[DATA\] \${TASK OUTPUT}                                            |
 | Title Change    | \[TITLE\] \${NEW TITLE}                                             |
+| Rollback        | \[ROLLBACK\] \${TASK TITLE ?? 'Task without title.'}                |
 
 ## Default Renderers
 
@@ -1117,31 +1219,89 @@ There are three main renderers which are 'default', 'verbose' and 'silent'. Defa
 Depending on the selected renderer, `rendererOptions` as well as the `options` in the `Task` will change accordingly. It defaults to default renderer as mentioned with the fallback to verbose renderer on non-tty environments.
 
 - Options for the default renderer.
+
   - Global
+
   ```typescript
   public static rendererOptions: {
-    // indentation per level
+    /**
+     * indentation per level of subtask
+     * @default 2
+     */
     indentation?: number
-    // clear output when task finishes
+    /**
+     * clear output when task finishes
+     * @default false
+     */
     clearOutput?: boolean
-    // show subtasks
+    /**
+     * show the subtasks of the current task if it returns a new listr
+     * @default true
+     */
     showSubtasks?: boolean
-    // collapse subtasks after finish
+    /**
+     * collapse subtasks after finish
+     * @default true
+     */
     collapse?: boolean
-    // collapse skip messages in to single message in task title
+    /**
+     * collapse skip messages in to single message and override the task title
+     * @default true
+     */
     collapseSkips?: boolean
-    // show skip messages or show the original title of the task, this will also disable collapseSkips mode
+    /**
+     * show skip messages or show the original title of the task, this will also disable collapseSkips mode
+     *
+     * You can disable showing the skip messages, eventhough you passed in a message by settings this option,
+     * if you want to keep the original task title intacted.
+     * @default true
+     */
     showSkipMessage?: boolean
-    // suffix skip messages with [SKIPPED] when in collapseSkips mode
+    /**
+     * suffix skip messages with [SKIPPED] when in collapseSkips mode
+     * @default true
+     */
     suffixSkips?: boolean
-    // collapse error messages in to single message in task title
+    /**
+     * collapse error messages in to single message in task title
+     * @default true
+     */
     collapseErrors?: boolean
-    // shows the thrown error message or show the original title of the task, this will also disable collapseErrors mode
+    /**
+     * shows the thrown error message or show the original title of the task, this will also disable collapseErrors mode
+     * You can disable showing the error messages, eventhough you passed in a message by settings this option,
+     * if you want to keep the original task title intacted.
+     * @default true
+     */
     showErrorMessage?: boolean
-    // only update via renderhook
+    /**
+     * only update via renderhook
+     *
+     * useful for tests and stuff. this will disable showing spinner and only update the screen if the something else has
+     * happened in the task worthy to show
+     * @default false
+     */
     lazy?: boolean
-    // show duration for all tasks overwrites per task options
+    /**
+     * show duration for all tasks
+     *
+     * overwrites per task renderer options
+     * @default false
+     */
     showTimer?: boolean
+    /**
+     * removes empty lines from the data output
+     *
+     * @default true
+     */
+    removeEmptyLines?: boolean
+    /**
+     * formats data output depending on your requirements.
+     * log-update mostly breaks if there is no wrap, so there is many options to choose your preference
+     *
+     * @default 'truncate'
+     */
+    formatOutput?: 'truncate' | 'wrap'
   } = {
     indentation: 2,
     clearOutput: false,
@@ -1153,31 +1313,64 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     collapseErrors: true,
     showErrorMessage: true,
     lazy: false,
-    showTimer: false
+    showTimer: false,
+    removeEmptyLines: true,
+    formatOutput: 'truncate'
   }
   ```
+
   - Per-Task
+
   ```typescript
   public static rendererTaskOptions: {
-    // write task output to bottom bar
+    /**
+     * write task output to bottom bar instead of the gap under the task title itself.
+     * useful for stream of data.
+     * @default false
+     *
+     * `true` only keep 1 line of latest data outputted by the task.
+     * `false` only keep 1 line of latest data outputted by the task.
+     * `number` will keep designated data of latest data outputted by the task.
+     */
     bottomBar?: boolean | number
-    // keep output after task finishes
+    /**
+     * keep output after task finishes
+     * @default false
+     *
+     * works both for bottom bar and the default behavior
+     */
     persistentOutput?: boolean
-    // show timer per task
+    /**
+     * show the task time if it was succesful
+     */
     showTimer?: boolean
   }
   ```
+
 - Options for the verbose renderer.
+
   - Global
+
   ```typescript
   public static rendererOptions: {
-    // useIcons instead of text for log level
+    /**
+     * useIcons instead of text for log level
+     * @default false
+     */
     useIcons?: boolean
-    // inject a custom loger
+    /**
+     * inject a custom loger
+     */
     logger?: new (...args: any) => Logger
-    // log tasks with empty titles
+    /**
+     * log tasks with empty titles
+     * @default true
+     */
     logEmptyTitle?: boolean
-    // log title changes
+    /**
+     * log title changes
+     * @default true
+     */
     logTitleChange?: boolean
   } = {
     useIcons: false,
@@ -1185,6 +1378,7 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
     logTitleChange: true
   }
   ```
+
 - Options for the silent renderer.
   - NONE
 
@@ -1192,7 +1386,7 @@ Depending on the selected renderer, `rendererOptions` as well as the `options` i
 
 There are times other than nonTTY environments that you want to use a verbose renderer instead of the default renderer.
 
-For these times you needed to create a `getRenderer` kind of method and return the renderer value to renderer. But with the added complexity of the types, it is a bit more buggy to show it returns `default` for autocompelete purposes.
+For these times you needed to create a `getRenderer` kind of method and return the renderer value to renderer. But with the added complexity of the types, it is a bit more buggy to show it returns `default` for auto-complete purposes.
 
 You can now pass in a function that returns a boolean, or directly a boolean for automatically stepping down to the `nonTTYRenderer` when the condition is met.
 
@@ -1239,7 +1433,6 @@ Creating a custom renderer with a beautiful interface can be done in one of two 
 - First create a Listr renderer class.
 
 ```typescript
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { ListrRenderer, ListrTaskObject } from 'listr2'
 
 export class MyAmazingRenderer implements ListrRenderer {
@@ -1250,7 +1443,7 @@ export class MyAmazingRenderer implements ListrRenderer {
   // designate your custom internal task-based options that will show as `options` in the task itself
   public static rendererTaskOptions: never
 
-  // get tasks to be renderered and options of the renderer from the parent
+  // get tasks to be rendered and options of the renderer from the parent
   constructor(public tasks: ListrTaskObject<any, typeof MyAmazingRenderer>[], public options: typeof MyAmazingRenderer['rendererOptions']) {}
 
   // implement custom logic for render functionality
@@ -1262,24 +1455,81 @@ export class MyAmazingRenderer implements ListrRenderer {
 ```
 
 - Then there is a branching here you can either use:
+
   - Utilizing the task functions themselves. Take a look at [default renderer](src/renderer/default.renderer.ts) since it is implemented this way.
+
   ```typescript
-  id: taskUUID
-  hasSubtasks(): boolean
-  isPending(): boolean
-  isSkipped(): boolean
-  isCompleted(): boolean
-  isEnabled(): boolean
-  isPrompt(): boolean
-  hasFailed(): boolean
-  hasTitle(): boolean
+  /** Unique id per task, randomly generated in the uuid v4 format */
+  id: string
+  /** Title of the task */
+  title?: string
+  /** Output data from the task. */
+  output?: string
+  /** The current state of the task. */
+  state: string
+  /**
+   * A channel for messages.
+   *
+   * This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
+   */
+  message: {
+    /** Run time of the task, if it has been successfully resolved. */
+    duration?: number
+    /** Error message of the task, if it has been failed. */
+    error?: string
+    /** Skip message of the task, if it has been skipped. */
+    skip?: string
+    /** Rollback message of the task, if the rollback finishes */
+    rollback?: string
+  }
+  /** A hook to refresh render if desired. */
+  renderHook$: Subject<void>
+  /** Returns whether this task has subtasks. */
+  hasSubtasks: () => boolean
+  /** Returns whether this task is in progress. */
+  isPending: () => boolean
+  /** Returns whether this task is skipped. */
+  isSkipped: () => boolean
+  /** Returns whether this task has been completed. */
+  isCompleted: () => boolean
+  /** Returns whether this task has an active rollback task going on. */
+  isRollingBack: () => boolean
+  /** Returns whether the rollback action was successful. */
+  hasRolledBack: () => boolean
+  /** Returns whether enabled function resolves to true. */
+  isEnabled: () => boolean
+  /** Returns whether this task has a prompt inside. */
+  isPrompt: () => boolean
+  /** Returns whether this task has been failed. */
+  hasFailed: () => boolean
+  /** Returns whether this task actually has a title. */
+  hasTitle: () => boolean
   ```
-  - Observables, where `event` has `event.type` which can either be `SUBTASK`, `STATE`, `DATA` or `TITLE` and `event.data` depending on the `event.type`. Take a look at [verbose renderer](src/renderer/verbose.renderer.ts) since it is implemented this way.
+
+  - Observables, where `event` will have a `type` and `data` to push channel through the pipe. Take a look at [verbose renderer](src/renderer/verbose.renderer.ts) since it is implemented this way.
+
+  ```typescript
+  /** Type of listr internal events. Not using enum for easy of use in custom JavaScript renderers. */
+  export type ListrEventTypes = 'TITLE' | 'STATE' | 'ENABLED' | 'SUBTASK' | 'DATA' | 'MESSAGE'
+
+  /** The internal communication event. */
+  export type ListrEvent =
+    | {
+        type: Exclude<ListrEventTypes, 'MESSAGE'>
+        data?: string | boolean
+      }
+    | {
+        type: 'MESSAGE'
+        data: ListrTaskObject<any, any>['message']
+      }
+  ```
+
   ```typescript
   tasks?.forEach((task) => {
       task.subscribe((event: ListrEvent) => {
         ...
   ```
+
   - Or if you so desire both!
 
 ## Render Hooks
@@ -1323,46 +1573,12 @@ export class MyLoggerClass extends Logger {
   /* CUSTOM LOGIC */
   /* CUSTOM LOGIC */
   /* CUSTOM LOGIC */
-
-  public fail(message: string): void {
-    message = this.parseMessage(logLevels.fail, message)
-    console.error(message)
-  }
-
-  public skip(message: string): void {
-    message = this.parseMessage(logLevels.skip, message)
-    console.warn(message)
-  }
-
-  public success(message: string): void {
-    message = this.parseMessage(logLevels.success, message)
-    console.log(message)
-  }
-
-  public data(message: string): void {
-    message = this.parseMessage(logLevels.data, message)
-    console.info(message)
-  }
-
-  public start(message: string): void {
-    message = this.parseMessage(logLevels.start, message)
-    console.log(message)
-  }
-
-  public title(message: string): void {
-    message = this.parseMessage(logLevels.title, message)
-    console.info(message)
-  }
 }
 ```
 
 ## Migration from Version v1
 
 To migrate from prior versions that are older than v1.3.12, which is advisable due to upcoming potential bug fixes:
-
-- rendererOptions has to be moved to their own key
-- some of the types if initiated before assigning a Listr has to be fixed accordingly
-- test renderer also combined with verbose renderer and icons of the verbose renderer is disabled by default which makes them basically same thing, so I think verbose is a better name for it
 
 Please checkout [the entry in changelog.](./CHANGELOG.md#200-2020-05-06)
 

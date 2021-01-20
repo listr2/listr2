@@ -84,6 +84,9 @@ export class VerboseRenderer implements ListrRenderer {
               } else if (event.data?.skip) {
                 // skip message
                 this.logger.skip(String(event.data.skip))
+              } else if (event.data?.rollback) {
+                // rollback message
+                this.logger.rollback(String(event.data.rollback))
               }
             }
           }

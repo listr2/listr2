@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import Enquirer from 'enquirer'
 import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
@@ -51,12 +52,14 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
    * This requires a seperate channel for messages like error, skip or runtime messages to further utilize in the renderers.
    */
   message: {
-    /** Run time of the task, if it has been succesfully resolved. */
+    /** Run time of the task, if it has been successfully resolved. */
     duration?: number
     /** Error message of the task, if it has been failed. */
     error?: string
     /** Skip message of the task, if it has been skipped. */
     skip?: string
+    /** Rollback message of the task, if the rollback finishes */
+    rollback?: string
   }
   /**
    * A function to check whether this task should run at all via enable.
@@ -73,21 +76,25 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   /** A hook to refresh render if desired. */
   renderHook$: Subject<void>
   /** Returns whether this task has subtasks. */
-  hasSubtasks(): boolean
+  hasSubtasks: () => boolean
   /** Returns whether this task is in progress. */
-  isPending(): boolean
+  isPending: () => boolean
   /** Returns whether this task is skipped. */
-  isSkipped(): boolean
-  /** Returns whether this task has been compeleted. */
-  isCompleted(): boolean
+  isSkipped: () => boolean
+  /** Returns whether this task has been completed. */
+  isCompleted: () => boolean
+  /** Returns whether this task has an active rollback task going on. */
+  isRollingBack: () => boolean
+  /** Returns whether the rollback action was successful. */
+  hasRolledBack: () => boolean
   /** Returns whether enabled function resolves to true. */
-  isEnabled(): boolean
+  isEnabled: () => boolean
   /** Returns whether this task has a prompt inside. */
-  isPrompt(): boolean
+  isPrompt: () => boolean
   /** Returns whether this task has been failed. */
-  hasFailed(): boolean
+  hasFailed: () => boolean
   /** Returns whether this task actually has a title. */
-  hasTitle(): boolean
+  hasTitle: () => boolean
 }
 
 export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
@@ -105,6 +112,11 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    * Task can be a sync or async function, an Observable or a Stream.
    */
   task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  /**
+   * Runs a specific event if the current task or any of the subtasks has failed.
+   * Mostly useful for rollback purposes for subtasks.
+   */
+  rollback?: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   /**
    * Skip this task depending on the context.
    *
@@ -137,19 +149,19 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     options?: ListrSubClassOptions<Ctx, Renderer>
   ): Listr<Ctx, any, any>
   /** Report a error in process for error collection. */
-  report(error: Error): void
+  report: (error: Error) => void
   /** Skip current task. */
-  skip(message?: string): void
+  skip: (message?: string) => void
   /** Run this task. */
-  run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
+  run: (ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>) => Promise<void>
   /**
    * Create a new Enquirer prompt using prompt options.
    *
    * Since process.stdout is controlled by Listr, this will passthrough all Enquirer data through internal stdout.
    */
-  prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T>
+  prompt: <T = any>(options: PromptOptions | PromptOptions<true>[]) => Promise<T>
   /** Cancel current prompt. */
-  cancelPrompt(throwError?: boolean): void
+  cancelPrompt: (throwError?: boolean) => void
   /**
    * Pass stream of data to internal stdout.
    *
@@ -158,7 +170,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    *
    * This returns a fake stream to pass any stream inside Listr as task data.
    */
-  stdout(): NodeJS.WritableStream
+  stdout: () => NodeJS.WritableStream
 }
 
 /**
@@ -206,6 +218,12 @@ export interface ListrOptions<Ctx = ListrContext> {
    * @default true > exit on any error comming from the tasks.
    */
   exitOnError?: boolean
+  /**
+   * Determine the behaviour of exiting after rollback actions.
+   *
+   * @default true > exit after rolling back tasks
+   */
+  exitAfterRollback?: boolean
   /**
    * To inject a context through this options wrapper. Mostly useful when combined with manager.
    * @default any
@@ -323,9 +341,9 @@ export declare class ListrRenderer {
   /** create a new renderer */
   constructor (tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>)
   /** A function to what to do on render */
-  public render (): void
+  public render: () => void
   /** A function to what to do on end of the render */
-  public end (err?: Error): void
+  public end: (err?: Error) => void
 }
 
 /** Exported for javascript applications to extend the base renderer */
@@ -336,8 +354,8 @@ export declare class ListrBaseRenderer implements ListrRenderer {
   public tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[]
   public options: typeof ListrBaseRenderer.rendererOptions
   constructor (tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions)
-  public render (): void
-  public end (err?: Error): void
+  public render: () => void
+  public end: (err?: Error) => void
 }
 
 /** A renderer factory from the current type */
@@ -364,7 +382,7 @@ export class ListrError extends Error {
 
 /** The internal error handling mechanism for prompts only. */
 export class PromptError extends Error {
-  constructor (message) {
+  constructor (message: string) {
     super(message)
     this.name = 'PromptError'
   }

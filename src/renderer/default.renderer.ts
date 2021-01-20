@@ -3,6 +3,7 @@ import figures from 'figures'
 import indentString from 'indent-string'
 import logUpdate from 'log-update'
 import { EOL } from 'os'
+import cliWrap from 'wrap-ansi'
 
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import chalk from '@utils/chalk'
@@ -78,6 +79,19 @@ export class DefaultRenderer implements ListrRenderer {
      * @default false
      */
     showTimer?: boolean
+    /**
+     * removes empty lines from the data output
+     *
+     * @default true
+     */
+    removeEmptyLines?: boolean
+    /**
+     * formats data output depending on your requirements.
+     * log-update mostly breaks if there is no wrap, so there is many options to choose your preference
+     *
+     * @default 'truncate'
+     */
+    formatOutput?: 'truncate' | 'wrap'
   } = {
     indentation: 2,
     clearOutput: false,
@@ -89,7 +103,9 @@ export class DefaultRenderer implements ListrRenderer {
     collapseErrors: true,
     showErrorMessage: true,
     lazy: false,
-    showTimer: false
+    showTimer: false,
+    removeEmptyLines: true,
+    formatOutput: 'truncate'
   }
 
   /** per task options for the default renderer */
@@ -137,6 +153,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   public isBottomBar (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     const bottomBar = this.getTaskOptions(task).bottomBar
+
     return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false
   }
 
@@ -249,7 +266,10 @@ export class DefaultRenderer implements ListrRenderer {
             // if task is skipped
             if (task.hasFailed() && this.options.collapseErrors) {
               // current task title and skip change the title
-              output = [ ...output, this.formatString(task.message.error && this.options.showErrorMessage ? task.message.error : task.title, this.getSymbol(task), level) ]
+              output = [
+                ...output,
+                this.formatString(!task.hasSubtasks() && task.message.error && this.options.showErrorMessage ? task.message.error : task.title, this.getSymbol(task), level)
+              ]
             } else if (task.isSkipped() && this.options.collapseSkips) {
               // current task title and skip change the title
               output = [
@@ -279,10 +299,10 @@ export class DefaultRenderer implements ListrRenderer {
           // without the collapse option for skip and errors
           if (task.hasFailed() && this.options.collapseErrors === false && (this.options.showErrorMessage || !this.options.showSubtasks)) {
             // show skip data if collapsing is not defined
-            output = [ ...output, ...this.dumpData(task, level, 'error') ]
+            output = [ ...output, this.dumpData(task, level, 'error') ]
           } else if (task.isSkipped() && this.options.collapseSkips === false && (this.options.showSkipMessage || !this.options.showSubtasks)) {
             // show skip data if collapsing is not defined
-            output = [ ...output, ...this.dumpData(task, level, 'skip') ]
+            output = [ ...output, this.dumpData(task, level, 'skip') ]
           }
         }
 
@@ -293,7 +313,7 @@ export class DefaultRenderer implements ListrRenderer {
             this.promptBar = task.output
           } else if (this.isBottomBar(task) || !task.hasTitle()) {
             // data output to bottom bar
-            const data = this.dumpData(task, -1)
+            const data = [ this.dumpData(task, -1) ]
 
             // create new if there is no persistent storage created for bottom bar
             if (!this.bottomBar[task.id]) {
@@ -309,12 +329,12 @@ export class DefaultRenderer implements ListrRenderer {
             }
 
             // persistent bottom bar and limit items in it
-            if (!data?.some((element) => this.bottomBar[task.id].data.includes(element)) && !task.isSkipped()) {
+            if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
           } else if (task.isPending() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
-            output = [ ...output, ...this.dumpData(task, level) ]
+            output = [ ...output, this.dumpData(task, level) ]
           }
         }
 
@@ -332,7 +352,9 @@ export class DefaultRenderer implements ListrRenderer {
             // if any of the subtasks have the collapse option of
             task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
             // if any of the subtasks has failed
-            task.subtasks.some((subtask) => subtask.hasFailed()))
+            task.subtasks.some((subtask) => subtask.hasFailed()) ||
+            // if any of the subtasks rolled back
+            task.subtasks.some((subtask) => subtask.hasRolledBack()))
         ) {
           // set level
           const subtaskLevel = !task.hasTitle() ? level : level + 1
@@ -345,7 +367,7 @@ export class DefaultRenderer implements ListrRenderer {
         }
 
         // after task is finished actions
-        if (task.isCompleted() || task.hasFailed() || task.isSkipped()) {
+        if (task.isCompleted() || task.hasFailed() || task.isSkipped() || task.hasRolledBack()) {
           // clean up prompts
           this.promptBar = null
 
@@ -357,6 +379,7 @@ export class DefaultRenderer implements ListrRenderer {
       }
     }
 
+    output = output.filter(Boolean)
     if (output.length > 0) {
       return output.join(EOL)
     } else {
@@ -381,6 +404,7 @@ export class DefaultRenderer implements ListrRenderer {
 
       return Object.values(this.bottomBar)
         .reduce((o, value) => o = [ ...o, ...value.data ], [])
+        .filter(Boolean)
         .join(EOL)
     }
   }
@@ -391,9 +415,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
   }
 
-  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string[] {
-    const output: string[] = []
-
+  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string {
     let data: string | boolean
     switch (source) {
     case 'output':
@@ -412,22 +434,50 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
-    if (typeof data === 'string' && data.trim() !== '') {
-      // indent and color
-      data
-        .split(EOL)
-        .filter(Boolean)
-        .forEach((line, i) => {
-          const icon = i === 0 ? this.getSymbol(task, true) : ' '
-          output.push(this.formatString(line, icon, level + 1))
-        })
+    if (typeof data === 'string') {
+      return this.formatString(data, this.getSymbol(task, true), level + 1)
     }
-
-    return output
   }
 
-  private formatString (string: string, icon: string, level: number): string {
-    return `${cliTruncate(indentString(`${icon} ${string.trim()}`, level * this.options.indentation), process.stdout.columns ?? 80)}`
+  private formatString (str: string, icon: string, level: number): string {
+    // we dont like empty data around here
+    if (str.trim() === '') {
+      return
+    }
+
+    str = `${icon} ${str}`
+    let parsedStr: string[]
+
+    let columns = process.stdout.columns ? process.stdout.columns : 80
+    columns = columns - level * this.options.indentation - 2
+
+    switch (this.options.formatOutput) {
+    case 'truncate':
+      parsedStr = str.split(EOL).map((s, i) => {
+        return cliTruncate(this.indentMultilineOutput(s, i), columns)
+      })
+      break
+
+    case 'wrap':
+      parsedStr = cliWrap(str, columns, { hard: true })
+        .split(EOL)
+        .map((s, i) => this.indentMultilineOutput(s, i))
+      break
+
+    default:
+      throw new Error('Format option for the renderer is wrong.')
+    }
+
+    // this removes the empty lines
+    if (this.options.removeEmptyLines) {
+      parsedStr = parsedStr.filter(Boolean)
+    }
+
+    return indentString(parsedStr.join(EOL), level * this.options.indentation)
+  }
+
+  private indentMultilineOutput (str: string, i: number): string {
+    return i > 0 ? indentString(str.trim(), 2, { includeEmptyLines: false }) : str.trim()
   }
 
   // eslint-disable-next-line complexity
@@ -444,6 +494,14 @@ export class DefaultRenderer implements ListrRenderer {
       }
 
       return chalk.green(figures.main.tick)
+    }
+
+    if (task.isRollingBack() && !data) {
+      return this.options?.lazy ? chalk.red(figures.main.warning) : chalk.red(this.spinner[this.spinnerPosition])
+    }
+
+    if (task.hasRolledBack() && !data) {
+      return chalk.red(figures.main.arrowLeft)
     }
 
     if (task.hasFailed() && !data) {

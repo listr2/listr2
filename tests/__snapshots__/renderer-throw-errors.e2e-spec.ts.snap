@@ -22,12 +22,6 @@ Array [
   ],
   Array [
     "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
   ◼ This is a subtask.
 ◼ This task will execute.
 ",
@@ -167,7 +161,7 @@ Array [
 
 exports[`show throw error should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
 Array [
-  [ListrError: Error: I will exit on error since I am a direct child of parent task.],
+  [ListrError: I will exit on error since I am a direct child of parent task.],
 ]
 `;
 
