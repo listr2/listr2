@@ -44,12 +44,8 @@ describe('fallback renderer', () => {
   it.each([
     [ 'truncate', message ],
     [ 'wrap', message ],
-    [ 'wordWrap', message ],
-    // [ false, message ],
     [ 'truncate', messageWithNewLines ],
-    [ 'wrap', messageWithNewLines ],
-    [ 'wordWrap', messageWithNewLines ]
-    // [ false, messageWithNewLines ]
+    [ 'wrap', messageWithNewLines ]
   ])('should %s long strings', async (format, m) => {
     let err: Error
     try {
@@ -82,12 +78,8 @@ describe('fallback renderer', () => {
   it.each([
     [ 'truncate', message ],
     [ 'wrap', message ],
-    [ 'wordWrap', message ],
-    // [ false, message ],
     [ 'truncate', messageWithNewLines ],
-    [ 'wrap', messageWithNewLines ],
-    [ 'wordWrap', messageWithNewLines ]
-    // [ false, messageWithNewLines ]
+    [ 'wrap', messageWithNewLines ]
   ])('should %s long titles', async (format, m) => {
     let err: Error
     try {
