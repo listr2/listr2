@@ -1,3 +1,21 @@
+# [3.3.0](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* add more filtering for empty lines ([8bc1671](https://github.com/cenk1cenk2/listr2/commit/8bc1671d58aba6d067ce03fd4882352a9a402bb4))
+* drone stupidity ([3baa018](https://github.com/cenk1cenk2/listr2/commit/3baa018b5984d1c13aa4ebeb2cabba2764fa4ba2))
+* fix drone ([af43b84](https://github.com/cenk1cenk2/listr2/commit/af43b840a7c8446b22d7e1dcb4dc527dfcac89d9))
+* force build ([bc6cb28](https://github.com/cenk1cenk2/listr2/commit/bc6cb285f2cf17da5b12067279a87d6275397b98))
+* some fixes for truncation and word wrapping ([18c279a](https://github.com/cenk1cenk2/listr2/commit/18c279a6a5a5b1273e7d372c16f264acf8593a4e))
+* update readme, remove word-wrap ([2d6c6e8](https://github.com/cenk1cenk2/listr2/commit/2d6c6e8824ad93e3cd419e5aaaf3a5796d075484))
+* update truncating and word wrap column thingies ([f8662b9](https://github.com/cenk1cenk2/listr2/commit/f8662b9c03d6138409945ce946389235b8e1bafb))
+
+
+### Features
+
+* added rollback stuff ([d80c060](https://github.com/cenk1cenk2/listr2/commit/d80c06052a1fdad3dcefda68ef3446d659ba191b))
+
 # [3.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2021-01-18)
 
 
