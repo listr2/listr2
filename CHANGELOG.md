@@ -1,3 +1,10 @@
+## [3.3.1-alpha.1](https://github.com/cenk1cenk2/listr2/compare/v3.3.0...v3.3.1-alpha.1) (2021-01-24)
+
+
+### Bug Fixes
+
+* rollback types ([7935241](https://github.com/cenk1cenk2/listr2/commit/7935241ef91ed36434242ee00ed838c1fe0979e2)), closes [#276](https://github.com/cenk1cenk2/listr2/issues/276)
+
 # [3.3.0](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0) (2021-01-20)
 
 
