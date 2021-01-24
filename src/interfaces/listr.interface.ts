@@ -39,7 +39,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   /** Output data from the task. */
   output?: string
   /** The task object itself, to further utilize it. */
-  task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  task(ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>): void | ListrTaskResult<Ctx>
   /** Skip current task. */
   skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
   /** Extend current task with multiple subtasks. */
@@ -64,9 +64,9 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   /**
    * A function to check whether this task should run at all via enable.
    */
-  check: (ctx: Ctx) => void
+  check(ctx: Ctx): void
   /** Run the current task. */
-  run: (ctx: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>) => Promise<void>
+  run(ctx: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
   /** Options for listr itself. */
   options: ListrOptions
   /** Options for the current renderer of the task. */
@@ -76,25 +76,25 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   /** A hook to refresh render if desired. */
   renderHook$: Subject<void>
   /** Returns whether this task has subtasks. */
-  hasSubtasks: () => boolean
+  hasSubtasks(): boolean
   /** Returns whether this task is in progress. */
-  isPending: () => boolean
+  isPending(): boolean
   /** Returns whether this task is skipped. */
-  isSkipped: () => boolean
+  isSkipped(): boolean
   /** Returns whether this task has been completed. */
-  isCompleted: () => boolean
+  isCompleted(): boolean
   /** Returns whether this task has an active rollback task going on. */
-  isRollingBack: () => boolean
+  isRollingBack(): boolean
   /** Returns whether the rollback action was successful. */
-  hasRolledBack: () => boolean
+  hasRolledBack(): boolean
   /** Returns whether enabled function resolves to true. */
-  isEnabled: () => boolean
+  isEnabled(): boolean
   /** Returns whether this task has a prompt inside. */
-  isPrompt: () => boolean
+  isPrompt(): boolean
   /** Returns whether this task has been failed. */
-  hasFailed: () => boolean
+  hasFailed(): boolean
   /** Returns whether this task actually has a title. */
-  hasTitle: () => boolean
+  hasTitle(): boolean
 }
 
 export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
