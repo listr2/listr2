@@ -1,3 +1,10 @@
+## [3.3.1-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.1-beta.1...v3.3.1-beta.2) (2021-01-25)
+
+
+### Bug Fixes
+
+* update interface ([2cb2cd6](https://github.com/cenk1cenk2/listr2/commit/2cb2cd637efdbdadfff548ed0c9cccbb347ca5f6))
+
 ## [3.3.1-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.3.0...v3.3.1-beta.1) (2021-01-24)
 
 
