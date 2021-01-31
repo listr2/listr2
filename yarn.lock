@@ -288,13 +288,13 @@
   optionalDependencies:
     "@commitlint/load" "^11.0.0"
 
-"@cenk1cenk2/eslint-config@^0.4.30":
-  version "0.4.30"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-0.4.30.tgz#fdeb67c3eb242bece39947137571ae27edaf4c71"
-  integrity sha512-bBREAgycyZV4TAxkryvfltyQs0ymZbug91OWObt2O0dQQv9/Yaa9OaxQTEN1tSBpHKTtgC2l6p3IJvYtQpOLlg==
+"@cenk1cenk2/eslint-config@^0.4.31":
+  version "0.4.31"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-0.4.31.tgz#64ec9086c308a18ecf7fabd386b875b82bb667da"
+  integrity sha512-aX8NFj1ktg/zbd5wnZzJth78b/qjdHgwCvHsiDpn1E4Gz2i7pOGQwqkx5nrajrodMGLPkQLo8z2+3S39Opp6MQ==
   dependencies:
-    "@typescript-eslint/eslint-plugin" "^4.14.0"
-    "@typescript-eslint/parser" "^4.14.0"
+    "@typescript-eslint/eslint-plugin" "^4.14.1"
+    "@typescript-eslint/parser" "^4.14.1"
     eslint-config-react "^1.1.7"
     eslint-plugin-import "^2.22.1"
     eslint-plugin-react-hooks "^4.2.0"
@@ -740,7 +740,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@typescript-eslint/eslint-plugin@^4.14.0":
+"@typescript-eslint/eslint-plugin@^4.14.1":
   version "4.14.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.14.1.tgz#22dd301ce228aaab3416b14ead10b1db3e7d3180"
   integrity sha512-5JriGbYhtqMS1kRcZTQxndz1lKMwwEXKbwZbkUZNnp6MJX0+OVXnG0kOlBZP4LUAxEyzu3cs+EXd/97MJXsGfw==
@@ -766,7 +766,7 @@
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
-"@typescript-eslint/parser@^4.14.0":
+"@typescript-eslint/parser@^4.14.1":
   version "4.14.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.14.1.tgz#3bd6c24710cd557d8446625284bcc9c6d52817c6"
   integrity sha512-mL3+gU18g9JPsHZuKMZ8Z0Ss9YP1S5xYZ7n68Z98GnPq02pYNQuRXL85b9GYhl6jpdvUc45Km7hAl71vybjUmw==
