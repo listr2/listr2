@@ -10,7 +10,7 @@ import { Listr } from '@root/index'
 import { PromptOptions } from '@utils/prompt.interface'
 
 /** Listr Default Context */
-export type ListrContext = any
+export type ListrContext = any | undefined
 
 /** The default renderer value used in Listr2 applications */
 export type ListrDefaultRendererValue = 'default'
@@ -39,7 +39,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   /** Output data from the task. */
   output?: string
   /** The task object itself, to further utilize it. */
-  task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  task(ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>): void | ListrTaskResult<Ctx>
   /** Skip current task. */
   skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
   /** Extend current task with multiple subtasks. */
@@ -66,7 +66,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
    */
   check: (ctx: Ctx) => void
   /** Run the current task. */
-  run: (ctx: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>) => Promise<void>
+  run(ctx: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
   /** Options for listr itself. */
   options: ListrOptions
   /** Options for the current renderer of the task. */
@@ -153,7 +153,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   /** Skip current task. */
   skip: (message?: string) => void
   /** Run this task. */
-  run: (ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>) => Promise<void>
+  run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
   /**
    * Create a new Enquirer prompt using prompt options.
    *

@@ -1,3 +1,33 @@
+## [3.3.1](https://github.com/cenk1cenk2/listr2/compare/v3.3.0...v3.3.1) (2021-01-31)
+
+
+### Bug Fixes
+
+* rollback types ([7935241](https://github.com/cenk1cenk2/listr2/commit/7935241ef91ed36434242ee00ed838c1fe0979e2)), closes [#276](https://github.com/cenk1cenk2/listr2/issues/276)
+* try fix typings issue ([4dd9013](https://github.com/cenk1cenk2/listr2/commit/4dd901356dffa24d3a3d41cf829896da7890e17e))
+* update interface ([2cb2cd6](https://github.com/cenk1cenk2/listr2/commit/2cb2cd637efdbdadfff548ed0c9cccbb347ca5f6))
+
+## [3.3.1-beta.3](https://github.com/cenk1cenk2/listr2/compare/v3.3.1-beta.2...v3.3.1-beta.3) (2021-01-31)
+
+
+### Bug Fixes
+
+* try fix typings issue ([4dd9013](https://github.com/cenk1cenk2/listr2/commit/4dd901356dffa24d3a3d41cf829896da7890e17e))
+
+## [3.3.1-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.1-beta.1...v3.3.1-beta.2) (2021-01-25)
+
+
+### Bug Fixes
+
+* update interface ([2cb2cd6](https://github.com/cenk1cenk2/listr2/commit/2cb2cd637efdbdadfff548ed0c9cccbb347ca5f6))
+
+## [3.3.1-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.3.0...v3.3.1-beta.1) (2021-01-24)
+
+
+### Bug Fixes
+
+* rollback types ([7935241](https://github.com/cenk1cenk2/listr2/commit/7935241ef91ed36434242ee00ed838c1fe0979e2)), closes [#276](https://github.com/cenk1cenk2/listr2/issues/276)
+
 # [3.3.0](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0) (2021-01-20)
 
 
