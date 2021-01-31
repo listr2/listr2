@@ -1,3 +1,10 @@
+## [3.3.1-beta.3](https://github.com/cenk1cenk2/listr2/compare/v3.3.1-beta.2...v3.3.1-beta.3) (2021-01-31)
+
+
+### Bug Fixes
+
+* try fix typings issue ([4dd9013](https://github.com/cenk1cenk2/listr2/commit/4dd901356dffa24d3a3d41cf829896da7890e17e))
+
 ## [3.3.1-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.1-beta.1...v3.3.1-beta.2) (2021-01-25)
 
 
