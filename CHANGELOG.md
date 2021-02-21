@@ -1,3 +1,10 @@
+## [3.3.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.1...v3.3.2) (2021-02-21)
+
+
+### Bug Fixes
+
+* move documentation to site ([462ad71](https://github.com/cenk1cenk2/listr2/commit/462ad715782ef77fa3f991a8360392e261c05c03))
+
 ## [3.3.1](https://github.com/cenk1cenk2/listr2/compare/v3.3.0...v3.3.1) (2021-01-31)
 
 
