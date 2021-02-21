@@ -68,7 +68,6 @@ steps:
       server: https://drone.kilic.dev
       token:
         from_secret: drone_token
-      deploy: production
       last_successful: true
       repositories:
         - cenk1cenk2/nuxt-docs@master
