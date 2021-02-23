@@ -22,11 +22,13 @@ export class DefaultRenderer implements ListrRenderer {
     /**
      * clear output when task finishes
      * @default false
+     * @global global option that can not be temperated with from subtasks
      */
     clearOutput?: boolean
     /**
      * show the subtasks of the current task if it returns a new listr
      * @default true
+     * @global global option that can not be temperated with from subtasks
      */
     showSubtasks?: boolean
     /**
@@ -70,6 +72,7 @@ export class DefaultRenderer implements ListrRenderer {
      * useful for tests and stuff. this will disable showing spinner and only update the screen if the something else has
      * happened in the task worthy to show
      * @default false
+     * @global global option that can not be temperated with from subtasks
      */
     lazy?: boolean
     /**
@@ -77,6 +80,7 @@ export class DefaultRenderer implements ListrRenderer {
      *
      * overwrites per task renderer options
      * @default false
+     * @global global option that can not be temperated with from subtasks
      */
     showTimer?: boolean
     /**
@@ -90,6 +94,7 @@ export class DefaultRenderer implements ListrRenderer {
      * log-update mostly breaks if there is no wrap, so there is many options to choose your preference
      *
      * @default 'truncate'
+     * @global global option that can not be temperated with from subtasks
      */
     formatOutput?: 'truncate' | 'wrap'
   } = {
@@ -163,6 +168,13 @@ export class DefaultRenderer implements ListrRenderer {
 
   public hasTimer (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
     return this.getTaskOptions(task).showTimer === true
+  }
+
+  public getSelfOrParentOption<T extends keyof typeof DefaultRenderer['rendererOptions']>(
+    task: ListrTaskObject<any, typeof DefaultRenderer>,
+    key: T
+  ): typeof DefaultRenderer['rendererOptions'][T] {
+    return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
   /* istanbul ignore next */
@@ -264,23 +276,28 @@ export class DefaultRenderer implements ListrRenderer {
         if (task.hasTitle()) {
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
             // if task is skipped
-            if (task.hasFailed() && this.options.collapseErrors) {
-              // current task title and skip change the title
-              output = [
-                ...output,
-                this.formatString(!task.hasSubtasks() && task.message.error && this.options.showErrorMessage ? task.message.error : task.title, this.getSymbol(task), level)
-              ]
-            } else if (task.isSkipped() && this.options.collapseSkips) {
+            if (task.hasFailed() && this.getSelfOrParentOption(task, 'collapseErrors')) {
               // current task title and skip change the title
               output = [
                 ...output,
                 this.formatString(
-                  (task.message.skip && this.options.showSkipMessage ? task.message.skip : task.title) + (this.options.suffixSkips ? chalk.dim(' [SKIPPED]') : ''),
+                  !task.hasSubtasks() && task.message.error && this.getSelfOrParentOption(task, 'showErrorMessage') ? task.message.error : task.title,
                   this.getSymbol(task),
                   level
                 )
               ]
-            } else if (task.isCompleted() && task.hasTitle() && (this.options.showTimer || this.hasTimer(task))) {
+            } else if (task.isSkipped() && this.getSelfOrParentOption(task, 'collapseSkips')) {
+              // current task title and skip change the title
+              output = [
+                ...output,
+                this.formatString(
+                  (task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title) +
+                    (this.getSelfOrParentOption(task, 'suffixSkips') ? chalk.dim(' [SKIPPED]') : ''),
+                  this.getSymbol(task),
+                  level
+                )
+              ]
+            } else if (task.isCompleted() && task.hasTitle() && (this.getSelfOrParentOption(task, 'showTimer') || this.hasTimer(task))) {
               // task with timer
               output = [ ...output, this.formatString(`${task?.title} ${this.getTaskTime(task)}`, this.getSymbol(task), level) ]
             } else {
@@ -295,12 +312,20 @@ export class DefaultRenderer implements ListrRenderer {
 
         // task should not have subtasks since subtasks will handle the error already
         // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
-        if (!task.hasSubtasks() || !this.options.showSubtasks) {
+        if (!task.hasSubtasks() || !this.getSelfOrParentOption(task, 'showSubtasks')) {
           // without the collapse option for skip and errors
-          if (task.hasFailed() && this.options.collapseErrors === false && (this.options.showErrorMessage || !this.options.showSubtasks)) {
+          if (
+            task.hasFailed() &&
+            this.getSelfOrParentOption(task, 'collapseErrors') === false &&
+            (this.getSelfOrParentOption(task, 'showErrorMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
+          ) {
             // show skip data if collapsing is not defined
             output = [ ...output, this.dumpData(task, level, 'error') ]
-          } else if (task.isSkipped() && this.options.collapseSkips === false && (this.options.showSkipMessage || !this.options.showSubtasks)) {
+          } else if (
+            task.isSkipped() &&
+            this.getSelfOrParentOption(task, 'collapseSkips') === false &&
+            (this.getSelfOrParentOption(task, 'showSkipMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
+          ) {
             // show skip data if collapsing is not defined
             output = [ ...output, this.dumpData(task, level, 'skip') ]
           }
@@ -341,14 +366,14 @@ export class DefaultRenderer implements ListrRenderer {
         // render subtasks, some complicated conditionals going on
         if (
           // check if renderer option is on first
-          this.options.showSubtasks !== false &&
+          this.getSelfOrParentOption(task, 'showSubtasks') !== false &&
           // if it doesnt have subtasks no need to check
           task.hasSubtasks() &&
           (task.isPending() ||
             task.hasFailed() ||
             task.isCompleted() && !task.hasTitle() ||
             // have to be completed and have subtasks
-            task.isCompleted() && this.options.collapse === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
+            task.isCompleted() && this.getSelfOrParentOption(task, 'collapse') === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
             // if any of the subtasks have the collapse option of
             task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
             // if any of the subtasks has failed
@@ -483,7 +508,7 @@ export class DefaultRenderer implements ListrRenderer {
   // eslint-disable-next-line complexity
   private getSymbol (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isPending() && !data) {
-      return this.options?.lazy || this.options.showSubtasks !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
+      return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
         ? chalk.yellow(figures.main.pointer)
         : chalk.yellowBright(this.spinner[this.spinnerPosition])
     }
@@ -508,9 +533,9 @@ export class DefaultRenderer implements ListrRenderer {
       return task.hasSubtasks() ? chalk.red(figures.main.pointer) : chalk.red(figures.main.cross)
     }
 
-    if (task.isSkipped() && !data && this.options.collapseSkips === false) {
+    if (task.isSkipped() && !data && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
       return chalk.yellow(figures.main.warning)
-    } else if (task.isSkipped() && (data || this.options.collapseSkips)) {
+    } else if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
       return chalk.yellow(figures.main.arrowDown)
     }
 
