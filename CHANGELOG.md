@@ -1,3 +1,10 @@
+## [3.3.3](https://github.com/cenk1cenk2/listr2/compare/v3.3.2...v3.3.3) (2021-02-23)
+
+
+### Bug Fixes
+
+* update how the renderer options are handled enabling to use task options ([2b147b2](https://github.com/cenk1cenk2/listr2/commit/2b147b24772a3133b9f8c456d5c302e0dba4b5ef))
+
 ## [3.3.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.1...v3.3.2) (2021-02-21)
 
 
