@@ -1,8 +1,8 @@
 import cliTruncate from 'cli-truncate'
 import figures from 'figures'
 import indentString from 'indent-string'
-import logUpdate from 'log-update'
 import { EOL } from 'os'
+import { UpdateManager } from 'stdout-update'
 import cliWrap from 'wrap-ansi'
 
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
@@ -138,6 +138,7 @@ export class DefaultRenderer implements ListrRenderer {
   private promptBar: string
   private spinner: string[] = process.platform === 'win32' && !process.env.WT_SESSION ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
+  private updateManager: UpdateManager = UpdateManager.getInstance()
 
   constructor (
     public tasks: ListrTaskObject<any, typeof DefaultRenderer>[],
@@ -223,7 +224,11 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
-    const updateRender = (): void => logUpdate(this.createRender())
+    this.updateManager.hook()
+
+    const updateRender = (): void => {
+      return this.updateManager.update(this.createRender().split(EOL), 0)
+    }
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
@@ -245,8 +250,9 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     // clear log updater
-    logUpdate.clear()
-    logUpdate.done()
+    // FIXME: clear here
+    // this.updateManager.update([], 0)
+    this.updateManager.unhook(true)
 
     // directly write to process.stdout, since logupdate only can update the seen height of terminal
     if (!this.options.clearOutput) {
