@@ -33,9 +33,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public title: ListrTaskObject<Ctx, Renderer>['title']
   public message: ListrTaskObject<Ctx, Renderer>['message'] = {}
   public prompt: undefined | PromptInstance | PromptError
+  public retryCount: ListrTaskObject<Ctx, Renderer>['retryCount']
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   public renderHook$: Subject<void>
+  public initialTitle: ListrTaskObject<Ctx, Renderer>['initialTitle']
   private enabled: boolean
   private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
@@ -46,11 +48,14 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.id = generateUUID()
 
     this.title = this.tasks?.title
+    this.initialTitle = this.tasks?.title
 
     this.task = this.tasks.task
+
     // parse functions
     this.skip = this.tasks?.skip || ((): boolean => false)
     this.enabledFn = this.tasks?.enabled || ((): boolean => true)
+
     // task options
     this.rendererTaskOptions = this.tasks.options
 
@@ -149,6 +154,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     return this.state === StateConstants.ROLLED_BACK
   }
 
+  public isRetrying (): boolean {
+    return this.state === StateConstants.RETRY
+  }
+
   public isEnabled (): boolean {
     return this.enabled
   }
@@ -242,10 +251,29 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     }
 
     try {
-      // handle the results
-      await handleResult(this.task(context, wrapper))
+      // add retry functionality
+      const retryCount = this.tasks?.retry && this.tasks?.retry > 0 ? this.tasks.retry + 1 : 1
+      for (let retries = 1; retries <= retryCount; retries++) {
+        try {
+          // handle the results
+          await handleResult(this.task(context, wrapper))
+        } catch (e) {
+          if (retries !== retryCount) {
+            this.retryCount = retries
+            this.message$ = { retry: this.retryCount }
+            this.title$ = this.initialTitle
+            this.output$ = undefined
 
-      if (this.isPending()) {
+            wrapper.report(e)
+
+            this.state$ = StateConstants.RETRY
+          } else {
+            throw e
+          }
+        }
+      }
+
+      if (this.isPending() || this.isRetrying()) {
         this.message$ = { duration: Date.now() - startTime }
         this.state$ = StateConstants.COMPLETED
       }

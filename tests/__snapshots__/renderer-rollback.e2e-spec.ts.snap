@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`show throw error should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-err 1`] = `Array []`;
+exports[`show rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-err 1`] = `Array []`;
 
-exports[`show throw error should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `Array []`;
+exports[`show rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `Array []`;
 
-exports[`show throw error should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-out 1`] = `
+exports[`show rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-out 1`] = `
 Array [
   Array [
     "◼ Something with rollback.
@@ -85,11 +85,11 @@ Array [
 ]
 `;
 
-exports[`show throw error should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-err 1`] = `Array []`;
+exports[`show rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-err 1`] = `Array []`;
 
-exports[`show throw error should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `Array []`;
+exports[`show rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `Array []`;
 
-exports[`show throw error should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-out 1`] = `
+exports[`show rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-out 1`] = `
 Array [
   Array [
     "◼ Something with rollback.
@@ -180,11 +180,11 @@ Array [
 ]
 `;
 
-exports[`show throw error should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-err 1`] = `Array []`;
+exports[`show rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-err 1`] = `Array []`;
 
-exports[`show throw error should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `Array []`;
+exports[`show rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `Array []`;
 
-exports[`show throw error should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-out 1`] = `
+exports[`show rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-out 1`] = `
 Array [
   Array [
     "◼ Something with rollback.
@@ -289,11 +289,11 @@ Array [
 ]
 `;
 
-exports[`show throw error should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-err 1`] = `Array []`;
+exports[`show rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-err 1`] = `Array []`;
 
-exports[`show throw error should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `Array []`;
+exports[`show rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `Array []`;
 
-exports[`show throw error should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-out 1`] = `
+exports[`show rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-out 1`] = `
 Array [
   Array [
     "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G◼ Something with rollback.
@@ -384,11 +384,11 @@ Array [
 ]
 `;
 
-exports[`show throw error should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-err 1`] = `Array []`;
+exports[`show rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-err 1`] = `Array []`;
 
-exports[`show throw error should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-exit 1`] = `Array []`;
+exports[`show rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-exit 1`] = `Array []`;
 
-exports[`show throw error should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-out 1`] = `
+exports[`show rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-out 1`] = `
 Array [
   Array [
     "◼ Something with rollback.
@@ -479,11 +479,11 @@ Array [
 ]
 `;
 
-exports[`show throw error should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-err 1`] = `Array []`;
+exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-err 1`] = `Array []`;
 
-exports[`show throw error should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-exit 1`] = `Array []`;
+exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-exit 1`] = `Array []`;
 
-exports[`show throw error should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-out 1`] = `
+exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-out 1`] = `
 Array [
   Array [
     "◼ Something with rollback.

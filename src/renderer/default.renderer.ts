@@ -67,6 +67,11 @@ export class DefaultRenderer implements ListrRenderer {
      */
     showErrorMessage?: boolean
     /**
+     * suffix retry messages with [RETRY-${COUNT}] when retry is enabled for a task
+     * @default true
+     */
+    suffixRetries?: boolean
+    /**
      * only update via renderhook
      *
      * useful for tests and stuff. this will disable showing spinner and only update the screen if the something else has
@@ -107,6 +112,7 @@ export class DefaultRenderer implements ListrRenderer {
     suffixSkips: true,
     collapseErrors: true,
     showErrorMessage: true,
+    suffixRetries: true,
     lazy: false,
     showTimer: false,
     removeEmptyLines: true,
@@ -291,12 +297,17 @@ export class DefaultRenderer implements ListrRenderer {
               output = [
                 ...output,
                 this.formatString(
-                  (task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title) +
-                    (this.getSelfOrParentOption(task, 'suffixSkips') ? chalk.dim(' [SKIPPED]') : ''),
+                  this.addSuffixToMessage(
+                    task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title,
+                    'SKIPPED',
+                    this.getSelfOrParentOption(task, 'suffixSkips')
+                  ),
                   this.getSymbol(task),
                   level
                 )
               ]
+            } else if (task.isRetrying() && this.getSelfOrParentOption(task, 'suffixRetries')) {
+              output = [ ...output, this.formatString(this.addSuffixToMessage(task.title, `RETRYING-${task.message.retry}`), this.getSymbol(task), level) ]
             } else if (task.isCompleted() && task.hasTitle() && (this.getSelfOrParentOption(task, 'showTimer') || this.hasTimer(task))) {
               // task with timer
               output = [ ...output, this.formatString(`${task?.title} ${this.getTaskTime(task)}`, this.getSymbol(task), level) ]
@@ -333,7 +344,7 @@ export class DefaultRenderer implements ListrRenderer {
 
         // Current Task Output
         if (task?.output) {
-          if (task.isPending() && task.isPrompt()) {
+          if ((task.isPending() || task.isRetrying() || task.isRollingBack()) && task.isPrompt()) {
             // data output to prompt bar if prompt
             this.promptBar = task.output
           } else if (this.isBottomBar(task) || !task.hasTitle()) {
@@ -357,7 +368,7 @@ export class DefaultRenderer implements ListrRenderer {
             if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
-          } else if (task.isPending() || this.hasPersistentOutput(task)) {
+          } else if (task.isPending() || task.isRetrying() || task.isRollingBack() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
             output = [ ...output, this.dumpData(task, level) ]
           }
@@ -511,29 +522,21 @@ export class DefaultRenderer implements ListrRenderer {
       return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
         ? chalk.yellow(figures.main.pointer)
         : chalk.yellowBright(this.spinner[this.spinnerPosition])
-    }
-
-    if (task.isCompleted() && !data) {
+    } else if (task.isCompleted() && !data) {
       if (task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())) {
         return chalk.yellow(figures.main.warning)
       }
 
       return chalk.green(figures.main.tick)
-    }
-
-    if (task.isRollingBack() && !data) {
+    } else if (task.isRetrying() && !data) {
+      return this.options?.lazy ? chalk.keyword('orange')(figures.main.warning) : chalk.keyword('orange')(this.spinner[this.spinnerPosition])
+    } else if (task.isRollingBack() && !data) {
       return this.options?.lazy ? chalk.red(figures.main.warning) : chalk.red(this.spinner[this.spinnerPosition])
-    }
-
-    if (task.hasRolledBack() && !data) {
+    } else if (task.hasRolledBack() && !data) {
       return chalk.red(figures.main.arrowLeft)
-    }
-
-    if (task.hasFailed() && !data) {
+    } else if (task.hasFailed() && !data) {
       return task.hasSubtasks() ? chalk.red(figures.main.pointer) : chalk.red(figures.main.cross)
-    }
-
-    if (task.isSkipped() && !data && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
+    } else if (task.isSkipped() && !data && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
       return chalk.yellow(figures.main.warning)
     } else if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
       return chalk.yellow(figures.main.arrowDown)
@@ -544,5 +547,9 @@ export class DefaultRenderer implements ListrRenderer {
     } else {
       return figures.main.pointerSmall
     }
+  }
+
+  private addSuffixToMessage (message: string, suffix: string, condition?: boolean): string {
+    return condition ?? true ? message + chalk.dim(` [${suffix}]`) : message
   }
 }
