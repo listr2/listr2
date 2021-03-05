@@ -57,21 +57,21 @@ export class VerboseRenderer implements ListrRenderer {
       task.subscribe(
         (event: ListrEvent) => {
           if (task.isEnabled()) {
+            // render depending on the state
+            const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
+
             if (event.type === 'SUBTASK' && task.hasSubtasks()) {
               // render lower level if multi-level
               this.verboseRenderer(task.subtasks)
             } else if (event.type === 'STATE') {
               if (this.options?.logEmptyTitle !== false || task.hasTitle()) {
-                // render depending on the state
-                const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
-
                 if (task.isPending()) {
                   this.logger.start(taskTitle)
                 } else if (task.isCompleted()) {
                   this.logger.success(taskTitle)
                 }
               }
-            } else if (event.type === 'DATA') {
+            } else if (event.type === 'DATA' && !!event.data) {
               this.logger.data(String(event.data))
             } else if (event.type === 'TITLE') {
               if (this.options?.logTitleChange !== false) {
@@ -87,6 +87,8 @@ export class VerboseRenderer implements ListrRenderer {
               } else if (event.data?.rollback) {
                 // rollback message
                 this.logger.rollback(String(event.data.rollback))
+              } else if (event.data?.retry) {
+                this.logger.retry(`[${event.data.retry.count}] ` + String(taskTitle))
               }
             }
           }

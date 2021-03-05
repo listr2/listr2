@@ -36,6 +36,8 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   id: string
   /** Title of the task */
   title?: string
+  /** Untouched unchanged title of the task */
+  initialTitle?: string
   /** Output data from the task. */
   output?: string
   /** The task object itself, to further utilize it. */
@@ -46,6 +48,8 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   subtasks: ListrTaskObject<Ctx, any>[]
   /** The current state of the task. */
   state: string
+  /** Current retry number of the task if retrying */
+  retry?: { count: number, withError?: any }
   /**
    * A channel for messages.
    *
@@ -60,6 +64,8 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
     skip?: string
     /** Rollback message of the task, if the rollback finishes */
     rollback?: string
+    /** Retry messages */
+    retry?: { count: number, withError?: any }
   }
   /**
    * A function to check whether this task should run at all via enable.
@@ -87,6 +93,8 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   isRollingBack: () => boolean
   /** Returns whether the rollback action was successful. */
   hasRolledBack: () => boolean
+  /** Returns whether this task has an actively retrying task going on. */
+  isRetrying: () => boolean
   /** Returns whether enabled function resolves to true. */
   isEnabled: () => boolean
   /** Returns whether this task has a prompt inside. */
@@ -117,6 +125,10 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    * Mostly useful for rollback purposes for subtasks.
    */
   rollback?: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  /**
+   * Adds a couple of retries to the task if the task fails
+   */
+  retry?: number
   /**
    * Skip this task depending on the context.
    *
@@ -154,6 +166,8 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   skip: (message?: string) => void
   /** Run this task. */
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
+  /** Get the number of retrying, else returns false */
+  isRetrying: () => ListrTaskObject<Ctx, Renderer>['retry']
   /**
    * Create a new Enquirer prompt using prompt options.
    *

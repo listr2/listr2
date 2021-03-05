@@ -4,7 +4,6 @@ name: default
 trigger:
   branch:
     - master
-    - alpha
     - beta
     - rc
   event:
@@ -56,11 +55,20 @@ steps:
     when:
       branch:
         - master
-        - alpha
         - beta
         - rc
       event:
         - push
+
+  - name: trigger
+    image: plugins/downstream
+    settings:
+      server: https://drone.kilic.dev
+      token:
+        from_secret: drone_token
+      last_successful: false
+      repositories:
+        - cenk1cenk2/nuxt-docs@master
 
 image_pull_secrets:
   - dockerconfigjson

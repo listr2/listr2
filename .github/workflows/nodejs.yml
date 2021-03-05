@@ -4,7 +4,11 @@ on:
     branches:
       - '*'
       - '*/*'
+      - 'renovate/*'
       - '!master'
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   lint:

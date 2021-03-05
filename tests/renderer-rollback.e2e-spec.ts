@@ -3,7 +3,7 @@ import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock
 
 import { Listr } from '@root/index'
 
-describe('show throw error', () => {
+describe('show rollback', () => {
   let mockExit: jest.SpyInstance<never, [number?]>
 
   // eslint-disable-next-line @typescript-eslint/ban-types
