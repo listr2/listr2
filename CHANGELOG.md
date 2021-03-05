@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/cenk1cenk2/listr2/compare/v3.4.0...v3.4.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* return the last error as well from isRetrying ([f94641e](https://github.com/cenk1cenk2/listr2/commit/f94641e064464dddbf736e7f1dea1602a65ec433))
+
 # [3.4.0](https://github.com/cenk1cenk2/listr2/compare/v3.3.4...v3.4.0) (2021-03-05)
 
 
