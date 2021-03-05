@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/cenk1cenk2/listr2/compare/v3.3.4...v3.4.0) (2021-03-05)
+
+
+### Features
+
+* add retry feature ([4569fd2](https://github.com/cenk1cenk2/listr2/commit/4569fd262bb688198b44c58c6687d8d383664da5))
+
 ## [3.3.4](https://github.com/cenk1cenk2/listr2/compare/v3.3.3...v3.3.4) (2021-02-27)
 
 
