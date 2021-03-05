@@ -41,6 +41,12 @@ export class Logger {
     console.info(message)
   }
 
+  public retry (message: string): void {
+    message = this.parseMessage(LogLevels.retry, message)
+
+    console.warn(message)
+  }
+
   public rollback (message: string): void {
     message = this.parseMessage(LogLevels.rollback, message)
 
@@ -128,6 +134,15 @@ export class Logger {
         icon = figures.main.checkboxOn
       } else {
         icon = '[TITLE]'
+      }
+      break
+    case LogLevels.retry:
+      /* istanbul ignore if */
+      if (this.options?.useIcons) {
+        coloring = chalk.keyword('orange')
+        icon = figures.main.pointer
+      } else {
+        icon = '[RETRY]'
       }
       break
     case LogLevels.rollback:

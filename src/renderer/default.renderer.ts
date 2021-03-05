@@ -22,11 +22,13 @@ export class DefaultRenderer implements ListrRenderer {
     /**
      * clear output when task finishes
      * @default false
+     * @global global option that can not be temperated with from subtasks
      */
     clearOutput?: boolean
     /**
      * show the subtasks of the current task if it returns a new listr
      * @default true
+     * @global global option that can not be temperated with from subtasks
      */
     showSubtasks?: boolean
     /**
@@ -65,11 +67,17 @@ export class DefaultRenderer implements ListrRenderer {
      */
     showErrorMessage?: boolean
     /**
+     * suffix retry messages with [RETRY-${COUNT}] when retry is enabled for a task
+     * @default true
+     */
+    suffixRetries?: boolean
+    /**
      * only update via renderhook
      *
      * useful for tests and stuff. this will disable showing spinner and only update the screen if the something else has
      * happened in the task worthy to show
      * @default false
+     * @global global option that can not be temperated with from subtasks
      */
     lazy?: boolean
     /**
@@ -77,6 +85,7 @@ export class DefaultRenderer implements ListrRenderer {
      *
      * overwrites per task renderer options
      * @default false
+     * @global global option that can not be temperated with from subtasks
      */
     showTimer?: boolean
     /**
@@ -90,6 +99,7 @@ export class DefaultRenderer implements ListrRenderer {
      * log-update mostly breaks if there is no wrap, so there is many options to choose your preference
      *
      * @default 'truncate'
+     * @global global option that can not be temperated with from subtasks
      */
     formatOutput?: 'truncate' | 'wrap'
   } = {
@@ -102,6 +112,7 @@ export class DefaultRenderer implements ListrRenderer {
     suffixSkips: true,
     collapseErrors: true,
     showErrorMessage: true,
+    suffixRetries: true,
     lazy: false,
     showTimer: false,
     removeEmptyLines: true,
@@ -166,6 +177,13 @@ export class DefaultRenderer implements ListrRenderer {
     return this.getTaskOptions(task).showTimer === true
   }
 
+  public getSelfOrParentOption<T extends keyof typeof DefaultRenderer['rendererOptions']>(
+    task: ListrTaskObject<any, typeof DefaultRenderer>,
+    key: T
+  ): typeof DefaultRenderer['rendererOptions'][T] {
+    return task?.rendererOptions?.[key] ?? this.options?.[key]
+  }
+
   /* istanbul ignore next */
   public getTaskTime (task: ListrTaskObject<any, typeof DefaultRenderer>): string {
     const seconds = Math.floor(task.message.duration / 1000)
@@ -184,7 +202,7 @@ export class DefaultRenderer implements ListrRenderer {
       parsedTime = `${minutes}m${parsedTime}`
     }
 
-    return chalk.dim(`[${parsedTime}]`)
+    return parsedTime
   }
 
   public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
@@ -226,20 +244,16 @@ export class DefaultRenderer implements ListrRenderer {
 
     this.updateManager.hook()
 
-    const updateRender = (): void => {
-      return this.updateManager.update(this.createRender().split(EOL), 0)
-    }
-
     /* istanbul ignore if */
     if (!this.options?.lazy) {
       this.id = setInterval(() => {
         this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
-        updateRender()
+        this.updateRender()
       }, 100)
     }
 
     this.renderHook$.subscribe(() => {
-      updateRender()
+      this.updateRender()
     })
   }
 
@@ -249,15 +263,19 @@ export class DefaultRenderer implements ListrRenderer {
       this.id = undefined
     }
 
-    // clear log updater
-    // FIXME: clear here
-    // this.updateManager.update([], 0)
-    this.updateManager.unhook(true)
-
     // directly write to process.stdout, since logupdate only can update the seen height of terminal
     if (!this.options.clearOutput) {
-      process.stdout.write(this.createRender({ prompt: false }) + EOL)
+      this.updateRender({ prompt: false })
+    } else {
+      this.updateManager.erase(0)
     }
+
+    // clear log updater
+    this.updateManager.unhook(true)
+  }
+
+  private updateRender (...args: Parameters<DefaultRenderer['createRender']>): void {
+    return this.updateManager.update(this.createRender(...args).split(EOL), 0)
   }
 
   // eslint-disable-next-line
@@ -270,25 +288,35 @@ export class DefaultRenderer implements ListrRenderer {
         if (task.hasTitle()) {
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
             // if task is skipped
-            if (task.hasFailed() && this.options.collapseErrors) {
-              // current task title and skip change the title
-              output = [
-                ...output,
-                this.formatString(!task.hasSubtasks() && task.message.error && this.options.showErrorMessage ? task.message.error : task.title, this.getSymbol(task), level)
-              ]
-            } else if (task.isSkipped() && this.options.collapseSkips) {
+            if (task.hasFailed() && this.getSelfOrParentOption(task, 'collapseErrors')) {
               // current task title and skip change the title
               output = [
                 ...output,
                 this.formatString(
-                  (task.message.skip && this.options.showSkipMessage ? task.message.skip : task.title) + (this.options.suffixSkips ? chalk.dim(' [SKIPPED]') : ''),
+                  !task.hasSubtasks() && task.message.error && this.getSelfOrParentOption(task, 'showErrorMessage') ? task.message.error : task.title,
                   this.getSymbol(task),
                   level
                 )
               ]
-            } else if (task.isCompleted() && task.hasTitle() && (this.options.showTimer || this.hasTimer(task))) {
+            } else if (task.isSkipped() && this.getSelfOrParentOption(task, 'collapseSkips')) {
+              // current task title and skip change the title
+              output = [
+                ...output,
+                this.formatString(
+                  this.addSuffixToMessage(
+                    task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title,
+                    'SKIPPED',
+                    this.getSelfOrParentOption(task, 'suffixSkips')
+                  ),
+                  this.getSymbol(task),
+                  level
+                )
+              ]
+            } else if (task.isRetrying() && this.getSelfOrParentOption(task, 'suffixRetries')) {
+              output = [ ...output, this.formatString(this.addSuffixToMessage(task.title, `RETRYING-${task.message.retry.count}`), this.getSymbol(task), level) ]
+            } else if (task.isCompleted() && task.hasTitle() && (this.getSelfOrParentOption(task, 'showTimer') || this.hasTimer(task))) {
               // task with timer
-              output = [ ...output, this.formatString(`${task?.title} ${this.getTaskTime(task)}`, this.getSymbol(task), level) ]
+              output = [ ...output, this.formatString(this.addSuffixToMessage(task.title, this.getTaskTime(task)), this.getSymbol(task), level) ]
             } else {
               // normal state
               output = [ ...output, this.formatString(task.title, this.getSymbol(task), level) ]
@@ -301,12 +329,20 @@ export class DefaultRenderer implements ListrRenderer {
 
         // task should not have subtasks since subtasks will handle the error already
         // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
-        if (!task.hasSubtasks() || !this.options.showSubtasks) {
+        if (!task.hasSubtasks() || !this.getSelfOrParentOption(task, 'showSubtasks')) {
           // without the collapse option for skip and errors
-          if (task.hasFailed() && this.options.collapseErrors === false && (this.options.showErrorMessage || !this.options.showSubtasks)) {
+          if (
+            task.hasFailed() &&
+            this.getSelfOrParentOption(task, 'collapseErrors') === false &&
+            (this.getSelfOrParentOption(task, 'showErrorMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
+          ) {
             // show skip data if collapsing is not defined
             output = [ ...output, this.dumpData(task, level, 'error') ]
-          } else if (task.isSkipped() && this.options.collapseSkips === false && (this.options.showSkipMessage || !this.options.showSubtasks)) {
+          } else if (
+            task.isSkipped() &&
+            this.getSelfOrParentOption(task, 'collapseSkips') === false &&
+            (this.getSelfOrParentOption(task, 'showSkipMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
+          ) {
             // show skip data if collapsing is not defined
             output = [ ...output, this.dumpData(task, level, 'skip') ]
           }
@@ -314,7 +350,7 @@ export class DefaultRenderer implements ListrRenderer {
 
         // Current Task Output
         if (task?.output) {
-          if (task.isPending() && task.isPrompt()) {
+          if ((task.isPending() || task.isRetrying() || task.isRollingBack()) && task.isPrompt()) {
             // data output to prompt bar if prompt
             this.promptBar = task.output
           } else if (this.isBottomBar(task) || !task.hasTitle()) {
@@ -338,7 +374,7 @@ export class DefaultRenderer implements ListrRenderer {
             if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
-          } else if (task.isPending() || this.hasPersistentOutput(task)) {
+          } else if (task.isPending() || task.isRetrying() || task.isRollingBack() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
             output = [ ...output, this.dumpData(task, level) ]
           }
@@ -347,14 +383,14 @@ export class DefaultRenderer implements ListrRenderer {
         // render subtasks, some complicated conditionals going on
         if (
           // check if renderer option is on first
-          this.options.showSubtasks !== false &&
+          this.getSelfOrParentOption(task, 'showSubtasks') !== false &&
           // if it doesnt have subtasks no need to check
           task.hasSubtasks() &&
           (task.isPending() ||
             task.hasFailed() ||
             task.isCompleted() && !task.hasTitle() ||
             // have to be completed and have subtasks
-            task.isCompleted() && this.options.collapse === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
+            task.isCompleted() && this.getSelfOrParentOption(task, 'collapse') === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
             // if any of the subtasks have the collapse option of
             task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
             // if any of the subtasks has failed
@@ -489,34 +525,22 @@ export class DefaultRenderer implements ListrRenderer {
   // eslint-disable-next-line complexity
   private getSymbol (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isPending() && !data) {
-      return this.options?.lazy || this.options.showSubtasks !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
+      return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
         ? chalk.yellow(figures.main.pointer)
         : chalk.yellowBright(this.spinner[this.spinnerPosition])
-    }
-
-    if (task.isCompleted() && !data) {
-      if (task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())) {
-        return chalk.yellow(figures.main.warning)
-      }
-
-      return chalk.green(figures.main.tick)
-    }
-
-    if (task.isRollingBack() && !data) {
+    } else if (task.isCompleted() && !data) {
+      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? chalk.yellow(figures.main.warning) : chalk.green(figures.main.tick)
+    } else if (task.isRetrying() && !data) {
+      return this.options?.lazy ? chalk.keyword('orange')(figures.main.warning) : chalk.keyword('orange')(this.spinner[this.spinnerPosition])
+    } else if (task.isRollingBack() && !data) {
       return this.options?.lazy ? chalk.red(figures.main.warning) : chalk.red(this.spinner[this.spinnerPosition])
-    }
-
-    if (task.hasRolledBack() && !data) {
+    } else if (task.hasRolledBack() && !data) {
       return chalk.red(figures.main.arrowLeft)
-    }
-
-    if (task.hasFailed() && !data) {
+    } else if (task.hasFailed() && !data) {
       return task.hasSubtasks() ? chalk.red(figures.main.pointer) : chalk.red(figures.main.cross)
-    }
-
-    if (task.isSkipped() && !data && this.options.collapseSkips === false) {
+    } else if (task.isSkipped() && !data && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
       return chalk.yellow(figures.main.warning)
-    } else if (task.isSkipped() && (data || this.options.collapseSkips)) {
+    } else if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
       return chalk.yellow(figures.main.arrowDown)
     }
 
@@ -525,5 +549,9 @@ export class DefaultRenderer implements ListrRenderer {
     } else {
       return figures.main.pointerSmall
     }
+  }
+
+  private addSuffixToMessage (message: string, suffix: string, condition?: boolean): string {
+    return condition ?? true ? message + chalk.dim(` [${suffix}]`) : message
   }
 }

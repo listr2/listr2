@@ -1,3 +1,31 @@
+## [3.4.1](https://github.com/cenk1cenk2/listr2/compare/v3.4.0...v3.4.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* return the last error as well from isRetrying ([f94641e](https://github.com/cenk1cenk2/listr2/commit/f94641e064464dddbf736e7f1dea1602a65ec433))
+
+# [3.4.0](https://github.com/cenk1cenk2/listr2/compare/v3.3.4...v3.4.0) (2021-03-05)
+
+
+### Features
+
+* add retry feature ([4569fd2](https://github.com/cenk1cenk2/listr2/commit/4569fd262bb688198b44c58c6687d8d383664da5))
+
+## [3.3.4](https://github.com/cenk1cenk2/listr2/compare/v3.3.3...v3.3.4) (2021-02-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency rxjs to ^6.6.6 ([0164fac](https://github.com/cenk1cenk2/listr2/commit/0164fac5afa0837496b6fb2c76a42e1f61f0111c))
+
+## [3.3.3](https://github.com/cenk1cenk2/listr2/compare/v3.3.2...v3.3.3) (2021-02-23)
+
+
+### Bug Fixes
+
+* update how the renderer options are handled enabling to use task options ([2b147b2](https://github.com/cenk1cenk2/listr2/commit/2b147b24772a3133b9f8c456d5c302e0dba4b5ef))
+
 ## [3.3.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.1...v3.3.2) (2021-02-21)
 
 
