@@ -5,6 +5,7 @@ on:
       - '*'
       - '*/*'
       - 'renovate/*'
+      - '!master'
   pull_request:
     branches:
       - '*'
