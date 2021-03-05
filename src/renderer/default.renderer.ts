@@ -307,7 +307,7 @@ export class DefaultRenderer implements ListrRenderer {
                 )
               ]
             } else if (task.isRetrying() && this.getSelfOrParentOption(task, 'suffixRetries')) {
-              output = [ ...output, this.formatString(this.addSuffixToMessage(task.title, `RETRYING-${task.message.retry}`), this.getSymbol(task), level) ]
+              output = [ ...output, this.formatString(this.addSuffixToMessage(task.title, `RETRYING-${task.message.retry.count}`), this.getSymbol(task), level) ]
             } else if (task.isCompleted() && task.hasTitle() && (this.getSelfOrParentOption(task, 'showTimer') || this.hasTimer(task))) {
               // task with timer
               output = [ ...output, this.formatString(`${task?.title} ${this.getTaskTime(task)}`, this.getSymbol(task), level) ]

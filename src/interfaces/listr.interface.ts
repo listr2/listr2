@@ -49,7 +49,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   /** The current state of the task. */
   state: string
   /** Current retry number of the task if retrying */
-  retryCount?: number
+  retry?: { count: number, withError?: any }
   /**
    * A channel for messages.
    *
@@ -65,7 +65,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
     /** Rollback message of the task, if the rollback finishes */
     rollback?: string
     /** Retry messages */
-    retry?: number
+    retry?: { count: number, withError?: any }
   }
   /**
    * A function to check whether this task should run at all via enable.
@@ -167,7 +167,7 @@ export interface ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   /** Run this task. */
   run(ctx?: Ctx, task?: ListrTaskWrapper<Ctx, Renderer>): Promise<void>
   /** Get the number of retrying, else returns false */
-  isRetrying: () => number | false
+  isRetrying: () => ListrTaskObject<Ctx, Renderer>['retry']
   /**
    * Create a new Enquirer prompt using prompt options.
    *

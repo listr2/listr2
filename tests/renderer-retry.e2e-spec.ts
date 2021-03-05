@@ -40,8 +40,9 @@ describe('show retry', () => {
               task.output = 'test'
 
               await delay(10)
-              if (typeof task.isRetrying() === 'number') {
-                task.output = `I am self aware that I am retrying for the ${task.isRetrying()}th time.`
+              const retry = task.isRetrying()
+              if (retry.count > 0) {
+                task.output = `I am self aware that I am retrying for the ${retry.count}th time.`
               }
 
               await delay(10)

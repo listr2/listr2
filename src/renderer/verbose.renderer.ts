@@ -88,7 +88,7 @@ export class VerboseRenderer implements ListrRenderer {
                 // rollback message
                 this.logger.rollback(String(event.data.rollback))
               } else if (event.data?.retry) {
-                this.logger.retry(`[${event.data.retry}] ` + String(taskTitle))
+                this.logger.retry(`[${event.data.retry.count}] ` + String(taskTitle))
               }
             }
           }

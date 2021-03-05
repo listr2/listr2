@@ -33,7 +33,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public title: ListrTaskObject<Ctx, Renderer>['title']
   public message: ListrTaskObject<Ctx, Renderer>['message'] = {}
   public prompt: undefined | PromptInstance | PromptError
-  public retryCount: ListrTaskObject<Ctx, Renderer>['retryCount']
+  public retry: ListrTaskObject<Ctx, Renderer>['retry']
   public exitOnError: boolean
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   public renderHook$: Subject<void>
@@ -259,8 +259,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
           await handleResult(this.task(context, wrapper))
         } catch (e) {
           if (retries !== retryCount) {
-            this.retryCount = retries
-            this.message$ = { retry: this.retryCount }
+            this.retry = { count: retries, withError: e }
+            this.message$ = { retry: this.retry }
             this.title$ = this.initialTitle
             this.output$ = undefined
 

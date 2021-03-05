@@ -81,8 +81,8 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> implements 
     }
   }
 
-  public isRetrying (): false | number {
-    return this.task.isRetrying() ? this.task.retryCount : false
+  public isRetrying (): ReturnType<ListrTaskWrapper<Ctx, Renderer>['isRetrying']> {
+    return this.task.isRetrying() ? this.task.retry : { count: 0 }
   }
 
   public async prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T> {
