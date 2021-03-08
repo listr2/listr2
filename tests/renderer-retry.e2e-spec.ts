@@ -66,4 +66,39 @@ describe('show retry', () => {
     expect(mockStderr.mock.calls).toMatchSnapshot('R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-err')
     expect(mockExit.mock.calls).toMatchSnapshot('R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-exit')
   })
+
+  it('should stop retrying if the task succeeds afterwards', async () => {
+    let err: Error
+    try {
+      await new Listr(
+        [
+          {
+            title: 'Some type errors',
+            task: async (_, task): Promise<void> => {
+              const retry = task.isRetrying()
+
+              if (retry?.count === 3) {
+                task.title = 'Successed at 3th try.'
+              } else {
+                throw Error('not enough')
+              }
+            },
+            retry: 3
+          }
+        ],
+        {
+          concurrent: false,
+          exitOnError: true,
+          rendererOptions: { lazy: true }
+        }
+      ).run()
+    } catch (e) {
+      err = e
+    }
+
+    expect(err).toBeFalsy()
+    expect(mockStdout.mock.calls).toMatchSnapshot()
+    expect(mockStderr.mock.calls).toMatchSnapshot()
+    expect(mockExit.mock.calls).toMatchSnapshot()
+  })
 })
