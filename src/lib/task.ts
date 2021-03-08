@@ -174,6 +174,14 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     }
   }
 
+  public isRunning (): boolean {
+    return this.isPending() || this.isRollingBack() || this.isRetrying()
+  }
+
+  public hasFinalized (): boolean {
+    return this.isCompleted() || this.hasFailed() || this.hasRolledBack() || this.isSkipped()
+  }
+
   async run (context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void> {
     const handleResult = (result: any): Promise<any> => {
       if (result instanceof Listr) {
@@ -257,6 +265,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         try {
           // handle the results
           await handleResult(this.task(context, wrapper))
+
+          break
         } catch (e) {
           if (retries !== retryCount) {
             this.retry = { count: retries, withError: e }

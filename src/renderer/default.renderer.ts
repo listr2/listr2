@@ -147,7 +147,7 @@ export class DefaultRenderer implements ListrRenderer {
   private id?: NodeJS.Timeout
   private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
   private rendered: string[] = []
-  private renderedPointer = 0
+  private pointer = 0
   private promptBar: string
   private spinner: string[] = process.platform === 'win32' && !process.env.WT_SESSION ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
@@ -265,7 +265,6 @@ export class DefaultRenderer implements ListrRenderer {
       this.id = undefined
     }
 
-    // directly write to process.stdout, since logupdate only can update the seen height of terminal
     if (!this.options.clearOutput) {
       this.updateRender({ prompt: false })
     } else {
@@ -277,16 +276,13 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private updateRender (...args: Parameters<DefaultRenderer['createRender']>): void {
-    return this.updateManager.update(this.createRender(...args), this.renderedPointer)
+    const render = this.createRender(...args)
+    this.updateManager.update(render, this.pointer)
+    this.shiftRenderPointer()
   }
 
   // eslint-disable-next-line
-  private multiLineRenderer(tasks: ListrTaskObject<any, typeof DefaultRenderer>[], level = 0, options?: { freeze?: boolean }): string[] {
-    options = {
-      freeze: true,
-      ...options
-    }
-
+  private multiLineRenderer(tasks: ListrTaskObject<any, typeof DefaultRenderer>[], level = 0, parent?: boolean): string[] {
     let output: string[] = []
     let renderIndex = -1
 
@@ -361,7 +357,7 @@ export class DefaultRenderer implements ListrRenderer {
 
         // Current Task Output
         if (task?.output) {
-          if ((task.isPending() || task.isRetrying() || task.isRollingBack()) && task.isPrompt()) {
+          if (task.isRunning() && task.isPrompt()) {
             // data output to prompt bar if prompt
             this.promptBar = task.output
           } else if (this.isBottomBar(task) || !task.hasTitle()) {
@@ -385,21 +381,22 @@ export class DefaultRenderer implements ListrRenderer {
             if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
-          } else if (task.isPending() || task.isRetrying() || task.isRollingBack() || this.hasPersistentOutput(task)) {
+          } else if (task.isRunning() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
             taskOutput = [ ...taskOutput, this.dumpData(task, level) ]
           }
         }
         taskOutput = taskOutput.filter(Boolean)
 
-        let subtaskOutput: string[] = []
         // render subtasks, some complicated conditionals going on
+        let subtaskOutput: string[] = []
+
         if (
           // check if renderer option is on first
           this.getSelfOrParentOption(task, 'showSubtasks') !== false &&
           // if it doesnt have subtasks no need to check
           task.hasSubtasks() &&
-          (task.isPending() ||
+          (task.isRunning() ||
             task.hasFailed() ||
             task.isCompleted() && !task.hasTitle() ||
             // have to be completed and have subtasks
@@ -415,7 +412,7 @@ export class DefaultRenderer implements ListrRenderer {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
 
           // render the subtasks as in the same way
-          const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel, { freeze: false })
+          const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel, task.hasFinalized())
           if (subtaskRender?.length > 0 && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
             subtaskOutput = subtaskRender
           }
@@ -424,7 +421,7 @@ export class DefaultRenderer implements ListrRenderer {
         output = [ ...output, ...taskOutput, ...subtaskOutput ]
 
         // after task is finished actions
-        if (task.isCompleted() || task.hasFailed() || task.isSkipped() || task.hasRolledBack()) {
+        if (task.hasFinalized()) {
           // clean up prompts
           this.promptBar = null
 
@@ -433,13 +430,13 @@ export class DefaultRenderer implements ListrRenderer {
             delete this.bottomBar[task.id]
           }
 
-          if (options?.freeze && renderIndex === index - 1) {
-            this.renderedPointer += taskOutput.length + subtaskOutput.length
-            console.log(this.renderedPointer)
+          if (renderIndex === index - 1 && (parent ?? true)) {
+            this.shiftRenderPointer(taskOutput.length)
+
+            console.log(this.pointer)
             renderIndex = index
 
             this.rendered.push(task.id)
-            console.log(this.rendered)
           }
         }
       }
@@ -538,6 +535,10 @@ export class DefaultRenderer implements ListrRenderer {
 
   private indentMultilineOutput (str: string, i: number): string {
     return i > 0 ? indentString(str.trim(), 2, { includeEmptyLines: false }) : str.trim()
+  }
+
+  private shiftRenderPointer (next?: number): void {
+    this.pointer = !next ? 0 : this.pointer + next
   }
 
   // eslint-disable-next-line complexity

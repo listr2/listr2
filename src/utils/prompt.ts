@@ -1,4 +1,4 @@
-import Enquirer from 'enquirer'
+import type Enquirer from 'enquirer'
 
 import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
 import { PromptError } from '@interfaces/listr.interface'

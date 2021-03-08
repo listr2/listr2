@@ -1,3 +1,17 @@
+## [3.4.3](https://github.com/cenk1cenk2/listr2/compare/v3.4.2...v3.4.3) (2021-03-08)
+
+
+### Bug Fixes
+
+* add enquirer import type for no type erors ([9a3f105](https://github.com/cenk1cenk2/listr2/commit/9a3f1059684511cdc4e100ac7059b5861b99e0c4))
+
+## [3.4.2](https://github.com/cenk1cenk2/listr2/compare/v3.4.1...v3.4.2) (2021-03-08)
+
+
+### Bug Fixes
+
+* fix breaking the for ([456b681](https://github.com/cenk1cenk2/listr2/commit/456b681216e89d917a3b8f7c127a6563772bb2ae))
+
 ## [3.4.1](https://github.com/cenk1cenk2/listr2/compare/v3.4.0...v3.4.1) (2021-03-05)
 
 

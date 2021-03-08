@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/member-ordering */
-import Enquirer from 'enquirer'
+import type Enquirer from 'enquirer'
 import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
@@ -103,6 +103,10 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   hasFailed: () => boolean
   /** Returns whether this task actually has a title. */
   hasTitle: () => boolean
+  /** Returns whether this task is finalized and no further action will be performed. */
+  hasFinalized: () => boolean
+  /** Returns whether this task is still running in some form. */
+  isRunning: () => boolean
 }
 
 export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
