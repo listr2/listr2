@@ -286,7 +286,7 @@ async function main (): Promise<void> {
         options: { persistentOutput: true }
       }
     ],
-    { concurrent: false, rendererOptions: { formatOutput: 'wordWrap' } }
+    { concurrent: false, rendererOptions: { formatOutput: 'wrap' } }
   )
 
   try {

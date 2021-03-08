@@ -146,6 +146,8 @@ export class DefaultRenderer implements ListrRenderer {
 
   private id?: NodeJS.Timeout
   private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
+  private rendered: string[] = []
+  private renderedPointer = 0
   private promptBar: string
   private spinner: string[] = process.platform === 'win32' && !process.env.WT_SESSION ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
@@ -205,7 +207,7 @@ export class DefaultRenderer implements ListrRenderer {
     return parsedTime
   }
 
-  public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
+  public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string[] {
     options = {
       ...{
         tasks: true,
@@ -221,19 +223,19 @@ export class DefaultRenderer implements ListrRenderer {
     const renderBottomBar = this.renderBottomBar()
     const renderPrompt = this.renderPrompt()
 
-    if (options.tasks && renderTasks?.trim().length > 0) {
-      render.push(renderTasks)
+    if (options.tasks && renderTasks?.length > 0) {
+      render.push(...renderTasks)
     }
 
-    if (options.bottomBar && renderBottomBar?.trim().length > 0) {
-      render.push((render.length > 0 ? EOL : '') + renderBottomBar)
+    if (options.bottomBar && renderBottomBar?.length > 0) {
+      render.push(...render.length > 0 ? EOL : [], ...renderBottomBar)
     }
 
-    if (options.prompt && renderPrompt?.trim().length > 0) {
-      render.push((render.length > 0 ? EOL : '') + renderPrompt)
+    if (options.prompt && renderPrompt?.length > 0) {
+      render.push(...render.length > 0 ? EOL : [], renderPrompt)
     }
 
-    return render.length > 0 ? render.join(EOL) : ''
+    return render.length > 0 ? render : []
   }
 
   public render (): void {
@@ -267,7 +269,7 @@ export class DefaultRenderer implements ListrRenderer {
     if (!this.options.clearOutput) {
       this.updateRender({ prompt: false })
     } else {
-      this.updateManager.erase(0)
+      this.updateManager.erase()
     }
 
     // clear log updater
@@ -275,23 +277,32 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private updateRender (...args: Parameters<DefaultRenderer['createRender']>): void {
-    return this.updateManager.update(this.createRender(...args).split(EOL), 0)
+    return this.updateManager.update(this.createRender(...args), this.renderedPointer)
   }
 
   // eslint-disable-next-line
-  private multiLineRenderer(tasks: ListrTaskObject<any, typeof DefaultRenderer>[], level = 0): string {
-    let output: string[] = []
+  private multiLineRenderer(tasks: ListrTaskObject<any, typeof DefaultRenderer>[], level = 0, options?: { freeze?: boolean }): string[] {
+    options = {
+      freeze: true,
+      ...options
+    }
 
-    for (const task of tasks) {
-      if (task.isEnabled()) {
+    let output: string[] = []
+    let renderIndex = -1
+
+    // eslint-disable-next-line complexity
+    tasks.forEach((task, index) => {
+      if (!this.rendered.includes(task.id) && task.isEnabled()) {
+        let taskOutput: string[] = []
+
         // Current Task Title
         if (task.hasTitle()) {
           if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
             // if task is skipped
             if (task.hasFailed() && this.getSelfOrParentOption(task, 'collapseErrors')) {
               // current task title and skip change the title
-              output = [
-                ...output,
+              taskOutput = [
+                ...taskOutput,
                 this.formatString(
                   !task.hasSubtasks() && task.message.error && this.getSelfOrParentOption(task, 'showErrorMessage') ? task.message.error : task.title,
                   this.getSymbol(task),
@@ -300,8 +311,8 @@ export class DefaultRenderer implements ListrRenderer {
               ]
             } else if (task.isSkipped() && this.getSelfOrParentOption(task, 'collapseSkips')) {
               // current task title and skip change the title
-              output = [
-                ...output,
+              taskOutput = [
+                ...taskOutput,
                 this.formatString(
                   this.addSuffixToMessage(
                     task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title,
@@ -313,17 +324,17 @@ export class DefaultRenderer implements ListrRenderer {
                 )
               ]
             } else if (task.isRetrying() && this.getSelfOrParentOption(task, 'suffixRetries')) {
-              output = [ ...output, this.formatString(this.addSuffixToMessage(task.title, `RETRYING-${task.message.retry.count}`), this.getSymbol(task), level) ]
+              taskOutput = [ ...taskOutput, this.formatString(this.addSuffixToMessage(task.title, `RETRYING-${task.message.retry.count}`), this.getSymbol(task), level) ]
             } else if (task.isCompleted() && task.hasTitle() && (this.getSelfOrParentOption(task, 'showTimer') || this.hasTimer(task))) {
               // task with timer
-              output = [ ...output, this.formatString(this.addSuffixToMessage(task.title, this.getTaskTime(task)), this.getSymbol(task), level) ]
+              taskOutput = [ ...taskOutput, this.formatString(this.addSuffixToMessage(task.title, this.getTaskTime(task)), this.getSymbol(task), level) ]
             } else {
               // normal state
-              output = [ ...output, this.formatString(task.title, this.getSymbol(task), level) ]
+              taskOutput = [ ...taskOutput, this.formatString(task.title, this.getSymbol(task), level) ]
             }
           } else {
             // some sibling task but self has failed and this has stopped
-            output = [ ...output, this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level) ]
+            taskOutput = [ ...taskOutput, this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level) ]
           }
         }
 
@@ -337,14 +348,14 @@ export class DefaultRenderer implements ListrRenderer {
             (this.getSelfOrParentOption(task, 'showErrorMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
           ) {
             // show skip data if collapsing is not defined
-            output = [ ...output, this.dumpData(task, level, 'error') ]
+            taskOutput = [ ...taskOutput, this.dumpData(task, level, 'error') ]
           } else if (
             task.isSkipped() &&
             this.getSelfOrParentOption(task, 'collapseSkips') === false &&
             (this.getSelfOrParentOption(task, 'showSkipMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
           ) {
             // show skip data if collapsing is not defined
-            output = [ ...output, this.dumpData(task, level, 'skip') ]
+            taskOutput = [ ...taskOutput, this.dumpData(task, level, 'skip') ]
           }
         }
 
@@ -376,10 +387,12 @@ export class DefaultRenderer implements ListrRenderer {
             }
           } else if (task.isPending() || task.isRetrying() || task.isRollingBack() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
-            output = [ ...output, this.dumpData(task, level) ]
+            taskOutput = [ ...taskOutput, this.dumpData(task, level) ]
           }
         }
+        taskOutput = taskOutput.filter(Boolean)
 
+        let subtaskOutput: string[] = []
         // render subtasks, some complicated conditionals going on
         if (
           // check if renderer option is on first
@@ -402,11 +415,13 @@ export class DefaultRenderer implements ListrRenderer {
           const subtaskLevel = !task.hasTitle() ? level : level + 1
 
           // render the subtasks as in the same way
-          const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
-          if (subtaskRender?.trim() !== '' && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
-            output = [ ...output, subtaskRender ]
+          const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel, { freeze: false })
+          if (subtaskRender?.length > 0 && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
+            subtaskOutput = subtaskRender
           }
         }
+
+        output = [ ...output, ...taskOutput, ...subtaskOutput ]
 
         // after task is finished actions
         if (task.isCompleted() || task.hasFailed() || task.isSkipped() || task.hasRolledBack()) {
@@ -417,19 +432,23 @@ export class DefaultRenderer implements ListrRenderer {
           if (!this.hasPersistentOutput(task)) {
             delete this.bottomBar[task.id]
           }
+
+          if (options?.freeze && renderIndex === index - 1) {
+            this.renderedPointer += taskOutput.length + subtaskOutput.length
+            console.log(this.renderedPointer)
+            renderIndex = index
+
+            this.rendered.push(task.id)
+            console.log(this.rendered)
+          }
         }
       }
-    }
+    })
 
-    output = output.filter(Boolean)
-    if (output.length > 0) {
-      return output.join(EOL)
-    } else {
-      return
-    }
+    return output
   }
 
-  private renderBottomBar (): string {
+  private renderBottomBar (): string[] {
     // parse through all objects return only the last mentioned items
     if (Object.keys(this.bottomBar).length > 0) {
       this.bottomBar = Object.keys(this.bottomBar).reduce((o, key) => {
@@ -447,7 +466,6 @@ export class DefaultRenderer implements ListrRenderer {
       return Object.values(this.bottomBar)
         .reduce((o, value) => o = [ ...o, ...value.data ], [])
         .filter(Boolean)
-        .join(EOL)
     }
   }
 
@@ -552,6 +570,6 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private addSuffixToMessage (message: string, suffix: string, condition?: boolean): string {
-    return condition ?? true ? message + chalk.dim(` [${suffix}]`) : message
+    return condition ?? true ? message + ' ' + chalk.dim(`[${suffix}]`) : message
   }
 }
