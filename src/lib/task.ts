@@ -257,6 +257,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         try {
           // handle the results
           await handleResult(this.task(context, wrapper))
+
+          break
         } catch (e) {
           if (retries !== retryCount) {
             this.retry = { count: retries, withError: e }

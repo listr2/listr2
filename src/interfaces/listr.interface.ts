@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/member-ordering */
-import Enquirer from 'enquirer'
+import type Enquirer from 'enquirer'
 import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
