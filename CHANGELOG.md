@@ -1,3 +1,18 @@
+# [4.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.4.3...v4.0.0-beta.1) (2021-03-14)
+
+
+### Features
+
+* implement updating renderer with stdout-update ([4c371b9](https://github.com/cenk1cenk2/listr2/commit/4c371b96f1e65b091f5d6ac5170719660b80e08b)), closes [#310](https://github.com/cenk1cenk2/listr2/issues/310)
+* swap log-update out for stdout-update ([7fcfc0e](https://github.com/cenk1cenk2/listr2/commit/7fcfc0e269875c3060b09f08d911499cf9f0a72e))
+
+
+### BREAKING CHANGES
+
+* since log-update is swapped with stdout-update and how it handles line clears, it
+might break tests utilizing snapshots of the stdout while using default renderer, eventhough that is
+not  the advised method!
+
 ## [3.4.3](https://github.com/cenk1cenk2/listr2/compare/v3.4.2...v3.4.3) (2021-03-08)
 
 
