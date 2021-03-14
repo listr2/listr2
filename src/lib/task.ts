@@ -315,7 +315,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         }
 
         if (this.listr.options?.exitAfterRollback !== false) {
-          // Do not exit when explicitely set to `false`
+          // Do not exit when explicitly set to `false`
           throw new Error(this.title)
         }
       } else {
@@ -331,7 +331,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         wrapper.report(error)
 
         if (this.listr.options.exitOnError !== false) {
-          // Do not exit when explicitely set to `false`
+          // Do not exit when explicitly set to `false`
           throw error
         }
       }

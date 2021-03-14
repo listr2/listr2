@@ -1,0 +1,20 @@
+{
+  "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#",
+  "configurations": {
+    "run": {
+      "adapter": "vscode-node",
+      "configuration": {
+        "request": "attach",
+        "port": 9229,
+        "address": "localhost",
+        "timeout": 60000,
+        "externalConsole": true,
+        "localRoot": "${workspaceFolder}",
+        "remoteRoot": "${workspaceFolder}",
+        "protocol": "inspector",
+        "sourceMaps": true,
+        "restart": true
+      }
+    }
+  }
+}

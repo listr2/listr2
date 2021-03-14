@@ -76,15 +76,15 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     /* istanbul ignore if */
     if (this.options.registerSignalListeners) {
       process
-        .once('SIGINT', async () => {
-          await Promise.all(
-            this.tasks.map(async (task) => {
-              if (task.isPending()) {
-                task.state$ = StateConstants.FAILED
-              }
-            })
-          )
+        .once('SIGINT', () => {
+          this.tasks.forEach((task) => {
+            if (task.isPending()) {
+              task.state$ = StateConstants.FAILED
+            }
+          })
+
           this.renderer.end(new Error('Interrupted.'))
+
           process.exit(127)
         })
         .setMaxListeners(0)

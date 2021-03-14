@@ -270,7 +270,7 @@ async function main (): Promise<void> {
     logger.fail(e)
   }
 
-  logger.start('Example long multiline output with task with persistent output and word wrap.')
+  logger.start('Example long multiline output with task with persistent output and word wrap and without skipping empty lines.')
 
   task = new Listr<Ctx>(
     [
@@ -280,13 +280,13 @@ async function main (): Promise<void> {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
-          task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
+          task.output = start + mid.repeat(100) + '\n' + '\n' + '\n' + mid.repeat(100) + end
           await delay(500)
         },
         options: { persistentOutput: true }
       }
     ],
-    { concurrent: false, rendererOptions: { formatOutput: 'wrap' } }
+    { concurrent: false, rendererOptions: { formatOutput: 'wrap', removeEmptyLines: false } }
   )
 
   try {

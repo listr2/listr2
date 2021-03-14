@@ -4,160 +4,7 @@ exports[`show throw error should change exit on error per subtask: HUHzWgxW8O1FG
 
 exports[`show throw error should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `Array []`;
 
-exports[`show throw error should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-out 1`] = `
-Array [
-  Array [
-    "◼ This task will execute and not quit on errors.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G◼ This task will execute and not quit on errors.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ◼ This is a subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ◼ This is a subtask.
-  ◼ This is an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ◼ This is a subtask.
-  ◼ This is an another subtask.
-  ◼ This is yet an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ❯ This is a subtask.
-  ◼ This is an another subtask.
-  ◼ This is yet an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ✖ This is a subtask.
-  ◼ This is an another subtask.
-  ◼ This is yet an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ◼ This is an another subtask.
-  ◼ This is yet an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ❯ This is an another subtask.
-  ◼ This is yet an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ This is an another subtask.
-  ◼ This is yet an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ◼ This is yet an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ❯ This is yet an another subtask.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ❯ I have succeeded.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ✔ I have succeeded.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ✔ I have succeeded.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ✔ I have succeeded.
-❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ✔ I have succeeded.
-✖ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ✔ I have succeeded.
-✖ I will exit on error since I am a direct child of parent task.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "⚠ This task will execute and not quit on errors.
-  ✖ I have failed [0]
-  ✖ I have failed [1]
-  ✔ I have succeeded.
-✖ I will exit on error since I am a direct child of parent task.
-",
-  ],
-]
-`;
+exports[`show throw error should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-out 1`] = `Array []`;
 
 exports[`show throw error should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
 Array [
@@ -169,164 +16,47 @@ exports[`show throw error should not throw out an error when exitonerror is disa
 
 exports[`show throw error should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `Array []`;
 
-exports[`show throw error should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-out 1`] = `
-Array [
-  Array [
-    "◼ This task will fail.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G◼ This task will fail.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will fail.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task will fail.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
-◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
-❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
-❯ I will change my title if this executes.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
-✔ I will change my title if this executes.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "✖ This task failed after 2 seconds.
-✔ I will change my title if this executes.
-",
-  ],
-]
-`;
+exports[`show throw error should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-out 1`] = `Array []`;
 
 exports[`show throw error should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-err 1`] = `Array []`;
 
 exports[`show throw error should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-exit 1`] = `Array []`;
 
-exports[`show throw error should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-out 1`] = `
-Array [
-  Array [
-    "◼ This task will fail.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G◼ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "✖ This task will fail.
-◼ This task will never execute.
-",
-  ],
-]
-`;
+exports[`show throw error should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-out 1`] = `Array []`;
 
 exports[`show throw error should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-err 1`] = `Array []`;
 
 exports[`show throw error should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-exit 1`] = `Array []`;
 
-exports[`show throw error should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-out 1`] = `
+exports[`show throw error should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-out 1`] = `Array []`;
+
+exports[`show throw error should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-err 1`] = `
 Array [
   Array [
-    "◼ This task will fail.
-",
+    "[?25l",
   ],
   Array [
-    "[2K[1A[2K[G◼ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task will fail.
-  › This task failed after 2 seconds.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "✖ This task will fail.
-  › This task failed after 2 seconds.
-◼ This task will never execute.
-",
+    "[?25h",
   ],
 ]
 `;
-
-exports[`show throw error should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-err 1`] = `Array []`;
 
 exports[`show throw error should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `Array []`;
 
 exports[`show throw error should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-out 1`] = `
 Array [
   Array [
+    "[?25l",
+  ],
+  Array [
     "◼ This task will fail.
 ",
   ],
   Array [
-    "[2K[1A[2K[G◼ This task will fail.
-◼ This task will never execute.
-",
+    "[2K[1A[2K[G",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+    "◼ This task will fail.
 ◼ This task will never execute.
 ",
   ],
@@ -334,9 +64,50 @@ Array [
     "[2K[1A[2K[1A[2K[G",
   ],
   Array [
-    "✖ This task failed after 2 seconds.
+    "◼ This task will fail.
 ◼ This task will never execute.
 ",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ This task will fail.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will fail.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "✖ This task will fail.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ This task will never execute.
+",
+  ],
+  Array [
+    "[?25h",
   ],
 ]
 `;

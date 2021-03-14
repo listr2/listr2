@@ -80,9 +80,8 @@ export class Logger {
     let icon: string
 
     // do the coloring
-    let coloring = (input: string): string => {
-      return input
-    }
+    let coloring = (input: string): string => input
+
     switch (level) {
     case LogLevels.fail:
       /* istanbul ignore if */
