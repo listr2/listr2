@@ -284,7 +284,12 @@ export class DefaultRenderer implements ListrRenderer {
 
     const render = this.createRender(...args)
 
-    this.updateManager.update(render, pointer)
+    if (render.length > 0) {
+      this.updateManager.update(render, pointer)
+    } else if (this.updateManager.lastLength - this.pointerTotal > 0) {
+      // clear the not finalized lines, if the render returns empty since update method checks length > 0
+      this.updateManager.erase(this.updateManager.lastLength - this.pointerTotal)
+    }
   }
 
   private multiLineRenderer (tasks: ListrTaskObject<any, typeof DefaultRenderer>[] = this.tasks, level = 0, parent?: boolean): string[] {

@@ -27,7 +27,7 @@ export type ListrSilentRenderer = typeof SilentRenderer
 
 /**
  * Listr2 can process either the integrated renderers as string aliases,
- * or utilize a compatabile style renderer that extends the ListrRenderer abstract class.
+ * or utilize a compatible style renderer that extends the ListrRenderer abstract class.
  */
 export type ListrRendererValue = ListrSilentRendererValue | ListrDefaultRendererValue | ListrFallbackRendererValue | ListrRendererFactory
 
@@ -53,7 +53,7 @@ export interface ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> ext
   /**
    * A channel for messages.
    *
-   * This requires a seperate channel for messages like error, skip or runtime messages to further utilize in the renderers.
+   * This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
    */
   message: {
     /** Run time of the task, if it has been successfully resolved. */

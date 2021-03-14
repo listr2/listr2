@@ -145,7 +145,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
       if (this.options.exitOnError !== false) {
         this.renderer.end(error)
-        // Do not exit when explicitely set to `false`
+        // Do not exit when explicitly set to `false`
         throw error
       }
     }
