@@ -1,3 +1,15 @@
+# [4.0.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2021-03-14)
+
+
+### Bug Fixes
+
+* ditch node 10 support because of stdout-update ([9b6e934](https://github.com/cenk1cenk2/listr2/commit/9b6e93412d5a49b8d3f39222b6c81fb057ac92e8))
+
+
+### BREAKING CHANGES
+
+* drops node 10.x support, now starts from 12.x
+
 # [4.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.4.3...v4.0.0-beta.1) (2021-03-14)
 
 ### Features
