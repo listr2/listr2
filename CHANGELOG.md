@@ -1,3 +1,10 @@
+# [4.0.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2021-03-14)
+
+
+### Bug Fixes
+
+* fix deleting something from the render if array is empty ([d5237ed](https://github.com/cenk1cenk2/listr2/commit/d5237ed12ae631fa11323828f98c30d0abbd65cf))
+
 # [4.0.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2021-03-14)
 
 
