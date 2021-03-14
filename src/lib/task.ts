@@ -115,14 +115,16 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     if (this.state === undefined) {
       if (typeof this.enabledFn === 'function') {
         this.enabled = await this.enabledFn(ctx)
-      } /* istanbul ignore next */ else {
+      } else {
         this.enabled = this.enabledFn
       }
 
-      this.next({
-        type: 'ENABLED',
-        data: this.enabled
-      })
+      if (this.enabled) {
+        this.next({
+          type: 'ENABLED',
+          data: this.enabled
+        })
+      }
     }
   }
 
