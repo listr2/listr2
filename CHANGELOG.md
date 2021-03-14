@@ -1,155 +1,145 @@
-## [3.4.3](https://github.com/cenk1cenk2/listr2/compare/v3.4.2...v3.4.3) (2021-03-08)
+# [4.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.4.3...v4.0.0-beta.1) (2021-03-14)
 
+### Features
+
+- implement updating renderer with stdout-update ([4c371b9](https://github.com/cenk1cenk2/listr2/commit/4c371b96f1e65b091f5d6ac5170719660b80e08b)), closes [#310](https://github.com/cenk1cenk2/listr2/issues/310)
+- swap log-update out for stdout-update ([7fcfc0e](https://github.com/cenk1cenk2/listr2/commit/7fcfc0e269875c3060b09f08d911499cf9f0a72e))
+
+### BREAKING CHANGES
+
+- since log-update is swapped with stdout-update and how it handles line clears, it might break tests utilizing snapshots of the stdout while using default renderer, eventhough that is not the advised method!
+
+## [3.4.3](https://github.com/cenk1cenk2/listr2/compare/v3.4.2...v3.4.3) (2021-03-08)
 
 ### Bug Fixes
 
-* add enquirer import type for no type erors ([9a3f105](https://github.com/cenk1cenk2/listr2/commit/9a3f1059684511cdc4e100ac7059b5861b99e0c4))
+- add enquirer import type for no type erors ([9a3f105](https://github.com/cenk1cenk2/listr2/commit/9a3f1059684511cdc4e100ac7059b5861b99e0c4))
 
 ## [3.4.2](https://github.com/cenk1cenk2/listr2/compare/v3.4.1...v3.4.2) (2021-03-08)
 
-
 ### Bug Fixes
 
-* fix breaking the for ([456b681](https://github.com/cenk1cenk2/listr2/commit/456b681216e89d917a3b8f7c127a6563772bb2ae))
+- fix breaking the for ([456b681](https://github.com/cenk1cenk2/listr2/commit/456b681216e89d917a3b8f7c127a6563772bb2ae))
 
 ## [3.4.1](https://github.com/cenk1cenk2/listr2/compare/v3.4.0...v3.4.1) (2021-03-05)
 
-
 ### Bug Fixes
 
-* return the last error as well from isRetrying ([f94641e](https://github.com/cenk1cenk2/listr2/commit/f94641e064464dddbf736e7f1dea1602a65ec433))
+- return the last error as well from isRetrying ([f94641e](https://github.com/cenk1cenk2/listr2/commit/f94641e064464dddbf736e7f1dea1602a65ec433))
 
 # [3.4.0](https://github.com/cenk1cenk2/listr2/compare/v3.3.4...v3.4.0) (2021-03-05)
 
-
 ### Features
 
-* add retry feature ([4569fd2](https://github.com/cenk1cenk2/listr2/commit/4569fd262bb688198b44c58c6687d8d383664da5))
+- add retry feature ([4569fd2](https://github.com/cenk1cenk2/listr2/commit/4569fd262bb688198b44c58c6687d8d383664da5))
 
 ## [3.3.4](https://github.com/cenk1cenk2/listr2/compare/v3.3.3...v3.3.4) (2021-02-27)
 
-
 ### Bug Fixes
 
-* **deps:** update dependency rxjs to ^6.6.6 ([0164fac](https://github.com/cenk1cenk2/listr2/commit/0164fac5afa0837496b6fb2c76a42e1f61f0111c))
+- **deps:** update dependency rxjs to ^6.6.6 ([0164fac](https://github.com/cenk1cenk2/listr2/commit/0164fac5afa0837496b6fb2c76a42e1f61f0111c))
 
 ## [3.3.3](https://github.com/cenk1cenk2/listr2/compare/v3.3.2...v3.3.3) (2021-02-23)
 
-
 ### Bug Fixes
 
-* update how the renderer options are handled enabling to use task options ([2b147b2](https://github.com/cenk1cenk2/listr2/commit/2b147b24772a3133b9f8c456d5c302e0dba4b5ef))
+- update how the renderer options are handled enabling to use task options ([2b147b2](https://github.com/cenk1cenk2/listr2/commit/2b147b24772a3133b9f8c456d5c302e0dba4b5ef))
 
 ## [3.3.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.1...v3.3.2) (2021-02-21)
 
-
 ### Bug Fixes
 
-* move documentation to site ([462ad71](https://github.com/cenk1cenk2/listr2/commit/462ad715782ef77fa3f991a8360392e261c05c03))
+- move documentation to site ([462ad71](https://github.com/cenk1cenk2/listr2/commit/462ad715782ef77fa3f991a8360392e261c05c03))
 
 ## [3.3.1](https://github.com/cenk1cenk2/listr2/compare/v3.3.0...v3.3.1) (2021-01-31)
 
-
 ### Bug Fixes
 
-* rollback types ([7935241](https://github.com/cenk1cenk2/listr2/commit/7935241ef91ed36434242ee00ed838c1fe0979e2)), closes [#276](https://github.com/cenk1cenk2/listr2/issues/276)
-* try fix typings issue ([4dd9013](https://github.com/cenk1cenk2/listr2/commit/4dd901356dffa24d3a3d41cf829896da7890e17e))
-* update interface ([2cb2cd6](https://github.com/cenk1cenk2/listr2/commit/2cb2cd637efdbdadfff548ed0c9cccbb347ca5f6))
+- rollback types ([7935241](https://github.com/cenk1cenk2/listr2/commit/7935241ef91ed36434242ee00ed838c1fe0979e2)), closes [#276](https://github.com/cenk1cenk2/listr2/issues/276)
+- try fix typings issue ([4dd9013](https://github.com/cenk1cenk2/listr2/commit/4dd901356dffa24d3a3d41cf829896da7890e17e))
+- update interface ([2cb2cd6](https://github.com/cenk1cenk2/listr2/commit/2cb2cd637efdbdadfff548ed0c9cccbb347ca5f6))
 
 ## [3.3.1-beta.3](https://github.com/cenk1cenk2/listr2/compare/v3.3.1-beta.2...v3.3.1-beta.3) (2021-01-31)
 
-
 ### Bug Fixes
 
-* try fix typings issue ([4dd9013](https://github.com/cenk1cenk2/listr2/commit/4dd901356dffa24d3a3d41cf829896da7890e17e))
+- try fix typings issue ([4dd9013](https://github.com/cenk1cenk2/listr2/commit/4dd901356dffa24d3a3d41cf829896da7890e17e))
 
 ## [3.3.1-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.1-beta.1...v3.3.1-beta.2) (2021-01-25)
 
-
 ### Bug Fixes
 
-* update interface ([2cb2cd6](https://github.com/cenk1cenk2/listr2/commit/2cb2cd637efdbdadfff548ed0c9cccbb347ca5f6))
+- update interface ([2cb2cd6](https://github.com/cenk1cenk2/listr2/commit/2cb2cd637efdbdadfff548ed0c9cccbb347ca5f6))
 
 ## [3.3.1-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.3.0...v3.3.1-beta.1) (2021-01-24)
 
-
 ### Bug Fixes
 
-* rollback types ([7935241](https://github.com/cenk1cenk2/listr2/commit/7935241ef91ed36434242ee00ed838c1fe0979e2)), closes [#276](https://github.com/cenk1cenk2/listr2/issues/276)
+- rollback types ([7935241](https://github.com/cenk1cenk2/listr2/commit/7935241ef91ed36434242ee00ed838c1fe0979e2)), closes [#276](https://github.com/cenk1cenk2/listr2/issues/276)
 
 # [3.3.0](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0) (2021-01-20)
 
-
 ### Bug Fixes
 
-* add more filtering for empty lines ([8bc1671](https://github.com/cenk1cenk2/listr2/commit/8bc1671d58aba6d067ce03fd4882352a9a402bb4))
-* drone stupidity ([3baa018](https://github.com/cenk1cenk2/listr2/commit/3baa018b5984d1c13aa4ebeb2cabba2764fa4ba2))
-* fix drone ([af43b84](https://github.com/cenk1cenk2/listr2/commit/af43b840a7c8446b22d7e1dcb4dc527dfcac89d9))
-* force build ([bc6cb28](https://github.com/cenk1cenk2/listr2/commit/bc6cb285f2cf17da5b12067279a87d6275397b98))
-* some fixes for truncation and word wrapping ([18c279a](https://github.com/cenk1cenk2/listr2/commit/18c279a6a5a5b1273e7d372c16f264acf8593a4e))
-* update readme, remove word-wrap ([2d6c6e8](https://github.com/cenk1cenk2/listr2/commit/2d6c6e8824ad93e3cd419e5aaaf3a5796d075484))
-* update truncating and word wrap column thingies ([f8662b9](https://github.com/cenk1cenk2/listr2/commit/f8662b9c03d6138409945ce946389235b8e1bafb))
-
+- add more filtering for empty lines ([8bc1671](https://github.com/cenk1cenk2/listr2/commit/8bc1671d58aba6d067ce03fd4882352a9a402bb4))
+- drone stupidity ([3baa018](https://github.com/cenk1cenk2/listr2/commit/3baa018b5984d1c13aa4ebeb2cabba2764fa4ba2))
+- fix drone ([af43b84](https://github.com/cenk1cenk2/listr2/commit/af43b840a7c8446b22d7e1dcb4dc527dfcac89d9))
+- force build ([bc6cb28](https://github.com/cenk1cenk2/listr2/commit/bc6cb285f2cf17da5b12067279a87d6275397b98))
+- some fixes for truncation and word wrapping ([18c279a](https://github.com/cenk1cenk2/listr2/commit/18c279a6a5a5b1273e7d372c16f264acf8593a4e))
+- update readme, remove word-wrap ([2d6c6e8](https://github.com/cenk1cenk2/listr2/commit/2d6c6e8824ad93e3cd419e5aaaf3a5796d075484))
+- update truncating and word wrap column thingies ([f8662b9](https://github.com/cenk1cenk2/listr2/commit/f8662b9c03d6138409945ce946389235b8e1bafb))
 
 ### Features
 
-* added rollback stuff ([d80c060](https://github.com/cenk1cenk2/listr2/commit/d80c06052a1fdad3dcefda68ef3446d659ba191b))
+- added rollback stuff ([d80c060](https://github.com/cenk1cenk2/listr2/commit/d80c06052a1fdad3dcefda68ef3446d659ba191b))
 
 # [3.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2021-01-18)
 
-
 ### Bug Fixes
 
-* add more filtering for empty lines ([8bc1671](https://github.com/cenk1cenk2/listr2/commit/8bc1671d58aba6d067ce03fd4882352a9a402bb4))
-* some fixes for truncation and word wrapping ([18c279a](https://github.com/cenk1cenk2/listr2/commit/18c279a6a5a5b1273e7d372c16f264acf8593a4e))
-* update truncating and word wrap column thingies ([f8662b9](https://github.com/cenk1cenk2/listr2/commit/f8662b9c03d6138409945ce946389235b8e1bafb))
+- add more filtering for empty lines ([8bc1671](https://github.com/cenk1cenk2/listr2/commit/8bc1671d58aba6d067ce03fd4882352a9a402bb4))
+- some fixes for truncation and word wrapping ([18c279a](https://github.com/cenk1cenk2/listr2/commit/18c279a6a5a5b1273e7d372c16f264acf8593a4e))
+- update truncating and word wrap column thingies ([f8662b9](https://github.com/cenk1cenk2/listr2/commit/f8662b9c03d6138409945ce946389235b8e1bafb))
 
 # [3.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0-beta.1) (2021-01-17)
 
-
 ### Bug Fixes
 
-* drone stupidity ([3baa018](https://github.com/cenk1cenk2/listr2/commit/3baa018b5984d1c13aa4ebeb2cabba2764fa4ba2))
-* fix drone ([af43b84](https://github.com/cenk1cenk2/listr2/commit/af43b840a7c8446b22d7e1dcb4dc527dfcac89d9))
-* force build ([bc6cb28](https://github.com/cenk1cenk2/listr2/commit/bc6cb285f2cf17da5b12067279a87d6275397b98))
-
+- drone stupidity ([3baa018](https://github.com/cenk1cenk2/listr2/commit/3baa018b5984d1c13aa4ebeb2cabba2764fa4ba2))
+- fix drone ([af43b84](https://github.com/cenk1cenk2/listr2/commit/af43b840a7c8446b22d7e1dcb4dc527dfcac89d9))
+- force build ([bc6cb28](https://github.com/cenk1cenk2/listr2/commit/bc6cb285f2cf17da5b12067279a87d6275397b98))
 
 ### Features
 
-* added rollback stuff ([d80c060](https://github.com/cenk1cenk2/listr2/commit/d80c06052a1fdad3dcefda68ef3446d659ba191b))
+- added rollback stuff ([d80c060](https://github.com/cenk1cenk2/listr2/commit/d80c06052a1fdad3dcefda68ef3446d659ba191b))
 
 ## [3.2.3](https://github.com/cenk1cenk2/listr2/compare/v3.2.2...v3.2.3) (2020-11-26)
 
-
 ### Bug Fixes
 
-* update deps and fix typescript resolve ([836b8fd](https://github.com/cenk1cenk2/listr2/commit/836b8fde33a0d4bb8b2995ef3bad72dbf25a2a75))
+- update deps and fix typescript resolve ([836b8fd](https://github.com/cenk1cenk2/listr2/commit/836b8fde33a0d4bb8b2995ef3bad72dbf25a2a75))
 
 ## [3.2.2](https://github.com/cenk1cenk2/listr2/compare/v3.2.1...v3.2.2) (2020-10-26)
 
-
 ### Bug Fixes
 
-* **prompt:** update task wrapper as this requirement for external use ([f0c0146](https://github.com/cenk1cenk2/listr2/commit/f0c01466d033a70560dd046362623b2fc4022da9))
+- **prompt:** update task wrapper as this requirement for external use ([f0c0146](https://github.com/cenk1cenk2/listr2/commit/f0c01466d033a70560dd046362623b2fc4022da9))
 
 ## [3.2.1](https://github.com/cenk1cenk2/listr2/compare/v3.2.0...v3.2.1) (2020-10-24)
 
-
 ### Bug Fixes
 
-* improve tests and disable the unnecassary cases ([929a616](https://github.com/cenk1cenk2/listr2/commit/929a6164444d7790f1a4bdd058378fc50b76e28d))
+- improve tests and disable the unnecassary cases ([929a616](https://github.com/cenk1cenk2/listr2/commit/929a6164444d7790f1a4bdd058378fc50b76e28d))
 
 # [3.2.0](https://github.com/cenk1cenk2/listr2/compare/v3.1.1...v3.2.0) (2020-10-24)
 
-
 ### Bug Fixes
 
-* fixed a tiny bug with newlistr ([51e4071](https://github.com/cenk1cenk2/listr2/commit/51e4071dd11c09d5cec4c0fafbf3368a7b165af7))
-
+- fixed a tiny bug with newlistr ([51e4071](https://github.com/cenk1cenk2/listr2/commit/51e4071dd11c09d5cec4c0fafbf3368a7b165af7))
 
 ### Features
 
-* Implemented some jsdoc style docs ([788fb99](https://github.com/cenk1cenk2/listr2/commit/788fb995da5a82a56d47d473dd3ed98a8c7cc457)), closes [#172](https://github.com/cenk1cenk2/listr2/issues/172)
+- Implemented some jsdoc style docs ([788fb99](https://github.com/cenk1cenk2/listr2/commit/788fb995da5a82a56d47d473dd3ed98a8c7cc457)), closes [#172](https://github.com/cenk1cenk2/listr2/issues/172)
 
 ## [3.1.1](https://github.com/cenk1cenk2/listr2/compare/v3.1.0...v3.1.1) (2020-09-22)
 
