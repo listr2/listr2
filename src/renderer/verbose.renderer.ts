@@ -1,4 +1,6 @@
-import { ListrEvent, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
+import { ListrRenderer } from '@interfaces/listr-renderer.interface'
+import { Task } from '@lib/task'
+import { ListrEvents, StateConstants } from '@root/constants'
 import { Logger } from '@utils/logger'
 
 export class VerboseRenderer implements ListrRenderer {
@@ -34,7 +36,7 @@ export class VerboseRenderer implements ListrRenderer {
   public static rendererTaskOptions: never
   private logger: Logger
 
-  constructor (public tasks: ListrTaskObject<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
+  constructor (public tasks: Task<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
     if (!this.options?.logger) {
       this.logger = new Logger({ useIcons: this.options?.useIcons })
     } /* istanbul ignore next */ else {
@@ -52,51 +54,55 @@ export class VerboseRenderer implements ListrRenderer {
   public end (): void {}
 
   // verbose renderer multi-level
-  private verboseRenderer (tasks: ListrTaskObject<any, typeof VerboseRenderer>[]): void {
-    return tasks?.forEach((task) => {
-      task.subscribe(
-        (event: ListrEvent) => {
-          if (task.isEnabled()) {
-            // render depending on the state
-            const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
+  private verboseRenderer (tasks: Task<any, typeof VerboseRenderer>[]): void {
+    tasks?.forEach((task) => {
+      task.on(ListrEvents.ENABLED, () => {
+        const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
 
-            if (event.type === 'SUBTASK' && task.hasSubtasks()) {
-              // render lower level if multi-level
-              this.verboseRenderer(task.subtasks)
-            } else if (event.type === 'STATE') {
-              if (this.options?.logEmptyTitle !== false || task.hasTitle()) {
-                if (task.isPending()) {
-                  this.logger.start(taskTitle)
-                } else if (task.isCompleted()) {
-                  this.logger.success(taskTitle)
-                }
-              }
-            } else if (event.type === 'DATA' && !!event.data) {
-              this.logger.data(String(event.data))
-            } else if (event.type === 'TITLE') {
-              if (this.options?.logTitleChange !== false) {
-                this.logger.title(String(event.data))
-              }
-            } else if (event.type === 'MESSAGE') {
-              if (event.data?.error) {
-                // error message
-                this.logger.fail(String(event.data.error))
-              } else if (event.data?.skip) {
-                // skip message
-                this.logger.skip(String(event.data.skip))
-              } else if (event.data?.rollback) {
-                // rollback message
-                this.logger.rollback(String(event.data.rollback))
-              } else if (event.data?.retry) {
-                this.logger.retry(`[${event.data.retry.count}] ` + String(taskTitle))
-              }
+        task.on(ListrEvents.SUBTASK, () => {
+          this.verboseRenderer(task.subtasks)
+        })
+
+        if (this.options?.logEmptyTitle !== false || task.hasTitle()) {
+          task.on(ListrEvents.STATE, (state) => {
+            switch (state) {
+            case StateConstants.PENDING:
+              this.logger.start(taskTitle)
+
+              break
+            case StateConstants.COMPLETED:
+              this.logger.success(taskTitle)
+
+              break
             }
-          }
-        },
-        /* istanbul ignore next */ (err) => {
-          this.logger.fail(err)
+          })
         }
-      )
+
+        task.on(ListrEvents.DATA, (data) => {
+          this.logger.data(String(data))
+        })
+
+        if (this.options?.logTitleChange !== false) {
+          task.on(ListrEvents.TITLE, (title) => {
+            this.logger.title(String(title))
+          })
+        }
+
+        task.on(ListrEvents.MESSAGE, (message) => {
+          if (message?.error) {
+            // error message
+            this.logger.fail(String(message.error))
+          } else if (message?.skip) {
+            // skip message
+            this.logger.skip(String(message.skip))
+          } else if (message?.rollback) {
+            // rollback message
+            this.logger.rollback(String(message.rollback))
+          } else if (message?.retry) {
+            this.logger.retry(`[${message.retry.count}] ` + String(taskTitle))
+          }
+        })
+      })
     })
   }
 }

@@ -1,8 +1,8 @@
 import type Enquirer from 'enquirer'
 
 import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
-import { PromptError } from '@interfaces/listr.interface'
-import { StateConstants } from '@interfaces/state.constants'
+import { StateConstants } from '@constants/state.constants'
+import { PromptError } from '@interfaces/listr-error.interface'
 import { TaskWrapper } from '@lib/task-wrapper'
 
 /**
@@ -53,7 +53,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
     try {
       enquirer = new (await import('enquirer')).default()
     } /* istanbul ignore next */ catch (e) {
-      this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
+      this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
       throw new Error(e)
     }
   }

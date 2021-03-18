@@ -1,5 +1,6 @@
 import { SupportedRenderer } from './renderer.interface'
-import { ListrRendererFactory, ListrRendererValue, ListrOptions } from '@interfaces/listr.interface'
+import { ListrRendererFactory, ListrRendererValue } from '@interfaces/listr-renderer.interface'
+import { ListrOptions } from '@interfaces/listr.interface'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'

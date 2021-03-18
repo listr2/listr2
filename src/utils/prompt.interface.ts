@@ -2,7 +2,7 @@ import Enquirer from 'enquirer'
 import { WriteStream } from 'fs'
 import { Writable } from 'stream'
 
-import { PromptError } from '@interfaces/listr.interface'
+import { PromptError } from '@interfaces/listr-error.interface'
 
 /** Returns all the prompt options depending on the type selected. */
 export type PromptOptions<T extends boolean = false> =

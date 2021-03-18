@@ -1,4 +1,4 @@
-import { ListrRendererFactory } from '@interfaces/listr.interface'
+import { ListrRendererFactory } from '@interfaces/listr-renderer.interface'
 
 export interface SupportedRenderer {
   renderer: ListrRendererFactory
