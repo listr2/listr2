@@ -1,8 +1,10 @@
 import pMap from 'p-map'
 
-import { EventManager } from './utils/event-manager'
-import { StateConstants } from '@constants/state.constants'
+import { ListrEventManagerTypes } from '@constants/listr-event-manager.constants'
+import { ListrEvents } from '@constants/listr-events.constants'
+import { ListrTaskState } from '@constants/listr-task-state.constants'
 import { ListrError } from '@interfaces/listr-error.interface'
+import { ListrEventMap } from '@interfaces/listr-event.interface'
 import {
   ListrDefaultRendererValue,
   ListrFallbackRendererValue,
@@ -15,6 +17,7 @@ import {
 import { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
+import { EventManager } from '@utils/event-manager'
 import { getRenderer } from '@utils/renderer'
 
 /**
@@ -25,7 +28,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public err: ListrError[] = []
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
-  public renderHook$: Task<any, any>['renderHook$'] = new EventManager()
+  public events: EventManager<ListrEvents, ListrEventMap> = new EventManager(ListrEventManagerTypes.LISTR)
   private concurrency: number
   private renderer: ListrRenderer
 
@@ -75,7 +78,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
         .once('SIGINT', () => {
           this.tasks.forEach((task) => {
             if (task.isPending()) {
-              task.state$ = StateConstants.FAILED
+              task.state$ = ListrTaskState.FAILED
             }
           })
 
@@ -105,7 +108,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public async run (context?: Ctx): Promise<Ctx> {
     // start the renderer
     if (!this.renderer) {
-      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.renderHook$)
+      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
     }
 
     this.renderer.render()

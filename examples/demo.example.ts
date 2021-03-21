@@ -184,7 +184,7 @@ async function main (): Promise<void> {
         }
       }
     ],
-    {}
+    { renderer: 'verbose' as 'default' }
   ).run()
 }
 

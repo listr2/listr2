@@ -1,9 +1,10 @@
 import type Enquirer from 'enquirer'
 
 import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
-import { StateConstants } from '@constants/state.constants'
+import { ListrTaskState } from '@constants/listr-task-state.constants'
 import { PromptError } from '@interfaces/listr-error.interface'
 import { TaskWrapper } from '@lib/task-wrapper'
+import { ListrEvents, ListrTaskEvents } from '@root/constants'
 
 /**
  * Create a new prompt with Enquirer externally.
@@ -67,8 +68,8 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
     // Can't use on cancel, since that might hold a PromptError object
     enquirer.on('submit', () => this.task.prompt = undefined)
 
-    this.task.subscribe((event) => {
-      if (event.type === 'STATE' && event.data === StateConstants.SKIPPED) {
+    this.task.events.on(ListrTaskEvents.STATE, (data) => {
+      if (data === ListrTaskState.SKIPPED) {
         if (this.task.prompt && !(this.task.prompt instanceof PromptError)) {
           this.task.prompt.submit()
         }

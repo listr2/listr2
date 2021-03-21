@@ -5,10 +5,12 @@ import { EOL } from 'os'
 import { UpdateManager } from 'stdout-update'
 import cliWrap from 'wrap-ansi'
 
-import { RenderHookEvents } from '@constants/render-hook-events.constants'
 import { ListrRenderer } from '@interfaces/listr-renderer.interface'
 import { ListrContext } from '@interfaces/listr.interface'
 import { Task } from '@lib/task'
+import { ListrEvents } from '@root/constants/listr-events.constants'
+import { ListrEventMap } from '@root/interfaces'
+import { EventManager } from '@root/utils/event-manager'
 import chalk from '@utils/chalk'
 
 /** Default updating renderer for Listr2 */
@@ -158,7 +160,11 @@ export class DefaultRenderer implements ListrRenderer {
   private spinnerPosition = 0
   private updateManager: UpdateManager = UpdateManager.getInstance()
 
-  constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
+  constructor (
+    public tasks: Task<any, typeof DefaultRenderer>[],
+    public options: typeof DefaultRenderer['rendererOptions'],
+    public events?: EventManager<ListrEvents, ListrEventMap>
+  ) {
     this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
   }
 
@@ -255,7 +261,7 @@ export class DefaultRenderer implements ListrRenderer {
       }, 100)
     }
 
-    this.renderHook$.on(RenderHookEvents.TRIGGER_RENDER, () => {
+    this.events.on(ListrEvents.TRIGGER_RENDER, () => {
       this.updateRender()
     })
   }

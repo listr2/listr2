@@ -1,6 +1,7 @@
+import { ListrTaskEvents } from '@constants/listr-task-events.constants'
+import { ListrTaskState } from '@constants/listr-task-state.constants'
 import { ListrRenderer } from '@interfaces/listr-renderer.interface'
 import { Task } from '@lib/task'
-import { ListrEvents, StateConstants } from '@root/constants'
 import { Logger } from '@utils/logger'
 
 export class VerboseRenderer implements ListrRenderer {
@@ -56,21 +57,21 @@ export class VerboseRenderer implements ListrRenderer {
   // verbose renderer multi-level
   private verboseRenderer (tasks: Task<any, typeof VerboseRenderer>[]): void {
     tasks?.forEach((task) => {
-      task.on(ListrEvents.ENABLED, () => {
+      task.events.on(ListrTaskEvents.ENABLED, () => {
         const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
 
-        task.on(ListrEvents.SUBTASK, () => {
+        task.events.on(ListrTaskEvents.SUBTASK, () => {
           this.verboseRenderer(task.subtasks)
         })
 
         if (this.options?.logEmptyTitle !== false || task.hasTitle()) {
-          task.on(ListrEvents.STATE, (state) => {
+          task.events.on(ListrTaskEvents.STATE, (state) => {
             switch (state) {
-            case StateConstants.PENDING:
+            case ListrTaskState.PENDING:
               this.logger.start(taskTitle)
 
               break
-            case StateConstants.COMPLETED:
+            case ListrTaskState.COMPLETED:
               this.logger.success(taskTitle)
 
               break
@@ -78,17 +79,17 @@ export class VerboseRenderer implements ListrRenderer {
           })
         }
 
-        task.on(ListrEvents.DATA, (data) => {
+        task.events.on(ListrTaskEvents.DATA, (data) => {
           this.logger.data(String(data))
         })
 
         if (this.options?.logTitleChange !== false) {
-          task.on(ListrEvents.TITLE, (title) => {
+          task.events.on(ListrTaskEvents.TITLE, (title) => {
             this.logger.title(String(title))
           })
         }
 
-        task.on(ListrEvents.MESSAGE, (message) => {
+        task.events.on(ListrTaskEvents.MESSAGE, (message) => {
           if (message?.error) {
             // error message
             this.logger.fail(String(message.error))

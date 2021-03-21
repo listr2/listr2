@@ -1,19 +1,24 @@
 import EventEmitter from 'eventemitter3'
 
+import { ListrEventManagerTypes } from '@constants/listr-event-manager.constants'
 import { EventData } from '@interfaces/event.interface'
 
 export class EventManager<Event extends string = string, Map extends Partial<Record<Event, unknown>> = Partial<Record<Event, any>>> {
-  static instance: EventManager<any, any>
-  private emitter: EventEmitter
+  static instance: Partial<Record<ListrEventManagerTypes, EventManager<any, any>>> = {}
+  private readonly emitter: EventEmitter
 
-  constructor () {
-    if (!(EventManager.instance instanceof EventManager)) {
+  constructor (type: ListrEventManagerTypes) {
+    if (type === ListrEventManagerTypes.TASK) {
       this.emitter = new EventEmitter()
 
-      EventManager.instance = this
+      return this
+    } else if (!(EventManager.instance?.[type] instanceof EventManager)) {
+      this.emitter = new EventEmitter()
+
+      EventManager.instance[type] = this
     }
 
-    return EventManager.instance
+    return EventManager.instance[type]
   }
 
   public emit<E extends Event = Event>(dispatch: E, args?: EventData<E, Map>): void {
@@ -22,10 +27,6 @@ export class EventManager<Event extends string = string, Map extends Partial<Rec
 
   public on<E extends Event = Event>(dispatch: E, handler: (data: EventData<E, Map>) => void): void {
     this.emitter.addListener(dispatch, handler)
-  }
-
-  public onMultiple<E extends Event = Event>(dispatchs: E[], handler: () => void): void {
-    dispatchs.forEach((dispatch) => this.emitter.addListener(dispatch, handler))
   }
 
   public complete (): void {

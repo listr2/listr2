@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/member-ordering */
-import { RenderHookEventMap } from './render-hook-event.interface'
-import { RenderHookEvents } from '@constants/render-hook-events.constants'
+import { ListrEventMap } from './listr-event.interface'
+import { ListrEvents } from '@constants/listr-events.constants'
 import { Task } from '@lib/task'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
@@ -106,7 +106,7 @@ export declare class ListrRenderer {
   /** designate whether this renderer can work in non-tty environments */
   public static nonTTY: boolean
   /** create a new renderer */
-  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: EventManager<RenderHookEvents, RenderHookEventMap>)
+  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: EventManager<ListrEvents, ListrEventMap>)
   /** A function to what to do on render */
   public render: () => void
   /** A function to what to do on end of the render */

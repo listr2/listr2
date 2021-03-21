@@ -1,7 +1,7 @@
 /* eslint-disable no-control-regex */
 import through from 'through'
 
-import { StateConstants } from '@constants/state.constants'
+import { ListrTaskState } from '@constants/listr-task-state.constants'
 import { ListrError } from '@interfaces/listr-error.interface'
 import { ListrRendererFactory } from '@interfaces/listr-renderer.interface'
 import { ListrBaseClassOptions, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
@@ -36,14 +36,6 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     return this.task.output
   }
 
-  set state (data: StateConstants) {
-    this.task.state$ = data
-  }
-
-  set message (data: Task<Ctx, Renderer>['message']) {
-    this.task.message$ = data
-  }
-
   /** Create a new subtask with given renderer selection from the parent task. */
   public newListr (
     task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[] | ((parent: this) => ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]),
@@ -66,20 +58,20 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     if (error instanceof ListrError) {
       for (const err of error.errors) {
         this.errors.push(err)
-        this.message = { error: err.message || this.task?.title || 'Task with no title.' }
+        this.task.message$ = { error: err.message || this.task?.title || 'Task with no title.' }
       }
     } else {
       this.errors.push(error)
-      this.message = { error: error.message || this.task?.title || 'Task with no title.' }
+      this.task.message$ = { error: error.message || this.task?.title || 'Task with no title.' }
     }
   }
 
   /** Skip current task. */
   public skip (message?: string): void {
-    this.state = StateConstants.SKIPPED
+    this.task.state$ = ListrTaskState.SKIPPED
 
     if (message) {
-      this.message = { skip: message || this.task?.title || 'Task with no title.' }
+      this.task.message$ = { skip: message || this.task?.title || 'Task with no title.' }
     }
   }
 

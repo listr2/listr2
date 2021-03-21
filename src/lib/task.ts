@@ -1,17 +1,16 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { Observable } from 'rxjs'
 import { Readable } from 'stream'
 
 import { TaskWrapper } from './task-wrapper'
 import { ListrEvents } from '@constants/listr-events.constants'
-import { RenderHookEvents } from '@constants/render-hook-events.constants'
-import { StateConstants } from '@constants/state.constants'
+import { ListrTaskEvents } from '@constants/listr-task-events.constants'
+import { ListrTaskState } from '@constants/listr-task-state.constants'
 import { ListrError, PromptError } from '@interfaces/listr-error.interface'
-import { ListrEventMap } from '@interfaces/listr-event.interface'
 import { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/listr-renderer.interface'
+import { ListrTaskEventMap } from '@interfaces/listr-task-event.interface'
 import { ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
-import { RenderHookEventMap } from '@interfaces/render-hook-event.interface'
-import { Listr } from '@root/index'
+import { ListrEventManagerTypes } from '@root/constants/listr-event-manager.constants'
+import { Listr } from '@root/listr'
 import { EventManager } from '@utils/event-manager'
 import { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
@@ -20,7 +19,9 @@ import { generateUUID } from '@utils/uuid'
 /**
  * Create a task from the given set of variables and make it runnable.
  */
-export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManager<ListrEvents, ListrEventMap> {
+export class Task<Ctx, Renderer extends ListrRendererFactory> {
+  /** internal task events **/
+  public events: EventManager<ListrTaskEvents, ListrTaskEventMap>
   /** Unique id per task, randomly generated in the uuid v4 format */
   public id: string
   /** The current state of the task. */
@@ -58,8 +59,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   }
   /** Per task options for the current renderer of the task. */
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
-  /** A hook to refresh render if desired. */
-  public renderHook$: EventManager<RenderHookEvents, RenderHookEventMap>
 
   public prompt: undefined | PromptInstance | PromptError
   public exitOnError: boolean
@@ -67,13 +66,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
   constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
-    super()
+    this.events = new EventManager<ListrTaskEvents, ListrTaskEventMap>(ListrEventManagerTypes.TASK)
 
     // this kind of randomness is enough for task ids
     this.id = generateUUID()
 
     this.title = this.tasks?.title
-    this.initialTitle = this.tasks?.title
+    this.initialTitle = this.title
 
     this.task = this.tasks.task
 
@@ -83,23 +82,20 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
 
     // task options
     this.rendererTaskOptions = this.tasks.options
-
-    this.renderHook$ = this.listr.renderHook$
-    this.onMultiple(Object.values(ListrEvents), () => {
-      this.renderHook$.emit(RenderHookEvents.TRIGGER_RENDER)
-    })
   }
 
-  set state$ (state: StateConstants) {
+  set state$ (state: ListrTaskState) {
     this.state = state
 
-    this.emit(ListrEvents.STATE, state)
+    this.events.emit(ListrTaskEvents.STATE, state)
+
+    this.listr.events.emit(ListrEvents.TRIGGER_RENDER)
 
     // cancel the subtasks if this has already failed
     if (this.hasSubtasks() && this.hasFailed()) {
       for (const subtask of this.subtasks as Task<any, any>[]) {
-        if (subtask.state === StateConstants.PENDING) {
-          subtask.state$ = StateConstants.FAILED
+        if (subtask.state === ListrTaskState.PENDING) {
+          subtask.state$ = ListrTaskState.FAILED
         }
       }
     }
@@ -108,19 +104,25 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   set output$ (data: string) {
     this.output = data
 
-    this.emit(ListrEvents.DATA, data)
+    this.events.emit(ListrTaskEvents.DATA, data)
+
+    this.listr.events.emit(ListrEvents.TRIGGER_RENDER)
   }
 
   set message$ (data: Task<Ctx, Renderer>['message']) {
     this.message = { ...this.message, ...data }
 
-    this.emit(ListrEvents.MESSAGE, data)
+    this.events.emit(ListrTaskEvents.MESSAGE, data)
+
+    this.listr.events.emit(ListrEvents.TRIGGER_RENDER)
   }
 
   set title$ (title: string) {
     this.title = title
 
-    this.emit(ListrEvents.TITLE, title)
+    this.events.emit(ListrTaskEvents.TITLE, title)
+
+    this.listr.events.emit(ListrEvents.TRIGGER_RENDER)
   }
 
   /**
@@ -136,7 +138,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
       }
 
       if (this.enabled) {
-        this.emit(ListrEvents.ENABLED, this.enabled)
+        this.events.emit(ListrTaskEvents.ENABLED, this.enabled)
+
+        this.listr.events.emit(ListrEvents.TRIGGER_RENDER)
       }
     }
   }
@@ -148,37 +152,37 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
 
   /** Returns whether this task is in progress. */
   public isPending (): boolean {
-    return this.state === StateConstants.PENDING
+    return this.state === ListrTaskState.PENDING
   }
 
   /** Returns whether this task is skipped. */
   public isSkipped (): boolean {
-    return this.state === StateConstants.SKIPPED
+    return this.state === ListrTaskState.SKIPPED
   }
 
   /** Returns whether this task has been completed. */
   public isCompleted (): boolean {
-    return this.state === StateConstants.COMPLETED
+    return this.state === ListrTaskState.COMPLETED
   }
 
   /** Returns whether this task has been failed. */
   public hasFailed (): boolean {
-    return this.state === StateConstants.FAILED
+    return this.state === ListrTaskState.FAILED
   }
 
   /** Returns whether this task has an active rollback task going on. */
   public isRollingBack (): boolean {
-    return this.state === StateConstants.ROLLING_BACK
+    return this.state === ListrTaskState.ROLLING_BACK
   }
 
   /** Returns whether the rollback action was successful. */
   public hasRolledBack (): boolean {
-    return this.state === StateConstants.ROLLED_BACK
+    return this.state === ListrTaskState.ROLLED_BACK
   }
 
   /** Returns whether this task has an actively retrying task going on. */
   public isRetrying (): boolean {
-    return this.state === StateConstants.RETRY
+    return this.state === ListrTaskState.RETRY
   }
 
   /** Returns whether enabled function resolves to true. */
@@ -221,14 +225,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         // switch to silent renderer since already rendering
         const rendererClass = getRenderer('silent')
         result.rendererClass = rendererClass.renderer
-        result.renderHook$.on(RenderHookEvents.TRIGGER_RENDER, (): void => {
-          this.renderHook$.emit(RenderHookEvents.TRIGGER_RENDER)
-        })
 
         // assign subtasks
         this.subtasks = result.tasks
 
-        this.emit(ListrEvents.SUBTASK)
+        this.events.emit(ListrTaskEvents.SUBTASK)
+
+        this.listr.events.emit(ListrEvents.TRIGGER_RENDER)
 
         result = result.run(context)
 
@@ -266,7 +269,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     const startTime = Date.now()
 
     // finish the task first
-    this.state$ = StateConstants.PENDING
+    this.state$ = ListrTaskState.PENDING
 
     // check if this function wants to be skipped
     let skipped: boolean | string
@@ -283,7 +286,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         this.message$ = { skip: 'Skipped task without a title.' }
       }
 
-      this.state$ = StateConstants.SKIPPED
+      this.state$ = ListrTaskState.SKIPPED
+
       return
     }
 
@@ -305,7 +309,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
 
             wrapper.report(e)
 
-            this.state$ = StateConstants.RETRY
+            this.state$ = ListrTaskState.RETRY
           } else {
             throw e
           }
@@ -314,7 +318,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
 
       if (this.isPending() || this.isRetrying()) {
         this.message$ = { duration: Date.now() - startTime }
-        this.state$ = StateConstants.COMPLETED
+        this.state$ = ListrTaskState.COMPLETED
       }
     } catch (error) {
       // catch prompt error, this was the best i could do without going crazy
@@ -328,15 +332,15 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         wrapper.report(error)
 
         try {
-          this.state$ = StateConstants.ROLLING_BACK
+          this.state$ = ListrTaskState.ROLLING_BACK
 
           await this.tasks.rollback(context, wrapper)
 
-          this.state$ = StateConstants.ROLLED_BACK
+          this.state$ = ListrTaskState.ROLLED_BACK
 
           this.message$ = { rollback: this.title }
         } catch (err) {
-          this.state$ = StateConstants.FAILED
+          this.state$ = ListrTaskState.FAILED
 
           wrapper.report(err)
 
@@ -354,7 +358,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         }
 
         // mark task as failed
-        this.state$ = StateConstants.FAILED
+        this.state$ = ListrTaskState.FAILED
 
         // report error
         wrapper.report(error)
@@ -365,7 +369,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         }
       }
     } finally {
-      this.complete()
+      this.events.complete()
     }
   }
 }
