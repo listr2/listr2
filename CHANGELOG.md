@@ -1,3 +1,10 @@
+## [3.4.4](https://github.com/cenk1cenk2/listr2/compare/v3.4.3...v3.4.4) (2021-03-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency rxjs to ^6.6.7 ([1b00a87](https://github.com/cenk1cenk2/listr2/commit/1b00a877cbaaecafb3ec31457468a2553c8e777e))
+
 ## [3.4.3](https://github.com/cenk1cenk2/listr2/compare/v3.4.2...v3.4.3) (2021-03-08)
 
 
