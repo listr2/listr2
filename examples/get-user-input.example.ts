@@ -37,6 +37,11 @@ async function main (): Promise<void> {
               type: 'Input',
               name: 'second',
               message: 'Please type something in:'
+            },
+            {
+              type: 'Numeral',
+              name: 'third',
+              message: 'I need a number badly'
             }
           ])
       },
