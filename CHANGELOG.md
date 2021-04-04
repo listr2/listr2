@@ -1,3 +1,10 @@
+## [3.4.5](https://github.com/cenk1cenk2/listr2/compare/v3.4.4...v3.4.5) (2021-04-04)
+
+
+### Bug Fixes
+
+* fix issue with numeral prompt add example ([49e67a6](https://github.com/cenk1cenk2/listr2/commit/49e67a6c4385774790a1d83fb35bc4fdb4ea6d73)), closes [#325](https://github.com/cenk1cenk2/listr2/issues/325)
+
 ## [3.4.4](https://github.com/cenk1cenk2/listr2/compare/v3.4.3...v3.4.4) (2021-03-31)
 
 
