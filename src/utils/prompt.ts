@@ -58,7 +58,6 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
     }
   }
 
-
   // i use this externally as well, this is a bandaid
   if (this instanceof TaskWrapper) {
     // Capture the prompt instance so we can use it later
