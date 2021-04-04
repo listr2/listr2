@@ -53,10 +53,11 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
     try {
       enquirer = new (await import('enquirer')).default()
     } /* istanbul ignore next */ catch (e) {
-      this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed seperately.')
+      this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
       throw new Error(e)
     }
   }
+
 
   // i use this externally as well, this is a bandaid
   if (this instanceof TaskWrapper) {
