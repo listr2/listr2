@@ -1,3 +1,16 @@
+# [3.6.0](https://github.com/cenk1cenk2/listr2/compare/v3.5.0...v3.6.0) (2021-04-05)
+
+
+### Bug Fixes
+
+* add missing imports ([91a5b5a](https://github.com/cenk1cenk2/listr2/commit/91a5b5aeb5b770646fda50db7ebb94326bc93a26))
+* update some little things ([6eadb3a](https://github.com/cenk1cenk2/listr2/commit/6eadb3a82d402a04d5b163b318eca171175c7a04))
+
+
+### Features
+
+* fix types and styling ([ef8c9f9](https://github.com/cenk1cenk2/listr2/commit/ef8c9f99fbcc6f37c1c0810a420fbc39a357baa5))
+
 # [3.5.0](https://github.com/cenk1cenk2/listr2/compare/v3.4.5...v3.5.0) (2021-04-05)
 
 
