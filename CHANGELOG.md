@@ -1,3 +1,10 @@
+## [3.6.1](https://github.com/cenk1cenk2/listr2/compare/v3.6.0...v3.6.1) (2021-04-05)
+
+
+### Bug Fixes
+
+* fix exporting types in the old format ([f415027](https://github.com/cenk1cenk2/listr2/commit/f41502748d2e85b489a558dd35dd845648c34092))
+
 # [3.6.0](https://github.com/cenk1cenk2/listr2/compare/v3.5.0...v3.6.0) (2021-04-05)
 
 
