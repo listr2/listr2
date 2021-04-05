@@ -169,6 +169,24 @@ describe('logger', () => {
     })
   })
 
+  it('should log a verbose retry message', async () => {
+    logger = new Logger({ useIcons: false })
+
+    logger.retry('test message')
+
+    testForAllExcept(instances, warn, 1, {
+      onOne: () => {
+        expect(warn.mock.calls).toMatchInlineSnapshot(`
+        Array [
+          Array [
+            "[RETRY] test message",
+          ],
+        ]
+        `)
+      }
+    })
+  })
+
   it('should log a multiline message without problems', async () => {
     logger = new Logger({ useIcons: false })
 

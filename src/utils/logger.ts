@@ -12,43 +12,43 @@ export class Logger {
   constructor (private options?: LoggerOptions) {}
 
   public fail (message: string): void {
-    message = this.parseMessage(LogLevels.fail, message)
+    message = this.parseMessage(LogLevels.FAILED, message)
     console.error(message)
   }
 
   public skip (message: string): void {
-    message = this.parseMessage(LogLevels.skip, message)
+    message = this.parseMessage(LogLevels.SKIPPED, message)
     console.info(message)
   }
 
   public success (message: string): void {
-    message = this.parseMessage(LogLevels.success, message)
+    message = this.parseMessage(LogLevels.SUCCESS, message)
     console.log(message)
   }
 
   public data (message: string): void {
-    message = this.parseMessage(LogLevels.data, message)
+    message = this.parseMessage(LogLevels.DATA, message)
     console.info(message)
   }
 
   public start (message: string): void {
-    message = this.parseMessage(LogLevels.start, message)
+    message = this.parseMessage(LogLevels.STARTED, message)
     console.log(message)
   }
 
   public title (message: string): void {
-    message = this.parseMessage(LogLevels.title, message)
+    message = this.parseMessage(LogLevels.TITLE, message)
     console.info(message)
   }
 
   public retry (message: string): void {
-    message = this.parseMessage(LogLevels.retry, message)
+    message = this.parseMessage(LogLevels.RETRY, message)
 
     console.warn(message)
   }
 
   public rollback (message: string): void {
-    message = this.parseMessage(LogLevels.rollback, message)
+    message = this.parseMessage(LogLevels.ROLLBACK, message)
 
     console.warn(message)
   }
@@ -84,78 +84,82 @@ export class Logger {
       return input
     }
     switch (level) {
-    case LogLevels.fail:
+    case LogLevels.FAILED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.red
         icon = figures.main.cross
       } else {
-        icon = '[FAILED]'
+        icon = this.wrapInBrackets(level)
       }
 
       break
-    case LogLevels.skip:
+    case LogLevels.SKIPPED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.yellow
         icon = figures.main.arrowDown
       } else {
-        icon = '[SKIPPED]'
+        icon = this.wrapInBrackets(level)
       }
       break
-    case LogLevels.success:
+    case LogLevels.SUCCESS:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.green
         icon = figures.main.tick
       } else {
-        icon = '[SUCCESS]'
+        icon = this.wrapInBrackets(level)
       }
       break
-    case LogLevels.data:
+    case LogLevels.DATA:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.arrowRight
       } else {
-        icon = '[DATA]'
+        icon = this.wrapInBrackets(level)
       }
       break
-    case LogLevels.start:
+    case LogLevels.STARTED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.pointer
       } else {
-        icon = '[STARTED]'
+        icon = this.wrapInBrackets(level)
       }
       break
-    case LogLevels.title:
+    case LogLevels.TITLE:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.main.checkboxOn
       } else {
-        icon = '[TITLE]'
+        icon = this.wrapInBrackets(level)
       }
       break
-    case LogLevels.retry:
+    case LogLevels.RETRY:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.keyword('orange')
         icon = figures.main.pointer
       } else {
-        icon = '[RETRY]'
+        icon = this.wrapInBrackets(level)
       }
       break
-    case LogLevels.rollback:
+    case LogLevels.ROLLBACK:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = chalk.red
         icon = figures.main.arrowLeft
       } else {
-        icon = '[ROLLBACK]'
+        icon = this.wrapInBrackets(level)
       }
       break
     }
 
     return coloring(`${icon} ${message}`)
+  }
+
+  private wrapInBrackets (level: string): string {
+    return `[${level}]`
   }
 }

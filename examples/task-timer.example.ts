@@ -56,13 +56,47 @@ async function main (): Promise<void> {
 
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           task.title = 'Changing task title.'
           await delay(200)
         }
       }
     ],
     { concurrent: false, rendererOptions: { showTimer: true } }
+  )
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch (e) {
+    logger.fail(e)
+  }
+
+  logger.start('Example for showing the timer per listr in verbose renderer when on fallback.')
+
+  task = new Listr<any>(
+    [
+      {
+        title: 'This task will execute.',
+        task: async (): Promise<void> => {
+          await delay(500)
+        }
+      },
+
+      {
+        title: 'This task will execute.',
+        task: async (_, task): Promise<void> => {
+          task.title = 'Changing task title.'
+          await delay(200)
+        }
+      }
+    ],
+    {
+      concurrent: false,
+      rendererOptions: { showTimer: true },
+      rendererFallback: true,
+      nonTTYRendererOptions: { showTimer: true, useIcons: true }
+    }
   )
 
   try {
