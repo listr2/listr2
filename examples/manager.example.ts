@@ -111,7 +111,7 @@ class MyMainClass {
       await this.tasks
         .newListr([
           {
-            title: 'I will die now, goodbye my freinds.',
+            title: 'I will die now, goodbye my friends.',
             task: (): void => {
               throw new Error('This will not crash since exitOnError is set to false eventhough default setting in Listr is false.')
             }
@@ -133,7 +133,7 @@ class MyMainClass {
       }
     ])
 
-    this.logger.start('There is an embeded function of getting the run time, that can be useful in concurrent tasks.')
+    this.logger.start('There is an embedded function of getting the run time, that can be useful in concurrent tasks.')
     this.tasks.run(
       [
         {

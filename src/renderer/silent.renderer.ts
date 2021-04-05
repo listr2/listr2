@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { ListrRenderer } from '@interfaces/renderer.interface'
-import { Task } from '@root/lib/task'
+import { Task } from '@lib/task'
 
 export class SilentRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { Subject } from 'rxjs'
 
 import { Task } from '@lib/task'
@@ -104,12 +103,12 @@ export declare class ListrRenderer {
   public static rendererTaskOptions: Record<string, any>
   /** designate whether this renderer can work in non-tty environments */
   public static nonTTY: boolean
-  /** create a new renderer */
-  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>)
   /** A function to what to do on render */
   public render: () => void
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
+  /** create a new renderer */
+  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>)
 }
 
 /** Exported for javascript applications to extend the base renderer */
@@ -119,9 +118,9 @@ export declare class ListrBaseRenderer implements ListrRenderer {
   public static nonTTY: boolean
   public tasks: Task<any, typeof ListrBaseRenderer>[]
   public options: typeof ListrBaseRenderer.rendererOptions
-  constructor (tasks: Task<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions)
   public render: () => void
   public end: (err?: Error) => void
+  constructor (tasks: Task<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions)
 }
 
 /** A renderer factory from the current type */

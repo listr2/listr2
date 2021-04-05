@@ -1,10 +1,10 @@
 import type Enquirer from 'enquirer'
 
 import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
+import { ListrEventType } from '@constants/event.constants'
+import { ListrTaskState } from '@constants/state.constants'
 import { PromptError } from '@interfaces/listr-error.interface'
 import { TaskWrapper } from '@lib/task-wrapper'
-import { ListrEventType } from '@root/constants/event.constants'
-import { ListrTaskState } from '@root/constants/state.constants'
 
 /**
  * Create a new prompt with Enquirer externally.

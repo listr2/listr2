@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import type Enquirer from 'enquirer'
 import type { Observable } from 'rxjs'
 import { Readable } from 'stream'
@@ -13,9 +12,9 @@ import {
   ListrRendererValue
 } from './renderer.interface'
 import { ListrEventType } from '@constants/event.constants'
+import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
-import { Listr } from '@root/index'
-import { Task } from '@root/lib/task'
+import { Listr } from '@root/listr'
 
 /** Listr Default Context */
 export type ListrContext = any | undefined

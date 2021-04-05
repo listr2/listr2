@@ -1,12 +1,12 @@
-/* eslint-disable no-control-regex */
 import through from 'through'
 
+import { BELL_REGEX, CLEAR_LINE_REGEX } from '@constants/clearline-regex.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { ListrError } from '@interfaces/listr-error.interface'
 import { ListrBaseClassOptions, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
+import { ListrRendererFactory } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
-import { Listr } from '@root/index'
-import { ListrRendererFactory } from '@root/interfaces/renderer.interface'
+import { Listr } from '@root/listr'
 import { createPrompt, destroyPrompt } from '@utils/prompt'
 import { PromptOptions } from '@utils/prompt.interface'
 
@@ -104,12 +104,12 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    */
   public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
     return (through((chunk: string) => {
-      const pattern = new RegExp('(?:\\u001b|\\u009b)\\[[\\=><~/#&.:=?%@~_-]*[0-9]*[\\a-ln-tqyz=><~/#&.:=?%@~_-]+', 'gmi')
+      const pattern = new RegExp(CLEAR_LINE_REGEX, 'gmi')
 
       chunk = chunk.toString()
 
       chunk = chunk.replace(pattern, '')
-      chunk = chunk.replace(new RegExp(/\u0007/, 'gmi'), '')
+      chunk = chunk.replace(new RegExp(BELL_REGEX, 'gmi'), '')
 
       if (chunk !== '') {
         this.output = chunk
