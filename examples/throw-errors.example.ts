@@ -26,7 +26,7 @@ async function main (): Promise<void> {
       },
       {
         title: 'This task will never execute.',
-        task: (ctx, task): void => {
+        task: (_, task): void => {
           task.title = 'I will change my title if this executes.'
         }
       }
@@ -54,7 +54,7 @@ async function main (): Promise<void> {
       },
       {
         title: 'This task will execute.',
-        task: (ctx, task): void => {
+        task: (_, task): void => {
           task.title = 'I will change my title since it is concurrent.'
         }
       }
@@ -82,7 +82,7 @@ async function main (): Promise<void> {
       },
       {
         title: 'This task will execute.',
-        task: (ctx, task): void => {
+        task: (_, task): void => {
           task.title = 'I will change my title if this executes.'
         }
       }
@@ -103,7 +103,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute and not quit on errors.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr(
             [
               {
@@ -120,7 +120,7 @@ async function main (): Promise<void> {
               },
               {
                 title: 'This is yet an another subtask.',
-                task: async (ctx, task): Promise<void> => {
+                task: async (_, task): Promise<void> => {
                   task.title = 'I have succeeded.'
                 }
               }
@@ -162,7 +162,7 @@ async function main (): Promise<void> {
       },
       {
         title: 'This task will execute.',
-        task: (ctx, task): void => {
+        task: (_, task): void => {
           task.title = 'I will change my title if this executes.'
         }
       }

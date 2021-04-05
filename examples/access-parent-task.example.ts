@@ -20,7 +20,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr(
             (parent) => [
               {
@@ -43,7 +43,7 @@ async function main (): Promise<void> {
 
       {
         title: 'This task will execute.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr(
             (parent) => [
               {

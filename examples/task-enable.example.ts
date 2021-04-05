@@ -57,7 +57,7 @@ async function main (): Promise<void> {
 
       {
         title: 'This task will show subtasks.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr(
             [
               {
