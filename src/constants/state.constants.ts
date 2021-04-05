@@ -1,5 +1,5 @@
 /** Available task states. */
-export enum StateConstants {
+export enum ListrTaskState {
   PENDING = 'PENDING',
   COMPLETED = 'COMPLETED',
   FAILED = 'FAILED',

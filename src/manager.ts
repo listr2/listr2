@@ -1,5 +1,7 @@
 import { Listr } from './listr'
-import { ListrBaseClassOptions, ListrContext, ListrError, ListrGetRendererClassFromValue, ListrRendererValue, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
+import { ListrError } from '@interfaces/listr-error.interface'
+import { ListrBaseClassOptions, ListrContext, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
+import { ListrGetRendererClassFromValue, ListrRendererValue } from '@interfaces/renderer.interface'
 
 /**
  * Creates a new Listr2 task manager.

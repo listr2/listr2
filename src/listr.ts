@@ -1,21 +1,18 @@
 import pMap from 'p-map'
 import { Subject } from 'rxjs'
 
+import { ListrTaskState } from '@constants/state.constants'
+import { ListrError } from '@interfaces/listr-error.interface'
+import { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
 import {
-  ListrBaseClassOptions,
-  ListrContext,
   ListrDefaultRendererValue,
-  ListrError,
   ListrFallbackRendererValue,
   ListrGetRendererClassFromValue,
   ListrGetRendererOptions,
   ListrRenderer,
   ListrRendererFactory,
-  ListrRendererValue,
-  ListrTask,
-  ListrTaskObject
-} from '@interfaces/listr.interface'
-import { StateConstants } from '@interfaces/state.constants'
+  ListrRendererValue
+} from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
@@ -28,7 +25,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public err: ListrError[] = []
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
-  public renderHook$: ListrTaskObject<any, any>['renderHook$'] = new Subject()
+  public renderHook$: Task<any, any>['renderHook$'] = new Subject()
   private concurrency: number
   private renderer: ListrRenderer
 
@@ -80,7 +77,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
           await Promise.all(
             this.tasks.map(async (task) => {
               if (task.isPending()) {
-                task.state$ = StateConstants.FAILED
+                task.state$ = ListrTaskState.FAILED
               }
             })
           )
@@ -145,7 +142,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
       if (this.options.exitOnError !== false) {
         this.renderer.end(error)
-        // Do not exit when explicitely set to `false`
+        // Do not exit when explicitly set to `false`
         throw error
       }
     }

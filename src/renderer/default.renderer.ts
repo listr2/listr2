@@ -5,7 +5,9 @@ import logUpdate from 'log-update'
 import { EOL } from 'os'
 import cliWrap from 'wrap-ansi'
 
-import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
+import { ListrContext } from '@interfaces/listr.interface'
+import { ListrRenderer } from '@interfaces/renderer.interface'
+import { Task } from '@lib/task'
 import chalk from '@utils/chalk'
 import { parseTaskTime } from '@utils/parse-time'
 
@@ -151,41 +153,37 @@ export class DefaultRenderer implements ListrRenderer {
   private spinner: string[] = process.platform === 'win32' && !process.env.WT_SESSION ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
 
-  constructor (
-    public tasks: ListrTaskObject<any, typeof DefaultRenderer>[],
-    public options: typeof DefaultRenderer['rendererOptions'],
-    public renderHook$?: ListrTaskObject<any, any>['renderHook$']
-  ) {
+  constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
     this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
   }
 
-  public getTaskOptions (task: ListrTaskObject<any, typeof DefaultRenderer>): typeof DefaultRenderer['rendererTaskOptions'] {
+  public getTaskOptions (task: Task<any, typeof DefaultRenderer>): typeof DefaultRenderer['rendererTaskOptions'] {
     return { ...DefaultRenderer.rendererTaskOptions, ...task.rendererTaskOptions }
   }
 
-  public isBottomBar (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
+  public isBottomBar (task: Task<any, typeof DefaultRenderer>): boolean {
     const bottomBar = this.getTaskOptions(task).bottomBar
 
     return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false
   }
 
-  public hasPersistentOutput (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
+  public hasPersistentOutput (task: Task<any, typeof DefaultRenderer>): boolean {
     return this.getTaskOptions(task).persistentOutput === true
   }
 
-  public hasTimer (task: ListrTaskObject<any, typeof DefaultRenderer>): boolean {
+  public hasTimer (task: Task<any, typeof DefaultRenderer>): boolean {
     return this.getTaskOptions(task).showTimer === true
   }
 
   public getSelfOrParentOption<T extends keyof typeof DefaultRenderer['rendererOptions']>(
-    task: ListrTaskObject<any, typeof DefaultRenderer>,
+    task: Task<any, typeof DefaultRenderer>,
     key: T
   ): typeof DefaultRenderer['rendererOptions'][T] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
   /* istanbul ignore next */
-  public getTaskTime (task: ListrTaskObject<any, typeof DefaultRenderer>): string {
+  public getTaskTime (task: Task<any, typeof DefaultRenderer>): string {
     return chalk.dim(`[${parseTaskTime(task.message.duration)}]`)
   }
 
@@ -258,7 +256,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line
-  private multiLineRenderer(tasks: ListrTaskObject<any, typeof DefaultRenderer>[], level = 0): string {
+  private multiLineRenderer(tasks: Task<any, typeof DefaultRenderer>[], level = 0): string {
     let output: string[] = []
 
     for (const task of tasks) {
@@ -436,7 +434,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
   }
 
-  private dumpData (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string {
+  private dumpData (task: Task<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string {
     let data: string | boolean
     switch (source) {
     case 'output':
@@ -502,7 +500,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  private getSymbol (task: ListrTaskObject<ListrContext, typeof DefaultRenderer>, data = false): string {
+  private getSymbol (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isPending() && !data) {
       return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
         ? chalk.yellow(figures.main.pointer)
