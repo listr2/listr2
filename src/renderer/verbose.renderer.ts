@@ -1,5 +1,6 @@
 import { ListrEvent, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import { Logger } from '@utils/logger'
+import { parseTaskTime } from '@utils/parse-time'
 
 export class VerboseRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
@@ -25,6 +26,10 @@ export class VerboseRenderer implements ListrRenderer {
      * @default true
      */
     logTitleChange?: boolean
+    /**
+     * show duration for all tasks
+     */
+    showTimer?: boolean
   } = {
     useIcons: false,
     logEmptyTitle: true,
@@ -55,6 +60,7 @@ export class VerboseRenderer implements ListrRenderer {
   private verboseRenderer (tasks: ListrTaskObject<any, typeof VerboseRenderer>[]): void {
     return tasks?.forEach((task) => {
       task.subscribe(
+        // eslint-disable-next-line complexity
         (event: ListrEvent) => {
           if (task.isEnabled()) {
             // render depending on the state
@@ -68,7 +74,7 @@ export class VerboseRenderer implements ListrRenderer {
                 if (task.isPending()) {
                   this.logger.start(taskTitle)
                 } else if (task.isCompleted()) {
-                  this.logger.success(taskTitle)
+                  this.logger.success(taskTitle + (this.options?.showTimer && task.message?.duration ? ` [${parseTaskTime(task.message.duration)}]` : ''))
                 }
               }
             } else if (event.type === 'DATA' && !!event.data) {
@@ -88,6 +94,7 @@ export class VerboseRenderer implements ListrRenderer {
                 // rollback message
                 this.logger.rollback(String(event.data.rollback))
               } else if (event.data?.retry) {
+                // inform of retry count
                 this.logger.retry(`[${event.data.retry.count}] ` + String(taskTitle))
               }
             }
