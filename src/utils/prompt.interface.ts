@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import Enquirer from 'enquirer'
 import { WriteStream } from 'fs'
 import { Writable } from 'stream'
@@ -127,47 +128,29 @@ export type PromptTypes =
   | 'Text'
   | 'Toggle'
 
-export type PromptOptionsType<T> = T extends 'AutoComplete'
-  ? ArrayPromptOptions
-  : T extends 'BasicAuth'
-    ? StringPromptOptions
-    : T extends 'Confirm'
-      ? BooleanPromptOptions
-      : T extends 'Editable'
-        ? ArrayPromptOptions
-        : T extends 'Form'
-          ? ArrayPromptOptions
-          : T extends 'Input'
-            ? StringPromptOptions
-            : T extends 'Invisible'
-              ? StringPromptOptions
-              : T extends 'List'
-                ? ArrayPromptOptions
-                : T extends 'MultiSelect'
-                  ? ArrayPromptOptions
-                  : T extends 'Numeral'
-                    ? NumberPromptOptions
-                    : T extends 'Password'
-                      ? StringPromptOptions
-                      : T extends 'Quiz'
-                        ? QuizPromptOptions
-                        : T extends 'Scale'
-                          ? ScalePromptOptions
-                          : T extends 'Select'
-                            ? ArrayPromptOptions
-                            : T extends 'Snippet'
-                              ? SnippetPromptOptions
-                              : T extends 'Sort'
-                                ? SortPromptOptions
-                                : T extends 'Survey'
-                                  ? SurveyPromptOptions
-                                  : T extends 'Text'
-                                    ? StringPromptOptions
-                                    : T extends 'Toggle'
-                                      ? TogglePromptOptions
-                                      : T extends string
-                                        ? BasePromptOptions & Record<string, unknown>
-                                        : any
+export type PromptOptionsType<T> = T extends keyof PromptOptionsMap ? PromptOptionsMap[T] : T extends string ? BasePromptOptions & Record<string, unknown> : any
+
+export declare class PromptOptionsMap implements Record<PromptTypes, Record<string, any>> {
+  AutoComplete: ArrayPromptOptions
+  BasicAuth: StringPromptOptions
+  Confirm: BooleanPromptOptions
+  Editable: ArrayPromptOptions
+  Form: ArrayPromptOptions
+  Input: StringPromptOptions
+  Invisible: StringPromptOptions
+  List: ArrayPromptOptions
+  MultiSelect: ArrayPromptOptions
+  Numeral: NumberPromptOptions
+  Password: StringPromptOptions
+  Quiz: QuizPromptOptions
+  Scale: ScalePromptOptions
+  Select: ArrayPromptOptions
+  Snippet: SnippetPromptOptions
+  Sort: SortPromptOptions
+  Survey: SurveyPromptOptions
+  Text: StringPromptOptions
+  Toggle: TogglePromptOptions
+}
 
 export interface PromptSettings {
   error?: boolean

@@ -7,6 +7,7 @@ import cliWrap from 'wrap-ansi'
 
 import { ListrContext, ListrRenderer, ListrTaskObject } from '@interfaces/listr.interface'
 import chalk from '@utils/chalk'
+import { parseTaskTime } from '@utils/parse-time'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -139,7 +140,7 @@ export class DefaultRenderer implements ListrRenderer {
      */
     persistentOutput?: boolean
     /**
-     * show the task time if it was succesful
+     * show the task time if it was successful
      */
     showTimer?: boolean
   }
@@ -185,23 +186,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   /* istanbul ignore next */
   public getTaskTime (task: ListrTaskObject<any, typeof DefaultRenderer>): string {
-    const seconds = Math.floor(task.message.duration / 1000)
-    const minutes = Math.floor(seconds / 60)
-
-    let parsedTime: string
-    if (seconds === 0 && minutes === 0) {
-      parsedTime = `0.${Math.floor(task.message.duration / 100)}s`
-    }
-
-    if (seconds > 0) {
-      parsedTime = `${seconds % 60}s`
-    }
-
-    if (minutes > 0) {
-      parsedTime = `${minutes}m${parsedTime}`
-    }
-
-    return chalk.dim(`[${parsedTime}]`)
+    return chalk.dim(`[${parseTaskTime(task.message.duration)}]`)
   }
 
   public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
