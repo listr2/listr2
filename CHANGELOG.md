@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/cenk1cenk2/listr2/compare/v3.4.5...v3.5.0) (2021-04-05)
+
+
+### Features
+
+* adds timer in verbose renderer ([19e8b14](https://github.com/cenk1cenk2/listr2/commit/19e8b14f275c0d754de1a37f1d1e0495fda68a31)), closes [#320](https://github.com/cenk1cenk2/listr2/issues/320)
+
 ## [3.4.5](https://github.com/cenk1cenk2/listr2/compare/v3.4.4...v3.4.5) (2021-04-04)
 
 
