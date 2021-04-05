@@ -21,7 +21,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           task.output = 'I will push an output. [0]'
           await delay(500)
 
@@ -50,7 +50,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           task.output = 'I will push an output. [0]'
           await delay(500)
 
@@ -80,7 +80,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           task.output = 'I will push an output. [0]'
           await delay(500)
 
@@ -111,7 +111,7 @@ async function main (): Promise<void> {
   task = new Listr<Ctx>(
     [
       {
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           task.output = 'I will push an output. [0]'
           await delay(500)
 
@@ -140,7 +140,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'Some task task with no persistent output to bottom bar.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           task.output = 'I will push an output. [0]'
           await delay(500)
 
@@ -158,7 +158,7 @@ async function main (): Promise<void> {
 
       {
         title: 'Another task with persistent output to bottom bar.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           task.output = 'I will push an output. [0]'
           await delay(500)
 
@@ -224,7 +224,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
@@ -250,7 +250,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
@@ -276,7 +276,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
@@ -286,7 +286,7 @@ async function main (): Promise<void> {
         options: { persistentOutput: true }
       }
     ],
-    { concurrent: false, rendererOptions: { formatOutput: 'wordWrap' } }
+    { concurrent: false, rendererOptions: { formatOutput: 'wrap' } }
   )
 
   try {
@@ -302,7 +302,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
@@ -328,10 +328,11 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: async (ctx, task): Promise<void> => {
+        task: async (_, task): Promise<void> => {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
+
           task.output = start + mid.repeat(100) + '\n' + '\n' + '\n' + mid.repeat(100) + end
           await delay(500)
         },

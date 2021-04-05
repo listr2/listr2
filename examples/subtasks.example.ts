@@ -20,7 +20,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr([
             {
               title: 'This is a subtask.',
@@ -49,7 +49,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr(
             [
               {
@@ -71,7 +71,7 @@ async function main (): Promise<void> {
 
       {
         title: 'This task will execute.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr(
             [
               {
@@ -107,7 +107,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute but will not render subtasks.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr(
             [
               {
@@ -144,7 +144,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute and not quit on errors.',
-        task: (ctx, task): Listr =>
+        task: (_, task): Listr =>
           task.newListr(
             [
               {
@@ -161,7 +161,7 @@ async function main (): Promise<void> {
               },
               {
                 title: 'This is yet an another subtask.',
-                task: async (ctx, task): Promise<void> => {
+                task: async (_, task): Promise<void> => {
                   task.title = 'I have succeeded.'
                 }
               }

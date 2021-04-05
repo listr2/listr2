@@ -18,7 +18,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will execute.',
-        task: (ctx, task): void => {
+        task: (_, task): void => {
           task.skip('I am skipping this tasks for reasons.')
         }
       }
