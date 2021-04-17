@@ -1,10 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-import rewire from 'rewire'
-
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { getRenderer } from '@utils/renderer'
+
+// eslint-disable-next-line import/order
+import rewire = require('rewire')
 
 describe('renderers', () => {
   it('should return default renderer', async () => {

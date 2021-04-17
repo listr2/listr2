@@ -1,4 +1,4 @@
-import type Enquirer from 'enquirer'
+import type * as Enquirer from 'enquirer'
 
 import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
 import { ListrEventType } from '@constants/event.constants'
@@ -52,7 +52,7 @@ export async function createPrompt (options: PromptOptions | PromptOptions<true>
     enquirer = settings.enquirer
   } else {
     try {
-      enquirer = new (await import('enquirer')).default()
+      enquirer = new (await import('enquirer'))()
     } /* istanbul ignore next */ catch (e) {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
       throw new Error(e)

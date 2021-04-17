@@ -1,4 +1,4 @@
-import chalkDefault from 'chalk'
+import * as chalkDefault from 'chalk'
 
 let chalk: chalkDefault.Chalk
 

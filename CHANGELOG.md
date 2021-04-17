@@ -1,3 +1,10 @@
+## [3.6.2](https://github.com/cenk1cenk2/listr2/compare/v3.6.1...v3.6.2) (2021-04-05)
+
+
+### Bug Fixes
+
+* just export the types ([0e787e9](https://github.com/cenk1cenk2/listr2/commit/0e787e9f3c3f62b9f16dd519be1fb0f3fa500ce9))
+
 ## [3.6.1](https://github.com/cenk1cenk2/listr2/compare/v3.6.0...v3.6.1) (2021-04-05)
 
 
