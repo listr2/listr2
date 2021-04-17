@@ -1,3 +1,10 @@
+## [3.6.3](https://github.com/cenk1cenk2/listr2/compare/v3.6.2...v3.6.3) (2021-04-17)
+
+
+### Bug Fixes
+
+* force commit for publish ([79ede29](https://github.com/cenk1cenk2/listr2/commit/79ede29516c16c516295af25f71a6a95e48a7d9e))
+
 ## [3.6.2](https://github.com/cenk1cenk2/listr2/compare/v3.6.1...v3.6.2) (2021-04-05)
 
 
