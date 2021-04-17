@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import figures from 'figures'
+import * as figures from 'figures'
 
 import { LogLevels } from './logger.constants'
 import { LoggerOptions } from './logger.interface'

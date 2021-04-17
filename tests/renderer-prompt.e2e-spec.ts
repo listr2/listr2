@@ -1,6 +1,6 @@
 /* eslint-disable no-empty */
 import delay from 'delay'
-import Enquirer from 'enquirer'
+import * as Enquirer from 'enquirer'
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
 import { Listr } from '@root/index'
