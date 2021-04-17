@@ -1,4 +1,4 @@
-import type Enquirer from 'enquirer'
+import type * as Enquirer from 'enquirer'
 import type { Observable } from 'rxjs'
 import { Readable } from 'stream'
 

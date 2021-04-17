@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import Enquirer from 'enquirer'
+import * as Enquirer from 'enquirer'
 import { WriteStream } from 'fs'
 import { Writable } from 'stream'
 
