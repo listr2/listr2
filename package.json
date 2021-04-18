@@ -33,7 +33,7 @@
     "hooks": {
       "pre-commit": "lint-staged",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "pre-push": "yarn test"
+      "pre-push": "yarn test && yarn api-extractor"
     }
   },
   "lint-staged": {
@@ -75,8 +75,9 @@
     "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^1.3.14",
+    "@cenk1cenk2/cz-cc": "^1.3.15",
     "@cenk1cenk2/eslint-config": "^0.4.36",
+    "@microsoft/api-extractor": "^7.13.5",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.37",
     "@types/rewire": "^2.5.28",

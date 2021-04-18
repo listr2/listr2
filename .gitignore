@@ -38,3 +38,6 @@ tsconfig*.tsbuildinfo
 .npm
 .npmrc
 package-lock.json
+
+# API Extractor
+/temp
