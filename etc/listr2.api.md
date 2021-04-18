@@ -4,45 +4,357 @@
 
 ```ts
 
-import { ListrBaseClassOptions } from '@interfaces/listr.interface';
-import { ListrContext } from '@interfaces/listr.interface';
-import { ListrDefaultRendererValue } from '@interfaces/renderer.interface';
-import { ListrError } from '@interfaces/listr-error.interface';
-import { ListrFallbackRendererValue } from '@interfaces/renderer.interface';
-import { ListrGetRendererClassFromValue } from '@interfaces/renderer.interface';
-import { ListrGetRendererOptions } from '@interfaces/renderer.interface';
-import { ListrRendererFactory } from '@interfaces/renderer.interface';
-import { ListrRendererValue } from '@interfaces/renderer.interface';
-import { ListrSubClassOptions } from '@interfaces/listr.interface';
-import { ListrTask } from '@interfaces/listr.interface';
-import { Task } from '@lib/task';
+import * as Enquirer from 'enquirer';
+import type { Observable } from 'rxjs';
+import { Readable } from 'stream';
+import { Subject } from 'rxjs';
+import { Writable } from 'stream';
+import { WriteStream } from 'fs';
+
+// @public
+export function createPrompt(this: any, options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any>;
+
+// @public (undocumented)
+export function destroyPrompt(this: ListrTaskWrapper<any, any>, throwError?: boolean): void;
 
 // @public
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
-    constructor(task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer> | undefined);
+    constructor(task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>);
     // (undocumented)
     add(task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void;
     // (undocumented)
     err: ListrError[];
     // (undocumented)
-    options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer> | undefined;
+    options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>;
     // (undocumented)
     rendererClass: ListrRendererFactory;
     // (undocumented)
     rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>;
     // (undocumented)
-    renderHook$: Task<any, any>['renderHook$'];
+    renderHook$: ListrTaskObject<any, any>['renderHook$'];
     // (undocumented)
     run(context?: Ctx): Promise<Ctx>;
     // (undocumented)
     task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[];
     // (undocumented)
-    tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[];
+    tasks: ListrTaskObject<Ctx, ListrGetRendererClassFromValue<Renderer>>[];
+}
+
+// @public
+export type ListrBaseClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> = ListrOptions<Ctx> & ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<FallbackRenderer>;
+
+// @public
+export class ListrBaseRenderer implements ListrRenderer {
+    constructor(tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions);
+    // (undocumented)
+    end: (err?: Error) => void;
+    // (undocumented)
+    static nonTTY: boolean;
+    // (undocumented)
+    options: typeof ListrBaseRenderer.rendererOptions;
+    // (undocumented)
+    render: () => void;
+    // (undocumented)
+    static rendererOptions: Record<string, any>;
+    // (undocumented)
+    static rendererTaskOptions: Record<string, any>;
+    // (undocumented)
+    tasks: ListrTaskObject<any, typeof ListrBaseRenderer>[];
+}
+
+// @public
+export type ListrContext = any | undefined;
+
+// @public
+export interface ListrDefaultNonTTYRendererOptions<T extends ListrRendererValue> {
+    nonTTYRenderer?: T;
+    nonTTYRendererOptions?: ListrGetRendererOptions<T>;
+}
+
+// Warning: (ae-forgotten-export) The symbol "DefaultRenderer" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type ListrDefaultRenderer = typeof DefaultRenderer;
+
+// @public
+export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {
+    renderer?: T;
+    rendererOptions?: ListrGetRendererOptions<T>;
+}
+
+// @public
+export type ListrDefaultRendererValue = 'default';
+
+// @public
+export class ListrError extends Error {
+    constructor(message: string, errors?: Error[], context?: any);
+    // (undocumented)
+    context?: any;
+    // (undocumented)
+    errors?: Error[];
+    // (undocumented)
+    message: string;
+}
+
+// @public
+export type ListrEvent = {
+    type: Exclude<ListrEventType, 'MESSAGE'>;
+    data?: string | boolean;
+} | {
+    type: ListrEventType.MESSAGE;
+    data: ListrTaskObject<any, any>['message'];
+};
+
+// @public
+export enum ListrEventType {
+    // (undocumented)
+    DATA = "DATA",
+    // (undocumented)
+    ENABLED = "ENABLED",
+    // (undocumented)
+    MESSAGE = "MESSAGE",
+    // (undocumented)
+    STATE = "STATE",
+    // (undocumented)
+    SUBTASK = "SUBTASK",
+    // (undocumented)
+    TITLE = "TITLE"
+}
+
+// Warning: (ae-forgotten-export) The symbol "VerboseRenderer" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type ListrFallbackRenderer = typeof VerboseRenderer;
+
+// @public
+export type ListrFallbackRendererValue = 'verbose';
+
+// @public
+export type ListrGetRendererClassFromValue<T extends ListrRendererValue> = T extends ListrDefaultRendererValue ? ListrDefaultRenderer : T extends ListrFallbackRendererValue ? ListrFallbackRenderer : T extends ListrSilentRenderer ? ListrSilentRenderer : T extends ListrRendererFactory ? T : never;
+
+// @public
+export type ListrGetRendererOptions<T extends ListrRendererValue> = T extends ListrDefaultRendererValue ? ListrDefaultRenderer['rendererOptions'] : T extends ListrFallbackRendererValue ? ListrFallbackRenderer['rendererOptions'] : T extends ListrSilentRenderer ? ListrSilentRenderer['rendererOptions'] : T extends ListrRendererFactory ? T['rendererOptions'] : never;
+
+// @public
+export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = T extends ListrDefaultRendererValue ? ListrDefaultRenderer['rendererTaskOptions'] : T extends ListrFallbackRendererValue ? ListrFallbackRenderer['rendererTaskOptions'] : T extends ListrSilentRenderer ? ListrSilentRenderer['rendererTaskOptions'] : T extends ListrRendererFactory ? T['rendererTaskOptions'] : never;
+
+// Warning: (ae-forgotten-export) The symbol "SilentRenderer" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = T extends DefaultRenderer ? ListrDefaultRendererValue : T extends VerboseRenderer ? ListrFallbackRendererValue : T extends SilentRenderer ? ListrSilentRenderer : T extends ListrRendererFactory ? T : never;
+
+// @public
+export interface ListrOptions<Ctx = ListrContext> {
+    concurrent?: boolean | number;
+    ctx?: Ctx;
+    disableColor?: boolean;
+    exitAfterRollback?: boolean;
+    exitOnError?: boolean;
+    injectWrapper?: {
+        enquirer?: Enquirer<object>;
+    };
+    registerSignalListeners?: boolean;
+    rendererFallback?: boolean | (() => boolean);
+    rendererSilent?: boolean | (() => boolean);
+}
+
+// @public
+export class ListrRenderer {
+    constructor(tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>);
+    end: (err?: Error) => void;
+    static nonTTY: boolean;
+    render: () => void;
+    static rendererOptions: Record<string, any>;
+    static rendererTaskOptions: Record<string, any>;
+}
+
+// @public
+export type ListrRendererFactory = typeof ListrRenderer;
+
+// @public
+export type ListrRendererOptions<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> = ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<FallbackRenderer>;
+
+// @public
+export type ListrRendererValue = ListrSilentRendererValue | ListrDefaultRendererValue | ListrFallbackRendererValue | ListrRendererFactory;
+
+// @public
+export type ListrSilentRenderer = typeof SilentRenderer;
+
+// @public
+export type ListrSilentRendererValue = 'silent';
+
+// @public
+export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> = ListrOptions<Ctx> & Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>;
+
+// @public (undocumented)
+export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
+    enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>);
+    options?: ListrGetRendererTaskOptions<Renderer>;
+    retry?: number;
+    rollback?: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>);
+    task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    title?: string;
+}
+
+// @public
+export class ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> {
+    constructor(listr: Listr<Ctx, any, any>, tasks: ListrTask<Ctx, any>, options: ListrOptions, rendererOptions: ListrGetRendererOptions<Renderer>);
+    check(ctx: Ctx): Promise<void>;
+    // (undocumented)
+    exitOnError: boolean;
+    hasFailed(): boolean;
+    hasRolledBack(): boolean;
+    hasSubtasks(): boolean;
+    hasTitle(): boolean;
+    id: string;
+    initialTitle?: string;
+    isCompleted(): boolean;
+    isEnabled(): boolean;
+    isPending(): boolean;
+    isPrompt(): boolean;
+    isRetrying(): boolean;
+    isRollingBack(): boolean;
+    isSkipped(): boolean;
+    // (undocumented)
+    listr: Listr<Ctx, any, any>;
+    // (undocumented)
+    set message$(data: ListrTaskObject<Ctx, Renderer>['message']);
+    message: {
+        duration?: number;
+        error?: string;
+        skip?: string;
+        rollback?: string;
+        retry?: {
+            count: number;
+            withError?: any;
+        };
+    };
+    // (undocumented)
+    options: ListrOptions;
+    // (undocumented)
+    set output$(data: string);
+    output?: string;
+    // (undocumented)
+    prompt: undefined | PromptInstance | PromptError;
+    // (undocumented)
+    rendererOptions: ListrGetRendererOptions<Renderer>;
+    rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>;
+    renderHook$: Subject<void>;
+    retry?: {
+        count: number;
+        withError?: any;
+    };
+    run(context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void>;
+    skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>);
+    // (undocumented)
+    set state$(state: ListrTaskState);
+    state: string;
+    subtasks: ListrTaskObject<Ctx, any>[];
+    task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    // (undocumented)
+    tasks: ListrTask<Ctx, any>;
+    // (undocumented)
+    set title$(title: string);
+    title?: string;
+}
+
+// @public
+export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRendererValue, any> | Readable | NodeJS.ReadableStream | Observable<any>;
+
+// @public
+export enum ListrTaskState {
+    // (undocumented)
+    COMPLETED = "COMPLETED",
+    // (undocumented)
+    FAILED = "FAILED",
+    // (undocumented)
+    PENDING = "PENDING",
+    // (undocumented)
+    RETRY = "RETRY",
+    // (undocumented)
+    ROLLED_BACK = "ROLLED_BACK",
+    // (undocumented)
+    ROLLING_BACK = "ROLLING_BACK",
+    // (undocumented)
+    SKIPPED = "SKIPPED"
+}
+
+// @public
+export class ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
+    constructor(task: ListrTaskObject<Ctx, ListrRendererFactory>, errors: ListrError[], options: ListrBaseClassOptions<Ctx, any, any>);
+    cancelPrompt(throwError?: boolean): void;
+    // (undocumented)
+    errors: ListrError[];
+    isRetrying(): ListrTaskObject<Ctx, Renderer>['retry'];
+    newListr(task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[] | ((parent: this) => ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]), options?: ListrSubClassOptions<Ctx, Renderer>): Listr<Ctx, any, any>;
+    set output(data: string);
+    get output(): string;
+    prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T>;
+    report(error: Error | ListrError): void;
+    run(ctx: Ctx): Promise<void>;
+    skip(message?: string): void;
+    stdout(): NodeJS.WriteStream & NodeJS.WritableStream;
+    // (undocumented)
+    task: ListrTaskObject<Ctx, ListrRendererFactory>;
+    set title(data: string);
+    get title(): string;
+}
+
+// @public
+export class Logger {
+    // Warning: (ae-forgotten-export) The symbol "LoggerOptions" needs to be exported by the entry point index.d.ts
+    constructor(options?: LoggerOptions);
+    // (undocumented)
+    data(message: string): void;
+    // (undocumented)
+    fail(message: string): void;
+    // (undocumented)
+    protected logColoring({ level, message }: {
+        level: LogLevels;
+        message: string;
+    }): string;
+    // (undocumented)
+    protected parseMessage(level: LogLevels, message: string): string;
+    // (undocumented)
+    retry(message: string): void;
+    // (undocumented)
+    rollback(message: string): void;
+    // (undocumented)
+    skip(message: string): void;
+    // (undocumented)
+    start(message: string): void;
+    // (undocumented)
+    success(message: string): void;
+    // (undocumented)
+    title(message: string): void;
+    }
+
+// @public
+export enum LogLevels {
+    // (undocumented)
+    DATA = "DATA",
+    // (undocumented)
+    FAILED = "FAILED",
+    // (undocumented)
+    RETRY = "RETRY",
+    // (undocumented)
+    ROLLBACK = "ROLLBACK",
+    // (undocumented)
+    SILENT = "SILENT",
+    // (undocumented)
+    SKIPPED = "SKIPPED",
+    // (undocumented)
+    STARTED = "STARTED",
+    // (undocumented)
+    SUCCESS = "SUCCESS",
+    // (undocumented)
+    TITLE = "TITLE"
 }
 
 // @public
 export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
-    constructor(options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer> | undefined);
+    constructor(options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>);
     // (undocumented)
     add<InjectCtx = Ctx>(tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[] | ((ctx?: InjectCtx) => ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[]), options?: ListrSubClassOptions<InjectCtx, Renderer>): void;
     // (undocumented)
@@ -56,20 +368,136 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
     // (undocumented)
     newListr<InjectCtx, InjectRenderer extends ListrRendererValue = Renderer, InjectFallbackRenderer extends ListrRendererValue = FallbackRenderer>(tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<InjectRenderer>>[], options?: ListrBaseClassOptions<InjectCtx, InjectRenderer, InjectFallbackRenderer>): Listr<InjectCtx, InjectRenderer, InjectFallbackRenderer>;
     // (undocumented)
-    options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer> | undefined;
+    options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>;
     // (undocumented)
     run<InjectCtx = Ctx>(tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>): Promise<InjectCtx>;
     // (undocumented)
     runAll<InjectCtx = Ctx>(options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>): Promise<InjectCtx>;
     }
 
+// @public
+export class PromptError extends Error {
+    constructor(message: string);
+}
 
-export * from "@constants/index";
-export * from "@interfaces/index";
-export * from "@utils/logger";
-export * from "@utils/logger.constants";
-export * from "@utils/prompt";
-export * from "@utils/prompt.interface";
+// Warning: (ae-forgotten-export) The symbol "BasePromptOptions" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export interface PromptInstance extends Omit<BasePromptOptions, 'onCancel' | 'onSubmit'> {
+    // (undocumented)
+    cancel(err?: string): void;
+    // (undocumented)
+    submit(): void;
+}
+
+// @public
+export type PromptOptions<T extends boolean = false> = Unionize<{
+    [K in PromptTypes]-?: T extends true ? {
+        type: K;
+    } & PromptOptionsType<K> & {
+        name: string | (() => string);
+    } : {
+        type: K;
+    } & PromptOptionsType<K>;
+}> | ({
+    type: string;
+} & T extends true ? PromptOptionsType<string> & {
+    name: string | (() => string);
+} : PromptOptionsType<string>);
+
+// @public (undocumented)
+export class PromptOptionsMap implements Record<PromptTypes, Record<string, any>> {
+    // Warning: (ae-forgotten-export) The symbol "ArrayPromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    AutoComplete: ArrayPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "StringPromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    BasicAuth: StringPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "BooleanPromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    Confirm: BooleanPromptOptions;
+    // (undocumented)
+    Editable: ArrayPromptOptions;
+    // (undocumented)
+    Form: ArrayPromptOptions;
+    // (undocumented)
+    Input: StringPromptOptions;
+    // (undocumented)
+    Invisible: StringPromptOptions;
+    // (undocumented)
+    List: ArrayPromptOptions;
+    // (undocumented)
+    MultiSelect: ArrayPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "NumberPromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    Numeral: NumberPromptOptions;
+    // (undocumented)
+    Password: StringPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "QuizPromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    Quiz: QuizPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "ScalePromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    Scale: ScalePromptOptions;
+    // (undocumented)
+    Select: ArrayPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "SnippetPromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    Snippet: SnippetPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "SortPromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    Sort: SortPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "SurveyPromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    Survey: SurveyPromptOptions;
+    // (undocumented)
+    Text: StringPromptOptions;
+    // Warning: (ae-forgotten-export) The symbol "TogglePromptOptions" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    Toggle: TogglePromptOptions;
+}
+
+// @public (undocumented)
+export type PromptOptionsType<T> = T extends keyof PromptOptionsMap ? PromptOptionsMap[T] : T extends string ? BasePromptOptions & Record<string, unknown> : any;
+
+// @public (undocumented)
+export interface PromptSettings {
+    // (undocumented)
+    cancelCallback?: (settings?: PromptSettings) => string | Error | PromptError | void;
+    // (undocumented)
+    enquirer?: Enquirer;
+    // (undocumented)
+    error?: boolean;
+    // (undocumented)
+    stdout?: WriteStream | Writable;
+}
+
+// @public (undocumented)
+export type PromptTypes = 'AutoComplete' | 'BasicAuth' | 'Confirm' | 'Editable' | 'Form' | 'Input' | 'Invisible' | 'List' | 'MultiSelect' | 'Numeral' | 'Password' | 'Quiz' | 'Scale' | 'Select' | 'Snippet' | 'Sort' | 'Survey' | 'Text' | 'Toggle';
+
+// @public
+export interface SupportedRenderer {
+    // (undocumented)
+    nonTTY: boolean;
+    // (undocumented)
+    renderer: ListrRendererFactory;
+}
+
+// @public (undocumented)
+export type Unionize<T extends Record<string, unknown>> = {
+    [P in keyof T]: T[P];
+}[keyof T];
+
 
 // (No @packageDocumentation comment for this package)
 
