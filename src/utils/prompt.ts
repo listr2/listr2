@@ -14,7 +14,7 @@ import { TaskWrapper } from '@lib/task-wrapper'
  * @param options
  * @param settings
  */
-export async function createPrompt (options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
+export async function createPrompt (this: any, options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
 
@@ -101,7 +101,7 @@ export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false):
   }
 }
 
-function defaultCancelCallback (settings: PromptSettings): string | Error | PromptError | void {
+function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
   const errorMsg = 'Cancelled prompt.'
 
   if (this instanceof TaskWrapper) {

@@ -419,7 +419,7 @@ export class DefaultRenderer implements ListrRenderer {
         this.bottomBar[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
         o[key].data = this.bottomBar[key].data
         return o
-      }, {})
+      }, {} as Record<string, { data?: string[], items?: number} | undefined>)
 
       return Object.values(this.bottomBar)
         .reduce((o, value) => o = [ ...o, ...value.data ], [])
