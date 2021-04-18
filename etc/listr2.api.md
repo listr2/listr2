@@ -25,15 +25,15 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     // (undocumented)
     err: ListrError[];
     // (undocumented)
-    options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>;
+    options: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>;
     // (undocumented)
     rendererClass: ListrRendererFactory;
     // (undocumented)
-    rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>;
+    rendererClassOptions?: ListrGetRendererOptions<ListrRendererFactory>;
     // (undocumented)
     renderHook$: ListrTaskObject<any, any>['renderHook$'];
     // (undocumented)
-    run(context?: Ctx): Promise<Ctx>;
+    run(c?: Ctx): Promise<Ctx>;
     // (undocumented)
     task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[];
     // (undocumented)
@@ -91,7 +91,7 @@ export class ListrError extends Error {
     // (undocumented)
     context?: any;
     // (undocumented)
-    errors?: Error[];
+    errors: Error[];
     // (undocumented)
     message: string;
 }
@@ -160,7 +160,7 @@ export interface ListrOptions<Ctx = ListrContext> {
 
 // @public
 export class ListrRenderer {
-    constructor(tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>);
+    constructor(tasks: readonly ListrTaskObject<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions | undefined, renderHook$?: Subject<void>);
     end: (err?: Error) => void;
     static nonTTY: boolean;
     render: () => void;
@@ -191,9 +191,9 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
     enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>);
     options?: ListrGetRendererTaskOptions<Renderer>;
     retry?: number;
-    rollback?: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
-    skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>);
-    task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    rollback?: (ctx: Ctx | undefined, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    skip?: boolean | string | ((ctx: Ctx | undefined) => boolean | string | Promise<boolean> | Promise<string>);
+    task: (ctx: Ctx | undefined, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
     title?: string;
 }
 
@@ -233,7 +233,7 @@ export class ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends
     // (undocumented)
     options: ListrOptions;
     // (undocumented)
-    set output$(data: string);
+    set output$(data: string | undefined);
     output?: string;
     // (undocumented)
     prompt: undefined | PromptInstance | PromptError;
@@ -245,17 +245,17 @@ export class ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends
         count: number;
         withError?: any;
     };
-    run(context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void>;
-    skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>);
+    run(context: Ctx | undefined, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void>;
+    skip: boolean | string | ((ctx: Ctx | undefined) => boolean | string | Promise<boolean> | Promise<string>);
     // (undocumented)
     set state$(state: ListrTaskState);
-    state: string;
-    subtasks: ListrTaskObject<Ctx, any>[];
-    task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    state?: string;
+    subtasks?: ListrTaskObject<Ctx, any>[];
+    task: (ctx: Ctx | undefined, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
     // (undocumented)
     tasks: ListrTask<Ctx, any>;
     // (undocumented)
-    set title$(title: string);
+    set title$(title: string | undefined);
     title?: string;
 }
 
@@ -282,29 +282,29 @@ export enum ListrTaskState {
 
 // @public
 export class ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
-    constructor(task: ListrTaskObject<Ctx, ListrRendererFactory>, errors: ListrError[], options: ListrBaseClassOptions<Ctx, any, any>);
+    constructor(task: ListrTaskObject<Ctx, ListrRendererFactory>, errors: (ListrError | Error)[], options: ListrBaseClassOptions<Ctx, any, any>);
     cancelPrompt(throwError?: boolean): void;
     // (undocumented)
-    errors: ListrError[];
+    errors: (ListrError | Error)[];
     isRetrying(): ListrTaskObject<Ctx, Renderer>['retry'];
     newListr(task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[] | ((parent: this) => ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]), options?: ListrSubClassOptions<Ctx, Renderer>): Listr<Ctx, any, any>;
-    set output(data: string);
-    get output(): string;
+    set output(data: string | undefined);
+    get output(): string | undefined;
     prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T>;
     report(error: Error | ListrError): void;
-    run(ctx: Ctx): Promise<void>;
+    run(ctx: Ctx | undefined): Promise<void>;
     skip(message?: string): void;
     stdout(): NodeJS.WriteStream & NodeJS.WritableStream;
     // (undocumented)
     task: ListrTaskObject<Ctx, ListrRendererFactory>;
-    set title(data: string);
-    get title(): string;
+    set title(data: string | undefined);
+    get title(): string | undefined;
 }
 
 // @public
 export class Logger {
     // Warning: (ae-forgotten-export) The symbol "LoggerOptions" needs to be exported by the entry point index.d.ts
-    constructor(options?: LoggerOptions);
+    constructor(options?: LoggerOptions | undefined);
     // (undocumented)
     data(message: string): void;
     // (undocumented)
@@ -368,7 +368,7 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
     // (undocumented)
     newListr<InjectCtx, InjectRenderer extends ListrRendererValue = Renderer, InjectFallbackRenderer extends ListrRendererValue = FallbackRenderer>(tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<InjectRenderer>>[], options?: ListrBaseClassOptions<InjectCtx, InjectRenderer, InjectFallbackRenderer>): Listr<InjectCtx, InjectRenderer, InjectFallbackRenderer>;
     // (undocumented)
-    options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>;
+    options: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>;
     // (undocumented)
     run<InjectCtx = Ctx>(tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[], options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>): Promise<InjectCtx>;
     // (undocumented)
