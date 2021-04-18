@@ -3,6 +3,7 @@ import * as figures from 'figures'
 
 import { LogLevels } from './logger.constants'
 import { LoggerOptions } from './logger.interface'
+import UnreachableError from './unreachable-error'
 import chalk from '@utils/chalk'
 
 /**
@@ -77,7 +78,7 @@ export class Logger {
   }
 
   protected logColoring ({ level, message }: { level: LogLevels, message: string }): string {
-    let icon: string
+    let icon: string | undefined
 
     // do the coloring
     let coloring = (input: string): string => {
@@ -154,6 +155,11 @@ export class Logger {
         icon = this.wrapInBrackets(level)
       }
       break
+    case LogLevels.SILENT:
+      // This case clause is defined only to serve the purpose of an
+      // exhaustive switch pattern
+      break
+    default: throw new UnreachableError(level, `Unexpected log level: ${level}`)
     }
 
     return coloring(`${icon} ${message}`)

@@ -31,7 +31,7 @@ describe('exit on error', () => {
     )
 
     let result: any
-    let crash: Error
+    let crash: Error | undefined
     try {
       result = await task.run()
     } catch (e) {
@@ -140,7 +140,7 @@ describe('exit on error', () => {
     )
 
     let result: any
-    let crash: Error
+    let crash: Error | undefined
     try {
       result = await task.run()
     } catch (e) {
@@ -179,7 +179,7 @@ describe('exit on error', () => {
     )
 
     let result: any
-    let crash: Error
+    let crash: Error | undefined
     try {
       result = await task.run()
     } catch (e) {

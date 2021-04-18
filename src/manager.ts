@@ -12,7 +12,7 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
   public err: ListrError[] = []
   private tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
 
-  constructor (public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>) {}
+  constructor (public options: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer> = {}) {}
 
   set ctx (ctx: Ctx) {
     this.options.ctx = ctx

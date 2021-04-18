@@ -44,7 +44,7 @@ export class VerboseRenderer implements ListrRenderer {
 
   constructor (public tasks: Task<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
     if (!this.options?.logger) {
-      this.logger = new Logger({ useIcons: this.options?.useIcons })
+      this.logger = new Logger({ useIcons: !!this.options?.useIcons })
     } /* istanbul ignore next */ else {
       this.logger = new this.options.logger()
     }
@@ -60,7 +60,7 @@ export class VerboseRenderer implements ListrRenderer {
   public end (): void {}
 
   // verbose renderer multi-level
-  private verboseRenderer (tasks: Task<any, typeof VerboseRenderer>[]): void {
+  private verboseRenderer (tasks?: Task<any, typeof VerboseRenderer>[]): void {
     return tasks?.forEach((task) => {
       task.subscribe(
         // eslint-disable-next-line complexity
@@ -75,7 +75,7 @@ export class VerboseRenderer implements ListrRenderer {
             } else if (event.type === ListrEventType.STATE) {
               if (this.options?.logEmptyTitle !== false || task.hasTitle()) {
                 if (task.isPending()) {
-                  this.logger.start(taskTitle)
+                  this.logger.start(`${taskTitle}`)
                 } else if (task.isCompleted()) {
                   this.logger.success(taskTitle + (this.options?.showTimer && task.message?.duration ? ` [${parseTaskTime(task.message.duration)}]` : ''))
                 }

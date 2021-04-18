@@ -32,12 +32,12 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    *
    * Task can be a sync or async function, an Observable or a Stream.
    */
-  task: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  task: (ctx: Ctx | undefined, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   /**
    * Runs a specific event if the current task or any of the subtasks has failed.
    * Mostly useful for rollback purposes for subtasks.
    */
-  rollback?: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  rollback?: (ctx: Ctx | undefined, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   /**
    * Adds a couple of retries to the task if the task fails
    */
@@ -47,7 +47,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    *
    * The function that has been passed in will be evaluated at the runtime when task tries to initially run.
    */
-  skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
+  skip?: boolean | string | ((ctx: Ctx | undefined) => boolean | string | Promise<boolean> | Promise<string>)
   /**
    * Enable a task depending on the context.
    *

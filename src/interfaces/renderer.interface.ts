@@ -108,7 +108,7 @@ export declare class ListrRenderer {
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
-  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>)
+  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions | undefined, renderHook$?: Subject<void>)
 }
 
 /** Exported for javascript applications to extend the base renderer */

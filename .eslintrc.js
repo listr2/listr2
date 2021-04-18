@@ -42,5 +42,13 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  overrides: [
+    {
+      files: [ 'tests/**/*.ts' ],
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off'
+      }
+    }
+  ]
 }

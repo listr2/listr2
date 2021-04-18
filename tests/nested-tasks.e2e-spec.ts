@@ -47,7 +47,7 @@ describe('skip a task', () => {
         title: 'sub' + task.title
       }
       return [ ...o, subtask ]
-    }, [])
+    }, [] as ListrTask<any, any>[])
   })
 
   afterEach(async () => {

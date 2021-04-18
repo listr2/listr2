@@ -53,7 +53,7 @@ describe('show inject context', () => {
             task.newListr([
               {
                 title: 'This is a subtask.',
-                skip: (ctx): boolean => ctx.skip,
+                skip: (ctx): boolean => ctx!.skip,
                 task: async (): Promise<void> => {}
               }
             ])

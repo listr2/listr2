@@ -24,14 +24,15 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError[] = []
   public rendererClass: ListrRendererFactory
-  public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
+  public rendererClassOptions?: ListrGetRendererOptions<ListrRendererFactory>
   public renderHook$: Task<any, any>['renderHook$'] = new Subject()
+  public options: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
   private concurrency: number
-  private renderer: ListrRenderer
+  private renderer!: ListrRenderer
 
   constructor (
     public task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[],
-    public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
+    options: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer> = {}
   ) {
     // assign over default options
     this.options = Object.assign(
@@ -100,7 +101,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     })
   }
 
-  public async run (context?: Ctx): Promise<Ctx> {
+  public async run (c?: Ctx): Promise<Ctx> {
     // start the renderer
     if (!this.renderer) {
       this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.renderHook$)
@@ -109,10 +110,10 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.renderer.render()
 
     // create a new context
-    context = context || this.options?.ctx || Object.create({})
+    const context = c || this.options?.ctx || Object.create({})
 
     // create new error queue
-    const errors: Error[] | ListrError[] = []
+    const errors: ListrError[] = []
 
     // check if the items are enabled
     await this.checkAll(context)
@@ -156,7 +157,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     )
   }
 
-  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError[]): Promise<void> {
+  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx | undefined, errors: ListrError[] = []): Promise<void> {
     if (!task.isEnabled()) {
       return Promise.resolve()
     }

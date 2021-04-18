@@ -138,7 +138,7 @@ describe('show output from task', () => {
       }
     )
 
-    let err: Error
+    let err: Error | undefined
     try {
       await ctx.run()
     } catch (e) {

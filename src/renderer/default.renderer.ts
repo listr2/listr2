@@ -3,11 +3,19 @@ import * as figures from 'figures'
 import * as indentString from 'indent-string'
 import * as logUpdate from 'log-update'
 import { EOL } from 'os'
+/**
+ * The following import from rxjs is necessary in order to
+ * generate the public API report
+ * @see https://github.com/microsoft/rushstack/issues/1050
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { Subject as _Subject } from 'rxjs'
 import * as cliWrap from 'wrap-ansi'
 
 import { ListrContext } from '@interfaces/listr.interface'
 import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
+import { assertIsDefined, taskHasSubtasks } from '@root/utils/guards'
 import chalk from '@utils/chalk'
 import { parseTaskTime } from '@utils/parse-time'
 
@@ -148,8 +156,8 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private id?: NodeJS.Timeout
-  private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
-  private promptBar: string
+  private bottomBar: Record<string, { data?: string[], items?: number }> = {}
+  private promptBar?: string
   private spinner: string[] = process.platform === 'win32' && !process.env.WT_SESSION ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
 
@@ -184,7 +192,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   /* istanbul ignore next */
   public getTaskTime (task: Task<any, typeof DefaultRenderer>): string {
-    return chalk.dim(`[${parseTaskTime(task.message.duration)}]`)
+    return chalk.dim(`[${parseTaskTime(task.message.duration || 0)}]`)
   }
 
   public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
@@ -207,11 +215,11 @@ export class DefaultRenderer implements ListrRenderer {
       render.push(renderTasks)
     }
 
-    if (options.bottomBar && renderBottomBar?.trim().length > 0) {
+    if (options.bottomBar && renderBottomBar && renderBottomBar?.trim().length > 0) {
       render.push((render.length > 0 ? EOL : '') + renderBottomBar)
     }
 
-    if (options.prompt && renderPrompt?.trim().length > 0) {
+    if (options.prompt && renderPrompt && renderPrompt?.trim().length > 0) {
       render.push((render.length > 0 ? EOL : '') + renderPrompt)
     }
 
@@ -233,15 +241,15 @@ export class DefaultRenderer implements ListrRenderer {
         updateRender()
       }, 100)
     }
-
+    assertIsDefined(this.renderHook$, 'Unexpected renderHook$ was found to be defined')
     this.renderHook$.subscribe(() => {
       updateRender()
     })
   }
 
   public end (): void {
-    clearInterval(this.id)
     if (this.id) {
+      clearInterval(this.id)
       this.id = undefined
     }
 
@@ -270,7 +278,7 @@ export class DefaultRenderer implements ListrRenderer {
               output = [
                 ...output,
                 this.formatString(
-                  !task.hasSubtasks() && task.message.error && this.getSelfOrParentOption(task, 'showErrorMessage') ? task.message.error : task.title,
+                  !task.hasSubtasks() && task.message.error && this.getSelfOrParentOption(task, 'showErrorMessage') ? task.message.error : `${task.title}`,
                   this.getSymbol(task),
                   level
                 )
@@ -281,7 +289,7 @@ export class DefaultRenderer implements ListrRenderer {
                 ...output,
                 this.formatString(
                   this.addSuffixToMessage(
-                    task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title,
+                    task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : `${task.title}`,
                     'SKIPPED',
                     this.getSelfOrParentOption(task, 'suffixSkips')
                   ),
@@ -290,17 +298,19 @@ export class DefaultRenderer implements ListrRenderer {
                 )
               ]
             } else if (task.isRetrying() && this.getSelfOrParentOption(task, 'suffixRetries')) {
-              output = [ ...output, this.formatString(this.addSuffixToMessage(task.title, `RETRYING-${task.message.retry.count}`), this.getSymbol(task), level) ]
+              const { retry } = task.message
+              const { count: retryCount } = retry || { count: 1 }
+              output = [ ...output, this.formatString(this.addSuffixToMessage(`${task.title}`, `RETRYING-${retryCount}`), this.getSymbol(task), level) ]
             } else if (task.isCompleted() && task.hasTitle() && (this.getSelfOrParentOption(task, 'showTimer') || this.hasTimer(task))) {
               // task with timer
               output = [ ...output, this.formatString(`${task?.title} ${this.getTaskTime(task)}`, this.getSymbol(task), level) ]
             } else {
               // normal state
-              output = [ ...output, this.formatString(task.title, this.getSymbol(task), level) ]
+              output = [ ...output, this.formatString(`${task.title}`, this.getSymbol(task), level) ]
             }
           } else {
             // some sibling task but self has failed and this has stopped
-            output = [ ...output, this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level) ]
+            output = [ ...output, this.formatString(`${task.title}`, chalk.red(figures.main.squareSmallFilled), level) ]
           }
         }
 
@@ -349,7 +359,8 @@ export class DefaultRenderer implements ListrRenderer {
 
             // persistent bottom bar and limit items in it
             if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
-              this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
+              const taskBottomBarData = this.bottomBar[task.id].data || []
+              this.bottomBar[task.id].data = [ ...taskBottomBarData, ...data ]
             }
           } else if (task.isPending() || task.isRetrying() || task.isRollingBack() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
@@ -362,7 +373,7 @@ export class DefaultRenderer implements ListrRenderer {
           // check if renderer option is on first
           this.getSelfOrParentOption(task, 'showSubtasks') !== false &&
           // if it doesnt have subtasks no need to check
-          task.hasSubtasks() &&
+          taskHasSubtasks(task) &&
           (task.isPending() ||
             task.hasFailed() ||
             task.isCompleted() && !task.hasTitle() ||
@@ -388,7 +399,7 @@ export class DefaultRenderer implements ListrRenderer {
         // after task is finished actions
         if (task.isCompleted() || task.hasFailed() || task.isSkipped() || task.hasRolledBack()) {
           // clean up prompts
-          this.promptBar = null
+          this.promptBar = undefined
 
           // clean up bottom bar items if not indicated otherwise
           if (!this.hasPersistentOutput(task)) {
@@ -402,11 +413,11 @@ export class DefaultRenderer implements ListrRenderer {
     if (output.length > 0) {
       return output.join(EOL)
     } else {
-      return
+      return ''
     }
   }
 
-  private renderBottomBar (): string {
+  private renderBottomBar (): string | undefined {
     // parse through all objects return only the last mentioned items
     if (Object.keys(this.bottomBar).length > 0) {
       this.bottomBar = Object.keys(this.bottomBar).reduce((o, key) => {
@@ -416,26 +427,26 @@ export class DefaultRenderer implements ListrRenderer {
 
         o[key] = this.bottomBar[key]
 
-        this.bottomBar[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
+        this.bottomBar[key].data = (this.bottomBar[key].data || []).slice(-(this.bottomBar[key].items || 0))
         o[key].data = this.bottomBar[key].data
         return o
-      }, {} as Record<string, { data?: string[], items?: number} | undefined>)
+      }, {} as Record<string, { data?: string[], items?: number}>)
 
       return Object.values(this.bottomBar)
-        .reduce((o, value) => o = [ ...o, ...value.data ], [])
+        .reduce((o, value) => o = [ ...o, ...value.data || [] ], [] as string[])
         .filter(Boolean)
         .join(EOL)
     }
   }
 
-  private renderPrompt (): string {
+  private renderPrompt (): string | undefined {
     if (this.promptBar) {
       return this.promptBar
     }
   }
 
   private dumpData (task: Task<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string {
-    let data: string | boolean
+    let data: string | boolean | undefined
     switch (source) {
     case 'output':
       data = task.output
@@ -450,25 +461,26 @@ export class DefaultRenderer implements ListrRenderer {
 
     // dont return anything on some occasions
     if (task.hasTitle() && source === 'error' && data === task.title) {
-      return
+      return ''
     }
 
     if (typeof data === 'string') {
       return this.formatString(data, this.getSymbol(task, true), level + 1)
     }
+    return ''
   }
 
   private formatString (str: string, icon: string, level: number): string {
     // we dont like empty data around here
     if (str.trim() === '') {
-      return
+      return ''
     }
 
     str = `${icon} ${str}`
     let parsedStr: string[]
 
     let columns = process.stdout.columns ? process.stdout.columns : 80
-    columns = columns - level * this.options.indentation - 2
+    columns = columns - level * (this.options.indentation || 0) - 2
 
     switch (this.options.formatOutput) {
     case 'truncate':
@@ -492,7 +504,7 @@ export class DefaultRenderer implements ListrRenderer {
       parsedStr = parsedStr.filter(Boolean)
     }
 
-    return indentString(parsedStr.join(EOL), level * this.options.indentation)
+    return indentString(parsedStr.join(EOL), level * (this.options.indentation || 0))
   }
 
   private indentMultilineOutput (str: string, i: number): string {
@@ -502,11 +514,11 @@ export class DefaultRenderer implements ListrRenderer {
   // eslint-disable-next-line complexity
   private getSymbol (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isPending() && !data) {
-      return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
+      return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && taskHasSubtasks(task) && !task.subtasks.every((subtask) => !subtask.hasTitle())
         ? chalk.yellow(figures.main.pointer)
         : chalk.yellowBright(this.spinner[this.spinnerPosition])
     } else if (task.isCompleted() && !data) {
-      if (task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())) {
+      if (taskHasSubtasks(task) && task.subtasks.some((subtask) => subtask.hasFailed())) {
         return chalk.yellow(figures.main.warning)
       }
 

@@ -16,7 +16,7 @@ import { TaskWrapper } from '@lib/task-wrapper'
  */
 export async function createPrompt (this: any, options: PromptOptions | PromptOptions<true>[], settings?: PromptSettings): Promise<any> {
   // override cancel callback
-  let cancelCallback: PromptSettings['cancelCallback']
+  let cancelCallback: Exclude<PromptSettings['cancelCallback'], undefined>
 
   /* istanbul ignore if */
   if (settings?.cancelCallback) {
@@ -31,7 +31,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
   } /* istanbul ignore next */ else if (options.length === 1) {
     options = options.reduce((o, option) => {
       return [ ...o, Object.assign(option, { name: 'default' }) ]
-    }, [])
+    }, [] as PromptOptions<true>[])
   }
 
   // assign default enquirer options
@@ -44,7 +44,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
         onCancel: cancelCallback.bind(this, settings)
       })
     ]
-  }, [])
+  }, [] as PromptOptions<true>[])
 
   let enquirer: Enquirer
   if (settings?.enquirer) {
@@ -101,7 +101,7 @@ export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false):
   }
 }
 
-function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
+function defaultCancelCallback (this: any, settings: PromptSettings | undefined): string | Error | PromptError | void {
   const errorMsg = 'Cancelled prompt.'
 
   if (this instanceof TaskWrapper) {

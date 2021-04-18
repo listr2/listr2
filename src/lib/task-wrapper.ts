@@ -14,25 +14,25 @@ import { PromptOptions } from '@utils/prompt.interface'
  * Extend the task to have more functionality while accesing from the outside.
  */
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
-  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
+  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: (ListrError | Error)[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
 
   /** Change the title of the current task. */
-  set title (data: string) {
+  set title (data: string | undefined) {
     this.task.title$ = data
   }
 
   /** Get the title of the current task. */
-  get title (): string {
+  get title (): string | undefined {
     return this.task.title
   }
 
   /** Send a output to the output channel. */
-  set output (data: string) {
+  set output (data: string | undefined) {
     this.task.output$ = data
   }
 
   /** Get the output from the output channel. */
-  get output (): string {
+  get output (): string | undefined {
     return this.task.output
   }
 
@@ -118,7 +118,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Run this task. */
-  public run (ctx: Ctx): Promise<void> {
+  public run (ctx: Ctx | undefined): Promise<void> {
     return this.task.run(ctx, this)
   }
 }

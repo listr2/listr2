@@ -29,7 +29,7 @@ describe('show throw error', () => {
 
   // vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf
   it('should throw out an error', async () => {
-    let err: Error
+    let err: Error | undefined
     try {
       await new Listr(
         [
@@ -65,7 +65,7 @@ describe('show throw error', () => {
 
   // OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl
   it('should not throw out an error when exitonerror is disabled', async () => {
-    let err: Error
+    let err: Error | undefined
     try {
       await new Listr(
         [
@@ -101,7 +101,7 @@ describe('show throw error', () => {
 
   // HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO
   it('should change exit on error per subtask', async () => {
-    let err: Error
+    let err: Error | undefined
     try {
       await new Listr(
         [
@@ -157,7 +157,7 @@ describe('show throw error', () => {
 
   // H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM
   it('should contain errors from failed tasks', async () => {
-    let err: Error
+    let err: Error | undefined
     const task: Listr<any, any, any> = new Listr(
       [
         {
@@ -213,7 +213,7 @@ describe('show throw error', () => {
 
   // 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H
   it('should throw out an error in the data field with collapse errors false', async () => {
-    let err: Error
+    let err: Error | undefined
     try {
       await new Listr(
         [
@@ -249,7 +249,7 @@ describe('show throw error', () => {
 
   // lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH
   it('should show the default task title when failed with showErrorMessage of', async () => {
-    let err: Error
+    let err: Error | undefined
     try {
       await new Listr(
         [

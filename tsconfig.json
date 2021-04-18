@@ -15,7 +15,7 @@
     "incremental": true,
     "noImplicitAny": true,
     "strict": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "esModuleInterop": false,
     "outDir": "./dist",
     "rootDir": "./src/",
