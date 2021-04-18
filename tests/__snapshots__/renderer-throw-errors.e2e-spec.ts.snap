@@ -165,6 +165,98 @@ Array [
 ]
 `;
 
+exports[`show throw error should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-err 1`] = `Array []`;
+
+exports[`show throw error should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `Array []`;
+
+exports[`show throw error should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-out 1`] = `
+Array [
+  Array [
+    "◼ This task will fail.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G◼ This task will fail.
+◼ This task will maybe execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will maybe execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will maybe execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ I will change my title if this executes.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+  ],
+]
+`;
+
+exports[`show throw error should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-err 1`] = `Array []`;
+
+exports[`show throw error should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `Array []`;
+
+exports[`show throw error should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-out 1`] = `
+Array [
+  Array [
+    "◼ This task will fail.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G◼ This task will fail.
+◼ This task will maybe execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will maybe execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will maybe execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+  ],
+]
+`;
+
 exports[`show throw error should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-err 1`] = `Array []`;
 
 exports[`show throw error should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `Array []`;

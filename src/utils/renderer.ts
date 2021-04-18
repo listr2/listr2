@@ -3,6 +3,7 @@ import { SupportedRenderer, ListrRendererFactory, ListrRendererValue } from '@in
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
+import { assertFunctionOrSelf } from '@utils/assert'
 
 const renderers = {
   default: DefaultRenderer,
@@ -33,19 +34,9 @@ export function getRenderer (
 
   returnValue = { renderer: ret, nonTTY: false }
 
-  let evaluateSilent: boolean
-  if (typeof silentCondition === 'function') {
-    evaluateSilent = silentCondition()
-  } else {
-    evaluateSilent = silentCondition
-  }
+  const evaluateSilent = assertFunctionOrSelf(silentCondition)
 
-  let evaluateFallback: boolean
-  if (typeof fallbackCondition === 'function') {
-    evaluateFallback = fallbackCondition()
-  } else {
-    evaluateFallback = fallbackCondition
-  }
+  const evaluateFallback = assertFunctionOrSelf(fallbackCondition)
 
   if (evaluateSilent) {
     ret = getRendererClass('silent')

@@ -8,6 +8,7 @@ import { ListrError, PromptError } from '@interfaces/listr-error.interface'
 import { ListrEvent, ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
 import { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
 import { Listr } from '@root/listr'
+import { assertFunctionOrSelf } from '@utils/assert'
 import { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
 import { generateUUID } from '@utils/uuid'
@@ -34,6 +35,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
   /** Current retry number of the task if retrying */
   public retry?: { count: number, withError?: any }
+
   /**
    * A channel for messages.
    *
@@ -57,7 +59,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public renderHook$: Subject<void>
 
   public prompt: undefined | PromptInstance | PromptError
-  public exitOnError: boolean
   private enabled: boolean
   private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
@@ -136,11 +137,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   async check (ctx: Ctx): Promise<void> {
     // Check if a task is enabled or disabled
     if (this.state === undefined) {
-      if (typeof this.enabledFn === 'function') {
-        this.enabled = await this.enabledFn(ctx)
-      } /* istanbul ignore next */ else {
-        this.enabled = this.enabledFn
-      }
+      this.enabled = await assertFunctionOrSelf(this.enabledFn, ctx)
 
       this.next({
         type: ListrEventType.ENABLED,
@@ -265,10 +262,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.state$ = ListrTaskState.PENDING
 
     // check if this function wants to be skipped
-    let skipped: boolean | string
-    if (typeof this.skip === 'function') {
-      skipped = await this.skip(context)
-    }
+    const skipped = await assertFunctionOrSelf(this.skip, context)
 
     if (skipped) {
       if (typeof skipped === 'string') {
@@ -355,7 +349,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         // report error
         wrapper.report(error)
 
-        if (this.listr.options.exitOnError !== false) {
+        if (this.listr.options.exitOnError !== false && await assertFunctionOrSelf(this.tasks?.exitOnError, context) !== false) {
           // Do not exit when explicitly set to `false`
           throw error
         }
