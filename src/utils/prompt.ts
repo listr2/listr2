@@ -101,7 +101,7 @@ export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false):
   }
 }
 
-function defaultCancelCallback (settings: PromptSettings): string | Error | PromptError | void {
+function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
   const errorMsg = 'Cancelled prompt.'
 
   if (this instanceof TaskWrapper) {
