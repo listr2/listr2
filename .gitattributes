@@ -1,0 +1,2 @@
+# Use JSONC for syntax highlighting on GitHub.com
+*.json linguist-language=jsonc
