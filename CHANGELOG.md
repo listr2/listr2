@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/cenk1cenk2/listr2/compare/v3.6.3...v3.7.0) (2021-04-18)
+
+
+### Features
+
+* adds task level exit on error ([9d27c2b](https://github.com/cenk1cenk2/listr2/commit/9d27c2b92eca3e0be60da3dcc858711c7ad52392))
+
 ## [3.6.3](https://github.com/cenk1cenk2/listr2/compare/v3.6.2...v3.6.3) (2021-04-17)
 
 

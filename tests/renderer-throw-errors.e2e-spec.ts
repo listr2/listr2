@@ -42,7 +42,7 @@ describe('show throw error', () => {
           },
           {
             title: 'This task will never execute.',
-            task: (ctx, task): void => {
+            task: (_, task): void => {
               task.title = 'I will change my title if this executes.'
             }
           }
@@ -78,7 +78,7 @@ describe('show throw error', () => {
           },
           {
             title: 'This task will execute.',
-            task: (ctx, task): void => {
+            task: (_, task): void => {
               task.title = 'I will change my title if this executes.'
             }
           }
@@ -107,7 +107,7 @@ describe('show throw error', () => {
         [
           {
             title: 'This task will execute and not quit on errors.',
-            task: (ctx, task): Listr =>
+            task: (_, task): Listr =>
               task.newListr(
                 [
                   {
@@ -124,7 +124,7 @@ describe('show throw error', () => {
                   },
                   {
                     title: 'This is yet an another subtask.',
-                    task: async (ctx, task): Promise<void> => {
+                    task: async (_, task): Promise<void> => {
                       task.title = 'I have succeeded.'
                     }
                   }
@@ -162,7 +162,7 @@ describe('show throw error', () => {
       [
         {
           title: 'This task will execute and not quit on errors.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr(
               [
                 {
@@ -179,7 +179,7 @@ describe('show throw error', () => {
                 },
                 {
                   title: 'This is yet an another subtask.',
-                  task: async (ctx, task): Promise<void> => {
+                  task: async (_, task): Promise<void> => {
                     task.title = 'I have succeeded.'
                   }
                 }
@@ -226,7 +226,7 @@ describe('show throw error', () => {
           },
           {
             title: 'This task will never execute.',
-            task: (ctx, task): void => {
+            task: (_, task): void => {
               task.title = 'I will change my title if this executes.'
             }
           }
@@ -262,7 +262,7 @@ describe('show throw error', () => {
           },
           {
             title: 'This task will never execute.',
-            task: (ctx, task): void => {
+            task: (_, task): void => {
               task.title = 'I will change my title if this executes.'
             }
           }
@@ -281,5 +281,46 @@ describe('show throw error', () => {
     expect(mockStdout.mock.calls).toMatchSnapshot('lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-out')
     expect(mockStderr.mock.calls).toMatchSnapshot('lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-err')
     expect(mockExit.mock.calls).toMatchSnapshot('lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-exit')
+  })
+
+  it.each([ true, false ])('should disable exitOnError from task level while: %s', async (exitOnError) => {
+    let err: Error
+    try {
+      await new Listr(
+        [
+          {
+            title: 'This task will fail.',
+            task: async (): Promise<void> => {
+              await delay(20)
+              throw new Error('This task failed after 2 seconds.')
+            },
+            exitOnError
+          },
+          {
+            title: 'This task will maybe execute.',
+            task: (_, task): void => {
+              task.title = 'I will change my title if this executes.'
+            }
+          }
+        ],
+        {
+          concurrent: false,
+          exitOnError: true,
+          rendererOptions: { lazy: true }
+        }
+      ).run()
+    } catch (e) {
+      err = e
+    }
+
+    if (exitOnError) {
+      expect(err).toBeTruthy()
+    } else {
+      expect(err).toBeFalsy()
+    }
+
+    expect(mockStdout.mock.calls).toMatchSnapshot('Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-out')
+    expect(mockStderr.mock.calls).toMatchSnapshot('Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-err')
+    expect(mockExit.mock.calls).toMatchSnapshot('Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit')
   })
 })
