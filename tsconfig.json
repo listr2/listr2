@@ -13,6 +13,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": false,
     "incremental": true,
+    "noImplicitAny": true,
     "strictNullChecks": false,
     "esModuleInterop": false,
     "outDir": "./dist",
