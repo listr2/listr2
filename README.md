@@ -10,8 +10,8 @@
 
 # Documentation
 
-[Read the documentation...](https://listr2.kilic.dev)
+**[Read the documentation...](https://listr2.kilic.dev)**
 
 # API Endpoints
 
-[Read the documentation...](./docs/README.md)
+**All the endpoints can be found [here](./docs/README.md)**
