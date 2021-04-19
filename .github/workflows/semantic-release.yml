@@ -34,3 +34,6 @@ jobs:
               }
             ]
           dry_run: true
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
