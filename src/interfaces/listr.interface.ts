@@ -61,6 +61,10 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    * be displayed as never.
    */
   options?: ListrGetRendererTaskOptions<Renderer>
+  /**
+   * Set exit on error option from task level instead of setting it for all the subtasks.
+   */
+  exitOnError?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
 }
 
 /**

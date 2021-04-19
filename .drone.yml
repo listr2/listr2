@@ -19,11 +19,22 @@ steps:
     image: node:current-alpine
     commands:
       - yarn lint:check
+    depends_on:
+      - install
 
   - name: test
     image: node:current-alpine
     commands:
       - yarn test
+    depends_on:
+      - install
+
+  - name: docs
+    image: node:current-alpine
+    commands:
+      - yarn docs
+    depends_on:
+      - install
 
   # - name: code-coverage
   #   image: node:current-alpine
@@ -39,6 +50,10 @@ steps:
     image: node:current-alpine
     commands:
       - yarn build
+    depends_on:
+      - lint
+      - test
+      - docs
 
   - name: semantic-release
     image: cenk1cenk2/drone-semantic-release
@@ -59,6 +74,8 @@ steps:
         - rc
       event:
         - push
+    depends_on:
+      - build
 
   - name: trigger
     image: plugins/downstream
@@ -69,6 +86,8 @@ steps:
       last_successful: false
       repositories:
         - cenk1cenk2/nuxt-docs@master
+    depends_on:
+      - semantic-release
 
 image_pull_secrets:
   - dockerconfigjson

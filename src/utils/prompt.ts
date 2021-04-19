@@ -87,7 +87,6 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
   }
 }
 
-/* istanbul ignore next */
 export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false): void {
   if (!this.task.prompt || this.task.prompt instanceof PromptError) {
     // If there's no prompt, can't cancel

@@ -180,6 +180,38 @@ async function main (): Promise<void> {
   } catch (e) {
     logger.fail(e)
   }
+
+  logger.start('You can set the throw error from the task level.')
+
+  task = new Listr<Ctx>(
+    [
+      {
+        title: 'This task will fail.',
+        task: async (): Promise<void> => {
+          await delay(2000)
+          throw new Error('This task failed after 2 seconds.')
+        },
+        exitOnError: false
+      },
+      {
+        title: 'This task will execute.',
+        task: (_, task): void => {
+          task.title = 'I will change my title if this executes.'
+        }
+      }
+    ],
+    {
+      concurrent: false,
+      exitOnError: true
+    }
+  )
+
+  try {
+    const context = await task.run()
+    logger.success(`Context: ${JSON.stringify(context)}`)
+  } catch (e) {
+    logger.fail(e)
+  }
 }
 
 main()
