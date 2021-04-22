@@ -87,11 +87,11 @@ export type ListrDefaultRendererValue = 'default';
 
 // @public
 export class ListrError extends Error {
-    constructor(message: string, errors?: Error[], context?: any);
+    constructor(message: string, errors?: Error[] | undefined, context?: any);
     // (undocumented)
     context?: any;
     // (undocumented)
-    errors: Error[];
+    errors?: Error[] | undefined;
     // (undocumented)
     message: string;
 }
@@ -189,11 +189,12 @@ export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRende
 // @public (undocumented)
 export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
     enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>);
+    exitOnError?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>);
     options?: ListrGetRendererTaskOptions<Renderer>;
     retry?: number;
-    rollback?: (ctx: Ctx | undefined, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
-    skip?: boolean | string | ((ctx: Ctx | undefined) => boolean | string | Promise<boolean> | Promise<string>);
-    task: (ctx: Ctx | undefined, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    rollback?: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>);
+    task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
     title?: string;
 }
 
@@ -245,13 +246,13 @@ export class ListrTaskObject<Ctx, Renderer extends ListrRendererFactory> extends
         count: number;
         withError?: any;
     };
-    run(context: Ctx | undefined, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void>;
-    skip: boolean | string | ((ctx: Ctx | undefined) => boolean | string | Promise<boolean> | Promise<string>);
+    run(context: Ctx, wrapper: ListrTaskWrapper<Ctx, Renderer>): Promise<void>;
+    skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>);
     // (undocumented)
     set state$(state: ListrTaskState);
     state?: string;
     subtasks?: ListrTaskObject<Ctx, any>[];
-    task: (ctx: Ctx | undefined, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
+    task: (ctx: Ctx, task: ListrTaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>;
     // (undocumented)
     tasks: ListrTask<Ctx, any>;
     // (undocumented)
@@ -292,7 +293,7 @@ export class ListrTaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     get output(): string | undefined;
     prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T>;
     report(error: Error | ListrError): void;
-    run(ctx: Ctx | undefined): Promise<void>;
+    run(ctx: Ctx): Promise<void>;
     skip(message?: string): void;
     stdout(): NodeJS.WriteStream & NodeJS.WritableStream;
     // (undocumented)

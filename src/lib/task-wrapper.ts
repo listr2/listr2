@@ -55,7 +55,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   /** Report a error in process for error collection. */
   public report (error: Error | ListrError): void {
     /* istanbul ignore if */
-    if (error instanceof ListrError) {
+    if (error instanceof ListrError && error.errors) {
       for (const err of error.errors) {
         this.errors.push(err)
         this.task.message$ = { error: err.message || this.task?.title || 'Task with no title.' }
@@ -118,7 +118,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Run this task. */
-  public run (ctx: Ctx | undefined): Promise<void> {
+  public run (ctx: Ctx): Promise<void> {
     return this.task.run(ctx, this)
   }
 }

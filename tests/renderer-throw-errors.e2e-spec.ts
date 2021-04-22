@@ -284,7 +284,7 @@ describe('show throw error', () => {
   })
 
   it.each([ true, false ])('should disable exitOnError from task level while: %s', async (exitOnError) => {
-    let err: Error
+    let err: Error | undefined
     try {
       await new Listr(
         [

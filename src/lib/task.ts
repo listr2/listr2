@@ -22,7 +22,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   /** The current state of the task. */
   public state?: string
   /** The task object itself, to further utilize it. */
-  public task: (ctx: Ctx | undefined, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  public task: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   /** Extend current task with multiple subtasks. */
   public subtasks?: Task<Ctx, any>[]
   /** Title of the task */
@@ -32,7 +32,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   /** Output data from the task. */
   public output?: string
   /** Skip current task. */
-  public skip: boolean | string | ((ctx: Ctx | undefined) => boolean | string | Promise<boolean> | Promise<string>)
+  public skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
   /** Current retry number of the task if retrying */
   public retry?: { count: number, withError?: any }
 
@@ -60,10 +60,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
   public prompt: undefined | PromptInstance | PromptError
   public exitOnError!: boolean
-  
+
   private enabled!: boolean
   private enabledFn: Exclude<ListrTask<Ctx, Renderer>['enabled'], undefined>
-  
+
   constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
@@ -208,7 +208,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   }
 
   /** Run the current task. */
-  async run (context: Ctx | undefined, wrapper: TaskWrapper<Ctx, Renderer>): Promise<void> {
+  async run (context: Ctx, wrapper: TaskWrapper<Ctx, Renderer>): Promise<void> {
     const handleResult = (result: any): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask
@@ -337,7 +337,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
         if (this.listr.options?.exitAfterRollback !== false) {
           // Do not exit when explicitly set to `false`
-          throw new Error(`${this.title}`)
+          throw new Error(this.title ?? 'task with no title')
         }
       } else {
         /* istanbul ignore if */

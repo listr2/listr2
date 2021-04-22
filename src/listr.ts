@@ -157,7 +157,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     )
   }
 
-  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx | undefined, errors: ListrError[] = []): Promise<void> {
+  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError[] = []): Promise<void> {
     if (!task.isEnabled()) {
       return Promise.resolve()
     }
