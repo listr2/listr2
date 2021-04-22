@@ -1,3 +1,10 @@
+## [3.7.1](https://github.com/cenk1cenk2/listr2/compare/v3.7.0...v3.7.1) (2021-04-19)
+
+
+### Bug Fixes
+
+* add auto generated docs for documentation site imports ([ae3786e](https://github.com/cenk1cenk2/listr2/commit/ae3786e4e4fbf8564a37dfc0c33bb0f5d9b1cc38))
+
 # [3.7.0](https://github.com/cenk1cenk2/listr2/compare/v3.6.3...v3.7.0) (2021-04-18)
 
 
