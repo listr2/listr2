@@ -99,7 +99,7 @@
     "tsc-watch": "^4.2.9",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
-    "typedoc": "^0.20.35",
+    "typedoc": "^0.20.36",
     "typedoc-plugin-markdown": "^3.7.1",
     "typescript": "^4.2.4"
   },
