@@ -1,3 +1,10 @@
+# [3.8.0](https://github.com/cenk1cenk2/listr2/compare/v3.7.1...v3.8.0) (2021-04-25)
+
+
+### Features
+
+* use elegant spinner on environments that support unicode ([f71db87](https://github.com/cenk1cenk2/listr2/commit/f71db877060e1479b79f27b06dc3b7a84da51529))
+
 ## [3.7.1](https://github.com/cenk1cenk2/listr2/compare/v3.7.0...v3.7.1) (2021-04-19)
 
 

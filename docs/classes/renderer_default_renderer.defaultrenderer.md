@@ -40,7 +40,7 @@ Default updating renderer for Listr2
 
 **Returns:** [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)
 
-Defined in: src/renderer/default.renderer.ts:154
+Defined in: src/renderer/default.renderer.ts:155
 
 ## Properties
 
@@ -50,7 +50,7 @@ Defined in: src/renderer/default.renderer.ts:154
 
 #### Type declaration:
 
-Defined in: src/renderer/default.renderer.ts:151
+Defined in: src/renderer/default.renderer.ts:152
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 • `Private` `Optional` **id**: *Timeout*
 
-Defined in: src/renderer/default.renderer.ts:150
+Defined in: src/renderer/default.renderer.ts:151
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 • `Private` **promptBar**: *string*
 
-Defined in: src/renderer/default.renderer.ts:152
+Defined in: src/renderer/default.renderer.ts:153
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 • `Private` **spinner**: *string*[]
 
-Defined in: src/renderer/default.renderer.ts:153
+Defined in: src/renderer/default.renderer.ts:154
 
 ___
 
@@ -113,7 +113,7 @@ ___
 
 • `Private` **spinnerPosition**: *number*= 0
 
-Defined in: src/renderer/default.renderer.ts:154
+Defined in: src/renderer/default.renderer.ts:155
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 designates whether this renderer can output to a non-tty console
 
-Defined in: src/renderer/default.renderer.ts:17
+Defined in: src/renderer/default.renderer.ts:18
 
 ___
 
@@ -158,7 +158,7 @@ renderer options for the defauult renderer
 | `suffixRetries?` | *boolean* | suffix retry messages with [RETRY-${COUNT}] when retry is enabled for a task  **`default`** true |
 | `suffixSkips?` | *boolean* | suffix skip messages with [SKIPPED] when in collapseSkips mode  **`default`** true |
 
-Defined in: src/renderer/default.renderer.ts:19
+Defined in: src/renderer/default.renderer.ts:20
 
 ___
 
@@ -176,7 +176,7 @@ per task options for the default renderer
 | `persistentOutput?` | *boolean* | keep output after task finishes  **`default`** false  works both for bottom bar and the default behavior |
 | `showTimer?` | *boolean* | show the task time if it was successful |
 
-Defined in: src/renderer/default.renderer.ts:126
+Defined in: src/renderer/default.renderer.ts:127
 
 ## Methods
 
@@ -194,7 +194,7 @@ Defined in: src/renderer/default.renderer.ts:126
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:535
+Defined in: src/renderer/default.renderer.ts:536
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:190
+Defined in: src/renderer/default.renderer.ts:191
 
 ___
 
@@ -231,7 +231,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:437
+Defined in: src/renderer/default.renderer.ts:438
 
 ___
 
@@ -243,7 +243,7 @@ ___
 
 Implementation of: ListrRenderer.end
 
-Defined in: src/renderer/default.renderer.ts:242
+Defined in: src/renderer/default.renderer.ts:243
 
 ___
 
@@ -261,7 +261,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:461
+Defined in: src/renderer/default.renderer.ts:462
 
 ___
 
@@ -284,7 +284,7 @@ ___
 
 **Returns:** { `clearOutput?`: *boolean* ; `collapse?`: *boolean* ; `collapseErrors?`: *boolean* ; `collapseSkips?`: *boolean* ; `formatOutput?`: ``"truncate"`` \| ``"wrap"`` ; `indentation?`: *number* ; `lazy?`: *boolean* ; `removeEmptyLines?`: *boolean* ; `showErrorMessage?`: *boolean* ; `showSkipMessage?`: *boolean* ; `showSubtasks?`: *boolean* ; `showTimer?`: *boolean* ; `suffixRetries?`: *boolean* ; `suffixSkips?`: *boolean*  }[T]
 
-Defined in: src/renderer/default.renderer.ts:178
+Defined in: src/renderer/default.renderer.ts:179
 
 ___
 
@@ -301,7 +301,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:503
+Defined in: src/renderer/default.renderer.ts:504
 
 ___
 
@@ -323,7 +323,7 @@ ___
 | `persistentOutput?` | *boolean* | keep output after task finishes  **`default`** false  works both for bottom bar and the default behavior |
 | `showTimer?` | *boolean* | show the task time if it was successful |
 
-Defined in: src/renderer/default.renderer.ts:160
+Defined in: src/renderer/default.renderer.ts:161
 
 ___
 
@@ -339,7 +339,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:186
+Defined in: src/renderer/default.renderer.ts:187
 
 ___
 
@@ -355,7 +355,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: src/renderer/default.renderer.ts:170
+Defined in: src/renderer/default.renderer.ts:171
 
 ___
 
@@ -371,7 +371,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: src/renderer/default.renderer.ts:174
+Defined in: src/renderer/default.renderer.ts:175
 
 ___
 
@@ -388,7 +388,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:498
+Defined in: src/renderer/default.renderer.ts:499
 
 ___
 
@@ -404,7 +404,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: src/renderer/default.renderer.ts:164
+Defined in: src/renderer/default.renderer.ts:165
 
 ___
 
@@ -421,7 +421,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:259
+Defined in: src/renderer/default.renderer.ts:260
 
 ___
 
@@ -433,7 +433,7 @@ ___
 
 Implementation of: ListrRenderer.render
 
-Defined in: src/renderer/default.renderer.ts:221
+Defined in: src/renderer/default.renderer.ts:222
 
 ___
 
@@ -443,7 +443,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:409
+Defined in: src/renderer/default.renderer.ts:410
 
 ___
 
@@ -453,4 +453,4 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:431
+Defined in: src/renderer/default.renderer.ts:432
