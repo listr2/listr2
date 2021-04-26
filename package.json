@@ -65,7 +65,7 @@
     "idle"
   ],
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "cli-truncate": "^2.1.0",
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
