@@ -1,3 +1,10 @@
+## [3.8.1](https://github.com/cenk1cenk2/listr2/compare/v3.8.0...v3.8.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency chalk to ^4.1.1 ([ef4bb19](https://github.com/cenk1cenk2/listr2/commit/ef4bb19dbbc82bb588abb2052f8771818f287aba))
+
 # [3.8.0](https://github.com/cenk1cenk2/listr2/compare/v3.7.1...v3.8.0) (2021-04-25)
 
 
