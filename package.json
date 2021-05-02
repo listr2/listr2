@@ -65,7 +65,7 @@
     "idle"
   ],
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "cli-truncate": "^2.1.0",
     "figures": "^3.2.0",
     "indent-string": "^4.0.0",
@@ -76,17 +76,17 @@
     "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^1.3.17",
+    "@cenk1cenk2/cz-cc": "^1.3.19",
     "@cenk1cenk2/eslint-config": "^0.4.36",
-    "@microsoft/api-extractor": "^7.14.0",
+    "@microsoft/api-extractor": "^7.15.0",
     "@types/jest": "^26.0.22",
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.14.41",
     "@types/rewire": "^2.5.28",
     "@types/through": "^0.0.30",
     "@types/wrap-ansi": "^3.0.0",
     "delay": "^5.0.0",
     "enquirer": "^2.3.6",
-    "eslint": "^7.24.0",
+    "eslint": "^7.25.0",
     "husky": "4",
     "jest": "^26.6.3",
     "jest-mock-process": "^1.4.0",
@@ -94,13 +94,13 @@
     "prettier": "^2.2.1",
     "rewire": "^5.0.0",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.5.4",
+    "ts-jest": "^26.5.5",
     "ts-node": "^9.1.1",
     "tsc-watch": "^4.2.9",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "^0.0.9",
-    "typedoc": "^0.20.35",
-    "typedoc-plugin-markdown": "^3.7.1",
+    "typedoc": "^0.20.36",
+    "typedoc-plugin-markdown": "^3.7.2",
     "typescript": "^4.2.4"
   },
   "peerDependencies": {

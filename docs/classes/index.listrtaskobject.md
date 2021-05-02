@@ -43,7 +43,7 @@ Create a task from the given set of variables and make it runnable.
 
 **Returns:** [*ListrTaskObject*](index.listrtaskobject.md)<Ctx, Renderer\>
 
-Overrides: Subject&lt;ListrEvent&gt;.constructor
+Overrides: Subject&lt;ListrEvent\&gt;.constructor
 
 Defined in: src/lib/task.ts:63
 
@@ -55,7 +55,7 @@ Defined in: src/lib/task.ts:63
 
 Internal implementation detail, do not use directly.
 
-Inherited from: Subject._isScalar
+Inherited from: Subject.\_isScalar
 
 Defined in: node_modules/rxjs/internal/Observable.d.ts:15
 
@@ -656,7 +656,7 @@ Defined in: src/lib/task.ts:125
 
 **Returns:** *Subscription*
 
-Inherited from: Subject._subscribe
+Inherited from: Subject.\_subscribe
 
 Defined in: node_modules/rxjs/internal/Subject.d.ts:41
 
@@ -676,7 +676,7 @@ ___
 
 **Returns:** TeardownLogic
 
-Inherited from: Subject._trySubscribe
+Inherited from: Subject.\_trySubscribe
 
 Defined in: node_modules/rxjs/internal/Subject.d.ts:39
 

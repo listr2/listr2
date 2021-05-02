@@ -17,6 +17,7 @@ import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
 import { assertIsDefined, taskHasSubtasks } from '@root/utils/guards'
 import chalk from '@utils/chalk'
+import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
 
 /** Default updating renderer for Listr2 */
@@ -158,7 +159,7 @@ export class DefaultRenderer implements ListrRenderer {
   private id?: NodeJS.Timeout
   private bottomBar: Record<string, { data?: string[], items?: number }> = {}
   private promptBar?: string
-  private spinner: string[] = process.platform === 'win32' && !process.env.WT_SESSION ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
+  private spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
 
   constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
