@@ -4,545 +4,103 @@ exports[`show rollback should both stop the execution with exitOnError false sin
 
 exports[`show rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `Array []`;
 
-exports[`show rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-out 1`] = `
-Array [
-  Array [
-    "◼ Something with rollback.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-]
-`;
+exports[`show rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-out 1`] = `Array []`;
 
 exports[`show rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-err 1`] = `Array []`;
 
 exports[`show rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `Array []`;
 
-exports[`show rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-out 1`] = `
-Array [
-  Array [
-    "◼ Something with rollback.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-]
-`;
+exports[`show rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-out 1`] = `Array []`;
 
 exports[`show rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-err 1`] = `Array []`;
 
 exports[`show rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `Array []`;
 
-exports[`show rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-out 1`] = `
-Array [
-  Array [
-    "◼ Something with rollback.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-❯ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-✔ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-✔ This task will maybe execute.
-",
-  ],
-]
-`;
+exports[`show rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-out 1`] = `Array []`;
 
 exports[`show rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-err 1`] = `Array []`;
 
 exports[`show rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `Array []`;
 
-exports[`show rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-out 1`] = `
+exports[`show rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-out 1`] = `Array []`;
+
+exports[`show rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-err 1`] = `
 Array [
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G◼ Something with rollback.
-",
+    "[?25l",
   ],
   Array [
-    "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
+    "[?25h",
   ],
 ]
 `;
-
-exports[`show rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-err 1`] = `Array []`;
 
 exports[`show rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-exit 1`] = `Array []`;
 
 exports[`show rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-out 1`] = `
 Array [
   Array [
-    "◼ Something with rollback.
-",
+    "[?25l",
   ],
-  Array [
-    "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-]
-`;
-
-exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-err 1`] = `Array []`;
-
-exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-exit 1`] = `Array []`;
-
-exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-out 1`] = `
-Array [
   Array [
     "◼ Something with rollback.
 ",
   ],
   Array [
-    "[2K[1A[2K[G◼ Something with rollback.
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ Something with rollback.
 ◼ This task will never execute.
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ Something with rollback.
 ◼ This task will never execute.
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ Something with rollback.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
   ◼ This task will fail.
 ◼ This task will never execute.
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
   ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ I am trying to rollback stuff, previous action failed.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ Some actions required rollback stuff.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ← Some actions required rollback stuff.
   ◼ This task will execute.
 ◼ This task will never execute.
 ",
@@ -552,10 +110,123 @@ Array [
   ],
   Array [
     "❯ Something with rollback.
-  ← Some actions required rollback stuff.
+  ◼ This task will fail.
   ◼ This task will execute.
 ◼ This task will never execute.
 ",
   ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
+  ◼ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
+  ❯ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
+  ✖ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ I am trying to rollback stuff, previous action failed.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ This task will never execute.
+",
+  ],
+  Array [
+    "[?25h",
+  ],
 ]
 `;
+
+exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-err 1`] = `Array []`;
+
+exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-exit 1`] = `Array []`;
+
+exports[`show rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-out 1`] = `Array []`;

@@ -205,6 +205,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     }
   }
 
+  /** Returns whether this task will be no longer processed and finalized in some way or form. */
+  public hasFinalized (): boolean {
+    return this.isCompleted() || this.hasFailed() || this.hasRolledBack() || this.isSkipped()
+  }
+
   /** Run the current task. */
   async run (context: Ctx, wrapper: TaskWrapper<Ctx, Renderer>): Promise<void> {
     const handleResult = (result: any): Promise<any> => {

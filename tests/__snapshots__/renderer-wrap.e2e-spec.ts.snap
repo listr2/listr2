@@ -1,86 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fallback renderer should skip empty lines false 1`] = `
-Array [
-  Array [
-    "◼ This will skip empty lines on output: false
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This will skip empty lines on output: false
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This will skip empty lines on output: false
-  › THIS IS A LONG LONG MESSAGE
-
-
-    AGE
-    THIS ISESSAGE
-    THIS IG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This will skip empty lines on output: false
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ This will skip empty lines on output: false
-",
-  ],
-]
-`;
+exports[`fallback renderer should skip empty lines false 1`] = `Array []`;
 
 exports[`fallback renderer should skip empty lines false 2`] = `Array []`;
 
 exports[`fallback renderer should skip empty lines false 3`] = `Array []`;
 
-exports[`fallback renderer should skip empty lines true 1`] = `
-Array [
-  Array [
-    "◼ This will skip empty lines on output: true
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This will skip empty lines on output: true
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This will skip empty lines on output: true
-  › THIS IS A LONG LONG MESSAGE
-    AGE
-    THIS ISESSAGE
-    THIS IG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This will skip empty lines on output: true
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ This will skip empty lines on output: true
-",
-  ],
-]
-`;
+exports[`fallback renderer should skip empty lines true 1`] = `Array []`;
 
 exports[`fallback renderer should skip empty lines true 2`] = `Array []`;
 
@@ -89,418 +15,105 @@ exports[`fallback renderer should skip empty lines true 3`] = `Array []`;
 exports[`fallback renderer should truncate long strings 1`] = `
 Array [
   Array [
+    "[?25l",
+  ],
+  Array [
     "◼ This task will with formating the output with truncate output.
 ",
   ],
   Array [
-    "[2K[1A[2K[G❯ This task will with formating the output with truncate output.
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ This task will with formating the output with truncate output.
 ",
   ],
   Array [
-    "[2K[1A[2K[G❯ This task will with formating the output with truncate output.
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will with formating the output with truncate output.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will with formating the output with truncate output.
   › THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LO…
 ",
   ],
   Array [
-    "[2K[1A[2K[1A[2K[G✔ This task will with formating the output with truncate output.
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will with formating the output with truncate output.
+  › THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LO…
 ",
   ],
   Array [
-    "[2K[1A[2K[G",
+    "[2K[1A[2K[1A[2K[G",
   ],
   Array [
     "✔ This task will with formating the output with truncate output.
 ",
   ],
+  Array [
+    "[?25h",
+  ],
 ]
 `;
 
-exports[`fallback renderer should truncate long strings 2`] = `Array []`;
+exports[`fallback renderer should truncate long strings 2`] = `
+Array [
+  Array [
+    "[?25l",
+  ],
+  Array [
+    "[?25h",
+  ],
+]
+`;
 
 exports[`fallback renderer should truncate long strings 3`] = `Array []`;
 
-exports[`fallback renderer should truncate long strings 4`] = `
-Array [
-  Array [
-    "◼ This task will with formating the output with truncate output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will with formating the output with truncate output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will with formating the output with truncate output.
-  › THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will with formating the output with truncate output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ This task will with formating the output with truncate output.
-",
-  ],
-]
-`;
+exports[`fallback renderer should truncate long strings 4`] = `Array []`;
 
 exports[`fallback renderer should truncate long strings 5`] = `Array []`;
 
 exports[`fallback renderer should truncate long strings 6`] = `Array []`;
 
-exports[`fallback renderer should truncate long titles 1`] = `
-Array [
-  Array [
-    "◼ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-  › This task will with formating the title with truncate output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✔ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-",
-  ],
-]
-`;
+exports[`fallback renderer should truncate long titles 1`] = `Array []`;
 
 exports[`fallback renderer should truncate long titles 2`] = `Array []`;
 
 exports[`fallback renderer should truncate long titles 3`] = `Array []`;
 
-exports[`fallback renderer should truncate long titles 4`] = `
-Array [
-  Array [
-    "◼ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  › This task will with formating the title with truncate output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-",
-  ],
-]
-`;
+exports[`fallback renderer should truncate long titles 4`] = `Array []`;
 
 exports[`fallback renderer should truncate long titles 5`] = `Array []`;
 
 exports[`fallback renderer should truncate long titles 6`] = `Array []`;
 
-exports[`fallback renderer should wrap long strings 1`] = `
-Array [
-  Array [
-    "◼ This task will with formating the output with wrap output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will with formating the output with wrap output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will with formating the output with wrap output.
-  › THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
-    LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
-    A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-    MESSAGE THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will with formating the output with wrap output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ This task will with formating the output with wrap output.
-",
-  ],
-]
-`;
+exports[`fallback renderer should wrap long strings 1`] = `Array []`;
 
 exports[`fallback renderer should wrap long strings 2`] = `Array []`;
 
 exports[`fallback renderer should wrap long strings 3`] = `Array []`;
 
-exports[`fallback renderer should wrap long strings 4`] = `
-Array [
-  Array [
-    "◼ This task will with formating the output with wrap output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will with formating the output with wrap output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will with formating the output with wrap output.
-  › THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will with formating the output with wrap output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ This task will with formating the output with wrap output.
-",
-  ],
-]
-`;
+exports[`fallback renderer should wrap long strings 4`] = `Array []`;
 
 exports[`fallback renderer should wrap long strings 5`] = `Array []`;
 
 exports[`fallback renderer should wrap long strings 6`] = `Array []`;
 
-exports[`fallback renderer should wrap long titles 1`] = `
-Array [
-  Array [
-    "◼ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
-  LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A
-  LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS
-  IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
-  LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A
-  LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS
-  IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
-  LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A
-  LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS
-  IS A LONG LONG MESSAGE
-  › This task will with formating the title with wrap output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
-  LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A
-  LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS
-  IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
-  LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A
-  LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS
-  IS A LONG LONG MESSAGE
-",
-  ],
-]
-`;
+exports[`fallback renderer should wrap long titles 1`] = `Array []`;
 
 exports[`fallback renderer should wrap long titles 2`] = `Array []`;
 
 exports[`fallback renderer should wrap long titles 3`] = `Array []`;
 
-exports[`fallback renderer should wrap long titles 4`] = `
-Array [
-  Array [
-    "◼ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  › This task will with formating the title with wrap output.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-",
-  ],
-]
-`;
+exports[`fallback renderer should wrap long titles 4`] = `Array []`;
 
 exports[`fallback renderer should wrap long titles 5`] = `Array []`;
 

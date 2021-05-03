@@ -1,45 +1,122 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`show output from task should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-err 1`] = `Array []`;
+exports[`show output from task should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-err 1`] = `
+Array [
+  Array [
+    "[?25l",
+  ],
+  Array [
+    "[?25h",
+  ],
+]
+`;
 
 exports[`show output from task should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `Array []`;
 
 exports[`show output from task should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-out 1`] = `
 Array [
   Array [
+    "[?25l",
+  ],
+  Array [
     "◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-
-[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G✔ This task will execute.
 ",
   ],
   Array [
     "[2K[1A[2K[G",
   ],
   Array [
+    "◼ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+
+[36m?[39m [1mGive me some input.[22m [2m‣[22m[46m[30m[30m[39m[30m[39m[49m
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+
+[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+
+[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+
+[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+
+[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+
+[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+
+
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+
+
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
     "✔ This task will execute.
 ",
+  ],
+  Array [
+    "[?25h",
   ],
 ]
 `;
@@ -48,205 +125,22 @@ exports[`show output from task should render multiple prompt: ZyUB9J2StmYMasXkHs
 
 exports[`show output from task should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `Array []`;
 
-exports[`show output from task should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-out 1`] = `
-Array [
-  Array [
-    "◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-
-[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-
-[36m?[39m [1mGive me more input.[22m [2m…[22m 
-[36m▸[39m [36m[4mtest1[24m[39m
-  test2
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-[32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G✔ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ This task will execute.
-",
-  ],
-]
-`;
+exports[`show output from task should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-out 1`] = `Array []`;
 
 exports[`show output from task should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-err 1`] = `Array []`;
 
 exports[`show output from task should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `Array []`;
 
-exports[`show output from task should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-out 1`] = `
-Array [
-  Array [
-    "◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-
-[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-[35m✖[39m [1mGive me some input.[22m [2m·[22m 
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G✖ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G✖ Cancelled prompt.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✖ Cancelled prompt.
-",
-  ],
-]
-`;
+exports[`show output from task should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-out 1`] = `Array []`;
 
 exports[`show output from task should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-err 1`] = `Array []`;
 
 exports[`show output from task should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `Array []`;
 
-exports[`show output from task should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-out 1`] = `
-Array [
-  Array [
-    "◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G◼ This task will execute.
-◼ Another task.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ Another task.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ Another task.
-
-[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
-◼ Another task.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
-❯ Another task.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
-✔ Another task.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "↓ This task will execute. [SKIPPED]
-✔ Another task.
-",
-  ],
-]
-`;
+exports[`show output from task should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-out 1`] = `Array []`;
 
 exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-err 1`] = `Array []`;
 
 exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `Array []`;
 
-exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-out 1`] = `
-Array [
-  Array [
-    "◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ This task will execute.
-
-[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G✔ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ This task will execute.
-",
-  ],
-]
-`;
+exports[`show output from task should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-out 1`] = `Array []`;

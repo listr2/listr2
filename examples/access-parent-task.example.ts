@@ -39,29 +39,6 @@ async function main (): Promise<void> {
             ],
             { concurrent: true }
           )
-      },
-
-      {
-        title: 'This task will execute.',
-        task: (_, task): Listr =>
-          task.newListr(
-            (parent) => [
-              {
-                title: 'This is a subtask.',
-                task: async (): Promise<void> => {
-                  await delay(3000)
-                  parent.skip('This will skip the parent.')
-                }
-              },
-              {
-                title: 'This is an another subtask.',
-                task: async (): Promise<void> => {
-                  await delay(2000)
-                }
-              }
-            ],
-            { concurrent: true, rendererOptions: { collapse: false } }
-          )
       }
     ],
     { concurrent: false }

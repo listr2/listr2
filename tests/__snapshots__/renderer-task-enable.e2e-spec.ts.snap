@@ -4,103 +4,86 @@ exports[`show task enable should enable task with general context in subtasks: 2
 
 exports[`show task enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-exit 1`] = `Array []`;
 
-exports[`show task enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-out 1`] = `
+exports[`show task enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-out 1`] = `Array []`;
+
+exports[`show task enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-err 1`] = `
 Array [
   Array [
-    "◼ This task will execute.
-",
+    "[?25l",
   ],
   Array [
-    "[2K[1A[2K[G◼ This task will execute.
-◼ This task will show subtasks.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ This task will show subtasks.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✔ This task will execute.
-◼ This task will show subtasks.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ❯ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ✔ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-✔ This task will show subtasks.
-  ✔ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ This task will execute.
-✔ This task will show subtasks.
-  ✔ This task will execute.
-",
+    "[?25h",
   ],
 ]
 `;
-
-exports[`show task enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-err 1`] = `Array []`;
 
 exports[`show task enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-exit 1`] = `Array []`;
 
 exports[`show task enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-out 1`] = `
 Array [
   Array [
+    "[?25l",
+  ],
+  Array [
     "◼ This task will execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✔ This task will execute.
-◼ This task will never execute.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ",
   ],
   Array [
     "[2K[1A[2K[G",
   ],
   Array [
-    "✔ This task will execute.
+    "◼ This task will execute.
+◼ This task will never execute.
 ",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "◼ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "✔ This task will execute.
+◼ This task will never execute.
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "[?25h",
   ],
 ]
 `;

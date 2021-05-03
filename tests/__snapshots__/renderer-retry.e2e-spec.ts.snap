@@ -1,133 +1,222 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`show retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-err 1`] = `Array []`;
+exports[`show retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-err 1`] = `
+Array [
+  Array [
+    "[?25l",
+  ],
+  Array [
+    "[?25h",
+  ],
+]
+`;
 
 exports[`show retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-exit 1`] = `Array []`;
 
 exports[`show retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-out 1`] = `
 Array [
   Array [
+    "[?25l",
+  ],
+  Array [
     "◼ Some type errors
 ",
   ],
   Array [
-    "[2K[1A[2K[G❯ Some type errors
-",
+    "[2K[1A[2K[G",
   ],
   Array [
-    "[2K[1A[2K[G❯ Some type errors
-  › test
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G❯ Some type errors
-",
-  ],
-  Array [
-    "[2K[1A[2K[G⚠ Some type errors [RETRYING-1]
-",
-  ],
-  Array [
-    "[2K[1A[2K[G⚠ Some type errors [RETRYING-1]
-  › test
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRYING-1]
-  › I am self aware that I am retrying for the 1th time.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRYING-2]
-  › I am self aware that I am retrying for the 1th time.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRYING-2]
-",
-  ],
-  Array [
-    "[2K[1A[2K[G⚠ Some type errors [RETRYING-2]
-  › test
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRYING-2]
-  › I am self aware that I am retrying for the 2th time.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRYING-3]
-  › I am self aware that I am retrying for the 2th time.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRYING-3]
-",
-  ],
-  Array [
-    "[2K[1A[2K[G⚠ Some type errors [RETRYING-3]
-  › test
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRYING-3]
-  › I am self aware that I am retrying for the 3th time.
-",
-  ],
-  Array [
-    "[2K[1A[2K[1A[2K[G✖ This type can not be assigned to type with, oh noes
+    "◼ Some type errors
 ",
   ],
   Array [
     "[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Some type errors
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Some type errors
+  › test
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Some type errors
+  › test
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Some type errors
+  › test
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Some type errors
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "❯ Some type errors
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-1]
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-1]
+  › test
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-1]
+  › I am self aware that I am retrying for the 1th time.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-2]
+  › I am self aware that I am retrying for the 1th time.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-2]
+  › I am self aware that I am retrying for the 1th time.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-2]
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-2]
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-2]
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-2]
+  › test
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-2]
+  › I am self aware that I am retrying for the 2th time.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-3]
+  › I am self aware that I am retrying for the 2th time.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-3]
+  › I am self aware that I am retrying for the 2th time.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-3]
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-3]
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-3]
+",
+  ],
+  Array [
+    "[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-3]
+  › test
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
+  ],
+  Array [
+    "⚠ Some type errors [RETRYING-3]
+  › I am self aware that I am retrying for the 3th time.
+",
+  ],
+  Array [
+    "[2K[1A[2K[1A[2K[G",
   ],
   Array [
     "✖ This type can not be assigned to type with, oh noes
 ",
   ],
+  Array [
+    "[?25h",
+  ],
 ]
 `;
 
-exports[`show retry should stop retrying if the task succeeds afterwards 1`] = `
-Array [
-  Array [
-    "◼ Some type errors
-",
-  ],
-  Array [
-    "[2K[1A[2K[G❯ Some type errors
-",
-  ],
-  Array [
-    "[2K[1A[2K[G⚠ Some type errors [RETRYING-1]
-",
-  ],
-  Array [
-    "[2K[1A[2K[G⚠ Some type errors [RETRYING-2]
-",
-  ],
-  Array [
-    "[2K[1A[2K[G⚠ Some type errors [RETRYING-3]
-",
-  ],
-  Array [
-    "[2K[1A[2K[G⚠ Successed at 3th try. [RETRYING-3]
-",
-  ],
-  Array [
-    "[2K[1A[2K[G✔ Successed at 3th try.
-",
-  ],
-  Array [
-    "[2K[1A[2K[G",
-  ],
-  Array [
-    "✔ Successed at 3th try.
-",
-  ],
-]
-`;
+exports[`show retry should stop retrying if the task succeeds afterwards 1`] = `Array []`;
 
 exports[`show retry should stop retrying if the task succeeds afterwards 2`] = `Array []`;
 
