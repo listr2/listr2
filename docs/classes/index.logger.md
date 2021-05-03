@@ -20,7 +20,77 @@ A internal logger for using in the verbose renderer mostly.
 
 **Returns:** [*Logger*](index.logger.md)
 
-Defined in: src/utils/logger.ts:11
+Defined in: src/utils/logger.ts:13
+
+## Properties
+
+### figures
+
+• `Private` `Readonly` **figures**: *object*
+
+#### Type declaration:
+
+| Name | Type |
+| :------ | :------ |
+| `arrowDown` | *string* |
+| `arrowLeft` | *string* |
+| `arrowRight` | *string* |
+| `arrowUp` | *string* |
+| `bullet` | *string* |
+| `checkboxCircleOff` | *string* |
+| `checkboxCircleOn` | *string* |
+| `checkboxOff` | *string* |
+| `checkboxOn` | *string* |
+| `circle` | *string* |
+| `circleCircle` | *string* |
+| `circleCross` | *string* |
+| `circleDotted` | *string* |
+| `circleDouble` | *string* |
+| `circleFilled` | *string* |
+| `circlePipe` | *string* |
+| `circleQuestionMark` | *string* |
+| `cross` | *string* |
+| `dot` | *string* |
+| `ellipsis` | *string* |
+| `fiveEighths` | *string* |
+| `fiveSixths` | *string* |
+| `fourFifths` | *string* |
+| `hamburger` | *string* |
+| `heart` | *string* |
+| `info` | *string* |
+| `line` | *string* |
+| `mustache` | *string* |
+| `nodejs` | *string* |
+| `oneEighth` | *string* |
+| `oneFifth` | *string* |
+| `oneHalf` | *string* |
+| `oneNinth` | *string* |
+| `oneQuarter` | *string* |
+| `oneSeventh` | *string* |
+| `oneSixth` | *string* |
+| `oneTenth` | *string* |
+| `oneThird` | *string* |
+| `play` | *string* |
+| `pointer` | *string* |
+| `pointerSmall` | *string* |
+| `questionMarkPrefix` | *string* |
+| `radioOff` | *string* |
+| `radioOn` | *string* |
+| `sevenEighth` | *string* |
+| `smiley` | *string* |
+| `square` | *string* |
+| `squareSmall` | *string* |
+| `squareSmallFilled` | *string* |
+| `star` | *string* |
+| `threeEighths` | *string* |
+| `threeFifths` | *string* |
+| `threeQuarters` | *string* |
+| `tick` | *string* |
+| `twoFifths` | *string* |
+| `twoThirds` | *string* |
+| `warning` | *string* |
+
+Defined in: src/utils/logger.ts:13
 
 ## Methods
 
@@ -36,7 +106,7 @@ Defined in: src/utils/logger.ts:11
 
 **Returns:** *void*
 
-Defined in: src/utils/logger.ts:29
+Defined in: src/utils/logger.ts:32
 
 ___
 
@@ -52,7 +122,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: src/utils/logger.ts:14
+Defined in: src/utils/logger.ts:17
 
 ___
 
@@ -70,7 +140,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/utils/logger.ts:79
+Defined in: src/utils/logger.ts:82
 
 ___
 
@@ -87,7 +157,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/utils/logger.ts:56
+Defined in: src/utils/logger.ts:59
 
 ___
 
@@ -103,7 +173,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: src/utils/logger.ts:44
+Defined in: src/utils/logger.ts:47
 
 ___
 
@@ -119,7 +189,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: src/utils/logger.ts:50
+Defined in: src/utils/logger.ts:53
 
 ___
 
@@ -135,7 +205,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: src/utils/logger.ts:19
+Defined in: src/utils/logger.ts:22
 
 ___
 
@@ -151,7 +221,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: src/utils/logger.ts:34
+Defined in: src/utils/logger.ts:37
 
 ___
 
@@ -167,7 +237,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: src/utils/logger.ts:24
+Defined in: src/utils/logger.ts:27
 
 ___
 
@@ -183,7 +253,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: src/utils/logger.ts:39
+Defined in: src/utils/logger.ts:42
 
 ___
 
@@ -199,4 +269,4 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/utils/logger.ts:162
+Defined in: src/utils/logger.ts:165

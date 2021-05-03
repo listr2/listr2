@@ -40,7 +40,7 @@ Default updating renderer for Listr2
 
 **Returns:** [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)
 
-Defined in: src/renderer/default.renderer.ts:155
+Defined in: src/renderer/default.renderer.ts:156
 
 ## Properties
 
@@ -51,6 +51,76 @@ Defined in: src/renderer/default.renderer.ts:155
 #### Type declaration:
 
 Defined in: src/renderer/default.renderer.ts:152
+
+___
+
+### figures
+
+• `Private` `Readonly` **figures**: *object*
+
+#### Type declaration:
+
+| Name | Type |
+| :------ | :------ |
+| `arrowDown` | *string* |
+| `arrowLeft` | *string* |
+| `arrowRight` | *string* |
+| `arrowUp` | *string* |
+| `bullet` | *string* |
+| `checkboxCircleOff` | *string* |
+| `checkboxCircleOn` | *string* |
+| `checkboxOff` | *string* |
+| `checkboxOn` | *string* |
+| `circle` | *string* |
+| `circleCircle` | *string* |
+| `circleCross` | *string* |
+| `circleDotted` | *string* |
+| `circleDouble` | *string* |
+| `circleFilled` | *string* |
+| `circlePipe` | *string* |
+| `circleQuestionMark` | *string* |
+| `cross` | *string* |
+| `dot` | *string* |
+| `ellipsis` | *string* |
+| `fiveEighths` | *string* |
+| `fiveSixths` | *string* |
+| `fourFifths` | *string* |
+| `hamburger` | *string* |
+| `heart` | *string* |
+| `info` | *string* |
+| `line` | *string* |
+| `mustache` | *string* |
+| `nodejs` | *string* |
+| `oneEighth` | *string* |
+| `oneFifth` | *string* |
+| `oneHalf` | *string* |
+| `oneNinth` | *string* |
+| `oneQuarter` | *string* |
+| `oneSeventh` | *string* |
+| `oneSixth` | *string* |
+| `oneTenth` | *string* |
+| `oneThird` | *string* |
+| `play` | *string* |
+| `pointer` | *string* |
+| `pointerSmall` | *string* |
+| `questionMarkPrefix` | *string* |
+| `radioOff` | *string* |
+| `radioOn` | *string* |
+| `sevenEighth` | *string* |
+| `smiley` | *string* |
+| `square` | *string* |
+| `squareSmall` | *string* |
+| `squareSmallFilled` | *string* |
+| `star` | *string* |
+| `threeEighths` | *string* |
+| `threeFifths` | *string* |
+| `threeQuarters` | *string* |
+| `tick` | *string* |
+| `twoFifths` | *string* |
+| `twoThirds` | *string* |
+| `warning` | *string* |
+
+Defined in: src/renderer/default.renderer.ts:155
 
 ___
 
@@ -103,7 +173,7 @@ ___
 
 ### spinner
 
-• `Private` **spinner**: *string*[]
+• `Private` `Readonly` **spinner**: *string*[]
 
 Defined in: src/renderer/default.renderer.ts:154
 
@@ -113,7 +183,7 @@ ___
 
 • `Private` **spinnerPosition**: *number*= 0
 
-Defined in: src/renderer/default.renderer.ts:155
+Defined in: src/renderer/default.renderer.ts:156
 
 ___
 
@@ -194,7 +264,7 @@ Defined in: src/renderer/default.renderer.ts:127
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:536
+Defined in: src/renderer/default.renderer.ts:529
 
 ___
 
@@ -213,7 +283,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:191
+Defined in: src/renderer/default.renderer.ts:192
 
 ___
 
@@ -231,7 +301,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:438
+Defined in: src/renderer/default.renderer.ts:439
 
 ___
 
@@ -243,7 +313,7 @@ ___
 
 Implementation of: ListrRenderer.end
 
-Defined in: src/renderer/default.renderer.ts:243
+Defined in: src/renderer/default.renderer.ts:244
 
 ___
 
@@ -261,7 +331,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:462
+Defined in: src/renderer/default.renderer.ts:463
 
 ___
 
@@ -284,7 +354,7 @@ ___
 
 **Returns:** { `clearOutput?`: *boolean* ; `collapse?`: *boolean* ; `collapseErrors?`: *boolean* ; `collapseSkips?`: *boolean* ; `formatOutput?`: ``"truncate"`` \| ``"wrap"`` ; `indentation?`: *number* ; `lazy?`: *boolean* ; `removeEmptyLines?`: *boolean* ; `showErrorMessage?`: *boolean* ; `showSkipMessage?`: *boolean* ; `showSubtasks?`: *boolean* ; `showTimer?`: *boolean* ; `suffixRetries?`: *boolean* ; `suffixSkips?`: *boolean*  }[T]
 
-Defined in: src/renderer/default.renderer.ts:179
+Defined in: src/renderer/default.renderer.ts:180
 
 ___
 
@@ -301,7 +371,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:504
+Defined in: src/renderer/default.renderer.ts:505
 
 ___
 
@@ -323,7 +393,7 @@ ___
 | `persistentOutput?` | *boolean* | keep output after task finishes  **`default`** false  works both for bottom bar and the default behavior |
 | `showTimer?` | *boolean* | show the task time if it was successful |
 
-Defined in: src/renderer/default.renderer.ts:161
+Defined in: src/renderer/default.renderer.ts:162
 
 ___
 
@@ -339,7 +409,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:187
+Defined in: src/renderer/default.renderer.ts:188
 
 ___
 
@@ -355,7 +425,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: src/renderer/default.renderer.ts:171
+Defined in: src/renderer/default.renderer.ts:172
 
 ___
 
@@ -371,7 +441,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: src/renderer/default.renderer.ts:175
+Defined in: src/renderer/default.renderer.ts:176
 
 ___
 
@@ -388,7 +458,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:499
+Defined in: src/renderer/default.renderer.ts:500
 
 ___
 
@@ -404,7 +474,7 @@ ___
 
 **Returns:** *boolean*
 
-Defined in: src/renderer/default.renderer.ts:165
+Defined in: src/renderer/default.renderer.ts:166
 
 ___
 
@@ -421,7 +491,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:260
+Defined in: src/renderer/default.renderer.ts:261
 
 ___
 
@@ -433,7 +503,7 @@ ___
 
 Implementation of: ListrRenderer.render
 
-Defined in: src/renderer/default.renderer.ts:222
+Defined in: src/renderer/default.renderer.ts:223
 
 ___
 
@@ -443,7 +513,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:410
+Defined in: src/renderer/default.renderer.ts:411
 
 ___
 
@@ -453,4 +523,4 @@ ___
 
 **Returns:** *string*
 
-Defined in: src/renderer/default.renderer.ts:432
+Defined in: src/renderer/default.renderer.ts:433

@@ -1,3 +1,10 @@
+## [3.8.2](https://github.com/cenk1cenk2/listr2/compare/v3.8.1...v3.8.2) (2021-05-03)
+
+
+### Bug Fixes
+
+* update icons for windows ([6449de6](https://github.com/cenk1cenk2/listr2/commit/6449de6b3c4a5d369d8bbe5d0fd8571865783be2))
+
 ## [3.8.1](https://github.com/cenk1cenk2/listr2/compare/v3.8.0...v3.8.1) (2021-04-26)
 
 
