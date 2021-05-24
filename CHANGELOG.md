@@ -1,3 +1,24 @@
+## [3.8.2](https://github.com/cenk1cenk2/listr2/compare/v3.8.1...v3.8.2) (2021-05-03)
+
+
+### Bug Fixes
+
+* update icons for windows ([6449de6](https://github.com/cenk1cenk2/listr2/commit/6449de6b3c4a5d369d8bbe5d0fd8571865783be2))
+
+## [3.8.1](https://github.com/cenk1cenk2/listr2/compare/v3.8.0...v3.8.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency chalk to ^4.1.1 ([ef4bb19](https://github.com/cenk1cenk2/listr2/commit/ef4bb19dbbc82bb588abb2052f8771818f287aba))
+
+# [3.8.0](https://github.com/cenk1cenk2/listr2/compare/v3.7.1...v3.8.0) (2021-04-25)
+
+
+### Features
+
+* use elegant spinner on environments that support unicode ([f71db87](https://github.com/cenk1cenk2/listr2/commit/f71db877060e1479b79f27b06dc3b7a84da51529))
+
 ## [3.7.1](https://github.com/cenk1cenk2/listr2/compare/v3.7.0...v3.7.1) (2021-04-19)
 
 

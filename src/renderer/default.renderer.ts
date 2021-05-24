@@ -8,7 +8,8 @@ import * as cliWrap from 'wrap-ansi'
 import { ListrContext } from '@interfaces/listr.interface'
 import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
-import chalk from '@utils/chalk'
+import colorette from '@utils/colorette'
+import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
 
 /** Default updating renderer for Listr2 */
@@ -150,7 +151,8 @@ export class DefaultRenderer implements ListrRenderer {
   private id?: NodeJS.Timeout
   private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
   private promptBar: string
-  private spinner: string[] = process.platform === 'win32' && !process.env.WT_SESSION ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
+  private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
+  private readonly figures = !isUnicodeSupported() ? figures : figures.main
   private spinnerPosition = 0
 
   constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
@@ -184,7 +186,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   /* istanbul ignore next */
   public getTaskTime (task: Task<any, typeof DefaultRenderer>): string {
-    return chalk.dim(`[${parseTaskTime(task.message.duration)}]`)
+    return colorette.dim(`[${parseTaskTime(task.message.duration)}]`)
   }
 
   public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
@@ -300,7 +302,7 @@ export class DefaultRenderer implements ListrRenderer {
             }
           } else {
             // some sibling task but self has failed and this has stopped
-            output = [ ...output, this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level) ]
+            output = [ ...output, this.formatString(task.title, colorette.red(figures.main.squareSmallFilled), level) ]
           }
         }
 
@@ -419,7 +421,7 @@ export class DefaultRenderer implements ListrRenderer {
         this.bottomBar[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
         o[key].data = this.bottomBar[key].data
         return o
-      }, {} as Record<string, { data?: string[], items?: number} | undefined>)
+      }, {} as Record<string, { data?: string[], items?: number } | undefined>)
 
       return Object.values(this.bottomBar)
         .reduce((o, value) => o = [ ...o, ...value.data ], [])
@@ -503,36 +505,28 @@ export class DefaultRenderer implements ListrRenderer {
   private getSymbol (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isPending() && !data) {
       return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
-        ? chalk.yellow(figures.main.pointer)
-        : chalk.yellowBright(this.spinner[this.spinnerPosition])
+        ? colorette.yellow(this.figures.pointer)
+        : colorette.yellowBright(this.spinner[this.spinnerPosition])
     } else if (task.isCompleted() && !data) {
-      if (task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed())) {
-        return chalk.yellow(figures.main.warning)
-      }
-
-      return chalk.green(figures.main.tick)
+      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? colorette.yellow(this.figures.warning) : colorette.green(this.figures.tick)
     } else if (task.isRetrying() && !data) {
-      return this.options?.lazy ? chalk.keyword('orange')(figures.main.warning) : chalk.keyword('orange')(this.spinner[this.spinnerPosition])
+      return this.options?.lazy ? colorette.yellow(this.figures.warning) : colorette.yellow(this.spinner[this.spinnerPosition])
     } else if (task.isRollingBack() && !data) {
-      return this.options?.lazy ? chalk.red(figures.main.warning) : chalk.red(this.spinner[this.spinnerPosition])
+      return this.options?.lazy ? colorette.red(this.figures.warning) : colorette.red(this.spinner[this.spinnerPosition])
     } else if (task.hasRolledBack() && !data) {
-      return chalk.red(figures.main.arrowLeft)
+      return colorette.red(this.figures.arrowLeft)
     } else if (task.hasFailed() && !data) {
-      return task.hasSubtasks() ? chalk.red(figures.main.pointer) : chalk.red(figures.main.cross)
+      return task.hasSubtasks() ? colorette.red(this.figures.pointer) : colorette.red(this.figures.cross)
     } else if (task.isSkipped() && !data && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
-      return chalk.yellow(figures.main.warning)
+      return colorette.yellow(this.figures.warning)
     } else if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
-      return chalk.yellow(figures.main.arrowDown)
+      return colorette.yellow(this.figures.arrowDown)
     }
 
-    if (!data) {
-      return chalk.dim(figures.main.squareSmallFilled)
-    } else {
-      return figures.main.pointerSmall
-    }
+    return !data ? colorette.dim(this.figures.squareSmallFilled) : this.figures.pointerSmall
   }
 
   private addSuffixToMessage (message: string, suffix: string, condition?: boolean): string {
-    return condition ?? true ? message + chalk.dim(` [${suffix}]`) : message
+    return condition ?? true ? message + colorette.dim(` [${suffix}]`) : message
   }
 }

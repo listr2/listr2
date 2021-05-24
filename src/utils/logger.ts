@@ -1,14 +1,17 @@
 /* eslint-disable no-console */
 import * as figures from 'figures'
 
+import { isUnicodeSupported } from './is-unicode-supported'
 import { LogLevels } from './logger.constants'
 import { LoggerOptions } from './logger.interface'
-import chalk from '@utils/chalk'
+import colorette from '@utils/colorette'
 
 /**
  * A internal logger for using in the verbose renderer mostly.
  */
 export class Logger {
+  private readonly figures = !isUnicodeSupported() ? figures : figures.main
+
   constructor (private options?: LoggerOptions) {}
 
   public fail (message: string): void {
@@ -87,8 +90,8 @@ export class Logger {
     case LogLevels.FAILED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.red
-        icon = figures.main.cross
+        coloring = colorette.red
+        icon = this.figures.cross
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -97,8 +100,8 @@ export class Logger {
     case LogLevels.SKIPPED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.yellow
-        icon = figures.main.arrowDown
+        coloring = colorette.yellow
+        icon = this.figures.arrowDown
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -106,8 +109,8 @@ export class Logger {
     case LogLevels.SUCCESS:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.green
-        icon = figures.main.tick
+        coloring = colorette.green
+        icon = this.figures.tick
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -115,7 +118,7 @@ export class Logger {
     case LogLevels.DATA:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        icon = figures.main.arrowRight
+        icon = this.figures.arrowRight
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -123,7 +126,7 @@ export class Logger {
     case LogLevels.STARTED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        icon = figures.main.pointer
+        icon = this.figures.pointer
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -131,7 +134,7 @@ export class Logger {
     case LogLevels.TITLE:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        icon = figures.main.checkboxOn
+        icon = this.figures.checkboxOn
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -139,8 +142,8 @@ export class Logger {
     case LogLevels.RETRY:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.keyword('orange')
-        icon = figures.main.pointer
+        coloring = colorette.yellow
+        icon = this.figures.pointer
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -148,8 +151,8 @@ export class Logger {
     case LogLevels.ROLLBACK:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.red
-        icon = figures.main.arrowLeft
+        coloring = colorette.red
+        icon = this.figures.arrowLeft
       } else {
         icon = this.wrapInBrackets(level)
       }
