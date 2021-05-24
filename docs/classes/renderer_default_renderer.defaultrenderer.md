@@ -8,7 +8,7 @@ Default updating renderer for Listr2
 
 ## Implements
 
-* [*ListrRenderer*](index.listrrenderer.md)
+- [*ListrRenderer*](index.listrrenderer.md)
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Default updating renderer for Listr2
 
 \+ **new DefaultRenderer**(`tasks`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>[], `options`: { `clearOutput?`: *boolean* ; `collapse?`: *boolean* ; `collapseErrors?`: *boolean* ; `collapseSkips?`: *boolean* ; `formatOutput?`: ``"truncate"`` \| ``"wrap"`` ; `indentation?`: *number* ; `lazy?`: *boolean* ; `removeEmptyLines?`: *boolean* ; `showErrorMessage?`: *boolean* ; `showSkipMessage?`: *boolean* ; `showSubtasks?`: *boolean* ; `showTimer?`: *boolean* ; `suffixRetries?`: *boolean* ; `suffixSkips?`: *boolean*  }, `renderHook$?`: *Subject*<void\>): [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -48,7 +48,7 @@ Defined in: src/renderer/default.renderer.ts:156
 
 • `Private` **bottomBar**: *object*= {}
 
-#### Type declaration:
+#### Type declaration
 
 Defined in: src/renderer/default.renderer.ts:152
 
@@ -58,7 +58,7 @@ ___
 
 • `Private` `Readonly` **figures**: *object*
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type |
 | :------ | :------ |
@@ -136,7 +136,7 @@ ___
 
 • **options**: *object*
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -209,7 +209,7 @@ ___
 
 renderer options for the defauult renderer
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -238,7 +238,7 @@ ___
 
 per task options for the default renderer
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -252,9 +252,9 @@ Defined in: src/renderer/default.renderer.ts:127
 
 ### addSuffixToMessage
 
-▸ `Private`**addSuffixToMessage**(`message`: *string*, `suffix`: *string*, `condition?`: *boolean*): *string*
+▸ `Private` **addSuffixToMessage**(`message`: *string*, `suffix`: *string*, `condition?`: *boolean*): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -272,7 +272,7 @@ ___
 
 ▸ **createRender**(`options?`: { `bottomBar?`: *boolean* ; `prompt?`: *boolean* ; `tasks?`: *boolean*  }): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -289,9 +289,9 @@ ___
 
 ### dumpData
 
-▸ `Private`**dumpData**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>, `level`: *number*, `source?`: ``"output"`` \| ``"skip"`` \| ``"error"``): *string*
+▸ `Private` **dumpData**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>, `level`: *number*, `source?`: ``"output"`` \| ``"skip"`` \| ``"error"``): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -319,9 +319,9 @@ ___
 
 ### formatString
 
-▸ `Private`**formatString**(`str`: *string*, `icon`: *string*, `level`: *number*): *string*
+▸ `Private` **formatString**(`str`: *string*, `icon`: *string*, `level`: *number*): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -339,13 +339,13 @@ ___
 
 ▸ **getSelfOrParentOption**<T\>(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>, `key`: T): { `clearOutput?`: *boolean* ; `collapse?`: *boolean* ; `collapseErrors?`: *boolean* ; `collapseSkips?`: *boolean* ; `formatOutput?`: ``"truncate"`` \| ``"wrap"`` ; `indentation?`: *number* ; `lazy?`: *boolean* ; `removeEmptyLines?`: *boolean* ; `showErrorMessage?`: *boolean* ; `showSkipMessage?`: *boolean* ; `showSubtasks?`: *boolean* ; `showTimer?`: *boolean* ; `suffixRetries?`: *boolean* ; `suffixSkips?`: *boolean*  }[T]
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `T` | ``"indentation"`` \| ``"clearOutput"`` \| ``"showSubtasks"`` \| ``"collapse"`` \| ``"collapseSkips"`` \| ``"showSkipMessage"`` \| ``"suffixSkips"`` \| ``"collapseErrors"`` \| ``"showErrorMessage"`` \| ``"suffixRetries"`` \| ``"lazy"`` \| ``"showTimer"`` \| ``"removeEmptyLines"`` \| ``"formatOutput"`` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -360,9 +360,9 @@ ___
 
 ### getSymbol
 
-▸ `Private`**getSymbol**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>, `data?`: *boolean*): *string*
+▸ `Private` **getSymbol**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>, `data?`: *boolean*): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -379,7 +379,7 @@ ___
 
 ▸ **getTaskOptions**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>): *object*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -401,7 +401,7 @@ ___
 
 ▸ **getTaskTime**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -417,7 +417,7 @@ ___
 
 ▸ **hasPersistentOutput**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>): *boolean*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -433,7 +433,7 @@ ___
 
 ▸ **hasTimer**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>): *boolean*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -447,9 +447,9 @@ ___
 
 ### indentMultilineOutput
 
-▸ `Private`**indentMultilineOutput**(`str`: *string*, `i`: *number*): *string*
+▸ `Private` **indentMultilineOutput**(`str`: *string*, `i`: *number*): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -466,7 +466,7 @@ ___
 
 ▸ **isBottomBar**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>): *boolean*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -480,9 +480,9 @@ ___
 
 ### multiLineRenderer
 
-▸ `Private`**multiLineRenderer**(`tasks`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>[], `level?`: *number*): *string*
+▸ `Private` **multiLineRenderer**(`tasks`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)\>[], `level?`: *number*): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -509,7 +509,7 @@ ___
 
 ### renderBottomBar
 
-▸ `Private`**renderBottomBar**(): *string*
+▸ `Private` **renderBottomBar**(): *string*
 
 **Returns:** *string*
 
@@ -519,7 +519,7 @@ ___
 
 ### renderPrompt
 
-▸ `Private`**renderPrompt**(): *string*
+▸ `Private` **renderPrompt**(): *string*
 
 **Returns:** *string*
 

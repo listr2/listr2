@@ -6,7 +6,7 @@
 
 ## Implements
 
-* [*ListrRenderer*](index.listrrenderer.md)
+- [*ListrRenderer*](index.listrrenderer.md)
 
 ## Constructors
 
@@ -14,7 +14,7 @@
 
 \+ **new SilentRenderer**(`tasks`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*SilentRenderer*](renderer_silent_renderer.silentrenderer.md)\>[], `options`: *never*): [*SilentRenderer*](renderer_silent_renderer.silentrenderer.md)
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

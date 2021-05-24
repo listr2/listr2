@@ -6,7 +6,7 @@
 
 ## Implements
 
-* *Record*<[*PromptTypes*](../types/index.prompttypes.md), Record<string, any\>\>
+- *Record*<[*PromptTypes*](../types/index.prompttypes.md), Record<string, any\>\>
 
 ## Constructors
 

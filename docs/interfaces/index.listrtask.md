@@ -65,11 +65,11 @@ ___
 Runs a specific event if the current task or any of the subtasks has failed.
 Mostly useful for rollback purposes for subtasks.
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (`ctx`: Ctx, `task`: [*ListrTaskWrapper*](../classes/index.listrtaskwrapper.md)<Ctx, Renderer\>): *void* \| [*ListrTaskResult*](../types/index.listrtaskresult.md)<Ctx\>
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -77,8 +77,6 @@ Mostly useful for rollback purposes for subtasks.
 | `task` | [*ListrTaskWrapper*](../classes/index.listrtaskwrapper.md)<Ctx, Renderer\> |
 
 **Returns:** *void* \| [*ListrTaskResult*](../types/index.listrtaskresult.md)<Ctx\>
-
-Defined in: src/interfaces/listr.interface.ts:40
 
 Defined in: src/interfaces/listr.interface.ts:40
 
@@ -104,11 +102,11 @@ The task itself.
 
 Task can be a sync or async function, an Observable or a Stream.
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (`ctx`: Ctx, `task`: [*ListrTaskWrapper*](../classes/index.listrtaskwrapper.md)<Ctx, Renderer\>): *void* \| [*ListrTaskResult*](../types/index.listrtaskresult.md)<Ctx\>
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -116,8 +114,6 @@ Task can be a sync or async function, an Observable or a Stream.
 | `task` | [*ListrTaskWrapper*](../classes/index.listrtaskwrapper.md)<Ctx, Renderer\> |
 
 **Returns:** *void* \| [*ListrTaskResult*](../types/index.listrtaskresult.md)<Ctx\>
-
-Defined in: src/interfaces/listr.interface.ts:35
 
 Defined in: src/interfaces/listr.interface.ts:35
 

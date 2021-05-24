@@ -8,7 +8,7 @@
 
 Renderer options for the base class, including setup for selecting default and fallback renderers.
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type |
 | :------ | :------ |

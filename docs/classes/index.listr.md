@@ -20,7 +20,7 @@ Creates a new set of Listr2 task list.
 
 \+ **new Listr**<Ctx, Renderer, FallbackRenderer\>(`task`: [*ListrTask*](../interfaces/index.listrtask.md)<Ctx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\> \| [*ListrTask*](../interfaces/index.listrtask.md)<Ctx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>[], `options?`: [*ListrBaseClassOptions*](../types/index.listrbaseclassoptions.md)<Ctx, Renderer, FallbackRenderer\>): [*Listr*](index.listr.md)<Ctx, Renderer, FallbackRenderer\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type | Default |
 | :------ | :------ | :------ |
@@ -28,7 +28,7 @@ Creates a new set of Listr2 task list.
 | `Renderer` | [*ListrRendererValue*](../types/index.listrrenderervalue.md) | ``"default"`` |
 | `FallbackRenderer` | [*ListrRendererValue*](../types/index.listrrenderervalue.md) | ``"verbose"`` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -113,7 +113,7 @@ Defined in: src/listr.ts:24
 
 ▸ **add**(`task`: [*ListrTask*](../interfaces/index.listrtask.md)<Ctx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\> \| [*ListrTask*](../interfaces/index.listrtask.md)<Ctx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>[]): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -127,9 +127,9 @@ ___
 
 ### checkAll
 
-▸ `Private`**checkAll**(`context`: *any*): *Promise*<void[]\>
+▸ `Private` **checkAll**(`context`: *any*): *Promise*<void[]\>
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -145,7 +145,7 @@ ___
 
 ▸ **run**(`context?`: Ctx): *Promise*<Ctx\>
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -159,9 +159,9 @@ ___
 
 ### runTask
 
-▸ `Private`**runTask**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<Ctx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>, `context`: Ctx, `errors`: [*ListrError*](index.listrerror.md)[]): *Promise*<void\>
+▸ `Private` **runTask**(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<Ctx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>, `context`: Ctx, `errors`: [*ListrError*](index.listrerror.md)[]): *Promise*<void\>
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

@@ -2,9 +2,7 @@ listr2
 
 # listr2
 
-## Table of contents
-
-### Modules
+## Modules
 
 - [index](modules/index.md)
 - [renderer/default.renderer](modules/renderer_default_renderer.md)

@@ -6,7 +6,7 @@
 
 Ƭ **PromptOptionsType**<T\>: T *extends* keyof [*PromptOptionsMap*](../classes/index.promptoptionsmap.md) ? [*PromptOptionsMap*](../classes/index.promptoptionsmap.md)[T] : T *extends* *string* ? BasePromptOptions & *Record*<string, unknown\> : *any*
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |

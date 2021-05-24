@@ -22,7 +22,7 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 
 \+ **new Manager**<Ctx, Renderer, FallbackRenderer\>(`options?`: [*ListrBaseClassOptions*](../types/index.listrbaseclassoptions.md)<Ctx, Renderer, FallbackRenderer\>): [*Manager*](index.manager.md)<Ctx, Renderer, FallbackRenderer\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type | Default |
 | :------ | :------ | :------ |
@@ -30,7 +30,7 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 | `Renderer` | [*ListrRendererValue*](../types/index.listrrenderervalue.md) | ``"default"`` |
 | `FallbackRenderer` | [*ListrRendererValue*](../types/index.listrrenderervalue.md) | ``"verbose"`` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -68,7 +68,7 @@ Defined in: src/manager.ts:13
 
 • set **ctx**(`ctx`: Ctx): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -84,13 +84,13 @@ Defined in: src/manager.ts:17
 
 ▸ **add**<InjectCtx\>(`tasks`: [*ListrTask*](../interfaces/index.listrtask.md)<InjectCtx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>[] \| (`ctx?`: InjectCtx) => [*ListrTask*](../interfaces/index.listrtask.md)<InjectCtx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>[], `options?`: [*ListrSubClassOptions*](../types/index.listrsubclassoptions.md)<InjectCtx, Renderer\>): *void*
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Default |
 | :------ | :------ |
 | `InjectCtx` | Ctx |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -107,7 +107,7 @@ ___
 
 ▸ **getRuntime**(`pipetime`: *number*): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -123,13 +123,13 @@ ___
 
 ▸ **indent**<InjectCtx\>(`tasks`: [*ListrTask*](../interfaces/index.listrtask.md)<InjectCtx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>[] \| (`ctx?`: InjectCtx) => [*ListrTask*](../interfaces/index.listrtask.md)<InjectCtx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>[], `options?`: [*ListrBaseClassOptions*](../types/index.listrbaseclassoptions.md)<InjectCtx, Renderer, FallbackRenderer\>, `taskOptions?`: *Omit*<[*ListrTask*](../interfaces/index.listrtask.md)<InjectCtx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>, ``"task"``\>): [*ListrTask*](../interfaces/index.listrtask.md)<InjectCtx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Default |
 | :------ | :------ |
 | `InjectCtx` | Ctx |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -147,7 +147,7 @@ ___
 
 ▸ **newListr**<InjectCtx, InjectRenderer, InjectFallbackRenderer\>(`tasks`: [*ListrTask*](../interfaces/index.listrtask.md)<InjectCtx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<InjectRenderer\>\>[], `options?`: [*ListrBaseClassOptions*](../types/index.listrbaseclassoptions.md)<InjectCtx, InjectRenderer, InjectFallbackRenderer\>): [*Listr*](index.listr.md)<InjectCtx, InjectRenderer, InjectFallbackRenderer\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type | Default |
 | :------ | :------ | :------ |
@@ -155,7 +155,7 @@ ___
 | `InjectRenderer` | [*ListrRendererValue*](../types/index.listrrenderervalue.md) | Renderer |
 | `InjectFallbackRenderer` | [*ListrRendererValue*](../types/index.listrrenderervalue.md) | FallbackRenderer |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -172,13 +172,13 @@ ___
 
 ▸ **run**<InjectCtx\>(`tasks`: [*ListrTask*](../interfaces/index.listrtask.md)<InjectCtx, [*ListrGetRendererClassFromValue*](../types/index.listrgetrendererclassfromvalue.md)<Renderer\>\>[], `options?`: [*ListrBaseClassOptions*](../types/index.listrbaseclassoptions.md)<InjectCtx, Renderer, FallbackRenderer\>): *Promise*<InjectCtx\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Default |
 | :------ | :------ |
 | `InjectCtx` | Ctx |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -195,13 +195,13 @@ ___
 
 ▸ **runAll**<InjectCtx\>(`options?`: [*ListrBaseClassOptions*](../types/index.listrbaseclassoptions.md)<InjectCtx, Renderer, FallbackRenderer\>): *Promise*<InjectCtx\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Default |
 | :------ | :------ |
 | `InjectCtx` | Ctx |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

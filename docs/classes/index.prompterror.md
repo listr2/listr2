@@ -8,7 +8,7 @@ The internal error handling mechanism for prompts only.
 
 ## Hierarchy
 
-* *Error*
+- *Error*
 
   ↳ **PromptError**
 
@@ -18,7 +18,7 @@ The internal error handling mechanism for prompts only.
 
 \+ **new PromptError**(`message`: *string*): [*PromptError*](index.prompterror.md)
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -70,11 +70,11 @@ Optional override for formatting stack traces
 
 **`see`** https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (`err`: Error, `stackTraces`: CallSite[]): *any*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -82,8 +82,6 @@ Optional override for formatting stack traces
 | `stackTraces` | CallSite[] |
 
 **Returns:** *any*
-
-Defined in: node_modules/@types/node/globals.d.ts:11
 
 Inherited from: Error.prepareStackTrace
 
@@ -103,11 +101,11 @@ Defined in: node_modules/@types/node/globals.d.ts:13
 
 ### captureStackTrace
 
-▸ `Static`**captureStackTrace**(`targetObject`: *object*, `constructorOpt?`: Function): *void*
+▸ `Static` **captureStackTrace**(`targetObject`: *object*, `constructorOpt?`: Function): *void*
 
 Create .stack property on a target object
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

@@ -8,7 +8,7 @@
 
 Task can be set of sync or async function, an Observable or a stream.
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |

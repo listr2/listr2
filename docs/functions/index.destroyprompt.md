@@ -6,7 +6,7 @@
 
 ▸ **destroyPrompt**(`throwError`: *boolean*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

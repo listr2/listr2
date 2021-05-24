@@ -2,15 +2,13 @@
 
 # Module: index
 
-## Table of contents
-
-### Enumerations
+## Enumerations
 
 - [ListrEventType](../enums/index.listreventtype.md)
 - [ListrTaskState](../enums/index.listrtaskstate.md)
 - [LogLevels](../enums/index.loglevels.md)
 
-### Classes
+## Classes
 
 - [Listr](../classes/index.listr.md)
 - [ListrBaseRenderer](../classes/index.listrbaserenderer.md)
@@ -23,7 +21,7 @@
 - [PromptError](../classes/index.prompterror.md)
 - [PromptOptionsMap](../classes/index.promptoptionsmap.md)
 
-### Interfaces
+## Interfaces
 
 - [ListrDefaultNonTTYRendererOptions](../interfaces/index.listrdefaultnonttyrendereroptions.md)
 - [ListrDefaultRendererOptions](../interfaces/index.listrdefaultrendereroptions.md)
@@ -33,7 +31,7 @@
 - [PromptSettings](../interfaces/index.promptsettings.md)
 - [SupportedRenderer](../interfaces/index.supportedrenderer.md)
 
-### Type aliases
+## Type aliases
 
 - [ListrBaseClassOptions](../types/index.listrbaseclassoptions.md)
 - [ListrContext](../types/index.listrcontext.md)
@@ -58,7 +56,7 @@
 - [PromptTypes](../types/index.prompttypes.md)
 - [Unionize](../types/index.unionize.md)
 
-### Functions
+## Functions
 
 - [createPrompt](../functions/index.createprompt.md)
 - [destroyPrompt](../functions/index.destroyprompt.md)
