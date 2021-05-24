@@ -8,7 +8,7 @@ import * as cliWrap from 'wrap-ansi'
 import { ListrContext } from '@interfaces/listr.interface'
 import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
-import chalk from '@utils/chalk'
+import colorette from '@utils/colorette'
 import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
 
@@ -186,7 +186,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   /* istanbul ignore next */
   public getTaskTime (task: Task<any, typeof DefaultRenderer>): string {
-    return chalk.dim(`[${parseTaskTime(task.message.duration)}]`)
+    return colorette.dim(`[${parseTaskTime(task.message.duration)}]`)
   }
 
   public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
@@ -302,7 +302,7 @@ export class DefaultRenderer implements ListrRenderer {
             }
           } else {
             // some sibling task but self has failed and this has stopped
-            output = [ ...output, this.formatString(task.title, chalk.red(figures.main.squareSmallFilled), level) ]
+            output = [ ...output, this.formatString(task.title, colorette.red(figures.main.squareSmallFilled), level) ]
           }
         }
 
@@ -505,28 +505,28 @@ export class DefaultRenderer implements ListrRenderer {
   private getSymbol (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isPending() && !data) {
       return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
-        ? chalk.yellow(this.figures.pointer)
-        : chalk.yellowBright(this.spinner[this.spinnerPosition])
+        ? colorette.yellow(this.figures.pointer)
+        : colorette.yellowBright(this.spinner[this.spinnerPosition])
     } else if (task.isCompleted() && !data) {
-      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? chalk.yellow(this.figures.warning) : chalk.green(this.figures.tick)
+      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? colorette.yellow(this.figures.warning) : colorette.green(this.figures.tick)
     } else if (task.isRetrying() && !data) {
-      return this.options?.lazy ? chalk.keyword('orange')(this.figures.warning) : chalk.keyword('orange')(this.spinner[this.spinnerPosition])
+      return this.options?.lazy ? colorette.yellow(this.figures.warning) : colorette.yellow(this.spinner[this.spinnerPosition])
     } else if (task.isRollingBack() && !data) {
-      return this.options?.lazy ? chalk.red(this.figures.warning) : chalk.red(this.spinner[this.spinnerPosition])
+      return this.options?.lazy ? colorette.red(this.figures.warning) : colorette.red(this.spinner[this.spinnerPosition])
     } else if (task.hasRolledBack() && !data) {
-      return chalk.red(this.figures.arrowLeft)
+      return colorette.red(this.figures.arrowLeft)
     } else if (task.hasFailed() && !data) {
-      return task.hasSubtasks() ? chalk.red(this.figures.pointer) : chalk.red(this.figures.cross)
+      return task.hasSubtasks() ? colorette.red(this.figures.pointer) : colorette.red(this.figures.cross)
     } else if (task.isSkipped() && !data && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
-      return chalk.yellow(this.figures.warning)
+      return colorette.yellow(this.figures.warning)
     } else if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
-      return chalk.yellow(this.figures.arrowDown)
+      return colorette.yellow(this.figures.arrowDown)
     }
 
-    return !data ? chalk.dim(this.figures.squareSmallFilled) : this.figures.pointerSmall
+    return !data ? colorette.dim(this.figures.squareSmallFilled) : this.figures.pointerSmall
   }
 
   private addSuffixToMessage (message: string, suffix: string, condition?: boolean): string {
-    return condition ?? true ? message + chalk.dim(` [${suffix}]`) : message
+    return condition ?? true ? message + colorette.dim(` [${suffix}]`) : message
   }
 }
