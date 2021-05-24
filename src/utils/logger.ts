@@ -4,7 +4,7 @@ import * as figures from 'figures'
 import { isUnicodeSupported } from './is-unicode-supported'
 import { LogLevels } from './logger.constants'
 import { LoggerOptions } from './logger.interface'
-import chalk from '@utils/chalk'
+import colorette from '@utils/colorette'
 
 /**
  * A internal logger for using in the verbose renderer mostly.
@@ -90,7 +90,7 @@ export class Logger {
     case LogLevels.FAILED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.red
+        coloring = colorette.red
         icon = this.figures.cross
       } else {
         icon = this.wrapInBrackets(level)
@@ -100,7 +100,7 @@ export class Logger {
     case LogLevels.SKIPPED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.yellow
+        coloring = colorette.yellow
         icon = this.figures.arrowDown
       } else {
         icon = this.wrapInBrackets(level)
@@ -109,7 +109,7 @@ export class Logger {
     case LogLevels.SUCCESS:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.green
+        coloring = colorette.green
         icon = this.figures.tick
       } else {
         icon = this.wrapInBrackets(level)
@@ -142,7 +142,7 @@ export class Logger {
     case LogLevels.RETRY:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.keyword('orange')
+        coloring = colorette.yellow
         icon = this.figures.pointer
       } else {
         icon = this.wrapInBrackets(level)
@@ -151,7 +151,7 @@ export class Logger {
     case LogLevels.ROLLBACK:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = chalk.red
+        coloring = colorette.red
         icon = this.figures.arrowLeft
       } else {
         icon = this.wrapInBrackets(level)
