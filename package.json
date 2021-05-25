@@ -71,7 +71,7 @@
     "indent-string": "^4.0.0",
     "log-update": "^4.0.0",
     "p-map": "^4.0.0",
-    "rxjs": "^6.6.7",
+    "rxjs": "^7.1.0",
     "through": "^2.3.8",
     "wrap-ansi": "^7.0.0"
   },
