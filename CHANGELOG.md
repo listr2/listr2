@@ -1,3 +1,10 @@
+## [3.8.4](https://github.com/cenk1cenk2/listr2/compare/v3.8.3...v3.8.4) (2021-05-25)
+
+
+### Bug Fixes
+
+* rollback rxjs ([36a02e1](https://github.com/cenk1cenk2/listr2/commit/36a02e1ec56d9a65e41d2adc34b3eabe0660bb38)), closes [#409](https://github.com/cenk1cenk2/listr2/issues/409)
+
 ## [3.8.3](https://github.com/cenk1cenk2/listr2/compare/v3.8.2...v3.8.3) (2021-05-24)
 
 
