@@ -1,6 +1,5 @@
 import * as cliTruncate from 'cli-truncate'
 import * as figures from 'figures'
-import * as indentString from 'indent-string'
 import * as logUpdate from 'log-update'
 import { EOL } from 'os'
 import * as cliWrap from 'wrap-ansi'
@@ -11,6 +10,10 @@ import { Task } from '@lib/task'
 import colorette from '@utils/colorette'
 import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
+
+function indentString (string: string, count: number): string {
+  return string.replace(/^(?!\s*$)/gm, ' '.repeat(count))
+}
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -498,7 +501,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private indentMultilineOutput (str: string, i: number): string {
-    return i > 0 ? indentString(str.trim(), 2, { includeEmptyLines: false }) : str.trim()
+    return i > 0 ? indentString(str.trim(), 2) : str.trim()
   }
 
   // eslint-disable-next-line complexity
