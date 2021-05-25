@@ -8,12 +8,9 @@ import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
 import colorette from '@utils/colorette'
 import { figures } from '@utils/figures'
+import { indentString } from '@utils/indent-string'
 import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
-
-function indentString (string: string, count: number): string {
-  return string.replace(/^(?!\s*$)/gm, ' '.repeat(count))
-}
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
