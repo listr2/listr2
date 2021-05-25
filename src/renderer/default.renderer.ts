@@ -1,5 +1,4 @@
 import * as cliTruncate from 'cli-truncate'
-import * as figures from 'figures'
 import * as logUpdate from 'log-update'
 import { EOL } from 'os'
 import * as cliWrap from 'wrap-ansi'
@@ -8,6 +7,7 @@ import { ListrContext } from '@interfaces/listr.interface'
 import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
 import colorette from '@utils/colorette'
+import { figures } from '@utils/figures'
 import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
 
@@ -155,7 +155,7 @@ export class DefaultRenderer implements ListrRenderer {
   private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
   private promptBar: string
   private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
-  private readonly figures = !isUnicodeSupported() ? figures : figures.main
+  private readonly figures = figures
   private spinnerPosition = 0
 
   constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
@@ -305,7 +305,7 @@ export class DefaultRenderer implements ListrRenderer {
             }
           } else {
             // some sibling task but self has failed and this has stopped
-            output = [ ...output, this.formatString(task.title, colorette.red(figures.main.squareSmallFilled), level) ]
+            output = [ ...output, this.formatString(task.title, colorette.red('◼'), level) ]
           }
         }
 

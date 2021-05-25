@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-import * as figures from 'figures'
-
-import { isUnicodeSupported } from './is-unicode-supported'
+import { figures } from './figures'
 import { LogLevels } from './logger.constants'
 import { LoggerOptions } from './logger.interface'
 import colorette from '@utils/colorette'
@@ -10,7 +8,7 @@ import colorette from '@utils/colorette'
  * A internal logger for using in the verbose renderer mostly.
  */
 export class Logger {
-  private readonly figures = !isUnicodeSupported() ? figures : figures.main
+  private readonly figures = figures
 
   constructor (private options?: LoggerOptions) {}
 
