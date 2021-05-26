@@ -68,7 +68,7 @@ describe('skip a task', () => {
     ).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
-    expect(info).toBeCalledWith('[SKIPPED] skipped')
+    expect(info).toBeCalledWith('[SKIPPED] Skipped task without a title.')
   })
   
   it('should skip the task from async skip method returning boolean', async () => {
