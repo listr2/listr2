@@ -103,7 +103,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    * This returns a fake stream to pass any stream inside Listr as task data.
    */
   public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
-    return (through((chunk: string) => {
+    return through((chunk: string) => {
       const pattern = new RegExp(CLEAR_LINE_REGEX, 'gmi')
 
       chunk = chunk.toString()
@@ -114,7 +114,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
       if (chunk !== '') {
         this.output = chunk
       }
-    }) as unknown) as NodeJS.WriteStream
+    }) as unknown as NodeJS.WriteStream
   }
 
   /** Run this task. */

@@ -122,7 +122,8 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       await pMap(
         this.tasks,
         async (task): Promise<void> => {
-          await this.checkAll(context)
+          // check this item is enabled, conditions may change depending on context
+          await task.check(context)
 
           return this.runTask(task, context, errors)
         },
@@ -149,11 +150,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   }
 
   private checkAll (context: any): Promise<void[]> {
-    return Promise.all(
-      this.tasks.map((task) => {
-        task.check(context)
-      })
-    )
+    return Promise.all(this.tasks.map((task) => task.check(context)))
   }
 
   private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError[]): Promise<void> {
