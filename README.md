@@ -14,4 +14,4 @@
 
 # API Endpoints
 
-**All the endpoints can be found [here](./docs/README.md)**
+**All the endpoints can be found [here](./docs/README.md).**
