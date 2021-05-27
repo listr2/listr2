@@ -32,7 +32,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   /** Output data from the task. */
   public output?: string
   /** Skip current task. */
-  public skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
+  public skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean | string>)
   /** Current retry number of the task if retrying */
   public retry?: { count: number, withError?: any }
 
