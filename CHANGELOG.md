@@ -1,3 +1,10 @@
+## [3.8.5](https://github.com/cenk1cenk2/listr2/compare/v3.8.4...v3.8.5) (2021-05-27)
+
+
+### Bug Fixes
+
+* issue with enabling tasks ([0aa255e](https://github.com/cenk1cenk2/listr2/commit/0aa255ecc4638146d20ab897873d23ad92d960cb)), closes [#414](https://github.com/cenk1cenk2/listr2/issues/414)
+
 ## [3.8.4](https://github.com/cenk1cenk2/listr2/compare/v3.8.3...v3.8.4) (2021-05-25)
 
 
