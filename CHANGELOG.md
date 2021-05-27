@@ -1,3 +1,11 @@
+## [3.8.6](https://github.com/cenk1cenk2/listr2/compare/v3.8.5...v3.8.6) (2021-05-27)
+
+
+### Bug Fixes
+
+* add the missing test case ([b630e57](https://github.com/cenk1cenk2/listr2/commit/b630e5702b7d17dd802e7fb6a3d08d6d649e564a)), closes [#411](https://github.com/cenk1cenk2/listr2/issues/411)
+* allow async skip boolean or string ([2289f3a](https://github.com/cenk1cenk2/listr2/commit/2289f3ab8b53a54adfdf76f2b64b802018c596fc))
+
 ## [3.8.5](https://github.com/cenk1cenk2/listr2/compare/v3.8.4...v3.8.5) (2021-05-27)
 
 ### Bug Fixes
