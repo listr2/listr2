@@ -152,7 +152,6 @@ export class DefaultRenderer implements ListrRenderer {
   private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
   private promptBar: string
   private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
-  private readonly figures = figures
   private spinnerPosition = 0
 
   constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
@@ -302,7 +301,7 @@ export class DefaultRenderer implements ListrRenderer {
             }
           } else {
             // some sibling task but self has failed and this has stopped
-            output = [ ...output, this.formatString(task.title, colorette.red('◼'), level) ]
+            output = [ ...output, this.formatString(task.title, colorette.red(figures.squareSmallFilled), level) ]
           }
         }
 
@@ -505,25 +504,25 @@ export class DefaultRenderer implements ListrRenderer {
   private getSymbol (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isPending() && !data) {
       return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
-        ? colorette.yellow(this.figures.pointer)
+        ? colorette.yellow(figures.pointer)
         : colorette.yellowBright(this.spinner[this.spinnerPosition])
     } else if (task.isCompleted() && !data) {
-      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? colorette.yellow(this.figures.warning) : colorette.green(this.figures.tick)
+      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? colorette.yellow(figures.warning) : colorette.green(figures.tick)
     } else if (task.isRetrying() && !data) {
-      return this.options?.lazy ? colorette.yellow(this.figures.warning) : colorette.yellow(this.spinner[this.spinnerPosition])
+      return this.options?.lazy ? colorette.yellow(figures.warning) : colorette.yellow(this.spinner[this.spinnerPosition])
     } else if (task.isRollingBack() && !data) {
-      return this.options?.lazy ? colorette.red(this.figures.warning) : colorette.red(this.spinner[this.spinnerPosition])
+      return this.options?.lazy ? colorette.red(figures.warning) : colorette.red(this.spinner[this.spinnerPosition])
     } else if (task.hasRolledBack() && !data) {
-      return colorette.red(this.figures.arrowLeft)
+      return colorette.red(figures.arrowLeft)
     } else if (task.hasFailed() && !data) {
-      return task.hasSubtasks() ? colorette.red(this.figures.pointer) : colorette.red(this.figures.cross)
+      return task.hasSubtasks() ? colorette.red(figures.pointer) : colorette.red(figures.cross)
     } else if (task.isSkipped() && !data && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
-      return colorette.yellow(this.figures.warning)
+      return colorette.yellow(figures.warning)
     } else if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
-      return colorette.yellow(this.figures.arrowDown)
+      return colorette.yellow(figures.arrowDown)
     }
 
-    return !data ? colorette.dim(this.figures.squareSmallFilled) : this.figures.pointerSmall
+    return !data ? colorette.dim(figures.squareSmallFilled) : figures.pointerSmall
   }
 
   private addSuffixToMessage (message: string, suffix: string, condition?: boolean): string {
