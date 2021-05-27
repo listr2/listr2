@@ -81,7 +81,7 @@
     "@types/node": "^15.6.0",
     "@types/rewire": "^2.5.28",
     "@types/through": "^0.0.30",
-    "@types/wrap-ansi": "^3.0.0",
+    "@types/wrap-ansi": "^8.0.0",
     "delay": "^5.0.0",
     "enquirer": "^2.3.6",
     "eslint": "^7.27.0",
