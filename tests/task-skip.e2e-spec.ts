@@ -95,67 +95,27 @@ describe('skip a task', () => {
     expect(info).not.toBeCalledWith('[DATA] enabled')
   })
 
-  it('should skip the task from async skip method returning either boolean or string', async () => {
+  it.each<[boolean | string, string]>([
+    [ true, 'Skipped task without a title.' ],
+    [ 'skipped', 'skipped' ]
+  ])('should skip the task from async skip method returning either boolean or string', async (skip, expected) => {
     await new Listr(
       [
         {
           skip: async (): Promise<boolean | string> => {
             await new Promise((r) => setTimeout(r, 50))
 
-            if (Math.random() < 0.5) {
-              return true
-            }
-
-            return 'skipped'
+            return skip
           },
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          task: async (): Promise<void> => {}
+          task: async (_, task): Promise<void> => {
+            task.output = 'This will never execute.'
+          }
         }
       ],
       { renderer: 'verbose' }
     ).run()
 
     expect(log).toBeCalledWith('[STARTED] Task without title.')
-    expect(info).toBeCalledWith('[SKIPPED] skipped')
-  })
-
-  it('should skip the task from async skip method returning boolean', async () => {
-    await new Listr(
-      [
-        {
-          skip: async (): Promise<boolean> => {
-            await new Promise((r) => setTimeout(r, 50))
-
-            return true
-          },
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          task: async (): Promise<void> => {}
-        }
-      ],
-      { renderer: 'verbose' }
-    ).run()
-
-    expect(log).toBeCalledWith('[STARTED] Task without title.')
-    expect(info).toBeCalledWith(expect.stringMatching(/(\[SKIPPED\] skipped)|(\[SKIPPED\] Skipped task without a title.)/))
-  })
-
-  it('should skip the task from async skip method returning string', async () => {
-    await new Listr(
-      [
-        {
-          skip: async (): Promise<string> => {
-            await new Promise((r) => setTimeout(r, 50))
-
-            return 'skipped'
-          },
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          task: async (): Promise<void> => {}
-        }
-      ],
-      { renderer: 'verbose' }
-    ).run()
-
-    expect(log).toBeCalledWith('[STARTED] Task without title.')
-    expect(info).toBeCalledWith('[SKIPPED] skipped')
+    expect(info).toBeCalledWith('[SKIPPED] ' + expected)
   })
 })
