@@ -1,3 +1,11 @@
+# [3.9.0](https://github.com/cenk1cenk2/listr2/compare/v3.8.6...v3.9.0) (2021-05-27)
+
+
+### Features
+
+* dependency cleaning merge ([07cc724](https://github.com/cenk1cenk2/listr2/commit/07cc72434db8c1ec743a9556890a572be9cd474d))
+* export figures ([f7377d2](https://github.com/cenk1cenk2/listr2/commit/f7377d2fa771bc3ef05b4aa496f0a1c0a1ca8eec))
+
 ## [3.8.6](https://github.com/cenk1cenk2/listr2/compare/v3.8.5...v3.8.6) (2021-05-27)
 
 
