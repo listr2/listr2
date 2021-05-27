@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-import * as figures from 'figures'
-
-import { isUnicodeSupported } from './is-unicode-supported'
+import { figures } from './figures'
 import { LogLevels } from './logger.constants'
 import { LoggerOptions } from './logger.interface'
 import colorette from '@utils/colorette'
@@ -10,8 +8,6 @@ import colorette from '@utils/colorette'
  * A internal logger for using in the verbose renderer mostly.
  */
 export class Logger {
-  private readonly figures = !isUnicodeSupported() ? figures : figures.main
-
   constructor (private options?: LoggerOptions) {}
 
   public fail (message: string): void {
@@ -91,7 +87,7 @@ export class Logger {
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = colorette.red
-        icon = this.figures.cross
+        icon = figures.cross
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -101,7 +97,7 @@ export class Logger {
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = colorette.yellow
-        icon = this.figures.arrowDown
+        icon = figures.arrowDown
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -110,7 +106,7 @@ export class Logger {
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = colorette.green
-        icon = this.figures.tick
+        icon = figures.tick
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -118,7 +114,7 @@ export class Logger {
     case LogLevels.DATA:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        icon = this.figures.arrowRight
+        icon = figures.arrowRight
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -126,7 +122,7 @@ export class Logger {
     case LogLevels.STARTED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        icon = this.figures.pointer
+        icon = figures.pointer
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -134,7 +130,7 @@ export class Logger {
     case LogLevels.TITLE:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        icon = this.figures.checkboxOn
+        icon = figures.checkboxOn
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -143,7 +139,7 @@ export class Logger {
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = colorette.yellow
-        icon = this.figures.pointer
+        icon = figures.pointer
       } else {
         icon = this.wrapInBrackets(level)
       }
@@ -152,7 +148,7 @@ export class Logger {
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         coloring = colorette.red
-        icon = this.figures.arrowLeft
+        icon = figures.arrowLeft
       } else {
         icon = this.wrapInBrackets(level)
       }
