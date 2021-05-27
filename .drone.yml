@@ -31,6 +31,7 @@ steps:
 
   - name: docs
     image: node:current-alpine
+    failure: ignore
     commands:
       - yarn docs
     depends_on:
