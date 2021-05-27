@@ -74,8 +74,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     this.task = this.tasks.task
 
     // parse functions
-    this.skip = this.tasks?.skip || ((): boolean => false)
-    this.enabledFn = this.tasks?.enabled || ((): boolean => true)
+    this.skip = this.tasks?.skip ?? false
+    this.enabledFn = this.tasks?.enabled ?? true
 
     // task options
     this.rendererTaskOptions = this.tasks.options

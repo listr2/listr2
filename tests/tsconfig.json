@@ -4,6 +4,7 @@
     "outDir": "./dist",
     "rootDir": "../",
     "baseUrl": "../",
+    "sourceMap": true,
     "paths": {
       "@root/*": ["./src/*"],
       "@constants/*": ["src/constants/*"],
