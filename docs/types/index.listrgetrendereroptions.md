@@ -8,7 +8,7 @@
 
 Returns renderer global options depending on the renderer type.
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type |
 | :------ | :------ |

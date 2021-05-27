@@ -10,7 +10,7 @@ Sub class options.
 
 Subtasks has reduced set options where the missing ones are explicitly set by the base class.
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type | Default |
 | :------ | :------ | :------ |

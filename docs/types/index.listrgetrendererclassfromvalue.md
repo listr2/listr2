@@ -8,7 +8,7 @@
 
 Returns the class type from friendly names of the renderers.
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type |
 | :------ | :------ |

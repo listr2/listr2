@@ -19,14 +19,14 @@ Extend the task to have more functionality while accesing from the outside.
 
 \+ **new ListrTaskWrapper**<Ctx, Renderer\>(`task`: [*ListrTaskObject*](index.listrtaskobject.md)<Ctx, *typeof* [*ListrRenderer*](index.listrrenderer.md)\>, `errors`: [*ListrError*](index.listrerror.md)[], `options`: [*ListrBaseClassOptions*](../types/index.listrbaseclassoptions.md)<Ctx, any, any\>): [*ListrTaskWrapper*](index.listrtaskwrapper.md)<Ctx, Renderer\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | - |
 | `Renderer` | *typeof* [*ListrRenderer*](index.listrrenderer.md) |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -66,7 +66,7 @@ Defined in: src/lib/task-wrapper.ts:35
 
 Send a output to the output channel.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -92,7 +92,7 @@ Defined in: src/lib/task-wrapper.ts:25
 
 Change the title of the current task.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -110,7 +110,7 @@ Defined in: src/lib/task-wrapper.ts:20
 
 Cancels the current prompt attach to this task.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
@@ -145,7 +145,7 @@ ___
 
 Create a new subtask with given renderer selection from the parent task.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -166,13 +166,13 @@ Create a new Enquirer prompt using prompt options.
 
 Since process.stdout is controlled by Listr, this will passthrough all Enquirer data through internal stdout.
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Default |
 | :------ | :------ |
 | `T` | *any* |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -190,7 +190,7 @@ ___
 
 Report a error in process for error collection.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -208,7 +208,7 @@ ___
 
 Run this task.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -226,7 +226,7 @@ ___
 
 Skip current task.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

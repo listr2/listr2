@@ -12,7 +12,7 @@ Parent class has more options where you can also select the and set renderer and
 
 Any subtasks will respect those options so they will be stripped of that properties.
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type | Default |
 | :------ | :------ | :------ |

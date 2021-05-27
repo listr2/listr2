@@ -83,7 +83,7 @@ ___
 
 Inject data directly to TaskWrapper.
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type |
 | :------ | :------ |

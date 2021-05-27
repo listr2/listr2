@@ -12,7 +12,7 @@ A internal logger for using in the verbose renderer mostly.
 
 \+ **new Logger**(`options?`: LoggerOptions): [*Logger*](index.logger.md)
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -28,7 +28,7 @@ Defined in: src/utils/logger.ts:13
 
 • `Private` `Readonly` **figures**: *object*
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type |
 | :------ | :------ |
@@ -98,7 +98,7 @@ Defined in: src/utils/logger.ts:13
 
 ▸ **data**(`message`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -114,7 +114,7 @@ ___
 
 ▸ **fail**(`message`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -128,9 +128,9 @@ ___
 
 ### logColoring
 
-▸ `Protected`**logColoring**(`__namedParameters`: { `level`: [*LogLevels*](../enums/index.loglevels.md) ; `message`: *string*  }): *string*
+▸ `Protected` **logColoring**(`__namedParameters`: { `level`: [*LogLevels*](../enums/index.loglevels.md) ; `message`: *string*  }): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -146,9 +146,9 @@ ___
 
 ### parseMessage
 
-▸ `Protected`**parseMessage**(`level`: [*LogLevels*](../enums/index.loglevels.md), `message`: *string*): *string*
+▸ `Protected` **parseMessage**(`level`: [*LogLevels*](../enums/index.loglevels.md), `message`: *string*): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -165,7 +165,7 @@ ___
 
 ▸ **retry**(`message`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -181,7 +181,7 @@ ___
 
 ▸ **rollback**(`message`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -197,7 +197,7 @@ ___
 
 ▸ **skip**(`message`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -213,7 +213,7 @@ ___
 
 ▸ **start**(`message`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -229,7 +229,7 @@ ___
 
 ▸ **success**(`message`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -245,7 +245,7 @@ ___
 
 ▸ **title**(`message`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -259,9 +259,9 @@ ___
 
 ### wrapInBrackets
 
-▸ `Private`**wrapInBrackets**(`level`: *string*): *string*
+▸ `Private` **wrapInBrackets**(`level`: *string*): *string*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

@@ -2,8 +2,6 @@
 
 # Module: renderer/default.renderer
 
-## Table of contents
-
-### Classes
+## Classes
 
 - [DefaultRenderer](../classes/renderer_default_renderer.defaultrenderer.md)

@@ -6,7 +6,7 @@
 
 ## Implements
 
-* [*ListrRenderer*](index.listrrenderer.md)
+- [*ListrRenderer*](index.listrrenderer.md)
 
 ## Constructors
 
@@ -14,7 +14,7 @@
 
 \+ **new VerboseRenderer**(`tasks`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*VerboseRenderer*](renderer_verbose_renderer.verboserenderer.md)\>[], `options`: { `logEmptyTitle?`: *boolean* ; `logTitleChange?`: *boolean* ; `logger?`: (...`args`: *any*) => [*Logger*](index.logger.md) ; `showTimer?`: *boolean* ; `useIcons?`: *boolean*  }): [*VerboseRenderer*](renderer_verbose_renderer.verboserenderer.md)
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -44,7 +44,7 @@ ___
 
 • **options**: *object*
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -78,7 +78,7 @@ ___
 
 renderer options for the verbose renderer
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -128,9 +128,9 @@ ___
 
 ### verboseRenderer
 
-▸ `Private`**verboseRenderer**(`tasks`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*VerboseRenderer*](renderer_verbose_renderer.verboserenderer.md)\>[]): *void*
+▸ `Private` **verboseRenderer**(`tasks`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*VerboseRenderer*](renderer_verbose_renderer.verboserenderer.md)\>[]): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

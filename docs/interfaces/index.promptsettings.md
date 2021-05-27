@@ -10,19 +10,17 @@
 
 • `Optional` **cancelCallback**: (`settings?`: [*PromptSettings*](index.promptsettings.md)) => *string* \| *void* \| Error \| [*PromptError*](../classes/index.prompterror.md)
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (`settings?`: [*PromptSettings*](index.promptsettings.md)): *string* \| *void* \| Error \| [*PromptError*](../classes/index.prompterror.md)
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `settings?` | [*PromptSettings*](index.promptsettings.md) |
 
 **Returns:** *string* \| *void* \| Error \| [*PromptError*](../classes/index.prompterror.md)
-
-Defined in: src/utils/prompt.interface.ts:157
 
 Defined in: src/utils/prompt.interface.ts:157
 

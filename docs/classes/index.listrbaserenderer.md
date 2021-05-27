@@ -8,7 +8,7 @@ Exported for javascript applications to extend the base renderer
 
 ## Implements
 
-* [*ListrRenderer*](index.listrrenderer.md)
+- [*ListrRenderer*](index.listrrenderer.md)
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Exported for javascript applications to extend the base renderer
 
 \+ **new ListrBaseRenderer**(`tasks`: [*ListrTaskObject*](index.listrtaskobject.md)<any, *typeof* [*ListrBaseRenderer*](index.listrbaserenderer.md)\>[], `options`: *Record*<string, any\>): [*ListrBaseRenderer*](index.listrbaserenderer.md)
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -33,19 +33,17 @@ Defined in: src/interfaces/renderer.interface.ts:122
 
 • **end**: (`err?`: Error) => *void*
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (`err?`: Error): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `err?` | Error |
 
 **Returns:** *void*
-
-Defined in: src/interfaces/renderer.interface.ts:122
 
 Implementation of: ListrRenderer.end
 
@@ -65,13 +63,11 @@ ___
 
 • **render**: () => *void*
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (): *void*
 
 **Returns:** *void*
-
-Defined in: src/interfaces/renderer.interface.ts:121
 
 Implementation of: ListrRenderer.render
 

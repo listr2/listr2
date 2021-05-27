@@ -15,7 +15,7 @@ Create a task from the given set of variables and make it runnable.
 
 ## Hierarchy
 
-* *Subject*<[*ListrEvent*](../types/index.listrevent.md)\>
+- *Subject*<[*ListrEvent*](../types/index.listrevent.md)\>
 
   ↳ **ListrTaskObject**
 
@@ -25,14 +25,14 @@ Create a task from the given set of variables and make it runnable.
 
 \+ **new ListrTaskObject**<Ctx, Renderer\>(`listr`: [*Listr*](index.listr.md)<Ctx, any, any\>, `tasks`: [*ListrTask*](../interfaces/index.listrtask.md)<Ctx, any\>, `options`: [*ListrOptions*](../interfaces/index.listroptions.md)<any\>, `rendererOptions`: [*ListrGetRendererOptions*](../types/index.listrgetrendereroptions.md)<Renderer\>): [*ListrTaskObject*](index.listrtaskobject.md)<Ctx, Renderer\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | - |
 | `Renderer` | *typeof* [*ListrRenderer*](index.listrrenderer.md) |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -141,7 +141,7 @@ A channel for messages.
 
 This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -235,7 +235,7 @@ ___
 
 Current retry number of the task if retrying
 
-#### Type declaration:
+#### Type declaration
 
 | Name | Type |
 | :------ | :------ |
@@ -294,11 +294,11 @@ ___
 
 The task object itself, to further utilize it.
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (`ctx`: Ctx, `task`: [*ListrTaskWrapper*](index.listrtaskwrapper.md)<Ctx, Renderer\>): *void* \| [*ListrTaskResult*](../types/index.listrtaskresult.md)<Ctx\>
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -306,8 +306,6 @@ The task object itself, to further utilize it.
 | `task` | [*ListrTaskWrapper*](index.listrtaskwrapper.md)<Ctx, Renderer\> |
 
 **Returns:** *void* \| [*ListrTaskResult*](../types/index.listrtaskresult.md)<Ctx\>
-
-Defined in: src/lib/task.ts:25
 
 Defined in: src/lib/task.ts:25
 
@@ -343,7 +341,7 @@ ___
 
 ▪ `Static` **create**: Function
 
-**`nocollapse`** 
+**`nocollapse`**
 
 **`deprecated`** use new Subject() instead
 
@@ -357,11 +355,11 @@ ___
 
 ▪ `Static` **if**: <T, F\>(`condition`: () => *boolean*, `trueResult?`: *SubscribableOrPromise*<T\>, `falseResult?`: *SubscribableOrPromise*<F\>) => *Observable*<T \| F\>
 
-**`nocollapse`** 
+**`nocollapse`**
 
 **`deprecated`** In favor of iif creation function: import { iif } from 'rxjs';
 
-#### Type declaration:
+#### Type declaration
 
 ▸ <T, F\>(`condition`: () => *boolean*, `trueResult?`: *SubscribableOrPromise*<T\>, `falseResult?`: *SubscribableOrPromise*<F\>): *Observable*<T \| F\>
 
@@ -449,14 +447,14 @@ observableIfYouHaveAccess.subscribe(
 
 **`owner`** Observable
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Default |
 | :------ | :------ |
 | `T` | *never* |
 | `F` | *never* |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -468,8 +466,6 @@ observableIfYouHaveAccess.subscribe(
 
 Either first or second Observable, depending on condition.
 
-Defined in: node_modules/rxjs/internal/observable/iif.d.ts:91
-
 Inherited from: Subject.if
 
 Defined in: node_modules/rxjs/internal/Observable.d.ts:71
@@ -480,11 +476,11 @@ ___
 
 ▪ `Static` **throw**: (`error`: *any*, `scheduler?`: SchedulerLike) => *Observable*<never\>
 
-**`nocollapse`** 
+**`nocollapse`**
 
 **`deprecated`** In favor of throwError creation function: import { throwError } from 'rxjs';
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (`error`: *any*, `scheduler?`: SchedulerLike): *Observable*<never\>
 
@@ -551,7 +547,7 @@ interval(1000).pipe(
 
 **`owner`** Observable
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -563,8 +559,6 @@ interval(1000).pipe(
 An error Observable: emits only the error notification
 using the given error argument.
 
-Defined in: node_modules/rxjs/internal/observable/throwError.d.ts:67
-
 Inherited from: Subject.throw
 
 Defined in: node_modules/rxjs/internal/Observable.d.ts:76
@@ -575,7 +569,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:76
 
 • set **message$**(`data`: { `duration?`: *number* ; `error?`: *string* ; `retry?`: { `count`: *number* ; `withError?`: *any*  } ; `rollback?`: *string* ; `skip?`: *string*  }): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -598,7 +592,7 @@ ___
 
 • set **output$**(`data`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -614,7 +608,7 @@ ___
 
 • set **state$**(`state`: [*ListrTaskState*](../enums/index.listrtaskstate.md)): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -630,7 +624,7 @@ ___
 
 • set **title$**(`title`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -648,7 +642,7 @@ Defined in: src/lib/task.ts:125
 
 **`deprecated`** This is an internal implementation detail, do not use.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -668,7 +662,7 @@ ___
 
 **`deprecated`** This is an internal implementation detail, do not use.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -706,7 +700,7 @@ ___
 
 A function to check whether this task should run at all via enable.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -734,7 +728,7 @@ ___
 
 ▸ **error**(`err`: *any*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -754,7 +748,7 @@ ___
 
 **`method`** forEach
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -908,13 +902,13 @@ ___
 
 ▸ **lift**<R\>(`operator`: *Operator*<[*ListrEvent*](../types/index.listrevent.md), R\>): *Observable*<R\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
 | `R` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -932,7 +926,7 @@ ___
 
 ▸ **next**(`value?`: [*ListrEvent*](../types/index.listrevent.md)): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -958,13 +952,13 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:77
 
 ▸ **pipe**<A\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>): *Observable*<A\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
 | `A` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -978,14 +972,14 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:78
 
 ▸ **pipe**<A, B\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>): *Observable*<B\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
 | `A` |
 | `B` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1000,7 +994,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:79
 
 ▸ **pipe**<A, B, C\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>, `op3`: *OperatorFunction*<B, C\>): *Observable*<C\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1008,7 +1002,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:79
 | `B` |
 | `C` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1024,7 +1018,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:80
 
 ▸ **pipe**<A, B, C, D\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>, `op3`: *OperatorFunction*<B, C\>, `op4`: *OperatorFunction*<C, D\>): *Observable*<D\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1033,7 +1027,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:80
 | `C` |
 | `D` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1050,7 +1044,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:81
 
 ▸ **pipe**<A, B, C, D, E\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>, `op3`: *OperatorFunction*<B, C\>, `op4`: *OperatorFunction*<C, D\>, `op5`: *OperatorFunction*<D, E\>): *Observable*<E\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1060,7 +1054,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:81
 | `D` |
 | `E` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1078,7 +1072,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:82
 
 ▸ **pipe**<A, B, C, D, E, F\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>, `op3`: *OperatorFunction*<B, C\>, `op4`: *OperatorFunction*<C, D\>, `op5`: *OperatorFunction*<D, E\>, `op6`: *OperatorFunction*<E, F\>): *Observable*<F\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1089,7 +1083,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:82
 | `E` |
 | `F` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1108,7 +1102,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:83
 
 ▸ **pipe**<A, B, C, D, E, F, G\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>, `op3`: *OperatorFunction*<B, C\>, `op4`: *OperatorFunction*<C, D\>, `op5`: *OperatorFunction*<D, E\>, `op6`: *OperatorFunction*<E, F\>, `op7`: *OperatorFunction*<F, G\>): *Observable*<G\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1120,7 +1114,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:83
 | `F` |
 | `G` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1140,7 +1134,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:84
 
 ▸ **pipe**<A, B, C, D, E, F, G, H\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>, `op3`: *OperatorFunction*<B, C\>, `op4`: *OperatorFunction*<C, D\>, `op5`: *OperatorFunction*<D, E\>, `op6`: *OperatorFunction*<E, F\>, `op7`: *OperatorFunction*<F, G\>, `op8`: *OperatorFunction*<G, H\>): *Observable*<H\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1153,7 +1147,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:84
 | `G` |
 | `H` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1174,7 +1168,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:85
 
 ▸ **pipe**<A, B, C, D, E, F, G, H, I\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>, `op3`: *OperatorFunction*<B, C\>, `op4`: *OperatorFunction*<C, D\>, `op5`: *OperatorFunction*<D, E\>, `op6`: *OperatorFunction*<E, F\>, `op7`: *OperatorFunction*<F, G\>, `op8`: *OperatorFunction*<G, H\>, `op9`: *OperatorFunction*<H, I\>): *Observable*<I\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1188,7 +1182,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:85
 | `H` |
 | `I` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1210,7 +1204,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:86
 
 ▸ **pipe**<A, B, C, D, E, F, G, H, I\>(`op1`: *OperatorFunction*<[*ListrEvent*](../types/index.listrevent.md), A\>, `op2`: *OperatorFunction*<A, B\>, `op3`: *OperatorFunction*<B, C\>, `op4`: *OperatorFunction*<C, D\>, `op5`: *OperatorFunction*<D, E\>, `op6`: *OperatorFunction*<E, F\>, `op7`: *OperatorFunction*<F, G\>, `op8`: *OperatorFunction*<G, H\>, `op9`: *OperatorFunction*<H, I\>, ...`operations`: *OperatorFunction*<any, any\>[]): *Observable*<{}\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1224,7 +1218,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:86
 | `H` |
 | `I` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1253,7 +1247,7 @@ ___
 
 Run the current task.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1270,7 +1264,7 @@ ___
 
 ▸ **subscribe**(`observer?`: *PartialObserver*<[*ListrEvent*](../types/index.listrevent.md)\>): *Subscription*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1286,7 +1280,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:47
 
 **`deprecated`** Use an observer instead of a complete callback
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1304,7 +1298,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:49
 
 **`deprecated`** Use an observer instead of an error callback
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1322,7 +1316,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:51
 
 **`deprecated`** Use an observer instead of a complete callback
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1338,7 +1332,7 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:53
 
 ▸ **subscribe**(`next?`: (`value`: [*ListrEvent*](../types/index.listrevent.md)) => *void*, `error?`: (`error`: *any*) => *void*, `complete?`: () => *void*): *Subscription*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1358,7 +1352,7 @@ ___
 
 ▸ **toPromise**<T\>(): *Promise*<T\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
@@ -1372,13 +1366,13 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:88
 
 ▸ **toPromise**<T\>(`PromiseCtor`: PromiseConstructor): *Promise*<T\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -1392,13 +1386,13 @@ Defined in: node_modules/rxjs/internal/Observable.d.ts:89
 
 ▸ **toPromise**<T\>(`PromiseCtor`: PromiseConstructorLike): *Promise*<T\>
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

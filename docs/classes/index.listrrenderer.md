@@ -8,10 +8,10 @@ The bones of a listr renderer.
 
 ## Implemented by
 
-* [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)
-* [*ListrBaseRenderer*](index.listrbaserenderer.md)
-* [*SilentRenderer*](renderer_silent_renderer.silentrenderer.md)
-* [*VerboseRenderer*](renderer_verbose_renderer.verboserenderer.md)
+- [*DefaultRenderer*](renderer_default_renderer.defaultrenderer.md)
+- [*ListrBaseRenderer*](index.listrbaserenderer.md)
+- [*SilentRenderer*](renderer_silent_renderer.silentrenderer.md)
+- [*VerboseRenderer*](renderer_verbose_renderer.verboserenderer.md)
 
 ## Constructors
 
@@ -21,7 +21,7 @@ The bones of a listr renderer.
 
 create a new renderer
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -41,19 +41,17 @@ Defined in: src/interfaces/renderer.interface.ts:109
 
 A function to what to do on end of the render
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (`err?`: Error): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `err?` | Error |
 
 **Returns:** *void*
-
-Defined in: src/interfaces/renderer.interface.ts:109
 
 Defined in: src/interfaces/renderer.interface.ts:109
 
@@ -65,13 +63,11 @@ ___
 
 A function to what to do on render
 
-#### Type declaration:
+#### Type declaration
 
 ▸ (): *void*
 
 **Returns:** *void*
-
-Defined in: src/interfaces/renderer.interface.ts:107
 
 Defined in: src/interfaces/renderer.interface.ts:107
 

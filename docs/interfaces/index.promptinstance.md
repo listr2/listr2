@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-* *Omit*<BasePromptOptions, ``"onCancel"`` \| ``"onSubmit"``\>
+- *Omit*<BasePromptOptions, ``"onCancel"`` \| ``"onSubmit"``\>
 
   ↳ **PromptInstance**
 
@@ -86,7 +86,7 @@ Defined in: src/utils/prompt.interface.ts:30
 
 ▸ **cancel**(`err?`: *string*): *void*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -100,9 +100,9 @@ ___
 
 ### format
 
-▸ `Optional`**format**(`value`: *any*): *any*
+▸ `Optional` **format**(`value`: *any*): *any*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -118,9 +118,9 @@ ___
 
 ### result
 
-▸ `Optional`**result**(`value`: *any*): *any*
+▸ `Optional` **result**(`value`: *any*): *any*
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -136,9 +136,9 @@ ___
 
 ### skip
 
-▸ `Optional`**skip**(`value`: *any*): *boolean* \| *Promise*<boolean\>
+▸ `Optional` **skip**(`value`: *any*): *boolean* \| *Promise*<boolean\>
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
@@ -164,9 +164,9 @@ ___
 
 ### validate
 
-▸ `Optional`**validate**(`value`: *any*, `state`: *any*): *string* \| *boolean* \| *Promise*<boolean\> \| *Promise*<string\> \| *Promise*<string \| boolean\>
+▸ `Optional` **validate**(`value`: *any*, `state`: *any*): *string* \| *boolean* \| *Promise*<boolean\> \| *Promise*<string\> \| *Promise*<string \| boolean\>
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

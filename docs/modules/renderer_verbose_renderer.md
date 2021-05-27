@@ -2,8 +2,6 @@
 
 # Module: renderer/verbose.renderer
 
-## Table of contents
-
-### Classes
+## Classes
 
 - [VerboseRenderer](../classes/renderer_verbose_renderer.verboserenderer.md)

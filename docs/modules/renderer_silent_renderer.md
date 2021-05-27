@@ -2,8 +2,6 @@
 
 # Module: renderer/silent.renderer
 
-## Table of contents
-
-### Classes
+## Classes
 
 - [SilentRenderer](../classes/renderer_silent_renderer.silentrenderer.md)

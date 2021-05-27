@@ -6,7 +6,7 @@
 
 Ƭ **Unionize**<T\>: { [P in keyof T]: T[P]}[keyof T]
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type |
 | :------ | :------ |

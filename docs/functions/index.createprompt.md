@@ -10,7 +10,7 @@ Create a new prompt with Enquirer externally.
 This extends enquirer so you dont have to give a name to single prompts and such so it is also
 useful to use externally.
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |

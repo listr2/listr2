@@ -8,7 +8,7 @@
 
 Returns all the prompt options depending on the type selected.
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Type | Default |
 | :------ | :------ | :------ |
