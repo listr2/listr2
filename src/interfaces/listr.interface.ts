@@ -47,7 +47,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    *
    * The function that has been passed in will be evaluated at the runtime when task tries to initially run.
    */
-  skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean> | Promise<string>)
+  skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean | string>)
   /**
    * Enable a task depending on the context.
    *

@@ -94,4 +94,28 @@ describe('skip a task', () => {
     expect(info).toBeCalledWith('[SKIPPED] skipped')
     expect(info).not.toBeCalledWith('[DATA] enabled')
   })
+
+  it.each<[boolean | string, string]>([
+    [ true, 'Skipped task without a title.' ],
+    [ 'skipped', 'skipped' ]
+  ])('should skip the task from async skip method returning either boolean or string', async (skip, expected) => {
+    await new Listr(
+      [
+        {
+          skip: async (): Promise<boolean | string> => {
+            await new Promise((r) => setTimeout(r, 50))
+
+            return skip
+          },
+          task: async (_, task): Promise<void> => {
+            task.output = 'This will never execute.'
+          }
+        }
+      ],
+      { renderer: 'verbose' }
+    ).run()
+
+    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(info).toBeCalledWith('[SKIPPED] ' + expected)
+  })
 })
