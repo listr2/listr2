@@ -862,10 +862,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/wrap-ansi@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@types/wrap-ansi/-/wrap-ansi-8.0.0.tgz#74e8e2061111ac5b43c26849a29e78576df72375"
-  integrity sha512-S5kX5eUnot58wvauLG/oLQFSVzV5hi3By7NPcEiZA33NKvRUgUbTYFPa/Oe/wpXyy5XtyeLgtYfPqaGL5VaDHQ==
+"@types/wrap-ansi@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/wrap-ansi/-/wrap-ansi-3.0.0.tgz#18b97a972f94f60a679fd5c796d96421b9abb9fd"
+  integrity sha512-ltIpx+kM7g/MLRZfkbL7EsCEjfzCcScLpkg37eXEtx5kmrAKBkTJwd1GIAjDSL8wTpM6Hzn5YO4pSb91BEwu1g==
 
 "@types/yargs-parser@*":
   version "20.2.0"
