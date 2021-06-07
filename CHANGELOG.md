@@ -1,3 +1,10 @@
+# [3.10.0](https://github.com/cenk1cenk2/listr2/compare/v3.9.0...v3.10.0) (2021-06-07)
+
+
+### Features
+
+* add context to the class itself for outside access ([98ea144](https://github.com/cenk1cenk2/listr2/commit/98ea14453257f9aec93932890e4c8c8d8ac53ead))
+
 # [3.9.0](https://github.com/cenk1cenk2/listr2/compare/v3.8.6...v3.9.0) (2021-05-27)
 
 
