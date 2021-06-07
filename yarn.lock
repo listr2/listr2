@@ -301,10 +301,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/cz-cc@^1.3.24":
-  version "1.3.24"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.3.24.tgz#dd3f76323e3b5bdf656072e797e57ba2da517efb"
-  integrity sha512-l+hWN9sNCbfeH3VGI48W0rT9+8WFotyphkW32ygkMSI76bx/RLPGT66AdWmXN5CFUptuwdTexgezfmq3xR1+QQ==
+"@cenk1cenk2/cz-cc@^1.3.25":
+  version "1.3.25"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.3.25.tgz#190ef6235b1f711de4fe8c94ecb0b667d5575241"
+  integrity sha512-wRJuitSOa50eKHtAXH9x+21BmN8MuohV3zs4HaYYb6GuebSF5dJWzHeOGb9apfATdEPMhUOSurx+aDdLYWZGDA==
   dependencies:
     chalk "^4.1.1"
     commitizen "^4.2.4"
@@ -313,7 +313,7 @@
     enquirer-editor "^1.0.0"
     enquirer-prompt-editor "^2.0.1"
     find-git-root "^1.0.4"
-    listr2 "^3.8.6"
+    listr2 "^3.9.0"
     lodash.map "^4.6.0"
     word-wrap "^1.2.3"
   optionalDependencies:
@@ -862,10 +862,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/wrap-ansi@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/wrap-ansi/-/wrap-ansi-3.0.0.tgz#18b97a972f94f60a679fd5c796d96421b9abb9fd"
-  integrity sha512-ltIpx+kM7g/MLRZfkbL7EsCEjfzCcScLpkg37eXEtx5kmrAKBkTJwd1GIAjDSL8wTpM6Hzn5YO4pSb91BEwu1g==
+"@types/wrap-ansi@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@types/wrap-ansi/-/wrap-ansi-8.0.0.tgz#74e8e2061111ac5b43c26849a29e78576df72375"
+  integrity sha512-S5kX5eUnot58wvauLG/oLQFSVzV5hi3By7NPcEiZA33NKvRUgUbTYFPa/Oe/wpXyy5XtyeLgtYfPqaGL5VaDHQ==
 
 "@types/yargs-parser@*":
   version "20.2.0"
@@ -3859,7 +3859,7 @@ listr2@^3.8.2:
     through "^2.3.8"
     wrap-ansi "^7.0.0"
 
-listr2@^3.8.6:
+listr2@^3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.9.0.tgz#27f23c91ba4fdf513b0682bf604bc6b0ab36b6c1"
   integrity sha512-+JxQt7Vi4WEWgJsxmOEX9lDbCumrb3mrEYIeE1VI7I4lf2rXE4v9pq3RMVNp+a9s6mCgc/IsF0ppHsLrx2BEAw==
