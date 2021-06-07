@@ -1,11 +1,10 @@
-version: "3.7"
+version: '3.7'
 services:
   node:
-    image: cenk1cenk2/lerna-dev:latest
+    image: cenk1cenk2/node-fnm:latest
     environment:
-      - SERVICES=.
-      - PREFIX_LABEL=false
+      DEFAULTS_LOGS: 'true'
     ports:
       - 9229:9229
     volumes:
-      - .:/data/app
+      - .:/data
