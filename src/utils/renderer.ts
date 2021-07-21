@@ -2,11 +2,13 @@ import { ListrOptions } from '@interfaces/listr.interface'
 import { SupportedRenderer, ListrRendererFactory, ListrRendererValue } from '@interfaces/renderer.interface'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
+import { SimpleRenderer } from '@renderer/simple.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { assertFunctionOrSelf } from '@utils/assert'
 
 const renderers = {
   default: DefaultRenderer,
+  simple: SimpleRenderer,
   verbose: VerboseRenderer,
   silent: SilentRenderer
 }

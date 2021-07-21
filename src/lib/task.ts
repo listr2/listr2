@@ -198,11 +198,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
   /** Returns whether this task has a prompt inside. */
   public isPrompt (): boolean {
-    if (this.prompt) {
-      return true
-    } else {
-      return false
-    }
+    return this.prompt ? true : false
   }
 
   /** Run the current task. */

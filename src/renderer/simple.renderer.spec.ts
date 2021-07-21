@@ -1,16 +1,12 @@
-import {
-  ListrEvent,
-  ListrTaskWrapper,
-  ListrContext,
-  ListrTaskState,
-  ListrEventType
-} from 'listr2'
 import { stderr as logUpdate } from 'log-update'
+import { EOL } from 'os'
 import { Subject } from 'rxjs'
 
 import { SimpleRenderer } from './simple.renderer'
-import colorette from '@root/utils/colorette'
-import { figures } from '@root/utils/figures'
+import { ListrEventType } from '@constants/event.constants'
+import { ListrTaskState } from '@constants/state.constants'
+import { ListrContext, ListrEvent } from '@interfaces/listr.interface'
+import { ListrTaskWrapper } from '@interfaces/task.interface'
 
 jest.mock('log-update')
 
@@ -40,18 +36,7 @@ function getListrObject () {
 }
 
 describe('SimpleRenderer', () => {
-  beforeEach(()=> jest.clearAllMocks())
-
-  describe('constructor', () => {
-    it('Should accept options', () => {
-      const res = new SimpleRenderer([ { foo: 'bar' } ] as never, {
-        prefixWithTimestamp: true
-      })
-
-      expect(res.tasks).toEqual([ { foo: 'bar' } ])
-      expect(res.options).toEqual({ prefixWithTimestamp: true })
-    })
-  })
+  beforeEach(() => jest.clearAllMocks())
 
   describe('now', () => {
     it('Shdould return new Date', () => {
@@ -65,88 +50,79 @@ describe('SimpleRenderer', () => {
       expect(SimpleRenderer.formatTitle({} as never)).toEqual('')
       expect(SimpleRenderer.formatTitle({ title: '' } as never)).toEqual('')
     })
-    it('Shdould return formatted title', () => {
-      expect(SimpleRenderer.formatTitle({ title: 'the Foo' } as never)).toEqual(
-        ' the Foo'
-      )
+
+    it('should return formatted title', () => {
+      expect(SimpleRenderer.formatTitle({ title: 'the Foo' } as never)).toEqual(' the Foo')
     })
   })
 
   describe('log', () => {
-    it('Shoudl simply log', () => {
-      const stderrSpy = jest
-        .spyOn(process.stderr, 'write')
-        .mockImplementation()
+    it.each<'stdout' | 'stderr'>([ 'stdout', 'stderr' ])('should simply log', (output) => {
+      const spy = jest.spyOn(process[output], 'write').mockImplementation()
 
-      const sut = new SimpleRenderer([], {})
+      const renderer = new SimpleRenderer([], { output })
 
-      sut.log('the foo')
+      renderer.log('the foo')
 
-      expect(stderrSpy).toHaveBeenCalledWith('the foo\n')
+      expect(spy).toHaveBeenCalledWith(expect.stringContaining('the foo'))
 
-      stderrSpy.mockRestore()
+      spy.mockRestore()
     })
 
-    it('Should add timestamp', () => {
-      const stderrSpy = jest
-        .spyOn(process.stderr, 'write')
-        .mockImplementation()
+    it('should add timestamp', () => {
+      const spy = jest.spyOn(process.stdout, 'write').mockImplementation()
 
-      const sut = new SimpleRenderer([], { prefixWithTimestamp: true })
+      const renderer = new SimpleRenderer([], { prefixWithTimestamp: true })
       SimpleRenderer.now = nowMock
 
-      sut.log('the foo\n')
+      renderer.log('the foo\n')
 
-      expect(stderrSpy).toHaveBeenCalledWith(`${colorette.dim('[20:45:34]')} the foo\n`)
+      expect(spy).toHaveBeenCalledWith(expect.stringContaining('[20:45:34] the foo'))
 
-      stderrSpy.mockRestore()
+      spy.mockRestore()
     })
   })
 
   describe('render', () => {
-    it('Should render tasks', () => {
+    it('should render tasks', () => {
       const taskMock = getListrObject()
 
-      const sut = new SimpleRenderer([ taskMock as any ], {})
-      sut.eventTypeRendererMap[ListrEventType.ENABLED] = jest.fn()
-      sut.render()
+      const renderer = new SimpleRenderer([ taskMock as any ], {})
+      renderer.eventTypeRendererMap[ListrEventType.ENABLED] = jest.fn()
+      renderer.render()
 
       taskMock.next({ type: ListrEventType.ENABLED, data: 'foo' })
 
-      expect(
-        sut.eventTypeRendererMap[ListrEventType.ENABLED]
-      ).toHaveBeenCalledWith(taskMock, {
+      expect(renderer.eventTypeRendererMap[ListrEventType.ENABLED]).toHaveBeenCalledWith(taskMock, {
         type: ListrEventType.ENABLED,
         data: 'foo'
       })
     })
 
-    it('Should handle missing handler', () => {
+    it('should handle missing handler', () => {
       const taskMock = getListrObject()
       let renderHandler: (value: ListrEvent) => void
       taskMock.subscribe = jest.fn((handler) => {
         renderHandler = handler
       }) as any
 
-      const sut = new SimpleRenderer([ taskMock as any ], {})
-      delete sut.eventTypeRendererMap[ListrEventType.ENABLED]
-      sut.render()
+      const renderer = new SimpleRenderer([ taskMock as any ], {})
+      delete renderer.eventTypeRendererMap[ListrEventType.ENABLED]
+      renderer.render()
 
-      expect(() =>
-        renderHandler({ type: ListrEventType.ENABLED, data: 'foo' })
-      ).not.toThrow()
+      expect(() => renderHandler({ type: ListrEventType.ENABLED, data: 'foo' })).not.toThrow()
     })
 
-    it('Should render error', () => {
+    it('should render error', () => {
       const taskMock = getListrObject()
 
-      const sut = new SimpleRenderer([ taskMock as any ], {})
-      sut.log = jest.fn()
-      sut.render()
+      const renderer = new SimpleRenderer([ taskMock as any ], {})
+      renderer.log = jest.fn()
+      renderer.render()
 
       taskMock.error(new Error('the foo'))
 
-      expect(sut.log).toHaveBeenCalledWith(Error('the foo'))
+      expect(renderer.log).toHaveBeenCalledWith(new Error('the foo'))
     })
   })
 
@@ -157,42 +133,40 @@ describe('SimpleRenderer', () => {
   })
 
   describe('eventTypeRendererMap.SUBTASK', () => {
-    const sut = new SimpleRenderer([], {})
-    sut.log = jest.fn()
+    const renderer = new SimpleRenderer([], {})
+    renderer.log = jest.fn()
     const event: ListrEvent = { type: ListrEventType.SUBTASK }
 
-    it('Should not render', () => {
+    it('should not render', () => {
       const taskMock = getListrObject()
 
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).not.toHaveBeenCalled()
+      expect(renderer.log).not.toHaveBeenCalled()
     })
 
-    it('Should render title', () => {
+    it('should render title', () => {
       const taskMock = getListrObject()
       taskMock.hasTitle.mockReturnValue(true)
 
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).toHaveBeenCalledWith(`${colorette.magentaBright('❯')} foo`)
+      expect(renderer.log).toHaveBeenCalledWith(expect.stringContaining('foo'))
     })
 
-    it('Should render subtask', () => {
+    it('should render subtask', () => {
       const taskMock = getListrObject()
       const subTaskMock = getListrObject()
 
       taskMock.hasSubtasks.mockReturnValue(true)
       taskMock.subtasks = [ subTaskMock as never ]
 
-      sut.eventTypeRendererMap[ListrEventType.ENABLED] = jest.fn()
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[ListrEventType.ENABLED] = jest.fn()
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
       subTaskMock.next({ type: ListrEventType.ENABLED, data: 'the sub foo' })
 
-      expect(sut.log).not.toHaveBeenCalled()
-      expect(
-        sut.eventTypeRendererMap[ListrEventType.ENABLED]
-      ).toHaveBeenCalledWith(subTaskMock, {
+      expect(renderer.log).not.toHaveBeenCalled()
+      expect(renderer.eventTypeRendererMap[ListrEventType.ENABLED]).toHaveBeenCalledWith(subTaskMock, {
         type: ListrEventType.ENABLED,
         data: 'the sub foo'
       })
@@ -200,130 +174,122 @@ describe('SimpleRenderer', () => {
   })
 
   describe('eventTypeRendererMap.STATE', () => {
-    const sut = new SimpleRenderer([], {})
-    sut.log = jest.fn()
+    const renderer = new SimpleRenderer([], {})
+    renderer.log = jest.fn()
     const event: ListrEvent = { type: ListrEventType.STATE }
 
-    it('Should not render if pending', () => {
+    it('should not render if pending', () => {
       const taskMock = getListrObject()
       taskMock.hasTitle.mockReturnValue(true)
       taskMock.isPending.mockReturnValue(true)
 
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).not.toHaveBeenCalled()
+      expect(renderer.log).not.toHaveBeenCalled()
     })
 
-    it('Should render if conplete', () => {
+    it('should render if complete', () => {
       const taskMock = getListrObject()
       taskMock.hasTitle.mockReturnValue(true)
-      taskMock.isSkipped.mockReturnValue(false)
-      taskMock.isPending.mockReturnValue(false)
+      taskMock.isCompleted.mockReturnValue(true)
 
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).toHaveBeenCalledWith(`${colorette.green('✔')} foo`)
+      expect(renderer.log).toHaveBeenCalledWith(expect.stringContaining('foo'))
     })
   })
 
   describe('eventTypeRendererMap.DATA', () => {
-    const sut = new SimpleRenderer([], {})
-    sut.log = jest.fn()
+    const renderer = new SimpleRenderer([], {})
+    renderer.log = jest.fn()
     const event: ListrEvent = { type: ListrEventType.DATA, data: 'the data' }
 
-    it('Should not render if prompt and newLine', () => {
+    it('should not render if prompt and newLine', () => {
       const taskMock = getListrObject()
       taskMock.isPrompt.mockReturnValue(true)
 
-      event.data = '\n'
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      event.data = EOL
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
       expect(logUpdateMock).not.toHaveBeenCalled()
-      expect(sut.log).toHaveBeenCalledWith('  \n')
+      expect(renderer.log).toHaveBeenCalledWith(expect.stringContaining(EOL))
     })
 
-    it('Should render updating', () => {
+    it('should render updating', () => {
       const taskMock = getListrObject()
       taskMock.isPrompt.mockReturnValue(true)
 
       event.data = 'the prompt'
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).not.toHaveBeenCalled()
+      expect(renderer.log).not.toHaveBeenCalled()
       expect(logUpdateMock).toHaveBeenCalledWith('the prompt')
     })
 
-    it('Should render non updating', () => {
+    it('should render non updating', () => {
       const taskMock = getListrObject()
       taskMock.isPrompt.mockReturnValue(false)
 
       event.data = 'the data'
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
       expect(logUpdateMock).not.toHaveBeenCalled()
-      expect(sut.log).toHaveBeenCalledWith('  the data')
+      expect(renderer.log).toHaveBeenCalledWith(expect.stringContaining('the data'))
     })
   })
 
   describe('eventTypeRendererMap.Message', () => {
-    const sut = new SimpleRenderer([], {})
-    sut.log = jest.fn()
+    const renderer = new SimpleRenderer([], {})
+    renderer.log = jest.fn()
     const event: ListrEvent = { type: ListrEventType.MESSAGE, data: {} }
 
-    it('Should not render', () => {
+    it('should not render', () => {
       const taskMock = getListrObject()
 
       event.data = {}
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).not.toHaveBeenCalled()
+      expect(renderer.log).not.toHaveBeenCalled()
     })
 
-    it('Should render error', () => {
+    it('should render error', () => {
       const taskMock = getListrObject()
 
       event.data = { error: 'the foo err' }
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).toHaveBeenCalledWith(`${colorette.red(figures.warning)} foo: the foo err`)
+      expect(renderer.log).toHaveBeenCalledWith(expect.stringContaining('foo: the foo err'))
     })
 
-    it('Should render skip', () => {
+    it('should render skip', () => {
       const taskMock = getListrObject()
 
       event.data = { skip: 'the foo skip' }
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
       taskMock.title = 'the foo skip'
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).toHaveBeenNthCalledWith(1,
-        `${colorette.yellow(figures.arrowDown)} foo [${colorette.yellow('skipped: the foo skip')}]`
-      )
-      expect(sut.log).toHaveBeenNthCalledWith(2,
-        `${colorette.yellow(figures.arrowDown)} the foo skip [${colorette.yellow('skipped')}]`
-      )
-
+      expect(renderer.log).toHaveBeenNthCalledWith(1, expect.stringContaining('foo [skipped: the foo skip]'))
+      expect(renderer.log).toHaveBeenNthCalledWith(2, expect.stringContaining('the foo skip [skipped]'))
     })
 
-    it('Should render rollback', () => {
+    it('should render rollback', () => {
       const taskMock = getListrObject()
 
       event.data = { rollback: 'the foo roolback' }
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).toHaveBeenCalledWith(
-        `${colorette.red(figures.arrowLeft)} foo: the foo roolback`
-      )
+      expect(renderer.log).toHaveBeenCalledWith(expect.stringContaining('foo: the foo roolback'))
     })
 
-    it('Should render retry', () => {
+    it('should render retry', () => {
       const taskMock = getListrObject()
 
       event.data = { retry: { count: 6 } }
-      sut.eventTypeRendererMap[event.type]?.(taskMock as any, event)
+      renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
 
-      expect(sut.log).toHaveBeenCalledWith('[6] foo')
+      expect(renderer.log).toHaveBeenCalledWith(expect.stringMatching(/\[6\].*foo/))
     })
   })
 })

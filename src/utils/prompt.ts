@@ -55,6 +55,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
       enquirer = new (await import('enquirer'))()
     } /* istanbul ignore next */ catch (e) {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
+
       throw new Error(e)
     }
   }
