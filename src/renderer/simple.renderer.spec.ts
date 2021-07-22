@@ -14,7 +14,7 @@ const nowMock = jest.fn<Date, any[]>().mockReturnValue(new Date(8273648734628))
 const logUpdateMock = logUpdate as jest.MockedFunction<typeof logUpdate>
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function getListrObject() {
+function getListrObject () {
   return Object.assign(new Subject<ListrEvent>(), {
     isPending: jest.fn().mockReturnValue(false),
     isSkipped: jest.fn().mockReturnValue(false),
@@ -57,7 +57,7 @@ describe('SimpleRenderer', () => {
   })
 
   describe('log', () => {
-    it.each<'stdout' | 'stderr'>(['stdout', 'stderr'])('should simply log', (output) => {
+    it.each<'stdout' | 'stderr'>([ 'stdout', 'stderr' ])('should simply log', (output) => {
       const spy = jest.spyOn(process[output], 'write').mockImplementation()
 
       const renderer = new SimpleRenderer([], { output })
@@ -87,7 +87,7 @@ describe('SimpleRenderer', () => {
     it('should render tasks', () => {
       const taskMock = getListrObject()
 
-      const renderer = new SimpleRenderer([taskMock as any], {})
+      const renderer = new SimpleRenderer([ taskMock as any ], {})
       renderer.eventTypeRendererMap[ListrEventType.ENABLED] = jest.fn()
       renderer.render()
 
@@ -106,7 +106,7 @@ describe('SimpleRenderer', () => {
         renderHandler = handler
       }) as any
 
-      const renderer = new SimpleRenderer([taskMock as any], {})
+      const renderer = new SimpleRenderer([ taskMock as any ], {})
       delete renderer.eventTypeRendererMap[ListrEventType.ENABLED]
       renderer.render()
 
@@ -116,7 +116,7 @@ describe('SimpleRenderer', () => {
     it('should render error', () => {
       const taskMock = getListrObject()
 
-      const renderer = new SimpleRenderer([taskMock as any], {})
+      const renderer = new SimpleRenderer([ taskMock as any ], {})
       renderer.log = jest.fn()
       renderer.render()
 
@@ -159,7 +159,7 @@ describe('SimpleRenderer', () => {
       const subTaskMock = getListrObject()
 
       taskMock.hasSubtasks.mockReturnValue(true)
-      taskMock.subtasks = [subTaskMock as never]
+      taskMock.subtasks = [ subTaskMock as never ]
 
       renderer.eventTypeRendererMap[ListrEventType.ENABLED] = jest.fn()
       renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
