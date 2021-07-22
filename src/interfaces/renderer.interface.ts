@@ -3,6 +3,7 @@ import { Subject } from 'rxjs'
 import { Task } from '@lib/task'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
+import { SimpleRenderer } from '@renderer/simple.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 
 /** The default renderer value used in Listr2 applications */
@@ -17,63 +18,75 @@ export type ListrFallbackRenderer = typeof VerboseRenderer
 export type ListrSilentRendererValue = 'silent'
 /** Typeof silent renderer */
 export type ListrSilentRenderer = typeof SilentRenderer
+/** Simple renderer that simplifies things */
+export type ListrSimpleRendererValue = 'simple'
+/** Typeof simple renderer */
+export type ListrSimpleRenderer = typeof SimpleRenderer
 
 /**
  * Listr2 can process either the integrated renderers as string aliases,
  * or utilize a compatible style renderer that extends the ListrRenderer abstract class.
  */
-export type ListrRendererValue = ListrSilentRendererValue | ListrDefaultRendererValue | ListrFallbackRendererValue | ListrRendererFactory
+export type ListrRendererValue = ListrSilentRendererValue | ListrDefaultRendererValue | ListrSimpleRendererValue | ListrFallbackRendererValue | ListrRendererFactory
 /**
  * Returns the class type from friendly names of the renderers.
  */
 export type ListrGetRendererClassFromValue<T extends ListrRendererValue> = T extends ListrDefaultRendererValue
   ? ListrDefaultRenderer
-  : T extends ListrFallbackRendererValue
-    ? ListrFallbackRenderer
-    : T extends ListrSilentRenderer
-      ? ListrSilentRenderer
-      : T extends ListrRendererFactory
-        ? T
-        : never
+  : T extends ListrSimpleRendererValue
+    ? ListrSimpleRenderer
+    : T extends ListrFallbackRendererValue
+      ? ListrFallbackRenderer
+      : T extends ListrSilentRenderer
+        ? ListrSilentRenderer
+        : T extends ListrRendererFactory
+          ? T
+          : never
 
 /**
  * Returns the friendly names from the type of renderer classes.
  */
 export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = T extends DefaultRenderer
   ? ListrDefaultRendererValue
-  : T extends VerboseRenderer
-    ? ListrFallbackRendererValue
-    : T extends SilentRenderer
-      ? ListrSilentRenderer
-      : T extends ListrRendererFactory
-        ? T
-        : never
+  : T extends SimpleRenderer
+    ? ListrSimpleRendererValue
+    : T extends VerboseRenderer
+      ? ListrFallbackRendererValue
+      : T extends SilentRenderer
+        ? ListrSilentRenderer
+        : T extends ListrRendererFactory
+          ? T
+          : never
 
 /**
  * Returns renderer global options depending on the renderer type.
  */
 export type ListrGetRendererOptions<T extends ListrRendererValue> = T extends ListrDefaultRendererValue
   ? ListrDefaultRenderer['rendererOptions']
-  : T extends ListrFallbackRendererValue
-    ? ListrFallbackRenderer['rendererOptions']
-    : T extends ListrSilentRenderer
-      ? ListrSilentRenderer['rendererOptions']
-      : T extends ListrRendererFactory
-        ? T['rendererOptions']
-        : never
+  : T extends ListrSimpleRendererValue
+    ? ListrSimpleRenderer['rendererOptions']
+    : T extends ListrFallbackRendererValue
+      ? ListrFallbackRenderer['rendererOptions']
+      : T extends ListrSilentRenderer
+        ? ListrSilentRenderer['rendererOptions']
+        : T extends ListrRendererFactory
+          ? T['rendererOptions']
+          : never
 
 /**
  * Returns renderer per task options depending on the renderer type.
  */
 export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = T extends ListrDefaultRendererValue
   ? ListrDefaultRenderer['rendererTaskOptions']
-  : T extends ListrFallbackRendererValue
-    ? ListrFallbackRenderer['rendererTaskOptions']
-    : T extends ListrSilentRenderer
-      ? ListrSilentRenderer['rendererTaskOptions']
-      : T extends ListrRendererFactory
-        ? T['rendererTaskOptions']
-        : never
+  : T extends ListrSimpleRendererValue
+    ? ListrSimpleRenderer
+    : T extends ListrFallbackRendererValue
+      ? ListrFallbackRenderer['rendererTaskOptions']
+      : T extends ListrSilentRenderer
+        ? ListrSilentRenderer['rendererTaskOptions']
+        : T extends ListrRendererFactory
+          ? T['rendererTaskOptions']
+          : never
 
 /** Select renderer as default renderer */
 export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {

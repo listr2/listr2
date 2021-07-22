@@ -23,6 +23,7 @@ import { getRenderer } from '@utils/renderer'
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError[] = []
+  public ctx: Ctx
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
   public renderHook$: Task<any, any>['renderHook$'] = new Subject()
@@ -109,13 +110,13 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.renderer.render()
 
     // create a new context
-    context = context || this.options?.ctx || Object.create({})
+    this.ctx = context || this.options?.ctx || Object.create({})
 
     // create new error queue
     const errors: Error[] | ListrError[] = []
 
     // check if the items are enabled
-    await this.checkAll(context)
+    await this.checkAll(this.ctx)
 
     // run tasks
     try {
@@ -123,21 +124,21 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
         this.tasks,
         async (task): Promise<void> => {
           // check this item is enabled, conditions may change depending on context
-          await task.check(context)
+          await task.check(this.ctx)
 
-          return this.runTask(task, context, errors)
+          return this.runTask(task, this.ctx, errors)
         },
         { concurrency: this.concurrency }
       )
 
       // catch errors do which do not crash through exitOnError: false
       if (errors.length > 0) {
-        this.err.push(new ListrError('Task failed without crashing.', errors, context))
+        this.err.push(new ListrError('Task failed without crashing.', errors, this.ctx))
       }
 
       this.renderer.end()
     } catch (error) {
-      this.err.push(new ListrError(typeof error?.message === 'string' ? error.message : error, [ error ], context))
+      this.err.push(new ListrError(typeof error?.message === 'string' ? error.message : error, [ error ], this.ctx))
 
       if (this.options.exitOnError !== false) {
         this.renderer.end(error)
@@ -146,7 +147,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       }
     }
 
-    return context
+    return this.ctx
   }
 
   private checkAll (context: any): Promise<void[]> {

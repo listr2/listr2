@@ -198,11 +198,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
   /** Returns whether this task has a prompt inside. */
   public isPrompt (): boolean {
-    if (this.prompt) {
-      return true
-    } else {
-      return false
-    }
+    return this.prompt ? true : false
   }
 
   /** Run the current task. */
@@ -291,7 +287,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
             this.retry = { count: retries, withError: e }
             this.message$ = { retry: this.retry }
             this.title$ = this.initialTitle
-            this.output$ = undefined
+            this.output = undefined
 
             wrapper.report(e)
 

@@ -1,3 +1,5 @@
+import delay = require('delay')
+
 import { Listr } from '@root/index'
 
 describe('skip a task', () => {
@@ -103,7 +105,7 @@ describe('skip a task', () => {
       [
         {
           skip: async (): Promise<boolean | string> => {
-            await new Promise((r) => setTimeout(r, 50))
+            await delay(20)
 
             return skip
           },

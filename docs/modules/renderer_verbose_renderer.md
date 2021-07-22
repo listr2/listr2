@@ -4,4 +4,4 @@
 
 ## Classes
 
-- [VerboseRenderer](../classes/renderer_verbose_renderer.verboserenderer.md)
+- [VerboseRenderer](../classes/renderer_verbose_renderer.VerboseRenderer.md)

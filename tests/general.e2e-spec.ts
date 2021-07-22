@@ -30,7 +30,7 @@ describe('show output from task', () => {
   it('should add a single task', async () => {
     const ctx = await new Listr({
       title: 'This task will execute.',
-      task: (ctx, task): Listr =>
+      task: (_, task): Listr =>
         task.newListr([
           {
             title: 'This is a subtask.',
@@ -40,5 +40,33 @@ describe('show output from task', () => {
     }).run()
 
     expect(ctx).toBeTruthy()
+  })
+
+  it('should be able to return the context on task', async () => {
+    const tasks = new Listr([
+      {
+        title: 'This task will execute.',
+        task: (_, task): Listr =>
+          task.newListr([
+            {
+              title: 'This is a subtask.',
+              task: async (ctx): Promise<void> => {
+                ctx.test = true
+              }
+            }
+          ])
+      },
+      {
+        task: (ctx): void => {
+          ctx.test2 = true
+        }
+      }
+    ])
+
+    const ctx = await tasks.run()
+
+    expect(ctx).toStrictEqual(tasks.ctx)
+    expect(ctx.test).toBe(true)
+    expect(ctx.test2).toBe(true)
   })
 })
