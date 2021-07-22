@@ -155,10 +155,25 @@ Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>
 /** The internal communication event. */
 export type ListrEvent =
   | {
-    type: Exclude<ListrEventType, 'MESSAGE'>
+    type: Exclude<ListrEventType, 'MESSAGE' | 'DATA'>
     data?: string | boolean
+  }
+  | {
+    type: ListrEventType.DATA
+    data: string
   }
   | {
     type: ListrEventType.MESSAGE
     data: Task<any, any>['message']
   }
+
+/**
+ * Used to match event.type to ListrEvent permutations
+ */
+export type ListrEventFromType<T extends ListrEventType, E = ListrEvent> = E extends {
+  type: infer U
+}
+  ? T extends U
+    ? E
+    : never
+  : never
