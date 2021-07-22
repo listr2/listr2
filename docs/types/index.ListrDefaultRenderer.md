@@ -10,4 +10,4 @@ Type of default renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:11
+src/interfaces/renderer.interface.ts:12

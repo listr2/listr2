@@ -10,4 +10,4 @@ Type of default fallback renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:15
+src/interfaces/renderer.interface.ts:16

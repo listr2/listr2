@@ -22,7 +22,7 @@ the default renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:81
+src/interfaces/renderer.interface.ts:94
 
 ___
 
@@ -34,4 +34,4 @@ Renderer options depending on the current renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:83
+src/interfaces/renderer.interface.ts:96

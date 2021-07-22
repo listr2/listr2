@@ -10,4 +10,4 @@ Silent rendere for internal usage
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:17
+src/interfaces/renderer.interface.ts:18

@@ -17,4 +17,4 @@ Renderer options for the base class, including setup for selecting default and f
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:95
+src/interfaces/renderer.interface.ts:108

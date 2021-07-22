@@ -22,7 +22,7 @@ the fallback renderer to fallback to on non-tty conditions
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:89
+src/interfaces/renderer.interface.ts:102
 
 ___
 
@@ -34,4 +34,4 @@ Renderer options depending on the current renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:91
+src/interfaces/renderer.interface.ts:104

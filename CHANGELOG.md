@@ -1,3 +1,16 @@
+# [3.11.0](https://github.com/cenk1cenk2/listr2/compare/v3.10.1...v3.11.0) (2021-07-22)
+
+
+### Bug Fixes
+
+* fix the tests and errors with the simple renderer ([ae4319b](https://github.com/cenk1cenk2/listr2/commit/ae4319be1797f029165c3fd2772abc5aae1e6b46))
+* tiny bug with sending output through channel ([cce9eee](https://github.com/cenk1cenk2/listr2/commit/cce9eeeec4d3c8370b22d6da72d61fe25c13b6c5)), closes [#437](https://github.com/cenk1cenk2/listr2/issues/437)
+
+
+### Features
+
+* **renderer:** adds simple renderer which is neither updating nor verbose ([04a6858](https://github.com/cenk1cenk2/listr2/commit/04a6858fa8ce8c0b30bc24d81d9cef99ab5d6381))
+
 ## [3.10.1](https://github.com/cenk1cenk2/listr2/compare/v3.10.0...v3.10.1) (2021-07-22)
 
 

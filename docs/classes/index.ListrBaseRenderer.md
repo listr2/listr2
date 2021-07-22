@@ -25,7 +25,7 @@ Exported for javascript applications to extend the base renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:123
+src/interfaces/renderer.interface.ts:136
 
 ## Properties
 
@@ -53,7 +53,7 @@ ListrRenderer.end
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:122
+src/interfaces/renderer.interface.ts:135
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:120
+src/interfaces/renderer.interface.ts:133
 
 ___
 
@@ -85,7 +85,7 @@ ListrRenderer.render
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:121
+src/interfaces/renderer.interface.ts:134
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:119
+src/interfaces/renderer.interface.ts:132
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:118
+src/interfaces/renderer.interface.ts:131
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:116
+src/interfaces/renderer.interface.ts:129
 
 ___
 
@@ -125,4 +125,4 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:117
+src/interfaces/renderer.interface.ts:130

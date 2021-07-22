@@ -10,4 +10,4 @@ A renderer factory from the current type
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:127
+src/interfaces/renderer.interface.ts:140

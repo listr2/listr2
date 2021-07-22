@@ -14,7 +14,7 @@ Supported type of renderers for each type in the listr.
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:132
+src/interfaces/renderer.interface.ts:145
 
 ___
 
@@ -24,4 +24,4 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:131
+src/interfaces/renderer.interface.ts:144

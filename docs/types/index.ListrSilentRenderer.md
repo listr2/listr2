@@ -10,4 +10,4 @@ Typeof silent renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:19
+src/interfaces/renderer.interface.ts:20

@@ -31,7 +31,7 @@ create a new renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:111
+src/interfaces/renderer.interface.ts:124
 
 ## Properties
 
@@ -59,7 +59,7 @@ A function to what to do on end of the render
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:109
+src/interfaces/renderer.interface.ts:122
 
 ___
 
@@ -81,7 +81,7 @@ A function to what to do on render
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:107
+src/interfaces/renderer.interface.ts:120
 
 ___
 
@@ -93,7 +93,7 @@ designate whether this renderer can work in non-tty environments
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:105
+src/interfaces/renderer.interface.ts:118
 
 ___
 
@@ -105,7 +105,7 @@ designate renderer global options that is specific to the current renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:101
+src/interfaces/renderer.interface.ts:114
 
 ___
 
@@ -117,4 +117,4 @@ designate renderer per task options that is specific to the current renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:103
+src/interfaces/renderer.interface.ts:116
