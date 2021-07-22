@@ -54,7 +54,7 @@ export class SimpleRenderer implements ListrRenderer {
     [ListrEventType.SUBTASK]: (task) => {
       if (task.hasTitle()) {
         // if Task has subtasks where we want to log the group indication
-        this.log(`${colorette.magenta(figures.pointer)} ${task.title}`)
+        this.log(`${colorette.blue(figures.pointer)} ${task.title}`)
       }
 
       if (task.hasSubtasks()) {
@@ -81,7 +81,7 @@ export class SimpleRenderer implements ListrRenderer {
         // error message
         const title = SimpleRenderer.formatTitle(task)
 
-        this.log(`${colorette.red(figures.warning)}${title}: ${event.data.error}`)
+        this.log(`${colorette.red(figures.cross)}${title}: ${event.data.error}`)
       } else if (event.data.skip) {
         // Skip message
         const title = SimpleRenderer.formatTitle(task)
