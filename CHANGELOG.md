@@ -1,3 +1,10 @@
+## [3.10.1](https://github.com/cenk1cenk2/listr2/compare/v3.10.0...v3.10.1) (2021-07-22)
+
+
+### Bug Fixes
+
+* update deps ([84f3529](https://github.com/cenk1cenk2/listr2/commit/84f3529270637d04341aacbc5039ed8b52237b2e))
+
 # [3.10.0](https://github.com/cenk1cenk2/listr2/compare/v3.9.0...v3.10.0) (2021-06-07)
 
 

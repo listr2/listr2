@@ -4,4 +4,4 @@
 
 ## Classes
 
-- [SilentRenderer](../classes/renderer_silent_renderer.silentrenderer.md)
+- [SilentRenderer](../classes/renderer_silent_renderer.SilentRenderer.md)

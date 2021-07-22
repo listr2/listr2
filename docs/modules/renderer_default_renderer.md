@@ -4,4 +4,4 @@
 
 ## Classes
 
-- [DefaultRenderer](../classes/renderer_default_renderer.defaultrenderer.md)
+- [DefaultRenderer](../classes/renderer_default_renderer.DefaultRenderer.md)
