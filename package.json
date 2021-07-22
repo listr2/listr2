@@ -38,7 +38,7 @@
     }
   },
   "lint-staged": {
-    "./*.{ts,js,tsx,jsx}": [
+    "./*.{ts,js,tsx,jsx,spec.ts}": [
       "prettier --loglevel warn --write",
       "eslint --fix"
     ],
