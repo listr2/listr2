@@ -84,7 +84,7 @@
     "@types/wrap-ansi": "^3.0.0",
     "delay": "^5.0.0",
     "enquirer": "^2.3.6",
-    "eslint": "^7.31.0",
+    "eslint": "^7.32.0",
     "husky-v4": "^4.3.8",
     "jest": "^27.0.6",
     "jest-mock-process": "^1.4.1",
