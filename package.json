@@ -88,7 +88,7 @@
     "husky-v4": "^4.3.8",
     "jest": "^27.0.6",
     "jest-mock-process": "^1.4.1",
-    "lint-staged": "^11.1.1",
+    "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "rewire": "^5.0.0",
     "rimraf": "^3.0.2",
