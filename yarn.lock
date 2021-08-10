@@ -309,12 +309,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/cz-cc@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.4.1.tgz#b68c887b37e47f59f69c7bbbbddbb2c2dd4b7412"
-  integrity sha512-htmIyt5UWHy0Luc3e4tBCHUlDSNF8pwHZ+XRL0Cbqthz59aZweUsfJebRegqsK8DzIKmtnplFwPDwITFwI1d1Q==
+"@cenk1cenk2/cz-cc@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.4.2.tgz#421563b0d98964abc5f546ef6a3da08290e9f62b"
+  integrity sha512-osh+k0P1YPFRtF6N+A9Epvt5YDVENfL1HstOAji6YQcvv0SCZCx7CGkW7REsWI+aZnOjT3t3tpijh5Ph8ImrrA==
   dependencies:
-    colorette "^1.2.2"
+    colorette "^1.3.0"
     commitizen "^4.2.4"
     conventional-commit-types "^3.0.0"
     enquirer "^2.3.6"
@@ -1586,6 +1586,11 @@ colorette@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
   integrity sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
+
+colorette@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.3.0.tgz#ff45d2f0edb244069d3b772adeb04fed38d0a0af"
+  integrity sha512-ecORCqbSFP7Wm8Y6lyqMJjexBQqXSF7SSeaTyGGphogUjBlFP9m9o08wy86HL2uB7fMTxtOUzLMk7ogKcxMg1w==
 
 colors@~1.2.1:
   version "1.2.5"
