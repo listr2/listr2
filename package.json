@@ -65,7 +65,7 @@
     "idle"
   ],
   "dependencies": {
-    "cli-truncate": "^2.1.0",
+    "cli-truncate": "^3.0.0",
     "colorette": "^1.2.2",
     "log-update": "^4.0.0",
     "p-map": "^4.0.0",
