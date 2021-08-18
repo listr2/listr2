@@ -93,7 +93,7 @@
     "rewire": "^5.0.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.4",
-    "ts-node": "^10.2.0",
+    "ts-node": "^10.2.1",
     "tsc-watch": "^4.4.0",
     "tsconfig-paths": "^3.10.1",
     "tscpaths": "^0.0.9",
