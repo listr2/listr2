@@ -76,7 +76,7 @@
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.4.2",
     "@cenk1cenk2/eslint-config": "^0.4.44",
-    "@microsoft/api-extractor": "^7.18.5",
+    "@microsoft/api-extractor": "^7.18.6",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.4.0",
     "@types/rewire": "^2.5.28",
