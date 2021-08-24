@@ -95,7 +95,7 @@
     "ts-jest": "^27.0.4",
     "ts-node": "^10.2.1",
     "tsc-watch": "^4.5.0",
-    "tsconfig-paths": "^3.10.1",
+    "tsconfig-paths": "^3.11.0",
     "tscpaths": "^0.0.9",
     "typedoc": "^0.21.6",
     "typedoc-plugin-markdown": "^3.10.4",
