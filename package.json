@@ -76,7 +76,7 @@
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.4.2",
     "@cenk1cenk2/eslint-config": "^0.4.45",
-    "@microsoft/api-extractor": "^7.18.6",
+    "@microsoft/api-extractor": "^7.18.7",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.4.0",
     "@types/rewire": "^2.5.28",
@@ -99,7 +99,7 @@
     "tscpaths": "^0.0.9",
     "typedoc": "^0.21.6",
     "typedoc-plugin-markdown": "^3.10.4",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.2"
   },
   "peerDependencies": {
     "enquirer": ">= 2.3.0 < 3"
