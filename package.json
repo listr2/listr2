@@ -32,7 +32,7 @@
   },
   "simple-git-hooks": {
     "pre-commit": "yarn exec lint-staged",
-    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+    "prepare-commit-msg": "[ -t 1 ] && exec < /dev/tty && git cz --hook || true",
     "pre-push": "yarn test && yarn api-extractor"
   },
   "lint-staged": {
