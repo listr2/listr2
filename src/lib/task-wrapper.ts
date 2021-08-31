@@ -58,11 +58,13 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     if (error instanceof ListrError) {
       for (const err of error.errors) {
         this.errors.push(err)
-        this.task.message$ = { error: err.message || this.task?.title || 'Task with no title.' }
+
+        this.task.message$ = { error: err.message ?? this.task?.title ?? 'Task with no title.' }
       }
     } else {
       this.errors.push(error)
-      this.task.message$ = { error: error.message || this.task?.title || 'Task with no title.' }
+
+      this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }
     }
   }
 

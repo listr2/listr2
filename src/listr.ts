@@ -22,7 +22,7 @@ import { getRenderer } from '@utils/renderer'
  */
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
-  public err: ListrError[] = []
+  public err: ListrError
   public ctx: Ctx
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
@@ -48,11 +48,12 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     )
 
     // define parallel options
-    this.concurrency = 1
     if (this.options.concurrent === true) {
       this.concurrency = Infinity
     } else if (typeof this.options.concurrent === 'number') {
       this.concurrency = this.options.concurrent
+    } else {
+      this.concurrency = 1
     }
 
     // get renderer class
@@ -80,7 +81,9 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
               task.state$ = ListrTaskState.FAILED
             }
           })
+
           this.renderer.end(new Error('Interrupted.'))
+
           process.exit(127)
         })
         .setMaxListeners(0)
@@ -133,15 +136,16 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
       // catch errors do which do not crash through exitOnError: false
       if (errors.length > 0) {
-        this.err.push(new ListrError('Task failed without crashing.', errors, this.ctx))
+        this.err = new ListrError('Task failed without crashing.', errors, this.ctx)
       }
 
       this.renderer.end()
     } catch (err: any) {
-      this.err.push(new ListrError(typeof err?.message === 'string' ? err.message : err, [ err ], this.ctx))
+      this.err = new ListrError(typeof err?.message === 'string' ? err.message : err, [ err ], this.ctx)
 
       if (this.options.exitOnError !== false) {
         this.renderer.end(err)
+
         // Do not exit when explicitly set to `false`
         throw err
       }
