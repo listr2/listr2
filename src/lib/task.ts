@@ -282,18 +282,18 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
           await handleResult(this.task(context, wrapper))
 
           break
-        } catch (e) {
+        } catch (err: any) {
           if (retries !== retryCount) {
-            this.retry = { count: retries, withError: e }
+            this.retry = { count: retries, withError: err }
             this.message$ = { retry: this.retry }
             this.title$ = this.initialTitle
             this.output = undefined
 
-            wrapper.report(e)
+            wrapper.report(err)
 
             this.state$ = ListrTaskState.RETRY
           } else {
-            throw e
+            throw err
           }
         }
       }
@@ -302,7 +302,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         this.message$ = { duration: Date.now() - startTime }
         this.state$ = ListrTaskState.COMPLETED
       }
-    } catch (error) {
+    } catch (error: any) {
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
@@ -321,7 +321,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
           this.state$ = ListrTaskState.ROLLED_BACK
 
           this.message$ = { rollback: this.title }
-        } catch (err) {
+        } catch (err: any) {
           this.state$ = ListrTaskState.FAILED
 
           wrapper.report(err)

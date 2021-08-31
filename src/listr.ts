@@ -137,13 +137,13 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       }
 
       this.renderer.end()
-    } catch (error) {
-      this.err.push(new ListrError(typeof error?.message === 'string' ? error.message : error, [ error ], this.ctx))
+    } catch (err: any) {
+      this.err.push(new ListrError(typeof err?.message === 'string' ? err.message : err, [ err ], this.ctx))
 
       if (this.options.exitOnError !== false) {
-        this.renderer.end(error)
+        this.renderer.end(err)
         // Do not exit when explicitly set to `false`
-        throw error
+        throw err
       }
     }
 

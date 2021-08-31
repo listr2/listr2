@@ -57,7 +57,7 @@ describe('show retry', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -92,7 +92,7 @@ describe('show retry', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
