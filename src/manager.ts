@@ -81,10 +81,7 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
     const ctx = await task.run()
 
     // reset error queue
-    this.err = []
-
-    // add errors to manager
-    this.err = [ ...this.err, ...task.err ]
+    this.err = task.err
 
     return ctx
   }

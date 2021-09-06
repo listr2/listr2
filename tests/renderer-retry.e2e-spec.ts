@@ -80,7 +80,7 @@ describe('show retry', () => {
               if (retry?.count === 3) {
                 task.title = 'Successed at 3th try.'
               } else {
-                throw Error('not enough')
+                throw new Error('not enough')
               }
             },
             retry: 3

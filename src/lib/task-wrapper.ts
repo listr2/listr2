@@ -2,11 +2,12 @@ import * as through from 'through'
 
 import { BELL_REGEX, CLEAR_LINE_REGEX } from '@constants/clearline-regex.constants'
 import { ListrTaskState } from '@constants/state.constants'
-import { ListrError } from '@interfaces/listr-error.interface'
+import { ListrError, ListrErrorTypes } from '@interfaces/listr-error.interface'
 import { ListrBaseClassOptions, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
 import { ListrRendererFactory } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
 import { Listr } from '@root/listr'
+import { cloneObject } from '@utils/general'
 import { createPrompt, destroyPrompt } from '@utils/prompt'
 import { PromptOptions } from '@utils/prompt.interface'
 
@@ -14,7 +15,7 @@ import { PromptOptions } from '@utils/prompt.interface'
  * Extend the task to have more functionality while accesing from the outside.
  */
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
-  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
+  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError<Ctx>[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
 
   /** Change the title of the current task. */
   set title (data: string) {
@@ -53,19 +54,10 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Report a error in process for error collection. */
-  public report (error: Error | ListrError): void {
-    /* istanbul ignore if */
-    if (error instanceof ListrError) {
-      for (const err of error.errors) {
-        this.errors.push(err)
+  public report (error: Error, type: ListrErrorTypes): void {
+    this.errors.push(new ListrError<Ctx>(error, type, cloneObject(this.task.listr.ctx), this.task))
 
-        this.task.message$ = { error: err.message ?? this.task?.title ?? 'Task with no title.' }
-      }
-    } else {
-      this.errors.push(error)
-
-      this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }
-    }
+    this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }
   }
 
   /** Skip current task. */
@@ -73,7 +65,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     this.task.state$ = ListrTaskState.SKIPPED
 
     if (message) {
-      this.task.message$ = { skip: message || this.task?.title || 'Task with no title.' }
+      this.task.message$ = { skip: message ?? this.task?.title ?? 'Task with no title.' }
     }
   }
 
@@ -106,11 +98,9 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    */
   public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
     return through((chunk: string) => {
-      const pattern = new RegExp(CLEAR_LINE_REGEX, 'gmi')
-
       chunk = chunk.toString()
 
-      chunk = chunk.replace(pattern, '')
+      chunk = chunk.replace(new RegExp(CLEAR_LINE_REGEX, 'gmi'), '')
       chunk = chunk.replace(new RegExp(BELL_REGEX, 'gmi'), '')
 
       if (chunk !== '') {

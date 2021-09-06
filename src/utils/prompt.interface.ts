@@ -18,7 +18,7 @@ export type PromptOptions<T extends boolean = false> =
     ? PromptOptionsType<string> & { name: string | (() => string) }
     : PromptOptionsType<string>)
 
-export type Unionize<T extends Record<string, unknown>> = {
+export type Unionize<T extends Record<PropertyKey, unknown>> = {
   [P in keyof T]: T[P]
 }[keyof T]
 
@@ -128,9 +128,9 @@ export type PromptTypes =
   | 'Text'
   | 'Toggle'
 
-export type PromptOptionsType<T> = T extends keyof PromptOptionsMap ? PromptOptionsMap[T] : T extends string ? BasePromptOptions & Record<string, unknown> : any
+export type PromptOptionsType<T> = T extends keyof PromptOptionsMap ? PromptOptionsMap[T] : T extends string ? BasePromptOptions & Record<PropertyKey, unknown> : any
 
-export declare class PromptOptionsMap implements Record<PromptTypes, Record<string, any>> {
+export declare class PromptOptionsMap implements Record<PromptTypes, Record<PropertyKey, any>> {
   AutoComplete: ArrayPromptOptions
   BasicAuth: StringPromptOptions
   Confirm: BooleanPromptOptions
