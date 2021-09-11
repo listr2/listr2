@@ -19,52 +19,63 @@ import { Listr } from '@root/listr'
 /** Listr Default Context */
 export type ListrContext = any | undefined
 
+/**
+ * ListrTask.
+ *
+ * Defines the task, conditions and options to run a specific task in the listr.
+ */
 export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
   /**
    * Title of the task.
    *
    * Give this task a title if you want to track it by name in the current renderer.
-   * Tasks without a title will hide themselves in the default renderer and useful for running a background instance.
+   *
+   * Tasks without a title will hide in the default renderer and are useful for running a background instance.
+   * On verbose renderer, state changes from these tasks will log as 'Task without a title.'
    */
   title?: string
   /**
    * The task itself.
    *
-   * Task can be a sync or async function, an Observable or a Stream.
+   * Task can be a sync or async function, an Observable, or a Stream.
+   * Task will be executed, if the certain criteria of the state are met and whenever the time for that specific task has come.
    */
   task: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
   /**
-   * Runs a specific event if the current task or any of the subtasks has failed.
-   * Mostly useful for rollback purposes for subtasks.
-   */
-  rollback?: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
-  /**
-   * Adds a couple of retries to the task if the task fails
-   */
-  retry?: number
-  /**
    * Skip this task depending on the context.
    *
-   * The function that has been passed in will be evaluated at the runtime when task tries to initially run.
+   * The function that has been passed in will be evaluated at the runtime when the task tries to initially run.
    */
   skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean | string>)
   /**
    * Enable a task depending on the context.
    *
-   * The function that has been passed in will be evaluated at the initial creation of the Listr class.
+   * The function that has been passed in will be evaluated at the initial creation of the Listr class for rendering purposes,
+   * as well as re-evaluated when the time for that specific task has come.
    */
   enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
   /**
-   * Per task options, depending on the selected renderer.
+   * Adds the given number of retry attempts to the task if the task fails.
+   */
+  retry?: number
+  /**
+   * Runs a specific event if the current task or any of the subtasks has failed.
    *
-   * This options depend on the implementation of selected renderer. If selected renderer has no options it will
+   * Mostly useful for rollback purposes for subtasks.
+   * But can also be useful whenever a task is failed and some measures have to be taken to ensure the state is not changed.
+   */
+  rollback?: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  /**
+   * Set exit on the error option from task-level instead of setting it for all the subtasks.
+   */
+  exitOnError?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
+  /**
+   * Per task options, that depends on the selected renderer.
+   *
+   * These options depend on the implementation of the selected renderer. If the selected renderer has no options it will
    * be displayed as never.
    */
   options?: ListrGetRendererTaskOptions<Renderer>
-  /**
-   * Set exit on error option from task level instead of setting it for all the subtasks.
-   */
-  exitOnError?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
 }
 
 /**
@@ -72,48 +83,57 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
  */
 export interface ListrOptions<Ctx = ListrContext> {
   /**
-   * Concurrency will set how many tasks will be run in parallel.
+   * To inject a context through this options wrapper. Context can also be defined in run time.
+   *
+   * @default {}
+   */
+  ctx?: Ctx
+  /**
+   * Concurrency sets how many tasks will be run at the same time in parallel.
    *
    * @default false > Default is to run everything synchronously.
    *
    * `true` will set it to `Infinity`, `false` will set it to synchronous.
-   * If you pass in a `number` it will limit it at that number.
+   *
+   * If you pass in a `number` it will limit it to that number.
    */
   concurrent?: boolean | number
   /**
-   * Determine the behavior of exiting on errors.
+   * Determine the default behavior of exiting on errors.
    *
    * @default true > exit on any error coming from the tasks.
    */
   exitOnError?: boolean
   /**
-   * Determine the behaviour of exiting after rollback actions.
+   * Determine the behavior of exiting after rollback actions.
+   *
+   * This is independent of exitOnError, since failure of a rollback can be a more critical operation comparing to
+   * failing a single task.
    *
    * @default true > exit after rolling back tasks
    */
   exitAfterRollback?: boolean
   /**
-   * To inject a context through this options wrapper. Mostly useful when combined with manager.
-   * @default any
-   */
-  ctx?: Ctx
-  /**
-   * By default, Listr2 will track SIGINIT signal to update the renderer one last time before compeletely failing.
+   * By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
+   *
    * @default true
    */
   registerSignalListeners?: boolean
   /**
-   * Determine the certain condition required to use the non-tty renderer.
+   * Determine the certain condition required to use the non-TTY renderer.
+   *
    * @default null > handled internally
    */
   rendererFallback?: boolean | (() => boolean)
   /**
    * Determine the certain condition required to use the silent renderer.
+   *
    * @default null > handled internally
    */
   rendererSilent?: boolean | (() => boolean)
   /**
    * Disabling the color, useful for tests and such.
+   *
    * @default false
    */
   disableColor?: boolean
