@@ -72,7 +72,7 @@
     "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^1.4.3",
+    "@cenk1cenk2/cz-cc": "^1.4.4",
     "@cenk1cenk2/eslint-config": "^0.4.46",
     "@microsoft/api-extractor": "^7.18.7",
     "@types/jest": "^27.0.1",
@@ -95,9 +95,9 @@
     "tsc-watch": "^4.5.0",
     "tsconfig-paths": "^3.11.0",
     "tscpaths": "^0.0.9",
-    "typedoc": "^0.21.9",
+    "typedoc": "^0.22.2",
     "typedoc-plugin-markdown": "^3.10.4",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.3"
   },
   "peerDependencies": {
     "enquirer": ">= 2.3.0 < 3"
