@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrGetRendererTaskOptions
-
 # Type alias: ListrGetRendererTaskOptions<T\>
 
 [index](../modules/index.md).ListrGetRendererTaskOptions
@@ -16,4 +14,4 @@ Returns renderer per task options depending on the renderer type.
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:79
+[src/interfaces/renderer.interface.ts:79](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L79)

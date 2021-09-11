@@ -1,5 +1,3 @@
-[listr2](../README.md) / renderer/default.renderer
-
 # Module: renderer/default.renderer
 
 ## Classes

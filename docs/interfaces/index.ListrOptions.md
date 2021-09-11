@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrOptions
-
 # Interface: ListrOptions<Ctx\>
 
 [index](../modules/index.md).ListrOptions
@@ -27,49 +25,7 @@ If you pass in a `number` it will limit it at that number.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:82
-
-___
-
-### ctx
-
-• `Optional` **ctx**: `Ctx`
-
-To inject a context through this options wrapper. Mostly useful when combined with manager.
-
-**`default`** any
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:99
-
-___
-
-### disableColor
-
-• `Optional` **disableColor**: `boolean`
-
-Disabling the color, useful for tests and such.
-
-**`default`** false
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:119
-
-___
-
-### exitAfterRollback
-
-• `Optional` **exitAfterRollback**: `boolean`
-
-Determine the behaviour of exiting after rollback actions.
-
-**`default`** true > exit after rolling back tasks
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:94
+[src/interfaces/listr.interface.ts:82](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L82)
 
 ___
 
@@ -83,7 +39,91 @@ Determine the behavior of exiting on errors.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:88
+[src/interfaces/listr.interface.ts:88](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L88)
+
+___
+
+### exitAfterRollback
+
+• `Optional` **exitAfterRollback**: `boolean`
+
+Determine the behaviour of exiting after rollback actions.
+
+**`default`** true > exit after rolling back tasks
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:94](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L94)
+
+___
+
+### ctx
+
+• `Optional` **ctx**: `Ctx`
+
+To inject a context through this options wrapper. Mostly useful when combined with manager.
+
+**`default`** any
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:99](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L99)
+
+___
+
+### registerSignalListeners
+
+• `Optional` **registerSignalListeners**: `boolean`
+
+By default, Listr2 will track SIGINIT signal to update the renderer one last time before compeletely failing.
+
+**`default`** true
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:104](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L104)
+
+___
+
+### rendererFallback
+
+• `Optional` **rendererFallback**: `boolean` \| () => `boolean`
+
+Determine the certain condition required to use the non-tty renderer.
+
+**`default`** null > handled internally
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:109](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L109)
+
+___
+
+### rendererSilent
+
+• `Optional` **rendererSilent**: `boolean` \| () => `boolean`
+
+Determine the certain condition required to use the silent renderer.
+
+**`default`** null > handled internally
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:114](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L114)
+
+___
+
+### disableColor
+
+• `Optional` **disableColor**: `boolean`
+
+Disabling the color, useful for tests and such.
+
+**`default`** false
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:119](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L119)
 
 ___
 
@@ -101,46 +141,4 @@ Inject data directly to TaskWrapper.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:123
-
-___
-
-### registerSignalListeners
-
-• `Optional` **registerSignalListeners**: `boolean`
-
-By default, Listr2 will track SIGINIT signal to update the renderer one last time before compeletely failing.
-
-**`default`** true
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:104
-
-___
-
-### rendererFallback
-
-• `Optional` **rendererFallback**: `boolean` \| () => `boolean`
-
-Determine the certain condition required to use the non-tty renderer.
-
-**`default`** null > handled internally
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:109
-
-___
-
-### rendererSilent
-
-• `Optional` **rendererSilent**: `boolean` \| () => `boolean`
-
-Determine the certain condition required to use the silent renderer.
-
-**`default`** null > handled internally
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:114
+[src/interfaces/listr.interface.ts:123](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L123)

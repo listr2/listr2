@@ -1,0 +1,15 @@
+{
+  "entryPoints": [
+    "./src/index.ts",
+    "./src/renderer/default.renderer.ts",
+    "./src/renderer/simple.renderer.ts",
+    "./src/renderer/verbose.renderer.ts",
+    "./src/renderer/silent.renderer.ts"
+  ],
+  "tsconfig": "./tsconfig.build.json",
+  "readme": "none",
+  "allReflectionsHaveOwnDocument": true,
+  "categorizeByGroup": false,
+  "sort": ["source-order"],
+  "out": "docs"
+}

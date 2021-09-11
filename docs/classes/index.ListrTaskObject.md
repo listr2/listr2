@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrTaskObject
-
 # Class: ListrTaskObject<Ctx, Renderer\>
 
 [index](../modules/index.md).ListrTaskObject
@@ -19,36 +17,6 @@ Create a task from the given set of variables and make it runnable.
 
   ↳ **`ListrTaskObject`**
 
-## Constructors
-
-### constructor
-
-• **new ListrTaskObject**<`Ctx`, `Renderer`\>(`listr`, `tasks`, `options`, `rendererOptions`)
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `Ctx` | `Ctx` |
-| `Renderer` | extends typeof [`ListrRenderer`](index.ListrRenderer.md) |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `listr` | [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\> |
-| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\> |
-| `options` | [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\> |
-| `rendererOptions` | [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\> |
-
-#### Overrides
-
-Subject&lt;ListrEvent\&gt;.constructor
-
-#### Defined in
-
-src/lib/task.ts:65
-
 ## Properties
 
 ### \_isScalar
@@ -67,243 +35,6 @@ node_modules/rxjs/internal/Observable.d.ts:15
 
 ___
 
-### closed
-
-• **closed**: `boolean`
-
-#### Inherited from
-
-Subject.closed
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:24
-
-___
-
-### enabled
-
-• `Private` **enabled**: `boolean`
-
-#### Defined in
-
-src/lib/task.ts:62
-
-___
-
-### enabledFn
-
-• `Private` **enabledFn**: `boolean` \| (`ctx`: `Ctx`) => `boolean` \| `Promise`<`boolean`\>
-
-#### Defined in
-
-src/lib/task.ts:63
-
-___
-
-### hasError
-
-• **hasError**: `boolean`
-
-#### Inherited from
-
-Subject.hasError
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:26
-
-___
-
-### id
-
-• **id**: `string`
-
-Unique id per task, randomly generated in the uuid v4 format
-
-#### Defined in
-
-src/lib/task.ts:21
-
-___
-
-### initialTitle
-
-• `Optional` **initialTitle**: `string`
-
-Untouched unchanged title of the task
-
-#### Defined in
-
-src/lib/task.ts:31
-
-___
-
-### isStopped
-
-• **isStopped**: `boolean`
-
-#### Inherited from
-
-Subject.isStopped
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:25
-
-___
-
-### listr
-
-• **listr**: [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>
-
-___
-
-### message
-
-• **message**: `Object` = `{}`
-
-A channel for messages.
-
-This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
-
-#### Type declaration
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `duration?` | `number` | Run time of the task, if it has been successfully resolved. |
-| `error?` | `string` | Error message of the task, if it has been failed. |
-| `retry?` | `Object` | Retry messages |
-| `retry.count` | `number` | - |
-| `retry.withError?` | `any` | - |
-| `rollback?` | `string` | Rollback message of the task, if the rollback finishes |
-| `skip?` | `string` | Skip message of the task, if it has been skipped. |
-
-#### Defined in
-
-src/lib/task.ts:44
-
-___
-
-### observers
-
-• **observers**: `Observer`<[`ListrEvent`](../types/index.ListrEvent.md)\>[]
-
-#### Inherited from
-
-Subject.observers
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:23
-
-___
-
-### operator
-
-• **operator**: `Operator`<`any`, [`ListrEvent`](../types/index.ListrEvent.md)\>
-
-**`deprecated`** This is an internal implementation detail, do not use.
-
-#### Inherited from
-
-Subject.operator
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:19
-
-___
-
-### options
-
-• **options**: [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\>
-
-___
-
-### output
-
-• `Optional` **output**: `string`
-
-Output data from the task.
-
-#### Defined in
-
-src/lib/task.ts:33
-
-___
-
-### prompt
-
-• **prompt**: [`PromptError`](index.PromptError.md) \| [`PromptInstance`](../interfaces/index.PromptInstance.md)
-
-#### Defined in
-
-src/lib/task.ts:61
-
-___
-
-### renderHook$
-
-• **renderHook$**: `Subject`<`void`\>
-
-This will be triggered each time a new render should happen.
-
-#### Defined in
-
-src/lib/task.ts:59
-
-___
-
-### rendererOptions
-
-• **rendererOptions**: [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\>
-
-___
-
-### rendererTaskOptions
-
-• **rendererTaskOptions**: [`ListrGetRendererTaskOptions`](../types/index.ListrGetRendererTaskOptions.md)<`Renderer`\>
-
-Per task options for the current renderer of the task.
-
-#### Defined in
-
-src/lib/task.ts:57
-
-___
-
-### retry
-
-• `Optional` **retry**: `Object`
-
-Current retry number of the task if retrying
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `count` | `number` |
-| `withError?` | `any` |
-
-#### Defined in
-
-src/lib/task.ts:37
-
-___
-
-### skip
-
-• **skip**: `string` \| `boolean` \| (`ctx`: `Ctx`) => `string` \| `boolean` \| `Promise`<`string` \| `boolean`\>
-
-Skip current task.
-
-#### Defined in
-
-src/lib/task.ts:35
-
-___
-
 ### source
 
 • **source**: `Observable`<`any`\>
@@ -317,109 +48,6 @@ Subject.source
 #### Defined in
 
 node_modules/rxjs/internal/Observable.d.ts:17
-
-___
-
-### state
-
-• **state**: `string`
-
-The current state of the task.
-
-#### Defined in
-
-src/lib/task.ts:23
-
-___
-
-### subtasks
-
-• **subtasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, `any`\>[]
-
-Extend current task with multiple subtasks.
-
-#### Defined in
-
-src/lib/task.ts:27
-
-___
-
-### task
-
-• **task**: (`ctx`: `Ctx`, `task`: [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>) => `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-The task object itself, to further utilize it.
-
-#### Type declaration
-
-▸ (`ctx`, `task`): `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-The task object itself, to further utilize it.
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `ctx` | `Ctx` |
-| `task` | [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
-
-##### Returns
-
-`void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-#### Defined in
-
-src/lib/task.ts:25
-
-___
-
-### tasks
-
-• **tasks**: [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\>
-
-___
-
-### thrownError
-
-• **thrownError**: `any`
-
-#### Inherited from
-
-Subject.thrownError
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:27
-
-___
-
-### title
-
-• `Optional` **title**: `string`
-
-Title of the task
-
-#### Defined in
-
-src/lib/task.ts:29
-
-___
-
-### create
-
-▪ `Static` **create**: `Function`
-
-**`nocollapse`**
-
-**`deprecated`** use new Subject() instead
-
-#### Inherited from
-
-Subject.create
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:32
 
 ___
 
@@ -647,106 +275,387 @@ Subject.throw
 
 node_modules/rxjs/internal/Observable.d.ts:76
 
-## Accessors
+___
 
-### message$
+### observers
 
-• `set` **message$**(`data`): `void`
+• **observers**: `Observer`<[`ListrEvent`](../types/index.ListrEvent.md)\>[]
 
-#### Parameters
+#### Inherited from
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `data` | `Object` | - |
-| `data.duration?` | `number` | Run time of the task, if it has been successfully resolved. |
-| `data.error?` | `string` | Error message of the task, if it has been failed. |
-| `data.retry?` | `Object` | Retry messages |
-| `data.retry.count` | `number` | - |
-| `data.retry.withError?` | `any` | - |
-| `data.rollback?` | `string` | Rollback message of the task, if the rollback finishes |
-| `data.skip?` | `string` | Skip message of the task, if it has been skipped. |
-
-#### Returns
-
-`void`
+Subject.observers
 
 #### Defined in
 
-src/lib/task.ts:116
+node_modules/rxjs/internal/Subject.d.ts:23
 
 ___
 
-### output$
+### create
 
-• `set` **output$**(`data`): `void`
+▪ `Static` **create**: `Function`
 
-#### Parameters
+**`nocollapse`**
 
-| Name | Type |
-| :------ | :------ |
-| `data` | `string` |
+**`deprecated`** use new Subject() instead
 
-#### Returns
+#### Inherited from
 
-`void`
+Subject.create
 
 #### Defined in
 
-src/lib/task.ts:107
+node_modules/rxjs/internal/Subject.d.ts:32
 
 ___
 
-### state$
+### operator
 
-• `set` **state$**(`state`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `state` | [`ListrTaskState`](../enums/index.ListrTaskState.md) |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/lib/task.ts:89
-
-___
-
-### title$
-
-• `set` **title$**(`title`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `title` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/lib/task.ts:125
-
-## Methods
-
-### \_subscribe
-
-▸ **_subscribe**(`subscriber`): `Subscription`
+• **operator**: `Operator`<`any`, [`ListrEvent`](../types/index.ListrEvent.md)\>
 
 **`deprecated`** This is an internal implementation detail, do not use.
 
+#### Inherited from
+
+Subject.operator
+
+#### Defined in
+
+node_modules/rxjs/internal/Observable.d.ts:19
+
+___
+
+### closed
+
+• **closed**: `boolean`
+
+#### Inherited from
+
+Subject.closed
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:24
+
+___
+
+### isStopped
+
+• **isStopped**: `boolean`
+
+#### Inherited from
+
+Subject.isStopped
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:25
+
+___
+
+### hasError
+
+• **hasError**: `boolean`
+
+#### Inherited from
+
+Subject.hasError
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:26
+
+___
+
+### thrownError
+
+• **thrownError**: `any`
+
+#### Inherited from
+
+Subject.thrownError
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:27
+
+___
+
+### id
+
+• **id**: `string`
+
+Unique id per task, randomly generated in the uuid v4 format
+
+#### Defined in
+
+[src/lib/task.ts:21](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L21)
+
+___
+
+### state
+
+• **state**: `string`
+
+The current state of the task.
+
+#### Defined in
+
+[src/lib/task.ts:23](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L23)
+
+___
+
+### task
+
+• **task**: (`ctx`: `Ctx`, `task`: [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>) => `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+The task object itself, to further utilize it.
+
+#### Type declaration
+
+▸ (`ctx`, `task`): `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+The task object itself, to further utilize it.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ctx` | `Ctx` |
+| `task` | [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
+
+##### Returns
+
+`void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+#### Defined in
+
+[src/lib/task.ts:25](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L25)
+
+___
+
+### subtasks
+
+• **subtasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, `any`\>[]
+
+Extend current task with multiple subtasks.
+
+#### Defined in
+
+[src/lib/task.ts:27](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L27)
+
+___
+
+### title
+
+• `Optional` **title**: `string`
+
+Title of the task
+
+#### Defined in
+
+[src/lib/task.ts:29](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L29)
+
+___
+
+### initialTitle
+
+• `Optional` **initialTitle**: `string`
+
+Untouched unchanged title of the task
+
+#### Defined in
+
+[src/lib/task.ts:31](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L31)
+
+___
+
+### output
+
+• `Optional` **output**: `string`
+
+Output data from the task.
+
+#### Defined in
+
+[src/lib/task.ts:33](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L33)
+
+___
+
+### skip
+
+• **skip**: `string` \| `boolean` \| (`ctx`: `Ctx`) => `string` \| `boolean` \| `Promise`<`string` \| `boolean`\>
+
+Skip current task.
+
+#### Defined in
+
+[src/lib/task.ts:35](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L35)
+
+___
+
+### retry
+
+• `Optional` **retry**: `Object`
+
+Current retry number of the task if retrying
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `count` | `number` |
+| `withError?` | `any` |
+
+#### Defined in
+
+[src/lib/task.ts:37](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L37)
+
+___
+
+### message
+
+• **message**: `Object` = `{}`
+
+A channel for messages.
+
+This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `duration?` | `number` | Run time of the task, if it has been successfully resolved. |
+| `error?` | `string` | Error message of the task, if it has been failed. |
+| `skip?` | `string` | Skip message of the task, if it has been skipped. |
+| `rollback?` | `string` | Rollback message of the task, if the rollback finishes |
+| `retry?` | `Object` | Retry messages |
+| `retry.count` | `number` | - |
+| `retry.withError?` | `any` | - |
+
+#### Defined in
+
+[src/lib/task.ts:44](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L44)
+
+___
+
+### rendererTaskOptions
+
+• **rendererTaskOptions**: [`ListrGetRendererTaskOptions`](../types/index.ListrGetRendererTaskOptions.md)<`Renderer`\>
+
+Per task options for the current renderer of the task.
+
+#### Defined in
+
+[src/lib/task.ts:57](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L57)
+
+___
+
+### renderHook$
+
+• **renderHook$**: `Subject`<`void`\>
+
+This will be triggered each time a new render should happen.
+
+#### Defined in
+
+[src/lib/task.ts:59](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L59)
+
+___
+
+### prompt
+
+• **prompt**: [`PromptError`](index.PromptError.md) \| [`PromptInstance`](../interfaces/index.PromptInstance.md)
+
+#### Defined in
+
+[src/lib/task.ts:61](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L61)
+
+___
+
+### enabled
+
+• `Private` **enabled**: `boolean`
+
+#### Defined in
+
+[src/lib/task.ts:62](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L62)
+
+___
+
+### enabledFn
+
+• `Private` **enabledFn**: `boolean` \| (`ctx`: `Ctx`) => `boolean` \| `Promise`<`boolean`\>
+
+#### Defined in
+
+[src/lib/task.ts:63](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L63)
+
+___
+
+### listr
+
+• **listr**: [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>
+
+___
+
+### tasks
+
+• **tasks**: [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\>
+
+___
+
+### options
+
+• **options**: [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\>
+
+___
+
+### rendererOptions
+
+• **rendererOptions**: [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\>
+
+## Constructors
+
+### constructor
+
+• **new ListrTaskObject**<`Ctx`, `Renderer`\>(`listr`, `tasks`, `options`, `rendererOptions`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | `Ctx` |
+| `Renderer` | extends typeof [`ListrRenderer`](index.ListrRenderer.md) |
+
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `subscriber` | `Subscriber`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
+| `listr` | [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\> |
+| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\> |
+| `options` | [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\> |
+| `rendererOptions` | [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\> |
+
+#### Overrides
+
+Subject&lt;ListrEvent\&gt;.constructor
+
+#### Defined in
+
+[src/lib/task.ts:65](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L65)
+
+## Methods
+
+### subscribe
+
+▸ **subscribe**(`observer?`): `Subscription`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `observer?` | `PartialObserver`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
 
 #### Returns
 
@@ -754,125 +663,105 @@ src/lib/task.ts:125
 
 #### Inherited from
 
-Subject.\_subscribe
+Subject.subscribe
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:41
+node_modules/rxjs/internal/Observable.d.ts:47
 
-___
+▸ **subscribe**(`next`, `error`, `complete`): `Subscription`
 
-### \_trySubscribe
-
-▸ **_trySubscribe**(`subscriber`): `TeardownLogic`
-
-**`deprecated`** This is an internal implementation detail, do not use.
+**`deprecated`** Use an observer instead of a complete callback
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `subscriber` | `Subscriber`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
+| `next` | ``null`` |
+| `error` | ``null`` |
+| `complete` | () => `void` |
 
 #### Returns
 
-`TeardownLogic`
+`Subscription`
 
 #### Inherited from
 
-Subject.\_trySubscribe
+Subject.subscribe
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:39
+node_modules/rxjs/internal/Observable.d.ts:49
 
-___
+▸ **subscribe**(`next`, `error`, `complete?`): `Subscription`
 
-### asObservable
-
-▸ **asObservable**(): `Observable`<[`ListrEvent`](../types/index.ListrEvent.md)\>
-
-Creates a new Observable with this Subject as the source. You can do this
-to create customize Observer-side logic of the Subject and conceal it from
-code that uses the Observable.
-
-#### Returns
-
-`Observable`<[`ListrEvent`](../types/index.ListrEvent.md)\>
-
-Observable that the Subject casts to
-
-#### Inherited from
-
-Subject.asObservable
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:48
-
-___
-
-### check
-
-▸ **check**(`ctx`): `Promise`<`void`\>
-
-A function to check whether this task should run at all via enable.
+**`deprecated`** Use an observer instead of an error callback
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ctx` | `Ctx` |
+| `next` | ``null`` |
+| `error` | (`error`: `any`) => `void` |
+| `complete?` | () => `void` |
 
 #### Returns
 
-`Promise`<`void`\>
-
-#### Defined in
-
-src/lib/task.ts:137
-
-___
-
-### complete
-
-▸ **complete**(): `void`
-
-#### Returns
-
-`void`
+`Subscription`
 
 #### Inherited from
 
-Subject.complete
+Subject.subscribe
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:36
+node_modules/rxjs/internal/Observable.d.ts:51
 
-___
+▸ **subscribe**(`next`, `error`, `complete`): `Subscription`
 
-### error
-
-▸ **error**(`err`): `void`
+**`deprecated`** Use an observer instead of a complete callback
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `err` | `any` |
+| `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
+| `error` | ``null`` |
+| `complete` | () => `void` |
 
 #### Returns
 
-`void`
+`Subscription`
 
 #### Inherited from
 
-Subject.error
+Subject.subscribe
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:35
+node_modules/rxjs/internal/Observable.d.ts:53
+
+▸ **subscribe**(`next?`, `error?`, `complete?`): `Subscription`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `next?` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
+| `error?` | (`error`: `any`) => `void` |
+| `complete?` | () => `void` |
+
+#### Returns
+
+`Subscription`
+
+#### Inherited from
+
+Subject.subscribe
+
+#### Defined in
+
+node_modules/rxjs/internal/Observable.d.ts:54
 
 ___
 
@@ -903,236 +792,6 @@ Subject.forEach
 #### Defined in
 
 node_modules/rxjs/internal/Observable.d.ts:64
-
-___
-
-### hasFailed
-
-▸ **hasFailed**(): `boolean`
-
-Returns whether this task has been failed.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:170
-
-___
-
-### hasRolledBack
-
-▸ **hasRolledBack**(): `boolean`
-
-Returns whether the rollback action was successful.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:180
-
-___
-
-### hasSubtasks
-
-▸ **hasSubtasks**(): `boolean`
-
-Returns whether this task has subtasks.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:150
-
-___
-
-### hasTitle
-
-▸ **hasTitle**(): `boolean`
-
-Returns whether this task actually has a title.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:195
-
-___
-
-### isCompleted
-
-▸ **isCompleted**(): `boolean`
-
-Returns whether this task has been completed.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:165
-
-___
-
-### isEnabled
-
-▸ **isEnabled**(): `boolean`
-
-Returns whether enabled function resolves to true.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:190
-
-___
-
-### isPending
-
-▸ **isPending**(): `boolean`
-
-Returns whether this task is in progress.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:155
-
-___
-
-### isPrompt
-
-▸ **isPrompt**(): `boolean`
-
-Returns whether this task has a prompt inside.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:200
-
-___
-
-### isRetrying
-
-▸ **isRetrying**(): `boolean`
-
-Returns whether this task has an actively retrying task going on.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:185
-
-___
-
-### isRollingBack
-
-▸ **isRollingBack**(): `boolean`
-
-Returns whether this task has an active rollback task going on.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:175
-
-___
-
-### isSkipped
-
-▸ **isSkipped**(): `boolean`
-
-Returns whether this task is skipped.
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-src/lib/task.ts:160
-
-___
-
-### lift
-
-▸ **lift**<`R`\>(`operator`): `Observable`<`R`\>
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `R` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `operator` | `Operator`<[`ListrEvent`](../types/index.ListrEvent.md), `R`\> |
-
-#### Returns
-
-`Observable`<`R`\>
-
-#### Inherited from
-
-Subject.lift
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:33
-
-___
-
-### next
-
-▸ **next**(`value?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value?` | [`ListrEvent`](../types/index.ListrEvent.md) |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Subject.next
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:34
 
 ___
 
@@ -1503,147 +1162,6 @@ node_modules/rxjs/internal/Observable.d.ts:87
 
 ___
 
-### run
-
-▸ **run**(`context`, `wrapper`): `Promise`<`void`\>
-
-Run the current task.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `context` | `Ctx` |
-| `wrapper` | [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
-
-#### Returns
-
-`Promise`<`void`\>
-
-#### Defined in
-
-src/lib/task.ts:205
-
-___
-
-### subscribe
-
-▸ **subscribe**(`observer?`): `Subscription`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `observer?` | `PartialObserver`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:47
-
-▸ **subscribe**(`next`, `error`, `complete`): `Subscription`
-
-**`deprecated`** Use an observer instead of a complete callback
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `next` | ``null`` |
-| `error` | ``null`` |
-| `complete` | () => `void` |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:49
-
-▸ **subscribe**(`next`, `error`, `complete?`): `Subscription`
-
-**`deprecated`** Use an observer instead of an error callback
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `next` | ``null`` |
-| `error` | (`error`: `any`) => `void` |
-| `complete?` | () => `void` |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:51
-
-▸ **subscribe**(`next`, `error`, `complete`): `Subscription`
-
-**`deprecated`** Use an observer instead of a complete callback
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
-| `error` | ``null`` |
-| `complete` | () => `void` |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:53
-
-▸ **subscribe**(`next?`, `error?`, `complete?`): `Subscription`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `next?` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
-| `error?` | (`error`: `any`) => `void` |
-| `complete?` | () => `void` |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:54
-
-___
-
 ### toPromise
 
 ▸ **toPromise**<`T`\>(): `Promise`<`T`\>
@@ -1720,6 +1238,102 @@ node_modules/rxjs/internal/Observable.d.ts:90
 
 ___
 
+### lift
+
+▸ **lift**<`R`\>(`operator`): `Observable`<`R`\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `R` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `operator` | `Operator`<[`ListrEvent`](../types/index.ListrEvent.md), `R`\> |
+
+#### Returns
+
+`Observable`<`R`\>
+
+#### Inherited from
+
+Subject.lift
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:33
+
+___
+
+### next
+
+▸ **next**(`value?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value?` | [`ListrEvent`](../types/index.ListrEvent.md) |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+Subject.next
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:34
+
+___
+
+### error
+
+▸ **error**(`err`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `err` | `any` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+Subject.error
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:35
+
+___
+
+### complete
+
+▸ **complete**(): `void`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+Subject.complete
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:36
+
+___
+
 ### unsubscribe
 
 ▸ **unsubscribe**(): `void`
@@ -1735,3 +1349,387 @@ Subject.unsubscribe
 #### Defined in
 
 node_modules/rxjs/internal/Subject.d.ts:37
+
+___
+
+### \_trySubscribe
+
+▸ **_trySubscribe**(`subscriber`): `TeardownLogic`
+
+**`deprecated`** This is an internal implementation detail, do not use.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `subscriber` | `Subscriber`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
+
+#### Returns
+
+`TeardownLogic`
+
+#### Inherited from
+
+Subject.\_trySubscribe
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:39
+
+___
+
+### \_subscribe
+
+▸ **_subscribe**(`subscriber`): `Subscription`
+
+**`deprecated`** This is an internal implementation detail, do not use.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `subscriber` | `Subscriber`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
+
+#### Returns
+
+`Subscription`
+
+#### Inherited from
+
+Subject.\_subscribe
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:41
+
+___
+
+### asObservable
+
+▸ **asObservable**(): `Observable`<[`ListrEvent`](../types/index.ListrEvent.md)\>
+
+Creates a new Observable with this Subject as the source. You can do this
+to create customize Observer-side logic of the Subject and conceal it from
+code that uses the Observable.
+
+#### Returns
+
+`Observable`<[`ListrEvent`](../types/index.ListrEvent.md)\>
+
+Observable that the Subject casts to
+
+#### Inherited from
+
+Subject.asObservable
+
+#### Defined in
+
+node_modules/rxjs/internal/Subject.d.ts:48
+
+___
+
+### check
+
+▸ **check**(`ctx`): `Promise`<`void`\>
+
+A function to check whether this task should run at all via enable.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ctx` | `Ctx` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[src/lib/task.ts:137](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L137)
+
+___
+
+### hasSubtasks
+
+▸ **hasSubtasks**(): `boolean`
+
+Returns whether this task has subtasks.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:150](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L150)
+
+___
+
+### isPending
+
+▸ **isPending**(): `boolean`
+
+Returns whether this task is in progress.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:155](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L155)
+
+___
+
+### isSkipped
+
+▸ **isSkipped**(): `boolean`
+
+Returns whether this task is skipped.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:160](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L160)
+
+___
+
+### isCompleted
+
+▸ **isCompleted**(): `boolean`
+
+Returns whether this task has been completed.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:165](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L165)
+
+___
+
+### hasFailed
+
+▸ **hasFailed**(): `boolean`
+
+Returns whether this task has been failed.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:170](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L170)
+
+___
+
+### isRollingBack
+
+▸ **isRollingBack**(): `boolean`
+
+Returns whether this task has an active rollback task going on.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:175](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L175)
+
+___
+
+### hasRolledBack
+
+▸ **hasRolledBack**(): `boolean`
+
+Returns whether the rollback action was successful.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:180](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L180)
+
+___
+
+### isRetrying
+
+▸ **isRetrying**(): `boolean`
+
+Returns whether this task has an actively retrying task going on.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:185](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L185)
+
+___
+
+### isEnabled
+
+▸ **isEnabled**(): `boolean`
+
+Returns whether enabled function resolves to true.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:190](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L190)
+
+___
+
+### hasTitle
+
+▸ **hasTitle**(): `boolean`
+
+Returns whether this task actually has a title.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:195](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L195)
+
+___
+
+### isPrompt
+
+▸ **isPrompt**(): `boolean`
+
+Returns whether this task has a prompt inside.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/lib/task.ts:200](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L200)
+
+___
+
+### run
+
+▸ **run**(`context`, `wrapper`): `Promise`<`void`\>
+
+Run the current task.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | `Ctx` |
+| `wrapper` | [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[src/lib/task.ts:205](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L205)
+
+## Accessors
+
+### state$
+
+• `set` **state$**(`state`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `state` | [`ListrTaskState`](../enums/index.ListrTaskState.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/lib/task.ts:89](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L89)
+
+___
+
+### output$
+
+• `set` **output$**(`data`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `data` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/lib/task.ts:107](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L107)
+
+___
+
+### message$
+
+• `set` **message$**(`data`): `void`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `Object` | - |
+| `data.duration?` | `number` | Run time of the task, if it has been successfully resolved. |
+| `data.error?` | `string` | Error message of the task, if it has been failed. |
+| `data.skip?` | `string` | Skip message of the task, if it has been skipped. |
+| `data.rollback?` | `string` | Rollback message of the task, if the rollback finishes |
+| `data.retry?` | `Object` | Retry messages |
+| `data.retry.count` | `number` | - |
+| `data.retry.withError?` | `any` | - |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/lib/task.ts:116](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L116)
+
+___
+
+### title$
+
+• `set` **title$**(`title`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/lib/task.ts:125](https://github.com/cenk1cenk2/listr2/blob/3146341/src/lib/task.ts#L125)

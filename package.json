@@ -28,7 +28,7 @@
     "test": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.js",
     "test:cov": "LISTR_DISABLE_COLOR=1 ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.config.js",
     "dev:test": "LISTR_DISABLE_COLOR=1 TS_NODE_PROJECT=tests/tsconfig.json node --inspect=0.0.0.0:${DEBUG_PORT:-9229} -r tsconfig-paths/register -r ts-node/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.js",
-    "docs": "typedoc --entryPoints src/index.ts --entryPoints src/renderer/default.renderer.ts --entryPoints src/renderer/verbose.renderer.ts --entryPoints src/renderer/silent.renderer.ts --readme none --allReflectionsHaveOwnDocument --hideInPageTOC"
+    "docs": "typedoc --options .typedoc.json --hideInPageTOC --hideBreadcrumbs"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn exec lint-staged",

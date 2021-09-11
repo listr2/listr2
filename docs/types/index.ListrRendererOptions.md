@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrRendererOptions
-
 # Type alias: ListrRendererOptions<Renderer, FallbackRenderer\>
 
 [index](../modules/index.md).ListrRendererOptions
@@ -17,4 +15,4 @@ Renderer options for the base class, including setup for selecting default and f
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:108
+[src/interfaces/renderer.interface.ts:108](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L108)

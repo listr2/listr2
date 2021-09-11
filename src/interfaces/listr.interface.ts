@@ -24,7 +24,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    * Title of the task.
    *
    * Give this task a title if you want to track it by name in the current renderer.
-   * Tasks without a title will tend to hide themselves in the default renderer and useful for
+   * Tasks without a title will hide themselves in the default renderer and useful for running a background instance.
    */
   title?: string
   /**

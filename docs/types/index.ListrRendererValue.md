@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrRendererValue
-
 # Type alias: ListrRendererValue
 
 [index](../modules/index.md).ListrRendererValue
@@ -11,4 +9,4 @@ or utilize a compatible style renderer that extends the ListrRenderer abstract c
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:30
+[src/interfaces/renderer.interface.ts:30](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L30)

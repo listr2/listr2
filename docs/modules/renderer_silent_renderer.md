@@ -1,5 +1,3 @@
-[listr2](../README.md) / renderer/silent.renderer
-
 # Module: renderer/silent.renderer
 
 ## Classes

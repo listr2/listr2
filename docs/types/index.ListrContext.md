@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrContext
-
 # Type alias: ListrContext
 
 [index](../modules/index.md).ListrContext
@@ -10,4 +8,4 @@ Listr Default Context
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:20
+[src/interfaces/listr.interface.ts:20](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L20)

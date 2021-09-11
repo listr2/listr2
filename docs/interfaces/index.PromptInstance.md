@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptInstance
-
 # Interface: PromptInstance
 
 [index](../modules/index.md).PromptInstance
@@ -12,31 +10,17 @@
 
 ## Properties
 
-### footer
+### message
 
-• `Optional` **footer**: `string`
-
-#### Inherited from
-
-Omit.footer
-
-#### Defined in
-
-src/utils/prompt.interface.ts:32
-
-___
-
-### header
-
-• `Optional` **header**: `string`
+• **message**: `string` \| () => `string` \| () => `Promise`<`string`\>
 
 #### Inherited from
 
-Omit.header
+Omit.message
 
 #### Defined in
 
-src/utils/prompt.interface.ts:31
+[src/utils/prompt.interface.ts:26](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L26)
 
 ___
 
@@ -50,21 +34,7 @@ Omit.initial
 
 #### Defined in
 
-src/utils/prompt.interface.ts:27
-
-___
-
-### message
-
-• **message**: `string` \| () => `string` \| () => `Promise`<`string`\>
-
-#### Inherited from
-
-Omit.message
-
-#### Defined in
-
-src/utils/prompt.interface.ts:26
+[src/utils/prompt.interface.ts:27](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L27)
 
 ___
 
@@ -78,7 +48,7 @@ Omit.required
 
 #### Defined in
 
-src/utils/prompt.interface.ts:28
+[src/utils/prompt.interface.ts:28](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L28)
 
 ___
 
@@ -92,7 +62,7 @@ Omit.stdin
 
 #### Defined in
 
-src/utils/prompt.interface.ts:29
+[src/utils/prompt.interface.ts:29](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L29)
 
 ___
 
@@ -106,27 +76,59 @@ Omit.stdout
 
 #### Defined in
 
-src/utils/prompt.interface.ts:30
+[src/utils/prompt.interface.ts:30](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L30)
+
+___
+
+### header
+
+• `Optional` **header**: `string`
+
+#### Inherited from
+
+Omit.header
+
+#### Defined in
+
+[src/utils/prompt.interface.ts:31](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L31)
+
+___
+
+### footer
+
+• `Optional` **footer**: `string`
+
+#### Inherited from
+
+Omit.footer
+
+#### Defined in
+
+[src/utils/prompt.interface.ts:32](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L32)
 
 ## Methods
 
-### cancel
+### skip
 
-▸ **cancel**(`err?`): `void`
+▸ `Optional` **skip**(`value`): `boolean` \| `Promise`<`boolean`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `err?` | `string` |
+| `value` | `any` |
 
 #### Returns
 
-`void`
+`boolean` \| `Promise`<`boolean`\>
+
+#### Inherited from
+
+Omit.skip
 
 #### Defined in
 
-src/utils/prompt.interface.ts:164
+[src/utils/prompt.interface.ts:33](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L33)
 
 ___
 
@@ -150,7 +152,7 @@ Omit.format
 
 #### Defined in
 
-src/utils/prompt.interface.ts:34
+[src/utils/prompt.interface.ts:34](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L34)
 
 ___
 
@@ -174,45 +176,7 @@ Omit.result
 
 #### Defined in
 
-src/utils/prompt.interface.ts:35
-
-___
-
-### skip
-
-▸ `Optional` **skip**(`value`): `boolean` \| `Promise`<`boolean`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `any` |
-
-#### Returns
-
-`boolean` \| `Promise`<`boolean`\>
-
-#### Inherited from
-
-Omit.skip
-
-#### Defined in
-
-src/utils/prompt.interface.ts:33
-
-___
-
-### submit
-
-▸ **submit**(): `void`
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/prompt.interface.ts:163
+[src/utils/prompt.interface.ts:35](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L35)
 
 ___
 
@@ -237,4 +201,38 @@ Omit.validate
 
 #### Defined in
 
-src/utils/prompt.interface.ts:36
+[src/utils/prompt.interface.ts:36](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L36)
+
+___
+
+### submit
+
+▸ **submit**(): `void`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/prompt.interface.ts:163](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L163)
+
+___
+
+### cancel
+
+▸ **cancel**(`err?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `err?` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/prompt.interface.ts:164](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L164)

@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrTask
-
 # Interface: ListrTask<Ctx, Renderer\>
 
 [index](../modules/index.md).ListrTask
@@ -13,6 +11,47 @@
 
 ## Properties
 
+### title
+
+• `Optional` **title**: `string`
+
+Title of the task.
+
+Give this task a title if you want to track it by name in the current renderer.
+Tasks without a title will hide themselves in the default renderer and useful for running a background instance.
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:29](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L29)
+
+___
+
+### retry
+
+• `Optional` **retry**: `number`
+
+Adds a couple of retries to the task if the task fails
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:44](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L44)
+
+___
+
+### skip
+
+• `Optional` **skip**: `string` \| `boolean` \| (`ctx`: `Ctx`) => `string` \| `boolean` \| `Promise`<`string` \| `boolean`\>
+
+Skip this task depending on the context.
+
+The function that has been passed in will be evaluated at the runtime when task tries to initially run.
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:50](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L50)
+
+___
+
 ### enabled
 
 • `Optional` **enabled**: `boolean` \| (`ctx`: `Ctx`) => `boolean` \| `Promise`<`boolean`\>
@@ -23,19 +62,7 @@ The function that has been passed in will be evaluated at the initial creation o
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:56
-
-___
-
-### exitOnError
-
-• `Optional` **exitOnError**: `boolean` \| (`ctx`: `Ctx`) => `boolean` \| `Promise`<`boolean`\>
-
-Set exit on error option from task level instead of setting it for all the subtasks.
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:67
+[src/interfaces/listr.interface.ts:56](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L56)
 
 ___
 
@@ -50,74 +77,21 @@ be displayed as never.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:63
+[src/interfaces/listr.interface.ts:63](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L63)
 
 ___
 
-### retry
+### exitOnError
 
-• `Optional` **retry**: `number`
+• `Optional` **exitOnError**: `boolean` \| (`ctx`: `Ctx`) => `boolean` \| `Promise`<`boolean`\>
 
-Adds a couple of retries to the task if the task fails
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:44
-
-___
-
-### skip
-
-• `Optional` **skip**: `string` \| `boolean` \| (`ctx`: `Ctx`) => `string` \| `boolean` \| `Promise`<`string` \| `boolean`\>
-
-Skip this task depending on the context.
-
-The function that has been passed in will be evaluated at the runtime when task tries to initially run.
+Set exit on error option from task level instead of setting it for all the subtasks.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:50
-
-___
-
-### title
-
-• `Optional` **title**: `string`
-
-Title of the task.
-
-Give this task a title if you want to track it by name in the current renderer.
-Tasks without a title will tend to hide themselves in the default renderer and useful for
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:29
+[src/interfaces/listr.interface.ts:67](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L67)
 
 ## Methods
-
-### rollback
-
-▸ `Optional` **rollback**(`ctx`, `task`): `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-Runs a specific event if the current task or any of the subtasks has failed.
-Mostly useful for rollback purposes for subtasks.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `ctx` | `Ctx` |
-| `task` | [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
-
-#### Returns
-
-`void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:40
-
-___
 
 ### task
 
@@ -140,4 +114,28 @@ Task can be a sync or async function, an Observable or a Stream.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:35
+[src/interfaces/listr.interface.ts:35](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L35)
+
+___
+
+### rollback
+
+▸ `Optional` **rollback**(`ctx`, `task`): `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+Runs a specific event if the current task or any of the subtasks has failed.
+Mostly useful for rollback purposes for subtasks.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ctx` | `Ctx` |
+| `task` | [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
+
+#### Returns
+
+`void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:40](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L40)
