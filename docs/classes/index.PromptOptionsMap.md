@@ -24,7 +24,7 @@ Record.AutoComplete
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:134](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L134)
+[src/utils/prompt.interface.ts:134](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L134)
 
 ___
 
@@ -38,7 +38,7 @@ Record.BasicAuth
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:135](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L135)
+[src/utils/prompt.interface.ts:135](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L135)
 
 ___
 
@@ -52,7 +52,7 @@ Record.Confirm
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:136](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L136)
+[src/utils/prompt.interface.ts:136](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L136)
 
 ___
 
@@ -66,7 +66,7 @@ Record.Editable
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:137](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L137)
+[src/utils/prompt.interface.ts:137](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L137)
 
 ___
 
@@ -80,7 +80,7 @@ Record.Form
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:138](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L138)
+[src/utils/prompt.interface.ts:138](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L138)
 
 ___
 
@@ -94,7 +94,7 @@ Record.Input
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L139)
+[src/utils/prompt.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L139)
 
 ___
 
@@ -108,7 +108,7 @@ Record.Invisible
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:140](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L140)
+[src/utils/prompt.interface.ts:140](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L140)
 
 ___
 
@@ -122,7 +122,7 @@ Record.List
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:141](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L141)
+[src/utils/prompt.interface.ts:141](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L141)
 
 ___
 
@@ -136,7 +136,7 @@ Record.MultiSelect
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:142](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L142)
+[src/utils/prompt.interface.ts:142](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L142)
 
 ___
 
@@ -150,7 +150,7 @@ Record.Numeral
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:143](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L143)
+[src/utils/prompt.interface.ts:143](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L143)
 
 ___
 
@@ -164,7 +164,7 @@ Record.Password
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:144](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L144)
+[src/utils/prompt.interface.ts:144](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L144)
 
 ___
 
@@ -178,7 +178,7 @@ Record.Quiz
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:145](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L145)
+[src/utils/prompt.interface.ts:145](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L145)
 
 ___
 
@@ -192,7 +192,7 @@ Record.Scale
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:146](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L146)
+[src/utils/prompt.interface.ts:146](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L146)
 
 ___
 
@@ -206,7 +206,7 @@ Record.Select
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:147](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L147)
+[src/utils/prompt.interface.ts:147](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L147)
 
 ___
 
@@ -220,7 +220,7 @@ Record.Snippet
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:148](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L148)
+[src/utils/prompt.interface.ts:148](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L148)
 
 ___
 
@@ -234,7 +234,7 @@ Record.Sort
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:149](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L149)
+[src/utils/prompt.interface.ts:149](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L149)
 
 ___
 
@@ -248,7 +248,7 @@ Record.Survey
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:150](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L150)
+[src/utils/prompt.interface.ts:150](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L150)
 
 ___
 
@@ -262,7 +262,7 @@ Record.Text
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:151](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L151)
+[src/utils/prompt.interface.ts:151](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L151)
 
 ___
 
@@ -276,4 +276,4 @@ Record.Toggle
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:152](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L152)
+[src/utils/prompt.interface.ts:152](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L152)

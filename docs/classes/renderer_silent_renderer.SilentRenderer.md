@@ -16,7 +16,7 @@ designates whether this renderer can output to a non-tty console
 
 #### Defined in
 
-[src/renderer/silent.renderer.ts:7](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/silent.renderer.ts#L7)
+[src/renderer/silent.renderer.ts:7](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L7)
 
 ___
 
@@ -28,7 +28,7 @@ renderer options for the silent renderer
 
 #### Defined in
 
-[src/renderer/silent.renderer.ts:9](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/silent.renderer.ts#L9)
+[src/renderer/silent.renderer.ts:9](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L9)
 
 ___
 
@@ -40,7 +40,7 @@ per task options for the silent renderer
 
 #### Defined in
 
-[src/renderer/silent.renderer.ts:11](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/silent.renderer.ts#L11)
+[src/renderer/silent.renderer.ts:11](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L11)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[src/renderer/silent.renderer.ts:13](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/silent.renderer.ts#L13)
+[src/renderer/silent.renderer.ts:13](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L13)
 
 ## Methods
 
@@ -87,7 +87,7 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/renderer/silent.renderer.ts:15](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/silent.renderer.ts#L15)
+[src/renderer/silent.renderer.ts:15](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L15)
 
 ___
 
@@ -105,4 +105,4 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/renderer/silent.renderer.ts:17](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/silent.renderer.ts#L17)
+[src/renderer/silent.renderer.ts:17](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L17)

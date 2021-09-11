@@ -12,20 +12,35 @@ Options to set the behavior of this base task.
 
 ## Properties
 
+### ctx
+
+• `Optional` **ctx**: `Ctx`
+
+To inject a context through this options wrapper. Context can also be defined in run time.
+
+**`default`** {}
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:90](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L90)
+
+___
+
 ### concurrent
 
 • `Optional` **concurrent**: `number` \| `boolean`
 
-Concurrency will set how many tasks will be run in parallel.
+Concurrency sets how many tasks will be run at the same time in parallel.
 
 **`default`** false > Default is to run everything synchronously.
 
 `true` will set it to `Infinity`, `false` will set it to synchronous.
-If you pass in a `number` it will limit it at that number.
+
+If you pass in a `number` it will limit it to that number.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:82](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L82)
+[src/interfaces/listr.interface.ts:100](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L100)
 
 ___
 
@@ -33,13 +48,13 @@ ___
 
 • `Optional` **exitOnError**: `boolean`
 
-Determine the behavior of exiting on errors.
+Determine the default behavior of exiting on errors.
 
 **`default`** true > exit on any error coming from the tasks.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:88](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L88)
+[src/interfaces/listr.interface.ts:106](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L106)
 
 ___
 
@@ -47,27 +62,16 @@ ___
 
 • `Optional` **exitAfterRollback**: `boolean`
 
-Determine the behaviour of exiting after rollback actions.
+Determine the behavior of exiting after rollback actions.
+
+This is independent of exitOnError, since failure of a rollback can be a more critical operation comparing to
+failing a single task.
 
 **`default`** true > exit after rolling back tasks
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:94](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L94)
-
-___
-
-### ctx
-
-• `Optional` **ctx**: `Ctx`
-
-To inject a context through this options wrapper. Mostly useful when combined with manager.
-
-**`default`** any
-
-#### Defined in
-
-[src/interfaces/listr.interface.ts:99](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L99)
+[src/interfaces/listr.interface.ts:115](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L115)
 
 ___
 
@@ -75,13 +79,13 @@ ___
 
 • `Optional` **registerSignalListeners**: `boolean`
 
-By default, Listr2 will track SIGINIT signal to update the renderer one last time before compeletely failing.
+By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
 
 **`default`** true
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:104](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L104)
+[src/interfaces/listr.interface.ts:121](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L121)
 
 ___
 
@@ -89,13 +93,13 @@ ___
 
 • `Optional` **rendererFallback**: `boolean` \| () => `boolean`
 
-Determine the certain condition required to use the non-tty renderer.
+Determine the certain condition required to use the non-TTY renderer.
 
 **`default`** null > handled internally
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:109](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L109)
+[src/interfaces/listr.interface.ts:127](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L127)
 
 ___
 
@@ -109,7 +113,7 @@ Determine the certain condition required to use the silent renderer.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:114](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L114)
+[src/interfaces/listr.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L133)
 
 ___
 
@@ -123,7 +127,7 @@ Disabling the color, useful for tests and such.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:119](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L119)
+[src/interfaces/listr.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L139)
 
 ___
 
@@ -141,4 +145,4 @@ Inject data directly to TaskWrapper.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:123](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L123)
+[src/interfaces/listr.interface.ts:143](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L143)

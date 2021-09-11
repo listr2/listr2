@@ -20,7 +20,7 @@ the default renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:94](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L94)
+[src/interfaces/renderer.interface.ts:94](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L94)
 
 ___
 
@@ -32,4 +32,4 @@ Renderer options depending on the current renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:96](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L96)
+[src/interfaces/renderer.interface.ts:96](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L96)

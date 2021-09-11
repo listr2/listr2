@@ -9,4 +9,4 @@ or utilize a compatible style renderer that extends the ListrRenderer abstract c
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:30](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L30)
+[src/interfaces/renderer.interface.ts:30](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L30)

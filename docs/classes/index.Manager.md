@@ -36,7 +36,7 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 
 #### Defined in
 
-[src/manager.ts:15](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L15)
+[src/manager.ts:15](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L15)
 
 ## Properties
 
@@ -46,7 +46,7 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 
 #### Defined in
 
-[src/manager.ts:12](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L12)
+[src/manager.ts:12](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L12)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:13](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L13)
+[src/manager.ts:13](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L13)
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:17](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L17)
+[src/manager.ts:17](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L17)
 
 ## Methods
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:21](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L21)
+[src/manager.ts:21](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L21)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:30](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L30)
+[src/manager.ts:30](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L30)
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:41](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L41)
+[src/manager.ts:41](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L41)
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:48](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L48)
+[src/manager.ts:48](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L48)
 
 ___
 
@@ -219,7 +219,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:72](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L72)
+[src/manager.ts:72](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L72)
 
 ___
 
@@ -239,4 +239,4 @@ ___
 
 #### Defined in
 
-[src/manager.ts:91](https://github.com/cenk1cenk2/listr2/blob/3146341/src/manager.ts#L91)
+[src/manager.ts:91](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L91)

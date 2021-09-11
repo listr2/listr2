@@ -35,7 +35,7 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:33](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L33)
+[src/listr.ts:33](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L33)
 
 ## Properties
 
@@ -45,7 +45,7 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:24](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L24)
+[src/listr.ts:24](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L24)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:25](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L25)
+[src/listr.ts:25](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L25)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:26](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L26)
+[src/listr.ts:26](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L26)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:27](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L27)
+[src/listr.ts:27](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L27)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:28](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L28)
+[src/listr.ts:28](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L28)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:29](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L29)
+[src/listr.ts:29](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L29)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:30](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L30)
+[src/listr.ts:30](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L30)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:31](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L31)
+[src/listr.ts:31](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L31)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:99](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L99)
+[src/listr.ts:99](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L99)
 
 ___
 
@@ -167,7 +167,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:107](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L107)
+[src/listr.ts:107](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L107)
 
 ___
 
@@ -187,7 +187,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:147](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L147)
+[src/listr.ts:147](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L147)
 
 ___
 
@@ -209,4 +209,4 @@ ___
 
 #### Defined in
 
-[src/listr.ts:151](https://github.com/cenk1cenk2/listr2/blob/3146341/src/listr.ts#L151)
+[src/listr.ts:151](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L151)

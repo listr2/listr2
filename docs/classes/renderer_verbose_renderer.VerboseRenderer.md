@@ -16,7 +16,7 @@ designates whether this renderer can output to a non-tty console
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:10](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/verbose.renderer.ts#L10)
+[src/renderer/verbose.renderer.ts:10](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/verbose.renderer.ts#L10)
 
 ___
 
@@ -38,7 +38,7 @@ renderer options for the verbose renderer
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:12](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/verbose.renderer.ts#L12)
+[src/renderer/verbose.renderer.ts:12](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/verbose.renderer.ts#L12)
 
 ___
 
@@ -50,7 +50,7 @@ per task options for the verbose renderer
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:42](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/verbose.renderer.ts#L42)
+[src/renderer/verbose.renderer.ts:42](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/verbose.renderer.ts#L42)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:43](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/verbose.renderer.ts#L43)
+[src/renderer/verbose.renderer.ts:43](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/verbose.renderer.ts#L43)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:45](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/verbose.renderer.ts#L45)
+[src/renderer/verbose.renderer.ts:45](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/verbose.renderer.ts#L45)
 
 ## Methods
 
@@ -122,7 +122,7 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:55](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/verbose.renderer.ts#L55)
+[src/renderer/verbose.renderer.ts:55](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/verbose.renderer.ts#L55)
 
 ___
 
@@ -140,7 +140,7 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:60](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/verbose.renderer.ts#L60)
+[src/renderer/verbose.renderer.ts:60](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/verbose.renderer.ts#L60)
 
 ___
 
@@ -160,4 +160,4 @@ ___
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:63](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/verbose.renderer.ts#L63)
+[src/renderer/verbose.renderer.ts:63](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/verbose.renderer.ts#L63)

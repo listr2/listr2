@@ -22,7 +22,6 @@
 
 ## Type aliases
 
-- [ListrErrorTypesWithMetadata](../types/index.ListrErrorTypesWithMetadata.md)
 - [ListrContext](../types/index.ListrContext.md)
 - [ListrTaskResult](../types/index.ListrTaskResult.md)
 - [ListrBaseClassOptions](../types/index.ListrBaseClassOptions.md)

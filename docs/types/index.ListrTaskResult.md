@@ -14,4 +14,4 @@ Task can be set of sync or async function, an Observable or a stream.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:132](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L132)
+[src/interfaces/listr.interface.ts:152](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L152)

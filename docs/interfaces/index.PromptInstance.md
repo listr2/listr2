@@ -20,7 +20,7 @@ Omit.message
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:26](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L26)
+[src/utils/prompt.interface.ts:26](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L26)
 
 ___
 
@@ -34,7 +34,7 @@ Omit.initial
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:27](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L27)
+[src/utils/prompt.interface.ts:27](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L27)
 
 ___
 
@@ -48,7 +48,7 @@ Omit.required
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:28](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L28)
+[src/utils/prompt.interface.ts:28](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L28)
 
 ___
 
@@ -62,7 +62,7 @@ Omit.stdin
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:29](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L29)
+[src/utils/prompt.interface.ts:29](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L29)
 
 ___
 
@@ -76,7 +76,7 @@ Omit.stdout
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:30](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L30)
+[src/utils/prompt.interface.ts:30](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L30)
 
 ___
 
@@ -90,7 +90,7 @@ Omit.header
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:31](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L31)
+[src/utils/prompt.interface.ts:31](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L31)
 
 ___
 
@@ -104,7 +104,7 @@ Omit.footer
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:32](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L32)
+[src/utils/prompt.interface.ts:32](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L32)
 
 ## Methods
 
@@ -128,7 +128,7 @@ Omit.skip
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:33](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L33)
+[src/utils/prompt.interface.ts:33](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L33)
 
 ___
 
@@ -152,7 +152,7 @@ Omit.format
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:34](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L34)
+[src/utils/prompt.interface.ts:34](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L34)
 
 ___
 
@@ -176,7 +176,7 @@ Omit.result
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:35](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L35)
+[src/utils/prompt.interface.ts:35](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L35)
 
 ___
 
@@ -201,7 +201,7 @@ Omit.validate
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:36](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L36)
+[src/utils/prompt.interface.ts:36](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L36)
 
 ___
 
@@ -215,7 +215,7 @@ ___
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:163](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L163)
+[src/utils/prompt.interface.ts:163](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L163)
 
 ___
 
@@ -235,4 +235,4 @@ ___
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:164](https://github.com/cenk1cenk2/listr2/blob/3146341/src/utils/prompt.interface.ts#L164)
+[src/utils/prompt.interface.ts:164](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L164)

@@ -16,7 +16,7 @@ Exported for javascript applications to extend the base renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:129](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L129)
+[src/interfaces/renderer.interface.ts:129](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L129)
 
 ___
 
@@ -26,7 +26,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:130](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L130)
+[src/interfaces/renderer.interface.ts:130](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L130)
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:131](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L131)
+[src/interfaces/renderer.interface.ts:131](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L131)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:132](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L132)
+[src/interfaces/renderer.interface.ts:132](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L132)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L133)
+[src/interfaces/renderer.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L133)
 
 ___
 
@@ -78,7 +78,7 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:134](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L134)
+[src/interfaces/renderer.interface.ts:134](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L134)
 
 ___
 
@@ -106,7 +106,7 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:135](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L135)
+[src/interfaces/renderer.interface.ts:135](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L135)
 
 ## Constructors
 
@@ -123,4 +123,4 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:136](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/renderer.interface.ts#L136)
+[src/interfaces/renderer.interface.ts:136](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L136)

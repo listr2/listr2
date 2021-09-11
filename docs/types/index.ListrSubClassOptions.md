@@ -17,4 +17,4 @@ Subtasks has reduced set options where the missing ones are explicitly set by th
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:152](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L152)
+[src/interfaces/listr.interface.ts:172](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L172)

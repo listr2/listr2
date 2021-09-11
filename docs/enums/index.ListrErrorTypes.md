@@ -10,9 +10,11 @@ The actual error type that is collected and to help identify where the error is 
 
 • **WILL\_RETRY** = `"WILL_RETRY"`
 
+Task has failed and will retry.
+
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:32](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr-error.interface.ts#L32)
+[src/interfaces/listr-error.interface.ts:20](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L20)
 
 ___
 
@@ -22,7 +24,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:33](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr-error.interface.ts#L33)
+[src/interfaces/listr-error.interface.ts:21](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L21)
 
 ___
 
@@ -32,7 +34,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:34](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr-error.interface.ts#L34)
+[src/interfaces/listr-error.interface.ts:22](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L22)
 
 ___
 
@@ -42,7 +44,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:35](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr-error.interface.ts#L35)
+[src/interfaces/listr-error.interface.ts:23](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L23)
 
 ___
 
@@ -52,4 +54,4 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:36](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr-error.interface.ts#L36)
+[src/interfaces/listr-error.interface.ts:24](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L24)

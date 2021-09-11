@@ -181,4 +181,4 @@ Error.constructor
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:6](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr-error.interface.ts#L6)
+[src/interfaces/listr-error.interface.ts:6](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L6)

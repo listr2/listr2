@@ -18,7 +18,7 @@ stdin during execution of listr tasks
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:18](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L18)
+[src/renderer/simple.renderer.ts:18](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L18)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:21](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L21)
+[src/renderer/simple.renderer.ts:21](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L21)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:44](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L44)
+[src/renderer/simple.renderer.ts:44](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L44)
 
 ___
 
@@ -57,7 +57,7 @@ Event type renderer map contains functions to process different task events
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:49](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L49)
+[src/renderer/simple.renderer.ts:49](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L49)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:112](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L112)
+[src/renderer/simple.renderer.ts:112](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L112)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:117](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L117)
+[src/renderer/simple.renderer.ts:117](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L117)
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:122](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L122)
+[src/renderer/simple.renderer.ts:122](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L122)
 
 ___
 
@@ -148,7 +148,7 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:142](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L142)
+[src/renderer/simple.renderer.ts:142](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L142)
 
 ___
 
@@ -172,7 +172,7 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:145](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L145)
+[src/renderer/simple.renderer.ts:145](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L145)
 
 ## Constructors
 
@@ -191,4 +191,4 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:107](https://github.com/cenk1cenk2/listr2/blob/3146341/src/renderer/simple.renderer.ts#L107)
+[src/renderer/simple.renderer.ts:107](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/simple.renderer.ts#L107)

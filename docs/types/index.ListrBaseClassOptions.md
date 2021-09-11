@@ -20,4 +20,4 @@ Any subtasks will respect those options so they will be stripped of that propert
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:141](https://github.com/cenk1cenk2/listr2/blob/3146341/src/interfaces/listr.interface.ts#L141)
+[src/interfaces/listr.interface.ts:161](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L161)
