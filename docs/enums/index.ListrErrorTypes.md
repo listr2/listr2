@@ -10,11 +10,11 @@ The actual error type that is collected and to help identify where the error is 
 
 • **WILL\_RETRY** = `"WILL_RETRY"`
 
-Task has failed and will retry.
+Task has failed and will try to retry.
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:20](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L20)
+src/interfaces/listr-error.interface.ts:20
 
 ___
 
@@ -22,9 +22,11 @@ ___
 
 • **WILL\_ROLLBACK** = `"WILL_ROLLBACK"`
 
+Task has failed and will try to rollback.
+
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:21](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L21)
+src/interfaces/listr-error.interface.ts:22
 
 ___
 
@@ -32,9 +34,11 @@ ___
 
 • **HAS\_FAILED\_TO\_ROLLBACK** = `"HAS_FAILED_TO_ROLLBACK"`
 
+Task has failed, ran the rollback action but the rollback action itself has failed.
+
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:22](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L22)
+src/interfaces/listr-error.interface.ts:24
 
 ___
 
@@ -42,9 +46,11 @@ ___
 
 • **HAS\_FAILED** = `"HAS_FAILED"`
 
+Task has failed.
+
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:23](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L23)
+src/interfaces/listr-error.interface.ts:26
 
 ___
 
@@ -52,6 +58,8 @@ ___
 
 • **HAS\_FAILED\_WITHOUT\_ERROR** = `"HAS_FAILED_WITHOUT_ERROR"`
 
+Task has failed, but exitOnError is set to false, so will ignore this error.
+
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:24](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L24)
+src/interfaces/listr-error.interface.ts:28

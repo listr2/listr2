@@ -14,4 +14,4 @@ Returns the class type from friendly names of the renderers.
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:34](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L34)
+src/interfaces/renderer.interface.ts:34

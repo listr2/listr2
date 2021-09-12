@@ -8,4 +8,4 @@ The default renderer value used in Listr2 applications
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L10)
+src/interfaces/renderer.interface.ts:10

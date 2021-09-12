@@ -1,3 +1,9 @@
+# [3.12.0](https://github.com/cenk1cenk2/listr2/compare/v3.11.1...v3.12.0) (2021-09-12)
+
+### Features
+
+- fix error collection and improve it a bit ([29a08bb](https://github.com/cenk1cenk2/listr2/commit/29a08bb53f3de4260e0ba60d94c375d0f9592058)), closes [#459](https://github.com/cenk1cenk2/listr2/issues/459)
+
 ## [3.11.1](https://github.com/cenk1cenk2/listr2/compare/v3.11.0...v3.11.1) (2021-08-31)
 
 ### Bug Fixes

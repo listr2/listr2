@@ -22,7 +22,7 @@ To inject a context through this options wrapper. Context can also be defined in
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:90](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L90)
+src/interfaces/listr.interface.ts:90
 
 ___
 
@@ -40,7 +40,7 @@ If you pass in a `number` it will limit it to that number.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:100](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L100)
+src/interfaces/listr.interface.ts:100
 
 ___
 
@@ -54,7 +54,7 @@ Determine the default behavior of exiting on errors.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:106](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L106)
+src/interfaces/listr.interface.ts:106
 
 ___
 
@@ -71,7 +71,7 @@ failing a single task.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:115](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L115)
+src/interfaces/listr.interface.ts:115
 
 ___
 
@@ -85,7 +85,7 @@ By default, Listr2 will track SIGINIT signal to update the renderer one last tim
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:121](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L121)
+src/interfaces/listr.interface.ts:121
 
 ___
 
@@ -99,7 +99,7 @@ Determine the certain condition required to use the non-TTY renderer.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:127](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L127)
+src/interfaces/listr.interface.ts:127
 
 ___
 
@@ -113,7 +113,7 @@ Determine the certain condition required to use the silent renderer.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L133)
+src/interfaces/listr.interface.ts:133
 
 ___
 
@@ -127,7 +127,7 @@ Disabling the color, useful for tests and such.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L139)
+src/interfaces/listr.interface.ts:139
 
 ___
 
@@ -145,4 +145,4 @@ Inject data directly to TaskWrapper.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:143](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L143)
+src/interfaces/listr.interface.ts:143

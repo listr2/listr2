@@ -18,7 +18,7 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:11](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L11)
+src/utils/logger.ts:11
 
 ## Methods
 
@@ -38,7 +38,7 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:13](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L13)
+src/utils/logger.ts:13
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:18](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L18)
+src/utils/logger.ts:18
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:23](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L23)
+src/utils/logger.ts:23
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:28](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L28)
+src/utils/logger.ts:28
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:33](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L33)
+src/utils/logger.ts:33
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:38](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L38)
+src/utils/logger.ts:38
 
 ___
 
@@ -158,7 +158,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:43](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L43)
+src/utils/logger.ts:43
 
 ___
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:49](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L49)
+src/utils/logger.ts:49
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:55](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L55)
+src/utils/logger.ts:55
 
 ___
 
@@ -221,7 +221,7 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:78](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L78)
+src/utils/logger.ts:78
 
 ___
 
@@ -241,4 +241,4 @@ ___
 
 #### Defined in
 
-[src/utils/logger.ts:161](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L161)
+src/utils/logger.ts:161

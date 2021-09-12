@@ -12,7 +12,7 @@ Supported type of renderers for each type in the listr.
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:144](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L144)
+src/interfaces/renderer.interface.ts:144
 
 ___
 
@@ -22,4 +22,4 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:145](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L145)
+src/interfaces/renderer.interface.ts:145

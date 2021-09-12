@@ -15,4 +15,4 @@ Renderer options for the base class, including setup for selecting default and f
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:108](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L108)
+src/interfaces/renderer.interface.ts:108

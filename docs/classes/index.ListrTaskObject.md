@@ -389,7 +389,7 @@ Unique id per task, randomly generated in the uuid v4 format
 
 #### Defined in
 
-[src/lib/task.ts:21](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L21)
+src/lib/task.ts:21
 
 ___
 
@@ -401,7 +401,7 @@ The current state of the task.
 
 #### Defined in
 
-[src/lib/task.ts:23](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L23)
+src/lib/task.ts:23
 
 ___
 
@@ -430,7 +430,7 @@ The task object itself, to further utilize it.
 
 #### Defined in
 
-[src/lib/task.ts:25](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L25)
+src/lib/task.ts:25
 
 ___
 
@@ -442,7 +442,7 @@ Extend current task with multiple subtasks.
 
 #### Defined in
 
-[src/lib/task.ts:27](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L27)
+src/lib/task.ts:27
 
 ___
 
@@ -454,7 +454,7 @@ Title of the task
 
 #### Defined in
 
-[src/lib/task.ts:29](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L29)
+src/lib/task.ts:29
 
 ___
 
@@ -466,7 +466,7 @@ Untouched unchanged title of the task
 
 #### Defined in
 
-[src/lib/task.ts:31](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L31)
+src/lib/task.ts:31
 
 ___
 
@@ -478,7 +478,7 @@ Output data from the task.
 
 #### Defined in
 
-[src/lib/task.ts:33](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L33)
+src/lib/task.ts:33
 
 ___
 
@@ -490,7 +490,7 @@ Skip current task.
 
 #### Defined in
 
-[src/lib/task.ts:35](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L35)
+src/lib/task.ts:35
 
 ___
 
@@ -509,7 +509,7 @@ Current retry number of the task if retrying
 
 #### Defined in
 
-[src/lib/task.ts:37](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L37)
+src/lib/task.ts:37
 
 ___
 
@@ -535,7 +535,7 @@ This requires a separate channel for messages like error, skip or runtime messag
 
 #### Defined in
 
-[src/lib/task.ts:44](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L44)
+src/lib/task.ts:44
 
 ___
 
@@ -547,7 +547,7 @@ Per task options for the current renderer of the task.
 
 #### Defined in
 
-[src/lib/task.ts:57](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L57)
+src/lib/task.ts:57
 
 ___
 
@@ -559,7 +559,7 @@ This will be triggered each time a new render should happen.
 
 #### Defined in
 
-[src/lib/task.ts:59](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L59)
+src/lib/task.ts:59
 
 ___
 
@@ -569,7 +569,7 @@ ___
 
 #### Defined in
 
-[src/lib/task.ts:61](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L61)
+src/lib/task.ts:61
 
 ___
 
@@ -579,7 +579,7 @@ ___
 
 #### Defined in
 
-[src/lib/task.ts:62](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L62)
+src/lib/task.ts:62
 
 ___
 
@@ -589,7 +589,7 @@ ___
 
 #### Defined in
 
-[src/lib/task.ts:63](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L63)
+src/lib/task.ts:63
 
 ___
 
@@ -643,7 +643,7 @@ Subject&lt;ListrEvent\&gt;.constructor
 
 #### Defined in
 
-[src/lib/task.ts:65](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L65)
+src/lib/task.ts:65
 
 ## Methods
 
@@ -1446,7 +1446,7 @@ A function to check whether this task should run at all via enable.
 
 #### Defined in
 
-[src/lib/task.ts:137](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L137)
+src/lib/task.ts:137
 
 ___
 
@@ -1462,7 +1462,7 @@ Returns whether this task has subtasks.
 
 #### Defined in
 
-[src/lib/task.ts:150](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L150)
+src/lib/task.ts:150
 
 ___
 
@@ -1478,7 +1478,7 @@ Returns whether this task is in progress.
 
 #### Defined in
 
-[src/lib/task.ts:155](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L155)
+src/lib/task.ts:155
 
 ___
 
@@ -1494,7 +1494,7 @@ Returns whether this task is skipped.
 
 #### Defined in
 
-[src/lib/task.ts:160](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L160)
+src/lib/task.ts:160
 
 ___
 
@@ -1510,7 +1510,7 @@ Returns whether this task has been completed.
 
 #### Defined in
 
-[src/lib/task.ts:165](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L165)
+src/lib/task.ts:165
 
 ___
 
@@ -1526,7 +1526,7 @@ Returns whether this task has been failed.
 
 #### Defined in
 
-[src/lib/task.ts:170](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L170)
+src/lib/task.ts:170
 
 ___
 
@@ -1542,7 +1542,7 @@ Returns whether this task has an active rollback task going on.
 
 #### Defined in
 
-[src/lib/task.ts:175](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L175)
+src/lib/task.ts:175
 
 ___
 
@@ -1558,7 +1558,7 @@ Returns whether the rollback action was successful.
 
 #### Defined in
 
-[src/lib/task.ts:180](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L180)
+src/lib/task.ts:180
 
 ___
 
@@ -1574,7 +1574,7 @@ Returns whether this task has an actively retrying task going on.
 
 #### Defined in
 
-[src/lib/task.ts:185](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L185)
+src/lib/task.ts:185
 
 ___
 
@@ -1590,7 +1590,7 @@ Returns whether enabled function resolves to true.
 
 #### Defined in
 
-[src/lib/task.ts:190](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L190)
+src/lib/task.ts:190
 
 ___
 
@@ -1606,7 +1606,7 @@ Returns whether this task actually has a title.
 
 #### Defined in
 
-[src/lib/task.ts:195](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L195)
+src/lib/task.ts:195
 
 ___
 
@@ -1622,7 +1622,7 @@ Returns whether this task has a prompt inside.
 
 #### Defined in
 
-[src/lib/task.ts:200](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L200)
+src/lib/task.ts:200
 
 ___
 
@@ -1645,7 +1645,7 @@ Run the current task.
 
 #### Defined in
 
-[src/lib/task.ts:205](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L205)
+src/lib/task.ts:205
 
 ## Accessors
 
@@ -1665,7 +1665,7 @@ Run the current task.
 
 #### Defined in
 
-[src/lib/task.ts:89](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L89)
+src/lib/task.ts:89
 
 ___
 
@@ -1685,7 +1685,7 @@ ___
 
 #### Defined in
 
-[src/lib/task.ts:107](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L107)
+src/lib/task.ts:107
 
 ___
 
@@ -1712,7 +1712,7 @@ ___
 
 #### Defined in
 
-[src/lib/task.ts:116](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L116)
+src/lib/task.ts:116
 
 ___
 
@@ -1732,4 +1732,4 @@ ___
 
 #### Defined in
 
-[src/lib/task.ts:125](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/lib/task.ts#L125)
+src/lib/task.ts:125
