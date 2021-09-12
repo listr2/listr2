@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrSilentRenderer
-
 # Type alias: ListrSilentRenderer
 
 [index](../modules/index.md).ListrSilentRenderer
@@ -10,4 +8,4 @@ Typeof silent renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:20
+[src/interfaces/renderer.interface.ts:20](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L20)

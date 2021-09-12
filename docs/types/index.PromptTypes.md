@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptTypes
-
 # Type alias: PromptTypes
 
 [index](../modules/index.md).PromptTypes
@@ -8,4 +6,4 @@
 
 #### Defined in
 
-src/utils/prompt.interface.ts:110
+[src/utils/prompt.interface.ts:110](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L110)

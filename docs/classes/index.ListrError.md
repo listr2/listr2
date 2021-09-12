@@ -1,10 +1,14 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrError
-
-# Class: ListrError
+# Class: ListrError<Ctx\>
 
 [index](../modules/index.md).ListrError
 
 The internal error handling mechanism..
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | extends `Record`<`PropertyKey`, `any`\>`Record`<`PropertyKey`, `any`\> |
 
 ## Hierarchy
 
@@ -12,79 +16,34 @@ The internal error handling mechanism..
 
   ↳ **`ListrError`**
 
-## Constructors
+## Methods
 
-### constructor
+### captureStackTrace
 
-• **new ListrError**(`message`, `errors?`, `context?`)
+▸ `Static` **captureStackTrace**(`targetObject`, `constructorOpt?`): `void`
+
+Create .stack property on a target object
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `message` | `string` |
-| `errors?` | `Error`[] |
-| `context?` | `any` |
+| `targetObject` | `object` |
+| `constructorOpt?` | `Function` |
 
-#### Overrides
+#### Returns
 
-Error.constructor
+`void`
+
+#### Inherited from
+
+Error.captureStackTrace
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:3
+node_modules/@types/node/globals.d.ts:4
 
 ## Properties
-
-### context
-
-• `Optional` **context**: `any`
-
-___
-
-### errors
-
-• `Optional` **errors**: `Error`[]
-
-___
-
-### message
-
-• **message**: `string`
-
-#### Inherited from
-
-Error.message
-
-___
-
-### name
-
-• **name**: `string`
-
-#### Inherited from
-
-Error.name
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:973
-
-___
-
-### stack
-
-• `Optional` **stack**: `string`
-
-#### Inherited from
-
-Error.stack
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:975
-
-___
 
 ### prepareStackTrace
 
@@ -129,29 +88,97 @@ Error.stackTraceLimit
 
 node_modules/@types/node/globals.d.ts:13
 
-## Methods
+___
 
-### captureStackTrace
+### name
 
-▸ `Static` **captureStackTrace**(`targetObject`, `constructorOpt?`): `void`
+• **name**: `string`
 
-Create .stack property on a target object
+#### Inherited from
+
+Error.name
+
+#### Defined in
+
+node_modules/typescript/lib/lib.es5.d.ts:973
+
+___
+
+### message
+
+• **message**: `string`
+
+#### Inherited from
+
+Error.message
+
+#### Defined in
+
+node_modules/typescript/lib/lib.es5.d.ts:974
+
+___
+
+### stack
+
+• `Optional` **stack**: `string`
+
+#### Inherited from
+
+Error.stack
+
+#### Defined in
+
+node_modules/typescript/lib/lib.es5.d.ts:975
+
+___
+
+### error
+
+• **error**: `Error`
+
+___
+
+### type
+
+• `Optional` **type**: [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md)
+
+___
+
+### ctx
+
+• `Optional` **ctx**: `Ctx`
+
+___
+
+### task
+
+• `Optional` **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
+
+## Constructors
+
+### constructor
+
+• **new ListrError**<`Ctx`\>(`error`, `type?`, `ctx?`, `task?`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | extends `Record`<`PropertyKey`, `any`\>`Record`<`PropertyKey`, `any`\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `targetObject` | `object` |
-| `constructorOpt?` | `Function` |
+| `error` | `Error` |
+| `type?` | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
+| `ctx?` | `Ctx` |
+| `task?` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
 
-#### Returns
+#### Overrides
 
-`void`
-
-#### Inherited from
-
-Error.captureStackTrace
+Error.constructor
 
 #### Defined in
 
-node_modules/@types/node/globals.d.ts:4
+[src/interfaces/listr-error.interface.ts:6](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr-error.interface.ts#L6)

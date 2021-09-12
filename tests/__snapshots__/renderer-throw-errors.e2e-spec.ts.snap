@@ -161,6 +161,8 @@ Array [
 
 exports[`show throw error should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
 Array [
+  [ListrError: I have failed [0]],
+  [ListrError: I have failed [1]],
   [ListrError: I will exit on error since I am a direct child of parent task.],
 ]
 `;

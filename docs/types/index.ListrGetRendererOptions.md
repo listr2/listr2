@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrGetRendererOptions
-
 # Type alias: ListrGetRendererOptions<T\>
 
 [index](../modules/index.md).ListrGetRendererOptions
@@ -16,4 +14,4 @@ Returns renderer global options depending on the renderer type.
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:64
+[src/interfaces/renderer.interface.ts:64](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L64)

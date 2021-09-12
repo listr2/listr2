@@ -1,5 +1,3 @@
-[listr2](../README.md) / [renderer/silent.renderer](../modules/renderer_silent_renderer.md) / SilentRenderer
-
 # Class: SilentRenderer
 
 [renderer/silent.renderer](../modules/renderer_silent_renderer.md).SilentRenderer
@@ -7,6 +5,54 @@
 ## Implements
 
 - [`ListrRenderer`](index.ListrRenderer.md)
+
+## Properties
+
+### nonTTY
+
+▪ `Static` **nonTTY**: `boolean` = `true`
+
+designates whether this renderer can output to a non-tty console
+
+#### Defined in
+
+[src/renderer/silent.renderer.ts:7](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L7)
+
+___
+
+### rendererOptions
+
+▪ `Static` **rendererOptions**: `never`
+
+renderer options for the silent renderer
+
+#### Defined in
+
+[src/renderer/silent.renderer.ts:9](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L9)
+
+___
+
+### rendererTaskOptions
+
+▪ `Static` **rendererTaskOptions**: `never`
+
+per task options for the silent renderer
+
+#### Defined in
+
+[src/renderer/silent.renderer.ts:11](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L11)
+
+___
+
+### tasks
+
+• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[]
+
+___
+
+### options
+
+• **options**: `never`
 
 ## Constructors
 
@@ -23,75 +69,9 @@
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:13
-
-## Properties
-
-### options
-
-• **options**: `never`
-
-___
-
-### tasks
-
-• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[]
-
-___
-
-### nonTTY
-
-▪ `Static` **nonTTY**: `boolean` = `true`
-
-designates whether this renderer can output to a non-tty console
-
-#### Defined in
-
-src/renderer/silent.renderer.ts:7
-
-___
-
-### rendererOptions
-
-▪ `Static` **rendererOptions**: `never`
-
-renderer options for the silent renderer
-
-#### Defined in
-
-src/renderer/silent.renderer.ts:9
-
-___
-
-### rendererTaskOptions
-
-▪ `Static` **rendererTaskOptions**: `never`
-
-per task options for the silent renderer
-
-#### Defined in
-
-src/renderer/silent.renderer.ts:11
+[src/renderer/silent.renderer.ts:13](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L13)
 
 ## Methods
-
-### end
-
-▸ **end**(): `void`
-
-#### Returns
-
-`void`
-
-#### Implementation of
-
-ListrRenderer.end
-
-#### Defined in
-
-src/renderer/silent.renderer.ts:17
-
-___
 
 ### render
 
@@ -107,4 +87,22 @@ ListrRenderer.render
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:15
+[src/renderer/silent.renderer.ts:15](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L15)
+
+___
+
+### end
+
+▸ **end**(): `void`
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+ListrRenderer.end
+
+#### Defined in
+
+[src/renderer/silent.renderer.ts:17](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/renderer/silent.renderer.ts#L17)

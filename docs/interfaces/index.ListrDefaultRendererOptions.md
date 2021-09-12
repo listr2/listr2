@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrDefaultRendererOptions
-
 # Interface: ListrDefaultRendererOptions<T\>
 
 [index](../modules/index.md).ListrDefaultRendererOptions
@@ -22,7 +20,7 @@ the default renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:94
+[src/interfaces/renderer.interface.ts:94](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L94)
 
 ___
 
@@ -34,4 +32,4 @@ Renderer options depending on the current renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:96
+[src/interfaces/renderer.interface.ts:96](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L96)

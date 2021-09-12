@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrEventType
-
 # Enumeration: ListrEventType
 
 [index](../modules/index.md).ListrEventType
@@ -8,33 +6,13 @@ Type of listr internal events.
 
 ## Enumeration members
 
-### DATA
+### TITLE
 
-• **DATA** = `"DATA"`
-
-#### Defined in
-
-src/constants/event.constants.ts:7
-
-___
-
-### ENABLED
-
-• **ENABLED** = `"ENABLED"`
+• **TITLE** = `"TITLE"`
 
 #### Defined in
 
-src/constants/event.constants.ts:5
-
-___
-
-### MESSAGE
-
-• **MESSAGE** = `"MESSAGE"`
-
-#### Defined in
-
-src/constants/event.constants.ts:8
+[src/constants/event.constants.ts:3](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/constants/event.constants.ts#L3)
 
 ___
 
@@ -44,7 +22,17 @@ ___
 
 #### Defined in
 
-src/constants/event.constants.ts:4
+[src/constants/event.constants.ts:4](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/constants/event.constants.ts#L4)
+
+___
+
+### ENABLED
+
+• **ENABLED** = `"ENABLED"`
+
+#### Defined in
+
+[src/constants/event.constants.ts:5](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/constants/event.constants.ts#L5)
 
 ___
 
@@ -54,14 +42,24 @@ ___
 
 #### Defined in
 
-src/constants/event.constants.ts:6
+[src/constants/event.constants.ts:6](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/constants/event.constants.ts#L6)
 
 ___
 
-### TITLE
+### DATA
 
-• **TITLE** = `"TITLE"`
+• **DATA** = `"DATA"`
 
 #### Defined in
 
-src/constants/event.constants.ts:3
+[src/constants/event.constants.ts:7](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/constants/event.constants.ts#L7)
+
+___
+
+### MESSAGE
+
+• **MESSAGE** = `"MESSAGE"`
+
+#### Defined in
+
+[src/constants/event.constants.ts:8](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/constants/event.constants.ts#L8)

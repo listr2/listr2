@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptOptions
-
 # Type alias: PromptOptions<T\>
 
 [index](../modules/index.md).PromptOptions
@@ -16,4 +14,4 @@ Returns all the prompt options depending on the type selected.
 
 #### Defined in
 
-src/utils/prompt.interface.ts:9
+[src/utils/prompt.interface.ts:9](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L9)

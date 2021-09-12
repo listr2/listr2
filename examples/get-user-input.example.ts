@@ -5,7 +5,7 @@ import { Listr } from '../src/index'
 import { Logger } from '@utils/logger'
 
 interface Ctx {
-  input: boolean | Record<string, boolean>
+  input: boolean | Record<PropertyKey, boolean>
 }
 
 const logger = new Logger({ useIcons: false })
@@ -19,7 +19,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will get your input.',
-        task: async (ctx, task): Promise<Record<string, boolean>> =>
+        task: async (ctx, task): Promise<Record<PropertyKey, boolean>> =>
           ctx.input = await task.prompt<{ test: boolean, other: boolean }>([
             {
               type: 'Select',
@@ -61,7 +61,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e) {
+  } catch (e: any) {
     logger.fail(e)
   }
 
@@ -85,7 +85,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e) {
+  } catch (e: any) {
     logger.fail(e)
   }
 
@@ -109,7 +109,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e) {
+  } catch (e: any) {
     logger.fail(e)
   }
 
@@ -162,7 +162,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e) {
+  } catch (e: any) {
     logger.fail(e)
   }
 
@@ -195,7 +195,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e) {
+  } catch (e: any) {
     logger.fail(e)
   }
 
@@ -251,7 +251,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e) {
+  } catch (e: any) {
     logger.fail(e)
   }
 }

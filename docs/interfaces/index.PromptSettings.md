@@ -1,20 +1,8 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptSettings
-
 # Interface: PromptSettings
 
 [index](../modules/index.md).PromptSettings
 
 ## Properties
-
-### enquirer
-
-• `Optional` **enquirer**: `Enquirer`<`object`\>
-
-#### Defined in
-
-src/utils/prompt.interface.ts:159
-
-___
 
 ### error
 
@@ -22,7 +10,7 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:156
+[src/utils/prompt.interface.ts:156](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L156)
 
 ___
 
@@ -32,7 +20,17 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:158
+[src/utils/prompt.interface.ts:158](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L158)
+
+___
+
+### enquirer
+
+• `Optional` **enquirer**: `Enquirer`<`object`\>
+
+#### Defined in
+
+[src/utils/prompt.interface.ts:159](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L159)
 
 ## Methods
 
@@ -52,4 +50,4 @@ src/utils/prompt.interface.ts:158
 
 #### Defined in
 
-src/utils/prompt.interface.ts:157
+[src/utils/prompt.interface.ts:157](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.interface.ts#L157)

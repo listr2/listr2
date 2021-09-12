@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / createPrompt
-
 # Function: createPrompt
 
 [index](../modules/index.md).createPrompt
@@ -23,4 +21,4 @@ useful to use externally.
 
 #### Defined in
 
-src/utils/prompt.ts:17
+[src/utils/prompt.ts:17](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/prompt.ts#L17)

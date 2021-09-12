@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / Manager
-
 # Class: Manager<Ctx, Renderer, FallbackRenderer\>
 
 [index](../modules/index.md).Manager
@@ -38,23 +36,17 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 
 #### Defined in
 
-src/manager.ts:15
+[src/manager.ts:15](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L15)
 
 ## Properties
 
 ### err
 
-• **err**: [`ListrError`](index.ListrError.md)[] = `[]`
+• **err**: [`ListrError`](index.ListrError.md)<`Record`<`PropertyKey`, `any`\>\>[] = `[]`
 
 #### Defined in
 
-src/manager.ts:12
-
-___
-
-### options
-
-• `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
+[src/manager.ts:12](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L12)
 
 ___
 
@@ -64,7 +56,13 @@ ___
 
 #### Defined in
 
-src/manager.ts:13
+[src/manager.ts:13](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L13)
+
+___
+
+### options
+
+• `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
 
 ## Accessors
 
@@ -84,7 +82,7 @@ src/manager.ts:13
 
 #### Defined in
 
-src/manager.ts:17
+[src/manager.ts:17](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L17)
 
 ## Methods
 
@@ -111,33 +109,13 @@ src/manager.ts:17
 
 #### Defined in
 
-src/manager.ts:21
+[src/manager.ts:21](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L21)
 
 ___
 
-### getRuntime
+### runAll
 
-▸ **getRuntime**(`pipetime`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `pipetime` | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-src/manager.ts:94
-
-___
-
-### indent
-
-▸ **indent**<`InjectCtx`\>(`tasks`, `options?`, `taskOptions?`): [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>
+▸ **runAll**<`InjectCtx`\>(`options?`): `Promise`<`InjectCtx`\>
 
 #### Type parameters
 
@@ -149,17 +127,15 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] \| (`ctx?`: `InjectCtx`) => [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
 | `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`InjectCtx`, `Renderer`, `FallbackRenderer`\> |
-| `taskOptions?` | `Omit`<[`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>, ``"task"``\> |
 
 #### Returns
 
-[`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>
+`Promise`<`InjectCtx`\>
 
 #### Defined in
 
-src/manager.ts:48
+[src/manager.ts:30](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L30)
 
 ___
 
@@ -188,7 +164,35 @@ ___
 
 #### Defined in
 
-src/manager.ts:41
+[src/manager.ts:41](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L41)
+
+___
+
+### indent
+
+▸ **indent**<`InjectCtx`\>(`tasks`, `options?`, `taskOptions?`): [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `InjectCtx` | `Ctx` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] \| (`ctx?`: `InjectCtx`) => [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
+| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`InjectCtx`, `Renderer`, `FallbackRenderer`\> |
+| `taskOptions?` | `Omit`<[`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>, ``"task"``\> |
+
+#### Returns
+
+[`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>
+
+#### Defined in
+
+[src/manager.ts:48](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L48)
 
 ___
 
@@ -215,30 +219,24 @@ ___
 
 #### Defined in
 
-src/manager.ts:72
+[src/manager.ts:72](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L72)
 
 ___
 
-### runAll
+### getRuntime
 
-▸ **runAll**<`InjectCtx`\>(`options?`): `Promise`<`InjectCtx`\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `InjectCtx` | `Ctx` |
+▸ **getRuntime**(`pipetime`): `string`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`InjectCtx`, `Renderer`, `FallbackRenderer`\> |
+| `pipetime` | `number` |
 
 #### Returns
 
-`Promise`<`InjectCtx`\>
+`string`
 
 #### Defined in
 
-src/manager.ts:30
+[src/manager.ts:91](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/manager.ts#L91)

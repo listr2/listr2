@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / Listr
-
 # Class: Listr<Ctx, Renderer, FallbackRenderer\>
 
 [index](../modules/index.md).Listr
@@ -37,17 +35,27 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-src/listr.ts:33
+[src/listr.ts:33](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L33)
 
 ## Properties
 
-### concurrency
+### tasks
 
-• `Private` **concurrency**: `number`
+• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] = `[]`
 
 #### Defined in
 
-src/listr.ts:30
+[src/listr.ts:24](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L24)
+
+___
+
+### err
+
+• **err**: [`ListrError`](index.ListrError.md)<`Ctx`\>[] = `[]`
+
+#### Defined in
+
+[src/listr.ts:25](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L25)
 
 ___
 
@@ -57,43 +65,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:26
-
-___
-
-### err
-
-• **err**: [`ListrError`](index.ListrError.md)[] = `[]`
-
-#### Defined in
-
-src/listr.ts:25
-
-___
-
-### options
-
-• `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
-
-___
-
-### renderHook$
-
-• **renderHook$**: `Subject`<`void`\>
-
-#### Defined in
-
-src/listr.ts:29
-
-___
-
-### renderer
-
-• `Private` **renderer**: [`ListrRenderer`](index.ListrRenderer.md)
-
-#### Defined in
-
-src/listr.ts:31
+[src/listr.ts:26](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L26)
 
 ___
 
@@ -103,17 +75,47 @@ ___
 
 #### Defined in
 
-src/listr.ts:27
+[src/listr.ts:27](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L27)
 
 ___
 
 ### rendererClassOptions
 
-• **rendererClassOptions**: `Record`<`string`, `any`\>
+• **rendererClassOptions**: `Record`<`PropertyKey`, `any`\>
 
 #### Defined in
 
-src/listr.ts:28
+[src/listr.ts:28](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L28)
+
+___
+
+### renderHook$
+
+• **renderHook$**: `Subject`<`void`\>
+
+#### Defined in
+
+[src/listr.ts:29](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L29)
+
+___
+
+### concurrency
+
+• `Private` **concurrency**: `number`
+
+#### Defined in
+
+[src/listr.ts:30](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L30)
+
+___
+
+### renderer
+
+• `Private` **renderer**: [`ListrRenderer`](index.ListrRenderer.md)
+
+#### Defined in
+
+[src/listr.ts:31](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L31)
 
 ___
 
@@ -123,13 +125,9 @@ ___
 
 ___
 
-### tasks
+### options
 
-• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] = `[]`
-
-#### Defined in
-
-src/listr.ts:24
+• `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
 
 ## Methods
 
@@ -149,27 +147,7 @@ src/listr.ts:24
 
 #### Defined in
 
-src/listr.ts:96
-
-___
-
-### checkAll
-
-▸ `Private` **checkAll**(`context`): `Promise`<`void`[]\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `context` | `any` |
-
-#### Returns
-
-`Promise`<`void`[]\>
-
-#### Defined in
-
-src/listr.ts:153
+[src/listr.ts:99](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L99)
 
 ___
 
@@ -189,7 +167,27 @@ ___
 
 #### Defined in
 
-src/listr.ts:104
+[src/listr.ts:107](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L107)
+
+___
+
+### checkAll
+
+▸ `Private` **checkAll**(`context`): `Promise`<`void`[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | `any` |
+
+#### Returns
+
+`Promise`<`void`[]\>
+
+#### Defined in
+
+[src/listr.ts:147](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L147)
 
 ___
 
@@ -203,7 +201,7 @@ ___
 | :------ | :------ |
 | `task` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> |
 | `context` | `Ctx` |
-| `errors` | [`ListrError`](index.ListrError.md)[] |
+| `errors` | [`ListrError`](index.ListrError.md)<`Ctx`\>[] |
 
 #### Returns
 
@@ -211,4 +209,4 @@ ___
 
 #### Defined in
 
-src/listr.ts:157
+[src/listr.ts:151](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/listr.ts#L151)

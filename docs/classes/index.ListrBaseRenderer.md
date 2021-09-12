@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrBaseRenderer
-
 # Class: ListrBaseRenderer
 
 [index](../modules/index.md).ListrBaseRenderer
@@ -10,24 +8,79 @@ Exported for javascript applications to extend the base renderer
 
 - [`ListrRenderer`](index.ListrRenderer.md)
 
-## Constructors
+## Properties
 
-### constructor
+### rendererOptions
 
-• **new ListrBaseRenderer**(`tasks`, `options`)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`ListrBaseRenderer`](index.ListrBaseRenderer.md)\>[] |
-| `options` | `Record`<`string`, `any`\> |
+▪ `Static` **rendererOptions**: `Record`<`PropertyKey`, `any`\>
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:136
+[src/interfaces/renderer.interface.ts:129](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L129)
 
-## Properties
+___
+
+### rendererTaskOptions
+
+▪ `Static` **rendererTaskOptions**: `Record`<`PropertyKey`, `any`\>
+
+#### Defined in
+
+[src/interfaces/renderer.interface.ts:130](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L130)
+
+___
+
+### nonTTY
+
+▪ `Static` **nonTTY**: `boolean`
+
+#### Defined in
+
+[src/interfaces/renderer.interface.ts:131](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L131)
+
+___
+
+### tasks
+
+• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`ListrBaseRenderer`](index.ListrBaseRenderer.md)\>[]
+
+#### Defined in
+
+[src/interfaces/renderer.interface.ts:132](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L132)
+
+___
+
+### options
+
+• **options**: `Record`<`PropertyKey`, `any`\>
+
+#### Defined in
+
+[src/interfaces/renderer.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L133)
+
+___
+
+### render
+
+• **render**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+##### Returns
+
+`void`
+
+#### Implementation of
+
+ListrRenderer.render
+
+#### Defined in
+
+[src/interfaces/renderer.interface.ts:134](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L134)
+
+___
 
 ### end
 
@@ -53,76 +106,21 @@ ListrRenderer.end
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:135
+[src/interfaces/renderer.interface.ts:135](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L135)
 
-___
+## Constructors
 
-### options
+### constructor
 
-• **options**: `Record`<`string`, `any`\>
+• **new ListrBaseRenderer**(`tasks`, `options`)
 
-#### Defined in
+#### Parameters
 
-src/interfaces/renderer.interface.ts:133
-
-___
-
-### render
-
-• **render**: () => `void`
-
-#### Type declaration
-
-▸ (): `void`
-
-##### Returns
-
-`void`
-
-#### Implementation of
-
-ListrRenderer.render
+| Name | Type |
+| :------ | :------ |
+| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`ListrBaseRenderer`](index.ListrBaseRenderer.md)\>[] |
+| `options` | `Record`<`PropertyKey`, `any`\> |
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:134
-
-___
-
-### tasks
-
-• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`ListrBaseRenderer`](index.ListrBaseRenderer.md)\>[]
-
-#### Defined in
-
-src/interfaces/renderer.interface.ts:132
-
-___
-
-### nonTTY
-
-▪ `Static` **nonTTY**: `boolean`
-
-#### Defined in
-
-src/interfaces/renderer.interface.ts:131
-
-___
-
-### rendererOptions
-
-▪ `Static` **rendererOptions**: `Record`<`string`, `any`\>
-
-#### Defined in
-
-src/interfaces/renderer.interface.ts:129
-
-___
-
-### rendererTaskOptions
-
-▪ `Static` **rendererTaskOptions**: `Record`<`string`, `any`\>
-
-#### Defined in
-
-src/interfaces/renderer.interface.ts:130
+[src/interfaces/renderer.interface.ts:136](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L136)

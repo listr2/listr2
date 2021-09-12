@@ -22,7 +22,7 @@ import { getRenderer } from '@utils/renderer'
  */
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
-  public err: ListrError[] = []
+  public err: ListrError<Ctx>[] = []
   public ctx: Ctx
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
@@ -35,8 +35,8 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
   ) {
     // assign over default options
-    this.options = Object.assign(
-      {
+    this.options = {
+      ...{
         concurrent: false,
         renderer: 'default',
         nonTTYRenderer: 'verbose',
@@ -44,15 +44,16 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
         exitAfterRollback: true,
         registerSignalListeners: true
       },
-      options
-    )
+      ...options
+    } as ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
 
     // define parallel options
-    this.concurrency = 1
     if (this.options.concurrent === true) {
       this.concurrency = Infinity
     } else if (typeof this.options.concurrent === 'number') {
       this.concurrency = this.options.concurrent
+    } else {
+      this.concurrency = 1
     }
 
     // get renderer class
@@ -68,7 +69,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
     // parse and add tasks
     /* istanbul ignore next */
-    this.add(task || [])
+    this.add(task ?? [])
 
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */
@@ -80,7 +81,9 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
               task.state$ = ListrTaskState.FAILED
             }
           })
+
           this.renderer.end(new Error('Interrupted.'))
+
           process.exit(127)
         })
         .setMaxListeners(0)
@@ -110,10 +113,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.renderer.render()
 
     // create a new context
-    this.ctx = context || this.options?.ctx || Object.create({})
-
-    // create new error queue
-    const errors: Error[] | ListrError[] = []
+    this.ctx = context ?? this.options?.ctx ?? ({} as Ctx)
 
     // check if the items are enabled
     await this.checkAll(this.ctx)
@@ -126,22 +126,16 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
           // check this item is enabled, conditions may change depending on context
           await task.check(this.ctx)
 
-          return this.runTask(task, this.ctx, errors)
+          return this.runTask(task, this.ctx, this.err)
         },
         { concurrency: this.concurrency }
       )
 
-      // catch errors do which do not crash through exitOnError: false
-      if (errors.length > 0) {
-        this.err.push(new ListrError('Task failed without crashing.', errors, this.ctx))
-      }
-
       this.renderer.end()
     } catch (err: any) {
-      this.err.push(new ListrError(typeof err?.message === 'string' ? err.message : err, [ err ], this.ctx))
-
       if (this.options.exitOnError !== false) {
         this.renderer.end(err)
+
         // Do not exit when explicitly set to `false`
         throw err
       }
@@ -154,7 +148,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     return Promise.all(this.tasks.map((task) => task.check(context)))
   }
 
-  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError[]): Promise<void> {
+  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError<Ctx>[]): Promise<void> {
     if (!task.isEnabled()) {
       return Promise.resolve()
     }

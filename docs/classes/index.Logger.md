@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / Logger
-
 # Class: Logger
 
 [index](../modules/index.md).Logger
@@ -20,29 +18,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-src/utils/logger.ts:11
+[src/utils/logger.ts:11](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L11)
 
 ## Methods
-
-### data
-
-▸ **data**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:28
-
-___
 
 ### fail
 
@@ -60,7 +38,168 @@ ___
 
 #### Defined in
 
-src/utils/logger.ts:13
+[src/utils/logger.ts:13](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L13)
+
+___
+
+### skip
+
+▸ **skip**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/logger.ts:18](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L18)
+
+___
+
+### success
+
+▸ **success**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/logger.ts:23](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L23)
+
+___
+
+### data
+
+▸ **data**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/logger.ts:28](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L28)
+
+___
+
+### start
+
+▸ **start**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/logger.ts:33](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L33)
+
+___
+
+### title
+
+▸ **title**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/logger.ts:38](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L38)
+
+___
+
+### retry
+
+▸ **retry**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/logger.ts:43](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L43)
+
+___
+
+### rollback
+
+▸ **rollback**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/utils/logger.ts:49](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L49)
+
+___
+
+### parseMessage
+
+▸ `Protected` **parseMessage**(`level`, `message`): `string`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `level` | [`LogLevels`](../enums/index.LogLevels.md) |
+| `message` | `string` |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[src/utils/logger.ts:55](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L55)
 
 ___
 
@@ -82,148 +221,7 @@ ___
 
 #### Defined in
 
-src/utils/logger.ts:78
-
-___
-
-### parseMessage
-
-▸ `Protected` **parseMessage**(`level`, `message`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `level` | [`LogLevels`](../enums/index.LogLevels.md) |
-| `message` | `string` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-src/utils/logger.ts:55
-
-___
-
-### retry
-
-▸ **retry**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:43
-
-___
-
-### rollback
-
-▸ **rollback**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:49
-
-___
-
-### skip
-
-▸ **skip**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:18
-
-___
-
-### start
-
-▸ **start**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:33
-
-___
-
-### success
-
-▸ **success**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:23
-
-___
-
-### title
-
-▸ **title**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:38
+[src/utils/logger.ts:78](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L78)
 
 ___
 
@@ -243,4 +241,4 @@ ___
 
 #### Defined in
 
-src/utils/logger.ts:161
+[src/utils/logger.ts:161](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/utils/logger.ts#L161)

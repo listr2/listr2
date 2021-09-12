@@ -1,13 +1,11 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrEvent
-
 # Type alias: ListrEvent
 
 [index](../modules/index.md).ListrEvent
 
-Ƭ **ListrEvent**: { `data?`: `string` \| `boolean` ; `type`: `Exclude`<[`ListrEventType`](../enums/index.ListrEventType.md), ``"MESSAGE"`` \| ``"DATA"``\>  } \| { `data`: `string` ; `type`: [`DATA`](../enums/index.ListrEventType.md#data)  } \| { `data`: [`ListrTaskObject`](../classes/index.ListrTaskObject.md)<`any`, `any`\>[``"message"``] ; `type`: [`MESSAGE`](../enums/index.ListrEventType.md#message)  }
+Ƭ **ListrEvent**: { `type`: `Exclude`<[`ListrEventType`](../enums/index.ListrEventType.md), ``"MESSAGE"`` \| ``"DATA"``\> ; `data?`: `string` \| `boolean`  } \| { `type`: [`DATA`](../enums/index.ListrEventType.md#data) ; `data`: `string`  } \| { `type`: [`MESSAGE`](../enums/index.ListrEventType.md#message) ; `data`: [`ListrTaskObject`](../classes/index.ListrTaskObject.md)<`any`, `any`\>[``"message"``]  }
 
 The internal communication event.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:156
+[src/interfaces/listr.interface.ts:176](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/listr.interface.ts#L176)

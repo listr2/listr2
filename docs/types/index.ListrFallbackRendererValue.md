@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrFallbackRendererValue
-
 # Type alias: ListrFallbackRendererValue
 
 [index](../modules/index.md).ListrFallbackRendererValue
@@ -10,4 +8,4 @@ Name of default fallback renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:14
+[src/interfaces/renderer.interface.ts:14](https://github.com/cenk1cenk2/listr2/blob/70fdfc5/src/interfaces/renderer.interface.ts#L14)

@@ -61,7 +61,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e) {
+  } catch (e: any) {
     logger.fail(e)
   }
 
@@ -114,7 +114,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
     logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e) {
+  } catch (e: any) {
     logger.fail(e)
   }
 }

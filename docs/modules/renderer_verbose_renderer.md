@@ -1,5 +1,3 @@
-[listr2](../README.md) / renderer/verbose.renderer
-
 # Module: renderer/verbose.renderer
 
 ## Classes

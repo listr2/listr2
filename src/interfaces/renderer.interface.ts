@@ -111,9 +111,9 @@ ListrDefaultNonTTYRendererOptions<FallbackRenderer>
 /** The bones of a listr renderer. */
 export declare class ListrRenderer {
   /** designate renderer global options that is specific to the current renderer */
-  public static rendererOptions: Record<string, any>
+  public static rendererOptions: Record<PropertyKey, any>
   /** designate renderer per task options that is specific to the current renderer  */
-  public static rendererTaskOptions: Record<string, any>
+  public static rendererTaskOptions: Record<PropertyKey, any>
   /** designate whether this renderer can work in non-tty environments */
   public static nonTTY: boolean
   /** A function to what to do on render */
@@ -126,8 +126,8 @@ export declare class ListrRenderer {
 
 /** Exported for javascript applications to extend the base renderer */
 export declare class ListrBaseRenderer implements ListrRenderer {
-  public static rendererOptions: Record<string, any>
-  public static rendererTaskOptions: Record<string, any>
+  public static rendererOptions: Record<PropertyKey, any>
+  public static rendererTaskOptions: Record<PropertyKey, any>
   public static nonTTY: boolean
   public tasks: Task<any, typeof ListrBaseRenderer>[]
   public options: typeof ListrBaseRenderer.rendererOptions

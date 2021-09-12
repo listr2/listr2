@@ -187,7 +187,7 @@ async function main (): Promise<void> {
       ],
       {}
     ).run()
-  } catch (e) {
+  } catch (e: any) {
     // eslint-disable-next-line no-console
     console.error(e)
   }
