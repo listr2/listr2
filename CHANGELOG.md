@@ -1,45 +1,52 @@
-# [3.11.0](https://github.com/cenk1cenk2/listr2/compare/v3.10.1...v3.11.0) (2021-07-22)
-
-
-### Bug Fixes
-
-* fix the tests and errors with the simple renderer ([ae4319b](https://github.com/cenk1cenk2/listr2/commit/ae4319be1797f029165c3fd2772abc5aae1e6b46))
-* tiny bug with sending output through channel ([cce9eee](https://github.com/cenk1cenk2/listr2/commit/cce9eeeec4d3c8370b22d6da72d61fe25c13b6c5)), closes [#437](https://github.com/cenk1cenk2/listr2/issues/437)
-
+# [3.12.0](https://github.com/cenk1cenk2/listr2/compare/v3.11.1...v3.12.0) (2021-09-12)
 
 ### Features
 
-* **renderer:** adds simple renderer which is neither updating nor verbose ([04a6858](https://github.com/cenk1cenk2/listr2/commit/04a6858fa8ce8c0b30bc24d81d9cef99ab5d6381))
+- fix error collection and improve it a bit ([29a08bb](https://github.com/cenk1cenk2/listr2/commit/29a08bb53f3de4260e0ba60d94c375d0f9592058)), closes [#459](https://github.com/cenk1cenk2/listr2/issues/459)
+
+## [3.11.1](https://github.com/cenk1cenk2/listr2/compare/v3.11.0...v3.11.1) (2021-08-31)
+
+### Bug Fixes
+
+- git hook ([5e5c111](https://github.com/cenk1cenk2/listr2/commit/5e5c111255a6bfb5f19bde0dae331ef7e883ba10))
+- node 16 try/catch type changes ([a5e29f4](https://github.com/cenk1cenk2/listr2/commit/a5e29f412f8412002546657275030927146dae25))
+
+# [3.11.0](https://github.com/cenk1cenk2/listr2/compare/v3.10.1...v3.11.0) (2021-07-22)
+
+### Bug Fixes
+
+- fix the tests and errors with the simple renderer ([ae4319b](https://github.com/cenk1cenk2/listr2/commit/ae4319be1797f029165c3fd2772abc5aae1e6b46))
+- tiny bug with sending output through channel ([cce9eee](https://github.com/cenk1cenk2/listr2/commit/cce9eeeec4d3c8370b22d6da72d61fe25c13b6c5)), closes [#437](https://github.com/cenk1cenk2/listr2/issues/437)
+
+### Features
+
+- **renderer:** adds simple renderer which is neither updating nor verbose ([04a6858](https://github.com/cenk1cenk2/listr2/commit/04a6858fa8ce8c0b30bc24d81d9cef99ab5d6381))
 
 ## [3.10.1](https://github.com/cenk1cenk2/listr2/compare/v3.10.0...v3.10.1) (2021-07-22)
 
-
 ### Bug Fixes
 
-* update deps ([84f3529](https://github.com/cenk1cenk2/listr2/commit/84f3529270637d04341aacbc5039ed8b52237b2e))
+- update deps ([84f3529](https://github.com/cenk1cenk2/listr2/commit/84f3529270637d04341aacbc5039ed8b52237b2e))
 
 # [3.10.0](https://github.com/cenk1cenk2/listr2/compare/v3.9.0...v3.10.0) (2021-06-07)
 
-
 ### Features
 
-* add context to the class itself for outside access ([98ea144](https://github.com/cenk1cenk2/listr2/commit/98ea14453257f9aec93932890e4c8c8d8ac53ead))
+- add context to the class itself for outside access ([98ea144](https://github.com/cenk1cenk2/listr2/commit/98ea14453257f9aec93932890e4c8c8d8ac53ead))
 
 # [3.9.0](https://github.com/cenk1cenk2/listr2/compare/v3.8.6...v3.9.0) (2021-05-27)
 
-
 ### Features
 
-* dependency cleaning merge ([07cc724](https://github.com/cenk1cenk2/listr2/commit/07cc72434db8c1ec743a9556890a572be9cd474d))
-* export figures ([f7377d2](https://github.com/cenk1cenk2/listr2/commit/f7377d2fa771bc3ef05b4aa496f0a1c0a1ca8eec))
+- dependency cleaning merge ([07cc724](https://github.com/cenk1cenk2/listr2/commit/07cc72434db8c1ec743a9556890a572be9cd474d))
+- export figures ([f7377d2](https://github.com/cenk1cenk2/listr2/commit/f7377d2fa771bc3ef05b4aa496f0a1c0a1ca8eec))
 
 ## [3.8.6](https://github.com/cenk1cenk2/listr2/compare/v3.8.5...v3.8.6) (2021-05-27)
 
-
 ### Bug Fixes
 
-* add the missing test case ([b630e57](https://github.com/cenk1cenk2/listr2/commit/b630e5702b7d17dd802e7fb6a3d08d6d649e564a)), closes [#411](https://github.com/cenk1cenk2/listr2/issues/411)
-* allow async skip boolean or string ([2289f3a](https://github.com/cenk1cenk2/listr2/commit/2289f3ab8b53a54adfdf76f2b64b802018c596fc))
+- add the missing test case ([b630e57](https://github.com/cenk1cenk2/listr2/commit/b630e5702b7d17dd802e7fb6a3d08d6d649e564a)), closes [#411](https://github.com/cenk1cenk2/listr2/issues/411)
+- allow async skip boolean or string ([2289f3a](https://github.com/cenk1cenk2/listr2/commit/2289f3ab8b53a54adfdf76f2b64b802018c596fc))
 
 ## [3.8.5](https://github.com/cenk1cenk2/listr2/compare/v3.8.4...v3.8.5) (2021-05-27)
 

@@ -184,7 +184,7 @@ async function main (): Promise<void> {
       ],
       { renderer: 'simple', rendererOptions: { prefixWithTimestamp: true } }
     ).run()
-  } catch (e) {
+  } catch (e: any) {
     // eslint-disable-next-line no-console
     console.error(e)
   }

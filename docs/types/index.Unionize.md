@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / Unionize
-
 # Type alias: Unionize<T\>
 
 [index](../modules/index.md).Unionize
@@ -10,7 +8,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `Record`<`string`, `unknown`\> |
+| `T` | extends `Record`<`PropertyKey`, `unknown`\> |
 
 #### Defined in
 

@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrContext
-
 # Type alias: ListrContext
 
 [index](../modules/index.md).ListrContext

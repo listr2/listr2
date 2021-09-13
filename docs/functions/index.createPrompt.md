@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / createPrompt
-
 # Function: createPrompt
 
 [index](../modules/index.md).createPrompt

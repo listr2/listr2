@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrDefaultNonTTYRendererOptions
-
 # Interface: ListrDefaultNonTTYRendererOptions<T\>
 
 [index](../modules/index.md).ListrDefaultNonTTYRendererOptions

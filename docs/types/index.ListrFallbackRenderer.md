@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrFallbackRenderer
-
 # Type alias: ListrFallbackRenderer
 
 [index](../modules/index.md).ListrFallbackRenderer

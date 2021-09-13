@@ -57,7 +57,7 @@ describe('show retry', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -80,7 +80,7 @@ describe('show retry', () => {
               if (retry?.count === 3) {
                 task.title = 'Successed at 3th try.'
               } else {
-                throw Error('not enough')
+                throw new Error('not enough')
               }
             },
             retry: 3
@@ -92,7 +92,7 @@ describe('show retry', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 

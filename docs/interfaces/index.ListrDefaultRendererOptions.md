@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrDefaultRendererOptions
-
 # Interface: ListrDefaultRendererOptions<T\>
 
 [index](../modules/index.md).ListrDefaultRendererOptions

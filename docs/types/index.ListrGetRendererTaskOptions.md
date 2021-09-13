@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrGetRendererTaskOptions
-
 # Type alias: ListrGetRendererTaskOptions<T\>
 
 [index](../modules/index.md).ListrGetRendererTaskOptions

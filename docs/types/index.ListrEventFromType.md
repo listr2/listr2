@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrEventFromType
-
 # Type alias: ListrEventFromType<T, E\>
 
 [index](../modules/index.md).ListrEventFromType
@@ -17,4 +15,4 @@ Used to match event.type to ListrEvent permutations
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:173
+src/interfaces/listr.interface.ts:193

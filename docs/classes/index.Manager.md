@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / Manager
-
 # Class: Manager<Ctx, Renderer, FallbackRenderer\>
 
 [index](../modules/index.md).Manager
@@ -44,17 +42,11 @@ src/manager.ts:15
 
 ### err
 
-• **err**: [`ListrError`](index.ListrError.md)[] = `[]`
+• **err**: [`ListrError`](index.ListrError.md)<`Record`<`PropertyKey`, `any`\>\>[] = `[]`
 
 #### Defined in
 
 src/manager.ts:12
-
-___
-
-### options
-
-• `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
 
 ___
 
@@ -65,6 +57,12 @@ ___
 #### Defined in
 
 src/manager.ts:13
+
+___
+
+### options
+
+• `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
 
 ## Accessors
 
@@ -115,29 +113,9 @@ src/manager.ts:21
 
 ___
 
-### getRuntime
+### runAll
 
-▸ **getRuntime**(`pipetime`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `pipetime` | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-src/manager.ts:94
-
-___
-
-### indent
-
-▸ **indent**<`InjectCtx`\>(`tasks`, `options?`, `taskOptions?`): [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>
+▸ **runAll**<`InjectCtx`\>(`options?`): `Promise`<`InjectCtx`\>
 
 #### Type parameters
 
@@ -149,17 +127,15 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] \| (`ctx?`: `InjectCtx`) => [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
 | `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`InjectCtx`, `Renderer`, `FallbackRenderer`\> |
-| `taskOptions?` | `Omit`<[`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>, ``"task"``\> |
 
 #### Returns
 
-[`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>
+`Promise`<`InjectCtx`\>
 
 #### Defined in
 
-src/manager.ts:48
+src/manager.ts:30
 
 ___
 
@@ -192,6 +168,34 @@ src/manager.ts:41
 
 ___
 
+### indent
+
+▸ **indent**<`InjectCtx`\>(`tasks`, `options?`, `taskOptions?`): [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `InjectCtx` | `Ctx` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] \| (`ctx?`: `InjectCtx`) => [`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
+| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`InjectCtx`, `Renderer`, `FallbackRenderer`\> |
+| `taskOptions?` | `Omit`<[`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>, ``"task"``\> |
+
+#### Returns
+
+[`ListrTask`](../interfaces/index.ListrTask.md)<`InjectCtx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>
+
+#### Defined in
+
+src/manager.ts:48
+
+___
+
 ### run
 
 ▸ **run**<`InjectCtx`\>(`tasks`, `options?`): `Promise`<`InjectCtx`\>
@@ -219,26 +223,20 @@ src/manager.ts:72
 
 ___
 
-### runAll
+### getRuntime
 
-▸ **runAll**<`InjectCtx`\>(`options?`): `Promise`<`InjectCtx`\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `InjectCtx` | `Ctx` |
+▸ **getRuntime**(`pipetime`): `string`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`InjectCtx`, `Renderer`, `FallbackRenderer`\> |
+| `pipetime` | `number` |
 
 #### Returns
 
-`Promise`<`InjectCtx`\>
+`string`
 
 #### Defined in
 
-src/manager.ts:30
+src/manager.ts:91

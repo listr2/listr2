@@ -1,5 +1,3 @@
-[listr2](../README.md) / [renderer/silent.renderer](../modules/renderer_silent_renderer.md) / SilentRenderer
-
 # Class: SilentRenderer
 
 [renderer/silent.renderer](../modules/renderer_silent_renderer.md).SilentRenderer
@@ -8,36 +6,7 @@
 
 - [`ListrRenderer`](index.ListrRenderer.md)
 
-## Constructors
-
-### constructor
-
-• **new SilentRenderer**(`tasks`, `options`)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[] |
-| `options` | `never` |
-
-#### Defined in
-
-src/renderer/silent.renderer.ts:13
-
 ## Properties
-
-### options
-
-• **options**: `never`
-
-___
-
-### tasks
-
-• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[]
-
-___
 
 ### nonTTY
 
@@ -73,25 +42,36 @@ per task options for the silent renderer
 
 src/renderer/silent.renderer.ts:11
 
-## Methods
+___
 
-### end
+### tasks
 
-▸ **end**(): `void`
+• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[]
 
-#### Returns
+___
 
-`void`
+### options
 
-#### Implementation of
+• **options**: `never`
 
-ListrRenderer.end
+## Constructors
+
+### constructor
+
+• **new SilentRenderer**(`tasks`, `options`)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[] |
+| `options` | `never` |
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:17
+src/renderer/silent.renderer.ts:13
 
-___
+## Methods
 
 ### render
 
@@ -108,3 +88,21 @@ ListrRenderer.render
 #### Defined in
 
 src/renderer/silent.renderer.ts:15
+
+___
+
+### end
+
+▸ **end**(): `void`
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+ListrRenderer.end
+
+#### Defined in
+
+src/renderer/silent.renderer.ts:17

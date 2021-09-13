@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrSimpleRendererValue
-
 # Type alias: ListrSimpleRendererValue
 
 [index](../modules/index.md).ListrSimpleRendererValue

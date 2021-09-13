@@ -1,12 +1,10 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptOptionsMap
-
 # Class: PromptOptionsMap
 
 [index](../modules/index.md).PromptOptionsMap
 
 ## Implements
 
-- `Record`<[`PromptTypes`](../types/index.PromptTypes.md), `Record`<`string`, `any`\>\>
+- `Record`<[`PromptTypes`](../types/index.PromptTypes.md), `Record`<`PropertyKey`, `any`\>\>
 
 ## Constructors
 

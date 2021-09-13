@@ -62,40 +62,4 @@ describe('show subtasks', () => {
     expect(mockStderr.mock.calls).toMatchSnapshot('nvFwliir81dQSzoa7xPXaq0E1lauH674-err')
     expect(mockExit.mock.calls).toMatchSnapshot('nvFwliir81dQSzoa7xPXaq0E1lauH674-exit')
   })
-
-  // OCO3TQJ8pmRRRbv018gpCLgSEDnvFBOz
-  it('should be able to skip parent from subtask', async () => {
-    await new Listr(
-      [
-        {
-          title: 'This task will execute.',
-          task: (ctx, task): Listr =>
-            task.newListr((parent) => [
-              {
-                title: 'This is a subtask.',
-                task: async (): Promise<void> => {
-                  await delay(20)
-                  parent.skip('Title changed from subtask.')
-                }
-              },
-
-              {
-                title: 'This is a subtask.',
-                task: async (): Promise<void> => {
-                  await delay(30)
-                }
-              }
-            ])
-        }
-      ],
-      {
-        concurrent: false,
-        rendererOptions: { lazy: true }
-      }
-    ).run()
-
-    expect(mockStdout.mock.calls).toMatchSnapshot('OCO3TQJ8pmRRRbv018gpCLgSEDnvFBOz-out')
-    expect(mockStderr.mock.calls).toMatchSnapshot('OCO3TQJ8pmRRRbv018gpCLgSEDnvFBOz-err')
-    expect(mockExit.mock.calls).toMatchSnapshot('OCO3TQJ8pmRRRbv018gpCLgSEDnvFBOz-exit')
-  })
 })

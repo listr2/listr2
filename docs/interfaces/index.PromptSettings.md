@@ -1,20 +1,8 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptSettings
-
 # Interface: PromptSettings
 
 [index](../modules/index.md).PromptSettings
 
 ## Properties
-
-### enquirer
-
-• `Optional` **enquirer**: `Enquirer`<`object`\>
-
-#### Defined in
-
-src/utils/prompt.interface.ts:159
-
-___
 
 ### error
 
@@ -33,6 +21,16 @@ ___
 #### Defined in
 
 src/utils/prompt.interface.ts:158
+
+___
+
+### enquirer
+
+• `Optional` **enquirer**: `Enquirer`<`object`\>
+
+#### Defined in
+
+src/utils/prompt.interface.ts:159
 
 ## Methods
 

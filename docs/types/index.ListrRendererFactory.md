@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrRendererFactory
-
 # Type alias: ListrRendererFactory
 
 [index](../modules/index.md).ListrRendererFactory

@@ -65,7 +65,7 @@ describe('fallback renderer', () => {
           rendererOptions: { lazy: true, formatOutput: format as any }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -99,7 +99,7 @@ describe('fallback renderer', () => {
           rendererOptions: { lazy: true, formatOutput: format as any }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -135,7 +135,7 @@ describe('fallback renderer', () => {
           }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 

@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / Logger
-
 # Class: Logger
 
 [index](../modules/index.md).Logger
@@ -24,26 +22,6 @@ src/utils/logger.ts:11
 
 ## Methods
 
-### data
-
-▸ **data**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:28
-
-___
-
 ### fail
 
 ▸ **fail**(`message`): `void`
@@ -64,46 +42,103 @@ src/utils/logger.ts:13
 
 ___
 
-### logColoring
+### skip
 
-▸ `Protected` **logColoring**(`__namedParameters`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.level` | [`LogLevels`](../enums/index.LogLevels.md) |
-| `__namedParameters.message` | `string` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-src/utils/logger.ts:78
-
-___
-
-### parseMessage
-
-▸ `Protected` **parseMessage**(`level`, `message`): `string`
+▸ **skip**(`message`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `level` | [`LogLevels`](../enums/index.LogLevels.md) |
 | `message` | `string` |
 
 #### Returns
 
-`string`
+`void`
 
 #### Defined in
 
-src/utils/logger.ts:55
+src/utils/logger.ts:18
+
+___
+
+### success
+
+▸ **success**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+src/utils/logger.ts:23
+
+___
+
+### data
+
+▸ **data**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+src/utils/logger.ts:28
+
+___
+
+### start
+
+▸ **start**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+src/utils/logger.ts:33
+
+___
+
+### title
+
+▸ **title**(`message`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+src/utils/logger.ts:38
 
 ___
 
@@ -147,83 +182,46 @@ src/utils/logger.ts:49
 
 ___
 
-### skip
+### parseMessage
 
-▸ **skip**(`message`): `void`
+▸ `Protected` **parseMessage**(`level`, `message`): `string`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
+| `level` | [`LogLevels`](../enums/index.LogLevels.md) |
 | `message` | `string` |
 
 #### Returns
 
-`void`
+`string`
 
 #### Defined in
 
-src/utils/logger.ts:18
+src/utils/logger.ts:55
 
 ___
 
-### start
+### logColoring
 
-▸ **start**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:33
-
-___
-
-### success
-
-▸ **success**(`message`): `void`
+▸ `Protected` **logColoring**(`__namedParameters`): `string`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `message` | `string` |
+| `__namedParameters` | `Object` |
+| `__namedParameters.level` | [`LogLevels`](../enums/index.LogLevels.md) |
+| `__namedParameters.message` | `string` |
 
 #### Returns
 
-`void`
+`string`
 
 #### Defined in
 
-src/utils/logger.ts:23
-
-___
-
-### title
-
-▸ **title**(`message`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/logger.ts:38
+src/utils/logger.ts:78
 
 ___
 

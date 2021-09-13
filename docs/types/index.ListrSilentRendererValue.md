@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrSilentRendererValue
-
 # Type alias: ListrSilentRendererValue
 
 [index](../modules/index.md).ListrSilentRendererValue

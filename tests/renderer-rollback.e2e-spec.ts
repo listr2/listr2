@@ -78,7 +78,7 @@ describe('show rollback', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -138,7 +138,7 @@ describe('show rollback', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -199,7 +199,7 @@ describe('show rollback', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -262,7 +262,7 @@ describe('show rollback', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 

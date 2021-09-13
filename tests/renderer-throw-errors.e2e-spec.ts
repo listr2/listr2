@@ -53,7 +53,7 @@ describe('show throw error', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -89,7 +89,7 @@ describe('show throw error', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -145,7 +145,7 @@ describe('show throw error', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -203,7 +203,7 @@ describe('show throw error', () => {
 
     try {
       await task.run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -237,7 +237,7 @@ describe('show throw error', () => {
           rendererOptions: { lazy: true, collapseErrors: false }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -273,7 +273,7 @@ describe('show throw error', () => {
           rendererOptions: { lazy: true, showErrorMessage: false }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 
@@ -309,7 +309,7 @@ describe('show throw error', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       err = e
     }
 

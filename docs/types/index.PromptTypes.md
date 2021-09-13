@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptTypes
-
 # Type alias: PromptTypes
 
 [index](../modules/index.md).PromptTypes

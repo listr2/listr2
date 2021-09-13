@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptInstance
-
 # Interface: PromptInstance
 
 [index](../modules/index.md).PromptInstance
@@ -12,31 +10,17 @@
 
 ## Properties
 
-### footer
+### message
 
-• `Optional` **footer**: `string`
-
-#### Inherited from
-
-Omit.footer
-
-#### Defined in
-
-src/utils/prompt.interface.ts:32
-
-___
-
-### header
-
-• `Optional` **header**: `string`
+• **message**: `string` \| () => `string` \| () => `Promise`<`string`\>
 
 #### Inherited from
 
-Omit.header
+Omit.message
 
 #### Defined in
 
-src/utils/prompt.interface.ts:31
+src/utils/prompt.interface.ts:26
 
 ___
 
@@ -51,20 +35,6 @@ Omit.initial
 #### Defined in
 
 src/utils/prompt.interface.ts:27
-
-___
-
-### message
-
-• **message**: `string` \| () => `string` \| () => `Promise`<`string`\>
-
-#### Inherited from
-
-Omit.message
-
-#### Defined in
-
-src/utils/prompt.interface.ts:26
 
 ___
 
@@ -108,25 +78,57 @@ Omit.stdout
 
 src/utils/prompt.interface.ts:30
 
+___
+
+### header
+
+• `Optional` **header**: `string`
+
+#### Inherited from
+
+Omit.header
+
+#### Defined in
+
+src/utils/prompt.interface.ts:31
+
+___
+
+### footer
+
+• `Optional` **footer**: `string`
+
+#### Inherited from
+
+Omit.footer
+
+#### Defined in
+
+src/utils/prompt.interface.ts:32
+
 ## Methods
 
-### cancel
+### skip
 
-▸ **cancel**(`err?`): `void`
+▸ `Optional` **skip**(`value`): `boolean` \| `Promise`<`boolean`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `err?` | `string` |
+| `value` | `any` |
 
 #### Returns
 
-`void`
+`boolean` \| `Promise`<`boolean`\>
+
+#### Inherited from
+
+Omit.skip
 
 #### Defined in
 
-src/utils/prompt.interface.ts:164
+src/utils/prompt.interface.ts:33
 
 ___
 
@@ -178,44 +180,6 @@ src/utils/prompt.interface.ts:35
 
 ___
 
-### skip
-
-▸ `Optional` **skip**(`value`): `boolean` \| `Promise`<`boolean`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `any` |
-
-#### Returns
-
-`boolean` \| `Promise`<`boolean`\>
-
-#### Inherited from
-
-Omit.skip
-
-#### Defined in
-
-src/utils/prompt.interface.ts:33
-
-___
-
-### submit
-
-▸ **submit**(): `void`
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/prompt.interface.ts:163
-
-___
-
 ### validate
 
 ▸ `Optional` **validate**(`value`, `state`): `string` \| `boolean` \| `Promise`<`string` \| `boolean`\> \| `Promise`<`boolean`\> \| `Promise`<`string`\>
@@ -238,3 +202,37 @@ Omit.validate
 #### Defined in
 
 src/utils/prompt.interface.ts:36
+
+___
+
+### submit
+
+▸ **submit**(): `void`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+src/utils/prompt.interface.ts:163
+
+___
+
+### cancel
+
+▸ **cancel**(`err?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `err?` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+src/utils/prompt.interface.ts:164

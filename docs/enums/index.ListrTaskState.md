@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrTaskState
-
 # Enumeration: ListrTaskState
 
 [index](../modules/index.md).ListrTaskState
@@ -7,6 +5,16 @@
 Available task states.
 
 ## Enumeration members
+
+### PENDING
+
+• **PENDING** = `"PENDING"`
+
+#### Defined in
+
+src/constants/state.constants.ts:3
+
+___
 
 ### COMPLETED
 
@@ -28,33 +36,13 @@ src/constants/state.constants.ts:5
 
 ___
 
-### PENDING
+### SKIPPED
 
-• **PENDING** = `"PENDING"`
-
-#### Defined in
-
-src/constants/state.constants.ts:3
-
-___
-
-### RETRY
-
-• **RETRY** = `"RETRY"`
+• **SKIPPED** = `"SKIPPED"`
 
 #### Defined in
 
-src/constants/state.constants.ts:9
-
-___
-
-### ROLLED\_BACK
-
-• **ROLLED\_BACK** = `"ROLLED_BACK"`
-
-#### Defined in
-
-src/constants/state.constants.ts:8
+src/constants/state.constants.ts:6
 
 ___
 
@@ -68,10 +56,20 @@ src/constants/state.constants.ts:7
 
 ___
 
-### SKIPPED
+### ROLLED\_BACK
 
-• **SKIPPED** = `"SKIPPED"`
+• **ROLLED\_BACK** = `"ROLLED_BACK"`
 
 #### Defined in
 
-src/constants/state.constants.ts:6
+src/constants/state.constants.ts:8
+
+___
+
+### RETRY
+
+• **RETRY** = `"RETRY"`
+
+#### Defined in
+
+src/constants/state.constants.ts:9

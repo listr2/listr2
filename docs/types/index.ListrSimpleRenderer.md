@@ -1,10 +1,8 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrSimpleRenderer
-
 # Type alias: ListrSimpleRenderer
 
 [index](../modules/index.md).ListrSimpleRenderer
 
-Ƭ **ListrSimpleRenderer**: typeof `SimpleRenderer`
+Ƭ **ListrSimpleRenderer**: typeof [`SimpleRenderer`](../classes/renderer_simple_renderer.SimpleRenderer.md)
 
 Typeof simple renderer
 

@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / PromptError
-
 # Class: PromptError
 
 [index](../modules/index.md).PromptError
@@ -12,69 +10,34 @@ The internal error handling mechanism for prompts only.
 
   ↳ **`PromptError`**
 
-## Constructors
+## Methods
 
-### constructor
+### captureStackTrace
 
-• **new PromptError**(`message`)
+▸ `Static` **captureStackTrace**(`targetObject`, `constructorOpt?`): `void`
+
+Create .stack property on a target object
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `message` | `string` |
+| `targetObject` | `object` |
+| `constructorOpt?` | `Function` |
 
-#### Overrides
+#### Returns
 
-Error.constructor
+`void`
+
+#### Inherited from
+
+Error.captureStackTrace
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:11
+node_modules/@types/node/globals.d.ts:4
 
 ## Properties
-
-### message
-
-• **message**: `string`
-
-#### Inherited from
-
-Error.message
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:974
-
-___
-
-### name
-
-• **name**: `string`
-
-#### Inherited from
-
-Error.name
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:973
-
-___
-
-### stack
-
-• `Optional` **stack**: `string`
-
-#### Inherited from
-
-Error.stack
-
-#### Defined in
-
-node_modules/typescript/lib/lib.es5.d.ts:975
-
-___
 
 ### prepareStackTrace
 
@@ -119,29 +82,64 @@ Error.stackTraceLimit
 
 node_modules/@types/node/globals.d.ts:13
 
-## Methods
+___
 
-### captureStackTrace
+### name
 
-▸ `Static` **captureStackTrace**(`targetObject`, `constructorOpt?`): `void`
+• **name**: `string`
 
-Create .stack property on a target object
+#### Inherited from
+
+Error.name
+
+#### Defined in
+
+node_modules/typescript/lib/lib.es5.d.ts:973
+
+___
+
+### message
+
+• **message**: `string`
+
+#### Inherited from
+
+Error.message
+
+#### Defined in
+
+node_modules/typescript/lib/lib.es5.d.ts:974
+
+___
+
+### stack
+
+• `Optional` **stack**: `string`
+
+#### Inherited from
+
+Error.stack
+
+#### Defined in
+
+node_modules/typescript/lib/lib.es5.d.ts:975
+
+## Constructors
+
+### constructor
+
+• **new PromptError**(`message`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `targetObject` | `object` |
-| `constructorOpt?` | `Function` |
+| `message` | `string` |
 
-#### Returns
+#### Overrides
 
-`void`
-
-#### Inherited from
-
-Error.captureStackTrace
+Error.constructor
 
 #### Defined in
 
-node_modules/@types/node/globals.d.ts:4
+src/interfaces/listr-error.interface.ts:33

@@ -98,7 +98,7 @@ class MyMainClass {
           }
         }
       ])
-    } catch (e) {
+    } catch (e: any) {
       this.logger.fail(e)
     }
 
@@ -118,7 +118,7 @@ class MyMainClass {
           }
         ])
         .run()
-    } catch (e) {
+    } catch (e: any) {
       this.logger.fail(e)
     }
 

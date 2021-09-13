@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / Listr
-
 # Class: Listr<Ctx, Renderer, FallbackRenderer\>
 
 [index](../modules/index.md).Listr
@@ -41,13 +39,23 @@ src/listr.ts:33
 
 ## Properties
 
-### concurrency
+### tasks
 
-• `Private` **concurrency**: `number`
+• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] = `[]`
 
 #### Defined in
 
-src/listr.ts:30
+src/listr.ts:24
+
+___
+
+### err
+
+• **err**: [`ListrError`](index.ListrError.md)<`Ctx`\>[] = `[]`
+
+#### Defined in
+
+src/listr.ts:25
 
 ___
 
@@ -58,42 +66,6 @@ ___
 #### Defined in
 
 src/listr.ts:26
-
-___
-
-### err
-
-• **err**: [`ListrError`](index.ListrError.md)[] = `[]`
-
-#### Defined in
-
-src/listr.ts:25
-
-___
-
-### options
-
-• `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
-
-___
-
-### renderHook$
-
-• **renderHook$**: `Subject`<`void`\>
-
-#### Defined in
-
-src/listr.ts:29
-
-___
-
-### renderer
-
-• `Private` **renderer**: [`ListrRenderer`](index.ListrRenderer.md)
-
-#### Defined in
-
-src/listr.ts:31
 
 ___
 
@@ -109,11 +81,41 @@ ___
 
 ### rendererClassOptions
 
-• **rendererClassOptions**: `Record`<`string`, `any`\>
+• **rendererClassOptions**: `Record`<`PropertyKey`, `any`\>
 
 #### Defined in
 
 src/listr.ts:28
+
+___
+
+### renderHook$
+
+• **renderHook$**: `Subject`<`void`\>
+
+#### Defined in
+
+src/listr.ts:29
+
+___
+
+### concurrency
+
+• `Private` **concurrency**: `number`
+
+#### Defined in
+
+src/listr.ts:30
+
+___
+
+### renderer
+
+• `Private` **renderer**: [`ListrRenderer`](index.ListrRenderer.md)
+
+#### Defined in
+
+src/listr.ts:31
 
 ___
 
@@ -123,13 +125,9 @@ ___
 
 ___
 
-### tasks
+### options
 
-• **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] = `[]`
-
-#### Defined in
-
-src/listr.ts:24
+• `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
 
 ## Methods
 
@@ -149,27 +147,7 @@ src/listr.ts:24
 
 #### Defined in
 
-src/listr.ts:96
-
-___
-
-### checkAll
-
-▸ `Private` **checkAll**(`context`): `Promise`<`void`[]\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `context` | `any` |
-
-#### Returns
-
-`Promise`<`void`[]\>
-
-#### Defined in
-
-src/listr.ts:153
+src/listr.ts:99
 
 ___
 
@@ -189,7 +167,27 @@ ___
 
 #### Defined in
 
-src/listr.ts:104
+src/listr.ts:107
+
+___
+
+### checkAll
+
+▸ `Private` **checkAll**(`context`): `Promise`<`void`[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | `any` |
+
+#### Returns
+
+`Promise`<`void`[]\>
+
+#### Defined in
+
+src/listr.ts:147
 
 ___
 
@@ -203,7 +201,7 @@ ___
 | :------ | :------ |
 | `task` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> |
 | `context` | `Ctx` |
-| `errors` | [`ListrError`](index.ListrError.md)[] |
+| `errors` | [`ListrError`](index.ListrError.md)<`Ctx`\>[] |
 
 #### Returns
 
@@ -211,4 +209,4 @@ ___
 
 #### Defined in
 
-src/listr.ts:157
+src/listr.ts:151

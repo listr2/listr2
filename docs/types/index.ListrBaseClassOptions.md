@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrBaseClassOptions
-
 # Type alias: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer\>
 
 [index](../modules/index.md).ListrBaseClassOptions
@@ -22,4 +20,4 @@ Any subtasks will respect those options so they will be stripped of that propert
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:141
+src/interfaces/listr.interface.ts:161

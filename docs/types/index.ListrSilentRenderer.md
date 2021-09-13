@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrSilentRenderer
-
 # Type alias: ListrSilentRenderer
 
 [index](../modules/index.md).ListrSilentRenderer

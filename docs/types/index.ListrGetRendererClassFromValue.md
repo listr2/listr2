@@ -1,5 +1,3 @@
-[listr2](../README.md) / [index](../modules/index.md) / ListrGetRendererClassFromValue
-
 # Type alias: ListrGetRendererClassFromValue<T\>
 
 [index](../modules/index.md).ListrGetRendererClassFromValue

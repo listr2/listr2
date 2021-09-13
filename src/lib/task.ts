@@ -4,7 +4,7 @@ import { Readable } from 'stream'
 import { TaskWrapper } from './task-wrapper'
 import { ListrEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
-import { ListrError, PromptError } from '@interfaces/listr-error.interface'
+import { ListrErrorTypes, PromptError } from '@interfaces/listr-error.interface'
 import { ListrEvent, ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
 import { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
 import { Listr } from '@root/listr'
@@ -198,7 +198,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
   /** Returns whether this task has a prompt inside. */
   public isPrompt (): boolean {
-    return this.prompt ? true : false
+    return !!this.prompt
   }
 
   /** Run the current task. */
@@ -210,14 +210,15 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         result.options = { ...this.options, ...result.options }
 
         // switch to silent renderer since already rendering
-        const rendererClass = getRenderer('silent')
-        result.rendererClass = rendererClass.renderer
+        result.rendererClass = getRenderer('silent').renderer
         result.renderHook$.subscribe((): void => {
           this.renderHook$.next()
         })
 
         // assign subtasks
         this.subtasks = result.tasks
+
+        result.err = this.listr.err
 
         this.next({ type: ListrEventType.SUBTASK })
 
@@ -270,6 +271,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       }
 
       this.state$ = ListrTaskState.SKIPPED
+
       return
     }
 
@@ -282,18 +284,18 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
           await handleResult(this.task(context, wrapper))
 
           break
-        } catch (e) {
+        } catch (err: any) {
           if (retries !== retryCount) {
-            this.retry = { count: retries, withError: e }
+            this.retry = { count: retries, withError: err }
             this.message$ = { retry: this.retry }
             this.title$ = this.initialTitle
             this.output = undefined
 
-            wrapper.report(e)
+            wrapper.report(err, ListrErrorTypes.WILL_RETRY)
 
             this.state$ = ListrTaskState.RETRY
           } else {
-            throw e
+            throw err
           }
         }
       }
@@ -302,7 +304,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         this.message$ = { duration: Date.now() - startTime }
         this.state$ = ListrTaskState.COMPLETED
       }
-    } catch (error) {
+    } catch (error: any) {
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
@@ -311,7 +313,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
       // execute the task on error function
       if (this.tasks?.rollback) {
-        wrapper.report(error)
+        wrapper.report(error, ListrErrorTypes.WILL_ROLLBACK)
 
         try {
           this.state$ = ListrTaskState.ROLLING_BACK
@@ -321,12 +323,12 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
           this.state$ = ListrTaskState.ROLLED_BACK
 
           this.message$ = { rollback: this.title }
-        } catch (err) {
+        } catch (err: any) {
           this.state$ = ListrTaskState.FAILED
 
-          wrapper.report(err)
+          wrapper.report(err, ListrErrorTypes.HAS_FAILED_TO_ROLLBACK)
 
-          throw error
+          throw err
         }
 
         if (this.listr.options?.exitAfterRollback !== false) {
@@ -334,20 +336,18 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
           throw new Error(this.title)
         }
       } else {
-        /* istanbul ignore if */
-        if (error instanceof ListrError) {
-          return
-        }
-
         // mark task as failed
         this.state$ = ListrTaskState.FAILED
 
-        // report error
-        wrapper.report(error)
-
         if (this.listr.options.exitOnError !== false && await assertFunctionOrSelf(this.tasks?.exitOnError, context) !== false) {
           // Do not exit when explicitly set to `false`
+          // report error
+          wrapper.report(error, ListrErrorTypes.HAS_FAILED)
+
           throw error
+        } else if (!this.hasSubtasks()) {
+          // subtasks will handle and report their own errors
+          wrapper.report(error, ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR)
         }
       }
     } finally {

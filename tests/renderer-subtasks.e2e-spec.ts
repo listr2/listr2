@@ -203,7 +203,7 @@ describe('show subtasks', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       expect(e).toBeTruthy()
     }
 
@@ -261,7 +261,7 @@ describe('show subtasks', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       expect(e).toBeTruthy()
     }
 
@@ -306,7 +306,7 @@ describe('show subtasks', () => {
           }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       expect(e).toBeTruthy()
     }
 
@@ -351,7 +351,7 @@ describe('show subtasks', () => {
           }
         }
       ).run()
-    } catch (e) {
+    } catch (e: any) {
       expect(e).toBeTruthy()
     }
 
