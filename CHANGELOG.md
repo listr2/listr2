@@ -1,3 +1,9 @@
+## [3.12.1](https://github.com/cenk1cenk2/listr2/compare/v3.12.0...v3.12.1) (2021-09-13)
+
+### Bug Fixes
+
+- **deps:** update dependency colorette to ^1.4.0 ([4f52e16](https://github.com/cenk1cenk2/listr2/commit/4f52e16f6251490ba4e8f4a3dc49b41a9a997048))
+
 # [3.12.0](https://github.com/cenk1cenk2/listr2/compare/v3.11.1...v3.12.0) (2021-09-12)
 
 ### Features
