@@ -1,5 +1,5 @@
-import { ListrEventType } from '@constants/event.constants'
-import { ListrEvent } from '@interfaces/listr.interface'
+import { ListrTaskEventType } from '@constants/event.constants'
+import { ListrTaskState } from '@constants/state.constants'
 import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
 import { Logger } from '@utils/logger'
@@ -62,51 +62,49 @@ export class VerboseRenderer implements ListrRenderer {
   // verbose renderer multi-level
   private verboseRenderer (tasks: Task<any, typeof VerboseRenderer>[]): void {
     return tasks?.forEach((task) => {
-      task.subscribe(
-        // eslint-disable-next-line complexity
-        (event: ListrEvent) => {
-          if (task.isEnabled()) {
-            // render depending on the state
-            const taskTitle = task.hasTitle() ? task.title : 'Task without title.'
+      task.on(ListrTaskEventType.STATE, (state) => {
+        if (task.hasTitle() || this.options?.logEmptyTitle !== false) {
+          const title = task.hasTitle() ? task.title : 'Task without title.'
 
-            if (event.type === ListrEventType.SUBTASK && task.hasSubtasks()) {
-              // render lower level if multi-level
-              this.verboseRenderer(task.subtasks)
-            } else if (event.type === ListrEventType.STATE) {
-              if (this.options?.logEmptyTitle !== false || task.hasTitle()) {
-                if (task.isPending()) {
-                  this.logger.start(taskTitle)
-                } else if (task.isCompleted()) {
-                  this.logger.success(taskTitle + (this.options?.showTimer && task.message?.duration ? ` [${parseTaskTime(task.message.duration)}]` : ''))
-                }
-              }
-            } else if (event.type === ListrEventType.DATA && !!event.data) {
-              this.logger.data(String(event.data))
-            } else if (event.type === ListrEventType.TITLE) {
-              if (this.options?.logTitleChange !== false) {
-                this.logger.title(String(event.data))
-              }
-            } else if (event.type === ListrEventType.MESSAGE) {
-              if (event.data?.error) {
-                // error message
-                this.logger.fail(String(event.data.error))
-              } else if (event.data?.skip) {
-                // skip message
-                this.logger.skip(String(event.data.skip))
-              } else if (event.data?.rollback) {
-                // rollback message
-                this.logger.rollback(String(event.data.rollback))
-              } else if (event.data?.retry) {
-                // inform of retry count
-                this.logger.retry(`[${event.data.retry.count}] ` + String(taskTitle))
-              }
-            }
+          switch (state) {
+          case ListrTaskState.PENDING:
+            this.logger.start(title)
+
+            break
+          case ListrTaskState.COMPLETED:
+            this.logger.success(title + (this.options?.showTimer && task.message?.duration ? ` [${parseTaskTime(task.message.duration)}]` : ''))
+
+            break
           }
-        },
-        /* istanbul ignore next */ (err) => {
-          this.logger.fail(err)
         }
-      )
+      })
+
+      task.on(ListrTaskEventType.DATA, (data) => {
+        this.logger.data(data)
+      })
+
+      if (this.options?.logTitleChange !== false) {
+        task.on(ListrTaskEventType.TITLE, (title) => {
+          this.logger.title(title)
+        })
+      }
+
+      task.on(ListrTaskEventType.MESSAGE, (message) => {
+        if (message?.error) {
+          // error message
+          this.logger.fail(message.error)
+        } else if (message?.skip) {
+          // skip message
+          this.logger.skip(message.skip)
+        } else if (message?.rollback) {
+          // rollback message
+          this.logger.rollback(message.rollback)
+        } else if (message?.retry) {
+          const title = task.hasTitle() ? task.title : 'Task without title.'
+
+          this.logger.retry(`[${message.retry.count}] ` + title)
+        }
+      })
     })
   }
 }

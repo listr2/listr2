@@ -11,7 +11,7 @@ import {
   ListrRendererFactory,
   ListrRendererValue
 } from './renderer.interface'
-import { ListrEventType } from '@constants/event.constants'
+import { ListrTaskEventType } from '@constants/event.constants'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { Listr } from '@root/listr'
@@ -175,22 +175,22 @@ Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>
 /** The internal communication event. */
 export type ListrEvent =
   | {
-    type: Exclude<ListrEventType, 'MESSAGE' | 'DATA'>
+    type: Exclude<ListrTaskEventType, 'MESSAGE' | 'DATA'>
     data?: string | boolean
   }
   | {
-    type: ListrEventType.DATA
+    type: ListrTaskEventType.DATA
     data: string
   }
   | {
-    type: ListrEventType.MESSAGE
+    type: ListrTaskEventType.MESSAGE
     data: Task<any, any>['message']
   }
 
 /**
  * Used to match event.type to ListrEvent permutations
  */
-export type ListrEventFromType<T extends ListrEventType, E = ListrEvent> = E extends {
+export type ListrEventFromType<T extends ListrTaskEventType, E = ListrEvent> = E extends {
   type: infer U
 }
   ? T extends U

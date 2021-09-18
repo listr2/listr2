@@ -1,5 +1,5 @@
-/** Type of listr internal events. */
-export enum ListrEventType {
+/** Internal events that occur inside listr task. */
+export enum ListrTaskEventType {
   TITLE = 'TITLE',
   STATE = 'STATE',
   ENABLED = 'ENABLED',

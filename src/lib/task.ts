@@ -1,22 +1,24 @@
-import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
 import { TaskWrapper } from './task-wrapper'
-import { ListrEventType } from '@constants/event.constants'
+import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
+import { ListrTaskEventMap } from '@interfaces/event-map.interface'
 import { ListrErrorTypes, PromptError } from '@interfaces/listr-error.interface'
-import { ListrEvent, ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
+import { ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
 import { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
 import { Listr } from '@root/listr'
 import { assertFunctionOrSelf } from '@utils/assert'
+import { isObservable } from '@utils/is-observable'
 import { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
+import { EventManager } from '@utils/task-event-manager'
 import { generateUUID } from '@utils/uuid'
 
 /**
  * Create a task from the given set of variables and make it runnable.
  */
-export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> {
+export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManager<ListrTaskEventType, ListrTaskEventMap> {
   /** Unique id per task, randomly generated in the uuid v4 format */
   public id: string
   /** The current state of the task. */
@@ -35,7 +37,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   public skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean | string>)
   /** Current retry number of the task if retrying */
   public retry?: { count: number, withError?: any }
-
   /**
    * A channel for messages.
    *
@@ -56,8 +57,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   /** Per task options for the current renderer of the task. */
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   /** This will be triggered each time a new render should happen. */
-  public renderHook$: Subject<void>
-
   public prompt: undefined | PromptInstance | PromptError
   private enabled: boolean
   private enabledFn: ListrTask<Ctx, Renderer>['enabled']
@@ -79,20 +78,12 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
     // task options
     this.rendererTaskOptions = this.tasks.options
-
-    this.renderHook$ = this.listr.renderHook$
-    this.subscribe(() => {
-      this.renderHook$.next()
-    })
   }
 
   set state$ (state: ListrTaskState) {
     this.state = state
 
-    this.next({
-      type: ListrEventType.STATE,
-      data: state
-    })
+    this.emit(ListrTaskEventType.STATE, state)
 
     // cancel the subtasks if this has already failed
     if (this.hasSubtasks() && this.hasFailed()) {
@@ -107,28 +98,19 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   set output$ (data: string) {
     this.output = data
 
-    this.next({
-      type: ListrEventType.DATA,
-      data
-    })
+    this.emit(ListrTaskEventType.DATA, data)
   }
 
   set message$ (data: Task<Ctx, Renderer>['message']) {
     this.message = { ...this.message, ...data }
 
-    this.next({
-      type: ListrEventType.MESSAGE,
-      data
-    })
+    this.emit(ListrTaskEventType.MESSAGE, data)
   }
 
   set title$ (title: string) {
     this.title = title
 
-    this.next({
-      type: ListrEventType.TITLE,
-      data: title
-    })
+    this.emit(ListrTaskEventType.TITLE, title)
   }
 
   /**
@@ -139,10 +121,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     if (this.state === undefined) {
       this.enabled = await assertFunctionOrSelf(this.enabledFn, ctx)
 
-      this.next({
-        type: ListrEventType.ENABLED,
-        data: this.enabled
-      })
+      this.emit(ListrTaskEventType.ENABLED, this.enabled)
     }
   }
 
@@ -211,16 +190,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
         // switch to silent renderer since already rendering
         result.rendererClass = getRenderer('silent').renderer
-        result.renderHook$.subscribe((): void => {
-          this.renderHook$.next()
-        })
 
         // assign subtasks
         this.subtasks = result.tasks
 
         result.err = this.listr.err
 
-        this.next({ type: ListrEventType.SUBTASK })
+        this.emit(ListrTaskEventType.SUBTASK)
 
         result = result.run(context)
       } else if (this.isPrompt()) {
@@ -237,7 +213,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
           result.on('error', (error: Error) => reject(error))
           result.on('end', () => resolve(null))
         })
-      } else if (result instanceof Observable) {
+      } else if (isObservable(result)) {
         // Detect Observable
         result = new Promise((resolve, reject) => {
           result.subscribe({
@@ -351,7 +327,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         }
       }
     } finally {
-      // Mark the observable as completed
       this.complete()
     }
   }

@@ -1,7 +1,7 @@
 import type * as Enquirer from 'enquirer'
 
 import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
-import { ListrEventType } from '@constants/event.constants'
+import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { PromptError } from '@interfaces/listr-error.interface'
 import { TaskWrapper } from '@lib/task-wrapper'
@@ -70,7 +70,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
     enquirer.on('submit', () => this.task.prompt = undefined)
 
     this.task.subscribe((event) => {
-      if (event.type === ListrEventType.STATE && event.data === ListrTaskState.SKIPPED) {
+      if (event.type === ListrTaskEventType.STATE && event.data === ListrTaskState.SKIPPED) {
         if (this.task.prompt && !(this.task.prompt instanceof PromptError)) {
           this.task.prompt.submit()
         }

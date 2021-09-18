@@ -3,7 +3,7 @@ import { EOL } from 'os'
 import { Subject } from 'rxjs'
 
 import { SimpleRenderer } from './simple.renderer'
-import { ListrEventType } from '@constants/event.constants'
+import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { ListrContext, ListrEvent } from '@interfaces/listr.interface'
 import { ListrTaskWrapper } from '@interfaces/task.interface'
@@ -88,13 +88,13 @@ describe('SimpleRenderer', () => {
       const taskMock = getListrObject()
 
       const renderer = new SimpleRenderer([ taskMock as any ], {})
-      renderer.eventTypeRendererMap[ListrEventType.ENABLED] = jest.fn()
+      renderer.eventTypeRendererMap[ListrTaskEventType.ENABLED] = jest.fn()
       renderer.render()
 
-      taskMock.next({ type: ListrEventType.ENABLED, data: 'foo' })
+      taskMock.next({ type: ListrTaskEventType.ENABLED, data: 'foo' })
 
-      expect(renderer.eventTypeRendererMap[ListrEventType.ENABLED]).toHaveBeenCalledWith(taskMock, {
-        type: ListrEventType.ENABLED,
+      expect(renderer.eventTypeRendererMap[ListrTaskEventType.ENABLED]).toHaveBeenCalledWith(taskMock, {
+        type: ListrTaskEventType.ENABLED,
         data: 'foo'
       })
     })
@@ -107,10 +107,10 @@ describe('SimpleRenderer', () => {
       }) as any
 
       const renderer = new SimpleRenderer([ taskMock as any ], {})
-      delete renderer.eventTypeRendererMap[ListrEventType.ENABLED]
+      delete renderer.eventTypeRendererMap[ListrTaskEventType.ENABLED]
       renderer.render()
 
-      expect(() => renderHandler({ type: ListrEventType.ENABLED, data: 'foo' })).not.toThrow()
+      expect(() => renderHandler({ type: ListrTaskEventType.ENABLED, data: 'foo' })).not.toThrow()
     })
 
     it('should render error', () => {
@@ -135,7 +135,7 @@ describe('SimpleRenderer', () => {
   describe('eventTypeRendererMap.SUBTASK', () => {
     const renderer = new SimpleRenderer([], {})
     renderer.log = jest.fn()
-    const event: ListrEvent = { type: ListrEventType.SUBTASK }
+    const event: ListrEvent = { type: ListrTaskEventType.SUBTASK }
 
     it('should not render', () => {
       const taskMock = getListrObject()
@@ -161,13 +161,13 @@ describe('SimpleRenderer', () => {
       taskMock.hasSubtasks.mockReturnValue(true)
       taskMock.subtasks = [ subTaskMock as never ]
 
-      renderer.eventTypeRendererMap[ListrEventType.ENABLED] = jest.fn()
+      renderer.eventTypeRendererMap[ListrTaskEventType.ENABLED] = jest.fn()
       renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
-      subTaskMock.next({ type: ListrEventType.ENABLED, data: 'the sub foo' })
+      subTaskMock.next({ type: ListrTaskEventType.ENABLED, data: 'the sub foo' })
 
       expect(renderer.log).not.toHaveBeenCalled()
-      expect(renderer.eventTypeRendererMap[ListrEventType.ENABLED]).toHaveBeenCalledWith(subTaskMock, {
-        type: ListrEventType.ENABLED,
+      expect(renderer.eventTypeRendererMap[ListrTaskEventType.ENABLED]).toHaveBeenCalledWith(subTaskMock, {
+        type: ListrTaskEventType.ENABLED,
         data: 'the sub foo'
       })
     })
@@ -176,7 +176,7 @@ describe('SimpleRenderer', () => {
   describe('eventTypeRendererMap.STATE', () => {
     const renderer = new SimpleRenderer([], {})
     renderer.log = jest.fn()
-    const event: ListrEvent = { type: ListrEventType.STATE }
+    const event: ListrEvent = { type: ListrTaskEventType.STATE }
 
     it('should not render if pending', () => {
       const taskMock = getListrObject()
@@ -202,7 +202,7 @@ describe('SimpleRenderer', () => {
   describe('eventTypeRendererMap.DATA', () => {
     const renderer = new SimpleRenderer([], {})
     renderer.log = jest.fn()
-    const event: ListrEvent = { type: ListrEventType.DATA, data: 'the data' }
+    const event: ListrEvent = { type: ListrTaskEventType.DATA, data: 'the data' }
 
     it('should not render if prompt and newLine', () => {
       const taskMock = getListrObject()
@@ -241,7 +241,7 @@ describe('SimpleRenderer', () => {
   describe('eventTypeRendererMap.Message', () => {
     const renderer = new SimpleRenderer([], {})
     renderer.log = jest.fn()
-    const event: ListrEvent = { type: ListrEventType.MESSAGE, data: {} }
+    const event: ListrEvent = { type: ListrTaskEventType.MESSAGE, data: {} }
 
     it('should not render', () => {
       const taskMock = getListrObject()

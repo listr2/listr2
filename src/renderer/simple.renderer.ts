@@ -1,7 +1,7 @@
 import { stderr as logUpdate } from 'log-update'
 import { EOL } from 'os'
 
-import { ListrEventType } from '@constants/event.constants'
+import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrEventFromType } from '@interfaces/listr.interface'
 import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@root/lib/task'
@@ -46,12 +46,10 @@ export class SimpleRenderer implements ListrRenderer {
   /**
    * Event type renderer map contains functions to process different task events
    */
-  public eventTypeRendererMap: Partial<
-  {
-    [P in ListrEventType]: (t: Task<any, typeof SimpleRenderer>, event: ListrEventFromType<P>) => void
-  }
-  > = {
-    [ListrEventType.SUBTASK]: (task) => {
+  public eventTypeRendererMap: Partial<{
+    [P in ListrTaskEventType]: (t: Task<any, typeof SimpleRenderer>, event: ListrEventFromType<P>) => void
+  }> = {
+    [ListrTaskEventType.SUBTASK]: (task) => {
       if (task.hasTitle()) {
         // if Task has subtasks where we want to log the group indication
         this.log(`${colorette.blue(figures.pointer)} ${task.title}`)
@@ -61,13 +59,13 @@ export class SimpleRenderer implements ListrRenderer {
         this.render(task.subtasks)
       }
     },
-    [ListrEventType.STATE]: (task) => {
+    [ListrTaskEventType.STATE]: (task) => {
       if (task.isCompleted() && task.hasTitle()) {
         // The title is only logged at the end of the task execution
         this.log(`${colorette.green(figures.tick)} ${task.title}`)
       }
     },
-    [ListrEventType.DATA]: (task, event) => {
+    [ListrTaskEventType.DATA]: (task, event) => {
       // ! This is where it gets dirty
       // * We want the prompt to stay visible after confirmation
       if (task.isPrompt() && !String(event.data).match(/^\n$/)) {
@@ -76,7 +74,7 @@ export class SimpleRenderer implements ListrRenderer {
         this.log(`${figures.pointerSmall} ${event.data}`)
       }
     },
-    [ListrEventType.MESSAGE]: (task, event) => {
+    [ListrTaskEventType.MESSAGE]: (task, event) => {
       if (event.data.error) {
         // error message
         const title = SimpleRenderer.formatTitle(task)
