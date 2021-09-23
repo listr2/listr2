@@ -55,10 +55,6 @@ ___
 
 ▪ `Static` **if**: <T, F\>(`condition`: () => `boolean`, `trueResult?`: `SubscribableOrPromise`<`T`\>, `falseResult?`: `SubscribableOrPromise`<`F`\>) => `Observable`<`T` \| `F`\>
 
-**`nocollapse`**
-
-**`deprecated`** In favor of iif creation function: import { iif } from 'rxjs';
-
 #### Type declaration
 
 ▸ <`T`, `F`\>(`condition`, `trueResult?`, `falseResult?`): `Observable`<`T` \| `F`\>
@@ -181,10 +177,6 @@ ___
 ### throw
 
 ▪ `Static` **throw**: (`error`: `any`, `scheduler?`: `SchedulerLike`) => `Observable`<`never`\>
-
-**`nocollapse`**
-
-**`deprecated`** In favor of throwError creation function: import { throwError } from 'rxjs';
 
 #### Type declaration
 
@@ -408,8 +400,6 @@ ___
 ### task
 
 • **task**: (`ctx`: `Ctx`, `task`: [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>) => `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-The task object itself, to further utilize it.
 
 #### Type declaration
 

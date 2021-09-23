@@ -1,3 +1,9 @@
+## [3.12.2](https://github.com/cenk1cenk2/listr2/compare/v3.12.1...v3.12.2) (2021-09-23)
+
+### Bug Fixes
+
+- commit message for pull request [#527](https://github.com/cenk1cenk2/listr2/issues/527) ([2b96129](https://github.com/cenk1cenk2/listr2/commit/2b96129dd38dd47cea77f757b0c9f2760001c0f4))
+
 ## [3.12.1](https://github.com/cenk1cenk2/listr2/compare/v3.12.0...v3.12.1) (2021-09-13)
 
 ### Bug Fixes
