@@ -186,14 +186,3 @@ export type ListrEvent =
     type: ListrTaskEventType.MESSAGE
     data: Task<any, any>['message']
   }
-
-/**
- * Used to match event.type to ListrEvent permutations
- */
-export type ListrEventFromType<T extends ListrTaskEventType, E = ListrEvent> = E extends {
-  type: infer U
-}
-  ? T extends U
-    ? E
-    : never
-  : never

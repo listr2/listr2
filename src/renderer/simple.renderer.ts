@@ -2,8 +2,8 @@ import { stderr as logUpdate } from 'log-update'
 import { EOL } from 'os'
 
 import { ListrTaskEventType } from '@constants/event.constants'
-import { ListrEventFromType } from '@interfaces/listr.interface'
 import { ListrRenderer } from '@interfaces/renderer.interface'
+import { ListrTaskState } from '@root/constants'
 import { Task } from '@root/lib/task'
 import colorette from '@utils/colorette'
 import { figures } from '@utils/figures'
@@ -43,65 +43,6 @@ export class SimpleRenderer implements ListrRenderer {
   // designate your custom internal task-based options that will show as `options` in the task itself
   public static rendererTaskOptions: never
 
-  /**
-   * Event type renderer map contains functions to process different task events
-   */
-  public eventTypeRendererMap: Partial<{
-    [P in ListrTaskEventType]: (t: Task<any, typeof SimpleRenderer>, event: ListrEventFromType<P>) => void
-  }> = {
-    [ListrTaskEventType.SUBTASK]: (task) => {
-      if (task.hasTitle()) {
-        // if Task has subtasks where we want to log the group indication
-        this.log(`${colorette.blue(figures.pointer)} ${task.title}`)
-      }
-
-      if (task.hasSubtasks()) {
-        this.render(task.subtasks)
-      }
-    },
-    [ListrTaskEventType.STATE]: (task) => {
-      if (task.isCompleted() && task.hasTitle()) {
-        // The title is only logged at the end of the task execution
-        this.log(`${colorette.green(figures.tick)} ${task.title}`)
-      }
-    },
-    [ListrTaskEventType.DATA]: (task, event) => {
-      // ! This is where it gets dirty
-      // * We want the prompt to stay visible after confirmation
-      if (task.isPrompt() && !String(event.data).match(/^\n$/)) {
-        logUpdate(`${event.data}`)
-      } else {
-        this.log(`${figures.pointerSmall} ${event.data}`)
-      }
-    },
-    [ListrTaskEventType.MESSAGE]: (task, event) => {
-      if (event.data.error) {
-        // error message
-        const title = SimpleRenderer.formatTitle(task)
-
-        this.log(`${colorette.red(figures.cross)}${title}: ${event.data.error}`)
-      } else if (event.data.skip) {
-        // Skip message
-        const title = SimpleRenderer.formatTitle(task)
-        const skip = task.title !== event.data.skip ? `: ${event.data.skip}` : ''
-
-        this.log(`${colorette.yellow(figures.arrowDown)}${title} [${colorette.yellow(`skipped${skip}`)}]`)
-      } else if (event.data.rollback) {
-        // rollback message
-        const title = SimpleRenderer.formatTitle(task)
-
-        this.log(`${colorette.red(figures.arrowLeft)}${title}: ${event.data.rollback}`)
-      } else if (event.data.retry) {
-        // Retry Message
-        const title = SimpleRenderer.formatTitle(task)
-
-        this.log(`[${colorette.yellow(`${event.data.retry.count}`)}]${title}`)
-      }
-    }
-    // * We do not log out initial title. Only the final one.
-    // [ListrEventType.TITLE]: (t, e) => this.renderTitle(t, e),
-  }
-
   constructor (public readonly tasks: Task<any, typeof SimpleRenderer>[], public options: typeof SimpleRenderer['rendererOptions']) {
     this.options = { ...SimpleRenderer.rendererOptions, ...options }
   }
@@ -139,17 +80,64 @@ export class SimpleRenderer implements ListrRenderer {
   // eslint-disable-next-line
   public end(): void {}
 
-  // yes this is a misuse :)
-  public render (tasks?: Task<any, typeof SimpleRenderer>[]): void {
-    if (tasks?.length) {
-      tasks.forEach((task) => {
-        task.subscribe((event) => {
-          // Here event type will match event.type anyway
-          this.eventTypeRendererMap[event.type]?.(task, event as any)
-        }, this.log)
+  public render (): void {
+    this.simpleRenderer(this.tasks)
+  }
+
+  private simpleRenderer (tasks: Task<any, typeof SimpleRenderer>[]): void {
+    tasks.forEach((task) => {
+      task.on(ListrTaskEventType.SUBTASK, () => {
+        if (task.hasTitle()) {
+          // if Task has subtasks where we want to log the group indication
+          this.log(`${colorette.blue(figures.pointer)} ${task.title}`)
+        }
+
+        if (task.hasSubtasks()) {
+          this.simpleRenderer(task.subtasks)
+        }
       })
-    } else {
-      this.render(this.tasks)
-    }
+
+      task.on(ListrTaskEventType.STATE, (event) => {
+        if (event === ListrTaskState.COMPLETED && task.hasTitle()) {
+          // The title is only logged at the end of the task execution
+          this.log(`${colorette.green(figures.tick)} ${task.title}`)
+        }
+      })
+
+      task.on(ListrTaskEventType.DATA, (event) => {
+        // ! This is where it gets dirty
+        // * We want the prompt to stay visible after confirmation
+        if (task.isPrompt() && !String(event).match(/^\n$/)) {
+          logUpdate(`${event}`)
+        } else {
+          this.log(`${figures.pointerSmall} ${event}`)
+        }
+      })
+
+      task.on(ListrTaskEventType.MESSAGE, (event) => {
+        if (event.error) {
+          // error message
+          const title = SimpleRenderer.formatTitle(task)
+
+          this.log(`${colorette.red(figures.cross)}${title}: ${event.error}`)
+        } else if (event.skip) {
+          // Skip message
+          const title = SimpleRenderer.formatTitle(task)
+          const skip = task.title !== event.skip ? `: ${event.skip}` : ''
+
+          this.log(`${colorette.yellow(figures.arrowDown)}${title} [${colorette.yellow(`skipped${skip}`)}]`)
+        } else if (event.rollback) {
+          // rollback message
+          const title = SimpleRenderer.formatTitle(task)
+
+          this.log(`${colorette.red(figures.arrowLeft)}${title}: ${event.rollback}`)
+        } else if (event.retry) {
+          // Retry Message
+          const title = SimpleRenderer.formatTitle(task)
+
+          this.log(`[${colorette.yellow(`${event.retry.count}`)}]${title}`)
+        }
+      })
+    })
   }
 }

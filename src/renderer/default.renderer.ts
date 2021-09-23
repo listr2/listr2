@@ -3,6 +3,8 @@ import * as logUpdate from 'log-update'
 import { EOL } from 'os'
 import * as cliWrap from 'wrap-ansi'
 
+import { ListrEventType } from '@constants/event.constants'
+import { ListrEventMap } from '@interfaces/event-map.interface'
 import { ListrContext } from '@interfaces/listr.interface'
 import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
@@ -11,6 +13,7 @@ import { figures } from '@utils/figures'
 import { indentString } from '@utils/indent-string'
 import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
+import { EventManager } from '@utils/task-event-manager'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -162,7 +165,11 @@ export class DefaultRenderer implements ListrRenderer {
   private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
 
-  constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
+  constructor (
+    public tasks: Task<any, typeof DefaultRenderer>[],
+    public options: typeof DefaultRenderer['rendererOptions'],
+    public events: EventManager<ListrEventType, ListrEventMap>
+  ) {
     this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
   }
 
@@ -243,7 +250,7 @@ export class DefaultRenderer implements ListrRenderer {
       }, 100)
     }
 
-    this.renderHook$.subscribe(() => {
+    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
       updateRender()
     })
   }
@@ -264,8 +271,8 @@ export class DefaultRenderer implements ListrRenderer {
     }
   }
 
-  // eslint-disable-next-line
-  private multiLineRenderer(tasks: Task<any, typeof DefaultRenderer>[], level = 0): string {
+  // eslint-disable-next-line complexity
+  private multiLineRenderer (tasks: Task<any, typeof DefaultRenderer>[], level = 0): string {
     let output: string[] = []
 
     for (const task of tasks) {

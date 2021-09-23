@@ -1,3 +1,10 @@
+/**
+ * A basic function to parse minutes and tasks passed given a duration.
+ * Useful for renderers to show the task time.
+ *
+ * @param {number} duration
+ * @returns {string}
+ */
 export function parseTaskTime (duration: number): string {
   const seconds = Math.floor(duration / 1000)
   const minutes = Math.floor(seconds / 60)

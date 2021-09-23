@@ -69,8 +69,8 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
     // Can't use on cancel, since that might hold a PromptError object
     enquirer.on('submit', () => this.task.prompt = undefined)
 
-    this.task.subscribe((event) => {
-      if (event.type === ListrTaskEventType.STATE && event.data === ListrTaskState.SKIPPED) {
+    this.task.on(ListrTaskEventType.STATE, (event) => {
+      if (event === ListrTaskState.SKIPPED) {
         if (this.task.prompt && !(this.task.prompt instanceof PromptError)) {
           this.task.prompt.submit()
         }

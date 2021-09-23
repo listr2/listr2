@@ -1,10 +1,11 @@
-import { Subject } from 'rxjs'
-
+import { ListrEventType } from '@constants/event.constants'
+import { ListrEventMap } from '@interfaces/event-map.interface'
 import { Task } from '@lib/task'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { SimpleRenderer } from '@renderer/simple.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
+import { EventManager } from '@utils/task-event-manager'
 
 /** The default renderer value used in Listr2 applications */
 export type ListrDefaultRendererValue = 'default'
@@ -121,19 +122,25 @@ export declare class ListrRenderer {
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
-  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, renderHook$?: Subject<void>)
+  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, events?: EventManager<ListrEventType, ListrEventMap>)
 }
 
 /** Exported for javascript applications to extend the base renderer */
 export declare class ListrBaseRenderer implements ListrRenderer {
+  /** designate renderer global options that is specific to the current renderer */
   public static rendererOptions: Record<PropertyKey, any>
+  /** designate renderer per task options that is specific to the current renderer  */
   public static rendererTaskOptions: Record<PropertyKey, any>
+  /** designate whether this renderer can work in non-tty environments */
   public static nonTTY: boolean
   public tasks: Task<any, typeof ListrBaseRenderer>[]
   public options: typeof ListrBaseRenderer.rendererOptions
+  /** A function to what to do on render */
   public render: () => void
+  /** A function to what to do on end of the render */
   public end: (err?: Error) => void
-  constructor (tasks: Task<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions)
+  /** create a new renderer */
+  constructor (tasks: Task<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions, events?: EventManager<ListrEventType, ListrEventMap>)
 }
 
 /** A renderer factory from the current type */

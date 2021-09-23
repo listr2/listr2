@@ -1,7 +1,9 @@
-import { ListrTaskEventType } from '@constants/event.constants'
+import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { ListrRenderer } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
+import { ListrEventMap } from '@root/interfaces/event-map.interface'
+import { EventManager } from '@root/utils/task-event-manager'
 import { Logger } from '@utils/logger'
 import { parseTaskTime } from '@utils/parse-time'
 
@@ -42,7 +44,11 @@ export class VerboseRenderer implements ListrRenderer {
   public static rendererTaskOptions: never
   private logger: Logger
 
-  constructor (public tasks: Task<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
+  constructor (
+    public tasks: Task<any, typeof VerboseRenderer>[],
+    public options: typeof VerboseRenderer['rendererOptions'],
+    public events: EventManager<ListrEventType, ListrEventMap>
+  ) {
     if (!this.options?.logger) {
       this.logger = new Logger({ useIcons: this.options?.useIcons })
     } /* istanbul ignore next */ else {
@@ -53,6 +59,9 @@ export class VerboseRenderer implements ListrRenderer {
   }
 
   public render (): void {
+    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
+      // console.log('i should re render')
+    })
     this.verboseRenderer(this.tasks)
   }
 

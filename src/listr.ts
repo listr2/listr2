@@ -1,7 +1,8 @@
 import * as pMap from 'p-map'
-import { Subject } from 'rxjs'
 
+import { ListrEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
+import { ListrEventMap } from '@interfaces/event-map.interface'
 import { ListrError } from '@interfaces/listr-error.interface'
 import { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
 import {
@@ -16,17 +17,21 @@ import {
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
+import { EventManager } from '@utils/task-event-manager'
 
 /**
  * Creates a new set of Listr2 task list.
  */
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
+  static eventsInstance: EventManager<ListrEventType, ListrEventMap>
+
+  public events: EventManager<ListrEventType, ListrEventMap>
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError<Ctx>[] = []
   public ctx: Ctx
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
-  public renderHook$: Task<any, any>['renderHook$'] = new Subject()
+
   private concurrency: number
   private renderer: ListrRenderer
 
@@ -55,6 +60,13 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     } else {
       this.concurrency = 1
     }
+
+    // inject singleton instance of event EventManager
+    if (!(Listr.eventsInstance && Listr.eventsInstance instanceof EventManager)) {
+      Listr.eventsInstance = new EventManager()
+    }
+
+    this.events = Listr.eventsInstance
 
     // get renderer class
     const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
@@ -90,7 +102,6 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
 
     // disable color programatically for CI purposes
-    /* istanbul ignore if */
     if (this.options?.disableColor) {
       process.env.LISTR_DISABLE_COLOR = '1'
     }
@@ -107,7 +118,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public async run (context?: Ctx): Promise<Ctx> {
     // start the renderer
     if (!this.renderer) {
-      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.renderHook$)
+      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
     }
 
     this.renderer.render()
@@ -144,7 +155,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     return this.ctx
   }
 
-  private checkAll (context: any): Promise<void[]> {
+  private checkAll (context: Ctx): Promise<void[]> {
     return Promise.all(this.tasks.map((task) => task.check(context)))
   }
 

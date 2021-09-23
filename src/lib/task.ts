@@ -1,7 +1,7 @@
 import { Readable } from 'stream'
 
 import { TaskWrapper } from './task-wrapper'
-import { ListrTaskEventType } from '@constants/event.constants'
+import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { ListrTaskEventMap } from '@interfaces/event-map.interface'
 import { ListrErrorTypes, PromptError } from '@interfaces/listr-error.interface'
@@ -52,7 +52,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     /** Rollback message of the task, if the rollback finishes */
     rollback?: string
     /** Retry messages */
-    retry?: { count: number, withError?: any }
+    retry?: { count: number, withError?: Error }
   } = {}
   /** Per task options for the current renderer of the task. */
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
@@ -93,24 +93,29 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         }
       }
     }
+
+    this.shouldReRender$()
   }
 
   set output$ (data: string) {
     this.output = data
 
     this.emit(ListrTaskEventType.DATA, data)
+    this.shouldReRender$()
   }
 
   set message$ (data: Task<Ctx, Renderer>['message']) {
     this.message = { ...this.message, ...data }
 
     this.emit(ListrTaskEventType.MESSAGE, data)
+    this.shouldReRender$()
   }
 
   set title$ (title: string) {
     this.title = title
 
     this.emit(ListrTaskEventType.TITLE, title)
+    this.shouldReRender$()
   }
 
   /**
@@ -329,5 +334,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     } finally {
       this.complete()
     }
+  }
+
+  private shouldReRender$ (): void {
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 }
