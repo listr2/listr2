@@ -23,4 +23,4 @@ const FIGURES_FALLBACK = {
   squareSmallFilled: '■'
 }
 
-export const figures = isUnicodeSupported ? FIGURES_MAIN : FIGURES_FALLBACK
+export const figures = isUnicodeSupported() ? FIGURES_MAIN : FIGURES_FALLBACK
