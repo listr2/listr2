@@ -64,7 +64,7 @@
   ],
   "dependencies": {
     "cli-truncate": "^2.1.0",
-    "colorette": "^1.4.0",
+    "colorette": "^2.0.16",
     "log-update": "^4.0.0",
     "p-map": "^4.0.0",
     "rxjs": "^6.6.7",
