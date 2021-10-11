@@ -91,7 +91,7 @@
     "rimraf": "^3.0.2",
     "simple-git-hooks": "^2.6.1",
     "ts-jest": "^27.0.5",
-    "ts-node": "^10.2.1",
+    "ts-node": "^10.3.0",
     "tsc-watch": "^4.5.0",
     "tsconfig-paths": "^3.11.0",
     "tscpaths": "^0.0.9",
