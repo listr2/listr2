@@ -97,7 +97,7 @@
     "tscpaths": "^0.0.9",
     "typedoc": "^0.22.5",
     "typedoc-plugin-markdown": "^3.11.3",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
   },
   "peerDependencies": {
     "enquirer": ">= 2.3.0 < 3"
