@@ -46,7 +46,7 @@ export class VerboseRenderer implements ListrRenderer {
     if (!this.options?.logger) {
       this.logger = new Logger({ useIcons: this.options?.useIcons })
     } /* istanbul ignore next */ else {
-      this.logger = new this.options.logger()
+      this.logger = new this.options.logger({ ...this.options, logger: undefined })
     }
 
     this.options = { ...VerboseRenderer.rendererOptions, ...this.options }
