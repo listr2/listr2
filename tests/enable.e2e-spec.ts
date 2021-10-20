@@ -24,7 +24,7 @@ describe('enable with context', () => {
         { renderer: 'verbose' }
       ).run()
 
-      expect(log).toBeCalledTimes(0)
+      expect(log).toBeCalledTimes(1)
     })
 
     it('with async function returning boolean', async () => {
