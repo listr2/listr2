@@ -17,11 +17,17 @@ describe('VerboseRenderer', () => {
       expect(Logger).toHaveBeenCalledWith({ useIcons: true })
     })
 
+    it('should call the custom logger', () => {
+      const CustomLogger = jest.fn()
+      new VerboseRenderer([], { logger: CustomLogger })
+      expect(CustomLogger).toHaveBeenCalledWith()
+    })
+
     it('should pass options to a custom logger', () => {
       const CustomLogger = jest.fn()
       const options: CustomLoggerOptions = { useIcons: false, loggerPath: '/tmp/log.txt' }
-      new VerboseRenderer([], { ...options, logger: CustomLogger })
-      expect(CustomLogger).toHaveBeenCalledWith({ useIcons: false, loggerPath: '/tmp/log.txt' })
+      new VerboseRenderer([], { options, logger: CustomLogger })
+      expect(CustomLogger).toHaveBeenCalledWith(options)
     })
   })
 })
