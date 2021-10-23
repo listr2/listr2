@@ -1,3 +1,9 @@
+## [3.13.1](https://github.com/cenk1cenk2/listr2/compare/v3.13.0...v3.13.1) (2021-10-23)
+
+### Bug Fixes
+
+- use v8 functions for error collection ([be37833](https://github.com/cenk1cenk2/listr2/commit/be37833807b2f915c53e58946543d257c723ac4b))
+
 # [3.13.0](https://github.com/cenk1cenk2/listr2/compare/v3.12.2...v3.13.0) (2021-10-23)
 
 ### Bug Fixes
