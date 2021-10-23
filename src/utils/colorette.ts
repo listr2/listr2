@@ -1,9 +1,3 @@
-import * as colorette from 'colorette'
+import { createColors } from 'colorette'
 
-/* istanbul ignore if */
-if (process.env?.LISTR_DISABLE_COLOR === '1') {
-  // disable coloring completely
-  colorette.options.enabled = false
-}
-
-export default colorette
+export default createColors({ useColor: process.env?.LISTR_DISABLE_COLOR !== '1' })
