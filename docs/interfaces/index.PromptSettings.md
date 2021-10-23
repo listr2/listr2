@@ -10,7 +10,7 @@
 
 #### Defined in
 
-src/utils/prompt.interface.ts:156
+src/utils/prompt.interface.ts:154
 
 ___
 
@@ -20,7 +20,7 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:158
+src/utils/prompt.interface.ts:156
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:159
+src/utils/prompt.interface.ts:157
 
 ## Methods
 
@@ -50,4 +50,4 @@ src/utils/prompt.interface.ts:159
 
 #### Defined in
 
-src/utils/prompt.interface.ts:157
+src/utils/prompt.interface.ts:155

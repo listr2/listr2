@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:112
+src/renderer/simple.renderer.ts:110
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:117
+src/renderer/simple.renderer.ts:115
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:122
+src/renderer/simple.renderer.ts:120
 
 ___
 
@@ -148,7 +148,7 @@ ListrRenderer.end
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:142
+src/renderer/simple.renderer.ts:140
 
 ___
 
@@ -172,7 +172,7 @@ ListrRenderer.render
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:145
+src/renderer/simple.renderer.ts:143
 
 ## Constructors
 
@@ -191,4 +191,4 @@ src/renderer/simple.renderer.ts:145
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:107
+src/renderer/simple.renderer.ts:105

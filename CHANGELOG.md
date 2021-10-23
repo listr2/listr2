@@ -1,3 +1,14 @@
+# [3.13.0](https://github.com/cenk1cenk2/listr2/compare/v3.12.2...v3.13.0) (2021-10-23)
+
+### Bug Fixes
+
+- ditch api-extractor update colorrette ([7ae6752](https://github.com/cenk1cenk2/listr2/commit/7ae6752d7da59e54c28caeb7b3297f1792b0c7c8))
+- pass options to custom logger ([3004640](https://github.com/cenk1cenk2/listr2/commit/30046409eddba749b460d34cd9ef089bfcf300a4))
+
+### Features
+
+- pass options to the custom logger, implement it with types ([4cecba8](https://github.com/cenk1cenk2/listr2/commit/4cecba8a0b1f3efae5d89d982c67edcc82969218))
+
 ## [3.12.2](https://github.com/cenk1cenk2/listr2/compare/v3.12.1...v3.12.2) (2021-09-23)
 
 ### Bug Fixes

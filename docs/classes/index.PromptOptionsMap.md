@@ -24,7 +24,7 @@ Record.AutoComplete
 
 #### Defined in
 
-src/utils/prompt.interface.ts:134
+src/utils/prompt.interface.ts:132
 
 ___
 
@@ -38,7 +38,7 @@ Record.BasicAuth
 
 #### Defined in
 
-src/utils/prompt.interface.ts:135
+src/utils/prompt.interface.ts:133
 
 ___
 
@@ -52,7 +52,7 @@ Record.Confirm
 
 #### Defined in
 
-src/utils/prompt.interface.ts:136
+src/utils/prompt.interface.ts:134
 
 ___
 
@@ -66,7 +66,7 @@ Record.Editable
 
 #### Defined in
 
-src/utils/prompt.interface.ts:137
+src/utils/prompt.interface.ts:135
 
 ___
 
@@ -80,7 +80,7 @@ Record.Form
 
 #### Defined in
 
-src/utils/prompt.interface.ts:138
+src/utils/prompt.interface.ts:136
 
 ___
 
@@ -94,7 +94,7 @@ Record.Input
 
 #### Defined in
 
-src/utils/prompt.interface.ts:139
+src/utils/prompt.interface.ts:137
 
 ___
 
@@ -108,7 +108,7 @@ Record.Invisible
 
 #### Defined in
 
-src/utils/prompt.interface.ts:140
+src/utils/prompt.interface.ts:138
 
 ___
 
@@ -122,7 +122,7 @@ Record.List
 
 #### Defined in
 
-src/utils/prompt.interface.ts:141
+src/utils/prompt.interface.ts:139
 
 ___
 
@@ -136,7 +136,7 @@ Record.MultiSelect
 
 #### Defined in
 
-src/utils/prompt.interface.ts:142
+src/utils/prompt.interface.ts:140
 
 ___
 
@@ -150,7 +150,7 @@ Record.Numeral
 
 #### Defined in
 
-src/utils/prompt.interface.ts:143
+src/utils/prompt.interface.ts:141
 
 ___
 
@@ -164,7 +164,7 @@ Record.Password
 
 #### Defined in
 
-src/utils/prompt.interface.ts:144
+src/utils/prompt.interface.ts:142
 
 ___
 
@@ -178,7 +178,7 @@ Record.Quiz
 
 #### Defined in
 
-src/utils/prompt.interface.ts:145
+src/utils/prompt.interface.ts:143
 
 ___
 
@@ -192,7 +192,7 @@ Record.Scale
 
 #### Defined in
 
-src/utils/prompt.interface.ts:146
+src/utils/prompt.interface.ts:144
 
 ___
 
@@ -206,7 +206,7 @@ Record.Select
 
 #### Defined in
 
-src/utils/prompt.interface.ts:147
+src/utils/prompt.interface.ts:145
 
 ___
 
@@ -220,7 +220,7 @@ Record.Snippet
 
 #### Defined in
 
-src/utils/prompt.interface.ts:148
+src/utils/prompt.interface.ts:146
 
 ___
 
@@ -234,7 +234,7 @@ Record.Sort
 
 #### Defined in
 
-src/utils/prompt.interface.ts:149
+src/utils/prompt.interface.ts:147
 
 ___
 
@@ -248,7 +248,7 @@ Record.Survey
 
 #### Defined in
 
-src/utils/prompt.interface.ts:150
+src/utils/prompt.interface.ts:148
 
 ___
 
@@ -262,7 +262,7 @@ Record.Text
 
 #### Defined in
 
-src/utils/prompt.interface.ts:151
+src/utils/prompt.interface.ts:149
 
 ___
 
@@ -276,4 +276,4 @@ Record.Toggle
 
 #### Defined in
 
-src/utils/prompt.interface.ts:152
+src/utils/prompt.interface.ts:150
