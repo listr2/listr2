@@ -263,9 +263,9 @@ describe('error collection', () => {
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
     expect(task.err.length).toBe(3)
-    expect(task.err[0].ctx).toStrictEqual({ test1: true })
-    expect(task.err[1].ctx).toStrictEqual({ test1: true, test2: true })
-    expect(task.err[2].ctx).toStrictEqual({
+    expect(task.err[0].ctx).toMatchObject({ test1: true })
+    expect(task.err[1].ctx).toMatchObject({ test1: true, test2: true })
+    expect(task.err[2].ctx).toMatchObject({
       test1: true,
       test2: true,
       test3: true
