@@ -46,11 +46,9 @@ export class SimpleRenderer implements ListrRenderer {
   /**
    * Event type renderer map contains functions to process different task events
    */
-  public eventTypeRendererMap: Partial<
-  {
+  public eventTypeRendererMap: Partial<{
     [P in ListrEventType]: (t: Task<any, typeof SimpleRenderer>, event: ListrEventFromType<P>) => void
-  }
-  > = {
+  }> = {
     [ListrEventType.SUBTASK]: (task) => {
       if (task.hasTitle()) {
         // if Task has subtasks where we want to log the group indication
