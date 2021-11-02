@@ -64,6 +64,7 @@
   ],
   "dependencies": {
     "cli-truncate": "^2.1.0",
+    "clone": "^2.1.2",
     "colorette": "^2.0.16",
     "log-update": "^4.0.0",
     "p-map": "^4.0.0",
@@ -73,7 +74,8 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.4.9",
-    "@cenk1cenk2/eslint-config": "^0.4.50",
+    "@cenk1cenk2/eslint-config": "^1.0.5",
+    "@types/clone": "^2.1.1",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.7.8",
     "@types/rewire": "^2.5.28",
@@ -81,7 +83,7 @@
     "@types/wrap-ansi": "^3.0.0",
     "delay": "^5.0.0",
     "enquirer": "^2.3.6",
-    "eslint": "^7",
+    "eslint": "^8.1.0",
     "jest": "^27.3.1",
     "jest-mock-process": "^1.4.1",
     "lint-staged": "^11.2.4",
