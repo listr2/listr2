@@ -1,3 +1,9 @@
+## [3.13.3](https://github.com/cenk1cenk2/listr2/compare/v3.13.2...v3.13.3) (2021-11-02)
+
+### Bug Fixes
+
+- upgrade to rxjs7 ([f5fab40](https://github.com/cenk1cenk2/listr2/commit/f5fab401bb7e50023022abd7a0a77b6a02196ae7)), closes [#493](https://github.com/cenk1cenk2/listr2/issues/493) [#409](https://github.com/cenk1cenk2/listr2/issues/409)
+
 ## [3.13.2](https://github.com/cenk1cenk2/listr2/compare/v3.13.1...v3.13.2) (2021-11-02)
 
 ### Bug Fixes
