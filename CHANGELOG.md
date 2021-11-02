@@ -1,3 +1,9 @@
+## [3.13.2](https://github.com/cenk1cenk2/listr2/compare/v3.13.1...v3.13.2) (2021-11-02)
+
+### Bug Fixes
+
+- cloneing objects ([15e8317](https://github.com/cenk1cenk2/listr2/commit/15e8317cb3854e74a8c6d5f86983909cf34f89d8)), closes [#571](https://github.com/cenk1cenk2/listr2/issues/571) [#569](https://github.com/cenk1cenk2/listr2/issues/569) [#538](https://github.com/cenk1cenk2/listr2/issues/538)
+
 ## [3.13.1](https://github.com/cenk1cenk2/listr2/compare/v3.13.0...v3.13.1) (2021-10-23)
 
 ### Bug Fixes
