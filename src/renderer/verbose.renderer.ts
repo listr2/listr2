@@ -41,10 +41,10 @@ export class VerboseRenderer implements ListrRenderer {
          */
     options?: any
   } = {
-    useIcons: false,
-    logEmptyTitle: true,
-    logTitleChange: true
-  }
+      useIcons: false,
+      logEmptyTitle: true,
+      logTitleChange: true
+    }
   /** per task options for the verbose renderer */
   public static rendererTaskOptions: never
   private logger: Logger
