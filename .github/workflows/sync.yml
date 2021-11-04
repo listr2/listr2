@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Sync branches
-        uses: TreTuna/sync-branches@1.2.0
+        uses: TreTuna/sync-branches@1.4.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FROM_BRANCH: master
