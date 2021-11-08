@@ -329,15 +329,15 @@
   optionalDependencies:
     "@commitlint/load" "^12.1.4"
 
-"@cenk1cenk2/eslint-config@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-1.0.5.tgz#46bbb6416120dba0b41a87c80bb7635c590df4a8"
-  integrity sha512-pekngUz/+Zozr3Any/M9s5H2Zr9z/8rWBLH2mqUaWWzOZSxUlELHyt0eulk8/Zf1dwsUAVEQWeuE7bmmIcrEAA==
+"@cenk1cenk2/eslint-config@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-1.0.6.tgz#3486cf7e1fbf3d33a7018f093a523b2dad5564ef"
+  integrity sha512-pyUMnhBB7STM91aRRgpFgxw3WeeeCFdYIVlpQuMJ0vnU/AcFRKFJjHlF3Ya4AB2IOSK23DOus4QYwsqbwxW1Tg==
   dependencies:
     "@nuxtjs/eslint-config" "^7.0.0"
     "@nuxtjs/eslint-config-typescript" "^7.0.2"
-    "@typescript-eslint/eslint-plugin" "^5.2.0"
-    "@typescript-eslint/parser" "^5.2.0"
+    "@typescript-eslint/eslint-plugin" "^5.3.0"
+    "@typescript-eslint/parser" "^5.3.0"
     eslint-config-react "^1.1.7"
     eslint-plugin-import "^2.25.2"
     eslint-plugin-react-hooks "^4.2.0"
@@ -901,7 +901,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@typescript-eslint/eslint-plugin@^5.1.0", "@typescript-eslint/eslint-plugin@^5.2.0":
+"@typescript-eslint/eslint-plugin@^5.1.0", "@typescript-eslint/eslint-plugin@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.3.0.tgz#a55ae72d28ffeb6badd817fe4566c9cced1f5e29"
   integrity sha512-ARUEJHJrq85aaiCqez7SANeahDsJTD3AEua34EoQN9pHS6S5Bq9emcIaGGySt/4X2zSi+vF5hAH52sEen7IO7g==
@@ -927,7 +927,7 @@
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
-"@typescript-eslint/parser@^5.1.0", "@typescript-eslint/parser@^5.2.0":
+"@typescript-eslint/parser@^5.1.0", "@typescript-eslint/parser@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.3.0.tgz#7879f15e26d370ed3f653fb7dd06479531ed3ab9"
   integrity sha512-rKu/yAReip7ovx8UwOAszJVO5MgBquo8WjIQcp1gx4pYQCwYzag+I5nVNHO4MqyMkAo0gWt2gWUi+36gWAVKcw==
