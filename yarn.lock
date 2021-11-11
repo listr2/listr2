@@ -329,17 +329,17 @@
   optionalDependencies:
     "@commitlint/load" "^12.1.4"
 
-"@cenk1cenk2/eslint-config@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-1.0.7.tgz#0233e415451d28b08cbc517d93feafb73285775f"
-  integrity sha512-BfwtTZs1kQhQDjqy09TRsZzJqnD2nD7JZBNnXHvBcj7lj7HC8uEzKclX19qqhw3K6mOvGk6LUZH21JHw+SU6Ag==
+"@cenk1cenk2/eslint-config@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-1.0.8.tgz#eded0b19f56555f18c3a405265ad138926d0a230"
+  integrity sha512-MFJ/vX43s4uK1iIHQutaCND/jrlmCc75qaS1hC4ZhsBUClkFKYryTlGYdd3YJ9OrZ1gezOoFEuOQkJiYUXKoYg==
   dependencies:
     "@nuxtjs/eslint-config" "^7.0.0"
     "@nuxtjs/eslint-config-typescript" "^7.0.2"
     "@typescript-eslint/eslint-plugin" "^5.3.0"
     "@typescript-eslint/parser" "^5.3.0"
     eslint-config-react "^1.1.7"
-    eslint-plugin-import "^2.25.2"
+    eslint-plugin-import "^2.25.3"
     eslint-plugin-react-hooks "^4.3.0"
 
 "@commitlint/execute-rule@^12.1.4":
@@ -2023,7 +2023,7 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-import@^2.25.2:
+eslint-plugin-import@^2.25.2, eslint-plugin-import@^2.25.3:
   version "2.25.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.25.3.tgz#a554b5f66e08fb4f6dc99221866e57cfff824766"
   integrity sha512-RzAVbby+72IB3iOEL8clzPLzL3wpDrlwjsTBAQXgyp5SeTqqY+0bFubwuo+y/HLhNZcXV4XqTBO4LGsfyHIDXg==
