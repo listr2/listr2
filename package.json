@@ -104,6 +104,11 @@
   "peerDependencies": {
     "enquirer": ">= 2.3.0 < 3"
   },
+  "peerDependenciesMeta": {
+    "enquirer": {
+      "optional": true
+    }
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/@cenk1cenk2/cz-cc"
