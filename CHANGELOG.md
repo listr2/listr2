@@ -1,3 +1,9 @@
+## [3.13.4](https://github.com/cenk1cenk2/listr2/compare/v3.13.3...v3.13.4) (2021-11-17)
+
+### Bug Fixes
+
+- mark enquirer as optional as peer ([742395e](https://github.com/cenk1cenk2/listr2/commit/742395ec2d1674a1eae11e943bea1a0cd6733f16)), closes [#589](https://github.com/cenk1cenk2/listr2/issues/589)
+
 ## [3.13.3](https://github.com/cenk1cenk2/listr2/compare/v3.13.2...v3.13.3) (2021-11-02)
 
 ### Bug Fixes
