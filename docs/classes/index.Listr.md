@@ -9,8 +9,8 @@ Creates a new set of Listr2 task list.
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)[`ListrDefaultRendererValue`](../types/index.ListrDefaultRendererValue.md) |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)[`ListrFallbackRendererValue`](../types/index.ListrFallbackRendererValue.md) |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](../types/index.ListrDefaultRendererValue.md) |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrFallbackRendererValue`](../types/index.ListrFallbackRendererValue.md) |
 
 ## Constructors
 
@@ -23,8 +23,8 @@ Creates a new set of Listr2 task list.
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | `any` |
-| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"default"`` |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"verbose"`` |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"default"`` |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"verbose"`` |
 
 #### Parameters
 

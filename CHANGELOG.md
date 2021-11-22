@@ -1,3 +1,9 @@
+## [3.13.5](https://github.com/cenk1cenk2/listr2/compare/v3.13.4...v3.13.5) (2021-11-22)
+
+### Bug Fixes
+
+- swap clone package for rfdc to improve speed of error reporting ([a75c857](https://github.com/cenk1cenk2/listr2/commit/a75c8571e069f3aaca9538187027c9d72450635d))
+
 ## [3.13.4](https://github.com/cenk1cenk2/listr2/compare/v3.13.3...v3.13.4) (2021-11-17)
 
 ### Bug Fixes

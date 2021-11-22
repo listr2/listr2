@@ -11,8 +11,8 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"default"`` |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"verbose"`` |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"default"`` |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"verbose"`` |
 
 ## Constructors
 
@@ -25,8 +25,8 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | `any` |
-| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"default"`` |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"verbose"`` |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"default"`` |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"verbose"`` |
 
 #### Parameters
 
@@ -148,8 +148,8 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `InjectCtx` | `InjectCtx` |
-| `InjectRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)`Renderer` |
-| `InjectFallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)`FallbackRenderer` |
+| `InjectRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = `Renderer` |
+| `InjectFallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = `FallbackRenderer` |
 
 #### Parameters
 
