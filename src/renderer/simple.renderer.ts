@@ -46,63 +46,61 @@ export class SimpleRenderer implements ListrRenderer {
   /**
    * Event type renderer map contains functions to process different task events
    */
-  public eventTypeRendererMap: Partial<
-  {
+  public eventTypeRendererMap: Partial<{
     [P in ListrEventType]: (t: Task<any, typeof SimpleRenderer>, event: ListrEventFromType<P>) => void
-  }
-  > = {
-    [ListrEventType.SUBTASK]: (task) => {
-      if (task.hasTitle()) {
+  }> = {
+      [ListrEventType.SUBTASK]: (task) => {
+        if (task.hasTitle()) {
         // if Task has subtasks where we want to log the group indication
-        this.log(`${colorette.blue(figures.pointer)} ${task.title}`)
-      }
+          this.log(`${colorette.blue(figures.pointer)} ${task.title}`)
+        }
 
-      if (task.hasSubtasks()) {
-        this.render(task.subtasks)
-      }
-    },
-    [ListrEventType.STATE]: (task) => {
-      if (task.isCompleted() && task.hasTitle()) {
+        if (task.hasSubtasks()) {
+          this.render(task.subtasks)
+        }
+      },
+      [ListrEventType.STATE]: (task) => {
+        if (task.isCompleted() && task.hasTitle()) {
         // The title is only logged at the end of the task execution
-        this.log(`${colorette.green(figures.tick)} ${task.title}`)
-      }
-    },
-    [ListrEventType.DATA]: (task, event) => {
+          this.log(`${colorette.green(figures.tick)} ${task.title}`)
+        }
+      },
+      [ListrEventType.DATA]: (task, event) => {
       // ! This is where it gets dirty
       // * We want the prompt to stay visible after confirmation
-      if (task.isPrompt() && !String(event.data).match(/^\n$/)) {
-        logUpdate(`${event.data}`)
-      } else {
-        this.log(`${figures.pointerSmall} ${event.data}`)
-      }
-    },
-    [ListrEventType.MESSAGE]: (task, event) => {
-      if (event.data.error) {
+        if (task.isPrompt() && !String(event.data).match(/^\n$/)) {
+          logUpdate(`${event.data}`)
+        } else {
+          this.log(`${figures.pointerSmall} ${event.data}`)
+        }
+      },
+      [ListrEventType.MESSAGE]: (task, event) => {
+        if (event.data.error) {
         // error message
-        const title = SimpleRenderer.formatTitle(task)
+          const title = SimpleRenderer.formatTitle(task)
 
-        this.log(`${colorette.red(figures.cross)}${title}: ${event.data.error}`)
-      } else if (event.data.skip) {
+          this.log(`${colorette.red(figures.cross)}${title}: ${event.data.error}`)
+        } else if (event.data.skip) {
         // Skip message
-        const title = SimpleRenderer.formatTitle(task)
-        const skip = task.title !== event.data.skip ? `: ${event.data.skip}` : ''
+          const title = SimpleRenderer.formatTitle(task)
+          const skip = task.title !== event.data.skip ? `: ${event.data.skip}` : ''
 
-        this.log(`${colorette.yellow(figures.arrowDown)}${title} [${colorette.yellow(`skipped${skip}`)}]`)
-      } else if (event.data.rollback) {
+          this.log(`${colorette.yellow(figures.arrowDown)}${title} [${colorette.yellow(`skipped${skip}`)}]`)
+        } else if (event.data.rollback) {
         // rollback message
-        const title = SimpleRenderer.formatTitle(task)
+          const title = SimpleRenderer.formatTitle(task)
 
-        this.log(`${colorette.red(figures.arrowLeft)}${title}: ${event.data.rollback}`)
-      } else if (event.data.retry) {
+          this.log(`${colorette.red(figures.arrowLeft)}${title}: ${event.data.rollback}`)
+        } else if (event.data.retry) {
         // Retry Message
-        const title = SimpleRenderer.formatTitle(task)
+          const title = SimpleRenderer.formatTitle(task)
 
-        this.log(`[${colorette.yellow(`${event.data.retry.count}`)}]${title}`)
+          this.log(`[${colorette.yellow(`${event.data.retry.count}`)}]${title}`)
+        }
       }
-    }
     // * We do not log out initial title. Only the final one.
     // [ListrEventType.TITLE]: (t, e) => this.renderTitle(t, e),
-  }
+    }
 
   constructor (public readonly tasks: Task<any, typeof SimpleRenderer>[], public options: typeof SimpleRenderer['rendererOptions']) {
     this.options = { ...SimpleRenderer.rendererOptions, ...options }

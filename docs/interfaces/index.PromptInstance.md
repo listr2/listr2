@@ -20,7 +20,7 @@ Omit.message
 
 #### Defined in
 
-src/utils/prompt.interface.ts:26
+src/utils/prompt.interface.ts:24
 
 ___
 
@@ -34,7 +34,7 @@ Omit.initial
 
 #### Defined in
 
-src/utils/prompt.interface.ts:27
+src/utils/prompt.interface.ts:25
 
 ___
 
@@ -48,7 +48,7 @@ Omit.required
 
 #### Defined in
 
-src/utils/prompt.interface.ts:28
+src/utils/prompt.interface.ts:26
 
 ___
 
@@ -62,7 +62,7 @@ Omit.stdin
 
 #### Defined in
 
-src/utils/prompt.interface.ts:29
+src/utils/prompt.interface.ts:27
 
 ___
 
@@ -76,7 +76,7 @@ Omit.stdout
 
 #### Defined in
 
-src/utils/prompt.interface.ts:30
+src/utils/prompt.interface.ts:28
 
 ___
 
@@ -90,7 +90,7 @@ Omit.header
 
 #### Defined in
 
-src/utils/prompt.interface.ts:31
+src/utils/prompt.interface.ts:29
 
 ___
 
@@ -104,7 +104,7 @@ Omit.footer
 
 #### Defined in
 
-src/utils/prompt.interface.ts:32
+src/utils/prompt.interface.ts:30
 
 ## Methods
 
@@ -128,7 +128,7 @@ Omit.skip
 
 #### Defined in
 
-src/utils/prompt.interface.ts:33
+src/utils/prompt.interface.ts:31
 
 ___
 
@@ -152,7 +152,7 @@ Omit.format
 
 #### Defined in
 
-src/utils/prompt.interface.ts:34
+src/utils/prompt.interface.ts:32
 
 ___
 
@@ -176,7 +176,7 @@ Omit.result
 
 #### Defined in
 
-src/utils/prompt.interface.ts:35
+src/utils/prompt.interface.ts:33
 
 ___
 
@@ -201,7 +201,7 @@ Omit.validate
 
 #### Defined in
 
-src/utils/prompt.interface.ts:36
+src/utils/prompt.interface.ts:34
 
 ___
 
@@ -215,7 +215,7 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:163
+src/utils/prompt.interface.ts:161
 
 ___
 
@@ -235,4 +235,4 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:164
+src/utils/prompt.interface.ts:162

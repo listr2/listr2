@@ -115,21 +115,21 @@ export class DefaultRenderer implements ListrRenderer {
      */
     formatOutput?: 'truncate' | 'wrap'
   } = {
-    indentation: 2,
-    clearOutput: false,
-    showSubtasks: true,
-    collapse: true,
-    collapseSkips: true,
-    showSkipMessage: true,
-    suffixSkips: true,
-    collapseErrors: true,
-    showErrorMessage: true,
-    suffixRetries: true,
-    lazy: false,
-    showTimer: false,
-    removeEmptyLines: true,
-    formatOutput: 'truncate'
-  }
+      indentation: 2,
+      clearOutput: false,
+      showSubtasks: true,
+      collapse: true,
+      collapseSkips: true,
+      showSkipMessage: true,
+      suffixSkips: true,
+      collapseErrors: true,
+      showErrorMessage: true,
+      suffixRetries: true,
+      lazy: false,
+      showTimer: false,
+      removeEmptyLines: true,
+      formatOutput: 'truncate'
+    }
 
   /** per task options for the default renderer */
   public static rendererTaskOptions: {

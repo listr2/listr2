@@ -49,6 +49,8 @@ node_modules/@types/node/globals.d.ts:4
 
 Optional override for formatting stack traces
 
+**`see`** https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+
 ##### Parameters
 
 | Name | Type |

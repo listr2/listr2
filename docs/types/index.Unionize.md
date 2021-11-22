@@ -2,7 +2,7 @@
 
 [index](../modules/index.md).Unionize
 
-Ƭ **Unionize**<`T`\>: { [P in keyof T]: T[P]}[keyof `T`]
+Ƭ **Unionize**<`T`\>: { [P in keyof T]: T[P] }[keyof `T`]
 
 #### Type parameters
 
@@ -12,4 +12,4 @@
 
 #### Defined in
 
-src/utils/prompt.interface.ts:21
+src/utils/prompt.interface.ts:19

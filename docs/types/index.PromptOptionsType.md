@@ -12,4 +12,4 @@
 
 #### Defined in
 
-src/utils/prompt.interface.ts:131
+src/utils/prompt.interface.ts:129

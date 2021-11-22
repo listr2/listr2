@@ -7,11 +7,9 @@ import { PromptError } from '@interfaces/listr-error.interface'
 
 /** Returns all the prompt options depending on the type selected. */
 export type PromptOptions<T extends boolean = false> =
-  | Unionize<
-  {
+  | Unionize<{
     [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
-  }
-  >
+  }>
   | ({
     type: string
   } & T extends true

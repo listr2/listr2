@@ -1,3 +1,44 @@
+## [3.13.4](https://github.com/cenk1cenk2/listr2/compare/v3.13.3...v3.13.4) (2021-11-17)
+
+### Bug Fixes
+
+- mark enquirer as optional as peer ([742395e](https://github.com/cenk1cenk2/listr2/commit/742395ec2d1674a1eae11e943bea1a0cd6733f16)), closes [#589](https://github.com/cenk1cenk2/listr2/issues/589)
+
+## [3.13.3](https://github.com/cenk1cenk2/listr2/compare/v3.13.2...v3.13.3) (2021-11-02)
+
+### Bug Fixes
+
+- upgrade to rxjs7 ([f5fab40](https://github.com/cenk1cenk2/listr2/commit/f5fab401bb7e50023022abd7a0a77b6a02196ae7)), closes [#493](https://github.com/cenk1cenk2/listr2/issues/493) [#409](https://github.com/cenk1cenk2/listr2/issues/409)
+
+## [3.13.2](https://github.com/cenk1cenk2/listr2/compare/v3.13.1...v3.13.2) (2021-11-02)
+
+### Bug Fixes
+
+- cloneing objects ([15e8317](https://github.com/cenk1cenk2/listr2/commit/15e8317cb3854e74a8c6d5f86983909cf34f89d8)), closes [#571](https://github.com/cenk1cenk2/listr2/issues/571) [#569](https://github.com/cenk1cenk2/listr2/issues/569) [#538](https://github.com/cenk1cenk2/listr2/issues/538)
+
+## [3.13.1](https://github.com/cenk1cenk2/listr2/compare/v3.13.0...v3.13.1) (2021-10-23)
+
+### Bug Fixes
+
+- use v8 functions for error collection ([be37833](https://github.com/cenk1cenk2/listr2/commit/be37833807b2f915c53e58946543d257c723ac4b))
+
+# [3.13.0](https://github.com/cenk1cenk2/listr2/compare/v3.12.2...v3.13.0) (2021-10-23)
+
+### Bug Fixes
+
+- ditch api-extractor update colorrette ([7ae6752](https://github.com/cenk1cenk2/listr2/commit/7ae6752d7da59e54c28caeb7b3297f1792b0c7c8))
+- pass options to custom logger ([3004640](https://github.com/cenk1cenk2/listr2/commit/30046409eddba749b460d34cd9ef089bfcf300a4))
+
+### Features
+
+- pass options to the custom logger, implement it with types ([4cecba8](https://github.com/cenk1cenk2/listr2/commit/4cecba8a0b1f3efae5d89d982c67edcc82969218))
+
+## [3.12.2](https://github.com/cenk1cenk2/listr2/compare/v3.12.1...v3.12.2) (2021-09-23)
+
+### Bug Fixes
+
+- commit message for pull request [#527](https://github.com/cenk1cenk2/listr2/issues/527) ([2b96129](https://github.com/cenk1cenk2/listr2/commit/2b96129dd38dd47cea77f757b0c9f2760001c0f4))
+
 ## [3.12.1](https://github.com/cenk1cenk2/listr2/compare/v3.12.0...v3.12.1) (2021-09-13)
 
 ### Bug Fixes

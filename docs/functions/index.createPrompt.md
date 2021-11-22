@@ -12,7 +12,7 @@ useful to use externally.
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`PromptOptions`](../types/index.PromptOptions.md) \| [`PromptOptions`](../types/index.PromptOptions.md)<``true``\>[] |
+| `options` | [`PromptOptions`](../types/index.PromptOptions.md)<``false``\> \| [`PromptOptions`](../types/index.PromptOptions.md)<``true``\>[] |
 | `settings?` | [`PromptSettings`](../interfaces/index.PromptSettings.md) |
 
 #### Returns

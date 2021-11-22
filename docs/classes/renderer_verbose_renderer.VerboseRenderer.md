@@ -22,19 +22,9 @@ ___
 
 ### rendererOptions
 
-▪ `Static` **rendererOptions**: `Object`
+▪ `Static` **rendererOptions**: { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  }
 
 renderer options for the verbose renderer
-
-#### Type declaration
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `useIcons?` | `boolean` | useIcons instead of text for log level  **`default`** false |
-| `logger?` | (...`args`: `any`) => [`Logger`](index.Logger.md) | - |
-| `logEmptyTitle?` | `boolean` | log tasks with empty titles  **`default`** true |
-| `logTitleChange?` | `boolean` | log title changes  **`default`** true |
-| `showTimer?` | `boolean` | show duration for all tasks |
 
 #### Defined in
 
@@ -50,7 +40,7 @@ per task options for the verbose renderer
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:42
+src/renderer/verbose.renderer.ts:49
 
 ___
 
@@ -60,7 +50,7 @@ ___
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:43
+src/renderer/verbose.renderer.ts:50
 
 ___
 
@@ -72,17 +62,7 @@ ___
 
 ### options
 
-• **options**: `Object`
-
-#### Type declaration
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `useIcons?` | `boolean` | useIcons instead of text for log level  **`default`** false |
-| `logger?` | (...`args`: `any`) => [`Logger`](index.Logger.md) | - |
-| `logEmptyTitle?` | `boolean` | log tasks with empty titles  **`default`** true |
-| `logTitleChange?` | `boolean` | log title changes  **`default`** true |
-| `showTimer?` | `boolean` | show duration for all tasks |
+• **options**: { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  }
 
 ## Constructors
 
@@ -92,19 +72,14 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`VerboseRenderer`](renderer_verbose_renderer.VerboseRenderer.md)\>[] | - |
-| `options` | `Object` | - |
-| `options.useIcons?` | `boolean` | useIcons instead of text for log level  **`default`** false |
-| `options.logger?` | (...`args`: `any`) => [`Logger`](index.Logger.md) | - |
-| `options.logEmptyTitle?` | `boolean` | log tasks with empty titles  **`default`** true |
-| `options.logTitleChange?` | `boolean` | log title changes  **`default`** true |
-| `options.showTimer?` | `boolean` | show duration for all tasks |
+| Name | Type |
+| :------ | :------ |
+| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`VerboseRenderer`](renderer_verbose_renderer.VerboseRenderer.md)\>[] |
+| `options` | { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  } |
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:45
+src/renderer/verbose.renderer.ts:52
 
 ## Methods
 
@@ -122,7 +97,7 @@ ListrRenderer.render
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:55
+src/renderer/verbose.renderer.ts:64
 
 ___
 
@@ -140,7 +115,7 @@ ListrRenderer.end
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:60
+src/renderer/verbose.renderer.ts:69
 
 ___
 
@@ -160,4 +135,4 @@ ___
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:63
+src/renderer/verbose.renderer.ts:72

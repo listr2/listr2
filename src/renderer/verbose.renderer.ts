@@ -9,44 +9,53 @@ export class VerboseRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
   /** renderer options for the verbose renderer */
-  public static rendererOptions: {
+  public static rendererOptions:
+  | {
     /**
-     * useIcons instead of text for log level
-     * @default false
-     */
+         * useIcons instead of text for log level
+         * @default false
+         */
     useIcons?: boolean
     /**
-     * inject a custom loger
-     */
-    logger?: new (...args: any) => Logger
-    /**
-     * log tasks with empty titles
-     * @default true
-     */
+         * log tasks with empty titles
+         * @default true
+         */
     logEmptyTitle?: boolean
     /**
-     * log title changes
-     * @default true
-     */
+         * log title changes
+         * @default true
+         */
     logTitleChange?: boolean
     /**
-     * show duration for all tasks
-     */
+         * show duration for all tasks
+         */
     showTimer?: boolean
+  } & {
+    /**
+         * inject a custom logger
+         */
+    logger?: new (...args: any) => Logger
+
+    /**
+         * inject options to custom logger
+         */
+    options?: any
   } = {
-    useIcons: false,
-    logEmptyTitle: true,
-    logTitleChange: true
-  }
+      useIcons: false,
+      logEmptyTitle: true,
+      logTitleChange: true
+    }
   /** per task options for the verbose renderer */
   public static rendererTaskOptions: never
   private logger: Logger
 
   constructor (public tasks: Task<any, typeof VerboseRenderer>[], public options: typeof VerboseRenderer['rendererOptions']) {
-    if (!this.options?.logger) {
-      this.logger = new Logger({ useIcons: this.options?.useIcons })
-    } /* istanbul ignore next */ else {
+    if (this.options?.logger && this.options?.options) {
+      this.logger = new this.options.logger(this.options.options)
+    } else if (this.options?.logger) {
       this.logger = new this.options.logger()
+    } else {
+      this.logger = new Logger({ useIcons: this.options?.useIcons })
     }
 
     this.options = { ...VerboseRenderer.rendererOptions, ...this.options }

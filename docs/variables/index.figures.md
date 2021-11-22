@@ -2,7 +2,7 @@
 
 [index](../modules/index.md).figures
 
-• `Const` **figures**: `Object`
+• **figures**: `Object`
 
 #### Type declaration
 

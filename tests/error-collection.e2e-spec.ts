@@ -122,6 +122,37 @@ describe('error collection', () => {
     expect(task.err[0]).toMatchObject({ message, ctx })
   })
 
+  it('should save the context on error while having circular dependencies', async () => {
+    const message = '1'
+    const task = new Listr(
+      [
+        {
+          task: (ctx): void => {
+            ctx.test = true
+            ctx.myself = ctx
+
+            throw new Error(message)
+          }
+        }
+      ],
+      { renderer: 'silent', exitOnError: true }
+    )
+
+    let result: any
+    let crash: Error
+    try {
+      result = await task.run()
+    } catch (e: any) {
+      crash = e
+    }
+
+    expect(result).toBeFalsy()
+    expect(crash).toBeTruthy()
+    expect(task.err.length).toBe(1)
+    expect(task.err[0].message).toBe(message)
+    expect(task.err[0].ctx).toMatchObject({ test: true, myself: { test: true } })
+  })
+
   it('should collect all the errors from subtasks and fail with subtask error while subtask has exit on error', async () => {
     const task = new Listr(
       [
@@ -263,9 +294,9 @@ describe('error collection', () => {
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
     expect(task.err.length).toBe(3)
-    expect(task.err[0].ctx).toStrictEqual({ test1: true })
-    expect(task.err[1].ctx).toStrictEqual({ test1: true, test2: true })
-    expect(task.err[2].ctx).toStrictEqual({
+    expect(task.err[0].ctx).toMatchObject({ test1: true })
+    expect(task.err[1].ctx).toMatchObject({ test1: true, test2: true })
+    expect(task.err[2].ctx).toMatchObject({
       test1: true,
       test2: true,
       test3: true
