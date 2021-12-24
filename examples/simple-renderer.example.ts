@@ -69,7 +69,7 @@ async function main (): Promise<void> {
         },
 
         {
-          title: 'Utilizing a intuative way to create task lists!',
+          title: 'Utilizing a intuitive way to create task lists!',
           enabled: (ctx): boolean => ctx.user,
           task: (_, task): Listr =>
             task.newListr(
