@@ -15,9 +15,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "prebuild": "rimraf tsconfig*.tsbuildinfo && rimraf dist/",
-    "build": "tsc -P tsconfig.build.json",
-    "postbuild": "tsconfig-replace-paths --project tsconfig.build.json",
+    "build": "tsup-node",
     "dev:build": "yarn prebuild && tsc -p tsconfig.json && yarn postbuild",
     "dev:start": "yarn dev:build && tsc-watch --noClear --onSuccess \"yarn postbuild\"",
     "example": "ts-node -r tsconfig-paths/register",
@@ -31,7 +29,7 @@
     "docs": "typedoc --options .typedoc.json --hideInPageTOC --hideBreadcrumbs"
   },
   "simple-git-hooks": {
-    "pre-commit": "yarn exec lint-staged",
+    "pre-commit": "yarn lint-staged",
     "prepare-commit-msg": "[ -t 1 ] && exec < /dev/tty && git cz --hook || true",
     "pre-push": "yarn test"
   },
@@ -93,10 +91,8 @@
     "simple-git-hooks": "^2.7.0",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
-    "tsc-watch": "^4.6.0",
     "tsconfig-paths": "^3.12.0",
-    "tsconfig-replace-paths": "^0.0.11",
-    "tscpaths": "^0.0.9",
+    "tsup": "^5.11.10",
     "typedoc": "^0.22.10",
     "typedoc-plugin-markdown": "^3.11.8",
     "typescript": "^4.5.4"
