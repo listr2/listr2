@@ -1,4 +1,4 @@
-import * as through from 'through'
+import through from 'through'
 
 import { BELL_REGEX, CLEAR_LINE_REGEX } from '@constants/clearline-regex.constants'
 import { ListrTaskState } from '@constants/state.constants'

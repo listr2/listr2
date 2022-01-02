@@ -1,4 +1,4 @@
-import * as pMap from 'p-map'
+import pMap from 'p-map'
 import { Subject } from 'rxjs'
 
 import { ListrTaskState } from '@constants/state.constants'
