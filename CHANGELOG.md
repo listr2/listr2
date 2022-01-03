@@ -1,3 +1,9 @@
+## [3.13.6](https://github.com/cenk1cenk2/listr2/compare/v3.13.5...v3.13.6) (2022-01-03)
+
+### Bug Fixes
+
+- update dependencies ([9ce590c](https://github.com/cenk1cenk2/listr2/commit/9ce590ca03e7954797e559a6999ed4ea9c6d27dd))
+
 ## [3.13.5](https://github.com/cenk1cenk2/listr2/compare/v3.13.4...v3.13.5) (2021-11-22)
 
 ### Bug Fixes
