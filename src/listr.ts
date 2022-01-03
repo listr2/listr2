@@ -113,7 +113,10 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.renderer.render()
 
     // create a new context
-    this.ctx = context ?? this.options?.ctx ?? ({} as Ctx)
+    this.ctx = {
+      ...this.options?.ctx ?? {},
+      ...context
+    }
 
     // check if the items are enabled
     await this.checkAll(this.ctx)
