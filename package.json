@@ -36,11 +36,11 @@
     "pre-push": "yarn test"
   },
   "lint-staged": {
-    "./*.{ts,js,tsx,jsx,spec.ts}": [
+    "*.{ts,js,tsx,jsx,spec.ts}": [
       "prettier --loglevel warn --write",
       "eslint --fix"
     ],
-    "./*.{json,md}": [
+    "*.{json,md}": [
       "prettier --loglevel warn --write"
     ]
   },
