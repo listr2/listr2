@@ -114,8 +114,8 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
     // create a new context
     this.ctx = {
-      ...this.options?.ctx ?? {},
-      ...context
+      ...context ?? ({} as Ctx),
+      ...this.options?.ctx ?? {}
     }
 
     // check if the items are enabled
