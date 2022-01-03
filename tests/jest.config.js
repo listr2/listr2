@@ -1,5 +1,5 @@
 const { join } = require('path')
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { pathsToModuleNameMapper } = require('ts-jest')
 const { readFileSync } = require('fs')
 
 const TS_CONFIG_PATH = join(process.cwd(), 'tsconfig.json')
