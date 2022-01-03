@@ -5,14 +5,22 @@
   "license": "MIT",
   "repository": "https://github.com/cenk1cenk2/listr2",
   "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "author": {
     "name": "Cenk Kilic",
     "email": "cenk@kilic.dev",
     "url": "https://srcs.kilic.dev"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12"
   },
   "scripts": {
     "build": "tsup-node",
