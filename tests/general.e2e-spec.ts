@@ -70,6 +70,44 @@ describe('show output from task', () => {
     expect(ctx.test2).toBe(true)
   })
 
+  it('should be able to inject a different context to subtask', async () => {
+    const tasks = new Listr([
+      {
+        title: 'This task will execute.',
+        task: (_, task): Listr =>
+          task.newListr(
+            [
+              {
+                title: 'This is a subtask.',
+                task: async (ctx): Promise<void> => {
+                  ctx.test = true
+                }
+              },
+
+              {
+                title: 'This is another subtask.',
+                task: async (ctx): Promise<void> => {
+                  expect(ctx.test).toBe(true)
+                }
+              }
+            ],
+            { ctx: {} as Record<'test', boolean> }
+          )
+      },
+      {
+        task: (ctx): void => {
+          ctx.test2 = true
+        }
+      }
+    ])
+
+    const ctx = await tasks.run()
+
+    expect(ctx).toStrictEqual(tasks.ctx)
+    expect(ctx.test).toBe(undefined)
+    expect(ctx.test2).toBe(true)
+  })
+
   // Jest timeout does not work here as cloneObject(ctx) is eating up all cpu
   // cycles, i.e. the stack frame take a long time to complete.
   it('should not take an unreasonable amount of time to clone a large ctx object during error collection', async () => {
