@@ -1,3 +1,13 @@
+# [3.14.0](https://github.com/cenk1cenk2/listr2/compare/v3.13.6...v3.14.0) (2022-01-04)
+
+### Bug Fixes
+
+- add tests and inject context variable as mutable ([afe3528](https://github.com/cenk1cenk2/listr2/commit/afe35289980a4bc89d8e021a997a3c6b011b58b6))
+
+### Features
+
+- ability to change the context type on subtasks ([7dccdfc](https://github.com/cenk1cenk2/listr2/commit/7dccdfc9563b3de2e059c43e0130f7777a3a2090)), closes [#612](https://github.com/cenk1cenk2/listr2/issues/612)
+
 ## [3.13.6](https://github.com/cenk1cenk2/listr2/compare/v3.13.5...v3.13.6) (2022-01-03)
 
 ### Bug Fixes
