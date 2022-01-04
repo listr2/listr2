@@ -1,7 +1,7 @@
 import * as cliTruncate from 'cli-truncate'
 import * as logUpdate from 'log-update'
 import { EOL } from 'os'
-import * as cliWrap from 'wrap-ansi'
+import cliWrap from 'wrap-ansi'
 
 import { ListrContext } from '@interfaces/listr.interface'
 import { ListrRenderer } from '@interfaces/renderer.interface'
