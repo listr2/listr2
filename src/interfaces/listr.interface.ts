@@ -114,6 +114,14 @@ export interface ListrOptions<Ctx = ListrContext> {
    */
   exitAfterRollback?: boolean
   /**
+   * Collects errors to `ListrInstance.errors`
+   *
+   * This can take up a lot of memory, so disabling it can fix out-of-memory errors
+   *
+   * @default true
+   */
+  collectErrors?: boolean
+  /**
    * By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
    *
    * @default true

@@ -17,6 +17,16 @@ import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
 
+const defaultOptions: Partial<ListrBaseClassOptions> = {
+  concurrent: false,
+  renderer: 'default',
+  nonTTYRenderer: 'verbose',
+  exitOnError: true,
+  exitAfterRollback: true,
+  collectErrors: true,
+  registerSignalListeners: true
+}
+
 /**
  * Creates a new set of Listr2 task list.
  */
@@ -36,14 +46,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   ) {
     // assign over default options
     this.options = {
-      ...{
-        concurrent: false,
-        renderer: 'default',
-        nonTTYRenderer: 'verbose',
-        exitOnError: true,
-        exitAfterRollback: true,
-        registerSignalListeners: true
-      },
+      ...defaultOptions,
       ...options
     } as ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
 

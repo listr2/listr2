@@ -388,4 +388,38 @@ describe('error collection', () => {
     expect(task.err[2]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
     expect(task.err[3]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.HAS_FAILED })
   })
+
+  it('should not collect any errors if disabled', async () => {
+    const task = new Listr(
+      [
+        {
+          task: (): void => {
+            throw new Error('1')
+          }
+        },
+        {
+          task: (): void => {
+            throw new Error('2')
+          }
+        }
+      ],
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors: false
+      }
+    )
+
+    let result: any
+    let crash: Error
+    try {
+      result = await task.run()
+    } catch (e: any) {
+      crash = e
+    }
+
+    expect(result).toBeTruthy()
+    expect(crash).toBeFalsy()
+    expect(task.err).toHaveLength(0)
+  })
 })
