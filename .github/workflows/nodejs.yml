@@ -1,6 +1,6 @@
 name: node-actions
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - master
   push:
