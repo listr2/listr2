@@ -55,8 +55,10 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
 
   /** Report a error in process for error collection. */
   public report (error: Error, type: ListrErrorTypes): void {
-    if (this.options.collectErrors) {
-      this.errors.push(new ListrError<Ctx>(error, type, cloneObject(this.task.listr.ctx), cloneObject(this.task)))
+    if (this.options.collectErrors !== false) {
+      const shouldCloneFully = this.options.collectErrors === 'full'
+
+      this.errors.push(new ListrError<Ctx>(error, type, shouldCloneFully ? cloneObject(this.task.listr.ctx) : undefined, shouldCloneFully ? cloneObject(this.task) : undefined))
     }
 
     this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }

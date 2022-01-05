@@ -23,7 +23,7 @@ const defaultOptions: Partial<ListrBaseClassOptions> = {
   nonTTYRenderer: 'verbose',
   exitOnError: true,
   exitAfterRollback: true,
-  collectErrors: true,
+  collectErrors: 'minimal',
   registerSignalListeners: true
 }
 

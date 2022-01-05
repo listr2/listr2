@@ -120,7 +120,7 @@ export interface ListrOptions<Ctx = ListrContext> {
    *
    * @default true
    */
-  collectErrors?: boolean
+  collectErrors?: 'full' | 'minimal' | false
   /**
    * By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
    *
