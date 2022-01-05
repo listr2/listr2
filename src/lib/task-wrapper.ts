@@ -50,7 +50,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
       tasks = task
     }
 
-    return new Listr<NewCtx, any, any>(tasks, options)
+    return new Listr<NewCtx, any, any>(tasks, options, this.task)
   }
 
   /** Report a error in process for error collection. */
@@ -58,7 +58,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     if (this.options.collectErrors !== false) {
       const shouldCloneFully = this.options.collectErrors === 'full'
 
-      this.errors.push(new ListrError<Ctx>(error, type, shouldCloneFully ? cloneObject(this.task.listr.ctx) : undefined, shouldCloneFully ? cloneObject(this.task) : undefined))
+      this.errors.push(new ListrError<Ctx>(error, type, shouldCloneFully, cloneObject(this.task), cloneObject(this.task.listr.ctx)))
     }
 
     this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }

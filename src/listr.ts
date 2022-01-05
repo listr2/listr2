@@ -37,12 +37,14 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
   public renderHook$: Task<any, any>['renderHook$'] = new Subject()
+  public currentPath: string[] = []
   private concurrency: number
   private renderer: ListrRenderer
 
   constructor (
     public task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[],
-    public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
+    public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>,
+    public lastTask?: Task<any, any>
   ) {
     // assign over default options
     this.options = {
@@ -57,6 +59,11 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       this.concurrency = this.options.concurrent
     } else {
       this.concurrency = 1
+    }
+
+    // Update currentPath
+    if (lastTask != null) {
+      this.currentPath = [ ...lastTask.listr.currentPath, lastTask.title ]
     }
 
     // get renderer class
