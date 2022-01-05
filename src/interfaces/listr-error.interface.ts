@@ -1,5 +1,6 @@
 import { ListrRendererFactory } from './renderer.interface'
 import { Task } from '@lib/task'
+import { cloneObject } from '@utils/general'
 
 /** The internal error handling mechanism.. */
 export class ListrError<Ctx extends Record<PropertyKey, any> = Record<PropertyKey, any>> extends Error {
@@ -14,8 +15,8 @@ export class ListrError<Ctx extends Record<PropertyKey, any> = Record<PropertyKe
     this.taskPath = [ ...task.listr.currentPath, task.title ].join(' > ')
 
     if (keepAllData) {
-      this.task = task
-      this.ctx = ctx
+      this.task = cloneObject(task)
+      this.ctx = cloneObject(ctx)
     }
 
     this.stack = error?.stack
