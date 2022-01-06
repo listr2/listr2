@@ -22,7 +22,7 @@ jobs:
           dry_run: true
           branches: |
             [
-              '*'
+              "*"
             ]
           extra_plugins: |
             @semantic-release/changelog
