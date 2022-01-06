@@ -3,10 +3,12 @@ name: semantic-release
 on:
   push:
     branches:
-      - '*'
+      - master
+      - develop
   pull_request:
     branches:
-      - '*'
+      - master
+      - develop
 
 jobs:
   semantic-release-mock:
@@ -20,6 +22,11 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2.6.0
         with:
           dry_run: true
+          branches: |
+            [
+              "master",
+              "develop"
+            ]
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
