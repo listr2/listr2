@@ -6,27 +6,7 @@ module.exports = {
       {
         pathGroups: [
           {
-            pattern: '@root/**',
-            group: 'parent'
-          },
-          {
-            pattern: '@constants/**',
-            group: 'parent'
-          },
-          {
-            pattern: '@interfaces/**',
-            group: 'parent'
-          },
-          {
-            pattern: '@lib/**',
-            group: 'parent'
-          },
-          {
-            pattern: '@renderer/**',
-            group: 'parent'
-          },
-          {
-            pattern: '@utils/**',
+            pattern: '@{root,constants,interfaces,lib,renderer,utils}/**',
             group: 'parent'
           }
         ],

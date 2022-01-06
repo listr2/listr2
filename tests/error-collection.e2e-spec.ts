@@ -42,13 +42,10 @@ describe('error collection', () => {
       { renderer: 'silent', exitOnError: true }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
@@ -73,13 +70,10 @@ describe('error collection', () => {
       { renderer: 'silent', exitOnError: false }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
@@ -105,13 +99,10 @@ describe('error collection', () => {
       { renderer: 'silent', exitOnError: true }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     const ctx = { test: true }
 
@@ -138,13 +129,10 @@ describe('error collection', () => {
       { renderer: 'silent', exitOnError: true }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
@@ -189,13 +177,10 @@ describe('error collection', () => {
       { renderer: 'silent', exitOnError: false }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
@@ -241,13 +226,10 @@ describe('error collection', () => {
       { renderer: 'silent', exitOnError: false }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
@@ -283,13 +265,10 @@ describe('error collection', () => {
       { renderer: 'silent', exitOnError: false }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
@@ -334,13 +313,10 @@ describe('error collection', () => {
       }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
@@ -371,13 +347,10 @@ describe('error collection', () => {
       }
     )
 
-    let result: any
-    let crash: Error
-    try {
-      result = await task.run()
-    } catch (e: any) {
-      crash = e
-    }
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
@@ -387,5 +360,36 @@ describe('error collection', () => {
     expect(task.err[1]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
     expect(task.err[2]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
     expect(task.err[3]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.HAS_FAILED })
+  })
+
+  it('should not collect any errors if disabled', async () => {
+    const task = new Listr(
+      [
+        {
+          task: (): void => {
+            throw new Error('1')
+          }
+        },
+        {
+          task: (): void => {
+            throw new Error('2')
+          }
+        }
+      ],
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors: false
+      }
+    )
+
+    const [ result, crash ] = await task
+      .run()
+      .then((result: unknown) => [ result, null ] as const)
+      .catch((error: Error) => [ null, error ] as const)
+
+    expect(result).toBeTruthy()
+    expect(crash).toBeFalsy()
+    expect(task.err).toHaveLength(0)
   })
 })

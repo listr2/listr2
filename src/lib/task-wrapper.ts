@@ -7,7 +7,6 @@ import { ListrBaseClassOptions, ListrSubClassOptions, ListrTask } from '@interfa
 import { ListrRendererFactory } from '@interfaces/renderer.interface'
 import { Task } from '@lib/task'
 import { Listr } from '@root/listr'
-import { cloneObject } from '@utils/general'
 import { createPrompt, destroyPrompt } from '@utils/prompt'
 import { PromptOptions } from '@utils/prompt.interface'
 
@@ -50,12 +49,16 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
       tasks = task
     }
 
-    return new Listr<NewCtx, any, any>(tasks, options)
+    return new Listr<NewCtx, any, any>(tasks, options, this.task)
   }
 
   /** Report a error in process for error collection. */
   public report (error: Error, type: ListrErrorTypes): void {
-    this.errors.push(new ListrError<Ctx>(error, type, cloneObject(this.task.listr.ctx), cloneObject(this.task)))
+    if (this.options.collectErrors !== false) {
+      const shouldCloneFully = this.options.collectErrors === 'full'
+
+      this.errors.push(new ListrError<Ctx>(error, type, shouldCloneFully, this.task, this.task.listr.ctx))
+    }
 
     this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }
   }
