@@ -38,11 +38,11 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Create a new subtask with given renderer selection from the parent task. */
-  public newListr (
-    task: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[] | ((parent: Omit<this, 'skip' | 'enabled'>) => ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]),
-    options?: ListrSubClassOptions<Ctx, Renderer>
-  ): Listr<Ctx, any, any> {
-    let tasks: ListrTask<Ctx, Renderer> | ListrTask<Ctx, Renderer>[]
+  public newListr<NewCtx = Ctx>(
+    task: ListrTask<NewCtx, Renderer> | ListrTask<NewCtx, Renderer>[] | ((parent: Omit<this, 'skip' | 'enabled'>) => ListrTask<NewCtx, Renderer> | ListrTask<NewCtx, Renderer>[]),
+    options?: ListrSubClassOptions<NewCtx, Renderer>
+  ): Listr<NewCtx, any, any> {
+    let tasks: ListrTask<NewCtx, Renderer> | ListrTask<NewCtx, Renderer>[]
 
     if (typeof task === 'function') {
       tasks = task(this)
@@ -50,7 +50,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
       tasks = task
     }
 
-    return new Listr<Ctx, any, any>(tasks, options)
+    return new Listr<NewCtx, any, any>(tasks, options)
   }
 
   /** Report a error in process for error collection. */

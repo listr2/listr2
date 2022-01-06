@@ -1,3 +1,25 @@
+# [3.14.0](https://github.com/cenk1cenk2/listr2/compare/v3.13.6...v3.14.0) (2022-01-04)
+
+### Bug Fixes
+
+- add tests and inject context variable as mutable ([afe3528](https://github.com/cenk1cenk2/listr2/commit/afe35289980a4bc89d8e021a997a3c6b011b58b6))
+
+### Features
+
+- ability to change the context type on subtasks ([7dccdfc](https://github.com/cenk1cenk2/listr2/commit/7dccdfc9563b3de2e059c43e0130f7777a3a2090)), closes [#612](https://github.com/cenk1cenk2/listr2/issues/612)
+
+## [3.13.6](https://github.com/cenk1cenk2/listr2/compare/v3.13.5...v3.13.6) (2022-01-03)
+
+### Bug Fixes
+
+- update dependencies ([9ce590c](https://github.com/cenk1cenk2/listr2/commit/9ce590ca03e7954797e559a6999ed4ea9c6d27dd))
+
+## [3.13.5](https://github.com/cenk1cenk2/listr2/compare/v3.13.4...v3.13.5) (2021-11-22)
+
+### Bug Fixes
+
+- swap clone package for rfdc to improve speed of error reporting ([a75c857](https://github.com/cenk1cenk2/listr2/commit/a75c8571e069f3aaca9538187027c9d72450635d))
+
 ## [3.13.4](https://github.com/cenk1cenk2/listr2/compare/v3.13.3...v3.13.4) (2021-11-17)
 
 ### Bug Fixes

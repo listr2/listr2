@@ -10,7 +10,7 @@ Returns all the prompt options depending on the type selected.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `boolean```false`` |
+| `T` | extends `boolean` = ``false`` |
 
 #### Defined in
 

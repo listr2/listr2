@@ -15,8 +15,8 @@ Any subtasks will respect those options so they will be stripped of that propert
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | [`ListrContext`](index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererValue`](index.ListrRendererValue.md)[`ListrDefaultRendererValue`](index.ListrDefaultRendererValue.md) |
-| `FallbackRenderer` | extends [`ListrRendererValue`](index.ListrRendererValue.md)[`ListrFallbackRendererValue`](index.ListrFallbackRendererValue.md) |
+| `Renderer` | extends [`ListrRendererValue`](index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](index.ListrDefaultRendererValue.md) |
+| `FallbackRenderer` | extends [`ListrRendererValue`](index.ListrRendererValue.md) = [`ListrFallbackRendererValue`](index.ListrFallbackRendererValue.md) |
 
 #### Defined in
 

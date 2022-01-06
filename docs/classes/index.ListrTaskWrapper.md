@@ -6,9 +6,9 @@ Extend the task to have more functionality while accesing from the outside.
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `Ctx` | `Ctx` |
+| Name       | Type                                                                     |
+| :--------- | :----------------------------------------------------------------------- |
+| `Ctx`      | `Ctx`                                                                    |
 | `Renderer` | extends [`ListrRendererFactory`](../types/index.ListrRendererFactory.md) |
 
 ## Constructors
@@ -19,18 +19,18 @@ Extend the task to have more functionality while accesing from the outside.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `Ctx` | `Ctx` |
+| Name       | Type                                                     |
+| :--------- | :------------------------------------------------------- |
+| `Ctx`      | `Ctx`                                                    |
 | `Renderer` | extends typeof [`ListrRenderer`](index.ListrRenderer.md) |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `task` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
-| `errors` | [`ListrError`](index.ListrError.md)<`Ctx`\>[] |
-| `options` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `any`, `any`\> |
+| Name      | Type                                                                                                    |
+| :-------- | :------------------------------------------------------------------------------------------------------ |
+| `task`    | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
+| `errors`  | [`ListrError`](index.ListrError.md)<`Ctx`\>[]                                                           |
+| `options` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `any`, `any`\>                |
 
 #### Defined in
 
@@ -42,7 +42,7 @@ src/lib/task-wrapper.ts:18
 
 • **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
 
-___
+---
 
 ### errors
 
@@ -70,8 +70,8 @@ Change the title of the current task.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type     |
+| :----- | :------- |
 | `data` | `string` |
 
 #### Returns
@@ -82,7 +82,7 @@ Change the title of the current task.
 
 src/lib/task-wrapper.ts:21
 
-___
+---
 
 ### output
 
@@ -104,8 +104,8 @@ Send a output to the output channel.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type     |
+| :----- | :------- |
 | `data` | `string` |
 
 #### Returns
@@ -120,26 +120,32 @@ src/lib/task-wrapper.ts:31
 
 ### newListr
 
-▸ **newListr**(`task`, `options?`): [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>
+▸ **newListr**<`NewCtx`\>(`task`, `options?`): [`Listr`](index.Listr.md)<`NewCtx`, `any`, `any`\>
 
 Create a new subtask with given renderer selection from the parent task.
+
+#### Type parameters
+
+| Name     | Type  |
+| :------- | :---- |
+| `NewCtx` | `Ctx` |
 
 #### Parameters
 
 | Name | Type |
-| :------ | :------ |
-| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `Renderer`\>[] \| (`parent`: `Omit`<[`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>, ``"skip"`` \| ``"enabled"``\>) => [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `Renderer`\>[] |
-| `options?` | [`ListrSubClassOptions`](../types/index.ListrSubClassOptions.md)<`Ctx`, `Renderer`\> |
+| :-- | :-- |
+| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\>[] \| (`parent`: `Omit`<[`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>, `"skip"` \| `"enabled"`\>) => [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\>[] |
+| `options?` | [`ListrSubClassOptions`](../types/index.ListrSubClassOptions.md)<`NewCtx`, `Renderer`\> |
 
 #### Returns
 
-[`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>
+[`Listr`](index.Listr.md)<`NewCtx`, `any`, `any`\>
 
 #### Defined in
 
 src/lib/task-wrapper.ts:41
 
-___
+---
 
 ### report
 
@@ -149,10 +155,10 @@ Report a error in process for error collection.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `error` | `Error` |
-| `type` | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
+| Name    | Type                                                   |
+| :------ | :----------------------------------------------------- |
+| `error` | `Error`                                                |
+| `type`  | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
 
 #### Returns
 
@@ -162,7 +168,7 @@ Report a error in process for error collection.
 
 src/lib/task-wrapper.ts:57
 
-___
+---
 
 ### skip
 
@@ -172,8 +178,8 @@ Skip current task.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type     |
+| :--------- | :------- |
 | `message?` | `string` |
 
 #### Returns
@@ -184,7 +190,7 @@ Skip current task.
 
 src/lib/task-wrapper.ts:64
 
-___
+---
 
 ### isRetrying
 
@@ -196,16 +202,16 @@ Get the number of retrying, else returns false
 
 `Object`
 
-| Name | Type |
-| :------ | :------ |
-| `count` | `number` |
-| `withError?` | `any` |
+| Name         | Type     |
+| :----------- | :------- |
+| `count`      | `number` |
+| `withError?` | `any`    |
 
 #### Defined in
 
 src/lib/task-wrapper.ts:73
 
-___
+---
 
 ### prompt
 
@@ -217,15 +223,15 @@ Since process.stdout is controlled by Listr, this will passthrough all Enquirer 
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `any` |
+| Name | Type  |
+| :--- | :---- |
+| `T`  | `any` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options` | [`PromptOptions`](../types/index.PromptOptions.md)<``false``\> \| [`PromptOptions`](../types/index.PromptOptions.md)<``true``\>[] |
+| Name      | Type                                                                                                                          |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| `options` | [`PromptOptions`](../types/index.PromptOptions.md)<`false`\> \| [`PromptOptions`](../types/index.PromptOptions.md)<`true`\>[] |
 
 #### Returns
 
@@ -235,7 +241,7 @@ Since process.stdout is controlled by Listr, this will passthrough all Enquirer 
 
 src/lib/task-wrapper.ts:82
 
-___
+---
 
 ### cancelPrompt
 
@@ -245,9 +251,9 @@ Cancels the current prompt attach to this task.
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `throwError` | `boolean` | `false` |
+| Name         | Type      | Default value |
+| :----------- | :-------- | :------------ |
+| `throwError` | `boolean` | `false`       |
 
 #### Returns
 
@@ -257,7 +263,7 @@ Cancels the current prompt attach to this task.
 
 src/lib/task-wrapper.ts:87
 
-___
+---
 
 ### stdout
 
@@ -265,8 +271,7 @@ ___
 
 Pass stream of data to internal stdout.
 
-Since Listr2 takes control of process.stdout utilizing the default renderer, any data outputted to process.stdout
-will corupt its looks.
+Since Listr2 takes control of process.stdout utilizing the default renderer, any data outputted to process.stdout will corupt its looks.
 
 This returns a fake stream to pass any stream inside Listr as task data.
 
@@ -278,7 +283,7 @@ This returns a fake stream to pass any stream inside Listr as task data.
 
 src/lib/task-wrapper.ts:99
 
-___
+---
 
 ### run
 
@@ -288,8 +293,8 @@ Run this task.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type  |
+| :---- | :---- |
 | `ctx` | `Ctx` |
 
 #### Returns

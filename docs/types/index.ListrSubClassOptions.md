@@ -13,7 +13,7 @@ Subtasks has reduced set options where the missing ones are explicitly set by th
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | [`ListrContext`](index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererValue`](index.ListrRendererValue.md)[`ListrDefaultRendererValue`](index.ListrDefaultRendererValue.md) |
+| `Renderer` | extends [`ListrRendererValue`](index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](index.ListrDefaultRendererValue.md) |
 
 #### Defined in
 

@@ -11,7 +11,7 @@ Defines the task, conditions and options to run a specific task in the listr.
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererFactory`](../types/index.ListrRendererFactory.md)`any` |
+| `Renderer` | extends [`ListrRendererFactory`](../types/index.ListrRendererFactory.md) = `any` |
 
 ## Properties
 
