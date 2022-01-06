@@ -20,10 +20,6 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2.6.0
         with:
           dry_run: true
-          branches: |
-            [
-              "*"
-            ]
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
