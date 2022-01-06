@@ -68,6 +68,7 @@ steps:
       npm_token:
         from_secret: NPM_TOKEN
       update_readme_toc: true
+      use_local_rc: true
     when:
       branch:
         - master
