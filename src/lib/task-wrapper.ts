@@ -16,24 +16,24 @@ import { PromptOptions } from '@utils/prompt.interface'
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError<Ctx>[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
 
-  /** Change the title of the current task. */
-  set title (data: string) {
-    this.task.title$ = data
-  }
-
   /** Get the title of the current task. */
   get title (): string {
     return this.task.title
   }
 
-  /** Send a output to the output channel. */
-  set output (data: string) {
-    this.task.output$ = data
+  /** Change the title of the current task. */
+  set title (data: string) {
+    this.task.title$ = data
   }
 
   /** Get the output from the output channel. */
   get output (): string {
     return this.task.output
+  }
+
+  /** Send a output to the output channel. */
+  set output (data: string) {
+    this.task.output$ = data
   }
 
   /** Create a new subtask with given renderer selection from the parent task. */
@@ -54,10 +54,8 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
 
   /** Report a error in process for error collection. */
   public report (error: Error, type: ListrErrorTypes): void {
-    if (this.options.collectErrors !== false) {
-      const shouldCloneFully = this.options.collectErrors === 'full'
-
-      this.errors.push(new ListrError<Ctx>(error, type, shouldCloneFully, this.task, this.task.listr.ctx))
+    if (this.task.options.collectErrors !== false) {
+      this.errors.push(new ListrError<Ctx>(error, type, this.task))
     }
 
     this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }

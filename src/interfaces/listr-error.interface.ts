@@ -4,24 +4,23 @@ import { cloneObject } from '@utils/general'
 
 /** The internal error handling mechanism.. */
 export class ListrError<Ctx extends Record<PropertyKey, any> = Record<PropertyKey, any>> extends Error {
-  public ctx?: Ctx
+  public path: string
+  public ctx: Ctx
 
-  public taskPath: string
-  public task?: Task<Ctx, ListrRendererFactory>
-
-  constructor (public error: Error, public type: ListrErrorTypes, keepAllData: boolean, task: Task<Ctx, ListrRendererFactory>, ctx?: Ctx) {
+  constructor (public error: Error, public type: ListrErrorTypes, public task: Task<Ctx, ListrRendererFactory>) {
     super(error.message)
 
-    this.taskPath = [ ...task.listr.currentPath, task.title ].join(' > ')
+    this.name = 'ListrError'
 
-    if (keepAllData) {
+    this.path = [ ...task.listr.path ?? [], task.title ].join(' > ')
+
+    // memory intensive error collection for circular objects on demand
+    if (task?.options.collectErrors === 'full') {
       this.task = cloneObject(task)
-      this.ctx = cloneObject(ctx)
+      this.ctx = cloneObject(task.listr.ctx)
     }
 
     this.stack = error?.stack
-
-    this.name = 'ListrError'
   }
 }
 

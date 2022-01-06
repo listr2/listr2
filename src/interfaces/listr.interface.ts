@@ -118,9 +118,13 @@ export interface ListrOptions<Ctx = ListrContext> {
    *
    * This can take up a lot of memory, so disabling it can fix out-of-memory errors
    *
-   * @default true
+   * - 'full' will clone the current context and task in to the error instance
+   * - 'minimal' will only collect the error message and the location
+   * - false will collect no errors
+   *
+   * @default 'minimal'
    */
-  collectErrors?: 'full' | 'minimal' | false
+  collectErrors?: false | 'minimal' | 'full'
   /**
    * By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
    *
