@@ -1,4 +1,4 @@
-import * as rfdc from 'rfdc'
+import rfdc from 'rfdc'
 
 const clone = rfdc({ circles: true })
 

@@ -1,6 +1,6 @@
 name: node-actions
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - master
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   lint:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x]
@@ -28,7 +28,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 13.x, 14.x, 15.x, 16.x]
+        node-version: [12.x, 14.x, 16.x]
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2

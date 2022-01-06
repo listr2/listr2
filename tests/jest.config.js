@@ -1,24 +1,18 @@
-const { join } = require('path')
 const { pathsToModuleNameMapper } = require('ts-jest')
-const { readFileSync } = require('fs')
+const tsconfig = require('./tsconfig.json')
 
-const TS_CONFIG_PATH = join(process.cwd(), 'tsconfig.json')
-const SRC_PATH = 'src'
-
+/** @type import("@jest/types").Config.InitialOptions */
 module.exports = {
-  moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
+  preset: 'ts-jest',
   rootDir: '../',
-  testEnvironment: 'node',
   testRegex: '(/tests/.*|/src/.*).(e2e-)?spec.tsx?$',
-  transform: {
-    '^.+\\.(t)s$': 'ts-jest'
-  },
+  setupFiles: ['<rootDir>/tests/jest.setup.js'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tests/tsconfig.json'
     }
   },
-  moduleNameMapper: pathsToModuleNameMapper(JSON.parse(readFileSync(TS_CONFIG_PATH)).compilerOptions.paths, {
-    prefix: `<rootDir>/${SRC_PATH}`
+  moduleNameMapper: pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
+    prefix: `<rootDir>/`
   })
 }
