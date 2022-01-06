@@ -29,11 +29,11 @@
     "example": "ts-node -r tsconfig-paths/register",
     "read-snapshot": "./tests/read-terminal-snapshots.sh",
     "clean": "rimraf node_modules yarn.lock",
-    "lint": "prettier --loglevel warn --write src/ tests/ examples/ && eslint --ext .ts,.js,.tsx,.jsx --fix src/ tests/ examples/",
-    "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/",
-    "test": "ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.js",
-    "test:cov": "ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.config.js",
-    "dev:test": "TS_NODE_PROJECT=tests/tsconfig.json node --inspect=0.0.0.0:${DEBUG_PORT:-9229} -r tsconfig-paths/register -r ts-node/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.js",
+    "lint": "prettier --loglevel warn --write src/ tests/ examples/ && yarn run lint:check --fix",
+    "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/ tests/ examples/",
+    "test": "ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.cjs",
+    "test:cov": "ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.config.cjs",
+    "dev:test": "TS_NODE_PROJECT=tests/tsconfig.json node --inspect=0.0.0.0:${DEBUG_PORT:-9229} -r tsconfig-paths/register -r ts-node/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.cjs",
     "docs": "typedoc --options .typedoc.json --hideInPageTOC --hideBreadcrumbs"
   },
   "simple-git-hooks": {

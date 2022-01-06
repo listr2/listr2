@@ -23,7 +23,8 @@
     },
     "sourceMap": false,
     "incremental": false,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "resolveJsonModule": false
   },
   "exclude": ["node_modules", "dist", "test", "**/*spec.ts"],
   "include": ["src/**/*"]
