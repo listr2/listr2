@@ -1,4 +1,4 @@
-import * as pMap from 'p-map'
+import pMap from 'p-map'
 import { Subject } from 'rxjs'
 
 import { ListrTaskState } from '@constants/state.constants'
@@ -27,12 +27,14 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
   public renderHook$: Task<any, any>['renderHook$'] = new Subject()
+  public path: string[] = []
   private concurrency: number
   private renderer: ListrRenderer
 
   constructor (
     public task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[],
-    public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
+    public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>,
+    public parentTask?: Task<any, any>
   ) {
     // assign over default options
     this.options = {
@@ -42,6 +44,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
         nonTTYRenderer: 'verbose',
         exitOnError: true,
         exitAfterRollback: true,
+        collectErrors: 'minimal',
         registerSignalListeners: true
       },
       ...options
@@ -70,6 +73,11 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     // parse and add tasks
     /* istanbul ignore next */
     this.add(task ?? [])
+
+    // Update currentPath
+    if (parentTask) {
+      this.path = [ ...parentTask.listr.path, parentTask.title ]
+    }
 
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */

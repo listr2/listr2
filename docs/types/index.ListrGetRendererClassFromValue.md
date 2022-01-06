@@ -8,10 +8,10 @@ Returns the class type from friendly names of the renderers.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends [`ListrRendererValue`](index.ListrRendererValue.md) |
+| Name | Type                                                        |
+| :--- | :---------------------------------------------------------- |
+| `T`  | extends [`ListrRendererValue`](index.ListrRendererValue.md) |
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:34
+[src/interfaces/renderer.interface.ts:34](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L34)

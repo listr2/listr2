@@ -1,4 +1,4 @@
-import type * as Enquirer from 'enquirer'
+import type Enquirer from 'enquirer'
 import type { Observable } from 'rxjs'
 import { Readable } from 'stream'
 
@@ -113,6 +113,18 @@ export interface ListrOptions<Ctx = ListrContext> {
    * @default true > exit after rolling back tasks
    */
   exitAfterRollback?: boolean
+  /**
+   * Collects errors to `ListrInstance.errors`
+   *
+   * This can take up a lot of memory, so disabling it can fix out-of-memory errors
+   *
+   * - 'full' will clone the current context and task in to the error instance
+   * - 'minimal' will only collect the error message and the location
+   * - false will collect no errors
+   *
+   * @default 'minimal'
+   */
+  collectErrors?: false | 'minimal' | 'full'
   /**
    * By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
    *

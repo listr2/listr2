@@ -16,9 +16,9 @@ Exported for javascript applications to extend the base renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:129
+[src/interfaces/renderer.interface.ts:129](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L129)
 
-___
+---
 
 ### rendererTaskOptions
 
@@ -26,9 +26,9 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:130
+[src/interfaces/renderer.interface.ts:130](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L130)
 
-___
+---
 
 ### nonTTY
 
@@ -36,9 +36,9 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:131
+[src/interfaces/renderer.interface.ts:131](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L131)
 
-___
+---
 
 ### tasks
 
@@ -46,9 +46,9 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:132
+[src/interfaces/renderer.interface.ts:132](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L132)
 
-___
+---
 
 ### options
 
@@ -56,9 +56,9 @@ ___
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:133
+[src/interfaces/renderer.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L133)
 
-___
+---
 
 ### render
 
@@ -78,9 +78,9 @@ ListrRenderer.render
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:134
+[src/interfaces/renderer.interface.ts:134](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L134)
 
-___
+---
 
 ### end
 
@@ -92,8 +92,8 @@ ___
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type    |
+| :----- | :------ |
 | `err?` | `Error` |
 
 ##### Returns
@@ -106,7 +106,7 @@ ListrRenderer.end
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:135
+[src/interfaces/renderer.interface.ts:135](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L135)
 
 ## Constructors
 
@@ -116,11 +116,11 @@ src/interfaces/renderer.interface.ts:135
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`ListrBaseRenderer`](index.ListrBaseRenderer.md)\>[] |
-| `options` | `Record`<`PropertyKey`, `any`\> |
+| Name      | Type                                                                                                              |
+| :-------- | :---------------------------------------------------------------------------------------------------------------- |
+| `tasks`   | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`ListrBaseRenderer`](index.ListrBaseRenderer.md)\>[] |
+| `options` | `Record`<`PropertyKey`, `any`\>                                                                                   |
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:136
+[src/interfaces/renderer.interface.ts:136](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L136)

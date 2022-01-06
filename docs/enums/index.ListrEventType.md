@@ -12,9 +12,9 @@ Type of listr internal events.
 
 #### Defined in
 
-src/constants/event.constants.ts:3
+[src/constants/event.constants.ts:3](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L3)
 
-___
+---
 
 ### STATE
 
@@ -22,9 +22,9 @@ ___
 
 #### Defined in
 
-src/constants/event.constants.ts:4
+[src/constants/event.constants.ts:4](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L4)
 
-___
+---
 
 ### ENABLED
 
@@ -32,9 +32,9 @@ ___
 
 #### Defined in
 
-src/constants/event.constants.ts:5
+[src/constants/event.constants.ts:5](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L5)
 
-___
+---
 
 ### SUBTASK
 
@@ -42,9 +42,9 @@ ___
 
 #### Defined in
 
-src/constants/event.constants.ts:6
+[src/constants/event.constants.ts:6](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L6)
 
-___
+---
 
 ### DATA
 
@@ -52,9 +52,9 @@ ___
 
 #### Defined in
 
-src/constants/event.constants.ts:7
+[src/constants/event.constants.ts:7](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L7)
 
-___
+---
 
 ### MESSAGE
 
@@ -62,4 +62,4 @@ ___
 
 #### Defined in
 
-src/constants/event.constants.ts:8
+[src/constants/event.constants.ts:8](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L8)

@@ -6,9 +6,9 @@ Select renderer as default renderer
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) |
+| Name | Type                                                                 |
+| :--- | :------------------------------------------------------------------- |
+| `T`  | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) |
 
 ## Properties
 
@@ -20,9 +20,9 @@ the default renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:94
+[src/interfaces/renderer.interface.ts:94](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L94)
 
-___
+---
 
 ### rendererOptions
 
@@ -32,4 +32,4 @@ Renderer options depending on the current renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:96
+[src/interfaces/renderer.interface.ts:96](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L96)

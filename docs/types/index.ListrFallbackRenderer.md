@@ -8,4 +8,4 @@ Type of default fallback renderer
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:16
+[src/interfaces/renderer.interface.ts:16](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L16)

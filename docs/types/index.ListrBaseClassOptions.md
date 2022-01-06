@@ -12,12 +12,12 @@ Any subtasks will respect those options so they will be stripped of that propert
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `Ctx` | [`ListrContext`](index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererValue`](index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](index.ListrDefaultRendererValue.md) |
+| Name               | Type                                                                                                                              |
+| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| `Ctx`              | [`ListrContext`](index.ListrContext.md)                                                                                           |
+| `Renderer`         | extends [`ListrRendererValue`](index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](index.ListrDefaultRendererValue.md)   |
 | `FallbackRenderer` | extends [`ListrRendererValue`](index.ListrRendererValue.md) = [`ListrFallbackRendererValue`](index.ListrFallbackRendererValue.md) |
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:161
+[src/interfaces/listr.interface.ts:173](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L173)

@@ -6,8 +6,8 @@ Options to set the behavior of this base task.
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type                                             |
+| :---- | :----------------------------------------------- |
 | `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
 
 ## Properties
@@ -22,9 +22,9 @@ To inject a context through this options wrapper. Context can also be defined in
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:90
+[src/interfaces/listr.interface.ts:90](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L90)
 
-___
+---
 
 ### concurrent
 
@@ -40,9 +40,9 @@ If you pass in a `number` it will limit it to that number.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:100
+[src/interfaces/listr.interface.ts:100](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L100)
 
-___
+---
 
 ### exitOnError
 
@@ -54,9 +54,9 @@ Determine the default behavior of exiting on errors.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:106
+[src/interfaces/listr.interface.ts:106](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L106)
 
-___
+---
 
 ### exitAfterRollback
 
@@ -64,16 +64,35 @@ ___
 
 Determine the behavior of exiting after rollback actions.
 
-This is independent of exitOnError, since failure of a rollback can be a more critical operation comparing to
-failing a single task.
+This is independent of exitOnError, since failure of a rollback can be a more critical operation comparing to failing a single task.
 
 **`default`** true > exit after rolling back tasks
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:115
+[src/interfaces/listr.interface.ts:115](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L115)
 
-___
+---
+
+### collectErrors
+
+• `Optional` **collectErrors**: `false` \| `"minimal"` \| `"full"`
+
+Collects errors to `ListrInstance.errors`
+
+This can take up a lot of memory, so disabling it can fix out-of-memory errors
+
+- 'full' will clone the current context and task in to the error instance
+- 'minimal' will only collect the error message and the location
+- false will collect no errors
+
+**`default`** 'minimal'
+
+#### Defined in
+
+[src/interfaces/listr.interface.ts:127](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L127)
+
+---
 
 ### registerSignalListeners
 
@@ -85,9 +104,9 @@ By default, Listr2 will track SIGINIT signal to update the renderer one last tim
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:121
+[src/interfaces/listr.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L133)
 
-___
+---
 
 ### rendererFallback
 
@@ -99,9 +118,9 @@ Determine the certain condition required to use the non-TTY renderer.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:127
+[src/interfaces/listr.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L139)
 
-___
+---
 
 ### rendererSilent
 
@@ -113,9 +132,9 @@ Determine the certain condition required to use the silent renderer.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:133
+[src/interfaces/listr.interface.ts:145](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L145)
 
-___
+---
 
 ### disableColor
 
@@ -127,9 +146,9 @@ Disabling the color, useful for tests and such.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:139
+[src/interfaces/listr.interface.ts:151](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L151)
 
-___
+---
 
 ### injectWrapper
 
@@ -139,10 +158,10 @@ Inject data directly to TaskWrapper.
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
+| Name        | Type                  |
+| :---------- | :-------------------- |
 | `enquirer?` | `Enquirer`<`object`\> |
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:143
+[src/interfaces/listr.interface.ts:155](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L155)

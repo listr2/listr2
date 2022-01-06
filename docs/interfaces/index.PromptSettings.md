@@ -10,9 +10,9 @@
 
 #### Defined in
 
-src/utils/prompt.interface.ts:154
+[src/utils/prompt.interface.ts:154](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L154)
 
-___
+---
 
 ### stdout
 
@@ -20,9 +20,9 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:156
+[src/utils/prompt.interface.ts:156](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L156)
 
-___
+---
 
 ### enquirer
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:157
+[src/utils/prompt.interface.ts:157](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L157)
 
 ## Methods
 
@@ -40,8 +40,8 @@ src/utils/prompt.interface.ts:157
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name        | Type                                        |
+| :---------- | :------------------------------------------ |
 | `settings?` | [`PromptSettings`](index.PromptSettings.md) |
 
 #### Returns
@@ -50,4 +50,4 @@ src/utils/prompt.interface.ts:157
 
 #### Defined in
 
-src/utils/prompt.interface.ts:155
+[src/utils/prompt.interface.ts:155](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L155)

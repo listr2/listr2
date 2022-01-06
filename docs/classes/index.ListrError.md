@@ -6,8 +6,8 @@ The internal error handling mechanism..
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type                                                                      |
+| :---- | :------------------------------------------------------------------------ |
 | `Ctx` | extends `Record`<`PropertyKey`, `any`\> = `Record`<`PropertyKey`, `any`\> |
 
 ## Hierarchy
@@ -26,9 +26,9 @@ Create .stack property on a target object
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `targetObject` | `object` |
+| Name              | Type       |
+| :---------------- | :--------- |
+| `targetObject`    | `object`   |
 | `constructorOpt?` | `Function` |
 
 #### Returns
@@ -59,9 +59,9 @@ Optional override for formatting stack traces
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `err` | `Error` |
+| Name          | Type         |
+| :------------ | :----------- |
+| `err`         | `Error`      |
 | `stackTraces` | `CallSite`[] |
 
 ##### Returns
@@ -76,7 +76,7 @@ Error.prepareStackTrace
 
 node_modules/@types/node/globals.d.ts:11
 
-___
+---
 
 ### stackTraceLimit
 
@@ -90,7 +90,7 @@ Error.stackTraceLimit
 
 node_modules/@types/node/globals.d.ts:13
 
-___
+---
 
 ### name
 
@@ -104,7 +104,7 @@ Error.name
 
 node_modules/typescript/lib/lib.es5.d.ts:1022
 
-___
+---
 
 ### message
 
@@ -118,7 +118,7 @@ Error.message
 
 node_modules/typescript/lib/lib.es5.d.ts:1023
 
-___
+---
 
 ### stack
 
@@ -132,50 +132,63 @@ Error.stack
 
 node_modules/typescript/lib/lib.es5.d.ts:1024
 
-___
+---
+
+### path
+
+• **path**: `string`
+
+#### Defined in
+
+[src/interfaces/listr-error.interface.ts:7](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr-error.interface.ts#L7)
+
+---
+
+### ctx
+
+• **ctx**: `Ctx`
+
+#### Defined in
+
+[src/interfaces/listr-error.interface.ts:8](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr-error.interface.ts#L8)
+
+---
 
 ### error
 
 • **error**: `Error`
 
-___
+---
 
 ### type
 
-• `Optional` **type**: [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md)
+• **type**: [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md)
 
-___
-
-### ctx
-
-• `Optional` **ctx**: `Ctx`
-
-___
+---
 
 ### task
 
-• `Optional` **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
+• **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
 
 ## Constructors
 
 ### constructor
 
-• **new ListrError**<`Ctx`\>(`error`, `type?`, `ctx?`, `task?`)
+• **new ListrError**<`Ctx`\>(`error`, `type`, `task`)
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type                                                                      |
+| :---- | :------------------------------------------------------------------------ |
 | `Ctx` | extends `Record`<`PropertyKey`, `any`\> = `Record`<`PropertyKey`, `any`\> |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `error` | `Error` |
-| `type?` | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
-| `ctx?` | `Ctx` |
-| `task?` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
+| Name    | Type                                                                                                    |
+| :------ | :------------------------------------------------------------------------------------------------------ |
+| `error` | `Error`                                                                                                 |
+| `type`  | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md)                                                  |
+| `task`  | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
 
 #### Overrides
 
@@ -183,4 +196,4 @@ Error.constructor
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:6
+[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr-error.interface.ts#L10)

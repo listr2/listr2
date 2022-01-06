@@ -8,10 +8,10 @@ Returns renderer global options depending on the renderer type.
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends [`ListrRendererValue`](index.ListrRendererValue.md) |
+| Name | Type                                                        |
+| :--- | :---------------------------------------------------------- |
+| `T`  | extends [`ListrRendererValue`](index.ListrRendererValue.md) |
 
 #### Defined in
 
-src/interfaces/renderer.interface.ts:64
+[src/interfaces/renderer.interface.ts:64](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L64)

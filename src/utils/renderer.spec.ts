@@ -1,15 +1,24 @@
-/* eslint-disable no-underscore-dangle */
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
+import { SimpleRenderer } from '@renderer/simple.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { getRenderer } from '@utils/renderer'
 
-// eslint-disable-next-line import/order
-import rewire = require('rewire')
-
 describe('renderers', () => {
+  beforeEach(() => {
+    jest.resetModules()
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('should return default renderer', async () => {
     expect(getRenderer('default').renderer.name).toEqual(DefaultRenderer.name)
+  })
+
+  it('should return simple renderer', async () => {
+    expect(getRenderer('simple').renderer.name).toEqual(SimpleRenderer.name)
   })
 
   it('should return default renderer', async () => {
@@ -20,67 +29,183 @@ describe('renderers', () => {
     expect(getRenderer('silent').renderer.name).toEqual(SilentRenderer.name)
   })
 
-  it('should return verbose renderer if non-tty', async () => {
-    const renderer = rewire('@utils/renderer')
-
-    renderer.__set__(
-      'isRendererSupported',
-      jest.fn(() => false)
-    )
-
-    expect(renderer.__get__('getRenderer')('default', 'verbose').renderer.name).toEqual(VerboseRenderer.name)
-    expect(renderer.__get__('isRendererSupported')).toBeCalledTimes(1)
-  })
-
-  it('should evaluate the fallback and return fallback renderer', async () => {
-    const renderer = rewire('@utils/renderer')
-
-    renderer.__set__(
-      'isRendererSupported',
-      jest.fn(() => true)
-    )
-
-    expect(renderer.__get__('getRenderer')('default', 'verbose', 3 > 0).renderer.name).toEqual(VerboseRenderer.name)
-  })
-
-  it('should evaluate the fallback and return default renderer', async () => {
-    const renderer = rewire('@utils/renderer')
-
-    renderer.__set__(
-      'isRendererSupported',
-      jest.fn(() => true)
-    )
-
-    expect(renderer.__get__('getRenderer')('default', 'verbose', 3 < 0).renderer.name).toEqual(DefaultRenderer.name)
-  })
-
-  it('should return default renderer if tty', async () => {
-    const renderer = rewire('@utils/renderer')
-
-    renderer.__set__(
-      'isRendererSupported',
-      jest.fn(() => true)
-    )
-
-    expect(renderer.__get__('getRenderer')('default', 'verbose').renderer.name).toEqual(DefaultRenderer.name)
-    expect(renderer.__get__('isRendererSupported')).toBeCalledTimes(1)
-  })
-
-  it('should return default renderer when no renderer by that name exists', async () => {
-    const renderer = rewire('@utils/renderer')
-
-    expect(renderer.__get__('getRendererClass')('does-not-exists').name).toEqual(DefaultRenderer.name)
-  })
-
-  it('should return default renderer when renderer by that name exists', async () => {
-    const renderer = rewire('@utils/renderer')
-
-    expect(renderer.__get__('getRendererClass')('verbose').name).toEqual(VerboseRenderer.name)
-  })
-
-  it('should return the given renderer class if specified', async () => {
-    const renderer = rewire('@utils/renderer')
-
-    expect(renderer.__get__('getRendererClass')(VerboseRenderer).name).toEqual(VerboseRenderer.name)
-  })
+  // it('should return verbose renderer if non-tty', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => false)
+  //     }
+  //   })
+  //
+  //   const { getRenderer } = await import('@utils/renderer')
+  //
+  //   expect(getRenderer('default', 'verbose').renderer.name).toEqual(VerboseRenderer.name)
+  // })
+  //
+  // it('should evaluate the fallback and return fallback renderer', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRenderer } = await import('@utils/renderer')
+  //
+  //   expect(getRenderer('default', 'verbose', 3 > 0).renderer.name).toEqual(VerboseRenderer.name)
+  // })
+  //
+  // it('should evaluate the fallback and return default renderer', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRenderer } = jest.requireMock('@utils/renderer')
+  //
+  //   expect(getRenderer('default', 'verbose', 3 < 0).renderer.name).toEqual(DefaultRenderer.name)
+  // })
+  //
+  // it('should evaluate the fallback and return the default renderer', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRenderer } = jest.requireMock('@utils/renderer')
+  //
+  //   expect(getRenderer('default', 'verbose', null, 0 > 3).renderer.name).toEqual(SilentRenderer.name)
+  // })
+  //
+  // it('should evaluate the fallback and return silent renderer', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRenderer } = jest.requireMock('@utils/renderer')
+  //
+  //   expect(getRenderer('default', 'verbose', 0 < 3).renderer.name).toEqual(SilentRenderer.name)
+  // })
+  //
+  // it('should return default renderer if tty', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRenderer } = await import('@utils/renderer')
+  //
+  //   expect(getRenderer('default', 'verbose').renderer.name).toEqual(DefaultRenderer.name)
+  // })
+  //
+  // it('should return selected renderer if tty', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRenderer } = await import('@utils/renderer')
+  //
+  //   expect(getRenderer('simple', 'verbose').renderer.name).toEqual(SimpleRenderer.name)
+  // })
+  //
+  // it('should return default renderer when no renderer by that name exists', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRendererClass } = await import('@utils/renderer')
+  //
+  //   expect(getRendererClass('does-not-exists' as any).name).toEqual(DefaultRenderer.name)
+  // })
+  //
+  // it('should return the given renderer class verbose if specified', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRendererClass } = await import('@utils/renderer')
+  //
+  //   expect(getRendererClass('verbose' as any).name).toEqual(VerboseRenderer.name)
+  // })
+  //
+  // it('should return the given renderer class simple if specified', async () => {
+  //   jest.doMock('@utils/renderer', () => {
+  //     const originalModule = jest.requireActual('@utils/renderer')
+  //
+  //     // Mock the default export and named export 'foo'
+  //     return {
+  //       // eslint-disable-next-line @typescript-eslint/naming-convention
+  //       __esModule: true,
+  //       ...originalModule,
+  //       isRendererSupported: jest.fn(() => true)
+  //     }
+  //   })
+  //
+  //   const { getRendererClass } = await import('@utils/renderer')
+  //
+  //   expect(getRendererClass('simple' as any).name).toEqual(SimpleRenderer.name)
+  // })
 })
