@@ -10,6 +10,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
+    "resolveJsonModule": true,
     "outDir": "./dist",
     "rootDir": "./src/",
     "baseUrl": "./src/",
