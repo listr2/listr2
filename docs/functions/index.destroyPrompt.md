@@ -6,8 +6,8 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name         | Type      |
+| :----------- | :-------- |
 | `throwError` | `boolean` |
 
 #### Returns
@@ -16,4 +16,4 @@
 
 #### Defined in
 
-src/utils/prompt.ts:91
+[src/utils/prompt.ts:91](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.ts#L91)

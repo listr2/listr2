@@ -16,9 +16,9 @@ designates whether this renderer can output to a non-tty console
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:7
+[src/renderer/silent.renderer.ts:7](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/silent.renderer.ts#L7)
 
-___
+---
 
 ### rendererOptions
 
@@ -28,9 +28,9 @@ renderer options for the silent renderer
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:9
+[src/renderer/silent.renderer.ts:9](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/silent.renderer.ts#L9)
 
-___
+---
 
 ### rendererTaskOptions
 
@@ -40,15 +40,15 @@ per task options for the silent renderer
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:11
+[src/renderer/silent.renderer.ts:11](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/silent.renderer.ts#L11)
 
-___
+---
 
 ### tasks
 
 • **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[]
 
-___
+---
 
 ### options
 
@@ -62,14 +62,14 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[] |
-| `options` | `never` |
+| Name      | Type                                                                                                                           |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| `tasks`   | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[] |
+| `options` | `never`                                                                                                                        |
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:13
+[src/renderer/silent.renderer.ts:13](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/silent.renderer.ts#L13)
 
 ## Methods
 
@@ -87,9 +87,9 @@ ListrRenderer.render
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:15
+[src/renderer/silent.renderer.ts:15](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/silent.renderer.ts#L15)
 
-___
+---
 
 ### end
 
@@ -105,4 +105,4 @@ ListrRenderer.end
 
 #### Defined in
 
-src/renderer/silent.renderer.ts:17
+[src/renderer/silent.renderer.ts:17](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/silent.renderer.ts#L17)

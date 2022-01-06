@@ -24,9 +24,9 @@ Record.AutoComplete
 
 #### Defined in
 
-src/utils/prompt.interface.ts:132
+[src/utils/prompt.interface.ts:132](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L132)
 
-___
+---
 
 ### BasicAuth
 
@@ -38,9 +38,9 @@ Record.BasicAuth
 
 #### Defined in
 
-src/utils/prompt.interface.ts:133
+[src/utils/prompt.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L133)
 
-___
+---
 
 ### Confirm
 
@@ -52,9 +52,9 @@ Record.Confirm
 
 #### Defined in
 
-src/utils/prompt.interface.ts:134
+[src/utils/prompt.interface.ts:134](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L134)
 
-___
+---
 
 ### Editable
 
@@ -66,9 +66,9 @@ Record.Editable
 
 #### Defined in
 
-src/utils/prompt.interface.ts:135
+[src/utils/prompt.interface.ts:135](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L135)
 
-___
+---
 
 ### Form
 
@@ -80,9 +80,9 @@ Record.Form
 
 #### Defined in
 
-src/utils/prompt.interface.ts:136
+[src/utils/prompt.interface.ts:136](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L136)
 
-___
+---
 
 ### Input
 
@@ -94,9 +94,9 @@ Record.Input
 
 #### Defined in
 
-src/utils/prompt.interface.ts:137
+[src/utils/prompt.interface.ts:137](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L137)
 
-___
+---
 
 ### Invisible
 
@@ -108,9 +108,9 @@ Record.Invisible
 
 #### Defined in
 
-src/utils/prompt.interface.ts:138
+[src/utils/prompt.interface.ts:138](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L138)
 
-___
+---
 
 ### List
 
@@ -122,9 +122,9 @@ Record.List
 
 #### Defined in
 
-src/utils/prompt.interface.ts:139
+[src/utils/prompt.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L139)
 
-___
+---
 
 ### MultiSelect
 
@@ -136,9 +136,9 @@ Record.MultiSelect
 
 #### Defined in
 
-src/utils/prompt.interface.ts:140
+[src/utils/prompt.interface.ts:140](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L140)
 
-___
+---
 
 ### Numeral
 
@@ -150,9 +150,9 @@ Record.Numeral
 
 #### Defined in
 
-src/utils/prompt.interface.ts:141
+[src/utils/prompt.interface.ts:141](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L141)
 
-___
+---
 
 ### Password
 
@@ -164,9 +164,9 @@ Record.Password
 
 #### Defined in
 
-src/utils/prompt.interface.ts:142
+[src/utils/prompt.interface.ts:142](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L142)
 
-___
+---
 
 ### Quiz
 
@@ -178,9 +178,9 @@ Record.Quiz
 
 #### Defined in
 
-src/utils/prompt.interface.ts:143
+[src/utils/prompt.interface.ts:143](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L143)
 
-___
+---
 
 ### Scale
 
@@ -192,9 +192,9 @@ Record.Scale
 
 #### Defined in
 
-src/utils/prompt.interface.ts:144
+[src/utils/prompt.interface.ts:144](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L144)
 
-___
+---
 
 ### Select
 
@@ -206,9 +206,9 @@ Record.Select
 
 #### Defined in
 
-src/utils/prompt.interface.ts:145
+[src/utils/prompt.interface.ts:145](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L145)
 
-___
+---
 
 ### Snippet
 
@@ -220,9 +220,9 @@ Record.Snippet
 
 #### Defined in
 
-src/utils/prompt.interface.ts:146
+[src/utils/prompt.interface.ts:146](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L146)
 
-___
+---
 
 ### Sort
 
@@ -234,9 +234,9 @@ Record.Sort
 
 #### Defined in
 
-src/utils/prompt.interface.ts:147
+[src/utils/prompt.interface.ts:147](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L147)
 
-___
+---
 
 ### Survey
 
@@ -248,9 +248,9 @@ Record.Survey
 
 #### Defined in
 
-src/utils/prompt.interface.ts:148
+[src/utils/prompt.interface.ts:148](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L148)
 
-___
+---
 
 ### Text
 
@@ -262,9 +262,9 @@ Record.Text
 
 #### Defined in
 
-src/utils/prompt.interface.ts:149
+[src/utils/prompt.interface.ts:149](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L149)
 
-___
+---
 
 ### Toggle
 
@@ -276,4 +276,4 @@ Record.Toggle
 
 #### Defined in
 
-src/utils/prompt.interface.ts:150
+[src/utils/prompt.interface.ts:150](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L150)

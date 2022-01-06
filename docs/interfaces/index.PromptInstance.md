@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Omit`<`BasePromptOptions`, ``"onCancel"`` \| ``"onSubmit"``\>
+- `Omit`<`BasePromptOptions`, `"onCancel"` \| `"onSubmit"`\>
 
   ↳ **`PromptInstance`**
 
@@ -20,9 +20,9 @@ Omit.message
 
 #### Defined in
 
-src/utils/prompt.interface.ts:24
+[src/utils/prompt.interface.ts:24](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L24)
 
-___
+---
 
 ### initial
 
@@ -34,9 +34,9 @@ Omit.initial
 
 #### Defined in
 
-src/utils/prompt.interface.ts:25
+[src/utils/prompt.interface.ts:25](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L25)
 
-___
+---
 
 ### required
 
@@ -48,9 +48,9 @@ Omit.required
 
 #### Defined in
 
-src/utils/prompt.interface.ts:26
+[src/utils/prompt.interface.ts:26](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L26)
 
-___
+---
 
 ### stdin
 
@@ -62,9 +62,9 @@ Omit.stdin
 
 #### Defined in
 
-src/utils/prompt.interface.ts:27
+[src/utils/prompt.interface.ts:27](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L27)
 
-___
+---
 
 ### stdout
 
@@ -76,9 +76,9 @@ Omit.stdout
 
 #### Defined in
 
-src/utils/prompt.interface.ts:28
+[src/utils/prompt.interface.ts:28](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L28)
 
-___
+---
 
 ### header
 
@@ -90,9 +90,9 @@ Omit.header
 
 #### Defined in
 
-src/utils/prompt.interface.ts:29
+[src/utils/prompt.interface.ts:29](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L29)
 
-___
+---
 
 ### footer
 
@@ -104,7 +104,7 @@ Omit.footer
 
 #### Defined in
 
-src/utils/prompt.interface.ts:30
+[src/utils/prompt.interface.ts:30](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L30)
 
 ## Methods
 
@@ -114,8 +114,8 @@ src/utils/prompt.interface.ts:30
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type  |
+| :------ | :---- |
 | `value` | `any` |
 
 #### Returns
@@ -128,9 +128,9 @@ Omit.skip
 
 #### Defined in
 
-src/utils/prompt.interface.ts:31
+[src/utils/prompt.interface.ts:31](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L31)
 
-___
+---
 
 ### format
 
@@ -138,8 +138,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type  |
+| :------ | :---- |
 | `value` | `any` |
 
 #### Returns
@@ -152,9 +152,9 @@ Omit.format
 
 #### Defined in
 
-src/utils/prompt.interface.ts:32
+[src/utils/prompt.interface.ts:32](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L32)
 
-___
+---
 
 ### result
 
@@ -162,8 +162,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type  |
+| :------ | :---- |
 | `value` | `any` |
 
 #### Returns
@@ -176,9 +176,9 @@ Omit.result
 
 #### Defined in
 
-src/utils/prompt.interface.ts:33
+[src/utils/prompt.interface.ts:33](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L33)
 
-___
+---
 
 ### validate
 
@@ -186,8 +186,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type  |
+| :------ | :---- |
 | `value` | `any` |
 | `state` | `any` |
 
@@ -201,9 +201,9 @@ Omit.validate
 
 #### Defined in
 
-src/utils/prompt.interface.ts:34
+[src/utils/prompt.interface.ts:34](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L34)
 
-___
+---
 
 ### submit
 
@@ -215,9 +215,9 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:161
+[src/utils/prompt.interface.ts:161](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L161)
 
-___
+---
 
 ### cancel
 
@@ -225,8 +225,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type     |
+| :----- | :------- |
 | `err?` | `string` |
 
 #### Returns
@@ -235,4 +235,4 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:162
+[src/utils/prompt.interface.ts:162](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L162)
