@@ -1,6 +1,5 @@
 import { defineConfig } from 'tsup'
 
-// FIXME: fix tsconfig and tsconfig.build after: https://github.com/egoist/tsup/issues/524
 export default defineConfig((options) => ({
   name: !options.watch && 'production',
 
