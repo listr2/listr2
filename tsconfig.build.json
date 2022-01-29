@@ -1,30 +1,9 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "lib": ["es2019", "es2020.promise", "es2020.bigint", "es2020.string"],
-    "module": "commonjs",
-    "target": "es2019",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "strictNullChecks": false,
-    "outDir": "./dist",
-    "rootDir": "./src/",
-    "baseUrl": "./src/",
-    "paths": {
-      "@root/*": ["./*"],
-      "@constants/*": ["constants/*"],
-      "@interfaces/*": ["interfaces/*"],
-      "@lib/*": ["lib/*"],
-      "@renderer/*": ["renderer/*"],
-      "@utils/*": ["utils/*"]
-    },
     "sourceMap": false,
     "incremental": false,
-    "noUnusedLocals": true,
-    "resolveJsonModule": false
+    "noUnusedLocals": true
   },
   "exclude": ["node_modules", "dist", "test", "**/*spec.ts"],
   "include": ["src/**/*"]
