@@ -30,6 +30,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -52,6 +53,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -74,6 +76,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -83,6 +86,7 @@ async function main (): Promise<void> {
 function someTestFunction (): boolean {
   let sum = 0
   const total = 2
+
   for (let index = 0; index < 5; index++) {
     sum += index
   }
@@ -90,4 +94,4 @@ function someTestFunction (): boolean {
   return sum > total
 }
 
-main()
+void main()

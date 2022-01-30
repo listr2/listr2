@@ -32,6 +32,7 @@ describe('exit on error', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -142,6 +143,7 @@ describe('exit on error', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -182,6 +184,7 @@ describe('exit on error', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()

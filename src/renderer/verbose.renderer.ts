@@ -1,7 +1,7 @@
 import { ListrEventType } from '@constants/event.constants'
-import { ListrEvent } from '@interfaces/listr.interface'
-import { ListrRenderer } from '@interfaces/renderer.interface'
-import { Task } from '@lib/task'
+import type { ListrEvent } from '@interfaces/listr.interface'
+import type { ListrRenderer } from '@interfaces/renderer.interface'
+import type { Task } from '@lib/task'
 import { Logger } from '@utils/logger'
 import { parseTaskTime } from '@utils/parse-time'
 

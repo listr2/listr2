@@ -113,6 +113,7 @@ describe('show output from task', () => {
   it('should not take an unreasonable amount of time to clone a large ctx object during error collection', async () => {
     const ctx = createLargeNestedObject(6, 8) // About 20Mb
     const start = Date.now()
+
     try {
       await new Listr(
         [
@@ -138,8 +139,10 @@ describe('show output from task', () => {
 
 function createLargeNestedObject (depth: number, branches: number): Record<PropertyKey, any> {
   const obj: Record<PropertyKey, any> = {}
+
   for (let i = 0; i < branches; ++i) {
     obj['k' + i] = depth === 0 ? 'v' : createLargeNestedObject(depth - 1, branches)
   }
+
   return obj
 }

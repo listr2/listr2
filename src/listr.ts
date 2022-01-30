@@ -2,9 +2,9 @@ import pMap from 'p-map'
 import { Subject } from 'rxjs'
 
 import { ListrTaskState } from '@constants/state.constants'
-import { ListrError } from '@interfaces/listr-error.interface'
-import { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
-import {
+import type { ListrError } from '@interfaces/listr-error.interface'
+import type { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
+import type {
   ListrDefaultRendererValue,
   ListrFallbackRendererValue,
   ListrGetRendererClassFromValue,
@@ -61,6 +61,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
     // get renderer class
     const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
+
     this.rendererClass = renderer.renderer
 
     // depending on the result pass the given options in

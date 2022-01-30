@@ -17,7 +17,7 @@ describe('skip a task', () => {
       [
         {
           title: 'test',
-          task: (ctx, task): void => {
+          task: (_, task): void => {
             task.title = 'changed'
           }
         }
@@ -39,7 +39,7 @@ describe('skip a task', () => {
       [
         {
           title: 'test',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.title = 'changed'
           }
         }

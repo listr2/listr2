@@ -1,15 +1,15 @@
 import { Observable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
-import { TaskWrapper } from './task-wrapper'
+import type { TaskWrapper } from './task-wrapper'
 import { ListrEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { ListrErrorTypes, PromptError } from '@interfaces/listr-error.interface'
-import { ListrEvent, ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
-import { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
+import type { ListrEvent, ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
+import type { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
 import { Listr } from '@root/listr'
 import { assertFunctionOrSelf } from '@utils/assert'
-import { PromptInstance } from '@utils/prompt.interface'
+import type { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
 import { generateUUID } from '@utils/uuid'
 
@@ -134,7 +134,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   /**
    * A function to check whether this task should run at all via enable.
    */
-  async check (ctx: Ctx): Promise<void> {
+  public async check (ctx: Ctx): Promise<void> {
     // Check if a task is enabled or disabled
     if (this.state === undefined) {
       this.enabled = await assertFunctionOrSelf(this.enabledFn, ctx)
@@ -202,7 +202,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
   }
 
   /** Run the current task. */
-  async run (context: Ctx, wrapper: TaskWrapper<Ctx, Renderer>): Promise<void> {
+  public async run (context: Ctx, wrapper: TaskWrapper<Ctx, Renderer>): Promise<void> {
     const handleResult = (result: any): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask
@@ -278,6 +278,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     try {
       // add retry functionality
       const retryCount = this.tasks?.retry && this.tasks?.retry > 0 ? this.tasks.retry + 1 : 1
+
       for (let retries = 1; retries <= retryCount; retries++) {
         try {
           // handle the results

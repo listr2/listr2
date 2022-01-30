@@ -16,6 +16,7 @@ function testForAllExcept (
 
   instances.forEach((item) => {
     expect(item).toBeCalledTimes(0)
+
     if (callback?.onRest) {
       callback.onRest()
     }

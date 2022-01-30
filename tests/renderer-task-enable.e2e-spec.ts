@@ -68,7 +68,7 @@ describe('show task enable', () => {
 
         {
           title: 'This task will show subtasks.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr(
               [
                 {

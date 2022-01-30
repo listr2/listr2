@@ -1,6 +1,6 @@
 import delay from 'delay'
 
-import { ListrTask } from '@interfaces/listr.interface'
+import type { ListrTask } from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
 
 describe('skip a task', () => {
@@ -46,6 +46,7 @@ describe('skip a task', () => {
         ...task,
         title: 'sub' + task.title
       }
+
       return [ ...o, subtask ]
     }, [])
   })

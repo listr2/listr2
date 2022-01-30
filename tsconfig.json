@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
+    "module": "Node12",
     "outDir": "./dist",
     "rootDir": "./src/",
     "baseUrl": "./src/",

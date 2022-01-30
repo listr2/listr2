@@ -11,12 +11,9 @@ interface Ctx {
 const logger = new Logger({ useIcons: false })
 
 async function main (): Promise<void> {
-  let task: Listr<Ctx>
-
   logger.start('Example for subtasks with different renderer options.')
 
-  // eslint-disable-next-line prefer-const
-  task = new Listr<Ctx>(
+  const task: Listr<Ctx> = new Listr<Ctx>(
     [
       {
         title: 'This task will execute.',
@@ -39,29 +36,6 @@ async function main (): Promise<void> {
             ],
             { concurrent: true }
           )
-      },
-
-      {
-        title: 'This task will execute.',
-        task: (_, task): Listr =>
-          task.newListr(
-            (parent) => [
-              {
-                title: 'This is a subtask.',
-                task: async (): Promise<void> => {
-                  await delay(3000)
-                  parent.skip('This will skip the parent.')
-                }
-              },
-              {
-                title: 'This is an another subtask.',
-                task: async (): Promise<void> => {
-                  await delay(2000)
-                }
-              }
-            ],
-            { concurrent: true, rendererOptions: { collapse: false } }
-          )
       }
     ],
     { concurrent: false }
@@ -69,10 +43,11 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
   }
 }
 
-main()
+void main()

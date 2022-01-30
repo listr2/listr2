@@ -99,6 +99,7 @@ describe('enable with context', () => {
 
     it('with an injected context', async () => {
       const ctx = { enable: false }
+
       await new Listr(
         [
           {

@@ -1,12 +1,12 @@
 module.exports = {
-  extends: [ '@cenk1cenk2/eslint-config/typescript' ],
+  extends: [ '@cenk1cenk2/eslint-config/typescript-dynamic' ],
   rules: {
     'import/order': [
       'error',
       {
         pathGroups: [
           {
-            pattern: '@{root,constants,interfaces,lib,renderer,utils}/**',
+            pattern: '@{cenk1cenk2,root,constants,interfaces,lib,renderer,utils}/**',
             group: 'parent'
           }
         ],

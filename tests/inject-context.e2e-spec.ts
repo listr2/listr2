@@ -21,7 +21,7 @@ describe('show inject context', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr([
               {
                 title: 'This is a subtask.',
@@ -49,7 +49,7 @@ describe('show inject context', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr([
               {
                 title: 'This is a subtask.',

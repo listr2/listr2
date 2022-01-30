@@ -60,6 +60,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -72,6 +73,7 @@ async function main (): Promise<void> {
         title: 'This task will get your input.',
         task: async (ctx, task): Promise<void> => {
           ctx.input = await task.prompt<boolean>({ type: 'Toggle', message: 'Do you love me?' })
+
           // do something
           if (ctx.input === false) {
             throw new Error(':/')
@@ -84,6 +86,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -108,6 +111,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -161,6 +165,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -172,7 +177,9 @@ async function main (): Promise<void> {
       {
         title: 'This task will execute.',
         task: async (ctx, task): Promise<void> => {
-          delay(1000).then(() => task.skip('Skip this task.'))
+          delay(1000)
+            .then(() => task.skip('Skip this task.'))
+            .catch(() => {})
           ctx.input = await task.prompt({
             type: 'Input',
             message: 'Give me some input.'
@@ -194,6 +201,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -205,13 +213,17 @@ async function main (): Promise<void> {
       {
         title: 'This task will execute and cancel the prompts.',
         task: async (ctx, task): Promise<void> => {
-          delay(1000).then(() => task.cancelPrompt())
+          delay(1000)
+            .then(() => task.cancelPrompt())
+            .catch(() => {})
           ctx.input = await task.prompt({
             type: 'Input',
             message: 'Give me input before it disappears.'
           })
 
-          delay(1000).then(() => task.cancelPrompt())
+          delay(1000)
+            .then(() => task.cancelPrompt())
+            .catch(() => {})
           ctx.input = await task.prompt([
             {
               name: 'hello',
@@ -225,7 +237,9 @@ async function main (): Promise<void> {
             }
           ])
 
-          delay(1000).then(() => task.cancelPrompt(true))
+          delay(1000)
+            .then(() => task.cancelPrompt(true))
+            .catch(() => {})
           ctx.input = await task.prompt({
             type: 'Input',
             message: 'This input will throw an error :/.'
@@ -250,10 +264,11 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
   }
 }
 
-main()
+void main()

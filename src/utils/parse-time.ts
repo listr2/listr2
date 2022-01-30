@@ -3,6 +3,7 @@ export function parseTaskTime (duration: number): string {
   const minutes = Math.floor(seconds / 60)
 
   let parsedTime: string
+
   if (seconds === 0 && minutes === 0) {
     parsedTime = `0.${Math.floor(duration / 100)}s`
   }
