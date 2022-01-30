@@ -13,6 +13,11 @@
       "@utils/*": ["src/utils/*"]
     }
   },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
   "include": ["../src", "../examples"],
   "exclude": ["node_modules", "dist"]
 }
