@@ -1,26 +1,7 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: [ '@cenk1cenk2/eslint-config/typescript-dynamic' ],
+  extends: [ '@cenk1cenk2/eslint-config/typescript-dynamic', '@cenk1cenk2/eslint-config/import-strict' ],
   rules: {
-    'import/order': [
-      'error',
-      {
-        pathGroups: [
-          {
-            pattern: '@{cenk1cenk2,root,constants,interfaces,lib,renderer,utils}/**',
-            group: 'parent'
-          }
-        ],
-        pathGroupsExcludedImportTypes: [ 'builtin' ],
-        groups: [
-          [ 'builtin', 'external' ],
-          [ 'index', 'parent', 'sibling' ]
-        ],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true
-        }
-      }
-    ]
+    ...require('@cenk1cenk2/eslint-config/import-helper')([ 'cenk1cenk2', 'root', 'constants', 'interfaces', 'lib', 'renderer', 'utils' ])
   }
 }

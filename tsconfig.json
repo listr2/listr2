@@ -5,6 +5,7 @@
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
     "module": "Node12",
+    "moduleResolution": "node",
     "outDir": "./dist",
     "rootDir": "./src/",
     "baseUrl": "./src/",
