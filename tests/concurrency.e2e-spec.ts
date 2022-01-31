@@ -1,6 +1,6 @@
 import delay from 'delay'
 
-import { ListrTask } from '@interfaces/listr.interface'
+import type { ListrTask } from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
 
 describe('concurrent execution', () => {

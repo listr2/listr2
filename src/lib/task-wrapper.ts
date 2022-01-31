@@ -2,13 +2,14 @@ import through from 'through'
 
 import { BELL_REGEX, CLEAR_LINE_REGEX } from '@constants/clearline-regex.constants'
 import { ListrTaskState } from '@constants/state.constants'
-import { ListrError, ListrErrorTypes } from '@interfaces/listr-error.interface'
-import { ListrBaseClassOptions, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
-import { ListrRendererFactory } from '@interfaces/renderer.interface'
-import { Task } from '@lib/task'
+import type { ListrErrorTypes } from '@interfaces/listr-error.interface'
+import { ListrError } from '@interfaces/listr-error.interface'
+import type { ListrBaseClassOptions, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
+import type { ListrRendererFactory } from '@interfaces/renderer.interface'
+import type { Task } from '@lib/task'
 import { Listr } from '@root/listr'
 import { createPrompt, destroyPrompt } from '@utils/prompt'
-import { PromptOptions } from '@utils/prompt.interface'
+import type { PromptOptions } from '@utils/prompt.interface'
 
 /**
  * Extend the task to have more functionality while accesing from the outside.

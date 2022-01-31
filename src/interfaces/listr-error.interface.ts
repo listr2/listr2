@@ -1,5 +1,5 @@
-import { ListrRendererFactory } from './renderer.interface'
-import { Task } from '@lib/task'
+import type { ListrRendererFactory } from './renderer.interface'
+import type { Task } from '@lib/task'
 import { cloneObject } from '@utils/general'
 
 /** The internal error handling mechanism.. */

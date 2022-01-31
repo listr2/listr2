@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import delay from 'delay'
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 import { Observable } from 'rxjs'
@@ -34,7 +35,7 @@ describe('show output from task', () => {
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -66,7 +67,7 @@ describe('show output from task', () => {
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -96,7 +97,7 @@ describe('show output from task', () => {
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -125,7 +126,7 @@ describe('show output from task', () => {
     await new Listr(
       [
         {
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -154,7 +155,7 @@ describe('show output from task', () => {
     await new Listr(
       [
         {
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -184,7 +185,7 @@ describe('show output from task', () => {
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -214,7 +215,7 @@ describe('show output from task', () => {
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -244,7 +245,7 @@ describe('show output from task', () => {
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -259,7 +260,7 @@ describe('show output from task', () => {
 
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 
@@ -296,11 +297,13 @@ describe('show output from task', () => {
               delay(5)
                 .then(() => {
                   observer.next('changed')
+
                   return delay(5)
                 })
                 .then(() => {
                   observer.complete()
                 })
+                .catch(() => {})
             })
         }
       ],
@@ -321,10 +324,11 @@ describe('show output from task', () => {
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             const start = 'This is a'
             const mid = 'long '
             const end = 'multi line output.'
+
             task.output = start + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + end
             await delay(5)
           },
@@ -348,7 +352,7 @@ describe('show output from task', () => {
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
             await delay(5)
 

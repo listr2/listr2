@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import delay from 'delay'
 
-import { ListrBaseClassOptions } from '@interfaces/listr.interface'
+import type { ListrBaseClassOptions } from '@interfaces/listr.interface'
 import { Manager } from '@root/index'
 import { Logger } from '@utils/logger'
 
@@ -14,6 +14,7 @@ function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager
       collapseSkips: false
     }
   }
+
   return new Manager({ ...myDefaultOptions, ...override })
 }
 
@@ -27,7 +28,7 @@ class MyMainClass {
   private logger = new Logger({ useIcons: false })
 
   constructor () {
-    this.run()
+    void this.run()
   }
 
   private async run (): Promise<void> {
@@ -89,8 +90,9 @@ class MyMainClass {
 
     this.logger.start('You can use listr directly without importing it.')
     this.logger.start('It will use the options set on the manager so you dont have to initialize it with options everytime.')
+
     try {
-      this.tasks.run([
+      await this.tasks.run([
         {
           title: 'I will survive, dont worry',
           task: (): void => {
@@ -107,6 +109,7 @@ class MyMainClass {
 
     this.logger.start('You can also access Listr directly in the same way.')
     this.logger.start('It is not the same manager instance, just a jumper function.')
+
     try {
       await this.tasks
         .newListr([
@@ -134,7 +137,7 @@ class MyMainClass {
     ])
 
     this.logger.start('There is an embedded function of getting the run time, that can be useful in concurrent tasks.')
-    this.tasks.run(
+    await this.tasks.run(
       [
         {
           task: async (ctx): Promise<void> => {

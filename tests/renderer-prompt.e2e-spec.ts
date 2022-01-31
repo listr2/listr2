@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable no-empty */
 import delay from 'delay'
 import Enquirer from 'enquirer'
@@ -139,6 +140,7 @@ describe('show output from task', () => {
     )
 
     let err: Error
+
     try {
       await ctx.run()
     } catch (e: any) {
@@ -223,7 +225,10 @@ describe('show output from task', () => {
         {
           title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
-            delay(10).then(() => task.skip())
+            delay(10)
+              .then(() => task.skip())
+              .catch(() => {})
+
             ctx.output = await task.prompt({
               type: 'Input',
               message: 'Give me some input.'

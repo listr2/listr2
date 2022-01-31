@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { figures } from './figures'
 import { LogLevels } from './logger.constants'
-import { LoggerOptions } from './logger.interface'
+import type { LoggerOptions } from './logger.interface'
 import colorette from '@utils/colorette'
 
 /**
@@ -82,6 +82,7 @@ export class Logger {
     let coloring = (input: string): string => {
       return input
     }
+
     switch (level) {
     case LogLevels.FAILED:
       /* istanbul ignore if */
@@ -93,6 +94,7 @@ export class Logger {
       }
 
       break
+
     case LogLevels.SKIPPED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
@@ -101,7 +103,9 @@ export class Logger {
       } else {
         icon = this.wrapInBrackets(level)
       }
+
       break
+
     case LogLevels.SUCCESS:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
@@ -110,7 +114,9 @@ export class Logger {
       } else {
         icon = this.wrapInBrackets(level)
       }
+
       break
+
     case LogLevels.DATA:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
@@ -118,7 +124,9 @@ export class Logger {
       } else {
         icon = this.wrapInBrackets(level)
       }
+
       break
+
     case LogLevels.STARTED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
@@ -126,7 +134,9 @@ export class Logger {
       } else {
         icon = this.wrapInBrackets(level)
       }
+
       break
+
     case LogLevels.TITLE:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
@@ -134,7 +144,9 @@ export class Logger {
       } else {
         icon = this.wrapInBrackets(level)
       }
+
       break
+
     case LogLevels.RETRY:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
@@ -143,7 +155,9 @@ export class Logger {
       } else {
         icon = this.wrapInBrackets(level)
       }
+
       break
+
     case LogLevels.ROLLBACK:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
@@ -152,6 +166,7 @@ export class Logger {
       } else {
         icon = this.wrapInBrackets(level)
       }
+
       break
     }
 

@@ -1,7 +1,8 @@
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
 import { ListrErrorTypes } from '@interfaces/listr-error.interface'
-import { Listr, ListrOptions } from '@root/index'
+import type { ListrOptions } from '@root/index'
+import { Listr } from '@root/index'
 
 describe('error collection', () => {
   let mockExit: jest.SpyInstance<never, [number?]>
@@ -54,6 +55,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -91,6 +93,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -138,6 +141,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -183,6 +187,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -226,6 +231,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -264,6 +270,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -320,6 +327,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -377,6 +385,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -424,6 +433,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -484,6 +494,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -523,6 +534,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()
@@ -563,6 +575,7 @@ describe('error collection', () => {
 
     let result: any
     let crash: Error
+
     try {
       // eslint-disable-next-line prefer-const
       result = await task.run()

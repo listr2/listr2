@@ -3,9 +3,9 @@ import logUpdate from 'log-update'
 import { EOL } from 'os'
 import cliWrap from 'wrap-ansi'
 
-import { ListrContext } from '@interfaces/listr.interface'
-import { ListrRenderer } from '@interfaces/renderer.interface'
-import { Task } from '@lib/task'
+import type { ListrContext } from '@interfaces/listr.interface'
+import type { ListrRenderer } from '@interfaces/renderer.interface'
+import type { Task } from '@lib/task'
 import colorette from '@utils/colorette'
 import { figures } from '@utils/figures'
 import { indentString } from '@utils/indent-string'
@@ -157,7 +157,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private id?: NodeJS.Timeout
-  private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
+  private bottomBar: Record<string, { data?: string[], items?: number }> = {}
   private promptBar: string
   private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
@@ -250,6 +250,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   public end (): void {
     clearInterval(this.id)
+
     if (this.id) {
       this.id = undefined
     }
@@ -349,6 +350,7 @@ export class DefaultRenderer implements ListrRenderer {
               this.bottomBar[task.id].data = []
 
               const bottomBar = this.getTaskOptions(task).bottomBar
+
               if (typeof bottomBar === 'boolean') {
                 this.bottomBar[task.id].items = 1
               } else {
@@ -389,6 +391,7 @@ export class DefaultRenderer implements ListrRenderer {
 
           // render the subtasks as in the same way
           const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
+
           if (subtaskRender?.trim() !== '' && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
             output = [ ...output, subtaskRender ]
           }
@@ -408,6 +411,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     output = output.filter(Boolean)
+
     if (output.length > 0) {
       return output.join(EOL)
     } else {
@@ -418,7 +422,7 @@ export class DefaultRenderer implements ListrRenderer {
   private renderBottomBar (): string {
     // parse through all objects return only the last mentioned items
     if (Object.keys(this.bottomBar).length > 0) {
-      this.bottomBar = Object.keys(this.bottomBar).reduce((o, key) => {
+      this.bottomBar = Object.keys(this.bottomBar).reduce<Record<PropertyKey, { data?: string[], items?: number }>>((o, key) => {
         if (!o?.[key]) {
           o[key] = {}
         }
@@ -427,8 +431,9 @@ export class DefaultRenderer implements ListrRenderer {
 
         this.bottomBar[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
         o[key].data = this.bottomBar[key].data
+
         return o
-      }, {} as Record<PropertyKey, { data?: string[], items?: number } | undefined>)
+      }, {})
 
       return Object.values(this.bottomBar)
         .reduce((o, value) => o = [ ...o, ...value.data ], [])
@@ -445,15 +450,21 @@ export class DefaultRenderer implements ListrRenderer {
 
   private dumpData (task: Task<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string {
     let data: string | boolean
+
     switch (source) {
     case 'output':
       data = task.output
+
       break
+
     case 'skip':
       data = task.message.skip
+
       break
+
     case 'error':
       data = task.message.error
+
       break
     }
 
@@ -477,6 +488,7 @@ export class DefaultRenderer implements ListrRenderer {
     let parsedStr: string[]
 
     let columns = process.stdout.columns ? process.stdout.columns : 80
+
     columns = columns - level * this.options.indentation - 2
 
     switch (this.options.formatOutput) {
@@ -484,12 +496,14 @@ export class DefaultRenderer implements ListrRenderer {
       parsedStr = str.split(EOL).map((s, i) => {
         return cliTruncate(this.indentMultilineOutput(s, i), columns)
       })
+
       break
 
     case 'wrap':
       parsedStr = cliWrap(str, columns, { hard: true })
         .split(EOL)
         .map((s, i) => this.indentMultilineOutput(s, i))
+
       break
 
     default:

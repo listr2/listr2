@@ -1,4 +1,4 @@
-import delay = require('delay')
+import delay from 'delay'
 
 import { Listr } from '@root/index'
 
@@ -19,7 +19,7 @@ describe('skip a task', () => {
     await new Listr(
       [
         {
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.skip('skipped')
           }
         }
@@ -60,7 +60,7 @@ describe('skip a task', () => {
         },
         {
           enabled: (ctx): boolean => ctx.test,
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'enabled'
           }
         }
@@ -84,7 +84,7 @@ describe('skip a task', () => {
         },
         {
           enabled: (ctx): boolean => ctx.test,
-          task: async (ctx, task): Promise<void> => {
+          task: async (_, task): Promise<void> => {
             task.output = 'enabled'
           }
         }

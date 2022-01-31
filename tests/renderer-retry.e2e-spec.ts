@@ -30,6 +30,7 @@ describe('show retry', () => {
   // R34CKurUXSpq65S8ebD6jpUrwmIiYrKa
   it('should retry the main task if any of the subtasks fail', async () => {
     let err: Error
+
     try {
       await new Listr(
         [
@@ -41,6 +42,7 @@ describe('show retry', () => {
 
               await delay(10)
               const retry = task.isRetrying()
+
               if (retry.count > 0) {
                 task.output = `I am self aware that I am retrying for the ${retry.count}th time.`
               }
@@ -69,6 +71,7 @@ describe('show retry', () => {
 
   it('should stop retrying if the task succeeds afterwards', async () => {
     let err: Error
+
     try {
       await new Listr(
         [

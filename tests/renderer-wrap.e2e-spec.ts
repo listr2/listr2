@@ -48,6 +48,7 @@ describe('fallback renderer', () => {
     [ 'wrap', messageWithNewLines ]
   ])('should %s long strings', async (format, m) => {
     let err: Error
+
     try {
       await new Listr(
         [
@@ -82,6 +83,7 @@ describe('fallback renderer', () => {
     [ 'wrap', messageWithNewLines ]
   ])('should %s long titles', async (format, m) => {
     let err: Error
+
     try {
       await new Listr(
         [
@@ -114,6 +116,7 @@ describe('fallback renderer', () => {
     [ false, 'truncate', messageWithEmptyLines ]
   ])('should skip empty lines %s', async (rel, format, m) => {
     let err: Error
+
     try {
       await new Listr(
         [

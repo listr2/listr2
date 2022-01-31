@@ -2,9 +2,9 @@ import { stderr as logUpdate } from 'log-update'
 import { EOL } from 'os'
 
 import { ListrEventType } from '@constants/event.constants'
-import { ListrEventFromType } from '@interfaces/listr.interface'
-import { ListrRenderer } from '@interfaces/renderer.interface'
-import { Task } from '@root/lib/task'
+import type { ListrEventFromType } from '@interfaces/listr.interface'
+import type { ListrRenderer } from '@interfaces/renderer.interface'
+import type { Task } from '@root/lib/task'
 import colorette from '@utils/colorette'
 import { figures } from '@utils/figures'
 

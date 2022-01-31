@@ -1,5 +1,5 @@
-import { ListrOptions } from '@interfaces/listr.interface'
-import { SupportedRenderer, ListrRendererFactory, ListrRendererValue, ListrRenderer } from '@interfaces/renderer.interface'
+import type { ListrOptions } from '@interfaces/listr.interface'
+import type { SupportedRenderer, ListrRendererFactory, ListrRendererValue, ListrRenderer } from '@interfaces/renderer.interface'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { SimpleRenderer } from '@renderer/simple.renderer'

@@ -1,8 +1,8 @@
 import type Enquirer from 'enquirer'
 import type { Observable } from 'rxjs'
-import { Readable } from 'stream'
+import type { Readable } from 'stream'
 
-import {
+import type {
   ListrDefaultNonTTYRendererOptions,
   ListrDefaultRendererOptions,
   ListrDefaultRendererValue,
@@ -11,10 +11,10 @@ import {
   ListrRendererFactory,
   ListrRendererValue
 } from './renderer.interface'
-import { ListrEventType } from '@constants/event.constants'
-import { Task } from '@lib/task'
-import { TaskWrapper } from '@lib/task-wrapper'
-import { Listr } from '@root/listr'
+import type { ListrEventType } from '@constants/event.constants'
+import type { Task } from '@lib/task'
+import type { TaskWrapper } from '@lib/task-wrapper'
+import type { Listr } from '@root/listr'
 
 /** Listr Default Context */
 export type ListrContext = any | undefined

@@ -1,10 +1,10 @@
-import { Subject } from 'rxjs'
+import type { Subject } from 'rxjs'
 
-import { Task } from '@lib/task'
-import { DefaultRenderer } from '@renderer/default.renderer'
-import { SilentRenderer } from '@renderer/silent.renderer'
-import { SimpleRenderer } from '@renderer/simple.renderer'
-import { VerboseRenderer } from '@renderer/verbose.renderer'
+import type { Task } from '@lib/task'
+import type { DefaultRenderer } from '@renderer/default.renderer'
+import type { SilentRenderer } from '@renderer/silent.renderer'
+import type { SimpleRenderer } from '@renderer/simple.renderer'
+import type { VerboseRenderer } from '@renderer/verbose.renderer'
 
 /** The default renderer value used in Listr2 applications */
 export type ListrDefaultRendererValue = 'default'

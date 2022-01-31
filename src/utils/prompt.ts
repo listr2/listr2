@@ -1,10 +1,22 @@
 import type Enquirer from 'enquirer'
 
-import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
+import type { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
 import { ListrEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { PromptError } from '@interfaces/listr-error.interface'
 import { TaskWrapper } from '@lib/task-wrapper'
+
+function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
+  const errorMsg = 'Cancelled prompt.'
+
+  if (this instanceof TaskWrapper) {
+    this.task.prompt = new PromptError(errorMsg)
+  } /* istanbul ignore next */ else if (settings?.error !== false) {
+    throw new Error(errorMsg)
+  } /* istanbul ignore next */ else {
+    return errorMsg
+  }
+}
 
 /**
  * Create a new prompt with Enquirer externally.
@@ -47,6 +59,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
   }, [])
 
   let enquirer: Enquirer
+
   if (settings?.enquirer) {
     // injected enquirer
     enquirer = settings.enquirer
@@ -98,17 +111,5 @@ export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false):
     this.task.prompt.cancel()
   } else {
     this.task.prompt.submit()
-  }
-}
-
-function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
-  const errorMsg = 'Cancelled prompt.'
-
-  if (this instanceof TaskWrapper) {
-    this.task.prompt = new PromptError(errorMsg)
-  } /* istanbul ignore next */ else if (settings?.error !== false) {
-    throw new Error(errorMsg)
-  } /* istanbul ignore next */ else {
-    return errorMsg
   }
 }
