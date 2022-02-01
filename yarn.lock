@@ -304,10 +304,10 @@
   optionalDependencies:
     "@commitlint/load" "^12.1.4"
 
-"@cenk1cenk2/eslint-config@2.5.4":
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-2.5.4.tgz#fabc6e0d427ad14cb41f8c41c0be90b469ed53e3"
-  integrity sha512-FWkDhLx8VxBMe5OapuTeqyEPyLB0GNJ5+MB+Cznk80NHunOFjZAh4DuFcAjFWhJCG7z+TATIswQdxLygZKFFaQ==
+"@cenk1cenk2/eslint-config@2.5.5":
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-2.5.5.tgz#e02b9d85567c6ce9e56b34411c0b3b35467c4c04"
+  integrity sha512-pdBmn7v7J9wZc39DI7M7MTtVceeBXhkAqTFWj9sWkZ392yEOWamlXNN79xz/5PY+npQh7BHa+gi9hH/VyEKOmg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.9.0"
     "@typescript-eslint/parser" "^5.9.0"
