@@ -34,7 +34,7 @@ Extend the task to have more functionality while accesing from the outside.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L18)
+src/lib/task-wrapper.ts:18
 
 ## Properties
 
@@ -44,7 +44,7 @@ Extend the task to have more functionality while accesing from the outside.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L18)
+src/lib/task-wrapper.ts:18
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L18)
+src/lib/task-wrapper.ts:18
 
 ## Accessors
 
@@ -70,7 +70,7 @@ Get the title of the current task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:21](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L21)
+src/lib/task-wrapper.ts:21
 
 • `set` **title**(`data`): `void`
 
@@ -88,7 +88,7 @@ Change the title of the current task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:26](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L26)
+src/lib/task-wrapper.ts:26
 
 ___
 
@@ -104,7 +104,7 @@ Get the output from the output channel.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:31](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L31)
+src/lib/task-wrapper.ts:31
 
 • `set` **output**(`data`): `void`
 
@@ -122,7 +122,7 @@ Send a output to the output channel.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:36](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L36)
+src/lib/task-wrapper.ts:36
 
 ## Methods
 
@@ -151,7 +151,7 @@ Create a new subtask with given renderer selection from the parent task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:41](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L41)
+src/lib/task-wrapper.ts:41
 
 ___
 
@@ -174,7 +174,7 @@ Report a error in process for error collection.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:57](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L57)
+src/lib/task-wrapper.ts:57
 
 ___
 
@@ -196,7 +196,7 @@ Skip current task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:66](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L66)
+src/lib/task-wrapper.ts:66
 
 ___
 
@@ -217,7 +217,7 @@ Get the number of retrying, else returns false
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:75](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L75)
+src/lib/task-wrapper.ts:75
 
 ___
 
@@ -247,7 +247,7 @@ Since process.stdout is controlled by Listr, this will passthrough all Enquirer 
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:84](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L84)
+src/lib/task-wrapper.ts:84
 
 ___
 
@@ -269,7 +269,7 @@ Cancels the current prompt attach to this task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:89](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L89)
+src/lib/task-wrapper.ts:89
 
 ___
 
@@ -290,7 +290,7 @@ This returns a fake stream to pass any stream inside Listr as task data.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:101](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L101)
+src/lib/task-wrapper.ts:101
 
 ___
 
@@ -312,4 +312,4 @@ Run this task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:115](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L115)
+src/lib/task-wrapper.ts:115

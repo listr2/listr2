@@ -17,4 +17,4 @@
 
 #### Defined in
 
-[src/utils/prompt.ts:104](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/prompt.ts#L104)
+src/utils/prompt.ts:104

@@ -28,7 +28,7 @@ On verbose renderer, state changes from these tasks will log as 'Task without a 
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:36](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L36)
+src/interfaces/listr.interface.ts:36
 
 ___
 
@@ -58,7 +58,7 @@ Task will be executed, if the certain criteria of the state are met and whenever
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:43](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L43)
+src/interfaces/listr.interface.ts:43
 
 ___
 
@@ -72,7 +72,7 @@ The function that has been passed in will be evaluated at the runtime when the t
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:49](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L49)
+src/interfaces/listr.interface.ts:49
 
 ___
 
@@ -87,7 +87,7 @@ as well as re-evaluated when the time for that specific task has come.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:56](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L56)
+src/interfaces/listr.interface.ts:56
 
 ___
 
@@ -99,7 +99,7 @@ Adds the given number of retry attempts to the task if the task fails.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:60](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L60)
+src/interfaces/listr.interface.ts:60
 
 ___
 
@@ -129,7 +129,7 @@ But can also be useful whenever a task is failed and some measures have to be ta
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:67](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L67)
+src/interfaces/listr.interface.ts:67
 
 ___
 
@@ -141,7 +141,7 @@ Set exit on the error option from task-level instead of setting it for all the s
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:71](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L71)
+src/interfaces/listr.interface.ts:71
 
 ___
 
@@ -156,4 +156,4 @@ be displayed as never.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:78](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L78)
+src/interfaces/listr.interface.ts:78

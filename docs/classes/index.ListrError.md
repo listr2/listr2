@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:7](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L7)
+src/interfaces/listr-error.interface.ts:7
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:8](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L8)
+src/interfaces/listr-error.interface.ts:8
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L10)
+src/interfaces/listr-error.interface.ts:10
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L10)
+src/interfaces/listr-error.interface.ts:10
 
 ___
 
@@ -182,7 +182,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L10)
+src/interfaces/listr-error.interface.ts:10
 
 ## Constructors
 
@@ -210,4 +210,4 @@ Error.constructor
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L10)
+src/interfaces/listr-error.interface.ts:10

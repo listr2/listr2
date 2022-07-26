@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:155](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/prompt.interface.ts#L155)
+src/utils/prompt.interface.ts:155
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:156](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/prompt.interface.ts#L156)
+src/utils/prompt.interface.ts:156
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:157](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/prompt.interface.ts#L157)
+src/utils/prompt.interface.ts:157
 
 ___
 
@@ -54,4 +54,4 @@ ___
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:158](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/prompt.interface.ts#L158)
+src/utils/prompt.interface.ts:158

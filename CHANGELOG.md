@@ -1,3 +1,17 @@
+# [5.0.0](https://github.com/cenk1cenk2/listr2/compare/v4.0.5...v5.0.0) (2022-07-26)
+
+### Bug Fixes
+
+- update command for docs ([6e42d91](https://github.com/cenk1cenk2/listr2/commit/6e42d916fc28b5ab3a87a2b33619570171447d79))
+
+### Performance Improvements
+
+- drop node 12 support ([84fd3fc](https://github.com/cenk1cenk2/listr2/commit/84fd3fc810876a9118103f4f8d7816caf12e1f73))
+
+### BREAKING CHANGES
+
+- drops support for node12, migrate build to gitlab
+
 # [3.14.0](https://github.com/cenk1cenk2/listr2/compare/v3.13.6...v3.14.0) (2022-01-04)
 
 ### Bug Fixes

@@ -22,7 +22,7 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 
 #### Defined in
 
-[src/manager.ts:12](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L12)
+src/manager.ts:12
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:13](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L13)
+src/manager.ts:13
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:15](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L15)
+src/manager.ts:15
 
 ## Constructors
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:15](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L15)
+src/manager.ts:15
 
 ## Accessors
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:17](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L17)
+src/manager.ts:17
 
 ## Methods
 
@@ -113,7 +113,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:21](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L21)
+src/manager.ts:21
 
 ___
 
@@ -139,7 +139,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:30](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L30)
+src/manager.ts:30
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:41](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L41)
+src/manager.ts:41
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:48](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L48)
+src/manager.ts:48
 
 ___
 
@@ -223,7 +223,7 @@ ___
 
 #### Defined in
 
-[src/manager.ts:73](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L73)
+src/manager.ts:73
 
 ___
 
@@ -243,4 +243,4 @@ ___
 
 #### Defined in
 
-[src/manager.ts:92](https://github.com/cenk1cenk2/listr2/blob/a554689/src/manager.ts#L92)
+src/manager.ts:92

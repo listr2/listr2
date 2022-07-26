@@ -22,4 +22,4 @@ useful to use externally.
 
 #### Defined in
 
-[src/utils/prompt.ts:29](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/prompt.ts#L29)
+src/utils/prompt.ts:29

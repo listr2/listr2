@@ -24,7 +24,7 @@ designate whether this renderer can work in non-tty environments
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L18)
+src/renderer/simple.renderer.ts:18
 
 ___
 
@@ -47,7 +47,7 @@ designate renderer global options that is specific to the current renderer
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:21](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L21)
+src/renderer/simple.renderer.ts:21
 
 ___
 
@@ -63,7 +63,7 @@ designate renderer per task options that is specific to the current renderer
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:44](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L44)
+src/renderer/simple.renderer.ts:44
 
 ___
 
@@ -75,7 +75,7 @@ Event type renderer map contains functions to process different task events
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:49](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L49)
+src/renderer/simple.renderer.ts:49
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:105](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L105)
+src/renderer/simple.renderer.ts:105
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:105](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L105)
+src/renderer/simple.renderer.ts:105
 
 ## Constructors
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:105](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L105)
+src/renderer/simple.renderer.ts:105
 
 ## Methods
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:110](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L110)
+src/renderer/simple.renderer.ts:110
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:115](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L115)
+src/renderer/simple.renderer.ts:115
 
 ___
 
@@ -175,7 +175,7 @@ ___
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:120](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L120)
+src/renderer/simple.renderer.ts:120
 
 ___
 
@@ -195,7 +195,7 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:140](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L140)
+src/renderer/simple.renderer.ts:140
 
 ___
 
@@ -221,4 +221,4 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/renderer/simple.renderer.ts:143](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/simple.renderer.ts#L143)
+src/renderer/simple.renderer.ts:143

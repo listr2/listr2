@@ -8,4 +8,4 @@ The internal communication event.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:188](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L188)
+src/interfaces/listr.interface.ts:188

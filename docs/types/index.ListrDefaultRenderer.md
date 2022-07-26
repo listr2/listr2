@@ -8,4 +8,4 @@ Type of default renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:12](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L12)
+src/interfaces/renderer.interface.ts:12

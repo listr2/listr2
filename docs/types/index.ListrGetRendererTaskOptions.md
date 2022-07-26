@@ -14,4 +14,4 @@ Returns renderer per task options depending on the renderer type.
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:79](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L79)
+src/interfaces/renderer.interface.ts:79

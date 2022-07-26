@@ -22,7 +22,7 @@ designate renderer global options that is specific to the current renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:129](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L129)
+src/interfaces/renderer.interface.ts:129
 
 ___
 
@@ -38,7 +38,7 @@ designate renderer per task options that is specific to the current renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:130](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L130)
+src/interfaces/renderer.interface.ts:130
 
 ___
 
@@ -54,7 +54,7 @@ designate whether this renderer can work in non-tty environments
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:131](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L131)
+src/interfaces/renderer.interface.ts:131
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:132](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L132)
+src/interfaces/renderer.interface.ts:132
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L133)
+src/interfaces/renderer.interface.ts:133
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:134](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L134)
+src/interfaces/renderer.interface.ts:134
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:135](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L135)
+src/interfaces/renderer.interface.ts:135
 
 ## Constructors
 
@@ -141,4 +141,4 @@ ___
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:136](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L136)
+src/interfaces/renderer.interface.ts:136

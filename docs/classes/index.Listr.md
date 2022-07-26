@@ -20,7 +20,7 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:24](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L24)
+src/listr.ts:24
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:25](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L25)
+src/listr.ts:25
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:26](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L26)
+src/listr.ts:26
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:27](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L27)
+src/listr.ts:27
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:28](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L28)
+src/listr.ts:28
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:29](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L29)
+src/listr.ts:29
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:30](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L30)
+src/listr.ts:30
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:31](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L31)
+src/listr.ts:31
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:32](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L32)
+src/listr.ts:32
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:35](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L35)
+src/listr.ts:35
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:36](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L36)
+src/listr.ts:36
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:37](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L37)
+src/listr.ts:37
 
 ## Constructors
 
@@ -156,7 +156,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:34](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L34)
+src/listr.ts:34
 
 ## Methods
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:108](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L108)
+src/listr.ts:108
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:116](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L116)
+src/listr.ts:116
 
 ___
 
@@ -216,7 +216,7 @@ ___
 
 #### Defined in
 
-[src/listr.ts:156](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L156)
+src/listr.ts:156
 
 ___
 
@@ -238,4 +238,4 @@ ___
 
 #### Defined in
 
-[src/listr.ts:160](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L160)
+src/listr.ts:160

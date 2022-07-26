@@ -21,4 +21,4 @@
 
 #### Defined in
 
-[src/utils/figures.ts:26](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/figures.ts#L26)
+src/utils/figures.ts:26

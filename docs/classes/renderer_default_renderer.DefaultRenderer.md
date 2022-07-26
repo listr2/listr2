@@ -22,7 +22,7 @@ designates whether this renderer can output to a non-tty console
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L18)
+src/renderer/default.renderer.ts:18
 
 ___
 
@@ -57,7 +57,7 @@ renderer options for the defauult renderer
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:20](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L20)
+src/renderer/default.renderer.ts:20
 
 ___
 
@@ -81,7 +81,7 @@ per task options for the default renderer
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:135](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L135)
+src/renderer/default.renderer.ts:135
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:159](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L159)
+src/renderer/default.renderer.ts:159
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:160](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L160)
+src/renderer/default.renderer.ts:160
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:161](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L161)
+src/renderer/default.renderer.ts:161
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:162](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L162)
+src/renderer/default.renderer.ts:162
 
 ___
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:163](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L163)
+src/renderer/default.renderer.ts:163
 
 ___
 
@@ -141,7 +141,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:165](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L165)
+src/renderer/default.renderer.ts:165
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:165](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L165)
+src/renderer/default.renderer.ts:165
 
 ___
 
@@ -180,7 +180,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:165](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L165)
+src/renderer/default.renderer.ts:165
 
 ## Constructors
 
@@ -212,7 +212,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:165](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L165)
+src/renderer/default.renderer.ts:165
 
 ## Methods
 
@@ -238,7 +238,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:169](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L169)
+src/renderer/default.renderer.ts:169
 
 ___
 
@@ -258,7 +258,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:173](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L173)
+src/renderer/default.renderer.ts:173
 
 ___
 
@@ -278,7 +278,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:179](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L179)
+src/renderer/default.renderer.ts:179
 
 ___
 
@@ -298,7 +298,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:183](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L183)
+src/renderer/default.renderer.ts:183
 
 ___
 
@@ -325,7 +325,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:187](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L187)
+src/renderer/default.renderer.ts:187
 
 ___
 
@@ -345,7 +345,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:195](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L195)
+src/renderer/default.renderer.ts:195
 
 ___
 
@@ -368,7 +368,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:199](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L199)
+src/renderer/default.renderer.ts:199
 
 ___
 
@@ -388,7 +388,7 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:230](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L230)
+src/renderer/default.renderer.ts:230
 
 ___
 
@@ -408,7 +408,7 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:251](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L251)
+src/renderer/default.renderer.ts:251
 
 ___
 
@@ -429,7 +429,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:269](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L269)
+src/renderer/default.renderer.ts:269
 
 ___
 
@@ -443,7 +443,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:422](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L422)
+src/renderer/default.renderer.ts:422
 
 ___
 
@@ -457,7 +457,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:445](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L445)
+src/renderer/default.renderer.ts:445
 
 ___
 
@@ -479,7 +479,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:451](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L451)
+src/renderer/default.renderer.ts:451
 
 ___
 
@@ -501,7 +501,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:481](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L481)
+src/renderer/default.renderer.ts:481
 
 ___
 
@@ -522,7 +522,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:521](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L521)
+src/renderer/default.renderer.ts:521
 
 ___
 
@@ -543,7 +543,7 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:526](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L526)
+src/renderer/default.renderer.ts:526
 
 ___
 
@@ -565,4 +565,4 @@ ___
 
 #### Defined in
 
-[src/renderer/default.renderer.ts:550](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/default.renderer.ts#L550)
+src/renderer/default.renderer.ts:550

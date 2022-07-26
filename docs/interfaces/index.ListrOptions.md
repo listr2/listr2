@@ -22,7 +22,7 @@ To inject a context through this options wrapper. Context can also be defined in
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:90](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L90)
+src/interfaces/listr.interface.ts:90
 
 ___
 
@@ -42,7 +42,7 @@ If you pass in a `number` it will limit it to that number.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:100](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L100)
+src/interfaces/listr.interface.ts:100
 
 ___
 
@@ -58,7 +58,7 @@ true > exit on any error coming from the tasks.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:106](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L106)
+src/interfaces/listr.interface.ts:106
 
 ___
 
@@ -77,7 +77,7 @@ true > exit after rolling back tasks
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:115](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L115)
+src/interfaces/listr.interface.ts:115
 
 ___
 
@@ -99,7 +99,7 @@ This can take up a lot of memory, so disabling it can fix out-of-memory errors
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:127](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L127)
+src/interfaces/listr.interface.ts:127
 
 ___
 
@@ -115,7 +115,7 @@ true
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L133)
+src/interfaces/listr.interface.ts:133
 
 ___
 
@@ -131,7 +131,7 @@ null > handled internally
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L139)
+src/interfaces/listr.interface.ts:139
 
 ___
 
@@ -147,7 +147,7 @@ null > handled internally
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:145](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L145)
+src/interfaces/listr.interface.ts:145
 
 ___
 
@@ -163,7 +163,7 @@ false
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:151](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L151)
+src/interfaces/listr.interface.ts:151
 
 ___
 
@@ -181,4 +181,4 @@ Inject data directly to TaskWrapper.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:155](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L155)
+src/interfaces/listr.interface.ts:155

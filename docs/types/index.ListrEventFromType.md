@@ -15,4 +15,4 @@ Used to match event.type to ListrEvent permutations
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:205](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L205)
+src/interfaces/listr.interface.ts:205

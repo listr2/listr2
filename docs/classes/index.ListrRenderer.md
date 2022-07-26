@@ -22,7 +22,7 @@ designate renderer global options that is specific to the current renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:114](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L114)
+src/interfaces/renderer.interface.ts:114
 
 ___
 
@@ -34,7 +34,7 @@ designate renderer per task options that is specific to the current renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:116](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L116)
+src/interfaces/renderer.interface.ts:116
 
 ___
 
@@ -46,7 +46,7 @@ designate whether this renderer can work in non-tty environments
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:118](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L118)
+src/interfaces/renderer.interface.ts:118
 
 ___
 
@@ -66,7 +66,7 @@ A function to what to do on render
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:120](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L120)
+src/interfaces/renderer.interface.ts:120
 
 ___
 
@@ -92,7 +92,7 @@ A function to what to do on end of the render
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:122](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L122)
+src/interfaces/renderer.interface.ts:122
 
 ## Constructors
 
@@ -112,4 +112,4 @@ create a new renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:124](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L124)
+src/interfaces/renderer.interface.ts:124

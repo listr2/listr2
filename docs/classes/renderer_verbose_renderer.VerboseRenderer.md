@@ -22,7 +22,7 @@ designates whether this renderer can output to a non-tty console
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L10)
+src/renderer/verbose.renderer.ts:10
 
 ___
 
@@ -38,7 +38,7 @@ renderer options for the verbose renderer
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:12](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L12)
+src/renderer/verbose.renderer.ts:12
 
 ___
 
@@ -54,7 +54,7 @@ per task options for the verbose renderer
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:49](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L49)
+src/renderer/verbose.renderer.ts:49
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:50](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L50)
+src/renderer/verbose.renderer.ts:50
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:52](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L52)
+src/renderer/verbose.renderer.ts:52
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:52](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L52)
+src/renderer/verbose.renderer.ts:52
 
 ## Constructors
 
@@ -101,7 +101,7 @@ ___
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:52](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L52)
+src/renderer/verbose.renderer.ts:52
 
 ## Methods
 
@@ -121,7 +121,7 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:64](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L64)
+src/renderer/verbose.renderer.ts:64
 
 ___
 
@@ -141,7 +141,7 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:69](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L69)
+src/renderer/verbose.renderer.ts:69
 
 ___
 
@@ -161,4 +161,4 @@ ___
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:72](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L72)
+src/renderer/verbose.renderer.ts:72
