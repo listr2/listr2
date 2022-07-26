@@ -1,3 +1,9 @@
+## [5.0.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.0...v5.0.1) (2022-07-26)
+
+### Bug Fixes
+
+- badge ([b6d9bcd](https://github.com/cenk1cenk2/listr2/commit/b6d9bcda584520ecc8a732b946cb30f6f24c5c7a))
+
 # [5.0.0](https://github.com/cenk1cenk2/listr2/compare/v4.0.5...v5.0.0) (2022-07-26)
 
 ### Bug Fixes
