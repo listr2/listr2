@@ -6,37 +6,11 @@ Creates a new set of Listr2 task list.
 
 ## Type parameters
 
-| Name               | Type                                                                                                                                                |
-| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Ctx`              | [`ListrContext`](../types/index.ListrContext.md)                                                                                                    |
-| `Renderer`         | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](../types/index.ListrDefaultRendererValue.md)   |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrFallbackRendererValue`](../types/index.ListrFallbackRendererValue.md) |
-
-## Constructors
-
-### constructor
-
-• **new Listr**<`Ctx`, `Renderer`, `FallbackRenderer`\>(`task`, `options?`, `parentTask?`)
-
-#### Type parameters
-
-| Name               | Type                                                                               |
-| :----------------- | :--------------------------------------------------------------------------------- |
-| `Ctx`              | `any`                                                                              |
-| `Renderer`         | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = `"default"` |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = `"verbose"` |
-
-#### Parameters
-
 | Name | Type |
-| :-- | :-- |
-| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
-| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\> |
-| `parentTask?` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, `any`\> |
-
-#### Defined in
-
-[src/listr.ts:34](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L34)
+| :------ | :------ |
+| `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](../types/index.ListrDefaultRendererValue.md) |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrFallbackRendererValue`](../types/index.ListrFallbackRendererValue.md) |
 
 ## Properties
 
@@ -46,9 +20,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:24](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L24)
+[src/listr.ts:24](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L24)
 
----
+___
 
 ### err
 
@@ -56,9 +30,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:25](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L25)
+[src/listr.ts:25](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L25)
 
----
+___
 
 ### ctx
 
@@ -66,9 +40,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:26](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L26)
+[src/listr.ts:26](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L26)
 
----
+___
 
 ### rendererClass
 
@@ -76,9 +50,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:27](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L27)
+[src/listr.ts:27](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L27)
 
----
+___
 
 ### rendererClassOptions
 
@@ -86,9 +60,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:28](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L28)
+[src/listr.ts:28](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L28)
 
----
+___
 
 ### renderHook$
 
@@ -96,9 +70,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:29](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L29)
+[src/listr.ts:29](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L29)
 
----
+___
 
 ### path
 
@@ -106,9 +80,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:30](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L30)
+[src/listr.ts:30](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L30)
 
----
+___
 
 ### concurrency
 
@@ -116,9 +90,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:31](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L31)
+[src/listr.ts:31](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L31)
 
----
+___
 
 ### renderer
 
@@ -126,25 +100,63 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:32](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L32)
+[src/listr.ts:32](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L32)
 
----
+___
 
 ### task
 
 • **task**: [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[]
 
----
+#### Defined in
+
+[src/listr.ts:35](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L35)
+
+___
 
 ### options
 
 • `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
 
----
+#### Defined in
+
+[src/listr.ts:36](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L36)
+
+___
 
 ### parentTask
 
 • `Optional` **parentTask**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, `any`\>
+
+#### Defined in
+
+[src/listr.ts:37](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L37)
+
+## Constructors
+
+### constructor
+
+• **new Listr**<`Ctx`, `Renderer`, `FallbackRenderer`\>(`task`, `options?`, `parentTask?`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | `any` |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"default"`` |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"verbose"`` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
+| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\> |
+| `parentTask?` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, `any`\> |
+
+#### Defined in
+
+[src/listr.ts:34](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L34)
 
 ## Methods
 
@@ -155,7 +167,7 @@ Creates a new set of Listr2 task list.
 #### Parameters
 
 | Name | Type |
-| :-- | :-- |
+| :------ | :------ |
 | `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
 
 #### Returns
@@ -164,9 +176,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:107](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L107)
+[src/listr.ts:108](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L108)
 
----
+___
 
 ### run
 
@@ -174,8 +186,8 @@ Creates a new set of Listr2 task list.
 
 #### Parameters
 
-| Name       | Type  |
-| :--------- | :---- |
+| Name | Type |
+| :------ | :------ |
 | `context?` | `Ctx` |
 
 #### Returns
@@ -184,9 +196,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:115](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L115)
+[src/listr.ts:116](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L116)
 
----
+___
 
 ### checkAll
 
@@ -194,8 +206,8 @@ Creates a new set of Listr2 task list.
 
 #### Parameters
 
-| Name      | Type  |
-| :-------- | :---- |
+| Name | Type |
+| :------ | :------ |
 | `context` | `any` |
 
 #### Returns
@@ -204,9 +216,9 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:155](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L155)
+[src/listr.ts:156](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L156)
 
----
+___
 
 ### runTask
 
@@ -214,11 +226,11 @@ Creates a new set of Listr2 task list.
 
 #### Parameters
 
-| Name      | Type                                                                                                                                                     |
-| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `task`    | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> |
-| `context` | `Ctx`                                                                                                                                                    |
-| `errors`  | [`ListrError`](index.ListrError.md)<`Ctx`\>[]                                                                                                            |
+| Name | Type |
+| :------ | :------ |
+| `task` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> |
+| `context` | `Ctx` |
+| `errors` | [`ListrError`](index.ListrError.md)<`Ctx`\>[] |
 
 #### Returns
 
@@ -226,4 +238,4 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-[src/listr.ts:159](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/listr.ts#L159)
+[src/listr.ts:160](https://github.com/cenk1cenk2/listr2/blob/a554689/src/listr.ts#L160)

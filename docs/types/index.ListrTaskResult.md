@@ -8,10 +8,10 @@ Task can be set of sync or async function, an Observable or a stream.
 
 #### Type parameters
 
-| Name  |
-| :---- |
+| Name |
+| :------ |
 | `Ctx` |
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:164](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L164)
+[src/interfaces/listr.interface.ts:164](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L164)

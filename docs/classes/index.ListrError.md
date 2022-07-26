@@ -6,8 +6,8 @@ The internal error handling mechanism..
 
 ## Type parameters
 
-| Name  | Type                                                                      |
-| :---- | :------------------------------------------------------------------------ |
+| Name | Type |
+| :------ | :------ |
 | `Ctx` | extends `Record`<`PropertyKey`, `any`\> = `Record`<`PropertyKey`, `any`\> |
 
 ## Hierarchy
@@ -26,9 +26,9 @@ Create .stack property on a target object
 
 #### Parameters
 
-| Name              | Type       |
-| :---------------- | :--------- |
-| `targetObject`    | `object`   |
+| Name | Type |
+| :------ | :------ |
+| `targetObject` | `object` |
 | `constructorOpt?` | `Function` |
 
 #### Returns
@@ -55,13 +55,15 @@ node_modules/@types/node/globals.d.ts:4
 
 Optional override for formatting stack traces
 
-**`see`** https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+**`See`**
+
+https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 ##### Parameters
 
-| Name          | Type         |
-| :------------ | :----------- |
-| `err`         | `Error`      |
+| Name | Type |
+| :------ | :------ |
+| `err` | `Error` |
 | `stackTraces` | `CallSite`[] |
 
 ##### Returns
@@ -76,7 +78,7 @@ Error.prepareStackTrace
 
 node_modules/@types/node/globals.d.ts:11
 
----
+___
 
 ### stackTraceLimit
 
@@ -90,7 +92,7 @@ Error.stackTraceLimit
 
 node_modules/@types/node/globals.d.ts:13
 
----
+___
 
 ### name
 
@@ -102,9 +104,9 @@ Error.name
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1022
+node_modules/typescript/lib/lib.es5.d.ts:1028
 
----
+___
 
 ### message
 
@@ -116,9 +118,9 @@ Error.message
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1023
+node_modules/typescript/lib/lib.es5.d.ts:1029
 
----
+___
 
 ### stack
 
@@ -130,9 +132,9 @@ Error.stack
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1024
+node_modules/typescript/lib/lib.es5.d.ts:1030
 
----
+___
 
 ### path
 
@@ -140,9 +142,9 @@ node_modules/typescript/lib/lib.es5.d.ts:1024
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:7](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr-error.interface.ts#L7)
+[src/interfaces/listr-error.interface.ts:7](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L7)
 
----
+___
 
 ### ctx
 
@@ -150,25 +152,37 @@ node_modules/typescript/lib/lib.es5.d.ts:1024
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:8](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr-error.interface.ts#L8)
+[src/interfaces/listr-error.interface.ts:8](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L8)
 
----
+___
 
 ### error
 
 • **error**: `Error`
 
----
+#### Defined in
+
+[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L10)
+
+___
 
 ### type
 
 • **type**: [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md)
 
----
+#### Defined in
+
+[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L10)
+
+___
 
 ### task
 
 • **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
+
+#### Defined in
+
+[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L10)
 
 ## Constructors
 
@@ -178,17 +192,17 @@ node_modules/typescript/lib/lib.es5.d.ts:1024
 
 #### Type parameters
 
-| Name  | Type                                                                      |
-| :---- | :------------------------------------------------------------------------ |
+| Name | Type |
+| :------ | :------ |
 | `Ctx` | extends `Record`<`PropertyKey`, `any`\> = `Record`<`PropertyKey`, `any`\> |
 
 #### Parameters
 
-| Name    | Type                                                                                                    |
-| :------ | :------------------------------------------------------------------------------------------------------ |
-| `error` | `Error`                                                                                                 |
-| `type`  | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md)                                                  |
-| `task`  | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
+| Name | Type |
+| :------ | :------ |
+| `error` | `Error` |
+| `type` | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
+| `task` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
 
 #### Overrides
 
@@ -196,4 +210,4 @@ Error.constructor
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr-error.interface.ts#L10)
+[src/interfaces/listr-error.interface.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L10)

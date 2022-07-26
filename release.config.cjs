@@ -1,6 +1,9 @@
 module.exports = {
   branches: [
+    'main',
     'master',
+    'next',
+    'next-major',
     {
       name: 'alpha',
       prerelease: true
@@ -14,13 +17,17 @@ module.exports = {
       prerelease: true
     }
   ],
-  verifyConditions: [ '@semantic-release/changelog', '@semantic-release/git' ],
-  prepare: [
+  plugins: [
+    '@semantic-release/commit-analyzer',
+    '@semantic-release/release-notes-generator',
     '@semantic-release/changelog',
-    {
-      path: '@semantic-release/git',
-      assets: [ 'CHANGELOG.md', 'README.md', 'docs/' ],
-      message: 'chore(release): <%= nextRelease.version %> - <%= new Date().toISOString().slice(0,10).replace(/-/g,\'\') %> [skip ci]\n\n<%= nextRelease.notes %>'
-    }
+    [
+      '@semantic-release/git',
+      {
+        assets: [ 'CHANGELOG.md', 'README.md', 'docs/' ]
+      }
+    ],
+    '@semantic-release/npm',
+    '@semantic-release/github'
   ]
 }

@@ -1,5 +1,6 @@
 docs/**
 etc/**
+examples/**
 .github/**
 .gitignore
 README.md

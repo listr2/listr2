@@ -4,72 +4,72 @@
 
 Available task states.
 
-## Enumeration members
+## Enumeration Members
 
 ### PENDING
 
-• **PENDING** = `"PENDING"`
+• **PENDING** = ``"PENDING"``
 
 #### Defined in
 
-[src/constants/state.constants.ts:3](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/state.constants.ts#L3)
+[src/constants/state.constants.ts:3](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/state.constants.ts#L3)
 
----
+___
 
 ### COMPLETED
 
-• **COMPLETED** = `"COMPLETED"`
+• **COMPLETED** = ``"COMPLETED"``
 
 #### Defined in
 
-[src/constants/state.constants.ts:4](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/state.constants.ts#L4)
+[src/constants/state.constants.ts:4](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/state.constants.ts#L4)
 
----
+___
 
 ### FAILED
 
-• **FAILED** = `"FAILED"`
+• **FAILED** = ``"FAILED"``
 
 #### Defined in
 
-[src/constants/state.constants.ts:5](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/state.constants.ts#L5)
+[src/constants/state.constants.ts:5](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/state.constants.ts#L5)
 
----
+___
 
 ### SKIPPED
 
-• **SKIPPED** = `"SKIPPED"`
+• **SKIPPED** = ``"SKIPPED"``
 
 #### Defined in
 
-[src/constants/state.constants.ts:6](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/state.constants.ts#L6)
+[src/constants/state.constants.ts:6](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/state.constants.ts#L6)
 
----
+___
 
-### ROLLING_BACK
+### ROLLING\_BACK
 
-• **ROLLING_BACK** = `"ROLLING_BACK"`
-
-#### Defined in
-
-[src/constants/state.constants.ts:7](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/state.constants.ts#L7)
-
----
-
-### ROLLED_BACK
-
-• **ROLLED_BACK** = `"ROLLED_BACK"`
+• **ROLLING\_BACK** = ``"ROLLING_BACK"``
 
 #### Defined in
 
-[src/constants/state.constants.ts:8](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/state.constants.ts#L8)
+[src/constants/state.constants.ts:7](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/state.constants.ts#L7)
 
----
+___
+
+### ROLLED\_BACK
+
+• **ROLLED\_BACK** = ``"ROLLED_BACK"``
+
+#### Defined in
+
+[src/constants/state.constants.ts:8](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/state.constants.ts#L8)
+
+___
 
 ### RETRY
 
-• **RETRY** = `"RETRY"`
+• **RETRY** = ``"RETRY"``
 
 #### Defined in
 
-[src/constants/state.constants.ts:9](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/state.constants.ts#L9)
+[src/constants/state.constants.ts:9](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/state.constants.ts#L9)

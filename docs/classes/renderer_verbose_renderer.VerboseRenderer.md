@@ -2,6 +2,8 @@
 
 [renderer/verbose.renderer](../modules/renderer_verbose_renderer.md).VerboseRenderer
 
+The bones of a listr renderer.
+
 ## Implements
 
 - [`ListrRenderer`](index.ListrRenderer.md)
@@ -14,23 +16,31 @@
 
 designates whether this renderer can output to a non-tty console
 
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[nonTTY](index.ListrRenderer.md#nontty)
+
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:10](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/verbose.renderer.ts#L10)
+[src/renderer/verbose.renderer.ts:10](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L10)
 
----
+___
 
 ### rendererOptions
 
-▪ `Static` **rendererOptions**: { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean` } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any` }
+▪ `Static` **rendererOptions**: { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  }
 
 renderer options for the verbose renderer
 
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererOptions](index.ListrRenderer.md#rendereroptions)
+
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:12](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/verbose.renderer.ts#L12)
+[src/renderer/verbose.renderer.ts:12](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L12)
 
----
+___
 
 ### rendererTaskOptions
 
@@ -38,11 +48,15 @@ renderer options for the verbose renderer
 
 per task options for the verbose renderer
 
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererTaskOptions](index.ListrRenderer.md#renderertaskoptions)
+
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:49](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/verbose.renderer.ts#L49)
+[src/renderer/verbose.renderer.ts:49](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L49)
 
----
+___
 
 ### logger
 
@@ -50,19 +64,27 @@ per task options for the verbose renderer
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:50](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/verbose.renderer.ts#L50)
+[src/renderer/verbose.renderer.ts:50](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L50)
 
----
+___
 
 ### tasks
 
 • **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`VerboseRenderer`](renderer_verbose_renderer.VerboseRenderer.md)\>[]
 
----
+#### Defined in
+
+[src/renderer/verbose.renderer.ts:52](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L52)
+
+___
 
 ### options
 
-• **options**: { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean` } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any` }
+• **options**: { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  }
+
+#### Defined in
+
+[src/renderer/verbose.renderer.ts:52](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L52)
 
 ## Constructors
 
@@ -73,19 +95,21 @@ per task options for the verbose renderer
 #### Parameters
 
 | Name | Type |
-| :-- | :-- |
+| :------ | :------ |
 | `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`VerboseRenderer`](renderer_verbose_renderer.VerboseRenderer.md)\>[] |
-| `options` | { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean` } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any` } |
+| `options` | { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  } |
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:52](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/verbose.renderer.ts#L52)
+[src/renderer/verbose.renderer.ts:52](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L52)
 
 ## Methods
 
 ### render
 
 ▸ **render**(): `void`
+
+A function to what to do on render
 
 #### Returns
 
@@ -97,13 +121,15 @@ ListrRenderer.render
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:64](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/verbose.renderer.ts#L64)
+[src/renderer/verbose.renderer.ts:64](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L64)
 
----
+___
 
 ### end
 
 ▸ **end**(): `void`
+
+A function to what to do on end of the render
 
 #### Returns
 
@@ -115,9 +141,9 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:69](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/verbose.renderer.ts#L69)
+[src/renderer/verbose.renderer.ts:69](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L69)
 
----
+___
 
 ### verboseRenderer
 
@@ -125,8 +151,8 @@ ListrRenderer.end
 
 #### Parameters
 
-| Name    | Type                                                                                                                              |
-| :------ | :-------------------------------------------------------------------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`VerboseRenderer`](renderer_verbose_renderer.VerboseRenderer.md)\>[] |
 
 #### Returns
@@ -135,4 +161,4 @@ ListrRenderer.end
 
 #### Defined in
 
-[src/renderer/verbose.renderer.ts:72](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/renderer/verbose.renderer.ts#L72)
+[src/renderer/verbose.renderer.ts:72](https://github.com/cenk1cenk2/listr2/blob/a554689/src/renderer/verbose.renderer.ts#L72)

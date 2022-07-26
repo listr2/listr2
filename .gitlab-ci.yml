@@ -1,0 +1,39 @@
+---
+stages:
+  - install
+  - build
+  - docs
+  - publish
+
+variables:
+  NODE_VERSION: 18-alpine
+  NODE_TEST_COMMAND: test
+  TYPEDOC_PATTERNS: '.'
+
+include:
+  - project: devops/pipes
+    file: /templates/node.gitlab-ci.yml
+
+  - project: devops/pipes
+    file: /templates/semantic-release.gitlab-ci.yml
+
+test:
+  parallel:
+    matrix:
+      - NODE_VERSION: 18-alpine
+      - NODE_VERSION: 16-alpine
+
+typedoc:
+  stage: docs
+  image: $CI_REGISTRY/devops/pipes/gitlab-pipes-node:${NODE_VERSION}
+  script:
+    - pipe run docs:api
+  artifacts:
+    paths:
+      - docs/
+  only:
+    refs:
+      - master
+      - main
+  tags:
+    - docker

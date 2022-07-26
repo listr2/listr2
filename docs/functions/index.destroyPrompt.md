@@ -2,13 +2,14 @@
 
 [index](../modules/index.md).destroyPrompt
 
-▸ **destroyPrompt**(`throwError`): `void`
+▸ **destroyPrompt**(`this`, `throwError?`): `void`
 
 #### Parameters
 
-| Name         | Type      |
-| :----------- | :-------- |
-| `throwError` | `boolean` |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `this` | [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`any`, `any`\> | `undefined` |
+| `throwError` | `boolean` | `false` |
 
 #### Returns
 
@@ -16,4 +17,4 @@
 
 #### Defined in
 
-[src/utils/prompt.ts:91](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.ts#L91)
+[src/utils/prompt.ts:104](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/prompt.ts#L104)

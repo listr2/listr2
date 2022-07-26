@@ -4,62 +4,62 @@
 
 Type of listr internal events.
 
-## Enumeration members
+## Enumeration Members
 
 ### TITLE
 
-• **TITLE** = `"TITLE"`
+• **TITLE** = ``"TITLE"``
 
 #### Defined in
 
-[src/constants/event.constants.ts:3](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L3)
+[src/constants/event.constants.ts:3](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/event.constants.ts#L3)
 
----
+___
 
 ### STATE
 
-• **STATE** = `"STATE"`
+• **STATE** = ``"STATE"``
 
 #### Defined in
 
-[src/constants/event.constants.ts:4](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L4)
+[src/constants/event.constants.ts:4](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/event.constants.ts#L4)
 
----
+___
 
 ### ENABLED
 
-• **ENABLED** = `"ENABLED"`
+• **ENABLED** = ``"ENABLED"``
 
 #### Defined in
 
-[src/constants/event.constants.ts:5](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L5)
+[src/constants/event.constants.ts:5](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/event.constants.ts#L5)
 
----
+___
 
 ### SUBTASK
 
-• **SUBTASK** = `"SUBTASK"`
+• **SUBTASK** = ``"SUBTASK"``
 
 #### Defined in
 
-[src/constants/event.constants.ts:6](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L6)
+[src/constants/event.constants.ts:6](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/event.constants.ts#L6)
 
----
+___
 
 ### DATA
 
-• **DATA** = `"DATA"`
+• **DATA** = ``"DATA"``
 
 #### Defined in
 
-[src/constants/event.constants.ts:7](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L7)
+[src/constants/event.constants.ts:7](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/event.constants.ts#L7)
 
----
+___
 
 ### MESSAGE
 
-• **MESSAGE** = `"MESSAGE"`
+• **MESSAGE** = ``"MESSAGE"``
 
 #### Defined in
 
-[src/constants/event.constants.ts:8](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/constants/event.constants.ts#L8)
+[src/constants/event.constants.ts:8](https://github.com/cenk1cenk2/listr2/blob/a554689/src/constants/event.constants.ts#L8)

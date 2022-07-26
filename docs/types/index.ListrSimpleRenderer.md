@@ -8,4 +8,4 @@ Typeof simple renderer
 
 #### Defined in
 
-[src/interfaces/renderer.interface.ts:24](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/renderer.interface.ts#L24)
+[src/interfaces/renderer.interface.ts:24](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/renderer.interface.ts#L24)

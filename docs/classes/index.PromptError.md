@@ -20,9 +20,9 @@ Create .stack property on a target object
 
 #### Parameters
 
-| Name              | Type       |
-| :---------------- | :--------- |
-| `targetObject`    | `object`   |
+| Name | Type |
+| :------ | :------ |
+| `targetObject` | `object` |
 | `constructorOpt?` | `Function` |
 
 #### Returns
@@ -49,13 +49,15 @@ node_modules/@types/node/globals.d.ts:4
 
 Optional override for formatting stack traces
 
-**`see`** https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+**`See`**
+
+https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 ##### Parameters
 
-| Name          | Type         |
-| :------------ | :----------- |
-| `err`         | `Error`      |
+| Name | Type |
+| :------ | :------ |
+| `err` | `Error` |
 | `stackTraces` | `CallSite`[] |
 
 ##### Returns
@@ -70,7 +72,7 @@ Error.prepareStackTrace
 
 node_modules/@types/node/globals.d.ts:11
 
----
+___
 
 ### stackTraceLimit
 
@@ -84,7 +86,7 @@ Error.stackTraceLimit
 
 node_modules/@types/node/globals.d.ts:13
 
----
+___
 
 ### name
 
@@ -96,9 +98,9 @@ Error.name
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1022
+node_modules/typescript/lib/lib.es5.d.ts:1028
 
----
+___
 
 ### message
 
@@ -110,9 +112,9 @@ Error.message
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1023
+node_modules/typescript/lib/lib.es5.d.ts:1029
 
----
+___
 
 ### stack
 
@@ -124,7 +126,7 @@ Error.stack
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1024
+node_modules/typescript/lib/lib.es5.d.ts:1030
 
 ## Constructors
 
@@ -134,8 +136,8 @@ node_modules/typescript/lib/lib.es5.d.ts:1024
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Overrides
@@ -144,4 +146,4 @@ Error.constructor
 
 #### Defined in
 
-[src/interfaces/listr-error.interface.ts:45](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr-error.interface.ts#L45)
+[src/interfaces/listr-error.interface.ts:45](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr-error.interface.ts#L45)

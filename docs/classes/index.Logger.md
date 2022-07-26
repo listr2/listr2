@@ -12,13 +12,13 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name       | Type            |
-| :--------- | :-------------- |
+| Name | Type |
+| :------ | :------ |
 | `options?` | `LoggerOptions` |
 
 #### Defined in
 
-[src/utils/logger.ts:11](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L11)
+[src/utils/logger.ts:11](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L11)
 
 ## Methods
 
@@ -28,8 +28,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Returns
@@ -38,9 +38,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:13](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L13)
+[src/utils/logger.ts:13](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L13)
 
----
+___
 
 ### skip
 
@@ -48,8 +48,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Returns
@@ -58,9 +58,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:18](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L18)
+[src/utils/logger.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L18)
 
----
+___
 
 ### success
 
@@ -68,8 +68,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Returns
@@ -78,9 +78,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:23](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L23)
+[src/utils/logger.ts:23](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L23)
 
----
+___
 
 ### data
 
@@ -88,8 +88,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Returns
@@ -98,9 +98,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:28](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L28)
+[src/utils/logger.ts:28](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L28)
 
----
+___
 
 ### start
 
@@ -108,8 +108,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Returns
@@ -118,9 +118,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:33](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L33)
+[src/utils/logger.ts:33](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L33)
 
----
+___
 
 ### title
 
@@ -128,8 +128,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Returns
@@ -138,9 +138,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:38](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L38)
+[src/utils/logger.ts:38](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L38)
 
----
+___
 
 ### retry
 
@@ -148,8 +148,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Returns
@@ -158,9 +158,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:43](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L43)
+[src/utils/logger.ts:43](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L43)
 
----
+___
 
 ### rollback
 
@@ -168,8 +168,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type     |
-| :-------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message` | `string` |
 
 #### Returns
@@ -178,9 +178,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:49](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L49)
+[src/utils/logger.ts:49](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L49)
 
----
+___
 
 ### parseMessage
 
@@ -188,10 +188,10 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name      | Type                                       |
-| :-------- | :----------------------------------------- |
-| `level`   | [`LogLevels`](../enums/index.LogLevels.md) |
-| `message` | `string`                                   |
+| Name | Type |
+| :------ | :------ |
+| `level` | [`LogLevels`](../enums/index.LogLevels.md) |
+| `message` | `string` |
 
 #### Returns
 
@@ -199,9 +199,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:55](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L55)
+[src/utils/logger.ts:55](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L55)
 
----
+___
 
 ### logColoring
 
@@ -209,11 +209,11 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name                        | Type                                       |
-| :-------------------------- | :----------------------------------------- |
-| `__namedParameters`         | `Object`                                   |
-| `__namedParameters.level`   | [`LogLevels`](../enums/index.LogLevels.md) |
-| `__namedParameters.message` | `string`                                   |
+| Name | Type |
+| :------ | :------ |
+| `__namedParameters` | `Object` |
+| `__namedParameters.level` | [`LogLevels`](../enums/index.LogLevels.md) |
+| `__namedParameters.message` | `string` |
 
 #### Returns
 
@@ -221,9 +221,9 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:78](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L78)
+[src/utils/logger.ts:78](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L78)
 
----
+___
 
 ### wrapInBrackets
 
@@ -231,8 +231,8 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Parameters
 
-| Name    | Type     |
-| :------ | :------- |
+| Name | Type |
+| :------ | :------ |
 | `level` | `string` |
 
 #### Returns
@@ -241,4 +241,4 @@ A internal logger for using in the verbose renderer mostly.
 
 #### Defined in
 
-[src/utils/logger.ts:161](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/logger.ts#L161)
+[src/utils/logger.ts:176](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/logger.ts#L176)

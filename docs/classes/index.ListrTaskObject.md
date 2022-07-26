@@ -6,9 +6,9 @@ Create a task from the given set of variables and make it runnable.
 
 ## Type parameters
 
-| Name       | Type                                                                     |
-| :--------- | :----------------------------------------------------------------------- |
-| `Ctx`      | `Ctx`                                                                    |
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | `Ctx` |
 | `Renderer` | extends [`ListrRendererFactory`](../types/index.ListrRendererFactory.md) |
 
 ## Hierarchy
@@ -19,45 +19,13 @@ Create a task from the given set of variables and make it runnable.
 
 ## Properties
 
-### create
-
-▪ `Static` **create**: (...`args`: `any`[]) => `any`
-
-#### Type declaration
-
-▸ (...`args`): `any`
-
-Creates a "subject" by basically gluing an observer to an observable.
-
-**`nocollapse`**
-
-**`deprecated`** Recommended you do not use. Will be removed at some point in the future. Plans for replacement still under discussion.
-
-##### Parameters
-
-| Name      | Type    |
-| :-------- | :------ |
-| `...args` | `any`[] |
-
-##### Returns
-
-`any`
-
-#### Inherited from
-
-Subject.create
-
-#### Defined in
-
-node_modules/rxjs/dist/types/internal/Subject.d.ts:27
-
----
-
 ### source
 
 • **source**: `Observable`<`any`\>
 
-**`deprecated`** Internal implementation detail, do not use directly. Will be made internal in v8.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Inherited from
 
@@ -65,15 +33,17 @@ Subject.source
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:18
+node_modules/rxjs/dist/types/internal/Observable.d.ts:15
 
----
+___
 
 ### operator
 
 • **operator**: `Operator`<`any`, [`ListrEvent`](../types/index.ListrEvent.md)\>
 
-**`deprecated`** Internal implementation detail, do not use directly. Will be made internal in v8.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Inherited from
 
@@ -81,9 +51,9 @@ Subject.operator
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:22
+node_modules/rxjs/dist/types/internal/Observable.d.ts:19
 
----
+___
 
 ### closed
 
@@ -97,13 +67,15 @@ Subject.closed
 
 node_modules/rxjs/dist/types/internal/Subject.d.ts:12
 
----
+___
 
 ### observers
 
 • **observers**: `Observer`<[`ListrEvent`](../types/index.ListrEvent.md)\>[]
 
-**`deprecated`** Internal implementation detail, do not use directly. Will be made internal in v8.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Inherited from
 
@@ -111,15 +83,17 @@ Subject.observers
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:14
+node_modules/rxjs/dist/types/internal/Subject.d.ts:15
 
----
+___
 
 ### isStopped
 
 • **isStopped**: `boolean`
 
-**`deprecated`** Internal implementation detail, do not use directly. Will be made internal in v8.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Inherited from
 
@@ -127,15 +101,17 @@ Subject.isStopped
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:16
+node_modules/rxjs/dist/types/internal/Subject.d.ts:17
 
----
+___
 
 ### hasError
 
 • **hasError**: `boolean`
 
-**`deprecated`** Internal implementation detail, do not use directly. Will be made internal in v8.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Inherited from
 
@@ -143,15 +119,17 @@ Subject.hasError
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:18
+node_modules/rxjs/dist/types/internal/Subject.d.ts:19
 
----
+___
 
 ### thrownError
 
 • **thrownError**: `any`
 
-**`deprecated`** Internal implementation detail, do not use directly. Will be made internal in v8.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Inherited from
 
@@ -159,9 +137,45 @@ Subject.thrownError
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:20
+node_modules/rxjs/dist/types/internal/Subject.d.ts:21
 
----
+___
+
+### create
+
+▪ `Static` **create**: (...`args`: `any`[]) => `any`
+
+#### Type declaration
+
+▸ (...`args`): `any`
+
+Creates a "subject" by basically gluing an observer to an observable.
+
+**`Nocollapse`**
+
+**`Deprecated`**
+
+Recommended you do not use. Will be removed at some point in the future. Plans for replacement still under discussion.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...args` | `any`[] |
+
+##### Returns
+
+`any`
+
+#### Inherited from
+
+Subject.create
+
+#### Defined in
+
+node_modules/rxjs/dist/types/internal/Subject.d.ts:28
+
+___
 
 ### id
 
@@ -171,9 +185,9 @@ Unique id per task, randomly generated in the uuid v4 format
 
 #### Defined in
 
-[src/lib/task.ts:21](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L21)
+[src/lib/task.ts:21](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L21)
 
----
+___
 
 ### state
 
@@ -183,9 +197,9 @@ The current state of the task.
 
 #### Defined in
 
-[src/lib/task.ts:23](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L23)
+[src/lib/task.ts:23](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L23)
 
----
+___
 
 ### task
 
@@ -199,9 +213,9 @@ The task object itself, to further utilize it.
 
 ##### Parameters
 
-| Name   | Type                                                                |
-| :----- | :------------------------------------------------------------------ |
-| `ctx`  | `Ctx`                                                               |
+| Name | Type |
+| :------ | :------ |
+| `ctx` | `Ctx` |
 | `task` | [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
 
 ##### Returns
@@ -210,9 +224,9 @@ The task object itself, to further utilize it.
 
 #### Defined in
 
-[src/lib/task.ts:25](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L25)
+[src/lib/task.ts:25](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L25)
 
----
+___
 
 ### subtasks
 
@@ -222,9 +236,9 @@ Extend current task with multiple subtasks.
 
 #### Defined in
 
-[src/lib/task.ts:27](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L27)
+[src/lib/task.ts:27](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L27)
 
----
+___
 
 ### title
 
@@ -234,9 +248,9 @@ Title of the task
 
 #### Defined in
 
-[src/lib/task.ts:29](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L29)
+[src/lib/task.ts:29](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L29)
 
----
+___
 
 ### initialTitle
 
@@ -246,9 +260,9 @@ Untouched unchanged title of the task
 
 #### Defined in
 
-[src/lib/task.ts:31](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L31)
+[src/lib/task.ts:31](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L31)
 
----
+___
 
 ### output
 
@@ -258,9 +272,9 @@ Output data from the task.
 
 #### Defined in
 
-[src/lib/task.ts:33](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L33)
+[src/lib/task.ts:33](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L33)
 
----
+___
 
 ### skip
 
@@ -270,9 +284,9 @@ Skip current task.
 
 #### Defined in
 
-[src/lib/task.ts:35](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L35)
+[src/lib/task.ts:35](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L35)
 
----
+___
 
 ### retry
 
@@ -282,16 +296,16 @@ Current retry number of the task if retrying
 
 #### Type declaration
 
-| Name         | Type     |
-| :----------- | :------- |
-| `count`      | `number` |
-| `withError?` | `any`    |
+| Name | Type |
+| :------ | :------ |
+| `count` | `number` |
+| `withError?` | `any` |
 
 #### Defined in
 
-[src/lib/task.ts:37](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L37)
+[src/lib/task.ts:37](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L37)
 
----
+___
 
 ### message
 
@@ -303,21 +317,21 @@ This requires a separate channel for messages like error, skip or runtime messag
 
 #### Type declaration
 
-| Name               | Type     | Description                                                 |
-| :----------------- | :------- | :---------------------------------------------------------- |
-| `duration?`        | `number` | Run time of the task, if it has been successfully resolved. |
-| `error?`           | `string` | Error message of the task, if it has been failed.           |
-| `skip?`            | `string` | Skip message of the task, if it has been skipped.           |
-| `rollback?`        | `string` | Rollback message of the task, if the rollback finishes      |
-| `retry?`           | `Object` | Retry messages                                              |
-| `retry.count`      | `number` | -                                                           |
-| `retry.withError?` | `any`    | -                                                           |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `duration?` | `number` | Run time of the task, if it has been successfully resolved. |
+| `error?` | `string` | Error message of the task, if it has been failed. |
+| `skip?` | `string` | Skip message of the task, if it has been skipped. |
+| `rollback?` | `string` | Rollback message of the task, if the rollback finishes |
+| `retry?` | { `count`: `number` ; `withError?`: `any`  } | Retry messages |
+| `retry.count` | `number` | - |
+| `retry.withError?` | `any` | - |
 
 #### Defined in
 
-[src/lib/task.ts:44](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L44)
+[src/lib/task.ts:44](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L44)
 
----
+___
 
 ### rendererTaskOptions
 
@@ -327,9 +341,9 @@ Per task options for the current renderer of the task.
 
 #### Defined in
 
-[src/lib/task.ts:57](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L57)
+[src/lib/task.ts:57](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L57)
 
----
+___
 
 ### renderHook$
 
@@ -339,9 +353,9 @@ This will be triggered each time a new render should happen.
 
 #### Defined in
 
-[src/lib/task.ts:59](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L59)
+[src/lib/task.ts:59](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L59)
 
----
+___
 
 ### prompt
 
@@ -349,9 +363,9 @@ This will be triggered each time a new render should happen.
 
 #### Defined in
 
-[src/lib/task.ts:61](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L61)
+[src/lib/task.ts:61](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L61)
 
----
+___
 
 ### enabled
 
@@ -359,9 +373,9 @@ This will be triggered each time a new render should happen.
 
 #### Defined in
 
-[src/lib/task.ts:62](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L62)
+[src/lib/task.ts:62](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L62)
 
----
+___
 
 ### enabledFn
 
@@ -369,61 +383,47 @@ This will be triggered each time a new render should happen.
 
 #### Defined in
 
-[src/lib/task.ts:63](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L63)
+[src/lib/task.ts:63](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L63)
 
----
+___
 
 ### listr
 
 • **listr**: [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>
 
----
+#### Defined in
+
+[src/lib/task.ts:65](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L65)
+
+___
 
 ### tasks
 
 • **tasks**: [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\>
 
----
+#### Defined in
+
+[src/lib/task.ts:65](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L65)
+
+___
 
 ### options
 
 • **options**: [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\>
 
----
+#### Defined in
+
+[src/lib/task.ts:65](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L65)
+
+___
 
 ### rendererOptions
 
 • **rendererOptions**: [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\>
 
-## Constructors
-
-### constructor
-
-• **new ListrTaskObject**<`Ctx`, `Renderer`\>(`listr`, `tasks`, `options`, `rendererOptions`)
-
-#### Type parameters
-
-| Name       | Type                                                     |
-| :--------- | :------------------------------------------------------- |
-| `Ctx`      | `Ctx`                                                    |
-| `Renderer` | extends typeof [`ListrRenderer`](index.ListrRenderer.md) |
-
-#### Parameters
-
-| Name              | Type                                                                                |
-| :---------------- | :---------------------------------------------------------------------------------- |
-| `listr`           | [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>                                     |
-| `tasks`           | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\>                      |
-| `options`         | [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\>                       |
-| `rendererOptions` | [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\> |
-
-#### Overrides
-
-Subject&lt;ListrEvent\&gt;.constructor
-
 #### Defined in
 
-[src/lib/task.ts:65](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L65)
+[src/lib/task.ts:65](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L65)
 
 ## Methods
 
@@ -431,13 +431,57 @@ Subject&lt;ListrEvent\&gt;.constructor
 
 ▸ **subscribe**(`observer?`): `Subscription`
 
-**`deprecated`** Instead of passing separate callback arguments, use an observer argument. Signatures taking separate callback arguments will be removed in v8. Details: https://rxjs.dev/deprecations/subscribe-arguments
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `observer?` | `Partial`<`Observer`<[`ListrEvent`](../types/index.ListrEvent.md)\>\> |
+
+#### Returns
+
+`Subscription`
+
+#### Inherited from
+
+Subject.subscribe
+
+#### Defined in
+
+node_modules/rxjs/dist/types/internal/Observable.d.ts:50
+
+▸ **subscribe**(`next`): `Subscription`
 
 #### Parameters
 
-| Name        | Type                                                                  |
-| :---------- | :-------------------------------------------------------------------- |
-| `observer?` | `Partial`<`Observer`<[`ListrEvent`](../types/index.ListrEvent.md)\>\> |
+| Name | Type |
+| :------ | :------ |
+| `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
+
+#### Returns
+
+`Subscription`
+
+#### Inherited from
+
+Subject.subscribe
+
+#### Defined in
+
+node_modules/rxjs/dist/types/internal/Observable.d.ts:51
+
+▸ **subscribe**(`next?`, `error?`, `complete?`): `Subscription`
+
+**`Deprecated`**
+
+Instead of passing separate callback arguments, use an observer argument. Signatures taking separate callback arguments will be removed in v8. Details: https://rxjs.dev/deprecations/subscribe-arguments
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `next?` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
+| `error?` | (`error`: `any`) => `void` |
+| `complete?` | () => `void` |
 
 #### Returns
 
@@ -451,102 +495,63 @@ Subject.subscribe
 
 node_modules/rxjs/dist/types/internal/Observable.d.ts:53
 
-▸ **subscribe**(`next`): `Subscription`
-
-**`deprecated`** Instead of passing separate callback arguments, use an observer argument. Signatures taking separate callback arguments will be removed in v8. Details: https://rxjs.dev/deprecations/subscribe-arguments
-
-#### Parameters
-
-| Name   | Type                                                              |
-| :----- | :---------------------------------------------------------------- |
-| `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/dist/types/internal/Observable.d.ts:54
-
-▸ **subscribe**(`next?`, `error?`, `complete?`): `Subscription`
-
-**`deprecated`** Instead of passing separate callback arguments, use an observer argument. Signatures taking separate callback arguments will be removed in v8. Details: https://rxjs.dev/deprecations/subscribe-arguments
-
-#### Parameters
-
-| Name        | Type                                                              |
-| :---------- | :---------------------------------------------------------------- |
-| `next?`     | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
-| `error?`    | (`error`: `any`) => `void`                                        |
-| `complete?` | () => `void`                                                      |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/dist/types/internal/Observable.d.ts:56
-
----
+___
 
 ### forEach
 
 ▸ **forEach**(`next`): `Promise`<`void`\>
 
-Used as a NON-CANCELLABLE means of subscribing to an observable, for use with APIs that expect promises, like `async/await`. You cannot unsubscribe from this.
+Used as a NON-CANCELLABLE means of subscribing to an observable, for use with
+APIs that expect promises, like `async/await`. You cannot unsubscribe from this.
 
-**WARNING**: Only use this with observables you _know_ will complete. If the source observable does not complete, you will end up with a promise that is hung up, and potentially all of the state of an async function hanging out in memory. To avoid this situation, look into adding something like {@link timeout}, {@link take}, {@link takeWhile}, or {@link takeUntil} amongst others.
+**WARNING**: Only use this with observables you *know* will complete. If the source
+observable does not complete, you will end up with a promise that is hung up, and
+potentially all of the state of an async function hanging out in memory. To avoid
+this situation, look into adding something like timeout, take,
+takeWhile, or takeUntil amongst others.
 
-### Example:
+#### Example
 
 ```ts
-import { interval } from 'rxjs'
-import { take } from 'rxjs/operators'
+import { interval, take } from 'rxjs';
 
-const source$ = interval(1000).pipe(take(4))
+const source$ = interval(1000).pipe(take(4));
 
 async function getTotal() {
-  let total = 0
+  let total = 0;
 
-  await source$.forEach((value) => {
-    total += value
-    console.log('observable -> ', value)
-  })
+  await source$.forEach(value => {
+    total += value;
+    console.log('observable -> ' + value);
+  });
 
-  return total
+  return total;
 }
 
-getTotal().then((total) => console.log('Total:', total))
+getTotal().then(
+  total => console.log('Total: ' + total)
+);
 
 // Expected:
-// "observable -> 0"
-// "observable -> 1"
-// "observable -> 2"
-// "observable -> 3"
-// "Total: 6"
+// 'observable -> 0'
+// 'observable -> 1'
+// 'observable -> 2'
+// 'observable -> 3'
+// 'Total: 6'
 ```
 
 #### Parameters
 
-| Name   | Type                                                              | Description                                        |
-| :----- | :---------------------------------------------------------------- | :------------------------------------------------- |
+| Name | Type | Description |
+| :------ | :------ | :------ |
 | `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` | a handler for each value emitted by the observable |
 
 #### Returns
 
 `Promise`<`void`\>
 
-a promise that either resolves on observable completion or rejects with the handled error
+a promise that either resolves on observable completion or
+ rejects with the handled error
 
 #### Inherited from
 
@@ -554,24 +559,31 @@ Subject.forEach
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:101
+node_modules/rxjs/dist/types/internal/Observable.d.ts:98
 
 ▸ **forEach**(`next`, `promiseCtor`): `Promise`<`void`\>
 
-**`deprecated`** Passing a Promise constructor will no longer be available in upcoming versions of RxJS. This is because it adds weight to the library, for very little benefit. If you need this functionality, it is recommended that you either polyfill Promise, or you create an adapter to convert the returned native promise to whatever promise implementation you wanted. Will be removed in v8.
+**`Deprecated`**
+
+Passing a Promise constructor will no longer be available
+in upcoming versions of RxJS. This is because it adds weight to the library, for very
+little benefit. If you need this functionality, it is recommended that you either
+polyfill Promise, or you create an adapter to convert the returned native promise
+to whatever promise implementation you wanted. Will be removed in v8.
 
 #### Parameters
 
-| Name          | Type                                                              | Description                                            |
-| :------------ | :---------------------------------------------------------------- | :----------------------------------------------------- |
-| `next`        | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` | a handler for each value emitted by the observable     |
-| `promiseCtor` | `PromiseConstructorLike`                                          | a constructor function used to instantiate the Promise |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` | a handler for each value emitted by the observable |
+| `promiseCtor` | `PromiseConstructorLike` | a constructor function used to instantiate the Promise |
 
 #### Returns
 
 `Promise`<`void`\>
 
-a promise that either resolves on observable completion or rejects with the handled error
+a promise that either resolves on observable completion or
+ rejects with the handled error
 
 #### Inherited from
 
@@ -579,9 +591,9 @@ Subject.forEach
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:113
+node_modules/rxjs/dist/types/internal/Observable.d.ts:110
 
----
+___
 
 ### pipe
 
@@ -597,20 +609,20 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:114
+node_modules/rxjs/dist/types/internal/Observable.d.ts:111
 
 ▸ **pipe**<`A`\>(`op1`): `Observable`<`A`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
+| :------ |
+| `A` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
 
 #### Returns
@@ -623,23 +635,23 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:115
+node_modules/rxjs/dist/types/internal/Observable.d.ts:112
 
 ▸ **pipe**<`A`, `B`\>(`op1`, `op2`): `Observable`<`B`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
+| :------ |
+| `A` |
+| `B` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2` | `OperatorFunction`<`A`, `B`\>                                          |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
 
 #### Returns
 
@@ -651,25 +663,25 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:116
+node_modules/rxjs/dist/types/internal/Observable.d.ts:113
 
 ▸ **pipe**<`A`, `B`, `C`\>(`op1`, `op2`, `op3`): `Observable`<`C`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
-| `C`  |
+| :------ |
+| `A` |
+| `B` |
+| `C` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2` | `OperatorFunction`<`A`, `B`\>                                          |
-| `op3` | `OperatorFunction`<`B`, `C`\>                                          |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
+| `op3` | `OperatorFunction`<`B`, `C`\> |
 
 #### Returns
 
@@ -681,27 +693,27 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:117
+node_modules/rxjs/dist/types/internal/Observable.d.ts:114
 
 ▸ **pipe**<`A`, `B`, `C`, `D`\>(`op1`, `op2`, `op3`, `op4`): `Observable`<`D`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
-| `C`  |
-| `D`  |
+| :------ |
+| `A` |
+| `B` |
+| `C` |
+| `D` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2` | `OperatorFunction`<`A`, `B`\>                                          |
-| `op3` | `OperatorFunction`<`B`, `C`\>                                          |
-| `op4` | `OperatorFunction`<`C`, `D`\>                                          |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
+| `op3` | `OperatorFunction`<`B`, `C`\> |
+| `op4` | `OperatorFunction`<`C`, `D`\> |
 
 #### Returns
 
@@ -713,29 +725,29 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:118
+node_modules/rxjs/dist/types/internal/Observable.d.ts:115
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`\>(`op1`, `op2`, `op3`, `op4`, `op5`): `Observable`<`E`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
-| `C`  |
-| `D`  |
-| `E`  |
+| :------ |
+| `A` |
+| `B` |
+| `C` |
+| `D` |
+| `E` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2` | `OperatorFunction`<`A`, `B`\>                                          |
-| `op3` | `OperatorFunction`<`B`, `C`\>                                          |
-| `op4` | `OperatorFunction`<`C`, `D`\>                                          |
-| `op5` | `OperatorFunction`<`D`, `E`\>                                          |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
+| `op3` | `OperatorFunction`<`B`, `C`\> |
+| `op4` | `OperatorFunction`<`C`, `D`\> |
+| `op5` | `OperatorFunction`<`D`, `E`\> |
 
 #### Returns
 
@@ -747,31 +759,31 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:119
+node_modules/rxjs/dist/types/internal/Observable.d.ts:116
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`): `Observable`<`F`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
-| `C`  |
-| `D`  |
-| `E`  |
-| `F`  |
+| :------ |
+| `A` |
+| `B` |
+| `C` |
+| `D` |
+| `E` |
+| `F` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2` | `OperatorFunction`<`A`, `B`\>                                          |
-| `op3` | `OperatorFunction`<`B`, `C`\>                                          |
-| `op4` | `OperatorFunction`<`C`, `D`\>                                          |
-| `op5` | `OperatorFunction`<`D`, `E`\>                                          |
-| `op6` | `OperatorFunction`<`E`, `F`\>                                          |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
+| `op3` | `OperatorFunction`<`B`, `C`\> |
+| `op4` | `OperatorFunction`<`C`, `D`\> |
+| `op5` | `OperatorFunction`<`D`, `E`\> |
+| `op6` | `OperatorFunction`<`E`, `F`\> |
 
 #### Returns
 
@@ -783,33 +795,33 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:120
+node_modules/rxjs/dist/types/internal/Observable.d.ts:117
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`): `Observable`<`G`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
-| `C`  |
-| `D`  |
-| `E`  |
-| `F`  |
-| `G`  |
+| :------ |
+| `A` |
+| `B` |
+| `C` |
+| `D` |
+| `E` |
+| `F` |
+| `G` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2` | `OperatorFunction`<`A`, `B`\>                                          |
-| `op3` | `OperatorFunction`<`B`, `C`\>                                          |
-| `op4` | `OperatorFunction`<`C`, `D`\>                                          |
-| `op5` | `OperatorFunction`<`D`, `E`\>                                          |
-| `op6` | `OperatorFunction`<`E`, `F`\>                                          |
-| `op7` | `OperatorFunction`<`F`, `G`\>                                          |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
+| `op3` | `OperatorFunction`<`B`, `C`\> |
+| `op4` | `OperatorFunction`<`C`, `D`\> |
+| `op5` | `OperatorFunction`<`D`, `E`\> |
+| `op6` | `OperatorFunction`<`E`, `F`\> |
+| `op7` | `OperatorFunction`<`F`, `G`\> |
 
 #### Returns
 
@@ -821,35 +833,35 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:121
+node_modules/rxjs/dist/types/internal/Observable.d.ts:118
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`): `Observable`<`H`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
-| `C`  |
-| `D`  |
-| `E`  |
-| `F`  |
-| `G`  |
-| `H`  |
+| :------ |
+| `A` |
+| `B` |
+| `C` |
+| `D` |
+| `E` |
+| `F` |
+| `G` |
+| `H` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2` | `OperatorFunction`<`A`, `B`\>                                          |
-| `op3` | `OperatorFunction`<`B`, `C`\>                                          |
-| `op4` | `OperatorFunction`<`C`, `D`\>                                          |
-| `op5` | `OperatorFunction`<`D`, `E`\>                                          |
-| `op6` | `OperatorFunction`<`E`, `F`\>                                          |
-| `op7` | `OperatorFunction`<`F`, `G`\>                                          |
-| `op8` | `OperatorFunction`<`G`, `H`\>                                          |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
+| `op3` | `OperatorFunction`<`B`, `C`\> |
+| `op4` | `OperatorFunction`<`C`, `D`\> |
+| `op5` | `OperatorFunction`<`D`, `E`\> |
+| `op6` | `OperatorFunction`<`E`, `F`\> |
+| `op7` | `OperatorFunction`<`F`, `G`\> |
+| `op8` | `OperatorFunction`<`G`, `H`\> |
 
 #### Returns
 
@@ -861,37 +873,37 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:122
+node_modules/rxjs/dist/types/internal/Observable.d.ts:119
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`, `op9`): `Observable`<`I`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
-| `C`  |
-| `D`  |
-| `E`  |
-| `F`  |
-| `G`  |
-| `H`  |
-| `I`  |
+| :------ |
+| `A` |
+| `B` |
+| `C` |
+| `D` |
+| `E` |
+| `F` |
+| `G` |
+| `H` |
+| `I` |
 
 #### Parameters
 
-| Name  | Type                                                                   |
-| :---- | :--------------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2` | `OperatorFunction`<`A`, `B`\>                                          |
-| `op3` | `OperatorFunction`<`B`, `C`\>                                          |
-| `op4` | `OperatorFunction`<`C`, `D`\>                                          |
-| `op5` | `OperatorFunction`<`D`, `E`\>                                          |
-| `op6` | `OperatorFunction`<`E`, `F`\>                                          |
-| `op7` | `OperatorFunction`<`F`, `G`\>                                          |
-| `op8` | `OperatorFunction`<`G`, `H`\>                                          |
-| `op9` | `OperatorFunction`<`H`, `I`\>                                          |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
+| `op3` | `OperatorFunction`<`B`, `C`\> |
+| `op4` | `OperatorFunction`<`C`, `D`\> |
+| `op5` | `OperatorFunction`<`D`, `E`\> |
+| `op6` | `OperatorFunction`<`E`, `F`\> |
+| `op7` | `OperatorFunction`<`F`, `G`\> |
+| `op8` | `OperatorFunction`<`G`, `H`\> |
+| `op9` | `OperatorFunction`<`H`, `I`\> |
 
 #### Returns
 
@@ -903,38 +915,38 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:123
+node_modules/rxjs/dist/types/internal/Observable.d.ts:120
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`, `op9`, ...`operations`): `Observable`<`unknown`\>
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `A`  |
-| `B`  |
-| `C`  |
-| `D`  |
-| `E`  |
-| `F`  |
-| `G`  |
-| `H`  |
-| `I`  |
+| :------ |
+| `A` |
+| `B` |
+| `C` |
+| `D` |
+| `E` |
+| `F` |
+| `G` |
+| `H` |
+| `I` |
 
 #### Parameters
 
-| Name            | Type                                                                   |
-| :-------------- | :--------------------------------------------------------------------- |
-| `op1`           | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
-| `op2`           | `OperatorFunction`<`A`, `B`\>                                          |
-| `op3`           | `OperatorFunction`<`B`, `C`\>                                          |
-| `op4`           | `OperatorFunction`<`C`, `D`\>                                          |
-| `op5`           | `OperatorFunction`<`D`, `E`\>                                          |
-| `op6`           | `OperatorFunction`<`E`, `F`\>                                          |
-| `op7`           | `OperatorFunction`<`F`, `G`\>                                          |
-| `op8`           | `OperatorFunction`<`G`, `H`\>                                          |
-| `op9`           | `OperatorFunction`<`H`, `I`\>                                          |
-| `...operations` | `OperatorFunction`<`any`, `any`\>[]                                    |
+| Name | Type |
+| :------ | :------ |
+| `op1` | `OperatorFunction`<[`ListrEvent`](../types/index.ListrEvent.md), `A`\> |
+| `op2` | `OperatorFunction`<`A`, `B`\> |
+| `op3` | `OperatorFunction`<`B`, `C`\> |
+| `op4` | `OperatorFunction`<`C`, `D`\> |
+| `op5` | `OperatorFunction`<`D`, `E`\> |
+| `op6` | `OperatorFunction`<`E`, `F`\> |
+| `op7` | `OperatorFunction`<`F`, `G`\> |
+| `op8` | `OperatorFunction`<`G`, `H`\> |
+| `op9` | `OperatorFunction`<`H`, `I`\> |
+| `...operations` | `OperatorFunction`<`any`, `any`\>[] |
 
 #### Returns
 
@@ -946,15 +958,17 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:124
+node_modules/rxjs/dist/types/internal/Observable.d.ts:121
 
----
+___
 
 ### toPromise
 
 ▸ **toPromise**(): `Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
-**`deprecated`** Replaced with {@link firstValueFrom} and {@link lastValueFrom}. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
+**`Deprecated`**
+
+Replaced with firstValueFrom and lastValueFrom. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
 
 #### Returns
 
@@ -966,16 +980,18 @@ Subject.toPromise
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:126
+node_modules/rxjs/dist/types/internal/Observable.d.ts:123
 
 ▸ **toPromise**(`PromiseCtor`): `Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
-**`deprecated`** Replaced with {@link firstValueFrom} and {@link lastValueFrom}. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
+**`Deprecated`**
+
+Replaced with firstValueFrom and lastValueFrom. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
 
 #### Parameters
 
-| Name          | Type                 |
-| :------------ | :------------------- |
+| Name | Type |
+| :------ | :------ |
 | `PromiseCtor` | `PromiseConstructor` |
 
 #### Returns
@@ -988,16 +1004,18 @@ Subject.toPromise
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:128
+node_modules/rxjs/dist/types/internal/Observable.d.ts:125
 
 ▸ **toPromise**(`PromiseCtor`): `Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
-**`deprecated`** Replaced with {@link firstValueFrom} and {@link lastValueFrom}. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
+**`Deprecated`**
+
+Replaced with firstValueFrom and lastValueFrom. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
 
 #### Parameters
 
-| Name          | Type                     |
-| :------------ | :----------------------- |
+| Name | Type |
+| :------ | :------ |
 | `PromiseCtor` | `PromiseConstructorLike` |
 
 #### Returns
@@ -1010,26 +1028,28 @@ Subject.toPromise
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Observable.d.ts:130
+node_modules/rxjs/dist/types/internal/Observable.d.ts:127
 
----
+___
 
 ### lift
 
 ▸ **lift**<`R`\>(`operator`): `Observable`<`R`\>
 
-**`deprecated`** Internal implementation detail, do not use directly. Will be made internal in v8.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Type parameters
 
 | Name |
-| :--- |
-| `R`  |
+| :------ |
+| `R` |
 
 #### Parameters
 
-| Name       | Type                                                           |
-| :--------- | :------------------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `operator` | `Operator`<[`ListrEvent`](../types/index.ListrEvent.md), `R`\> |
 
 #### Returns
@@ -1042,9 +1062,9 @@ Subject.lift
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:30
+node_modules/rxjs/dist/types/internal/Subject.d.ts:31
 
----
+___
 
 ### next
 
@@ -1052,8 +1072,8 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:30
 
 #### Parameters
 
-| Name    | Type                                         |
-| :------ | :------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `value` | [`ListrEvent`](../types/index.ListrEvent.md) |
 
 #### Returns
@@ -1066,9 +1086,9 @@ Subject.next
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:31
+node_modules/rxjs/dist/types/internal/Subject.d.ts:32
 
----
+___
 
 ### error
 
@@ -1076,8 +1096,8 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:31
 
 #### Parameters
 
-| Name  | Type  |
-| :---- | :---- |
+| Name | Type |
+| :------ | :------ |
 | `err` | `any` |
 
 #### Returns
@@ -1090,9 +1110,9 @@ Subject.error
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:32
+node_modules/rxjs/dist/types/internal/Subject.d.ts:33
 
----
+___
 
 ### complete
 
@@ -1108,9 +1128,9 @@ Subject.complete
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:33
+node_modules/rxjs/dist/types/internal/Subject.d.ts:34
 
----
+___
 
 ### unsubscribe
 
@@ -1126,15 +1146,17 @@ Subject.unsubscribe
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:34
+node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
----
+___
 
 ### asObservable
 
 ▸ **asObservable**(): `Observable`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
-Creates a new Observable with this Subject as the source. You can do this to create customize Observer-side logic of the Subject and conceal it from code that uses the Observable.
+Creates a new Observable with this Subject as the source. You can do this
+to create customize Observer-side logic of the Subject and conceal it from
+code that uses the Observable.
 
 #### Returns
 
@@ -1148,9 +1170,9 @@ Subject.asObservable
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:42
+node_modules/rxjs/dist/types/internal/Subject.d.ts:43
 
----
+___
 
 ### check
 
@@ -1160,8 +1182,8 @@ A function to check whether this task should run at all via enable.
 
 #### Parameters
 
-| Name  | Type  |
-| :---- | :---- |
+| Name | Type |
+| :------ | :------ |
 | `ctx` | `Ctx` |
 
 #### Returns
@@ -1170,9 +1192,9 @@ A function to check whether this task should run at all via enable.
 
 #### Defined in
 
-[src/lib/task.ts:137](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L137)
+[src/lib/task.ts:137](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L137)
 
----
+___
 
 ### hasSubtasks
 
@@ -1186,9 +1208,9 @@ Returns whether this task has subtasks.
 
 #### Defined in
 
-[src/lib/task.ts:150](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L150)
+[src/lib/task.ts:150](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L150)
 
----
+___
 
 ### isPending
 
@@ -1202,9 +1224,9 @@ Returns whether this task is in progress.
 
 #### Defined in
 
-[src/lib/task.ts:155](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L155)
+[src/lib/task.ts:155](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L155)
 
----
+___
 
 ### isSkipped
 
@@ -1218,9 +1240,9 @@ Returns whether this task is skipped.
 
 #### Defined in
 
-[src/lib/task.ts:160](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L160)
+[src/lib/task.ts:160](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L160)
 
----
+___
 
 ### isCompleted
 
@@ -1234,9 +1256,9 @@ Returns whether this task has been completed.
 
 #### Defined in
 
-[src/lib/task.ts:165](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L165)
+[src/lib/task.ts:165](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L165)
 
----
+___
 
 ### hasFailed
 
@@ -1250,9 +1272,9 @@ Returns whether this task has been failed.
 
 #### Defined in
 
-[src/lib/task.ts:170](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L170)
+[src/lib/task.ts:170](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L170)
 
----
+___
 
 ### isRollingBack
 
@@ -1266,9 +1288,9 @@ Returns whether this task has an active rollback task going on.
 
 #### Defined in
 
-[src/lib/task.ts:175](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L175)
+[src/lib/task.ts:175](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L175)
 
----
+___
 
 ### hasRolledBack
 
@@ -1282,9 +1304,9 @@ Returns whether the rollback action was successful.
 
 #### Defined in
 
-[src/lib/task.ts:180](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L180)
+[src/lib/task.ts:180](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L180)
 
----
+___
 
 ### isRetrying
 
@@ -1298,9 +1320,9 @@ Returns whether this task has an actively retrying task going on.
 
 #### Defined in
 
-[src/lib/task.ts:185](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L185)
+[src/lib/task.ts:185](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L185)
 
----
+___
 
 ### isEnabled
 
@@ -1314,9 +1336,9 @@ Returns whether enabled function resolves to true.
 
 #### Defined in
 
-[src/lib/task.ts:190](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L190)
+[src/lib/task.ts:190](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L190)
 
----
+___
 
 ### hasTitle
 
@@ -1330,9 +1352,9 @@ Returns whether this task actually has a title.
 
 #### Defined in
 
-[src/lib/task.ts:195](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L195)
+[src/lib/task.ts:195](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L195)
 
----
+___
 
 ### isPrompt
 
@@ -1346,9 +1368,9 @@ Returns whether this task has a prompt inside.
 
 #### Defined in
 
-[src/lib/task.ts:200](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L200)
+[src/lib/task.ts:200](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L200)
 
----
+___
 
 ### run
 
@@ -1358,9 +1380,9 @@ Run the current task.
 
 #### Parameters
 
-| Name      | Type                                                                |
-| :-------- | :------------------------------------------------------------------ |
-| `context` | `Ctx`                                                               |
+| Name | Type |
+| :------ | :------ |
+| `context` | `Ctx` |
 | `wrapper` | [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
 
 #### Returns
@@ -1369,7 +1391,7 @@ Run the current task.
 
 #### Defined in
 
-[src/lib/task.ts:205](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L205)
+[src/lib/task.ts:205](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L205)
 
 ## Accessors
 
@@ -1387,9 +1409,9 @@ Subject.observed
 
 #### Defined in
 
-node_modules/rxjs/dist/types/internal/Subject.d.ts:35
+node_modules/rxjs/dist/types/internal/Subject.d.ts:36
 
----
+___
 
 ### state$
 
@@ -1397,8 +1419,8 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 #### Parameters
 
-| Name    | Type                                                 |
-| :------ | :--------------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `state` | [`ListrTaskState`](../enums/index.ListrTaskState.md) |
 
 #### Returns
@@ -1407,9 +1429,9 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 #### Defined in
 
-[src/lib/task.ts:89](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L89)
+[src/lib/task.ts:89](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L89)
 
----
+___
 
 ### output$
 
@@ -1417,8 +1439,8 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 #### Parameters
 
-| Name   | Type     |
-| :----- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `data` | `string` |
 
 #### Returns
@@ -1427,9 +1449,9 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 #### Defined in
 
-[src/lib/task.ts:107](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L107)
+[src/lib/task.ts:107](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L107)
 
----
+___
 
 ### message$
 
@@ -1437,16 +1459,16 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 #### Parameters
 
-| Name                    | Type     | Description                                                 |
-| :---------------------- | :------- | :---------------------------------------------------------- |
-| `data`                  | `Object` | -                                                           |
-| `data.duration?`        | `number` | Run time of the task, if it has been successfully resolved. |
-| `data.error?`           | `string` | Error message of the task, if it has been failed.           |
-| `data.skip?`            | `string` | Skip message of the task, if it has been skipped.           |
-| `data.rollback?`        | `string` | Rollback message of the task, if the rollback finishes      |
-| `data.retry?`           | `Object` | Retry messages                                              |
-| `data.retry.count`      | `number` | -                                                           |
-| `data.retry.withError?` | `any`    | -                                                           |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `Object` | - |
+| `data.duration?` | `number` | Run time of the task, if it has been successfully resolved. |
+| `data.error?` | `string` | Error message of the task, if it has been failed. |
+| `data.skip?` | `string` | Skip message of the task, if it has been skipped. |
+| `data.rollback?` | `string` | Rollback message of the task, if the rollback finishes |
+| `data.retry?` | `Object` | Retry messages |
+| `data.retry.count` | `number` | - |
+| `data.retry.withError?` | `any` | - |
 
 #### Returns
 
@@ -1454,9 +1476,9 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 #### Defined in
 
-[src/lib/task.ts:116](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L116)
+[src/lib/task.ts:116](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L116)
 
----
+___
 
 ### title$
 
@@ -1464,8 +1486,8 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 #### Parameters
 
-| Name    | Type     |
-| :------ | :------- |
+| Name | Type |
+| :------ | :------ |
 | `title` | `string` |
 
 #### Returns
@@ -1474,4 +1496,34 @@ node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 #### Defined in
 
-[src/lib/task.ts:125](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task.ts#L125)
+[src/lib/task.ts:125](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L125)
+
+## Constructors
+
+### constructor
+
+• **new ListrTaskObject**<`Ctx`, `Renderer`\>(`listr`, `tasks`, `options`, `rendererOptions`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | `Ctx` |
+| `Renderer` | extends typeof [`ListrRenderer`](index.ListrRenderer.md) |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `listr` | [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\> |
+| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\> |
+| `options` | [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\> |
+| `rendererOptions` | [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\> |
+
+#### Overrides
+
+Subject&lt;ListrEvent\&gt;.constructor
+
+#### Defined in
+
+[src/lib/task.ts:65](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task.ts#L65)

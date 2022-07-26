@@ -6,9 +6,9 @@ Extend the task to have more functionality while accesing from the outside.
 
 ## Type parameters
 
-| Name       | Type                                                                     |
-| :--------- | :----------------------------------------------------------------------- |
-| `Ctx`      | `Ctx`                                                                    |
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | `Ctx` |
 | `Renderer` | extends [`ListrRendererFactory`](../types/index.ListrRendererFactory.md) |
 
 ## Constructors
@@ -19,22 +19,22 @@ Extend the task to have more functionality while accesing from the outside.
 
 #### Type parameters
 
-| Name       | Type                                                     |
-| :--------- | :------------------------------------------------------- |
-| `Ctx`      | `Ctx`                                                    |
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | `Ctx` |
 | `Renderer` | extends typeof [`ListrRenderer`](index.ListrRenderer.md) |
 
 #### Parameters
 
-| Name      | Type                                                                                                    |
-| :-------- | :------------------------------------------------------------------------------------------------------ |
-| `task`    | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
-| `errors`  | [`ListrError`](index.ListrError.md)<`Ctx`\>[]                                                           |
-| `options` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `any`, `any`\>                |
+| Name | Type |
+| :------ | :------ |
+| `task` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
+| `errors` | [`ListrError`](index.ListrError.md)<`Ctx`\>[] |
+| `options` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `any`, `any`\> |
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:17](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L17)
+[src/lib/task-wrapper.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L18)
 
 ## Properties
 
@@ -42,11 +42,19 @@ Extend the task to have more functionality while accesing from the outside.
 
 • **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
 
----
+#### Defined in
+
+[src/lib/task-wrapper.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L18)
+
+___
 
 ### errors
 
 • **errors**: [`ListrError`](index.ListrError.md)<`Ctx`\>[]
+
+#### Defined in
+
+[src/lib/task-wrapper.ts:18](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L18)
 
 ## Accessors
 
@@ -62,7 +70,7 @@ Get the title of the current task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:20](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L20)
+[src/lib/task-wrapper.ts:21](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L21)
 
 • `set` **title**(`data`): `void`
 
@@ -70,8 +78,8 @@ Change the title of the current task.
 
 #### Parameters
 
-| Name   | Type     |
-| :----- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `data` | `string` |
 
 #### Returns
@@ -80,9 +88,9 @@ Change the title of the current task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:25](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L25)
+[src/lib/task-wrapper.ts:26](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L26)
 
----
+___
 
 ### output
 
@@ -96,7 +104,7 @@ Get the output from the output channel.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:30](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L30)
+[src/lib/task-wrapper.ts:31](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L31)
 
 • `set` **output**(`data`): `void`
 
@@ -104,8 +112,8 @@ Send a output to the output channel.
 
 #### Parameters
 
-| Name   | Type     |
-| :----- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `data` | `string` |
 
 #### Returns
@@ -114,7 +122,7 @@ Send a output to the output channel.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:35](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L35)
+[src/lib/task-wrapper.ts:36](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L36)
 
 ## Methods
 
@@ -126,15 +134,15 @@ Create a new subtask with given renderer selection from the parent task.
 
 #### Type parameters
 
-| Name     | Type  |
-| :------- | :---- |
+| Name | Type |
+| :------ | :------ |
 | `NewCtx` | `Ctx` |
 
 #### Parameters
 
 | Name | Type |
-| :-- | :-- |
-| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\>[] \| (`parent`: `Omit`<[`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>, `"skip"` \| `"enabled"`\>) => [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\>[] |
+| :------ | :------ |
+| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\>[] \| (`parent`: `Omit`<[`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>, ``"skip"`` \| ``"enabled"``\>) => [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\>[] |
 | `options?` | [`ListrSubClassOptions`](../types/index.ListrSubClassOptions.md)<`NewCtx`, `Renderer`\> |
 
 #### Returns
@@ -143,9 +151,9 @@ Create a new subtask with given renderer selection from the parent task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:40](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L40)
+[src/lib/task-wrapper.ts:41](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L41)
 
----
+___
 
 ### report
 
@@ -155,10 +163,10 @@ Report a error in process for error collection.
 
 #### Parameters
 
-| Name    | Type                                                   |
-| :------ | :----------------------------------------------------- |
-| `error` | `Error`                                                |
-| `type`  | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
+| Name | Type |
+| :------ | :------ |
+| `error` | `Error` |
+| `type` | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
 
 #### Returns
 
@@ -166,9 +174,9 @@ Report a error in process for error collection.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:56](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L56)
+[src/lib/task-wrapper.ts:57](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L57)
 
----
+___
 
 ### skip
 
@@ -178,8 +186,8 @@ Skip current task.
 
 #### Parameters
 
-| Name       | Type     |
-| :--------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `message?` | `string` |
 
 #### Returns
@@ -188,9 +196,9 @@ Skip current task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:65](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L65)
+[src/lib/task-wrapper.ts:66](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L66)
 
----
+___
 
 ### isRetrying
 
@@ -202,16 +210,16 @@ Get the number of retrying, else returns false
 
 `Object`
 
-| Name         | Type     |
-| :----------- | :------- |
-| `count`      | `number` |
-| `withError?` | `any`    |
+| Name | Type |
+| :------ | :------ |
+| `count` | `number` |
+| `withError?` | `any` |
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:74](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L74)
+[src/lib/task-wrapper.ts:75](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L75)
 
----
+___
 
 ### prompt
 
@@ -223,15 +231,15 @@ Since process.stdout is controlled by Listr, this will passthrough all Enquirer 
 
 #### Type parameters
 
-| Name | Type  |
-| :--- | :---- |
-| `T`  | `any` |
+| Name | Type |
+| :------ | :------ |
+| `T` | `any` |
 
 #### Parameters
 
-| Name      | Type                                                                                                                          |
-| :-------- | :---------------------------------------------------------------------------------------------------------------------------- |
-| `options` | [`PromptOptions`](../types/index.PromptOptions.md)<`false`\> \| [`PromptOptions`](../types/index.PromptOptions.md)<`true`\>[] |
+| Name | Type |
+| :------ | :------ |
+| `options` | [`PromptOptions`](../types/index.PromptOptions.md)<``false``\> \| [`PromptOptions`](../types/index.PromptOptions.md)<``true``\>[] |
 
 #### Returns
 
@@ -239,9 +247,9 @@ Since process.stdout is controlled by Listr, this will passthrough all Enquirer 
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:83](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L83)
+[src/lib/task-wrapper.ts:84](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L84)
 
----
+___
 
 ### cancelPrompt
 
@@ -251,9 +259,9 @@ Cancels the current prompt attach to this task.
 
 #### Parameters
 
-| Name         | Type      | Default value |
-| :----------- | :-------- | :------------ |
-| `throwError` | `boolean` | `false`       |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `throwError` | `boolean` | `false` |
 
 #### Returns
 
@@ -261,9 +269,9 @@ Cancels the current prompt attach to this task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:88](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L88)
+[src/lib/task-wrapper.ts:89](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L89)
 
----
+___
 
 ### stdout
 
@@ -271,7 +279,8 @@ Cancels the current prompt attach to this task.
 
 Pass stream of data to internal stdout.
 
-Since Listr2 takes control of process.stdout utilizing the default renderer, any data outputted to process.stdout will corupt its looks.
+Since Listr2 takes control of process.stdout utilizing the default renderer, any data outputted to process.stdout
+will corupt its looks.
 
 This returns a fake stream to pass any stream inside Listr as task data.
 
@@ -281,9 +290,9 @@ This returns a fake stream to pass any stream inside Listr as task data.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:100](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L100)
+[src/lib/task-wrapper.ts:101](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L101)
 
----
+___
 
 ### run
 
@@ -293,8 +302,8 @@ Run this task.
 
 #### Parameters
 
-| Name  | Type  |
-| :---- | :---- |
+| Name | Type |
+| :------ | :------ |
 | `ctx` | `Ctx` |
 
 #### Returns
@@ -303,4 +312,4 @@ Run this task.
 
 #### Defined in
 
-[src/lib/task-wrapper.ts:114](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/lib/task-wrapper.ts#L114)
+[src/lib/task-wrapper.ts:115](https://github.com/cenk1cenk2/listr2/blob/a554689/src/lib/task-wrapper.ts#L115)

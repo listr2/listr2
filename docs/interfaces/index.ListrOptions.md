@@ -6,8 +6,8 @@ Options to set the behavior of this base task.
 
 ## Type parameters
 
-| Name  | Type                                             |
-| :---- | :----------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
 
 ## Properties
@@ -18,13 +18,13 @@ Options to set the behavior of this base task.
 
 To inject a context through this options wrapper. Context can also be defined in run time.
 
-**`default`** {}
+**`Default`**
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:90](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L90)
+[src/interfaces/listr.interface.ts:90](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L90)
 
----
+___
 
 ### concurrent
 
@@ -32,7 +32,9 @@ To inject a context through this options wrapper. Context can also be defined in
 
 Concurrency sets how many tasks will be run at the same time in parallel.
 
-**`default`** false > Default is to run everything synchronously.
+**`Default`**
+
+false > Default is to run everything synchronously.
 
 `true` will set it to `Infinity`, `false` will set it to synchronous.
 
@@ -40,9 +42,9 @@ If you pass in a `number` it will limit it to that number.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:100](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L100)
+[src/interfaces/listr.interface.ts:100](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L100)
 
----
+___
 
 ### exitOnError
 
@@ -50,13 +52,15 @@ If you pass in a `number` it will limit it to that number.
 
 Determine the default behavior of exiting on errors.
 
-**`default`** true > exit on any error coming from the tasks.
+**`Default`**
+
+true > exit on any error coming from the tasks.
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:106](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L106)
+[src/interfaces/listr.interface.ts:106](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L106)
 
----
+___
 
 ### exitAfterRollback
 
@@ -64,19 +68,22 @@ Determine the default behavior of exiting on errors.
 
 Determine the behavior of exiting after rollback actions.
 
-This is independent of exitOnError, since failure of a rollback can be a more critical operation comparing to failing a single task.
+This is independent of exitOnError, since failure of a rollback can be a more critical operation comparing to
+failing a single task.
 
-**`default`** true > exit after rolling back tasks
+**`Default`**
+
+true > exit after rolling back tasks
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:115](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L115)
+[src/interfaces/listr.interface.ts:115](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L115)
 
----
+___
 
 ### collectErrors
 
-• `Optional` **collectErrors**: `false` \| `"minimal"` \| `"full"`
+• `Optional` **collectErrors**: ``false`` \| ``"minimal"`` \| ``"full"``
 
 Collects errors to `ListrInstance.errors`
 
@@ -86,13 +93,15 @@ This can take up a lot of memory, so disabling it can fix out-of-memory errors
 - 'minimal' will only collect the error message and the location
 - false will collect no errors
 
-**`default`** 'minimal'
+**`Default`**
+
+'minimal'
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:127](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L127)
+[src/interfaces/listr.interface.ts:127](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L127)
 
----
+___
 
 ### registerSignalListeners
 
@@ -100,13 +109,15 @@ This can take up a lot of memory, so disabling it can fix out-of-memory errors
 
 By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
 
-**`default`** true
+**`Default`**
+
+true
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L133)
+[src/interfaces/listr.interface.ts:133](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L133)
 
----
+___
 
 ### rendererFallback
 
@@ -114,13 +125,15 @@ By default, Listr2 will track SIGINIT signal to update the renderer one last tim
 
 Determine the certain condition required to use the non-TTY renderer.
 
-**`default`** null > handled internally
+**`Default`**
+
+null > handled internally
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L139)
+[src/interfaces/listr.interface.ts:139](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L139)
 
----
+___
 
 ### rendererSilent
 
@@ -128,13 +141,15 @@ Determine the certain condition required to use the non-TTY renderer.
 
 Determine the certain condition required to use the silent renderer.
 
-**`default`** null > handled internally
+**`Default`**
+
+null > handled internally
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:145](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L145)
+[src/interfaces/listr.interface.ts:145](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L145)
 
----
+___
 
 ### disableColor
 
@@ -142,13 +157,15 @@ Determine the certain condition required to use the silent renderer.
 
 Disabling the color, useful for tests and such.
 
-**`default`** false
+**`Default`**
+
+false
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:151](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L151)
+[src/interfaces/listr.interface.ts:151](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L151)
 
----
+___
 
 ### injectWrapper
 
@@ -158,10 +175,10 @@ Inject data directly to TaskWrapper.
 
 #### Type declaration
 
-| Name        | Type                  |
-| :---------- | :-------------------- |
+| Name | Type |
+| :------ | :------ |
 | `enquirer?` | `Enquirer`<`object`\> |
 
 #### Defined in
 
-[src/interfaces/listr.interface.ts:155](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/interfaces/listr.interface.ts#L155)
+[src/interfaces/listr.interface.ts:155](https://github.com/cenk1cenk2/listr2/blob/a554689/src/interfaces/listr.interface.ts#L155)

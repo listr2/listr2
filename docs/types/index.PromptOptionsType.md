@@ -7,9 +7,9 @@
 #### Type parameters
 
 | Name |
-| :--- |
-| `T`  |
+| :------ |
+| `T` |
 
 #### Defined in
 
-[src/utils/prompt.interface.ts:129](https://github.com/cenk1cenk2/listr2/blob/12dcf06/src/utils/prompt.interface.ts#L129)
+[src/utils/prompt.interface.ts:130](https://github.com/cenk1cenk2/listr2/blob/a554689/src/utils/prompt.interface.ts#L130)
