@@ -34,7 +34,7 @@
     "test": "ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --config ./tests/jest.config.cjs",
     "test:cov": "ts-node -P tests/tsconfig.json -r tsconfig-paths/register node_modules/jest/bin/jest.js --coverage --config ./tests/jest.config.cjs",
     "dev:test": "TS_NODE_PROJECT=tests/tsconfig.json node --inspect=0.0.0.0:${DEBUG_PORT:-9229} -r tsconfig-paths/register -r ts-node/register node_modules/jest/bin/jest.js --verbose --watchAll --config ./tests/jest.config.cjs",
-    "docs": "typedoc --options .typedoc.json --hideInPageTOC --hideBreadcrumbs"
+    "docs:api": "typedoc --options .typedoc.json --hideInPageTOC --hideBreadcrumbs"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn lint-staged",
