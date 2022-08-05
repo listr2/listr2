@@ -1,3 +1,9 @@
+## [5.0.2](https://github.com/cenk1cenk2/listr2/compare/v5.0.1...v5.0.2) (2022-08-05)
+
+### Bug Fixes
+
+- update build configuration because of seg fault ([54b54dd](https://github.com/cenk1cenk2/listr2/commit/54b54dd398049cadfae507b9c9ffd00f53f51681))
+
 ## [5.0.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.0...v5.0.1) (2022-07-26)
 
 ### Bug Fixes
