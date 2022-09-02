@@ -1,4 +1,4 @@
-import { Observable, Subject } from 'rxjs'
+import { isObservable, Subject } from 'rxjs'
 import { Readable } from 'stream'
 
 import type { TaskWrapper } from './task-wrapper'
@@ -237,7 +237,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
           result.on('error', (error: Error) => reject(error))
           result.on('end', () => resolve(null))
         })
-      } else if (result instanceof Observable) {
+      } else if (isObservable(result)) {
         // Detect Observable
         result = new Promise((resolve, reject) => {
           result.subscribe({
