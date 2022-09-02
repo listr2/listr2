@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/cenk1cenk2/listr2/compare/v5.0.2...v5.0.3) (2022-09-02)
+
+
+### Bug Fixes
+
+* Use 'isObservable' utility instance of 'instanceof' ([197e373](https://github.com/cenk1cenk2/listr2/commit/197e3733a223cbb23ca45537324b14a003078977))
+
 ## [5.0.2](https://github.com/cenk1cenk2/listr2/compare/v5.0.1...v5.0.2) (2022-08-05)
 
 ### Bug Fixes
