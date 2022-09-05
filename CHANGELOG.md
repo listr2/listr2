@@ -1,3 +1,9 @@
+## [5.0.5](https://github.com/cenk1cenk2/listr2/compare/v5.0.4...v5.0.5) (2022-09-05)
+
+### Bug Fixes
+
+- esm dynamic import of enquirer ([55bed0a](https://github.com/cenk1cenk2/listr2/commit/55bed0af68de2e1d6caf89100d4a2825150ef6bd)), closes [#631](https://github.com/cenk1cenk2/listr2/issues/631)
+
 ## [5.0.4](https://github.com/cenk1cenk2/listr2/compare/v5.0.3...v5.0.4) (2022-09-05)
 
 ### Bug Fixes

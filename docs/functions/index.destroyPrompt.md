@@ -17,4 +17,4 @@
 
 #### Defined in
 
-src/utils/prompt.ts:104
+src/utils/prompt.ts:107
