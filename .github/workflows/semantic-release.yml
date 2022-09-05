@@ -21,7 +21,7 @@ jobs:
           dry_run: true
           branches: |
             [
-              "*"
+              "${{ env.GITHUB_BASE_REF }}"
             ]
           extra_plugins: |
             @semantic-release/changelog
