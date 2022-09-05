@@ -6,6 +6,16 @@ on:
     branches:
       - '!master'
       - '*'
+  pull_request_target:
+    branches:
+      - develop
+      - master
+      - main
+      - beta
+      - rc
+      - alpha
+      - next
+      - next-major
 
 jobs:
   semantic-release-mock:
