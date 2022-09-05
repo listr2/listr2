@@ -24,8 +24,7 @@ jobs:
           dry_run: true
           branches: |
             [
-              "master",
-              "develop"
+              "*"
             ]
           extra_plugins: |
             @semantic-release/changelog

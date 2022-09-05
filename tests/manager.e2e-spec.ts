@@ -24,17 +24,17 @@ describe('skip a task', () => {
     await manager.runAll()
 
     expect(log.mock.calls).toMatchInlineSnapshot(`
-      Array [
-        Array [
+      [
+        [
           "[STARTED] Task without title.",
         ],
-        Array [
+        [
           "[STARTED] Task without title.",
         ],
-        Array [
+        [
           "[SUCCESS] Task without title.",
         ],
-        Array [
+        [
           "[SUCCESS] Task without title.",
         ],
       ]
@@ -55,23 +55,23 @@ describe('skip a task', () => {
     await manager.runAll()
 
     expect(log.mock.calls).toMatchInlineSnapshot(`
-      Array [
-        Array [
+      [
+        [
           "[STARTED] Task without title.",
         ],
-        Array [
+        [
           "[STARTED] Task without title.",
         ],
-        Array [
+        [
           "[STARTED] Task without title.",
         ],
-        Array [
+        [
           "[SUCCESS] Task without title.",
         ],
-        Array [
+        [
           "[SUCCESS] Task without title.",
         ],
-        Array [
+        [
           "[SUCCESS] Task without title.",
         ],
       ]
@@ -94,17 +94,17 @@ describe('skip a task', () => {
     await manager.runAll()
 
     expect(log.mock.calls).toMatchInlineSnapshot(`
-      Array [
-        Array [
+      [
+        [
           "[STARTED] Task without title.",
         ],
-        Array [
+        [
           "[STARTED] child",
         ],
-        Array [
+        [
           "[SUCCESS] child",
         ],
-        Array [
+        [
           "[SUCCESS] Task without title.",
         ],
       ]

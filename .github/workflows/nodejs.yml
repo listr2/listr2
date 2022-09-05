@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 16.x
+          - 18.x
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -30,9 +30,9 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 12.x
           - 14.x
           - 16.x
+          - 18.x
         os:
           - ubuntu-latest
     steps:
@@ -49,7 +49,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 16.x
+          - 18.x
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}

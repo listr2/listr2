@@ -20,7 +20,11 @@ import { getRenderer } from '@utils/renderer'
 /**
  * Creates a new set of Listr2 task list.
  */
-export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
+export class Listr<
+  Ctx extends ListrContext = ListrContext,
+  Renderer extends ListrRendererValue = ListrDefaultRendererValue,
+  FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue
+> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError<Ctx>[] = []
   public ctx: Ctx
