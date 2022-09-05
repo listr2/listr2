@@ -4,7 +4,7 @@
 
 Creates a new Listr2 task manager.
 
-Useful for creating a single instace of Listr2 with pre-set settings.
+Useful for creating a single instance of Listr2 with pre-set settings.
 
 ## Type parameters
 
@@ -18,7 +18,7 @@ Useful for creating a single instace of Listr2 with pre-set settings.
 
 ### err
 
-• **err**: [`ListrError`](index.ListrError.md)<`Record`<`PropertyKey`, `any`\>\>[] = `[]`
+• **err**: [`ListrError`](index.ListrError.md)<`any`\>[] = `[]`
 
 #### Defined in
 

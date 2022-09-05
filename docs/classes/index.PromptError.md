@@ -98,7 +98,7 @@ Error.name
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1028
+node_modules/typescript/lib/lib.es5.d.ts:1040
 
 ___
 
@@ -112,7 +112,7 @@ Error.message
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1029
+node_modules/typescript/lib/lib.es5.d.ts:1041
 
 ___
 
@@ -126,7 +126,7 @@ Error.stack
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1030
+node_modules/typescript/lib/lib.es5.d.ts:1042
 
 ## Constructors
 
@@ -146,4 +146,4 @@ Error.constructor
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:45
+src/interfaces/listr-error.interface.ts:46

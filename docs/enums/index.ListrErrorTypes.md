@@ -14,7 +14,7 @@ Task has failed and will try to retry.
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:32
+src/interfaces/listr-error.interface.ts:33
 
 ___
 
@@ -26,7 +26,7 @@ Task has failed and will try to rollback.
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:34
+src/interfaces/listr-error.interface.ts:35
 
 ___
 
@@ -38,7 +38,7 @@ Task has failed, ran the rollback action but the rollback action itself has fail
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:36
+src/interfaces/listr-error.interface.ts:37
 
 ___
 
@@ -50,7 +50,7 @@ Task has failed.
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:38
+src/interfaces/listr-error.interface.ts:39
 
 ___
 
@@ -62,4 +62,4 @@ Task has failed, but exitOnError is set to false, so will ignore this error.
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:40
+src/interfaces/listr-error.interface.ts:41
