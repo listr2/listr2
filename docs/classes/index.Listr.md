@@ -8,7 +8,7 @@ Creates a new set of Listr2 task list.
 
 | Name | Type |
 | :------ | :------ |
-| `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
+| `Ctx` | extends [`ListrContext`](../types/index.ListrContext.md) = [`ListrContext`](../types/index.ListrContext.md) |
 | `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](../types/index.ListrDefaultRendererValue.md) |
 | `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrFallbackRendererValue`](../types/index.ListrFallbackRendererValue.md) |
 
@@ -20,7 +20,7 @@ Creates a new set of Listr2 task list.
 
 #### Defined in
 
-src/listr.ts:24
+src/listr.ts:28
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:25
+src/listr.ts:29
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:26
+src/listr.ts:30
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:27
+src/listr.ts:31
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:28
+src/listr.ts:32
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:29
+src/listr.ts:33
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:30
+src/listr.ts:34
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:31
+src/listr.ts:35
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:32
+src/listr.ts:36
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:35
+src/listr.ts:39
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:36
+src/listr.ts:40
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:37
+src/listr.ts:41
 
 ## Constructors
 
@@ -142,7 +142,7 @@ src/listr.ts:37
 
 | Name | Type |
 | :------ | :------ |
-| `Ctx` | `any` |
+| `Ctx` | extends `unknown` = `any` |
 | `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"default"`` |
 | `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"verbose"`` |
 
@@ -156,7 +156,7 @@ src/listr.ts:37
 
 #### Defined in
 
-src/listr.ts:34
+src/listr.ts:38
 
 ## Methods
 
@@ -176,7 +176,7 @@ src/listr.ts:34
 
 #### Defined in
 
-src/listr.ts:108
+src/listr.ts:112
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:116
+src/listr.ts:120
 
 ___
 
@@ -216,7 +216,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:156
+src/listr.ts:160
 
 ___
 
@@ -238,4 +238,4 @@ ___
 
 #### Defined in
 
-src/listr.ts:160
+src/listr.ts:164

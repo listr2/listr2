@@ -2,7 +2,7 @@
 
 [index](../modules/index.md).ListrTaskWrapper
 
-Extend the task to have more functionality while accesing from the outside.
+Extend the task to have more functionality while accessing from the outside.
 
 ## Type parameters
 
@@ -280,7 +280,7 @@ ___
 Pass stream of data to internal stdout.
 
 Since Listr2 takes control of process.stdout utilizing the default renderer, any data outputted to process.stdout
-will corupt its looks.
+will corrupt its looks.
 
 This returns a fake stream to pass any stream inside Listr as task data.
 

@@ -8,7 +8,7 @@ The internal error handling mechanism..
 
 | Name | Type |
 | :------ | :------ |
-| `Ctx` | extends `Record`<`PropertyKey`, `any`\> = `Record`<`PropertyKey`, `any`\> |
+| `Ctx` | extends [`ListrContext`](../types/index.ListrContext.md) = [`ListrContext`](../types/index.ListrContext.md) |
 
 ## Hierarchy
 
@@ -104,7 +104,7 @@ Error.name
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1028
+node_modules/typescript/lib/lib.es5.d.ts:1040
 
 ___
 
@@ -118,7 +118,7 @@ Error.message
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1029
+node_modules/typescript/lib/lib.es5.d.ts:1041
 
 ___
 
@@ -132,7 +132,7 @@ Error.stack
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:1030
+node_modules/typescript/lib/lib.es5.d.ts:1042
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:7
+src/interfaces/listr-error.interface.ts:8
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:8
+src/interfaces/listr-error.interface.ts:9
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:10
+src/interfaces/listr-error.interface.ts:11
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:10
+src/interfaces/listr-error.interface.ts:11
 
 ___
 
@@ -182,7 +182,7 @@ ___
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:10
+src/interfaces/listr-error.interface.ts:11
 
 ## Constructors
 
@@ -194,7 +194,7 @@ src/interfaces/listr-error.interface.ts:10
 
 | Name | Type |
 | :------ | :------ |
-| `Ctx` | extends `Record`<`PropertyKey`, `any`\> = `Record`<`PropertyKey`, `any`\> |
+| `Ctx` | extends `unknown` = `any` |
 
 #### Parameters
 
@@ -210,4 +210,4 @@ Error.constructor
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:10
+src/interfaces/listr-error.interface.ts:11

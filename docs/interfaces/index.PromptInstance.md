@@ -194,11 +194,11 @@ ___
 
 ### validate
 
-• `Optional` **validate**: (`value`: `any`, `state`: `any`) => `string` \| `boolean` \| `Promise`<`string` \| `boolean`\> \| `Promise`<`boolean`\> \| `Promise`<`string`\>
+• `Optional` **validate**: (`value`: `any`, `state`: `any`) => `string` \| `boolean` \| `Promise`<`string`\> \| `Promise`<`boolean`\> \| `Promise`<`string` \| `boolean`\>
 
 #### Type declaration
 
-▸ (`value`, `state`): `string` \| `boolean` \| `Promise`<`string` \| `boolean`\> \| `Promise`<`boolean`\> \| `Promise`<`string`\>
+▸ (`value`, `state`): `string` \| `boolean` \| `Promise`<`string`\> \| `Promise`<`boolean`\> \| `Promise`<`string` \| `boolean`\>
 
 ##### Parameters
 
@@ -209,7 +209,7 @@ ___
 
 ##### Returns
 
-`string` \| `boolean` \| `Promise`<`string` \| `boolean`\> \| `Promise`<`boolean`\> \| `Promise`<`string`\>
+`string` \| `boolean` \| `Promise`<`string`\> \| `Promise`<`boolean`\> \| `Promise`<`string` \| `boolean`\>
 
 #### Inherited from
 
