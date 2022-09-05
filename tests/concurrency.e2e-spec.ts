@@ -50,29 +50,29 @@ describe('concurrent execution', () => {
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
-          Array [
-            Array [
+          [
+            [
               "[STARTED] 1",
             ],
-            Array [
+            [
               "[STARTED] 2",
             ],
-            Array [
+            [
               "[STARTED] 3",
             ],
-            Array [
+            [
               "[STARTED] 4",
             ],
-            Array [
+            [
               "[SUCCESS] 4",
             ],
-            Array [
+            [
               "[SUCCESS] 3",
             ],
-            Array [
+            [
               "[SUCCESS] 2",
             ],
-            Array [
+            [
               "[SUCCESS] 1",
             ],
           ]
@@ -84,29 +84,29 @@ describe('concurrent execution', () => {
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
-      Array [
-        Array [
+      [
+        [
           "[STARTED] 1",
         ],
-        Array [
+        [
           "[SUCCESS] 1",
         ],
-        Array [
+        [
           "[STARTED] 2",
         ],
-        Array [
+        [
           "[SUCCESS] 2",
         ],
-        Array [
+        [
           "[STARTED] 3",
         ],
-        Array [
+        [
           "[SUCCESS] 3",
         ],
-        Array [
+        [
           "[STARTED] 4",
         ],
-        Array [
+        [
           "[SUCCESS] 4",
         ],
       ]
@@ -118,29 +118,29 @@ describe('concurrent execution', () => {
 
     expect(log).toBeCalledTimes(8)
     expect(log.mock.calls).toMatchInlineSnapshot(`
-          Array [
-            Array [
+          [
+            [
               "[STARTED] 1",
             ],
-            Array [
+            [
               "[SUCCESS] 1",
             ],
-            Array [
+            [
               "[STARTED] 2",
             ],
-            Array [
+            [
               "[SUCCESS] 2",
             ],
-            Array [
+            [
               "[STARTED] 3",
             ],
-            Array [
+            [
               "[SUCCESS] 3",
             ],
-            Array [
+            [
               "[STARTED] 4",
             ],
-            Array [
+            [
               "[SUCCESS] 4",
             ],
           ]

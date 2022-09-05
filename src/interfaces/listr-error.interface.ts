@@ -1,9 +1,10 @@
+import type { ListrContext } from './listr.interface'
 import type { ListrRendererFactory } from './renderer.interface'
 import type { Task } from '@lib/task'
 import { cloneObject } from '@utils/general'
 
 /** The internal error handling mechanism.. */
-export class ListrError<Ctx extends Record<PropertyKey, any> = Record<PropertyKey, any>> extends Error {
+export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
   public path: string
   public ctx: Ctx
 

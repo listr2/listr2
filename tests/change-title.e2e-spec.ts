@@ -26,8 +26,8 @@ describe('skip a task', () => {
     ).run()
 
     expect(info.mock.calls).toMatchInlineSnapshot(`
-      Array [
-        Array [
+      [
+        [
           "[TITLE] changed",
         ],
       ]
@@ -48,8 +48,8 @@ describe('skip a task', () => {
     ).run()
 
     expect(info.mock.calls).toMatchInlineSnapshot(`
-      Array [
-        Array [
+      [
+        [
           "[TITLE] changed",
         ],
       ]

@@ -52,8 +52,8 @@ describe('logger', () => {
     testForAllExcept(instances, error, 1, {
       onOne: () => {
         expect(error.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[FAILED] test message",
           ],
         ]
@@ -70,8 +70,8 @@ describe('logger', () => {
     testForAllExcept(instances, info, 1, {
       onOne: () => {
         expect(info.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[SKIPPED] test message",
           ],
         ]
@@ -88,8 +88,8 @@ describe('logger', () => {
     testForAllExcept(instances, log, 1, {
       onOne: () => {
         expect(log.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[SUCCESS] test message",
           ],
         ]
@@ -106,8 +106,8 @@ describe('logger', () => {
     testForAllExcept(instances, info, 1, {
       onOne: () => {
         expect(info.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[DATA] test message",
           ],
         ]
@@ -124,8 +124,8 @@ describe('logger', () => {
     testForAllExcept(instances, log, 1, {
       onOne: () => {
         expect(log.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[STARTED] test message",
           ],
         ]
@@ -142,8 +142,8 @@ describe('logger', () => {
     testForAllExcept(instances, info, 1, {
       onOne: () => {
         expect(info.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[TITLE] test message",
           ],
         ]
@@ -160,8 +160,8 @@ describe('logger', () => {
     testForAllExcept(instances, warn, 1, {
       onOne: () => {
         expect(warn.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[ROLLBACK] test message",
           ],
         ]
@@ -178,8 +178,8 @@ describe('logger', () => {
     testForAllExcept(instances, warn, 1, {
       onOne: () => {
         expect(warn.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[RETRY] test message",
           ],
         ]
@@ -200,8 +200,8 @@ describe('logger', () => {
     testForAllExcept(instances, info, 1, {
       onOne: () => {
         expect(info.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "[DATA] THIS IS A LONG LONG MESSAGE
         [DATA] THIS IS A LONG LONG MESSAGE
         [DATA] THIS IS A LONG LONG MESSAGE

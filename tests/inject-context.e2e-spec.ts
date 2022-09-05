@@ -38,7 +38,7 @@ describe('show inject context', () => {
     ).run()
 
     expect(ctx).toMatchInlineSnapshot(`
-      Object {
+      {
         "test": true,
       }
     `)

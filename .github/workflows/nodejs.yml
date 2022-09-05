@@ -1,6 +1,7 @@
+---
 name: node-actions
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - master
   push:
@@ -15,7 +16,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 16.x
+          - 18.x
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -30,9 +31,9 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 12.x
           - 14.x
           - 16.x
+          - 18.x
         os:
           - ubuntu-latest
     steps:
@@ -41,7 +42,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile --ignore-engines
       - run: yarn run test
 
   build:
@@ -49,7 +50,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 16.x
+          - 18.x
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
