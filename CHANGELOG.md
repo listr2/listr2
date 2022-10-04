@@ -1,3 +1,9 @@
+## [5.0.6-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.5...v5.0.6-beta.1) (2022-10-04)
+
+### Bug Fixes
+
+- handling the error from enquirer ([28cc42f](https://github.com/cenk1cenk2/listr2/commit/28cc42f85c1a26c43b637702ca0172189e774c75))
+
 ## [5.0.5](https://github.com/cenk1cenk2/listr2/compare/v5.0.4...v5.0.5) (2022-09-05)
 
 ### Bug Fixes
