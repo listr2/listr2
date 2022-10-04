@@ -68,9 +68,9 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
       const imported = await import('enquirer')
 
       // should fix the import problem for esm since there is no default imports there
-      enquirer = imported.default ? new imported.default() : new (imported as unknown as new () => Enquirer)()
+      enquirer = imported?.default ? new imported.default() : new (imported as unknown as new () => Enquirer)()
     } /* istanbul ignore next */ catch (e: any) {
-      this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
+      this.task.prompt = new PromptError(`Enquirer is a peer dependency that must be installed separately: ${e.message}`)
 
       throw new Error(e)
     }
