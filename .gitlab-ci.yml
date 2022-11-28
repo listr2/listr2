@@ -8,11 +8,13 @@ stages:
 variables:
   NODE_VERSION: 18-alpine
   NODE_TEST_COMMAND: test
-  TYPEDOC_PATTERNS: '.'
 
 include:
   - project: devops/pipes
     file: /templates/node.gitlab-ci.yml
+
+  - project: devops/pipes
+    file: /templates/v2/node-run.gitlab-ci.yml
 
   - project: devops/pipes
     file: /templates/semantic-release.gitlab-ci.yml
@@ -25,9 +27,9 @@ test:
 
 typedoc:
   stage: docs
-  image: $CI_REGISTRY/devops/pipes/gitlab-pipes-node:${NODE_VERSION}
-  script:
-    - pipe run docs:api
+  extends: .node-run
+  variables:
+    NODE_COMMAND_SCRIPT: docs:api
   artifacts:
     paths:
       - docs/
@@ -35,5 +37,3 @@ typedoc:
     refs:
       - master
       - main
-  tags:
-    - docker
