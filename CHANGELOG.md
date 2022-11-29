@@ -1,3 +1,10 @@
+## [5.0.6](https://github.com/cenk1cenk2/listr2/compare/v5.0.5...v5.0.6) (2022-11-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency rxjs to ^7.5.7 ([324f012](https://github.com/cenk1cenk2/listr2/commit/324f0129cc1c4174241211c7d7cf5701abf1fa5d))
+
 ## [5.0.5](https://github.com/cenk1cenk2/listr2/compare/v5.0.4...v5.0.5) (2022-09-05)
 
 ### Bug Fixes

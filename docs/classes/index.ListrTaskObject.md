@@ -1155,7 +1155,7 @@ ___
 ▸ **asObservable**(): `Observable`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
 Creates a new Observable with this Subject as the source. You can do this
-to create customize Observer-side logic of the Subject and conceal it from
+to create custom Observer-side logic of the Subject and conceal it from
 code that uses the Observable.
 
 #### Returns
