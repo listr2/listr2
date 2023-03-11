@@ -1,11 +1,11 @@
 import type { ListrEventType } from '@constants/event.constants'
 import type { ListrEventMap } from '@interfaces/event-map.interface'
+import type { EventManager } from '@lib/event-manager'
 import type { Task } from '@lib/task'
 import type { DefaultRenderer } from '@renderer/default.renderer'
 import type { SilentRenderer } from '@renderer/silent.renderer'
 import type { SimpleRenderer } from '@renderer/simple.renderer'
 import type { VerboseRenderer } from '@renderer/verbose.renderer'
-import type { EventManager } from '@lib/event-manager'
 
 /** The default renderer value used in Listr2 applications */
 export type ListrDefaultRendererValue = 'default'
