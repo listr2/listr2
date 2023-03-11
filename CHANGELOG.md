@@ -1,3 +1,10 @@
+# [5.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-03-11)
+
+
+### Bug Fixes
+
+* expose colorrette and some more utils ([d9e0812](https://github.com/cenk1cenk2/listr2/commit/d9e08126d4d2f0773fe0f26702ca4403f5521fb6))
+
 # [5.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.8...v5.1.0-beta.1) (2023-03-11)
 
 
