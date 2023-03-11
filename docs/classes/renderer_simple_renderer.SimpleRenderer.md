@@ -38,8 +38,8 @@ designate renderer global options that is specific to the current renderer
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`Example`**  ```bash [12:33:44] ✔ Do something important ```  **`Default`**  false |
-| `output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`Default`**  stdout |
+| `prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line **`Example`** ```bash [12:33:44] ✔ Do something important ``` **`Default`** false |
+| `output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr **`Default`** stdout |
 
 #### Implementation of
 
@@ -97,8 +97,8 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`Example`**  ```bash [12:33:44] ✔ Do something important ```  **`Default`**  false |
-| `output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`Default`**  stdout |
+| `prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line **`Example`** ```bash [12:33:44] ✔ Do something important ``` **`Default`** false |
+| `output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr **`Default`** stdout |
 
 #### Defined in
 
@@ -116,8 +116,8 @@ src/renderer/simple.renderer.ts:105
 | :------ | :------ | :------ |
 | `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>[] | - |
 | `options` | `Object` | - |
-| `options.prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`Example`**  ```bash [12:33:44] ✔ Do something important ```  **`Default`**  false |
-| `options.output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`Default`**  stdout |
+| `options.prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line **`Example`** ```bash [12:33:44] ✔ Do something important ``` **`Default`** false |
+| `options.output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr **`Default`** stdout |
 
 #### Defined in
 

@@ -1,3 +1,9 @@
+## [5.0.8](https://github.com/cenk1cenk2/listr2/compare/v5.0.7...v5.0.8) (2023-03-11)
+
+### Bug Fixes
+
+- render subtasks of the subtasks if parent has no title ([7b443f9](https://github.com/cenk1cenk2/listr2/commit/7b443f9c24a48963c9a95b7545f6792b4474a143)), closes [#663](https://github.com/cenk1cenk2/listr2/issues/663)
+
 ## [5.0.7](https://github.com/cenk1cenk2/listr2/compare/v5.0.6...v5.0.7) (2023-01-18)
 
 ### Bug Fixes
