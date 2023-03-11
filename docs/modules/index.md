@@ -20,7 +20,7 @@
 - [Logger](../classes/index.Logger.md)
 - [PromptOptionsMap](../classes/index.PromptOptionsMap.md)
 
-## Type aliases
+## Type Aliases
 
 - [ListrContext](../types/index.ListrContext.md)
 - [ListrTaskResult](../types/index.ListrTaskResult.md)

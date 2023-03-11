@@ -1,19 +1,19 @@
-import * as cliTruncate from 'cli-truncate'
-import * as logUpdate from 'log-update'
+import cliTruncate from 'cli-truncate'
+import logUpdate from 'log-update'
 import { EOL } from 'os'
-import * as cliWrap from 'wrap-ansi'
+import cliWrap from 'wrap-ansi'
 
 import { ListrEventType } from '@constants/event.constants'
-import { ListrEventMap } from '@interfaces/event-map.interface'
-import { ListrContext } from '@interfaces/listr.interface'
-import { ListrRenderer } from '@interfaces/renderer.interface'
-import { Task } from '@lib/task'
+import type { ListrEventMap } from '@interfaces/event-map.interface'
+import type { ListrContext } from '@interfaces/listr.interface'
+import type { ListrRenderer } from '@interfaces/renderer.interface'
+import type { Task } from '@lib/task'
 import colorette from '@utils/colorette'
 import { figures } from '@utils/figures'
 import { indentString } from '@utils/indent-string'
 import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
-import { EventManager } from '@utils/task-event-manager'
+import type { EventManager } from '@utils/task-event-manager'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -118,21 +118,21 @@ export class DefaultRenderer implements ListrRenderer {
      */
     formatOutput?: 'truncate' | 'wrap'
   } = {
-    indentation: 2,
-    clearOutput: false,
-    showSubtasks: true,
-    collapse: true,
-    collapseSkips: true,
-    showSkipMessage: true,
-    suffixSkips: true,
-    collapseErrors: true,
-    showErrorMessage: true,
-    suffixRetries: true,
-    lazy: false,
-    showTimer: false,
-    removeEmptyLines: true,
-    formatOutput: 'truncate'
-  }
+      indentation: 2,
+      clearOutput: false,
+      showSubtasks: true,
+      collapse: true,
+      collapseSkips: true,
+      showSkipMessage: true,
+      suffixSkips: true,
+      collapseErrors: true,
+      showErrorMessage: true,
+      suffixRetries: true,
+      lazy: false,
+      showTimer: false,
+      removeEmptyLines: true,
+      formatOutput: 'truncate'
+    }
 
   /** per task options for the default renderer */
   public static rendererTaskOptions: {
@@ -160,20 +160,20 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private id?: NodeJS.Timeout
-  private bottomBar: { [uuid: string]: { data?: string[], items?: number } } = {}
+  private bottomBar: Record<string, { data?: string[], items?: number }> = {}
   private promptBar: string
   private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
 
   constructor (
     public tasks: Task<any, typeof DefaultRenderer>[],
-    public options: typeof DefaultRenderer['rendererOptions'],
+    public options: (typeof DefaultRenderer)['rendererOptions'],
     public events: EventManager<ListrEventType, ListrEventMap>
   ) {
     this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
   }
 
-  public getTaskOptions (task: Task<any, typeof DefaultRenderer>): typeof DefaultRenderer['rendererTaskOptions'] {
+  public getTaskOptions (task: Task<any, typeof DefaultRenderer>): (typeof DefaultRenderer)['rendererTaskOptions'] {
     return { ...DefaultRenderer.rendererTaskOptions, ...task.rendererTaskOptions }
   }
 
@@ -191,10 +191,10 @@ export class DefaultRenderer implements ListrRenderer {
     return this.getTaskOptions(task).showTimer === true
   }
 
-  public getSelfOrParentOption<T extends keyof typeof DefaultRenderer['rendererOptions']>(
+  public getSelfOrParentOption<T extends keyof (typeof DefaultRenderer)['rendererOptions']>(
     task: Task<any, typeof DefaultRenderer>,
     key: T
-  ): typeof DefaultRenderer['rendererOptions'][T] {
+  ): (typeof DefaultRenderer)['rendererOptions'][T] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
@@ -257,6 +257,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   public end (): void {
     clearInterval(this.id)
+
     if (this.id) {
       this.id = undefined
     }
@@ -356,6 +357,7 @@ export class DefaultRenderer implements ListrRenderer {
               this.bottomBar[task.id].data = []
 
               const bottomBar = this.getTaskOptions(task).bottomBar
+
               if (typeof bottomBar === 'boolean') {
                 this.bottomBar[task.id].items = 1
               } else {
@@ -396,7 +398,8 @@ export class DefaultRenderer implements ListrRenderer {
 
           // render the subtasks as in the same way
           const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
-          if (subtaskRender?.trim() !== '' && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
+
+          if (subtaskRender?.trim() !== '') {
             output = [ ...output, subtaskRender ]
           }
         }
@@ -415,6 +418,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     output = output.filter(Boolean)
+
     if (output.length > 0) {
       return output.join(EOL)
     } else {
@@ -425,7 +429,7 @@ export class DefaultRenderer implements ListrRenderer {
   private renderBottomBar (): string {
     // parse through all objects return only the last mentioned items
     if (Object.keys(this.bottomBar).length > 0) {
-      this.bottomBar = Object.keys(this.bottomBar).reduce((o, key) => {
+      this.bottomBar = Object.keys(this.bottomBar).reduce<Record<PropertyKey, { data?: string[], items?: number }>>((o, key) => {
         if (!o?.[key]) {
           o[key] = {}
         }
@@ -434,8 +438,9 @@ export class DefaultRenderer implements ListrRenderer {
 
         this.bottomBar[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
         o[key].data = this.bottomBar[key].data
+
         return o
-      }, {} as Record<PropertyKey, { data?: string[], items?: number } | undefined>)
+      }, {})
 
       return Object.values(this.bottomBar)
         .reduce((o, value) => o = [ ...o, ...value.data ], [])
@@ -452,15 +457,21 @@ export class DefaultRenderer implements ListrRenderer {
 
   private dumpData (task: Task<ListrContext, typeof DefaultRenderer>, level: number, source: 'output' | 'skip' | 'error' = 'output'): string {
     let data: string | boolean
+
     switch (source) {
     case 'output':
       data = task.output
+
       break
+
     case 'skip':
       data = task.message.skip
+
       break
+
     case 'error':
       data = task.message.error
+
       break
     }
 
@@ -484,6 +495,7 @@ export class DefaultRenderer implements ListrRenderer {
     let parsedStr: string[]
 
     let columns = process.stdout.columns ? process.stdout.columns : 80
+
     columns = columns - level * this.options.indentation - 2
 
     switch (this.options.formatOutput) {
@@ -491,12 +503,14 @@ export class DefaultRenderer implements ListrRenderer {
       parsedStr = str.split(EOL).map((s, i) => {
         return cliTruncate(this.indentMultilineOutput(s, i), columns)
       })
+
       break
 
     case 'wrap':
       parsedStr = cliWrap(str, columns, { hard: true })
         .split(EOL)
         .map((s, i) => this.indentMultilineOutput(s, i))
+
       break
 
     default:

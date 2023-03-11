@@ -1,68 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`show subtasks should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-err 1`] = `Array []`;
+exports[`show subtasks should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-err 1`] = `[]`;
 
-exports[`show subtasks should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-exit 1`] = `Array []`;
+exports[`show subtasks should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-exit 1`] = `[]`;
 
 exports[`show subtasks should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-out 1`] = `
-Array [
-  Array [
+[
+  [
     "◼ This task will execute.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[G❯ This task will execute.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[G❯ This task will execute.
   ◼ This is a subtask.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[1A[2K[G❯ This task will execute.
   ◼ This is a subtask.
   ◼ This is a subtask.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
   ❯ This is a subtask.
   ◼ This is a subtask.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ❯ This is a subtask.
   ◼ This is a subtask.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ✔ This is a subtask.
   ◼ This is a subtask.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ✔ This is a subtask.
   ❯ This is a subtask.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ✔ This is a subtask.
   ✔ This is a subtask.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[1A[2K[1A[2K[G✔ Title changed from subtask.
 ",
   ],
-  Array [
+  [
     "[2K[1A[2K[G",
   ],
-  Array [
+  [
     "✔ Title changed from subtask.
 ",
   ],

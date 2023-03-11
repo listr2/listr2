@@ -4,11 +4,11 @@
 
 Default loglevels for the logger
 
-## Enumeration members
+## Enumeration Members
 
 ### SILENT
 
-• **SILENT** = `"SILENT"`
+• **SILENT** = ``"SILENT"``
 
 #### Defined in
 
@@ -18,7 +18,7 @@ ___
 
 ### FAILED
 
-• **FAILED** = `"FAILED"`
+• **FAILED** = ``"FAILED"``
 
 #### Defined in
 
@@ -28,7 +28,7 @@ ___
 
 ### SKIPPED
 
-• **SKIPPED** = `"SKIPPED"`
+• **SKIPPED** = ``"SKIPPED"``
 
 #### Defined in
 
@@ -38,7 +38,7 @@ ___
 
 ### SUCCESS
 
-• **SUCCESS** = `"SUCCESS"`
+• **SUCCESS** = ``"SUCCESS"``
 
 #### Defined in
 
@@ -48,7 +48,7 @@ ___
 
 ### DATA
 
-• **DATA** = `"DATA"`
+• **DATA** = ``"DATA"``
 
 #### Defined in
 
@@ -58,7 +58,7 @@ ___
 
 ### STARTED
 
-• **STARTED** = `"STARTED"`
+• **STARTED** = ``"STARTED"``
 
 #### Defined in
 
@@ -68,7 +68,7 @@ ___
 
 ### TITLE
 
-• **TITLE** = `"TITLE"`
+• **TITLE** = ``"TITLE"``
 
 #### Defined in
 
@@ -78,7 +78,7 @@ ___
 
 ### RETRY
 
-• **RETRY** = `"RETRY"`
+• **RETRY** = ``"RETRY"``
 
 #### Defined in
 
@@ -88,7 +88,7 @@ ___
 
 ### ROLLBACK
 
-• **ROLLBACK** = `"ROLLBACK"`
+• **ROLLBACK** = ``"ROLLBACK"``
 
 #### Defined in
 

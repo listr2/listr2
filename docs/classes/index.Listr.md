@@ -8,34 +8,9 @@ Creates a new set of Listr2 task list.
 
 | Name | Type |
 | :------ | :------ |
-| `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)[`ListrDefaultRendererValue`](../types/index.ListrDefaultRendererValue.md) |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)[`ListrFallbackRendererValue`](../types/index.ListrFallbackRendererValue.md) |
-
-## Constructors
-
-### constructor
-
-• **new Listr**<`Ctx`, `Renderer`, `FallbackRenderer`\>(`task`, `options?`)
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `Ctx` | `any` |
-| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"default"`` |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"verbose"`` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
-| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\> |
-
-#### Defined in
-
-src/listr.ts:33
+| `Ctx` | extends [`ListrContext`](../types/index.ListrContext.md) = [`ListrContext`](../types/index.ListrContext.md) |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrDefaultRendererValue`](../types/index.ListrDefaultRendererValue.md) |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = [`ListrFallbackRendererValue`](../types/index.ListrFallbackRendererValue.md) |
 
 ## Properties
 
@@ -45,7 +20,7 @@ src/listr.ts:33
 
 #### Defined in
 
-src/listr.ts:24
+src/listr.ts:28
 
 ___
 
@@ -55,7 +30,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:25
+src/listr.ts:29
 
 ___
 
@@ -65,7 +40,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:26
+src/listr.ts:30
 
 ___
 
@@ -75,7 +50,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:27
+src/listr.ts:31
 
 ___
 
@@ -85,7 +60,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:28
+src/listr.ts:32
 
 ___
 
@@ -95,7 +70,17 @@ ___
 
 #### Defined in
 
-src/listr.ts:29
+src/listr.ts:33
+
+___
+
+### path
+
+• **path**: `string`[] = `[]`
+
+#### Defined in
+
+src/listr.ts:34
 
 ___
 
@@ -105,7 +90,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:30
+src/listr.ts:35
 
 ___
 
@@ -115,7 +100,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:31
+src/listr.ts:36
 
 ___
 
@@ -123,11 +108,55 @@ ___
 
 • **task**: [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[]
 
+#### Defined in
+
+src/listr.ts:39
+
 ___
 
 ### options
 
 • `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
+
+#### Defined in
+
+src/listr.ts:40
+
+___
+
+### parentTask
+
+• `Optional` **parentTask**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, `any`\>
+
+#### Defined in
+
+src/listr.ts:41
+
+## Constructors
+
+### constructor
+
+• **new Listr**<`Ctx`, `Renderer`, `FallbackRenderer`\>(`task`, `options?`, `parentTask?`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | extends `unknown` = `any` |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"default"`` |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"verbose"`` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, [`ListrGetRendererClassFromValue`](../types/index.ListrGetRendererClassFromValue.md)<`Renderer`\>\>[] |
+| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\> |
+| `parentTask?` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, `any`\> |
+
+#### Defined in
+
+src/listr.ts:38
 
 ## Methods
 
@@ -147,7 +176,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:99
+src/listr.ts:112
 
 ___
 
@@ -167,7 +196,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:107
+src/listr.ts:120
 
 ___
 
@@ -187,7 +216,7 @@ ___
 
 #### Defined in
 
-src/listr.ts:147
+src/listr.ts:160
 
 ___
 
@@ -209,4 +238,4 @@ ___
 
 #### Defined in
 
-src/listr.ts:151
+src/listr.ts:164

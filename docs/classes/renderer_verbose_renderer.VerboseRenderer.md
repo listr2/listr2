@@ -2,6 +2,8 @@
 
 [renderer/verbose.renderer](../modules/renderer_verbose_renderer.md).VerboseRenderer
 
+The bones of a listr renderer.
+
 ## Implements
 
 - [`ListrRenderer`](index.ListrRenderer.md)
@@ -14,6 +16,10 @@
 
 designates whether this renderer can output to a non-tty console
 
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[nonTTY](index.ListrRenderer.md#nontty)
+
 #### Defined in
 
 src/renderer/verbose.renderer.ts:10
@@ -22,19 +28,13 @@ ___
 
 ### rendererOptions
 
-▪ `Static` **rendererOptions**: `Object`
+▪ `Static` **rendererOptions**: { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  }
 
 renderer options for the verbose renderer
 
-#### Type declaration
+#### Implementation of
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `useIcons?` | `boolean` | useIcons instead of text for log level  **`default`** false |
-| `logger?` | (...`args`: `any`) => [`Logger`](index.Logger.md) | - |
-| `logEmptyTitle?` | `boolean` | log tasks with empty titles  **`default`** true |
-| `logTitleChange?` | `boolean` | log title changes  **`default`** true |
-| `showTimer?` | `boolean` | show duration for all tasks |
+[ListrRenderer](index.ListrRenderer.md).[rendererOptions](index.ListrRenderer.md#rendereroptions)
 
 #### Defined in
 
@@ -48,9 +48,13 @@ ___
 
 per task options for the verbose renderer
 
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererTaskOptions](index.ListrRenderer.md#renderertaskoptions)
+
 #### Defined in
 
-src/renderer/verbose.renderer.ts:42
+src/renderer/verbose.renderer.ts:49
 
 ___
 
@@ -60,7 +64,7 @@ ___
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:43
+src/renderer/verbose.renderer.ts:50
 
 ___
 
@@ -68,21 +72,19 @@ ___
 
 • **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`VerboseRenderer`](renderer_verbose_renderer.VerboseRenderer.md)\>[]
 
+#### Defined in
+
+src/renderer/verbose.renderer.ts:52
+
 ___
 
 ### options
 
-• **options**: `Object`
+• **options**: { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  }
 
-#### Type declaration
+#### Defined in
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `useIcons?` | `boolean` | useIcons instead of text for log level  **`default`** false |
-| `logger?` | (...`args`: `any`) => [`Logger`](index.Logger.md) | - |
-| `logEmptyTitle?` | `boolean` | log tasks with empty titles  **`default`** true |
-| `logTitleChange?` | `boolean` | log title changes  **`default`** true |
-| `showTimer?` | `boolean` | show duration for all tasks |
+src/renderer/verbose.renderer.ts:52
 
 ## Constructors
 
@@ -92,25 +94,22 @@ ___
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`VerboseRenderer`](renderer_verbose_renderer.VerboseRenderer.md)\>[] | - |
-| `options` | `Object` | - |
-| `options.useIcons?` | `boolean` | useIcons instead of text for log level  **`default`** false |
-| `options.logger?` | (...`args`: `any`) => [`Logger`](index.Logger.md) | - |
-| `options.logEmptyTitle?` | `boolean` | log tasks with empty titles  **`default`** true |
-| `options.logTitleChange?` | `boolean` | log title changes  **`default`** true |
-| `options.showTimer?` | `boolean` | show duration for all tasks |
+| Name | Type |
+| :------ | :------ |
+| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`VerboseRenderer`](renderer_verbose_renderer.VerboseRenderer.md)\>[] |
+| `options` | { `useIcons?`: `boolean` ; `logEmptyTitle?`: `boolean` ; `logTitleChange?`: `boolean` ; `showTimer?`: `boolean`  } & { `logger?`: (...`args`: `any`) => [`Logger`](index.Logger.md) ; `options?`: `any`  } |
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:45
+src/renderer/verbose.renderer.ts:52
 
 ## Methods
 
 ### render
 
 ▸ **render**(): `void`
+
+A function to what to do on render
 
 #### Returns
 
@@ -122,13 +121,15 @@ ListrRenderer.render
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:55
+src/renderer/verbose.renderer.ts:64
 
 ___
 
 ### end
 
 ▸ **end**(): `void`
+
+A function to what to do on end of the render
 
 #### Returns
 
@@ -140,7 +141,7 @@ ListrRenderer.end
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:60
+src/renderer/verbose.renderer.ts:69
 
 ___
 
@@ -160,4 +161,4 @@ ___
 
 #### Defined in
 
-src/renderer/verbose.renderer.ts:63
+src/renderer/verbose.renderer.ts:72

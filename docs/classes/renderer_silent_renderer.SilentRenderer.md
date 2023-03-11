@@ -2,6 +2,8 @@
 
 [renderer/silent.renderer](../modules/renderer_silent_renderer.md).SilentRenderer
 
+The bones of a listr renderer.
+
 ## Implements
 
 - [`ListrRenderer`](index.ListrRenderer.md)
@@ -13,6 +15,10 @@
 ▪ `Static` **nonTTY**: `boolean` = `true`
 
 designates whether this renderer can output to a non-tty console
+
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[nonTTY](index.ListrRenderer.md#nontty)
 
 #### Defined in
 
@@ -26,6 +32,10 @@ ___
 
 renderer options for the silent renderer
 
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererOptions](index.ListrRenderer.md#rendereroptions)
+
 #### Defined in
 
 src/renderer/silent.renderer.ts:9
@@ -38,6 +48,10 @@ ___
 
 per task options for the silent renderer
 
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererTaskOptions](index.ListrRenderer.md#renderertaskoptions)
+
 #### Defined in
 
 src/renderer/silent.renderer.ts:11
@@ -48,11 +62,19 @@ ___
 
 • **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SilentRenderer`](renderer_silent_renderer.SilentRenderer.md)\>[]
 
+#### Defined in
+
+src/renderer/silent.renderer.ts:13
+
 ___
 
 ### options
 
 • **options**: `never`
+
+#### Defined in
+
+src/renderer/silent.renderer.ts:13
 
 ## Constructors
 
@@ -77,6 +99,8 @@ src/renderer/silent.renderer.ts:13
 
 ▸ **render**(): `void`
 
+A function to what to do on render
+
 #### Returns
 
 `void`
@@ -94,6 +118,8 @@ ___
 ### end
 
 ▸ **end**(): `void`
+
+A function to what to do on end of the render
 
 #### Returns
 

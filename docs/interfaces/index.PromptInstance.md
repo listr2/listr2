@@ -20,7 +20,7 @@ Omit.message
 
 #### Defined in
 
-src/utils/prompt.interface.ts:26
+src/utils/prompt.interface.ts:9
 
 ___
 
@@ -34,7 +34,7 @@ Omit.initial
 
 #### Defined in
 
-src/utils/prompt.interface.ts:27
+src/utils/prompt.interface.ts:10
 
 ___
 
@@ -48,7 +48,7 @@ Omit.required
 
 #### Defined in
 
-src/utils/prompt.interface.ts:28
+src/utils/prompt.interface.ts:11
 
 ___
 
@@ -62,7 +62,7 @@ Omit.stdin
 
 #### Defined in
 
-src/utils/prompt.interface.ts:29
+src/utils/prompt.interface.ts:12
 
 ___
 
@@ -76,7 +76,7 @@ Omit.stdout
 
 #### Defined in
 
-src/utils/prompt.interface.ts:30
+src/utils/prompt.interface.ts:13
 
 ___
 
@@ -90,7 +90,7 @@ Omit.header
 
 #### Defined in
 
-src/utils/prompt.interface.ts:31
+src/utils/prompt.interface.ts:14
 
 ___
 
@@ -104,21 +104,25 @@ Omit.footer
 
 #### Defined in
 
-src/utils/prompt.interface.ts:32
+src/utils/prompt.interface.ts:15
 
-## Methods
+___
 
 ### skip
 
-▸ `Optional` **skip**(`value`): `boolean` \| `Promise`<`boolean`\>
+• `Optional` **skip**: (`value`: `any`) => `boolean` \| `Promise`<`boolean`\>
 
-#### Parameters
+#### Type declaration
+
+▸ (`value`): `boolean` \| `Promise`<`boolean`\>
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `value` | `any` |
 
-#### Returns
+##### Returns
 
 `boolean` \| `Promise`<`boolean`\>
 
@@ -128,21 +132,25 @@ Omit.skip
 
 #### Defined in
 
-src/utils/prompt.interface.ts:33
+src/utils/prompt.interface.ts:16
 
 ___
 
 ### format
 
-▸ `Optional` **format**(`value`): `any`
+• `Optional` **format**: (`value`: `any`) => `any`
 
-#### Parameters
+#### Type declaration
+
+▸ (`value`): `any`
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `value` | `any` |
 
-#### Returns
+##### Returns
 
 `any`
 
@@ -152,21 +160,25 @@ Omit.format
 
 #### Defined in
 
-src/utils/prompt.interface.ts:34
+src/utils/prompt.interface.ts:17
 
 ___
 
 ### result
 
-▸ `Optional` **result**(`value`): `any`
+• `Optional` **result**: (`value`: `any`) => `any`
 
-#### Parameters
+#### Type declaration
+
+▸ (`value`): `any`
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `value` | `any` |
 
-#### Returns
+##### Returns
 
 `any`
 
@@ -176,24 +188,28 @@ Omit.result
 
 #### Defined in
 
-src/utils/prompt.interface.ts:35
+src/utils/prompt.interface.ts:18
 
 ___
 
 ### validate
 
-▸ `Optional` **validate**(`value`, `state`): `string` \| `boolean` \| `Promise`<`string` \| `boolean`\> \| `Promise`<`boolean`\> \| `Promise`<`string`\>
+• `Optional` **validate**: (`value`: `any`, `state`: `any`) => `string` \| `boolean` \| `Promise`<`string`\> \| `Promise`<`boolean`\> \| `Promise`<`string` \| `boolean`\>
 
-#### Parameters
+#### Type declaration
+
+▸ (`value`, `state`): `string` \| `boolean` \| `Promise`<`string`\> \| `Promise`<`boolean`\> \| `Promise`<`string` \| `boolean`\>
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `value` | `any` |
 | `state` | `any` |
 
-#### Returns
+##### Returns
 
-`string` \| `boolean` \| `Promise`<`string` \| `boolean`\> \| `Promise`<`boolean`\> \| `Promise`<`string`\>
+`string` \| `boolean` \| `Promise`<`string`\> \| `Promise`<`boolean`\> \| `Promise`<`string` \| `boolean`\>
 
 #### Inherited from
 
@@ -201,38 +217,46 @@ Omit.validate
 
 #### Defined in
 
-src/utils/prompt.interface.ts:36
+src/utils/prompt.interface.ts:19
 
 ___
 
 ### submit
 
-▸ **submit**(): `void`
+• **submit**: () => `void`
 
-#### Returns
+#### Type declaration
+
+▸ (): `void`
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+src/utils/prompt.interface.ts:162
+
+___
+
+### cancel
+
+• **cancel**: (`err?`: `string`) => `void`
+
+#### Type declaration
+
+▸ (`err?`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `err?` | `string` |
+
+##### Returns
 
 `void`
 
 #### Defined in
 
 src/utils/prompt.interface.ts:163
-
-___
-
-### cancel
-
-▸ **cancel**(`err?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `err?` | `string` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-src/utils/prompt.interface.ts:164

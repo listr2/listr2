@@ -1,11 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"],
   "compilerOptions": {
-    "rootDir": "src",
-    "baseUrl": "src",
     "sourceMap": false,
     "incremental": false,
     "noUnusedLocals": true
-  }
+  },
+  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"],
+  "include": ["src/**/*"]
 }

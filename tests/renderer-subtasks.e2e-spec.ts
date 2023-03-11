@@ -33,7 +33,7 @@ describe('show subtasks', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr([
               {
                 title: 'This is a subtask.',
@@ -68,7 +68,7 @@ describe('show subtasks', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr(
               [
                 {
@@ -106,7 +106,7 @@ describe('show subtasks', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr([
               {
                 title: 'This is a subtask.',
@@ -126,7 +126,7 @@ describe('show subtasks', () => {
 
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr(
               [
                 {
@@ -165,7 +165,7 @@ describe('show subtasks', () => {
         [
           {
             title: 'This task will execute and not quit on errors.',
-            task: (ctx, task): Listr =>
+            task: (_, task): Listr =>
               task.newListr(
                 [
                   {
@@ -182,7 +182,7 @@ describe('show subtasks', () => {
                   },
                   {
                     title: 'This is yet an another subtask.',
-                    task: async (ctx, task): Promise<void> => {
+                    task: async (_, task): Promise<void> => {
                       task.title = 'I have succeeded.'
                     }
                   }
@@ -219,7 +219,7 @@ describe('show subtasks', () => {
         [
           {
             title: 'This task will execute.',
-            task: (ctx, task): void => {
+            task: (_, task): void => {
               task.output = 'output'
               task.output = 'some more output'
               task.output = 'even more output'
@@ -232,7 +232,7 @@ describe('show subtasks', () => {
 
           {
             title: 'This task will execute a task without titles.',
-            task: (ctx, task): Listr =>
+            task: (_, task): Listr =>
               task.newListr(
                 [
                   {
@@ -277,7 +277,7 @@ describe('show subtasks', () => {
         [
           {
             title: 'This task will execute.',
-            task: (ctx, task): Listr =>
+            task: (_, task): Listr =>
               task.newListr([
                 {
                   title: 'This is a subtask.',

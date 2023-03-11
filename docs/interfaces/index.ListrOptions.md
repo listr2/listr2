@@ -18,7 +18,7 @@ Options to set the behavior of this base task.
 
 To inject a context through this options wrapper. Context can also be defined in run time.
 
-**`default`** {}
+**`Default`**
 
 #### Defined in
 
@@ -32,7 +32,9 @@ ___
 
 Concurrency sets how many tasks will be run at the same time in parallel.
 
-**`default`** false > Default is to run everything synchronously.
+**`Default`**
+
+false > Default is to run everything synchronously.
 
 `true` will set it to `Infinity`, `false` will set it to synchronous.
 
@@ -50,7 +52,9 @@ ___
 
 Determine the default behavior of exiting on errors.
 
-**`default`** true > exit on any error coming from the tasks.
+**`Default`**
+
+true > exit on any error coming from the tasks.
 
 #### Defined in
 
@@ -67,11 +71,35 @@ Determine the behavior of exiting after rollback actions.
 This is independent of exitOnError, since failure of a rollback can be a more critical operation comparing to
 failing a single task.
 
-**`default`** true > exit after rolling back tasks
+**`Default`**
+
+true > exit after rolling back tasks
 
 #### Defined in
 
 src/interfaces/listr.interface.ts:115
+
+___
+
+### collectErrors
+
+• `Optional` **collectErrors**: ``false`` \| ``"minimal"`` \| ``"full"``
+
+Collects errors to `ListrInstance.errors`
+
+This can take up a lot of memory, so disabling it can fix out-of-memory errors
+
+- 'full' will clone the current context and task in to the error instance
+- 'minimal' will only collect the error message and the location
+- false will collect no errors
+
+**`Default`**
+
+'minimal'
+
+#### Defined in
+
+src/interfaces/listr.interface.ts:127
 
 ___
 
@@ -81,11 +109,13 @@ ___
 
 By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
 
-**`default`** true
+**`Default`**
+
+true
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:121
+src/interfaces/listr.interface.ts:133
 
 ___
 
@@ -95,11 +125,13 @@ ___
 
 Determine the certain condition required to use the non-TTY renderer.
 
-**`default`** null > handled internally
+**`Default`**
+
+null > handled internally
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:127
+src/interfaces/listr.interface.ts:139
 
 ___
 
@@ -109,11 +141,13 @@ ___
 
 Determine the certain condition required to use the silent renderer.
 
-**`default`** null > handled internally
+**`Default`**
+
+null > handled internally
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:133
+src/interfaces/listr.interface.ts:145
 
 ___
 
@@ -123,11 +157,13 @@ ___
 
 Disabling the color, useful for tests and such.
 
-**`default`** false
+**`Default`**
+
+false
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:139
+src/interfaces/listr.interface.ts:151
 
 ___
 
@@ -145,4 +181,4 @@ Inject data directly to TaskWrapper.
 
 #### Defined in
 
-src/interfaces/listr.interface.ts:143
+src/interfaces/listr.interface.ts:155

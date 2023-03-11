@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "../",
@@ -11,6 +11,11 @@
       "@lib/*": ["src/lib/*"],
       "@renderer/*": ["src/renderer/*"],
       "@utils/*": ["src/utils/*"]
+    }
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
     }
   },
   "include": ["../src", "../examples"],

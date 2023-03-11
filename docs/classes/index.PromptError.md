@@ -49,6 +49,10 @@ node_modules/@types/node/globals.d.ts:4
 
 Optional override for formatting stack traces
 
+**`See`**
+
+https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+
 ##### Parameters
 
 | Name | Type |
@@ -94,7 +98,7 @@ Error.name
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:973
+node_modules/typescript/lib/lib.es5.d.ts:1040
 
 ___
 
@@ -108,7 +112,7 @@ Error.message
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:974
+node_modules/typescript/lib/lib.es5.d.ts:1041
 
 ___
 
@@ -122,7 +126,7 @@ Error.stack
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:975
+node_modules/typescript/lib/lib.es5.d.ts:1042
 
 ## Constructors
 
@@ -142,4 +146,4 @@ Error.constructor
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:33
+src/interfaces/listr-error.interface.ts:46

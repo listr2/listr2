@@ -1,6 +1,6 @@
 import delay from 'delay'
 
-import { ListrTask } from '@interfaces/listr.interface'
+import type { ListrTask } from '@interfaces/listr.interface'
 import { Listr } from '@root/index'
 
 describe('skip a task', () => {
@@ -46,6 +46,7 @@ describe('skip a task', () => {
         ...task,
         title: 'sub' + task.title
       }
+
       return [ ...o, subtask ]
     }, [])
   })
@@ -67,59 +68,59 @@ describe('skip a task', () => {
     ).run()
 
     expect(log.mock.calls).toMatchInlineSnapshot(`
-      Array [
-        Array [
+      [
+        [
           "[STARTED] 1",
         ],
-        Array [
+        [
           "[STARTED] 2",
         ],
-        Array [
+        [
           "[STARTED] 3",
         ],
-        Array [
+        [
           "[STARTED] 4",
         ],
-        Array [
+        [
           "[STARTED] subtask",
         ],
-        Array [
+        [
           "[STARTED] sub1",
         ],
-        Array [
+        [
           "[SUCCESS] 4",
         ],
-        Array [
+        [
           "[SUCCESS] 3",
         ],
-        Array [
+        [
           "[SUCCESS] 2",
         ],
-        Array [
+        [
           "[SUCCESS] 1",
         ],
-        Array [
+        [
           "[SUCCESS] sub1",
         ],
-        Array [
+        [
           "[STARTED] sub2",
         ],
-        Array [
+        [
           "[SUCCESS] sub2",
         ],
-        Array [
+        [
           "[STARTED] sub3",
         ],
-        Array [
+        [
           "[SUCCESS] sub3",
         ],
-        Array [
+        [
           "[STARTED] sub4",
         ],
-        Array [
+        [
           "[SUCCESS] sub4",
         ],
-        Array [
+        [
           "[SUCCESS] subtask",
         ],
       ]
@@ -139,59 +140,59 @@ describe('skip a task', () => {
     ).run()
 
     expect(log.mock.calls).toMatchInlineSnapshot(`
-          Array [
-            Array [
+          [
+            [
               "[STARTED] 1",
             ],
-            Array [
+            [
               "[SUCCESS] 1",
             ],
-            Array [
+            [
               "[STARTED] 2",
             ],
-            Array [
+            [
               "[SUCCESS] 2",
             ],
-            Array [
+            [
               "[STARTED] 3",
             ],
-            Array [
+            [
               "[SUCCESS] 3",
             ],
-            Array [
+            [
               "[STARTED] 4",
             ],
-            Array [
+            [
               "[SUCCESS] 4",
             ],
-            Array [
+            [
               "[STARTED] subtask",
             ],
-            Array [
+            [
               "[STARTED] sub1",
             ],
-            Array [
+            [
               "[STARTED] sub2",
             ],
-            Array [
+            [
               "[STARTED] sub3",
             ],
-            Array [
+            [
               "[STARTED] sub4",
             ],
-            Array [
+            [
               "[SUCCESS] sub4",
             ],
-            Array [
+            [
               "[SUCCESS] sub3",
             ],
-            Array [
+            [
               "[SUCCESS] sub2",
             ],
-            Array [
+            [
               "[SUCCESS] sub1",
             ],
-            Array [
+            [
               "[SUCCESS] subtask",
             ],
           ]

@@ -54,8 +54,6 @@ ___
 
 • **render**: () => `void`
 
-A function to what to do on render
-
 #### Type declaration
 
 ▸ (): `void`
@@ -75,8 +73,6 @@ ___
 ### end
 
 • **end**: (`err?`: `Error`) => `void`
-
-A function to what to do on end of the render
 
 #### Type declaration
 

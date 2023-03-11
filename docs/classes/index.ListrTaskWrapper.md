@@ -2,7 +2,7 @@
 
 [index](../modules/index.md).ListrTaskWrapper
 
-Extend the task to have more functionality while accesing from the outside.
+Extend the task to have more functionality while accessing from the outside.
 
 ## Type parameters
 
@@ -42,11 +42,19 @@ src/lib/task-wrapper.ts:18
 
 • **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
 
+#### Defined in
+
+src/lib/task-wrapper.ts:18
+
 ___
 
 ### errors
 
 • **errors**: [`ListrError`](index.ListrError.md)<`Ctx`\>[]
+
+#### Defined in
+
+src/lib/task-wrapper.ts:18
 
 ## Accessors
 
@@ -62,7 +70,7 @@ Get the title of the current task.
 
 #### Defined in
 
-src/lib/task-wrapper.ts:26
+src/lib/task-wrapper.ts:21
 
 • `set` **title**(`data`): `void`
 
@@ -80,7 +88,7 @@ Change the title of the current task.
 
 #### Defined in
 
-src/lib/task-wrapper.ts:21
+src/lib/task-wrapper.ts:26
 
 ___
 
@@ -96,7 +104,7 @@ Get the output from the output channel.
 
 #### Defined in
 
-src/lib/task-wrapper.ts:36
+src/lib/task-wrapper.ts:31
 
 • `set` **output**(`data`): `void`
 
@@ -114,26 +122,32 @@ Send a output to the output channel.
 
 #### Defined in
 
-src/lib/task-wrapper.ts:31
+src/lib/task-wrapper.ts:36
 
 ## Methods
 
 ### newListr
 
-▸ **newListr**(`task`, `options?`): [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>
+▸ **newListr**<`NewCtx`\>(`task`, `options?`): [`Listr`](index.Listr.md)<`NewCtx`, `any`, `any`\>
 
 Create a new subtask with given renderer selection from the parent task.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `NewCtx` | `Ctx` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `Renderer`\>[] \| (`parent`: `Omit`<[`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>, ``"skip"`` \| ``"enabled"``\>) => [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `Renderer`\>[] |
-| `options?` | [`ListrSubClassOptions`](../types/index.ListrSubClassOptions.md)<`Ctx`, `Renderer`\> |
+| `task` | [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\>[] \| (`parent`: `Omit`<[`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>, ``"skip"`` \| ``"enabled"``\>) => [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\> \| [`ListrTask`](../interfaces/index.ListrTask.md)<`NewCtx`, `Renderer`\>[] |
+| `options?` | [`ListrSubClassOptions`](../types/index.ListrSubClassOptions.md)<`NewCtx`, `Renderer`\> |
 
 #### Returns
 
-[`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>
+[`Listr`](index.Listr.md)<`NewCtx`, `any`, `any`\>
 
 #### Defined in
 
@@ -182,7 +196,7 @@ Skip current task.
 
 #### Defined in
 
-src/lib/task-wrapper.ts:64
+src/lib/task-wrapper.ts:66
 
 ___
 
@@ -203,7 +217,7 @@ Get the number of retrying, else returns false
 
 #### Defined in
 
-src/lib/task-wrapper.ts:73
+src/lib/task-wrapper.ts:75
 
 ___
 
@@ -233,7 +247,7 @@ Since process.stdout is controlled by Listr, this will passthrough all Enquirer 
 
 #### Defined in
 
-src/lib/task-wrapper.ts:82
+src/lib/task-wrapper.ts:84
 
 ___
 
@@ -255,7 +269,7 @@ Cancels the current prompt attach to this task.
 
 #### Defined in
 
-src/lib/task-wrapper.ts:87
+src/lib/task-wrapper.ts:89
 
 ___
 
@@ -266,7 +280,7 @@ ___
 Pass stream of data to internal stdout.
 
 Since Listr2 takes control of process.stdout utilizing the default renderer, any data outputted to process.stdout
-will corupt its looks.
+will corrupt its looks.
 
 This returns a fake stream to pass any stream inside Listr as task data.
 
@@ -276,7 +290,7 @@ This returns a fake stream to pass any stream inside Listr as task data.
 
 #### Defined in
 
-src/lib/task-wrapper.ts:99
+src/lib/task-wrapper.ts:101
 
 ___
 
@@ -298,4 +312,4 @@ Run this task.
 
 #### Defined in
 
-src/lib/task-wrapper.ts:113
+src/lib/task-wrapper.ts:115

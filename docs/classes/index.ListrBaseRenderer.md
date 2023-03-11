@@ -14,6 +14,12 @@ Exported for javascript applications to extend the base renderer
 
 ▪ `Static` **rendererOptions**: `Record`<`PropertyKey`, `any`\>
 
+designate renderer global options that is specific to the current renderer
+
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererOptions](index.ListrRenderer.md#rendereroptions)
+
 #### Defined in
 
 src/interfaces/renderer.interface.ts:129
@@ -24,6 +30,12 @@ ___
 
 ▪ `Static` **rendererTaskOptions**: `Record`<`PropertyKey`, `any`\>
 
+designate renderer per task options that is specific to the current renderer
+
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererTaskOptions](index.ListrRenderer.md#renderertaskoptions)
+
 #### Defined in
 
 src/interfaces/renderer.interface.ts:130
@@ -33,6 +45,12 @@ ___
 ### nonTTY
 
 ▪ `Static` **nonTTY**: `boolean`
+
+designate whether this renderer can work in non-tty environments
+
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[nonTTY](index.ListrRenderer.md#nontty)
 
 #### Defined in
 
@@ -74,7 +92,7 @@ ___
 
 #### Implementation of
 
-ListrRenderer.render
+[ListrRenderer](index.ListrRenderer.md).[render](index.ListrRenderer.md#render)
 
 #### Defined in
 
@@ -102,7 +120,7 @@ ___
 
 #### Implementation of
 
-ListrRenderer.end
+[ListrRenderer](index.ListrRenderer.md).[end](index.ListrRenderer.md#end)
 
 #### Defined in
 

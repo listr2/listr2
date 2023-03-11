@@ -38,6 +38,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -68,6 +69,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -100,6 +102,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -128,6 +131,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -179,6 +183,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -199,11 +204,13 @@ async function main (): Promise<void> {
             delay(500)
               .then(() => {
                 observer.next('changed')
+
                 return delay(500)
               })
               .then(() => {
                 observer.complete()
               })
+              .catch(() => {})
           })
       }
     ],
@@ -212,6 +219,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -228,6 +236,7 @@ async function main (): Promise<void> {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
+
           task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
           await delay(500)
         },
@@ -239,6 +248,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -254,6 +264,7 @@ async function main (): Promise<void> {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
+
           task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
           await delay(500)
         },
@@ -265,6 +276,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -280,6 +292,7 @@ async function main (): Promise<void> {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
+
           task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
           await delay(500)
         },
@@ -291,6 +304,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -306,6 +320,7 @@ async function main (): Promise<void> {
           const start = 'This is a'
           const mid = 'long '
           const end = 'multi line output.'
+
           task.output = start + mid.repeat(100) + '\n' + '\n' + '\n' + mid.repeat(100) + end
           await delay(500)
         },
@@ -317,6 +332,7 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
@@ -344,10 +360,11 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
   }
 }
 
-main()
+void main()

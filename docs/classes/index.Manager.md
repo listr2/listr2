@@ -4,45 +4,21 @@
 
 Creates a new Listr2 task manager.
 
-Useful for creating a single instace of Listr2 with pre-set settings.
+Useful for creating a single instance of Listr2 with pre-set settings.
 
 ## Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"default"`` |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"verbose"`` |
-
-## Constructors
-
-### constructor
-
-• **new Manager**<`Ctx`, `Renderer`, `FallbackRenderer`\>(`options?`)
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `Ctx` | `any` |
-| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"default"`` |
-| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)``"verbose"`` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\> |
-
-#### Defined in
-
-src/manager.ts:15
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"default"`` |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"verbose"`` |
 
 ## Properties
 
 ### err
 
-• **err**: [`ListrError`](index.ListrError.md)<`Record`<`PropertyKey`, `any`\>\>[] = `[]`
+• **err**: [`ListrError`](index.ListrError.md)<`any`\>[] = `[]`
 
 #### Defined in
 
@@ -63,6 +39,34 @@ ___
 ### options
 
 • `Optional` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\>
+
+#### Defined in
+
+src/manager.ts:15
+
+## Constructors
+
+### constructor
+
+• **new Manager**<`Ctx`, `Renderer`, `FallbackRenderer`\>(`options?`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | `any` |
+| `Renderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"default"`` |
+| `FallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = ``"verbose"`` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options?` | [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `Renderer`, `FallbackRenderer`\> |
+
+#### Defined in
+
+src/manager.ts:15
 
 ## Accessors
 
@@ -148,8 +152,8 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `InjectCtx` | `InjectCtx` |
-| `InjectRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)`Renderer` |
-| `InjectFallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md)`FallbackRenderer` |
+| `InjectRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = `Renderer` |
+| `InjectFallbackRenderer` | extends [`ListrRendererValue`](../types/index.ListrRendererValue.md) = `FallbackRenderer` |
 
 #### Parameters
 
@@ -219,7 +223,7 @@ ___
 
 #### Defined in
 
-src/manager.ts:72
+src/manager.ts:73
 
 ___
 
@@ -239,4 +243,4 @@ ___
 
 #### Defined in
 
-src/manager.ts:91
+src/manager.ts:92

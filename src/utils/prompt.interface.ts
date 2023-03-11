@@ -1,26 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import * as Enquirer from 'enquirer'
-import { WriteStream } from 'fs'
-import { Writable } from 'stream'
+import type Enquirer from 'enquirer'
+import type { WriteStream } from 'fs'
+import type { Writable } from 'stream'
 
-import { PromptError } from '@interfaces/listr-error.interface'
-
-/** Returns all the prompt options depending on the type selected. */
-export type PromptOptions<T extends boolean = false> =
-  | Unionize<
-  {
-    [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
-  }
-  >
-  | ({
-    type: string
-  } & T extends true
-    ? PromptOptionsType<string> & { name: string | (() => string) }
-    : PromptOptionsType<string>)
-
-export type Unionize<T extends Record<PropertyKey, unknown>> = {
-  [P in keyof T]: T[P]
-}[keyof T]
+import type { PromptError } from '@interfaces/listr-error.interface'
 
 interface BasePromptOptions {
   message: string | (() => string) | (() => Promise<string>)
@@ -30,12 +13,12 @@ interface BasePromptOptions {
   stdout?: NodeJS.WriteStream
   header?: string
   footer?: string
-  skip?(value: any): boolean | Promise<boolean>
-  format?(value: any): any | Promise<any>
-  result?(value: any): any | Promise<any>
-  validate?(value: any, state: any): boolean | Promise<boolean> | string | Promise<string> | Promise<string | boolean>
-  onSubmit?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
-  onCancel?(name: any, value: any, prompt: Enquirer.Prompt): boolean | Promise<boolean>
+  skip?: (value: any) => boolean | Promise<boolean>
+  format?: (value: any) => any | Promise<any>
+  result?: (value: any) => any | Promise<any>
+  validate?: (value: any, state: any) => boolean | Promise<boolean> | string | Promise<string> | Promise<string | boolean>
+  onSubmit?: (name: any, value: any, prompt: Enquirer.Prompt) => boolean | Promise<boolean>
+  onCancel?: (name: any, value: any, prompt: Enquirer.Prompt) => boolean | Promise<boolean>
 }
 
 interface BasePromptOptionsWithName extends BasePromptOptions {
@@ -54,6 +37,7 @@ interface ArrayPromptOptions extends BasePromptOptions {
   edgeLength?: number
   align?: 'left' | 'right'
   scroll?: boolean
+  hint?: string
 }
 
 interface BooleanPromptOptions extends BasePromptOptions {
@@ -106,6 +90,21 @@ interface TogglePromptOptions extends BasePromptOptions {
   enabled?: string
   disabled?: string
 }
+
+/** Returns all the prompt options depending on the type selected. */
+export type PromptOptions<T extends boolean = false> =
+  | Unionize<{
+    [K in PromptTypes]-?: T extends true ? { type: K } & PromptOptionsType<K> & { name: string | (() => string) } : { type: K } & PromptOptionsType<K>
+  }>
+  | ({
+    type: string
+  } & T extends true
+    ? PromptOptionsType<string> & { name: string | (() => string) }
+    : PromptOptionsType<string>)
+
+export type Unionize<T extends Record<PropertyKey, unknown>> = {
+  [P in keyof T]: T[P]
+}[keyof T]
 
 export type PromptTypes =
   | 'AutoComplete'
@@ -160,6 +159,6 @@ export interface PromptSettings {
 }
 
 export interface PromptInstance extends Omit<BasePromptOptions, 'onCancel' | 'onSubmit'> {
-  submit(): void
-  cancel(err?: string): void
+  submit: () => void
+  cancel: (err?: string) => void
 }

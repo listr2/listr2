@@ -5,8 +5,8 @@ import { Subject } from 'rxjs'
 import { SimpleRenderer } from './simple.renderer'
 import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
-import { ListrContext, ListrEvent } from '@interfaces/listr.interface'
-import { ListrTaskWrapper } from '@interfaces/task.interface'
+import type { ListrContext, ListrEvent } from '@interfaces/listr.interface'
+import type { ListrTaskWrapper } from '@interfaces/task.interface'
 
 jest.mock('log-update')
 
@@ -73,6 +73,7 @@ describe('SimpleRenderer', () => {
       const spy = jest.spyOn(process.stdout, 'write').mockImplementation()
 
       const renderer = new SimpleRenderer([], { prefixWithTimestamp: true })
+
       SimpleRenderer.now = nowMock
 
       renderer.log('the foo\n')
@@ -88,6 +89,7 @@ describe('SimpleRenderer', () => {
       const taskMock = getListrObject()
 
       const renderer = new SimpleRenderer([ taskMock as any ], {})
+
       renderer.eventTypeRendererMap[ListrTaskEventType.ENABLED] = jest.fn()
       renderer.render()
 
@@ -102,11 +104,13 @@ describe('SimpleRenderer', () => {
     it('should handle missing handler', () => {
       const taskMock = getListrObject()
       let renderHandler: (value: ListrEvent) => void
+
       taskMock.subscribe = jest.fn((handler) => {
         renderHandler = handler
       }) as any
 
       const renderer = new SimpleRenderer([ taskMock as any ], {})
+
       delete renderer.eventTypeRendererMap[ListrTaskEventType.ENABLED]
       renderer.render()
 
@@ -117,6 +121,7 @@ describe('SimpleRenderer', () => {
       const taskMock = getListrObject()
 
       const renderer = new SimpleRenderer([ taskMock as any ], {})
+
       renderer.log = jest.fn()
       renderer.render()
 
@@ -134,6 +139,7 @@ describe('SimpleRenderer', () => {
 
   describe('eventTypeRendererMap.SUBTASK', () => {
     const renderer = new SimpleRenderer([], {})
+
     renderer.log = jest.fn()
     const event: ListrEvent = { type: ListrTaskEventType.SUBTASK }
 
@@ -147,6 +153,7 @@ describe('SimpleRenderer', () => {
 
     it('should render title', () => {
       const taskMock = getListrObject()
+
       taskMock.hasTitle.mockReturnValue(true)
 
       renderer.eventTypeRendererMap[event.type]?.(taskMock as any, event)
@@ -175,11 +182,13 @@ describe('SimpleRenderer', () => {
 
   describe('eventTypeRendererMap.STATE', () => {
     const renderer = new SimpleRenderer([], {})
+
     renderer.log = jest.fn()
     const event: ListrEvent = { type: ListrTaskEventType.STATE }
 
     it('should not render if pending', () => {
       const taskMock = getListrObject()
+
       taskMock.hasTitle.mockReturnValue(true)
       taskMock.isPending.mockReturnValue(true)
 
@@ -190,6 +199,7 @@ describe('SimpleRenderer', () => {
 
     it('should render if complete', () => {
       const taskMock = getListrObject()
+
       taskMock.hasTitle.mockReturnValue(true)
       taskMock.isCompleted.mockReturnValue(true)
 
@@ -201,11 +211,13 @@ describe('SimpleRenderer', () => {
 
   describe('eventTypeRendererMap.DATA', () => {
     const renderer = new SimpleRenderer([], {})
+
     renderer.log = jest.fn()
     const event: ListrEvent = { type: ListrTaskEventType.DATA, data: 'the data' }
 
     it('should not render if prompt and newLine', () => {
       const taskMock = getListrObject()
+
       taskMock.isPrompt.mockReturnValue(true)
 
       event.data = EOL
@@ -217,6 +229,7 @@ describe('SimpleRenderer', () => {
 
     it('should render updating', () => {
       const taskMock = getListrObject()
+
       taskMock.isPrompt.mockReturnValue(true)
 
       event.data = 'the prompt'
@@ -228,6 +241,7 @@ describe('SimpleRenderer', () => {
 
     it('should render non updating', () => {
       const taskMock = getListrObject()
+
       taskMock.isPrompt.mockReturnValue(false)
 
       event.data = 'the data'
@@ -240,6 +254,7 @@ describe('SimpleRenderer', () => {
 
   describe('eventTypeRendererMap.Message', () => {
     const renderer = new SimpleRenderer([], {})
+
     renderer.log = jest.fn()
     const event: ListrEvent = { type: ListrTaskEventType.MESSAGE, data: {} }
 

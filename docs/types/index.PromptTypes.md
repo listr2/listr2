@@ -6,4 +6,4 @@
 
 #### Defined in
 
-src/utils/prompt.interface.ts:110
+src/utils/prompt.interface.ts:109

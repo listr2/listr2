@@ -10,6 +10,30 @@
 
 #### Defined in
 
+src/utils/prompt.interface.ts:155
+
+___
+
+### cancelCallback
+
+• `Optional` **cancelCallback**: (`settings?`: [`PromptSettings`](index.PromptSettings.md)) => `string` \| `void` \| `Error` \| [`PromptError`](../classes/index.PromptError.md)
+
+#### Type declaration
+
+▸ (`settings?`): `string` \| `void` \| `Error` \| [`PromptError`](../classes/index.PromptError.md)
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `settings?` | [`PromptSettings`](index.PromptSettings.md) |
+
+##### Returns
+
+`string` \| `void` \| `Error` \| [`PromptError`](../classes/index.PromptError.md)
+
+#### Defined in
+
 src/utils/prompt.interface.ts:156
 
 ___
@@ -20,7 +44,7 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:158
+src/utils/prompt.interface.ts:157
 
 ___
 
@@ -30,24 +54,4 @@ ___
 
 #### Defined in
 
-src/utils/prompt.interface.ts:159
-
-## Methods
-
-### cancelCallback
-
-▸ `Optional` **cancelCallback**(`settings?`): `string` \| `void` \| `Error` \| [`PromptError`](../classes/index.PromptError.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `settings?` | [`PromptSettings`](index.PromptSettings.md) |
-
-#### Returns
-
-`string` \| `void` \| `Error` \| [`PromptError`](../classes/index.PromptError.md)
-
-#### Defined in
-
-src/utils/prompt.interface.ts:157
+src/utils/prompt.interface.ts:158

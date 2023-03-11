@@ -2,14 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node",
       "name": "attach",
       "port": 9229,
       "request": "attach",
       "skipFiles": ["<node_internals>/**"],
-      "localRoot": "${workspaceFolder}}",
-      "remoteRoot": "/data/app",
-      "sourceMaps": true,
-      "type": "pwa-node"
+      "localRoot": "${workspaceFolder}",
+      "sourceMaps": true
     }
   ]
 }

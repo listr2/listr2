@@ -1,10 +1,22 @@
-import type * as Enquirer from 'enquirer'
+import type Enquirer from 'enquirer'
 
-import { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
+import type { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
 import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { PromptError } from '@interfaces/listr-error.interface'
 import { TaskWrapper } from '@lib/task-wrapper'
+
+function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
+  const errorMsg = 'Cancelled prompt.'
+
+  if (this instanceof TaskWrapper) {
+    this.task.prompt = new PromptError(errorMsg)
+  } /* istanbul ignore next */ else if (settings?.error !== false) {
+    throw new Error(errorMsg)
+  } /* istanbul ignore next */ else {
+    return errorMsg
+  }
+}
 
 /**
  * Create a new prompt with Enquirer externally.
@@ -47,12 +59,16 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
   }, [])
 
   let enquirer: Enquirer
+
   if (settings?.enquirer) {
     // injected enquirer
     enquirer = settings.enquirer
   } else {
     try {
-      enquirer = new (await import('enquirer'))()
+      const imported = await import('enquirer')
+
+      // should fix the import problem for esm since there is no default imports there
+      enquirer = imported.default ? new imported.default() : new (imported as unknown as new () => Enquirer)()
     } /* istanbul ignore next */ catch (e: any) {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
 
@@ -98,17 +114,5 @@ export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false):
     this.task.prompt.cancel()
   } else {
     this.task.prompt.submit()
-  }
-}
-
-function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
-  const errorMsg = 'Cancelled prompt.'
-
-  if (this instanceof TaskWrapper) {
-    this.task.prompt = new PromptError(errorMsg)
-  } /* istanbul ignore next */ else if (settings?.error !== false) {
-    throw new Error(errorMsg)
-  } /* istanbul ignore next */ else {
-    return errorMsg
   }
 }

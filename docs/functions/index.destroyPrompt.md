@@ -2,13 +2,14 @@
 
 [index](../modules/index.md).destroyPrompt
 
-▸ **destroyPrompt**(`throwError`): `void`
+▸ **destroyPrompt**(`this`, `throwError?`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `throwError` | `boolean` |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `this` | [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`any`, `any`\> | `undefined` |
+| `throwError` | `boolean` | `false` |
 
 #### Returns
 
@@ -16,4 +17,4 @@
 
 #### Defined in
 
-src/utils/prompt.ts:91
+src/utils/prompt.ts:107

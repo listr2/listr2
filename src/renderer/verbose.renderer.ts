@@ -1,9 +1,9 @@
 import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
-import { ListrRenderer } from '@interfaces/renderer.interface'
-import { Task } from '@lib/task'
-import { ListrEventMap } from '@root/interfaces/event-map.interface'
-import { EventManager } from '@root/utils/task-event-manager'
+import type { ListrRenderer } from '@interfaces/renderer.interface'
+import type { Task } from '@lib/task'
+import type { ListrEventMap } from '@root/interfaces/event-map.interface'
+import type { EventManager } from '@root/utils/task-event-manager'
 import { Logger } from '@utils/logger'
 import { parseTaskTime } from '@utils/parse-time'
 
@@ -11,42 +11,49 @@ export class VerboseRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
   /** renderer options for the verbose renderer */
-  public static rendererOptions: {
+  public static rendererOptions:
+  | {
     /**
-     * useIcons instead of text for log level
-     * @default false
-     */
+         * useIcons instead of text for log level
+         * @default false
+         */
     useIcons?: boolean
     /**
-     * inject a custom loger
-     */
-    logger?: new (...args: any) => Logger
-    /**
-     * log tasks with empty titles
-     * @default true
-     */
+         * log tasks with empty titles
+         * @default true
+         */
     logEmptyTitle?: boolean
     /**
-     * log title changes
-     * @default true
-     */
+         * log title changes
+         * @default true
+         */
     logTitleChange?: boolean
     /**
-     * show duration for all tasks
-     */
+         * show duration for all tasks
+         */
     showTimer?: boolean
+  } & {
+    /**
+         * inject a custom logger
+         */
+    logger?: new (...args: any) => Logger
+
+    /**
+         * inject options to custom logger
+         */
+    options?: any
   } = {
-    useIcons: false,
-    logEmptyTitle: true,
-    logTitleChange: true
-  }
+      useIcons: false,
+      logEmptyTitle: true,
+      logTitleChange: true
+    }
   /** per task options for the verbose renderer */
   public static rendererTaskOptions: never
   private logger: Logger
 
   constructor (
     public tasks: Task<any, typeof VerboseRenderer>[],
-    public options: typeof VerboseRenderer['rendererOptions'],
+    public options: (typeof VerboseRenderer)['rendererOptions'],
     public events: EventManager<ListrEventType, ListrEventMap>
   ) {
     if (!this.options?.logger) {
@@ -80,6 +87,7 @@ export class VerboseRenderer implements ListrRenderer {
             this.logger.start(title)
 
             break
+
           case ListrTaskState.COMPLETED:
             this.logger.success(title + (this.options?.showTimer && task.message?.duration ? ` [${parseTaskTime(task.message.duration)}]` : ''))
 

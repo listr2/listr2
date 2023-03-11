@@ -5,6 +5,10 @@ export function isUnicodeSupported (): boolean {
 
   /* istanbul ignore next */
   return (
-    Boolean(process.env.CI) || Boolean(process.env.WT_SESSION) || process.env.TERM_PROGRAM === 'vscode' || process.env.TERM === 'xterm-256color' || process.env.TERM === 'alacritty'
+    Boolean(process.env.CI) ||
+    Boolean(process.env.WT_SESSION) ||
+    process.env.TERM_PROGRAM === 'vscode' ||
+    process.env.TERM === 'xterm-256color' ||
+    process.env.TERM === 'alacritty'
   )
 }

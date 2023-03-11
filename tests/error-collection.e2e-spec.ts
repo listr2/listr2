@@ -1,6 +1,7 @@
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
 import { ListrErrorTypes } from '@interfaces/listr-error.interface'
+import type { ListrOptions } from '@root/index'
 import { Listr } from '@root/index'
 
 describe('error collection', () => {
@@ -25,6 +26,12 @@ describe('error collection', () => {
     jest.clearAllMocks()
   })
 
+  it('should have the default behavior of minimal', async () => {
+    const task = new Listr([])
+
+    expect(task.options.collectErrors).toBe('minimal')
+  })
+
   it('should collect only the first error while exiting on error', async () => {
     const task = new Listr(
       [
@@ -39,12 +46,18 @@ describe('error collection', () => {
           }
         }
       ],
-      { renderer: 'silent', exitOnError: true }
+      {
+        renderer: 'silent',
+        exitOnError: true,
+        collectErrors: 'minimal'
+      }
     )
 
     let result: any
     let crash: Error
+
     try {
+      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -54,6 +67,101 @@ describe('error collection', () => {
     expect(crash).toBeTruthy()
     expect(task.err.length).toBe(1)
     expect(task.err[0]).toMatchObject({ message: '1', type: ListrErrorTypes.HAS_FAILED })
+  })
+
+  it('should collect error path', async () => {
+    const task = new Listr(
+      [
+        {
+          title: 'test',
+          task: (): void => {
+            throw new Error('1')
+          }
+        },
+        {
+          task: (): void => {
+            throw new Error('2')
+          }
+        }
+      ],
+      {
+        renderer: 'silent',
+        exitOnError: true,
+        collectErrors: 'minimal'
+      }
+    )
+
+    let result: any
+    let crash: Error
+
+    try {
+      // eslint-disable-next-line prefer-const
+      result = await task.run()
+    } catch (e: any) {
+      crash = e
+    }
+
+    expect(result).toBeFalsy()
+    expect(crash).toBeTruthy()
+    expect(task.err.length).toBe(1)
+    expect(task.err[0]).toMatchObject({
+      message: '1',
+      type: ListrErrorTypes.HAS_FAILED,
+      path: 'test'
+    })
+  })
+
+  it('should collect error path from subtasks', async () => {
+    const task = new Listr(
+      [
+        {
+          title: 'test',
+          task: (_, task): Listr =>
+            task.newListr([
+              {
+                title: 'subtask',
+                task: (): void => {
+                  throw new Error('1')
+                }
+              }
+            ])
+        },
+        {
+          task: (): void => {
+            throw new Error('2')
+          }
+        }
+      ],
+      {
+        renderer: 'silent',
+        exitOnError: true,
+        collectErrors: 'minimal'
+      }
+    )
+
+    let result: any
+    let crash: Error
+
+    try {
+      // eslint-disable-next-line prefer-const
+      result = await task.run()
+    } catch (e: any) {
+      crash = e
+    }
+
+    expect(result).toBeFalsy()
+    expect(crash).toBeTruthy()
+    expect(task.err.length).toBe(2)
+    expect(task.err[0]).toMatchObject({
+      message: '1',
+      type: ListrErrorTypes.HAS_FAILED,
+      path: 'test > subtask'
+    })
+    expect(task.err[1]).toMatchObject({
+      message: '1',
+      type: ListrErrorTypes.HAS_FAILED,
+      path: 'test'
+    })
   })
 
   it('should collect all the errors while not exiting on error', async () => {
@@ -70,12 +178,18 @@ describe('error collection', () => {
           }
         }
       ],
-      { renderer: 'silent', exitOnError: false }
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors: 'minimal'
+      }
     )
 
     let result: any
     let crash: Error
+
     try {
+      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -84,8 +198,14 @@ describe('error collection', () => {
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
     expect(task.err.length).toBe(2)
-    expect(task.err[0]).toMatchObject({ message: '1', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR })
-    expect(task.err[1]).toMatchObject({ message: '2', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR })
+    expect(task.err[0]).toMatchObject({
+      message: '1',
+      type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR
+    })
+    expect(task.err[1]).toMatchObject({
+      message: '2',
+      type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR
+    })
     expect(task.err[0].task).toBeDefined()
     expect(task.err[1].task).toBeDefined()
   })
@@ -102,12 +222,18 @@ describe('error collection', () => {
           }
         }
       ],
-      { renderer: 'silent', exitOnError: true }
+      {
+        renderer: 'silent',
+        exitOnError: true,
+        collectErrors: 'full'
+      }
     )
 
     let result: any
     let crash: Error
+
     try {
+      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -120,6 +246,43 @@ describe('error collection', () => {
     expect(task.err.length).toBe(1)
     expect(task.ctx).toStrictEqual(ctx)
     expect(task.err[0]).toMatchObject({ message, ctx })
+  })
+
+  it('should save the context on error while having circular dependencies', async () => {
+    const message = '1'
+    const task = new Listr(
+      [
+        {
+          task: (ctx): void => {
+            ctx.test = true
+            ctx.myself = ctx
+
+            throw new Error(message)
+          }
+        }
+      ],
+      {
+        renderer: 'silent',
+        exitOnError: true,
+        collectErrors: 'full'
+      }
+    )
+
+    let result: any
+    let crash: Error
+
+    try {
+      // eslint-disable-next-line prefer-const
+      result = await task.run()
+    } catch (e: any) {
+      crash = e
+    }
+
+    expect(result).toBeFalsy()
+    expect(crash).toBeTruthy()
+    expect(task.err.length).toBe(1)
+    expect(task.err[0].message).toBe(message)
+    expect(task.err[0].ctx).toMatchObject({ test: true, myself: { test: true } })
   })
 
   it('should collect all the errors from subtasks and fail with subtask error while subtask has exit on error', async () => {
@@ -155,12 +318,18 @@ describe('error collection', () => {
           }
         }
       ],
-      { renderer: 'silent', exitOnError: false }
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors: 'minimal'
+      }
     )
 
     let result: any
     let crash: Error
+
     try {
+      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -207,12 +376,18 @@ describe('error collection', () => {
           }
         }
       ],
-      { renderer: 'silent', exitOnError: false }
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors: 'minimal'
+      }
     )
 
     let result: any
     let crash: Error
+
     try {
+      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -227,7 +402,7 @@ describe('error collection', () => {
     expect(task.err[3]).toMatchObject({ message: '2' })
   })
 
-  it('should properly record the context in the given error', async () => {
+  it.each<ListrOptions['collectErrors']>([ 'minimal', 'full' ])('should properly record the context in the given error with collect errors: %s', async (collectErrors) => {
     const task = new Listr(
       [
         {
@@ -249,12 +424,18 @@ describe('error collection', () => {
           }
         }
       ],
-      { renderer: 'silent', exitOnError: false }
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors
+      }
     )
 
     let result: any
     let crash: Error
+
     try {
+      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -263,13 +444,20 @@ describe('error collection', () => {
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
     expect(task.err.length).toBe(3)
-    expect(task.err[0].ctx).toStrictEqual({ test1: true })
-    expect(task.err[1].ctx).toStrictEqual({ test1: true, test2: true })
-    expect(task.err[2].ctx).toStrictEqual({
-      test1: true,
-      test2: true,
-      test3: true
-    })
+
+    if (collectErrors === 'full') {
+      expect(task.err[0].ctx).toMatchObject({ test1: true })
+      expect(task.err[1].ctx).toMatchObject({ test1: true, test2: true })
+      expect(task.err[2].ctx).toMatchObject({
+        test1: true,
+        test2: true,
+        test3: true
+      })
+    } else {
+      expect(task.err[0].ctx).toBe(undefined)
+      expect(task.err[1].ctx).toBe(undefined)
+      expect(task.err[2].ctx).toBe(undefined)
+    }
   })
 
   it.each([ true, false ])('should collect errors from rollback while rollback fails is %s', async (failRollback) => {
@@ -299,13 +487,16 @@ describe('error collection', () => {
         concurrent: false,
         exitOnError: true,
         exitAfterRollback: true,
-        renderer: 'silent'
+        renderer: 'silent',
+        collectErrors: 'minimal'
       }
     )
 
     let result: any
     let crash: Error
+
     try {
+      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -336,13 +527,16 @@ describe('error collection', () => {
       {
         concurrent: false,
         exitOnError: true,
-        renderer: 'silent'
+        renderer: 'silent',
+        collectErrors: 'minimal'
       }
     )
 
     let result: any
     let crash: Error
+
     try {
+      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -356,5 +550,41 @@ describe('error collection', () => {
     expect(task.err[1]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
     expect(task.err[2]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
     expect(task.err[3]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.HAS_FAILED })
+  })
+
+  it('should not collect any errors if disabled', async () => {
+    const task = new Listr(
+      [
+        {
+          task: (): void => {
+            throw new Error('1')
+          }
+        },
+        {
+          task: (): void => {
+            throw new Error('2')
+          }
+        }
+      ],
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors: false
+      }
+    )
+
+    let result: any
+    let crash: Error
+
+    try {
+      // eslint-disable-next-line prefer-const
+      result = await task.run()
+    } catch (e: any) {
+      crash = e
+    }
+
+    expect(result).toBeTruthy()
+    expect(crash).toBeFalsy()
+    expect(task.err).toHaveLength(0)
   })
 })

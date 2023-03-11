@@ -241,4 +241,4 @@ ___
 
 #### Defined in
 
-src/utils/logger.ts:161
+src/utils/logger.ts:176

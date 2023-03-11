@@ -33,7 +33,7 @@ describe('show task skip', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): void => {
+          task: (_, task): void => {
             task.skip('I am skipping this tasks for reasons.')
           }
         }
@@ -139,7 +139,7 @@ describe('show task skip', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): void => {
+          task: (_, task): void => {
             task.skip('I am skipping this tasks for reasons.')
           }
         }
@@ -161,7 +161,7 @@ describe('show task skip', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): void => {
+          task: (_, task): void => {
             task.skip('I am skipping this tasks for reasons.')
           }
         }
@@ -183,7 +183,7 @@ describe('show task skip', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): void => {
+          task: (_, task): void => {
             task.skip()
           }
         }

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import { spawn } from 'child_process'
-import { Readable } from 'stream'
+import type { Readable } from 'stream'
 
 import { Listr } from '@root/index'
 import { Logger } from '@utils/logger'
@@ -35,10 +35,11 @@ async function main (): Promise<void> {
 
   try {
     const context = await task.run()
+
     logger.success(`Context: ${JSON.stringify(context)}`)
   } catch (e: any) {
     logger.fail(e)
   }
 }
 
-main()
+void main()

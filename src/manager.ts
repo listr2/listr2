@@ -1,12 +1,12 @@
 import { Listr } from './listr'
-import { ListrError } from '@interfaces/listr-error.interface'
-import { ListrBaseClassOptions, ListrContext, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
-import { ListrGetRendererClassFromValue, ListrRendererValue } from '@interfaces/renderer.interface'
+import type { ListrError } from '@interfaces/listr-error.interface'
+import type { ListrBaseClassOptions, ListrContext, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
+import type { ListrGetRendererClassFromValue, ListrRendererValue } from '@interfaces/renderer.interface'
 
 /**
  * Creates a new Listr2 task manager.
  *
- * Useful for creating a single instace of Listr2 with pre-set settings.
+ * Useful for creating a single instance of Listr2 with pre-set settings.
  */
 export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
   public err: ListrError[] = []
@@ -53,6 +53,7 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
     options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
     let newTask: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>
+
     // type function or directly
     if (typeof tasks === 'function') {
       newTask = {

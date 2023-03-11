@@ -1,39 +1,38 @@
+---
 name: semantic-release
 
 on:
   push:
-    branches: [develop, alpha, beta, rc]
-  pull_request:
-    branches: [develop, alpha, beta, rc]
+    branches:
+      - '!master'
+      - '*'
+  pull_request_target:
+    branches:
+      - develop
+      - master
+      - main
+      - beta
+      - rc
+      - alpha
+      - next
+      - next-major
 
 jobs:
   semantic-release-mock:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Action For Semantic Release
+      - name: semantic-release dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        uses: cycjimmy/semantic-release-action@v2.5.4
+        uses: cycjimmy/semantic-release-action@v2.7.0
         with:
+          dry_run: true
           branches: |
             [
-              'develop',
-              {
-                name: 'alpha',
-                prerelease: true
-              },
-              {
-                name: 'beta',
-                prerelease: true
-              },
-              {
-                name: 'rc',
-                prerelease: true
-              }
+              "${{ env.GITHUB_BASE_REF }}"
             ]
-          dry_run: true
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git

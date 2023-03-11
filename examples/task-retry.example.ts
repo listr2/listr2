@@ -13,6 +13,7 @@ async function main (): Promise<void> {
 
           await delay(1000)
           const retry = task.isRetrying()
+
           if (retry.count > 0) {
             task.output = `I am self aware that I am retrying for the ${retry.count}th time.`
           }
@@ -36,6 +37,7 @@ async function main (): Promise<void> {
 
           await delay(1000)
           const retry = task.isRetrying()
+
           if (retry.count > 0) {
             task.output = `Last error was, i can further process it: ${retry.withError}`
           }
@@ -50,4 +52,4 @@ async function main (): Promise<void> {
   ).run()
 }
 
-main()
+void main()

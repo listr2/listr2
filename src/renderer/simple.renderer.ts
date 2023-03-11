@@ -2,9 +2,9 @@ import { stderr as logUpdate } from 'log-update'
 import { EOL } from 'os'
 
 import { ListrTaskEventType } from '@constants/event.constants'
-import { ListrRenderer } from '@interfaces/renderer.interface'
+import type { ListrRenderer } from '@interfaces/renderer.interface'
 import { ListrTaskState } from '@root/constants'
-import { Task } from '@root/lib/task'
+import type { Task } from '@root/lib/task'
 import colorette from '@utils/colorette'
 import { figures } from '@utils/figures'
 
@@ -43,7 +43,7 @@ export class SimpleRenderer implements ListrRenderer {
   // designate your custom internal task-based options that will show as `options` in the task itself
   public static rendererTaskOptions: never
 
-  constructor (public readonly tasks: Task<any, typeof SimpleRenderer>[], public options: typeof SimpleRenderer['rendererOptions']) {
+  constructor (public readonly tasks: Task<any, typeof SimpleRenderer>[], public options: (typeof SimpleRenderer)['rendererOptions']) {
     this.options = { ...SimpleRenderer.rendererOptions, ...options }
   }
 

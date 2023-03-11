@@ -11,7 +11,7 @@ Defines the task, conditions and options to run a specific task in the listr.
 | Name | Type |
 | :------ | :------ |
 | `Ctx` | [`ListrContext`](../types/index.ListrContext.md) |
-| `Renderer` | extends [`ListrRendererFactory`](../types/index.ListrRendererFactory.md)`any` |
+| `Renderer` | extends [`ListrRendererFactory`](../types/index.ListrRendererFactory.md) = `any` |
 
 ## Properties
 
@@ -29,6 +29,36 @@ On verbose renderer, state changes from these tasks will log as 'Task without a 
 #### Defined in
 
 src/interfaces/listr.interface.ts:36
+
+___
+
+### task
+
+• **task**: (`ctx`: `Ctx`, `task`: [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>) => `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+#### Type declaration
+
+▸ (`ctx`, `task`): `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+The task itself.
+
+Task can be a sync or async function, an Observable, or a Stream.
+Task will be executed, if the certain criteria of the state are met and whenever the time for that specific task has come.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ctx` | `Ctx` |
+| `task` | [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
+
+##### Returns
+
+`void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+#### Defined in
+
+src/interfaces/listr.interface.ts:43
 
 ___
 
@@ -73,6 +103,36 @@ src/interfaces/listr.interface.ts:60
 
 ___
 
+### rollback
+
+• `Optional` **rollback**: (`ctx`: `Ctx`, `task`: [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>) => `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+#### Type declaration
+
+▸ (`ctx`, `task`): `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+Runs a specific event if the current task or any of the subtasks has failed.
+
+Mostly useful for rollback purposes for subtasks.
+But can also be useful whenever a task is failed and some measures have to be taken to ensure the state is not changed.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ctx` | `Ctx` |
+| `task` | [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
+
+##### Returns
+
+`void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
+
+#### Defined in
+
+src/interfaces/listr.interface.ts:67
+
+___
+
 ### exitOnError
 
 • `Optional` **exitOnError**: `boolean` \| (`ctx`: `Ctx`) => `boolean` \| `Promise`<`boolean`\>
@@ -97,55 +157,3 @@ be displayed as never.
 #### Defined in
 
 src/interfaces/listr.interface.ts:78
-
-## Methods
-
-### task
-
-▸ **task**(`ctx`, `task`): `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-The task itself.
-
-Task can be a sync or async function, an Observable, or a Stream.
-Task will be executed, if the certain criteria of the state are met and whenever the time for that specific task has come.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `ctx` | `Ctx` |
-| `task` | [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
-
-#### Returns
-
-`void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:43
-
-___
-
-### rollback
-
-▸ `Optional` **rollback**(`ctx`, `task`): `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-Runs a specific event if the current task or any of the subtasks has failed.
-
-Mostly useful for rollback purposes for subtasks.
-But can also be useful whenever a task is failed and some measures have to be taken to ensure the state is not changed.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `ctx` | `Ctx` |
-| `task` | [`ListrTaskWrapper`](../classes/index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\> |
-
-#### Returns
-
-`void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-#### Defined in
-
-src/interfaces/listr.interface.ts:67

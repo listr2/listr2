@@ -1,12 +1,12 @@
-import { ListrOptions } from '@interfaces/listr.interface'
-import { SupportedRenderer, ListrRendererFactory, ListrRendererValue } from '@interfaces/renderer.interface'
+import type { ListrOptions } from '@interfaces/listr.interface'
+import type { SupportedRenderer, ListrRendererFactory, ListrRendererValue, ListrRenderer } from '@interfaces/renderer.interface'
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { SimpleRenderer } from '@renderer/simple.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { assertFunctionOrSelf } from '@utils/assert'
 
-const renderers = {
+const renderers: Record<'default' | 'simple' | 'verbose' | 'silent', typeof ListrRenderer> = {
   default: DefaultRenderer,
   simple: SimpleRenderer,
   verbose: VerboseRenderer,
@@ -17,7 +17,7 @@ function isRendererSupported (renderer: ListrRendererFactory): boolean {
   return process.stdout.isTTY === true || renderer.nonTTY === true
 }
 
-function getRendererClass (renderer: ListrRendererValue): ListrRendererFactory {
+export function getRendererClass (renderer: ListrRendererValue): ListrRendererFactory {
   if (typeof renderer === 'string') {
     return renderers[renderer] || renderers.default
   }

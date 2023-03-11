@@ -1,11 +1,11 @@
-import * as pMap from 'p-map'
+import pMap from 'p-map'
 
-import { ListrEventType } from '@constants/event.constants'
+import type { ListrEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
-import { ListrEventMap } from '@interfaces/event-map.interface'
-import { ListrError } from '@interfaces/listr-error.interface'
-import { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
-import {
+import type { ListrEventMap } from '@interfaces/event-map.interface'
+import type { ListrError } from '@interfaces/listr-error.interface'
+import type { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
+import type {
   ListrDefaultRendererValue,
   ListrFallbackRendererValue,
   ListrGetRendererClassFromValue,
@@ -31,13 +31,15 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public ctx: Ctx
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
+  public path: string[] = []
 
   private concurrency: number
   private renderer: ListrRenderer
 
   constructor (
     public task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[],
-    public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
+    public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>,
+    public parentTask?: Task<any, any>
   ) {
     // assign over default options
     this.options = {
@@ -47,6 +49,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
         nonTTYRenderer: 'verbose',
         exitOnError: true,
         exitAfterRollback: true,
+        collectErrors: 'minimal',
         registerSignalListeners: true
       },
       ...options
@@ -70,6 +73,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
     // get renderer class
     const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
+
     this.rendererClass = renderer.renderer
 
     // depending on the result pass the given options in
@@ -82,6 +86,11 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     // parse and add tasks
     /* istanbul ignore next */
     this.add(task ?? [])
+
+    // Update currentPath
+    if (parentTask) {
+      this.path = [ ...parentTask.listr.path, parentTask.title ]
+    }
 
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */
@@ -124,7 +133,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.renderer.render()
 
     // create a new context
-    this.ctx = context ?? this.options?.ctx ?? ({} as Ctx)
+    this.ctx = this.options?.ctx ?? context ?? ({} as Ctx)
 
     // check if the items are enabled
     await this.checkAll(this.ctx)

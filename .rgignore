@@ -1,3 +1,9 @@
-docs/
-etc/
+docs/**
+etc/**
+examples/**
+.github/**
+.gitignore
 README.md
+CHANGELOG.md
+yarn.lock
+LICENSE

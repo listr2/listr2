@@ -21,7 +21,7 @@ describe('show inject context', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr([
               {
                 title: 'This is a subtask.',
@@ -38,7 +38,7 @@ describe('show inject context', () => {
     ).run()
 
     expect(ctx).toMatchInlineSnapshot(`
-      Object {
+      {
         "test": true,
       }
     `)
@@ -49,7 +49,7 @@ describe('show inject context', () => {
       [
         {
           title: 'This task will execute.',
-          task: (ctx, task): Listr =>
+          task: (_, task): Listr =>
             task.newListr([
               {
                 title: 'This is a subtask.',

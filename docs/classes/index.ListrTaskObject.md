@@ -19,27 +19,13 @@ Create a task from the given set of variables and make it runnable.
 
 ## Properties
 
-### \_isScalar
-
-• **\_isScalar**: `boolean`
-
-Internal implementation detail, do not use directly.
-
-#### Inherited from
-
-Subject.\_isScalar
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:15
-
-___
-
 ### source
 
 • **source**: `Observable`<`any`\>
 
-**`deprecated`** This is an internal implementation detail, do not use.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Inherited from
 
@@ -47,265 +33,7 @@ Subject.source
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:17
-
-___
-
-### if
-
-▪ `Static` **if**: <T, F\>(`condition`: () => `boolean`, `trueResult?`: `SubscribableOrPromise`<`T`\>, `falseResult?`: `SubscribableOrPromise`<`F`\>) => `Observable`<`T` \| `F`\>
-
-**`nocollapse`**
-
-**`deprecated`** In favor of iif creation function: import { iif } from 'rxjs';
-
-#### Type declaration
-
-▸ <`T`, `F`\>(`condition`, `trueResult?`, `falseResult?`): `Observable`<`T` \| `F`\>
-
-Decides at subscription time which Observable will actually be subscribed.
-
-<span class="informal">`If` statement for Observables.</span>
-
-`iif` accepts a condition function and two Observables. When
-an Observable returned by the operator is subscribed, condition function will be called.
-Based on what boolean it returns at that moment, consumer will subscribe either to
-the first Observable (if condition was true) or to the second (if condition was false). Condition
-function may also not return anything - in that case condition will be evaluated as false and
-second Observable will be subscribed.
-
-Note that Observables for both cases (true and false) are optional. If condition points to an Observable that
-was left undefined, resulting stream will simply complete immediately. That allows you to, rather
-than controlling which Observable will be subscribed, decide at runtime if consumer should have access
-to given Observable or not.
-
-If you have more complex logic that requires decision between more than two Observables, {@link defer}
-will probably be a better choice. Actually `iif` can be easily implemented with {@link defer}
-and exists only for convenience and readability reasons.
-
-## Examples
-### Change at runtime which Observable will be subscribed
-```ts
-import { iif, of } from 'rxjs';
-
-let subscribeToFirst;
-const firstOrSecond = iif(
-  () => subscribeToFirst,
-  of('first'),
-  of('second'),
-);
-
-subscribeToFirst = true;
-firstOrSecond.subscribe(value => console.log(value));
-
-// Logs:
-// "first"
-
-subscribeToFirst = false;
-firstOrSecond.subscribe(value => console.log(value));
-
-// Logs:
-// "second"
-
-```
-
-### Control an access to an Observable
-```ts
-let accessGranted;
-const observableIfYouHaveAccess = iif(
-  () => accessGranted,
-  of('It seems you have an access...'), // Note that only one Observable is passed to the operator.
-);
-
-accessGranted = true;
-observableIfYouHaveAccess.subscribe(
-  value => console.log(value),
-  err => {},
-  () => console.log('The end'),
-);
-
-// Logs:
-// "It seems you have an access..."
-// "The end"
-
-accessGranted = false;
-observableIfYouHaveAccess.subscribe(
-  value => console.log(value),
-  err => {},
-  () => console.log('The end'),
-);
-
-// Logs:
-// "The end"
-```
-
-**`see`** {@link defer}
-
-**`static`** true
-
-**`name`** iif
-
-**`owner`** Observable
-
-##### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `never` |
-| `F` | `never` |
-
-##### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `condition` | () => `boolean` | Condition which Observable should be chosen. |
-| `trueResult?` | `SubscribableOrPromise`<`T`\> | - |
-| `falseResult?` | `SubscribableOrPromise`<`F`\> | - |
-
-##### Returns
-
-`Observable`<`T` \| `F`\>
-
-Either first or second Observable, depending on condition.
-
-#### Inherited from
-
-Subject.if
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:71
-
-___
-
-### throw
-
-▪ `Static` **throw**: (`error`: `any`, `scheduler?`: `SchedulerLike`) => `Observable`<`never`\>
-
-**`nocollapse`**
-
-**`deprecated`** In favor of throwError creation function: import { throwError } from 'rxjs';
-
-#### Type declaration
-
-▸ (`error`, `scheduler?`): `Observable`<`never`\>
-
-Creates an Observable that emits no items to the Observer and immediately
-emits an error notification.
-
-<span class="informal">Just emits 'error', and nothing else.
-</span>
-
-![](throw.png)
-
-This static operator is useful for creating a simple Observable that only
-emits the error notification. It can be used for composing with other
-Observables, such as in a {@link mergeMap}.
-
-## Examples
-### Emit the number 7, then emit an error
-```ts
-import { throwError, concat, of } from 'rxjs';
-
-const result = concat(of(7), throwError(new Error('oops!')));
-result.subscribe(x => console.log(x), e => console.error(e));
-
-// Logs:
-// 7
-// Error: oops!
-```
-
----
-
-### Map and flatten numbers to the sequence 'a', 'b', 'c', but throw an error for 2
-```ts
-import { throwError, interval, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
-
-interval(1000).pipe(
-  mergeMap(x => x === 2
-    ? throwError('Twos are bad')
-    : of('a', 'b', 'c')
-  ),
-).subscribe(x => console.log(x), e => console.error(e));
-
-// Logs:
-// a
-// b
-// c
-// a
-// b
-// c
-// Twos are bad
-```
-
-**`see`** {@link Observable}
-
-**`see`** {@link empty}
-
-**`see`** {@link never}
-
-**`see`** {@link of}
-
-**`static`** true
-
-**`name`** throwError
-
-**`owner`** Observable
-
-##### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `error` | `any` | The particular Error to pass to the error notification. |
-| `scheduler?` | `SchedulerLike` | - |
-
-##### Returns
-
-`Observable`<`never`\>
-
-An error Observable: emits only the error notification
-using the given error argument.
-
-#### Inherited from
-
-Subject.throw
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:76
-
-___
-
-### observers
-
-• **observers**: `Observer`<[`ListrEvent`](../types/index.ListrEvent.md)\>[]
-
-#### Inherited from
-
-Subject.observers
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:23
-
-___
-
-### create
-
-▪ `Static` **create**: `Function`
-
-**`nocollapse`**
-
-**`deprecated`** use new Subject() instead
-
-#### Inherited from
-
-Subject.create
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:32
+node_modules/rxjs/dist/types/internal/Observable.d.ts:15
 
 ___
 
@@ -313,7 +41,9 @@ ___
 
 • **operator**: `Operator`<`any`, [`ListrEvent`](../types/index.ListrEvent.md)\>
 
-**`deprecated`** This is an internal implementation detail, do not use.
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Inherited from
 
@@ -321,7 +51,7 @@ Subject.operator
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:19
+node_modules/rxjs/dist/types/internal/Observable.d.ts:19
 
 ___
 
@@ -335,7 +65,25 @@ Subject.closed
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:24
+node_modules/rxjs/dist/types/internal/Subject.d.ts:12
+
+___
+
+### observers
+
+• **observers**: `Observer`<[`ListrEvent`](../types/index.ListrEvent.md)\>[]
+
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
+
+#### Inherited from
+
+Subject.observers
+
+#### Defined in
+
+node_modules/rxjs/dist/types/internal/Subject.d.ts:15
 
 ___
 
@@ -343,13 +91,17 @@ ___
 
 • **isStopped**: `boolean`
 
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
+
 #### Inherited from
 
 Subject.isStopped
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:25
+node_modules/rxjs/dist/types/internal/Subject.d.ts:17
 
 ___
 
@@ -357,13 +109,17 @@ ___
 
 • **hasError**: `boolean`
 
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
+
 #### Inherited from
 
 Subject.hasError
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:26
+node_modules/rxjs/dist/types/internal/Subject.d.ts:19
 
 ___
 
@@ -371,13 +127,53 @@ ___
 
 • **thrownError**: `any`
 
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
+
 #### Inherited from
 
 Subject.thrownError
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:27
+node_modules/rxjs/dist/types/internal/Subject.d.ts:21
+
+___
+
+### create
+
+▪ `Static` **create**: (...`args`: `any`[]) => `any`
+
+#### Type declaration
+
+▸ (...`args`): `any`
+
+Creates a "subject" by basically gluing an observer to an observable.
+
+**`Nocollapse`**
+
+**`Deprecated`**
+
+Recommended you do not use. Will be removed at some point in the future. Plans for replacement still under discussion.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...args` | `any`[] |
+
+##### Returns
+
+`any`
+
+#### Inherited from
+
+Subject.create
+
+#### Defined in
+
+node_modules/rxjs/dist/types/internal/Subject.d.ts:28
 
 ___
 
@@ -408,8 +204,6 @@ ___
 ### task
 
 • **task**: (`ctx`: `Ctx`, `task`: [`ListrTaskWrapper`](index.ListrTaskWrapper.md)<`Ctx`, `Renderer`\>) => `void` \| [`ListrTaskResult`](../types/index.ListrTaskResult.md)<`Ctx`\>
-
-The task object itself, to further utilize it.
 
 #### Type declaration
 
@@ -529,7 +323,7 @@ This requires a separate channel for messages like error, skip or runtime messag
 | `error?` | `string` | Error message of the task, if it has been failed. |
 | `skip?` | `string` | Skip message of the task, if it has been skipped. |
 | `rollback?` | `string` | Rollback message of the task, if the rollback finishes |
-| `retry?` | `Object` | Retry messages |
+| `retry?` | { `count`: `number` ; `withError?`: `any`  } | Retry messages |
 | `retry.count` | `number` | - |
 | `retry.withError?` | `any` | - |
 
@@ -597,11 +391,19 @@ ___
 
 • **listr**: [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\>
 
+#### Defined in
+
+src/lib/task.ts:65
+
 ___
 
 ### tasks
 
 • **tasks**: [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\>
+
+#### Defined in
+
+src/lib/task.ts:65
 
 ___
 
@@ -609,37 +411,15 @@ ___
 
 • **options**: [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\>
 
+#### Defined in
+
+src/lib/task.ts:65
+
 ___
 
 ### rendererOptions
 
 • **rendererOptions**: [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\>
-
-## Constructors
-
-### constructor
-
-• **new ListrTaskObject**<`Ctx`, `Renderer`\>(`listr`, `tasks`, `options`, `rendererOptions`)
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `Ctx` | `Ctx` |
-| `Renderer` | extends typeof [`ListrRenderer`](index.ListrRenderer.md) |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `listr` | [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\> |
-| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\> |
-| `options` | [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\> |
-| `rendererOptions` | [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\> |
-
-#### Overrides
-
-Subject&lt;ListrEvent\&gt;.constructor
 
 #### Defined in
 
@@ -649,13 +429,13 @@ src/lib/task.ts:65
 
 ### subscribe
 
-▸ **subscribe**(`observer?`): `Subscription`
+▸ **subscribe**(`observerOrNext?`): `Subscription`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `observer?` | `PartialObserver`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
+| `observerOrNext?` | `Partial`<`Observer`<[`ListrEvent`](../types/index.ListrEvent.md)\>\> \| (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
 
 #### Returns
 
@@ -667,81 +447,13 @@ Subject.subscribe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:47
-
-▸ **subscribe**(`next`, `error`, `complete`): `Subscription`
-
-**`deprecated`** Use an observer instead of a complete callback
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `next` | ``null`` |
-| `error` | ``null`` |
-| `complete` | () => `void` |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:49
-
-▸ **subscribe**(`next`, `error`, `complete?`): `Subscription`
-
-**`deprecated`** Use an observer instead of an error callback
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `next` | ``null`` |
-| `error` | (`error`: `any`) => `void` |
-| `complete?` | () => `void` |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:51
-
-▸ **subscribe**(`next`, `error`, `complete`): `Subscription`
-
-**`deprecated`** Use an observer instead of a complete callback
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` |
-| `error` | ``null`` |
-| `complete` | () => `void` |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Observable.d.ts:53
+node_modules/rxjs/dist/types/internal/Observable.d.ts:50
 
 ▸ **subscribe**(`next?`, `error?`, `complete?`): `Subscription`
+
+**`Deprecated`**
+
+Instead of passing separate callback arguments, use an observer argument. Signatures taking separate callback arguments will be removed in v8. Details: https://rxjs.dev/deprecations/subscribe-arguments
 
 #### Parameters
 
@@ -761,22 +473,58 @@ Subject.subscribe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:54
+node_modules/rxjs/dist/types/internal/Observable.d.ts:52
 
 ___
 
 ### forEach
 
-▸ **forEach**(`next`, `promiseCtor?`): `Promise`<`void`\>
+▸ **forEach**(`next`): `Promise`<`void`\>
 
-**`method`** forEach
+Used as a NON-CANCELLABLE means of subscribing to an observable, for use with
+APIs that expect promises, like `async/await`. You cannot unsubscribe from this.
+
+**WARNING**: Only use this with observables you *know* will complete. If the source
+observable does not complete, you will end up with a promise that is hung up, and
+potentially all of the state of an async function hanging out in memory. To avoid
+this situation, look into adding something like timeout, take,
+takeWhile, or takeUntil amongst others.
+
+#### Example
+
+```ts
+import { interval, take } from 'rxjs';
+
+const source$ = interval(1000).pipe(take(4));
+
+async function getTotal() {
+  let total = 0;
+
+  await source$.forEach(value => {
+    total += value;
+    console.log('observable -> ' + value);
+  });
+
+  return total;
+}
+
+getTotal().then(
+  total => console.log('Total: ' + total)
+);
+
+// Expected:
+// 'observable -> 0'
+// 'observable -> 1'
+// 'observable -> 2'
+// 'observable -> 3'
+// 'Total: 6'
+```
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` | a handler for each value emitted by the observable |
-| `promiseCtor?` | `PromiseConstructorLike` | - |
 
 #### Returns
 
@@ -791,7 +539,39 @@ Subject.forEach
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:64
+node_modules/rxjs/dist/types/internal/Observable.d.ts:97
+
+▸ **forEach**(`next`, `promiseCtor`): `Promise`<`void`\>
+
+**`Deprecated`**
+
+Passing a Promise constructor will no longer be available
+in upcoming versions of RxJS. This is because it adds weight to the library, for very
+little benefit. If you need this functionality, it is recommended that you either
+polyfill Promise, or you create an adapter to convert the returned native promise
+to whatever promise implementation you wanted. Will be removed in v8.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `next` | (`value`: [`ListrEvent`](../types/index.ListrEvent.md)) => `void` | a handler for each value emitted by the observable |
+| `promiseCtor` | `PromiseConstructorLike` | a constructor function used to instantiate the Promise |
+
+#### Returns
+
+`Promise`<`void`\>
+
+a promise that either resolves on observable completion or
+ rejects with the handled error
+
+#### Inherited from
+
+Subject.forEach
+
+#### Defined in
+
+node_modules/rxjs/dist/types/internal/Observable.d.ts:109
 
 ___
 
@@ -809,7 +589,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:77
+node_modules/rxjs/dist/types/internal/Observable.d.ts:110
 
 ▸ **pipe**<`A`\>(`op1`): `Observable`<`A`\>
 
@@ -835,7 +615,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:78
+node_modules/rxjs/dist/types/internal/Observable.d.ts:111
 
 ▸ **pipe**<`A`, `B`\>(`op1`, `op2`): `Observable`<`B`\>
 
@@ -863,7 +643,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:79
+node_modules/rxjs/dist/types/internal/Observable.d.ts:112
 
 ▸ **pipe**<`A`, `B`, `C`\>(`op1`, `op2`, `op3`): `Observable`<`C`\>
 
@@ -893,7 +673,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:80
+node_modules/rxjs/dist/types/internal/Observable.d.ts:113
 
 ▸ **pipe**<`A`, `B`, `C`, `D`\>(`op1`, `op2`, `op3`, `op4`): `Observable`<`D`\>
 
@@ -925,7 +705,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:81
+node_modules/rxjs/dist/types/internal/Observable.d.ts:114
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`\>(`op1`, `op2`, `op3`, `op4`, `op5`): `Observable`<`E`\>
 
@@ -959,7 +739,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:82
+node_modules/rxjs/dist/types/internal/Observable.d.ts:115
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`): `Observable`<`F`\>
 
@@ -995,7 +775,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:83
+node_modules/rxjs/dist/types/internal/Observable.d.ts:116
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`): `Observable`<`G`\>
 
@@ -1033,7 +813,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:84
+node_modules/rxjs/dist/types/internal/Observable.d.ts:117
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`): `Observable`<`H`\>
 
@@ -1073,7 +853,7 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:85
+node_modules/rxjs/dist/types/internal/Observable.d.ts:118
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`, `op9`): `Observable`<`I`\>
 
@@ -1115,9 +895,9 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:86
+node_modules/rxjs/dist/types/internal/Observable.d.ts:119
 
-▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`, `op9`, ...`operations`): `Observable`<`Object`\>
+▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`, `op9`, ...`operations`): `Observable`<`unknown`\>
 
 #### Type parameters
 
@@ -1150,7 +930,7 @@ node_modules/rxjs/internal/Observable.d.ts:86
 
 #### Returns
 
-`Observable`<`Object`\>
+`Observable`<`unknown`\>
 
 #### Inherited from
 
@@ -1158,23 +938,21 @@ Subject.pipe
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:87
+node_modules/rxjs/dist/types/internal/Observable.d.ts:120
 
 ___
 
 ### toPromise
 
-▸ **toPromise**<`T`\>(): `Promise`<`T`\>
+▸ **toPromise**(): `Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
-#### Type parameters
+**`Deprecated`**
 
-| Name |
-| :------ |
-| `T` |
+Replaced with firstValueFrom and lastValueFrom. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
 
 #### Returns
 
-`Promise`<`T`\>
+`Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
 #### Inherited from
 
@@ -1182,15 +960,13 @@ Subject.toPromise
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:88
+node_modules/rxjs/dist/types/internal/Observable.d.ts:122
 
-▸ **toPromise**<`T`\>(`PromiseCtor`): `Promise`<`T`\>
+▸ **toPromise**(`PromiseCtor`): `Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
-#### Type parameters
+**`Deprecated`**
 
-| Name |
-| :------ |
-| `T` |
+Replaced with firstValueFrom and lastValueFrom. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
 
 #### Parameters
 
@@ -1200,7 +976,7 @@ node_modules/rxjs/internal/Observable.d.ts:88
 
 #### Returns
 
-`Promise`<`T`\>
+`Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
 #### Inherited from
 
@@ -1208,15 +984,13 @@ Subject.toPromise
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:89
+node_modules/rxjs/dist/types/internal/Observable.d.ts:124
 
-▸ **toPromise**<`T`\>(`PromiseCtor`): `Promise`<`T`\>
+▸ **toPromise**(`PromiseCtor`): `Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
-#### Type parameters
+**`Deprecated`**
 
-| Name |
-| :------ |
-| `T` |
+Replaced with firstValueFrom and lastValueFrom. Will be removed in v8. Details: https://rxjs.dev/deprecations/to-promise
 
 #### Parameters
 
@@ -1226,7 +1000,7 @@ node_modules/rxjs/internal/Observable.d.ts:89
 
 #### Returns
 
-`Promise`<`T`\>
+`Promise`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
 #### Inherited from
 
@@ -1234,13 +1008,17 @@ Subject.toPromise
 
 #### Defined in
 
-node_modules/rxjs/internal/Observable.d.ts:90
+node_modules/rxjs/dist/types/internal/Observable.d.ts:126
 
 ___
 
 ### lift
 
 ▸ **lift**<`R`\>(`operator`): `Observable`<`R`\>
+
+**`Deprecated`**
+
+Internal implementation detail, do not use directly. Will be made internal in v8.
 
 #### Type parameters
 
@@ -1264,19 +1042,19 @@ Subject.lift
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:33
+node_modules/rxjs/dist/types/internal/Subject.d.ts:31
 
 ___
 
 ### next
 
-▸ **next**(`value?`): `void`
+▸ **next**(`value`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `value?` | [`ListrEvent`](../types/index.ListrEvent.md) |
+| `value` | [`ListrEvent`](../types/index.ListrEvent.md) |
 
 #### Returns
 
@@ -1288,7 +1066,7 @@ Subject.next
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:34
+node_modules/rxjs/dist/types/internal/Subject.d.ts:32
 
 ___
 
@@ -1312,7 +1090,7 @@ Subject.error
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:35
+node_modules/rxjs/dist/types/internal/Subject.d.ts:33
 
 ___
 
@@ -1330,7 +1108,7 @@ Subject.complete
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:36
+node_modules/rxjs/dist/types/internal/Subject.d.ts:34
 
 ___
 
@@ -1348,59 +1126,7 @@ Subject.unsubscribe
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:37
-
-___
-
-### \_trySubscribe
-
-▸ **_trySubscribe**(`subscriber`): `TeardownLogic`
-
-**`deprecated`** This is an internal implementation detail, do not use.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `subscriber` | `Subscriber`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
-
-#### Returns
-
-`TeardownLogic`
-
-#### Inherited from
-
-Subject.\_trySubscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:39
-
-___
-
-### \_subscribe
-
-▸ **_subscribe**(`subscriber`): `Subscription`
-
-**`deprecated`** This is an internal implementation detail, do not use.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `subscriber` | `Subscriber`<[`ListrEvent`](../types/index.ListrEvent.md)\> |
-
-#### Returns
-
-`Subscription`
-
-#### Inherited from
-
-Subject.\_subscribe
-
-#### Defined in
-
-node_modules/rxjs/internal/Subject.d.ts:41
+node_modules/rxjs/dist/types/internal/Subject.d.ts:35
 
 ___
 
@@ -1409,7 +1135,7 @@ ___
 ▸ **asObservable**(): `Observable`<[`ListrEvent`](../types/index.ListrEvent.md)\>
 
 Creates a new Observable with this Subject as the source. You can do this
-to create customize Observer-side logic of the Subject and conceal it from
+to create custom Observer-side logic of the Subject and conceal it from
 code that uses the Observable.
 
 #### Returns
@@ -1424,7 +1150,7 @@ Subject.asObservable
 
 #### Defined in
 
-node_modules/rxjs/internal/Subject.d.ts:48
+node_modules/rxjs/dist/types/internal/Subject.d.ts:43
 
 ___
 
@@ -1649,6 +1375,24 @@ src/lib/task.ts:205
 
 ## Accessors
 
+### observed
+
+• `get` **observed**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+Subject.observed
+
+#### Defined in
+
+node_modules/rxjs/dist/types/internal/Subject.d.ts:36
+
+___
+
 ### state$
 
 • `set` **state$**(`state`): `void`
@@ -1733,3 +1477,33 @@ ___
 #### Defined in
 
 src/lib/task.ts:125
+
+## Constructors
+
+### constructor
+
+• **new ListrTaskObject**<`Ctx`, `Renderer`\>(`listr`, `tasks`, `options`, `rendererOptions`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Ctx` | `Ctx` |
+| `Renderer` | extends typeof [`ListrRenderer`](index.ListrRenderer.md) |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `listr` | [`Listr`](index.Listr.md)<`Ctx`, `any`, `any`\> |
+| `tasks` | [`ListrTask`](../interfaces/index.ListrTask.md)<`Ctx`, `any`\> |
+| `options` | [`ListrOptions`](../interfaces/index.ListrOptions.md)<`any`\> |
+| `rendererOptions` | [`ListrGetRendererOptions`](../types/index.ListrGetRendererOptions.md)<`Renderer`\> |
+
+#### Overrides
+
+Subject&lt;ListrEvent\&gt;.constructor
+
+#### Defined in
+
+src/lib/task.ts:65

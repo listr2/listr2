@@ -16,6 +16,12 @@ stdin during execution of listr tasks
 
 ▪ `Static` **nonTTY**: `boolean` = `true`
 
+designate whether this renderer can work in non-tty environments
+
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[nonTTY](index.ListrRenderer.md#nontty)
+
 #### Defined in
 
 src/renderer/simple.renderer.ts:18
@@ -26,12 +32,18 @@ ___
 
 ▪ `Static` **rendererOptions**: `Object`
 
+designate renderer global options that is specific to the current renderer
+
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`example`**  ```bash [12:33:44] ✔ Do something important ```   **`default`** false |
-| `output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`default`** stdout |
+| `prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`Example`**  ```bash [12:33:44] ✔ Do something important ```  **`Default`**  false |
+| `output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`Default`**  stdout |
+
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererOptions](index.ListrRenderer.md#rendereroptions)
 
 #### Defined in
 
@@ -43,6 +55,12 @@ ___
 
 ▪ `Static` **rendererTaskOptions**: `never`
 
+designate renderer per task options that is specific to the current renderer
+
+#### Implementation of
+
+[ListrRenderer](index.ListrRenderer.md).[rendererTaskOptions](index.ListrRenderer.md#renderertaskoptions)
+
 #### Defined in
 
 src/renderer/simple.renderer.ts:44
@@ -51,7 +69,7 @@ ___
 
 ### eventTypeRendererMap
 
-• **eventTypeRendererMap**: `Partial`<`Object`\>
+• **eventTypeRendererMap**: `Partial`<{ `TITLE`: (`t`: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>, `event`: { `type`: [`TITLE`](../enums/index.ListrEventType.md#title) \| [`STATE`](../enums/index.ListrEventType.md#state) \| [`ENABLED`](../enums/index.ListrEventType.md#enabled) \| [`SUBTASK`](../enums/index.ListrEventType.md#subtask) ; `data?`: `string` \| `boolean`  }) => `void` ; `STATE`: (`t`: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>, `event`: { `type`: [`TITLE`](../enums/index.ListrEventType.md#title) \| [`STATE`](../enums/index.ListrEventType.md#state) \| [`ENABLED`](../enums/index.ListrEventType.md#enabled) \| [`SUBTASK`](../enums/index.ListrEventType.md#subtask) ; `data?`: `string` \| `boolean`  }) => `void` ; `ENABLED`: (`t`: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>, `event`: { `type`: [`TITLE`](../enums/index.ListrEventType.md#title) \| [`STATE`](../enums/index.ListrEventType.md#state) \| [`ENABLED`](../enums/index.ListrEventType.md#enabled) \| [`SUBTASK`](../enums/index.ListrEventType.md#subtask) ; `data?`: `string` \| `boolean`  }) => `void` ; `SUBTASK`: (`t`: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>, `event`: { `type`: [`TITLE`](../enums/index.ListrEventType.md#title) \| [`STATE`](../enums/index.ListrEventType.md#state) \| [`ENABLED`](../enums/index.ListrEventType.md#enabled) \| [`SUBTASK`](../enums/index.ListrEventType.md#subtask) ; `data?`: `string` \| `boolean`  }) => `void` ; `DATA`: (`t`: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>, `event`: { `type`: [`DATA`](../enums/index.ListrEventType.md#data) ; `data`: `string`  }) => `void` ; `MESSAGE`: (`t`: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>, `event`: { `type`: [`MESSAGE`](../enums/index.ListrEventType.md#message) ; `data`: { `duration?`: `number` ; `error?`: `string` ; `skip?`: `string` ; `rollback?`: `string` ; `retry?`: { `count`: `number` ; `withError?`: `any`  }  }  }) => `void`  }\>
 
 Event type renderer map contains functions to process different task events
 
@@ -65,6 +83,10 @@ ___
 
 • `Readonly` **tasks**: [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>[]
 
+#### Defined in
+
+src/renderer/simple.renderer.ts:105
+
 ___
 
 ### options
@@ -75,8 +97,31 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`example`**  ```bash [12:33:44] ✔ Do something important ```   **`default`** false |
-| `output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`default`** stdout |
+| `prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`Example`**  ```bash [12:33:44] ✔ Do something important ```  **`Default`**  false |
+| `output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`Default`**  stdout |
+
+#### Defined in
+
+src/renderer/simple.renderer.ts:105
+
+## Constructors
+
+### constructor
+
+• **new SimpleRenderer**(`tasks`, `options`)
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>[] | - |
+| `options` | `Object` | - |
+| `options.prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`Example`**  ```bash [12:33:44] ✔ Do something important ```  **`Default`**  false |
+| `options.output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`Default`**  stdout |
+
+#### Defined in
+
+src/renderer/simple.renderer.ts:105
 
 ## Methods
 
@@ -90,7 +135,7 @@ ___
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:112
+src/renderer/simple.renderer.ts:110
 
 ___
 
@@ -110,7 +155,7 @@ ___
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:117
+src/renderer/simple.renderer.ts:115
 
 ___
 
@@ -130,13 +175,15 @@ ___
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:122
+src/renderer/simple.renderer.ts:120
 
 ___
 
 ### end
 
 ▸ **end**(): `void`
+
+A function to what to do on end of the render
 
 #### Returns
 
@@ -148,13 +195,15 @@ ListrRenderer.end
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:142
+src/renderer/simple.renderer.ts:140
 
 ___
 
 ### render
 
 ▸ **render**(`tasks?`): `void`
+
+A function to what to do on render
 
 #### Parameters
 
@@ -172,23 +221,4 @@ ListrRenderer.render
 
 #### Defined in
 
-src/renderer/simple.renderer.ts:145
-
-## Constructors
-
-### constructor
-
-• **new SimpleRenderer**(`tasks`, `options`)
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `tasks` | [`ListrTaskObject`](index.ListrTaskObject.md)<`any`, typeof [`SimpleRenderer`](renderer_simple_renderer.SimpleRenderer.md)\>[] | - |
-| `options` | `Object` | - |
-| `options.prefixWithTimestamp?` | `boolean` | if true this will add timestamp at the begin of the rendered line  **`example`**  ```bash [12:33:44] ✔ Do something important ```   **`default`** false |
-| `options.output?` | ``"stdout"`` \| ``"stderr"`` | choose between process.stdout and process.stderr  **`default`** stdout |
-
-#### Defined in
-
-src/renderer/simple.renderer.ts:107
+src/renderer/simple.renderer.ts:143

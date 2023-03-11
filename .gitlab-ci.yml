@@ -1,0 +1,39 @@
+---
+stages:
+  - install
+  - build
+  - docs
+  - publish
+
+variables:
+  NODE_VERSION: 18-alpine
+  NODE_TEST_COMMAND: test
+
+include:
+  - project: devops/pipes
+    file: /templates/node.gitlab-ci.yml
+
+  - project: devops/pipes
+    file: /templates/v2/node-run.gitlab-ci.yml
+
+  - project: devops/pipes
+    file: /templates/semantic-release.gitlab-ci.yml
+
+test:
+  parallel:
+    matrix:
+      - NODE_VERSION: 18-alpine
+      - NODE_VERSION: 16-alpine
+
+typedoc:
+  stage: docs
+  extends: .node-run
+  variables:
+    NODE_COMMAND_SCRIPT: docs:api
+  artifacts:
+    paths:
+      - docs/
+  only:
+    refs:
+      - master
+      - main

@@ -8,7 +8,7 @@ The internal error handling mechanism..
 
 | Name | Type |
 | :------ | :------ |
-| `Ctx` | extends `Record`<`PropertyKey`, `any`\>`Record`<`PropertyKey`, `any`\> |
+| `Ctx` | extends [`ListrContext`](../types/index.ListrContext.md) = [`ListrContext`](../types/index.ListrContext.md) |
 
 ## Hierarchy
 
@@ -55,6 +55,10 @@ node_modules/@types/node/globals.d.ts:4
 
 Optional override for formatting stack traces
 
+**`See`**
+
+https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+
 ##### Parameters
 
 | Name | Type |
@@ -100,7 +104,7 @@ Error.name
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:973
+node_modules/typescript/lib/lib.es5.d.ts:1040
 
 ___
 
@@ -114,7 +118,7 @@ Error.message
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:974
+node_modules/typescript/lib/lib.es5.d.ts:1041
 
 ___
 
@@ -128,7 +132,27 @@ Error.stack
 
 #### Defined in
 
-node_modules/typescript/lib/lib.es5.d.ts:975
+node_modules/typescript/lib/lib.es5.d.ts:1042
+
+___
+
+### path
+
+• **path**: `string`
+
+#### Defined in
+
+src/interfaces/listr-error.interface.ts:8
+
+___
+
+### ctx
+
+• **ctx**: `Ctx`
+
+#### Defined in
+
+src/interfaces/listr-error.interface.ts:9
 
 ___
 
@@ -136,44 +160,49 @@ ___
 
 • **error**: `Error`
 
+#### Defined in
+
+src/interfaces/listr-error.interface.ts:11
+
 ___
 
 ### type
 
-• `Optional` **type**: [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md)
+• **type**: [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md)
 
-___
+#### Defined in
 
-### ctx
-
-• `Optional` **ctx**: `Ctx`
+src/interfaces/listr-error.interface.ts:11
 
 ___
 
 ### task
 
-• `Optional` **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
+• **task**: [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\>
+
+#### Defined in
+
+src/interfaces/listr-error.interface.ts:11
 
 ## Constructors
 
 ### constructor
 
-• **new ListrError**<`Ctx`\>(`error`, `type?`, `ctx?`, `task?`)
+• **new ListrError**<`Ctx`\>(`error`, `type`, `task`)
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `Ctx` | extends `Record`<`PropertyKey`, `any`\>`Record`<`PropertyKey`, `any`\> |
+| `Ctx` | extends `unknown` = `any` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `error` | `Error` |
-| `type?` | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
-| `ctx?` | `Ctx` |
-| `task?` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
+| `type` | [`ListrErrorTypes`](../enums/index.ListrErrorTypes.md) |
+| `task` | [`ListrTaskObject`](index.ListrTaskObject.md)<`Ctx`, typeof [`ListrRenderer`](index.ListrRenderer.md)\> |
 
 #### Overrides
 
@@ -181,4 +210,4 @@ Error.constructor
 
 #### Defined in
 
-src/interfaces/listr-error.interface.ts:6
+src/interfaces/listr-error.interface.ts:11

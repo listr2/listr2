@@ -4,11 +4,11 @@
 
 Available task states.
 
-## Enumeration members
+## Enumeration Members
 
 ### PENDING
 
-• **PENDING** = `"PENDING"`
+• **PENDING** = ``"PENDING"``
 
 #### Defined in
 
@@ -18,7 +18,7 @@ ___
 
 ### COMPLETED
 
-• **COMPLETED** = `"COMPLETED"`
+• **COMPLETED** = ``"COMPLETED"``
 
 #### Defined in
 
@@ -28,7 +28,7 @@ ___
 
 ### FAILED
 
-• **FAILED** = `"FAILED"`
+• **FAILED** = ``"FAILED"``
 
 #### Defined in
 
@@ -38,7 +38,7 @@ ___
 
 ### SKIPPED
 
-• **SKIPPED** = `"SKIPPED"`
+• **SKIPPED** = ``"SKIPPED"``
 
 #### Defined in
 
@@ -48,7 +48,7 @@ ___
 
 ### ROLLING\_BACK
 
-• **ROLLING\_BACK** = `"ROLLING_BACK"`
+• **ROLLING\_BACK** = ``"ROLLING_BACK"``
 
 #### Defined in
 
@@ -58,7 +58,7 @@ ___
 
 ### ROLLED\_BACK
 
-• **ROLLED\_BACK** = `"ROLLED_BACK"`
+• **ROLLED\_BACK** = ``"ROLLED_BACK"``
 
 #### Defined in
 
@@ -68,7 +68,7 @@ ___
 
 ### RETRY
 
-• **RETRY** = `"RETRY"`
+• **RETRY** = ``"RETRY"``
 
 #### Defined in
 

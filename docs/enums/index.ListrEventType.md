@@ -4,11 +4,11 @@
 
 Type of listr internal events.
 
-## Enumeration members
+## Enumeration Members
 
 ### TITLE
 
-• **TITLE** = `"TITLE"`
+• **TITLE** = ``"TITLE"``
 
 #### Defined in
 
@@ -18,7 +18,7 @@ ___
 
 ### STATE
 
-• **STATE** = `"STATE"`
+• **STATE** = ``"STATE"``
 
 #### Defined in
 
@@ -28,7 +28,7 @@ ___
 
 ### ENABLED
 
-• **ENABLED** = `"ENABLED"`
+• **ENABLED** = ``"ENABLED"``
 
 #### Defined in
 
@@ -38,7 +38,7 @@ ___
 
 ### SUBTASK
 
-• **SUBTASK** = `"SUBTASK"`
+• **SUBTASK** = ``"SUBTASK"``
 
 #### Defined in
 
@@ -48,7 +48,7 @@ ___
 
 ### DATA
 
-• **DATA** = `"DATA"`
+• **DATA** = ``"DATA"``
 
 #### Defined in
 
@@ -58,7 +58,7 @@ ___
 
 ### MESSAGE
 
-• **MESSAGE** = `"MESSAGE"`
+• **MESSAGE** = ``"MESSAGE"``
 
 #### Defined in
 

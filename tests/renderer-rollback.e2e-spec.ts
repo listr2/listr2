@@ -30,6 +30,7 @@ describe('show rollback', () => {
   // 4SIhMkI14b8s2hW1esiORoa1UINGHwAr
   it('should rollback the main task if any of the subtasks fail', async () => {
     let err: Error
+
     try {
       await new Listr(
         [
@@ -91,6 +92,7 @@ describe('show rollback', () => {
   // vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx
   it('should rollback the subtask if the subtask itself fails', async () => {
     let err: Error
+
     try {
       await new Listr(
         [
@@ -151,6 +153,7 @@ describe('show rollback', () => {
   // 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A
   it.each([ true, false ])('should both stop the execution with exitOnError %s since exitAfterRollback is independent', async (cases) => {
     let err: Error
+
     try {
       await new Listr(
         [
@@ -216,6 +219,7 @@ describe('show rollback', () => {
   // 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8
   it.each([ true, false ])('should contunie execution or stop there with exitAfterRollback: %s', async (cases) => {
     let err: Error
+
     try {
       await new Listr(
         [
