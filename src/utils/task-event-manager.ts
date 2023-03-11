@@ -1,6 +1,6 @@
-import * as EventEmitter from 'eventemitter3'
+import EventEmitter from 'eventemitter3'
 
-import { EventData } from '@interfaces/event.interface'
+import type { EventData } from '@interfaces/event.interface'
 
 export class EventManager<Event extends string = string, Map extends Partial<Record<Event, unknown>> = Partial<Record<Event, any>>> {
   private readonly emitter: EventEmitter = new EventEmitter()
