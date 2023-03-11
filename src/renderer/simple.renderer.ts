@@ -5,7 +5,7 @@ import { ListrTaskState } from '@constants'
 import { ListrTaskEventType } from '@constants/event.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { Task } from '@lib/task'
-import colorette from '@utils/colorette'
+import { colorette } from '@utils/colorette'
 import { figures } from '@utils/figures'
 
 /**

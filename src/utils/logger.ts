@@ -2,7 +2,7 @@
 import { figures } from './figures'
 import { LogLevels } from './logger.constants'
 import type { LoggerOptions } from './logger.interface'
-import colorette from '@utils/colorette'
+import { colorette } from '@utils/colorette'
 
 /**
  * A internal logger for using in the verbose renderer mostly.

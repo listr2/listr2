@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig((options) => ({
-  name: !options.watch && 'production',
+  name: options.watch ? 'production' : undefined,
 
   entryPoints: [ 'src/index.ts' ],
   tsconfig: options.watch ? 'tsconfig.json' : 'tsconfig.build.json',
@@ -11,8 +11,9 @@ export default defineConfig((options) => ({
   target: 'node14',
   format: [ 'cjs', 'esm' ],
 
-  sourcemap: options.watch && true,
+  sourcemap: options.watch ? true : undefined,
 
   clean: true,
-  minify: false
+  minify: false,
+  keepNames: true
 }))
