@@ -6,11 +6,17 @@
     "baseUrl": "../",
     "sourceMap": true,
     "paths": {
+      "@root": ["./src/index"],
       "@root/*": ["./src/*"],
+      "@constants": ["src/constants"],
       "@constants/*": ["src/constants/*"],
+      "@interfaces": ["src/interfaces"],
       "@interfaces/*": ["src/interfaces/*"],
+      "@lib": ["src/lib"],
       "@lib/*": ["src/lib/*"],
+      "@renderer": ["src/renderer"],
       "@renderer/*": ["src/renderer/*"],
+      "@utils": ["src/utils"],
       "@utils/*": ["src/utils/*"]
     }
   },

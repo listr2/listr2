@@ -9,11 +9,17 @@
     "rootDir": "./src/",
     "baseUrl": "./src/",
     "paths": {
+      "@root": ["./index"],
       "@root/*": ["./*"],
+      "@constants": ["constants"],
       "@constants/*": ["constants/*"],
+      "@interfaces": ["interfaces"],
       "@interfaces/*": ["interfaces/*"],
+      "@lib": ["lib"],
       "@lib/*": ["lib/*"],
+      "@renderer": ["renderer"],
       "@renderer/*": ["renderer/*"],
+      "@utils": ["utils"],
       "@utils/*": ["utils/*"]
     }
   },

@@ -1,7 +1,7 @@
 import delay from 'delay'
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
-import { Listr } from '@root/index'
+import { Listr } from '@root'
 
 describe('show subtasks', () => {
   let mockExit: jest.SpyInstance<never, [number?]>

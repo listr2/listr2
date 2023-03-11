@@ -13,7 +13,7 @@ export declare class ListrEventMap extends BaseEventMap implements EventMap<List
 export declare class ListrTaskEventMap extends BaseEventMap implements EventMap<ListrTaskEventType> {
   [ListrTaskEventType.STATE]: ListrTaskState;
   [ListrTaskEventType.ENABLED]: boolean;
-  [ListrTaskEventType.SUBTASK]: never;
+  [ListrTaskEventType.SUBTASK]: Task<any, any>[];
   [ListrTaskEventType.TITLE]: string;
   [ListrTaskEventType.DATA]: string;
   [ListrTaskEventType.MESSAGE]: Task<any, any>['message']

@@ -1,4 +1,4 @@
-import { Listr } from '@root/index'
+import { Listr } from '@root'
 
 describe('exit on error', () => {
   let log: jest.SpyInstance<void, string[][]>

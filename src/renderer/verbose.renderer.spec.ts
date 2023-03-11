@@ -21,7 +21,7 @@ describe('VerboseRenderer', () => {
       const CustomLogger = jest.fn()
 
       new VerboseRenderer([], { logger: CustomLogger })
-      expect(CustomLogger).toHaveBeenCalledWith()
+      expect(CustomLogger).toHaveBeenCalledWith(undefined)
     })
 
     it('should pass options to a custom logger', () => {

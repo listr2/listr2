@@ -1,8 +1,8 @@
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
 import { ListrErrorTypes } from '@interfaces/listr-error.interface'
-import type { ListrOptions } from '@root/index'
-import { Listr } from '@root/index'
+import type { ListrOptions } from '@root'
+import { Listr } from '@root'
 
 describe('error collection', () => {
   let mockExit: jest.SpyInstance<never, [number?]>

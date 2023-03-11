@@ -4,7 +4,7 @@ import delay from 'delay'
 import Enquirer from 'enquirer'
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
-import { Listr } from '@root/index'
+import { Listr } from '@root'
 
 enum KEYS {
   ENTER = '\x0D',

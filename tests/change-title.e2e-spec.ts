@@ -1,4 +1,4 @@
-import { Listr } from '@root/index'
+import { Listr } from '@root'
 
 describe('skip a task', () => {
   jest.spyOn(console, 'log').mockImplementation()

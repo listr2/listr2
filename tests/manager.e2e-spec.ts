@@ -1,4 +1,5 @@
-import { Manager } from '@root/index'
+import { Manager } from '@root'
+import { TASK_WITHOUT_TITLE } from '@root/constants/listr.constants'
 
 describe('skip a task', () => {
   let manager: Manager<any, 'verbose'>
@@ -26,16 +27,16 @@ describe('skip a task', () => {
     expect(log.mock.calls).toMatchInlineSnapshot(`
       [
         [
-          "[STARTED] Task without title.",
+          "[STARTED] ${TASK_WITHOUT_TITLE}",
         ],
         [
-          "[STARTED] Task without title.",
+          "[STARTED] ${TASK_WITHOUT_TITLE}",
         ],
         [
-          "[SUCCESS] Task without title.",
+          "[SUCCESS] ${TASK_WITHOUT_TITLE}",
         ],
         [
-          "[SUCCESS] Task without title.",
+          "[SUCCESS] ${TASK_WITHOUT_TITLE}",
         ],
       ]
     `)
@@ -57,22 +58,22 @@ describe('skip a task', () => {
     expect(log.mock.calls).toMatchInlineSnapshot(`
       [
         [
-          "[STARTED] Task without title.",
+          "[STARTED] ${TASK_WITHOUT_TITLE}",
         ],
         [
-          "[STARTED] Task without title.",
+          "[STARTED] ${TASK_WITHOUT_TITLE}",
         ],
         [
-          "[STARTED] Task without title.",
+          "[STARTED] ${TASK_WITHOUT_TITLE}",
         ],
         [
-          "[SUCCESS] Task without title.",
+          "[SUCCESS] ${TASK_WITHOUT_TITLE}",
         ],
         [
-          "[SUCCESS] Task without title.",
+          "[SUCCESS] ${TASK_WITHOUT_TITLE}",
         ],
         [
-          "[SUCCESS] Task without title.",
+          "[SUCCESS] ${TASK_WITHOUT_TITLE}",
         ],
       ]
     `)
@@ -96,7 +97,7 @@ describe('skip a task', () => {
     expect(log.mock.calls).toMatchInlineSnapshot(`
       [
         [
-          "[STARTED] Task without title.",
+          "[STARTED] ${TASK_WITHOUT_TITLE}",
         ],
         [
           "[STARTED] child",
@@ -105,7 +106,7 @@ describe('skip a task', () => {
           "[SUCCESS] child",
         ],
         [
-          "[SUCCESS] Task without title.",
+          "[SUCCESS] ${TASK_WITHOUT_TITLE}",
         ],
       ]
     `)

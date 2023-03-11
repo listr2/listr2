@@ -405,7 +405,7 @@ export class DefaultRenderer implements ListrRenderer {
         }
 
         // after task is finished actions
-        if (task.isCompleted() || task.hasFailed() || task.isSkipped() || task.hasRolledBack()) {
+        if (task.hasFinalized()) {
           // clean up prompts
           this.promptBar = null
 

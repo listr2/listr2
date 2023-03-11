@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
 
-import { Listr } from '@root/index'
+import { Listr } from '@root'
 
 describe('show output from task', () => {
   let mockExit: jest.SpyInstance<never, [number?]>

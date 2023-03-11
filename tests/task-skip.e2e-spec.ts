@@ -1,6 +1,7 @@
 import delay from 'delay'
 
-import { Listr } from '@root/index'
+import { TASK_WITHOUT_TITLE } from '@constants/listr.constants'
+import { Listr } from '@root'
 
 describe('skip a task', () => {
   let log: jest.SpyInstance<void, string[][]>
@@ -27,7 +28,7 @@ describe('skip a task', () => {
       { renderer: 'verbose' }
     ).run()
 
-    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
     expect(info).toBeCalledWith('[SKIPPED] skipped')
   })
 
@@ -45,7 +46,7 @@ describe('skip a task', () => {
       { renderer: 'verbose' }
     ).run()
 
-    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
     expect(info).toBeCalledWith('[SKIPPED] skipped')
   })
 
@@ -68,7 +69,7 @@ describe('skip a task', () => {
       { renderer: 'verbose', concurrent: false }
     ).run()
 
-    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
     expect(info).toBeCalledWith('[SKIPPED] skipped')
     expect(info).toBeCalledWith('[DATA] enabled')
   })
@@ -92,7 +93,7 @@ describe('skip a task', () => {
       { renderer: 'verbose', concurrent: true }
     ).run()
 
-    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
     expect(info).toBeCalledWith('[SKIPPED] skipped')
     expect(info).not.toBeCalledWith('[DATA] enabled')
   })
@@ -117,7 +118,7 @@ describe('skip a task', () => {
       { renderer: 'verbose' }
     ).run()
 
-    expect(log).toBeCalledWith('[STARTED] Task without title.')
+    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
     expect(info).toBeCalledWith('[SKIPPED] ' + expected)
   })
 })

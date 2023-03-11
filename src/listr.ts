@@ -23,8 +23,6 @@ import { getRenderer } from '@utils/renderer'
  * Creates a new set of Listr2 task list.
  */
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
-  static eventManager: EventManager<ListrEventType, ListrEventMap>
-
   public events: EventManager<ListrEventType, ListrEventMap>
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public err: ListrError<Ctx>[] = []
@@ -43,15 +41,13 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   ) {
     // assign over default options
     this.options = {
-      ...{
-        concurrent: false,
-        renderer: 'default',
-        nonTTYRenderer: 'verbose',
-        exitOnError: true,
-        exitAfterRollback: true,
-        collectErrors: 'minimal',
-        registerSignalListeners: true
-      },
+      concurrent: false,
+      renderer: 'default',
+      nonTTYRenderer: 'verbose',
+      exitOnError: true,
+      exitAfterRollback: true,
+      collectErrors: 'minimal',
+      registerSignalListeners: true,
       ...options
     } as ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
 
@@ -64,12 +60,11 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       this.concurrency = 1
     }
 
-    // inject singleton instance of event EventManager
-    if (!(Listr.eventManager && Listr.eventManager instanceof EventManager)) {
-      Listr.eventManager = new EventManager()
+    if (this.parentTask?.listr.events instanceof EventManager) {
+      this.events = this.parentTask.listr.events
+    } else {
+      this.events = new EventManager()
     }
-
-    this.events = Listr.eventManager
 
     // get renderer class
     const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
@@ -136,7 +131,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.ctx = this.options?.ctx ?? context ?? ({} as Ctx)
 
     // check if the items are enabled
-    await this.checkAll(this.ctx)
+    await Promise.all(this.tasks.map((task) => task.check(this.ctx)))
 
     // run tasks
     try {
@@ -162,10 +157,6 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
 
     return this.ctx
-  }
-
-  private checkAll (context: Ctx): Promise<void[]> {
-    return Promise.all(this.tasks.map((task) => task.check(context)))
   }
 
   private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError<Ctx>[]): Promise<void> {

@@ -1,9 +1,11 @@
-import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
+import type { ListrEventType } from '@constants/event.constants'
+import { ListrTaskEventType } from '@constants/event.constants'
+import { TASK_WITHOUT_TITLE } from '@constants/listr.constants'
 import { ListrTaskState } from '@constants/state.constants'
+import type { ListrEventMap } from '@interfaces/event-map.interface'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
-import type { Task } from '@lib/task'
-import type { ListrEventMap } from '@root/interfaces/event-map.interface'
 import type { EventManager } from '@lib/event-manager'
+import type { Task } from '@lib/task'
 import { Logger } from '@utils/logger'
 import { parseTaskTime } from '@utils/parse-time'
 
@@ -54,21 +56,18 @@ export class VerboseRenderer implements ListrRenderer {
   constructor (
     public tasks: Task<any, typeof VerboseRenderer>[],
     public options: (typeof VerboseRenderer)['rendererOptions'],
-    public events: EventManager<ListrEventType, ListrEventMap>
+    public events?: EventManager<ListrEventType, ListrEventMap>
   ) {
-    if (!this.options?.logger) {
-      this.logger = new Logger({ useIcons: this.options?.useIcons })
+    if (this.options?.logger) {
+      this.logger = new this.options.logger(options?.options)
     } /* istanbul ignore next */ else {
-      this.logger = new this.options.logger()
+      this.logger = new Logger({ useIcons: this.options?.useIcons })
     }
 
     this.options = { ...VerboseRenderer.rendererOptions, ...this.options }
   }
 
   public render (): void {
-    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
-      // console.log('i should re render')
-    })
     this.verboseRenderer(this.tasks)
   }
 
@@ -78,9 +77,13 @@ export class VerboseRenderer implements ListrRenderer {
   // verbose renderer multi-level
   private verboseRenderer (tasks: Task<any, typeof VerboseRenderer>[]): void {
     return tasks?.forEach((task) => {
+      task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
+        this.verboseRenderer(subtasks)
+      })
+
       task.on(ListrTaskEventType.STATE, (state) => {
         if (task.hasTitle() || this.options?.logEmptyTitle !== false) {
-          const title = task.hasTitle() ? task.title : 'Task without title.'
+          const title = task.hasTitle() ? task.title : TASK_WITHOUT_TITLE
 
           switch (state) {
           case ListrTaskState.PENDING:
@@ -117,7 +120,7 @@ export class VerboseRenderer implements ListrRenderer {
           // rollback message
           this.logger.rollback(message.rollback)
         } else if (message?.retry) {
-          const title = task.hasTitle() ? task.title : 'Task without title.'
+          const title = task.hasTitle() ? task.title : TASK_WITHOUT_TITLE
 
           this.logger.retry(`[${message.retry.count}] ` + title)
         }

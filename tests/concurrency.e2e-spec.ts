@@ -1,7 +1,7 @@
 import delay from 'delay'
 
 import type { ListrTask } from '@interfaces/listr.interface'
-import { Listr } from '@root/index'
+import { Listr } from '@root'
 
 describe('concurrent execution', () => {
   let tasks: ListrTask<any, any>[]

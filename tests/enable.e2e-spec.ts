@@ -1,4 +1,4 @@
-import { Listr } from '@root/index'
+import { Listr } from '@root'
 
 describe('enable with context', () => {
   let log: jest.SpyInstance<void, string[][]>
@@ -24,7 +24,7 @@ describe('enable with context', () => {
         { renderer: 'verbose' }
       ).run()
 
-      expect(log).toBeCalledTimes(1)
+      expect(log).toBeCalledTimes(0)
     })
 
     it('with async function returning boolean', async () => {

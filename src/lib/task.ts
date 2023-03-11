@@ -1,18 +1,18 @@
 import { Readable } from 'stream'
 
 import type { TaskWrapper } from './task-wrapper'
+import type { TaskFn, TaskMessage, TaskPrompt, TaskRetry } from './task.interface'
 import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import type { ListrTaskEventMap } from '@interfaces/event-map.interface'
 import { ListrErrorTypes, PromptError } from '@interfaces/listr-error.interface'
-import type { ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
+import type { ListrOptions, ListrTask } from '@interfaces/listr.interface'
 import type { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
+import { EventManager } from '@lib/event-manager'
 import { Listr } from '@root/listr'
 import { assertFunctionOrSelf } from '@utils/assert'
 import { isObservable } from '@utils/is-observable'
-import type { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
-import { EventManager } from '@lib/event-manager'
 import { generateUUID } from '@utils/uuid'
 
 /**
@@ -20,61 +20,40 @@ import { generateUUID } from '@utils/uuid'
  */
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManager<ListrTaskEventType, ListrTaskEventMap> {
   /** Unique id per task, randomly generated in the uuid v4 format */
-  public id: string
+  public id: string = generateUUID()
   /** The current state of the task. */
-  public state: string
+  public state: ListrTaskState = ListrTaskState.UNINITIALIZED
   /** The task object itself, to further utilize it. */
-  public task: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+  public task: TaskFn<Ctx, Renderer>
   /** Extend current task with multiple subtasks. */
-  public subtasks: Task<Ctx, any>[]
+  public subtasks: Task<Ctx, Renderer>[]
   /** Title of the task */
   public title?: string
   /** Untouched unchanged title of the task */
   public initialTitle?: string
   /** Output data from the task. */
   public output?: string
-  /** Skip current task. */
-  public skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean | string>)
   /** Current retry number of the task if retrying */
-  public retry?: { count: number, withError?: any }
+  public retry?: TaskRetry
   /**
    * A channel for messages.
    *
    * This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
    */
-  public message: {
-    /** Run time of the task, if it has been successfully resolved. */
-    duration?: number
-    /** Error message of the task, if it has been failed. */
-    error?: string
-    /** Skip message of the task, if it has been skipped. */
-    skip?: string
-    /** Rollback message of the task, if the rollback finishes */
-    rollback?: string
-    /** Retry messages */
-    retry?: { count: number, withError?: Error }
-  } = {}
+  public message: TaskMessage = {}
   /** Per task options for the current renderer of the task. */
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   /** This will be triggered each time a new render should happen. */
-  public prompt: undefined | PromptInstance | PromptError
+  public prompt: TaskPrompt
   private enabled: boolean
-  private enabledFn: ListrTask<Ctx, Renderer>['enabled']
 
   constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
-
-    // this kind of randomness is enough for task ids
-    this.id = generateUUID()
 
     this.title = this.tasks?.title
     this.initialTitle = this.tasks?.title
 
     this.task = this.tasks.task
-
-    // parse functions
-    this.skip = this.tasks?.skip ?? false
-    this.enabledFn = this.tasks?.enabled ?? true
 
     // task options
     this.rendererTaskOptions = this.tasks.options
@@ -94,28 +73,28 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
       }
     }
 
-    this.shouldReRender$()
+    this.emitShouldRefreshRender()
   }
 
   set output$ (data: string) {
     this.output = data
 
     this.emit(ListrTaskEventType.DATA, data)
-    this.shouldReRender$()
+    this.emitShouldRefreshRender()
   }
 
   set message$ (data: Task<Ctx, Renderer>['message']) {
     this.message = { ...this.message, ...data }
 
     this.emit(ListrTaskEventType.MESSAGE, data)
-    this.shouldReRender$()
+    this.emitShouldRefreshRender()
   }
 
   set title$ (title: string) {
     this.title = title
 
     this.emit(ListrTaskEventType.TITLE, title)
-    this.shouldReRender$()
+    this.emitShouldRefreshRender()
   }
 
   /**
@@ -123,16 +102,22 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
    */
   public async check (ctx: Ctx): Promise<void> {
     // Check if a task is enabled or disabled
-    if (this.state === undefined) {
-      this.enabled = await assertFunctionOrSelf(this.enabledFn, ctx)
+    if (this.state === ListrTaskState.UNINITIALIZED) {
+      this.enabled = await assertFunctionOrSelf(this.tasks?.enabled ?? true, ctx)
 
       this.emit(ListrTaskEventType.ENABLED, this.enabled)
+      this.emitShouldRefreshRender()
     }
   }
 
   /** Returns whether this task has subtasks. */
   public hasSubtasks (): boolean {
     return this.subtasks?.length > 0
+  }
+
+  /** Returns whether this task is finalized in someform. */
+  public hasFinalized (): boolean {
+    return this.isCompleted() || this.hasFailed() || this.isSkipped() || this.hasRolledBack()
   }
 
   /** Returns whether this task is in progress. */
@@ -201,7 +186,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
 
         result.err = this.listr.err
 
-        this.emit(ListrTaskEventType.SUBTASK)
+        this.emit(ListrTaskEventType.SUBTASK, this.subtasks)
 
         result = result.run(context)
       } else if (this.isPrompt()) {
@@ -240,7 +225,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     this.state$ = ListrTaskState.PENDING
 
     // check if this function wants to be skipped
-    const skipped = await assertFunctionOrSelf(this.skip, context)
+    const skipped = await assertFunctionOrSelf(this.tasks?.skip ?? false, context)
 
     if (skipped) {
       if (typeof skipped === 'string') {
@@ -337,7 +322,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     }
   }
 
-  private shouldReRender$ (): void {
+  private emitShouldRefreshRender (): void {
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 }

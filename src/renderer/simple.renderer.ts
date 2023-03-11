@@ -1,10 +1,10 @@
 import { stderr as logUpdate } from 'log-update'
 import { EOL } from 'os'
 
+import { ListrTaskState } from '@constants'
 import { ListrTaskEventType } from '@constants/event.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
-import { ListrTaskState } from '@root/constants'
-import type { Task } from '@root/lib/task'
+import type { Task } from '@lib/task'
 import colorette from '@utils/colorette'
 import { figures } from '@utils/figures'
 
@@ -86,56 +86,54 @@ export class SimpleRenderer implements ListrRenderer {
 
   private simpleRenderer (tasks: Task<any, typeof SimpleRenderer>[]): void {
     tasks.forEach((task) => {
-      task.on(ListrTaskEventType.SUBTASK, () => {
+      task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         if (task.hasTitle()) {
           // if Task has subtasks where we want to log the group indication
           this.log(`${colorette.blue(figures.pointer)} ${task.title}`)
         }
 
-        if (task.hasSubtasks()) {
-          this.simpleRenderer(task.subtasks)
-        }
+        this.simpleRenderer(subtasks)
       })
 
-      task.on(ListrTaskEventType.STATE, (event) => {
-        if (event === ListrTaskState.COMPLETED && task.hasTitle()) {
+      task.on(ListrTaskEventType.STATE, (state) => {
+        if (state === ListrTaskState.COMPLETED && task.hasTitle()) {
           // The title is only logged at the end of the task execution
           this.log(`${colorette.green(figures.tick)} ${task.title}`)
         }
       })
 
-      task.on(ListrTaskEventType.DATA, (event) => {
+      task.on(ListrTaskEventType.DATA, (data) => {
         // ! This is where it gets dirty
         // * We want the prompt to stay visible after confirmation
-        if (task.isPrompt() && !String(event).match(/^\n$/)) {
-          logUpdate(`${event}`)
+        if (task.isPrompt() && !String(data).match(/^\n$/)) {
+          logUpdate(data)
         } else {
-          this.log(`${figures.pointerSmall} ${event}`)
+          this.log(`${figures.pointerSmall} ${data}`)
         }
       })
 
-      task.on(ListrTaskEventType.MESSAGE, (event) => {
-        if (event.error) {
+      task.on(ListrTaskEventType.MESSAGE, (message) => {
+        if (message.error) {
           // error message
           const title = SimpleRenderer.formatTitle(task)
 
-          this.log(`${colorette.red(figures.cross)}${title}: ${event.error}`)
-        } else if (event.skip) {
+          this.log(`${colorette.red(figures.cross)}${title}: ${message.error}`)
+        } else if (message.skip) {
           // Skip message
           const title = SimpleRenderer.formatTitle(task)
-          const skip = task.title !== event.skip ? `: ${event.skip}` : ''
+          const skip = task.title !== message.skip ? `: ${message.skip}` : ''
 
           this.log(`${colorette.yellow(figures.arrowDown)}${title} [${colorette.yellow(`skipped${skip}`)}]`)
-        } else if (event.rollback) {
+        } else if (message.rollback) {
           // rollback message
           const title = SimpleRenderer.formatTitle(task)
 
-          this.log(`${colorette.red(figures.arrowLeft)}${title}: ${event.rollback}`)
-        } else if (event.retry) {
+          this.log(`${colorette.red(figures.arrowLeft)}${title}: ${message.rollback}`)
+        } else if (message.retry) {
           // Retry Message
           const title = SimpleRenderer.formatTitle(task)
 
-          this.log(`[${colorette.yellow(`${event.retry.count}`)}]${title}`)
+          this.log(`[${colorette.yellow(`${message.retry.count}`)}]${title}`)
         }
       })
     })

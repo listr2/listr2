@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Listr } from '@root/index'
+import { Listr } from '@root'
 
 describe('show inject context', () => {
   let info: jest.SpyInstance<void, string[][]>
