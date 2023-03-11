@@ -162,11 +162,11 @@ export class DefaultRenderer implements ListrRenderer {
   private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private spinnerPosition = 0
 
-  constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: typeof DefaultRenderer['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
+  constructor (public tasks: Task<any, typeof DefaultRenderer>[], public options: (typeof DefaultRenderer)['rendererOptions'], public renderHook$?: Task<any, any>['renderHook$']) {
     this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
   }
 
-  public getTaskOptions (task: Task<any, typeof DefaultRenderer>): typeof DefaultRenderer['rendererTaskOptions'] {
+  public getTaskOptions (task: Task<any, typeof DefaultRenderer>): (typeof DefaultRenderer)['rendererTaskOptions'] {
     return { ...DefaultRenderer.rendererTaskOptions, ...task.rendererTaskOptions }
   }
 
@@ -184,10 +184,10 @@ export class DefaultRenderer implements ListrRenderer {
     return this.getTaskOptions(task).showTimer === true
   }
 
-  public getSelfOrParentOption<T extends keyof typeof DefaultRenderer['rendererOptions']>(
+  public getSelfOrParentOption<T extends keyof (typeof DefaultRenderer)['rendererOptions']>(
     task: Task<any, typeof DefaultRenderer>,
     key: T
-  ): typeof DefaultRenderer['rendererOptions'][T] {
+  ): (typeof DefaultRenderer)['rendererOptions'][T] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
@@ -392,7 +392,7 @@ export class DefaultRenderer implements ListrRenderer {
           // render the subtasks as in the same way
           const subtaskRender = this.multiLineRenderer(task.subtasks, subtaskLevel)
 
-          if (subtaskRender?.trim() !== '' && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
+          if (subtaskRender?.trim() !== '') {
             output = [ ...output, subtaskRender ]
           }
         }
