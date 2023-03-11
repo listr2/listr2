@@ -20,6 +20,16 @@ A internal logger for using in the verbose renderer mostly.
 
 src/utils/logger.ts:11
 
+## Properties
+
+### options
+
+• `Private` `Optional` **options**: `LoggerOptions`
+
+#### Defined in
+
+src/utils/logger.ts:11
+
 ## Methods
 
 ### fail
@@ -205,15 +215,15 @@ ___
 
 ### logColoring
 
-▸ `Protected` **logColoring**(`__namedParameters`): `string`
+▸ `Protected` **logColoring**(`«destructured»`): `string`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.level` | [`LogLevels`](../enums/index.LogLevels.md) |
-| `__namedParameters.message` | `string` |
+| `«destructured»` | `Object` |
+| › `level` | [`LogLevels`](../enums/index.LogLevels.md) |
+| › `message` | `string` |
 
 #### Returns
 

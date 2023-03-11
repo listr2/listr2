@@ -56,6 +56,16 @@ ___
 
 src/lib/task-wrapper.ts:18
 
+___
+
+### options
+
+• `Private` **options**: [`ListrBaseClassOptions`](../types/index.ListrBaseClassOptions.md)<`Ctx`, `any`, `any`\>
+
+#### Defined in
+
+src/lib/task-wrapper.ts:18
+
 ## Accessors
 
 ### title

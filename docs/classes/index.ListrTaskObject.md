@@ -147,7 +147,7 @@ ___
 
 #### Type declaration
 
-▸ (...`args`): `any`
+▸ (`...args`): `any`
 
 Creates a "subject" by basically gluing an observer to an observable.
 
@@ -897,7 +897,7 @@ Subject.pipe
 
 node_modules/rxjs/dist/types/internal/Observable.d.ts:119
 
-▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`, `op9`, ...`operations`): `Observable`<`unknown`\>
+▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`op1`, `op2`, `op3`, `op4`, `op5`, `op6`, `op7`, `op8`, `op9`, `...operations`): `Observable`<`unknown`\>
 
 #### Type parameters
 

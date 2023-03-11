@@ -1,16 +1,20 @@
-## [5.0.7](https://github.com/cenk1cenk2/listr2/compare/v5.0.6...v5.0.7) (2023-01-18)
-
+## [5.0.8](https://github.com/cenk1cenk2/listr2/compare/v5.0.7...v5.0.8) (2023-03-11)
 
 ### Bug Fixes
 
-* **deps:** update dependency rxjs to ^7.8.0 ([0e83e8d](https://github.com/cenk1cenk2/listr2/commit/0e83e8dd768cf1ec6dffb975bd1f227563594060))
+- render subtasks of the subtasks if parent has no title ([7b443f9](https://github.com/cenk1cenk2/listr2/commit/7b443f9c24a48963c9a95b7545f6792b4474a143)), closes [#663](https://github.com/cenk1cenk2/listr2/issues/663)
+
+## [5.0.7](https://github.com/cenk1cenk2/listr2/compare/v5.0.6...v5.0.7) (2023-01-18)
+
+### Bug Fixes
+
+- **deps:** update dependency rxjs to ^7.8.0 ([0e83e8d](https://github.com/cenk1cenk2/listr2/commit/0e83e8dd768cf1ec6dffb975bd1f227563594060))
 
 ## [5.0.6](https://github.com/cenk1cenk2/listr2/compare/v5.0.5...v5.0.6) (2022-11-29)
 
-
 ### Bug Fixes
 
-* **deps:** update dependency rxjs to ^7.5.7 ([324f012](https://github.com/cenk1cenk2/listr2/commit/324f0129cc1c4174241211c7d7cf5701abf1fa5d))
+- **deps:** update dependency rxjs to ^7.5.7 ([324f012](https://github.com/cenk1cenk2/listr2/commit/324f0129cc1c4174241211c7d7cf5701abf1fa5d))
 
 ## [5.0.5](https://github.com/cenk1cenk2/listr2/compare/v5.0.4...v5.0.5) (2022-09-05)
 
