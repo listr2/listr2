@@ -1,3 +1,10 @@
+# [5.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.8...v5.1.0-beta.1) (2023-03-11)
+
+
+### Features
+
+* ditch rxjs completely and use event emitter based approach ([213bc76](https://github.com/cenk1cenk2/listr2/commit/213bc76fec973719926927178b9a167aa89c563f))
+
 ## [5.0.8](https://github.com/cenk1cenk2/listr2/compare/v5.0.7...v5.0.8) (2023-03-11)
 
 ### Bug Fixes
