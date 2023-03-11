@@ -14,16 +14,16 @@ import type {
   ListrRendererFactory,
   ListrRendererValue
 } from '@interfaces/renderer.interface'
+import { EventManager } from '@lib/event-manager'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils/renderer'
-import { EventManager } from '@utils/task-event-manager'
 
 /**
  * Creates a new set of Listr2 task list.
  */
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
-  static eventsInstance: EventManager<ListrEventType, ListrEventMap>
+  static eventManager: EventManager<ListrEventType, ListrEventMap>
 
   public events: EventManager<ListrEventType, ListrEventMap>
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
@@ -65,11 +65,11 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
 
     // inject singleton instance of event EventManager
-    if (!(Listr.eventsInstance && Listr.eventsInstance instanceof EventManager)) {
-      Listr.eventsInstance = new EventManager()
+    if (!(Listr.eventManager && Listr.eventManager instanceof EventManager)) {
+      Listr.eventManager = new EventManager()
     }
 
-    this.events = Listr.eventsInstance
+    this.events = Listr.eventManager
 
     // get renderer class
     const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback, this.options?.rendererSilent)

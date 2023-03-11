@@ -7,13 +7,13 @@ import { ListrEventType } from '@constants/event.constants'
 import type { ListrEventMap } from '@interfaces/event-map.interface'
 import type { ListrContext } from '@interfaces/listr.interface'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
+import type { EventManager } from '@lib/event-manager'
 import type { Task } from '@lib/task'
 import colorette from '@utils/colorette'
 import { figures } from '@utils/figures'
 import { indentString } from '@utils/indent-string'
 import { isUnicodeSupported } from '@utils/is-unicode-supported'
 import { parseTaskTime } from '@utils/parse-time'
-import type { EventManager } from '@utils/task-event-manager'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {

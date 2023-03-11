@@ -12,7 +12,7 @@ import { assertFunctionOrSelf } from '@utils/assert'
 import { isObservable } from '@utils/is-observable'
 import type { PromptInstance } from '@utils/prompt.interface'
 import { getRenderer } from '@utils/renderer'
-import { EventManager } from '@utils/task-event-manager'
+import { EventManager } from '@lib/event-manager'
 import { generateUUID } from '@utils/uuid'
 
 /**

@@ -1,7 +1,8 @@
-import { BaseEventMap, EventMap } from './event.interface'
+import type { EventMap } from './event.interface'
+import { BaseEventMap } from './event.interface'
 import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
-import { ListrTaskState } from '@constants/state.constants'
-import { Task } from '@lib/task'
+import type { ListrTaskState } from '@constants/state.constants'
+import type { Task } from '@lib/task'
 
 /** Event map for generic listr events. */
 export declare class ListrEventMap extends BaseEventMap implements EventMap<ListrEventType> {

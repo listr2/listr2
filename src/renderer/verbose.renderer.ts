@@ -3,7 +3,7 @@ import { ListrTaskState } from '@constants/state.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { Task } from '@lib/task'
 import type { ListrEventMap } from '@root/interfaces/event-map.interface'
-import type { EventManager } from '@root/utils/task-event-manager'
+import type { EventManager } from '@lib/event-manager'
 import { Logger } from '@utils/logger'
 import { parseTaskTime } from '@utils/parse-time'
 

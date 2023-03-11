@@ -5,7 +5,7 @@ import type { DefaultRenderer } from '@renderer/default.renderer'
 import type { SilentRenderer } from '@renderer/silent.renderer'
 import type { SimpleRenderer } from '@renderer/simple.renderer'
 import type { VerboseRenderer } from '@renderer/verbose.renderer'
-import type { EventManager } from '@utils/task-event-manager'
+import type { EventManager } from '@lib/event-manager'
 
 /** The default renderer value used in Listr2 applications */
 export type ListrDefaultRendererValue = 'default'
