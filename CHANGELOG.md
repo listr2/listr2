@@ -1,3 +1,34 @@
+# [6.0.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2023-03-13)
+
+
+### Bug Fixes
+
+* handle non string values ([04c583c](https://github.com/cenk1cenk2/listr2/commit/04c583c790af74f835321d2b922a6a02ca3a34c1))
+* issue with empty skips from before ([5c04f19](https://github.com/cenk1cenk2/listr2/commit/5c04f1962db5232c1ba7f6d2a51f1689faa44147))
+* **task:** update naming scheme and hide taskfn ([1b19a89](https://github.com/cenk1cenk2/listr2/commit/1b19a89f4a908ab038866e29ee3644537299b863))
+* update deps ([8140f28](https://github.com/cenk1cenk2/listr2/commit/8140f280c701702e7b5fe0fe3c67ac79820396ee))
+
+
+### Features
+
+* add possiblity to force unicode on all systems ([08ba157](https://github.com/cenk1cenk2/listr2/commit/08ba157dc5184dabbdf4187d8571866e3b1bd360))
+* add splat util.format to output, title and skip ([02e5432](https://github.com/cenk1cenk2/listr2/commit/02e5432cd751be0e0f5cecc29a7d02b7e9668dbe))
+* expose more api for pending tasks ([a7b1981](https://github.com/cenk1cenk2/listr2/commit/a7b1981f5db3f72bc4d489417ad4d87cb50941cc))
+* **process-output:** ability to overwrite streams on process output ([474e096](https://github.com/cenk1cenk2/listr2/commit/474e096346eab10f2deca2347b2e34e89fc284c8))
+* **renderer:** simplify and add eager option ([5248c78](https://github.com/cenk1cenk2/listr2/commit/5248c78b01583da5d65a83ea75f4f6f52a6956f6))
+
+
+### Performance Improvements
+
+* refactor and simplify default renderer ([a9ec3c4](https://github.com/cenk1cenk2/listr2/commit/a9ec3c40f6cd922bb03f820f61a18109960e59ea))
+* rename error field of listr and share through parent tasks ([88eb34e](https://github.com/cenk1cenk2/listr2/commit/88eb34e5052109501856af08d03284899c43519d))
+
+
+### BREAKING CHANGES
+
+* Renames the err field to errors in Listr class. So error collection is shared
+instead of injected.
+
 # [6.0.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2023-03-13)
 
 
