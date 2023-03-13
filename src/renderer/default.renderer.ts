@@ -11,7 +11,7 @@ import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { EventManager } from '@lib/event-manager'
 import type { Task } from '@lib/task'
 import type { LoggerRendererOptions } from '@utils'
-import { assertFunctionOrSelf, colorette, figures, indentString, isUnicodeSupported, ListrLogger, LogLevels } from '@utils'
+import { assertFunctionOrSelf, colorette, figures, indentString, ListrLogger, LogLevels, Spinner } from '@utils'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -149,9 +149,8 @@ export class DefaultRenderer implements ListrRenderer {
   private id?: NodeJS.Timeout
   private bottomBar: Record<string, { data?: string[], items?: number }> = {}
   private promptBar: string
-  private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
-  private spinnerPosition = 0
-  private readonly logger: ListrLogger = new ListrLogger()
+  private readonly spinner = new Spinner()
+  private readonly logger: ListrLogger
 
   constructor (
     public tasks: Task<any, typeof DefaultRenderer>[],
@@ -224,7 +223,7 @@ export class DefaultRenderer implements ListrRenderer {
     /* istanbul ignore if */
     if (!this.options?.lazy) {
       this.id = setInterval(() => {
-        this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
+        this.spinner.spin()
         updateRender()
       }, 100)
     }
@@ -264,13 +263,13 @@ export class DefaultRenderer implements ListrRenderer {
     if (task.isStarted()) {
       return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
         ? colorette.yellow(figures.pointer)
-        : colorette.yellowBright(this.spinner[this.spinnerPosition])
+        : colorette.yellowBright(this.spinner.fetch())
     } else if (task.isCompleted()) {
       return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? colorette.yellow(figures.warning) : colorette.green(figures.tick)
     } else if (task.isRetrying()) {
-      return this.options?.lazy ? colorette.yellow(figures.warning) : colorette.yellow(this.spinner[this.spinnerPosition])
+      return this.options?.lazy ? colorette.yellow(figures.warning) : colorette.yellow(this.spinner.fetch())
     } else if (task.isRollingBack()) {
-      return this.options?.lazy ? colorette.red(figures.warning) : colorette.red(this.spinner[this.spinnerPosition])
+      return this.options?.lazy ? colorette.red(figures.warning) : colorette.red(this.spinner.fetch())
     } else if (task.hasRolledBack()) {
       return colorette.red(figures.arrowLeft)
     } else if (task.hasFailed()) {
