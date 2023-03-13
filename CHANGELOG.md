@@ -1,3 +1,23 @@
+# [6.0.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2023-03-13)
+
+
+### Bug Fixes
+
+* the issue with rendering, make default renderer method naming scheme similar to logger ([6c5c172](https://github.com/cenk1cenk2/listr2/commit/6c5c172684e388cc5367cfa40ca0459fc8b46cc5))
+* update typescript path and the import paths accordingly ([0d3afcb](https://github.com/cenk1cenk2/listr2/commit/0d3afcb7bfea4d4e3afec4ce2171ada894ee7b9b))
+
+
+### Features
+
+* add new options for base listr ([1a41939](https://github.com/cenk1cenk2/listr2/commit/1a419391a8a5c5352345b66c4269ebf03b958c1f))
+* expose spinner through its own stateful class ([99bd97d](https://github.com/cenk1cenk2/listr2/commit/99bd97db217aeee4fda702d42f7632bf0b5673aa))
+
+
+### Performance Improvements
+
+* change field name ([91f6fda](https://github.com/cenk1cenk2/listr2/commit/91f6fdabfaf6fd10674b3c4388cc9c91760c297a))
+* update naming scheme ([acc1f9d](https://github.com/cenk1cenk2/listr2/commit/acc1f9d082f429d7240b91987ed2d53bc315558e))
+
 # [6.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.2...v6.0.0-beta.1) (2023-03-13)
 
 ### Bug Fixes
