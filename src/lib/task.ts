@@ -22,14 +22,12 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   public id: string = generateUUID()
   /** The current state of the task. */
   public state: ListrTaskState = ListrTaskState.UNINITIALIZED
-  /** The task object itself, to further utilize it. */
-  public task: ListrTaskFn<Ctx, Renderer>
   /** Extend current task with multiple subtasks. */
   public subtasks: Task<Ctx, Renderer>[]
   /** Title of the task */
   public title?: string
   /** Untouched unchanged title of the task */
-  public initialTitle?: string
+  public readonly initialTitle?: string
   /** Output data from the task. */
   public output?: string
   /** Current retry number of the task if retrying */
@@ -47,18 +45,20 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   public parent?: Task<Ctx, Renderer>
 
   private enabled: boolean
+  /** The task object itself, to further utilize it. */
+  private taskFn: ListrTaskFn<Ctx, Renderer>
 
-  constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
+  constructor (public listr: Listr<Ctx, any, any>, public task: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
-    this.title = this.tasks?.title
-    this.initialTitle = this.tasks?.title
+    this.title = this.task?.title
+    this.initialTitle = this.task?.title
 
-    this.task = this.tasks.task
+    this.taskFn = this.task.task
     this.parent = this.listr.parentTask
 
     // task options
-    this.rendererTaskOptions = this.tasks.options
+    this.rendererTaskOptions = this.task.options
   }
 
   set state$ (state: ListrTaskState) {
@@ -105,7 +105,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   public async check (ctx: Ctx): Promise<void> {
     // Check if a task is enabled or disabled
     if (this.state === ListrTaskState.UNINITIALIZED) {
-      this.enabled = await assertFunctionOrSelf(this.tasks?.enabled ?? true, ctx)
+      this.enabled = await assertFunctionOrSelf(this.task?.enabled ?? true, ctx)
 
       this.emit(ListrTaskEventType.ENABLED, this.enabled)
       this.emitShouldRefreshRender()
@@ -231,7 +231,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     this.state$ = ListrTaskState.STARTED
 
     // check if this function wants to be skipped
-    const skipped = await assertFunctionOrSelf(this.tasks?.skip ?? false, context)
+    const skipped = await assertFunctionOrSelf(this.task?.skip ?? false, context)
 
     if (skipped) {
       if (typeof skipped === 'string') {
@@ -249,12 +249,12 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
 
     try {
       // add retry functionality
-      const retryCount = this.tasks?.retry && this.tasks?.retry > 0 ? this.tasks.retry + 1 : 1
+      const retryCount = this.task?.retry && this.task?.retry > 0 ? this.task.retry + 1 : 1
 
       for (let retries = 1; retries <= retryCount; retries++) {
         try {
           // handle the results
-          await handleResult(this.task(context, wrapper))
+          await handleResult(this.taskFn(context, wrapper))
 
           break
         } catch (err: any) {
@@ -285,13 +285,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
       }
 
       // execute the task on error function
-      if (this.tasks?.rollback) {
+      if (this.task?.rollback) {
         wrapper.report(error, ListrErrorTypes.WILL_ROLLBACK)
 
         try {
           this.state$ = ListrTaskState.ROLLING_BACK
 
-          await this.tasks.rollback(context, wrapper)
+          await this.task.rollback(context, wrapper)
 
           this.message$ = { rollback: this.title }
 
@@ -312,7 +312,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         // mark task as failed
         this.state$ = ListrTaskState.FAILED
 
-        if (this.listr.options.exitOnError !== false && await assertFunctionOrSelf(this.tasks?.exitOnError, context) !== false) {
+        if (this.listr.options.exitOnError !== false && await assertFunctionOrSelf(this.task?.exitOnError, context) !== false) {
           // Do not exit when explicitly set to `false`
           // report error
           wrapper.report(error, ListrErrorTypes.HAS_FAILED)
