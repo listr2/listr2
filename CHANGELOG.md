@@ -1,60 +1,57 @@
-# [6.0.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2023-03-13)
+# [6.0.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.4...v6.0.0-beta.5) (2023-03-13)
 
+### Performance Improvements
+
+- **logger:** unify the logger field input ([30a2658](https://github.com/cenk1cenk2/listr2/commit/30a26588d1728163364aff493d7a4c4a45d204cf))
+
+# [6.0.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2023-03-13)
 
 ### Features
 
-* add process hooks to hook terminal to obstruct anything while rendering ([db7398d](https://github.com/cenk1cenk2/listr2/commit/db7398d438f56a829e81a73981420e7b0f7230c8)), closes [#662](https://github.com/cenk1cenk2/listr2/issues/662)
+- add process hooks to hook terminal to obstruct anything while rendering ([db7398d](https://github.com/cenk1cenk2/listr2/commit/db7398d438f56a829e81a73981420e7b0f7230c8)), closes [#662](https://github.com/cenk1cenk2/listr2/issues/662)
 
 # [6.0.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2023-03-13)
 
-
 ### Bug Fixes
 
-* handle non string values ([04c583c](https://github.com/cenk1cenk2/listr2/commit/04c583c790af74f835321d2b922a6a02ca3a34c1))
-* issue with empty skips from before ([5c04f19](https://github.com/cenk1cenk2/listr2/commit/5c04f1962db5232c1ba7f6d2a51f1689faa44147))
-* **task:** update naming scheme and hide taskfn ([1b19a89](https://github.com/cenk1cenk2/listr2/commit/1b19a89f4a908ab038866e29ee3644537299b863))
-* update deps ([8140f28](https://github.com/cenk1cenk2/listr2/commit/8140f280c701702e7b5fe0fe3c67ac79820396ee))
-
+- handle non string values ([04c583c](https://github.com/cenk1cenk2/listr2/commit/04c583c790af74f835321d2b922a6a02ca3a34c1))
+- issue with empty skips from before ([5c04f19](https://github.com/cenk1cenk2/listr2/commit/5c04f1962db5232c1ba7f6d2a51f1689faa44147))
+- **task:** update naming scheme and hide taskfn ([1b19a89](https://github.com/cenk1cenk2/listr2/commit/1b19a89f4a908ab038866e29ee3644537299b863))
+- update deps ([8140f28](https://github.com/cenk1cenk2/listr2/commit/8140f280c701702e7b5fe0fe3c67ac79820396ee))
 
 ### Features
 
-* add possiblity to force unicode on all systems ([08ba157](https://github.com/cenk1cenk2/listr2/commit/08ba157dc5184dabbdf4187d8571866e3b1bd360))
-* add splat util.format to output, title and skip ([02e5432](https://github.com/cenk1cenk2/listr2/commit/02e5432cd751be0e0f5cecc29a7d02b7e9668dbe))
-* expose more api for pending tasks ([a7b1981](https://github.com/cenk1cenk2/listr2/commit/a7b1981f5db3f72bc4d489417ad4d87cb50941cc))
-* **process-output:** ability to overwrite streams on process output ([474e096](https://github.com/cenk1cenk2/listr2/commit/474e096346eab10f2deca2347b2e34e89fc284c8))
-* **renderer:** simplify and add eager option ([5248c78](https://github.com/cenk1cenk2/listr2/commit/5248c78b01583da5d65a83ea75f4f6f52a6956f6))
-
+- add possiblity to force unicode on all systems ([08ba157](https://github.com/cenk1cenk2/listr2/commit/08ba157dc5184dabbdf4187d8571866e3b1bd360))
+- add splat util.format to output, title and skip ([02e5432](https://github.com/cenk1cenk2/listr2/commit/02e5432cd751be0e0f5cecc29a7d02b7e9668dbe))
+- expose more api for pending tasks ([a7b1981](https://github.com/cenk1cenk2/listr2/commit/a7b1981f5db3f72bc4d489417ad4d87cb50941cc))
+- **process-output:** ability to overwrite streams on process output ([474e096](https://github.com/cenk1cenk2/listr2/commit/474e096346eab10f2deca2347b2e34e89fc284c8))
+- **renderer:** simplify and add eager option ([5248c78](https://github.com/cenk1cenk2/listr2/commit/5248c78b01583da5d65a83ea75f4f6f52a6956f6))
 
 ### Performance Improvements
 
-* refactor and simplify default renderer ([a9ec3c4](https://github.com/cenk1cenk2/listr2/commit/a9ec3c40f6cd922bb03f820f61a18109960e59ea))
-* rename error field of listr and share through parent tasks ([88eb34e](https://github.com/cenk1cenk2/listr2/commit/88eb34e5052109501856af08d03284899c43519d))
-
+- refactor and simplify default renderer ([a9ec3c4](https://github.com/cenk1cenk2/listr2/commit/a9ec3c40f6cd922bb03f820f61a18109960e59ea))
+- rename error field of listr and share through parent tasks ([88eb34e](https://github.com/cenk1cenk2/listr2/commit/88eb34e5052109501856af08d03284899c43519d))
 
 ### BREAKING CHANGES
 
-* Renames the err field to errors in Listr class. So error collection is shared
-instead of injected.
+- Renames the err field to errors in Listr class. So error collection is shared instead of injected.
 
 # [6.0.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2023-03-13)
 
-
 ### Bug Fixes
 
-* the issue with rendering, make default renderer method naming scheme similar to logger ([6c5c172](https://github.com/cenk1cenk2/listr2/commit/6c5c172684e388cc5367cfa40ca0459fc8b46cc5))
-* update typescript path and the import paths accordingly ([0d3afcb](https://github.com/cenk1cenk2/listr2/commit/0d3afcb7bfea4d4e3afec4ce2171ada894ee7b9b))
-
+- the issue with rendering, make default renderer method naming scheme similar to logger ([6c5c172](https://github.com/cenk1cenk2/listr2/commit/6c5c172684e388cc5367cfa40ca0459fc8b46cc5))
+- update typescript path and the import paths accordingly ([0d3afcb](https://github.com/cenk1cenk2/listr2/commit/0d3afcb7bfea4d4e3afec4ce2171ada894ee7b9b))
 
 ### Features
 
-* add new options for base listr ([1a41939](https://github.com/cenk1cenk2/listr2/commit/1a419391a8a5c5352345b66c4269ebf03b958c1f))
-* expose spinner through its own stateful class ([99bd97d](https://github.com/cenk1cenk2/listr2/commit/99bd97db217aeee4fda702d42f7632bf0b5673aa))
-
+- add new options for base listr ([1a41939](https://github.com/cenk1cenk2/listr2/commit/1a419391a8a5c5352345b66c4269ebf03b958c1f))
+- expose spinner through its own stateful class ([99bd97d](https://github.com/cenk1cenk2/listr2/commit/99bd97db217aeee4fda702d42f7632bf0b5673aa))
 
 ### Performance Improvements
 
-* change field name ([91f6fda](https://github.com/cenk1cenk2/listr2/commit/91f6fdabfaf6fd10674b3c4388cc9c91760c297a))
-* update naming scheme ([acc1f9d](https://github.com/cenk1cenk2/listr2/commit/acc1f9d082f429d7240b91987ed2d53bc315558e))
+- change field name ([91f6fda](https://github.com/cenk1cenk2/listr2/commit/91f6fdabfaf6fd10674b3c4388cc9c91760c297a))
+- update naming scheme ([acc1f9d](https://github.com/cenk1cenk2/listr2/commit/acc1f9d082f429d7240b91987ed2d53bc315558e))
 
 # [6.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.2...v6.0.0-beta.1) (2023-03-13)
 
