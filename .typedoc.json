@@ -4,6 +4,7 @@
     "./src/renderer/default.renderer.ts",
     "./src/renderer/simple.renderer.ts",
     "./src/renderer/verbose.renderer.ts",
+    "./src/renderer/test.renderer.ts",
     "./src/renderer/silent.renderer.ts"
   ],
   "tsconfig": "./tsconfig.build.json",
