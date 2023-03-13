@@ -1,8 +1,8 @@
-import type { RendererPresetTimer, RendererPresetTimestamp } from './renderer-presets.interface'
 import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { Task } from '@lib/task'
+import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
 import type { LoggerRendererOptions } from '@utils/logger'
 import { ListrLogger } from '@utils/logger'
 

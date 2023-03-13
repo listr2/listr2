@@ -1,10 +1,10 @@
 import { stderr as logUpdate } from 'log-update'
 
-import type { RendererPresetTimer, RendererPresetTimestamp } from './renderer-presets.interface'
 import { ListrTaskState } from '@constants'
 import { ListrTaskEventType } from '@constants/event.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { Task } from '@lib/task'
+import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
 import { colorette, ListrLogger, LogLevels } from '@utils'
 

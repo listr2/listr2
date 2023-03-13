@@ -11,6 +11,8 @@
       "@interfaces/*": ["./src/interfaces/*"],
       "@lib": ["./src/lib"],
       "@lib/*": ["./src/lib/*"],
+      "@presets": ["./src/presets"],
+      "@presets/*": ["./src/presets/*"],
       "@renderer": ["./src/renderer"],
       "@renderer/*": ["./src/renderer/*"],
       "@utils": ["./src/utils"],
