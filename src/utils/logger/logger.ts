@@ -75,8 +75,8 @@ export class ListrLogger {
 
         message =
           message +
-          ` ${this.wrap(typeof suffix.data === 'string' ? suffix.data : suffix.data(...args), {
-            format: suffix.conditionalFormat ? suffix.conditionalFormat(...args) : suffix.format
+          ` ${this.wrap(typeof suffix.field === 'string' ? suffix.field : suffix.field(...args), {
+            format: suffix?.format(...args)
           })}`
       }
     })
@@ -96,8 +96,8 @@ export class ListrLogger {
         }
 
         message =
-          `${this.wrap(typeof prefix.data === 'string' ? prefix.data : prefix.data(...args), {
-            format: prefix.conditionalFormat ? prefix.conditionalFormat(...args) : prefix.format
+          `${this.wrap(typeof prefix.field === 'string' ? prefix.field : prefix.field(...args), {
+            format: prefix?.format()
           })} ` + message
       }
     })

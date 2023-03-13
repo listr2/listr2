@@ -99,29 +99,29 @@ export class SimpleRenderer implements ListrRenderer {
           // error message
           this.logger.failed(task.title, {
             suffix: {
-              data: `${LogLevels.FAILED}: ${message.error}`,
-              format: color.red
+              field: `${LogLevels.FAILED}: ${message.error}`,
+              format: () => color.red
             }
           })
         } else if (message.skip) {
           this.logger.skipped(task.title, {
             suffix: {
-              data: `${LogLevels.SKIPPED}: ${message.skip}`,
-              format: color.yellow
+              field: `${LogLevels.SKIPPED}: ${message.skip}`,
+              format: () => color.yellow
             }
           })
         } else if (message.rollback) {
           this.logger.rollback(task.title, {
             suffix: {
-              data: `${LogLevels.ROLLBACK}: ${message.rollback}`,
-              format: color.red
+              field: `${LogLevels.ROLLBACK}: ${message.rollback}`,
+              format: () => color.red
             }
           })
         } else if (message.retry) {
           this.logger.retry(task.title, {
             suffix: {
-              data: `${LogLevels.RETRY}:${message.retry.count}`,
-              format: color.red
+              field: `${LogLevels.RETRY}:${message.retry.count}`,
+              format: () => color.red
             }
           })
         }

@@ -9,6 +9,6 @@ export interface RendererPresetTimestamp {
 
 export const RENDERER_TIMESTAMP: PresetTimestamp = {
   condition: true,
-  data: parseTimestamp,
-  format: color.dim
+  field: parseTimestamp,
+  format: () => color.dim
 }

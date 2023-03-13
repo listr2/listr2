@@ -367,9 +367,9 @@ export class DefaultRenderer implements ListrRenderer {
             output.push(
               ...this.format(
                 this.logger.suffix(task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title, {
-                  data: LogLevels.SKIPPED,
+                  field: LogLevels.SKIPPED,
                   condition: this.getSelfOrParentOption(task, 'suffixSkips'),
-                  format: color.dim
+                  format: () => color.dim
                 }),
                 this.style(task),
                 level
@@ -379,8 +379,8 @@ export class DefaultRenderer implements ListrRenderer {
             output.push(
               ...this.format(
                 this.logger.suffix(task.title, {
-                  data: `${LogLevels.RETRY}:${task.message.retry.count}`,
-                  format: color.yellow
+                  field: `${LogLevels.RETRY}:${task.message.retry.count}`,
+                  format: () => color.yellow
                 }),
                 this.style(task),
                 level

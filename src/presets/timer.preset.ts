@@ -15,6 +15,6 @@ export interface RendererPresetTimer {
 
 export const RENDERER_TIMER: PresetTimer = {
   condition: true,
-  data: parseTaskTime,
-  format: color.dim
+  field: parseTaskTime,
+  format: () => color.dim
 }
