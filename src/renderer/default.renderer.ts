@@ -146,7 +146,6 @@ export class DefaultRenderer implements ListrRenderer {
     persistentOutput?: boolean
   } & RendererPresetTimer
 
-  private id?: NodeJS.Timeout
   private bottomBar: Record<string, { data?: string[], items?: number }> = {}
   private promptBar: string
   private readonly spinner = new Spinner()
@@ -214,7 +213,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   public render (): void {
     // Do not render if we are already rendering
-    if (this.id) {
+    if (this.spinner.isRunning()) {
       return
     }
 
@@ -222,10 +221,9 @@ export class DefaultRenderer implements ListrRenderer {
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
-      this.id = setInterval(() => {
-        this.spinner.spin()
+      this.spinner.start(() => {
         updateRender()
-      }, 100)
+      })
     }
 
     this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
@@ -234,11 +232,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   public end (): void {
-    clearInterval(this.id)
-
-    if (this.id) {
-      this.id = undefined
-    }
+    this.spinner.stop()
 
     // clear log updater
     logUpdate.clear()
