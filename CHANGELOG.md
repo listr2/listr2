@@ -1,3 +1,10 @@
+# [6.0.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2023-03-13)
+
+
+### Features
+
+* add process hooks to hook terminal to obstruct anything while rendering ([db7398d](https://github.com/cenk1cenk2/listr2/commit/db7398d438f56a829e81a73981420e7b0f7230c8)), closes [#662](https://github.com/cenk1cenk2/listr2/issues/662)
+
 # [6.0.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2023-03-13)
 
 
