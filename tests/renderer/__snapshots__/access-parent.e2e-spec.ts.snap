@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-exit 1`] = `[]`;
+
+exports[`default renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stderr 1`] = `[]`;
+
+exports[`default renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
+  ✔ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
+  ✔ This is a subtask.
+  ❯ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
+  ✔ This is a subtask.
+  ✔ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ Title changed from subtask.
+",
+  "[2K[1A[2K[G",
+  "✔ Title changed from subtask.
+",
+]
+`;
+
+exports[`simple renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-exit 1`] = `[]`;
+
+exports[`simple renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stderr 1`] = `[]`;
+
+exports[`simple renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
+[
+  "❯ This task will execute.
+",
+  "❯ This is a subtask.
+",
+  "✔ This is a subtask.
+",
+  "❯ This is a subtask.
+",
+  "✔ This is a subtask.
+",
+  "✔ Title changed from subtask.
+",
+]
+`;
+
+exports[`test renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-exit 1`] = `[]`;
+
+exports[`test renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stderr 1`] = `[]`;
+
+exports[`test renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"This is a subtask.","hasFinalized":false}}
+",
+  "{"event":"TITLE","data":"Title changed from subtask.","task":{"title":"Title changed from subtask.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"This is a subtask.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"This is a subtask.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"This is a subtask.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"Title changed from subtask.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`verbose renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-exit 1`] = `[]`;
+
+exports[`verbose renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stderr 1`] = `[]`;
+
+exports[`verbose renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
+[
+  "[STARTED] This task will execute.
+",
+  "[STARTED] This is a subtask.
+",
+  "[TITLE] Title changed from subtask.
+",
+  "[COMPLETED] This is a subtask.
+",
+  "[STARTED] This is a subtask.
+",
+  "[COMPLETED] This is a subtask.
+",
+  "[COMPLETED] Title changed from subtask.
+",
+]
+`;

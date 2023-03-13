@@ -34,12 +34,10 @@ exports[`default renderer: task-enable should enable task with general context i
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
 ✔ This task will show subtasks.
-  ✔ This task will execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
 ✔ This task will show subtasks.
-  ✔ This task will execute.
 ",
 ]
 `;

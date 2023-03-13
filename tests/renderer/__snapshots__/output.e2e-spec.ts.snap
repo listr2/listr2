@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
+
+exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stderr 1`] = `[]`;
+
+exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+]
+`;
+
+exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
+
+exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stderr 1`] = `[]`;
+
+exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
+[
+  "❯ This task will execute.
+",
+  "› I will push an output. [0]
+",
+  "› I will push an output. [1]
+",
+  "› I will push an output. [2]
+",
+  "✔ This task will execute.
+",
+]
+`;
+
+exports[`test renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
+
+exports[`test renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stderr 1`] = `[]`;
+
+exports[`test renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"OUTPUT","data":"I will push an output. [0]","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"OUTPUT","data":"I will push an output. [1]","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"OUTPUT","data":"I will push an output. [2]","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
+
+exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stderr 1`] = `[]`;
+
+exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
+[
+  "[STARTED] This task will execute.
+",
+  "[OUTPUT] I will push an output. [0]
+",
+  "[OUTPUT] I will push an output. [1]
+",
+  "[OUTPUT] I will push an output. [2]
+",
+  "[COMPLETED] This task will execute.
+",
+]
+`;

@@ -71,7 +71,7 @@ describe('default renderer: task-enable', () => {
                   task: (): void => {}
                 }
               ],
-              { rendererOptions: { collapse: false }, concurrent: true }
+              { concurrent: true }
             )
         }
       ],

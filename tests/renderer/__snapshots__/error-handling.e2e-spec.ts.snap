@@ -1,0 +1,611 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+[
+  "◼ This task will execute and not quit on errors.
+",
+  "[2K[1A[2K[G◼ This task will execute and not quit on errors.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ❯ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ I will exit on error since I am a direct child of parent task.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ I will exit on error since I am a direct child of parent task.
+",
+]
+`;
+
+exports[`default renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+[
+  [ListrError: I have failed [0]],
+  [ListrError: I have failed [1]],
+  [ListrError: I will exit on error since I am a direct child of parent task.],
+]
+`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ I will change my title if this executes.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+]
+`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+]
+`;
+
+exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+❯ I will change my title if this executes.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+]
+`;
+
+exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task failed after 2 seconds.
+◼ This task will never execute.
+",
+]
+`;
+
+exports[`simple renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+
+exports[`simple renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `
+[
+  "✖ This is a subtask. [FAILED: I have failed [0]]
+",
+  "✖ This is an another subtask. [FAILED: I have failed [1]]
+",
+  "✖ This task will execute. [FAILED: I will exit on error since I am a direct child of parent task.]
+",
+]
+`;
+
+exports[`simple renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+[
+  "❯ This task will execute and not quit on errors.
+",
+  "❯ This is a subtask.
+",
+  "❯ This is an another subtask.
+",
+  "❯ This is yet an another subtask.
+",
+  "✔ I have succeeded.
+",
+  "✔ This task will execute and not quit on errors.
+",
+  "❯ This task will execute.
+",
+]
+`;
+
+exports[`simple renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+[
+  [ListrError: I have failed [0]],
+  [ListrError: I have failed [1]],
+  [ListrError: I will exit on error since I am a direct child of parent task.],
+]
+`;
+
+exports[`simple renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`simple renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+]
+`;
+
+exports[`simple renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "❯ This task will fail.
+",
+  "❯ This task will maybe execute.
+",
+  "✔ I will change my title if this executes.
+",
+]
+`;
+
+exports[`simple renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`simple renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+]
+`;
+
+exports[`simple renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "❯ This task will fail.
+",
+]
+`;
+
+exports[`simple renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+
+exports[`simple renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+]
+`;
+
+exports[`simple renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+[
+  "❯ This task will fail.
+",
+  "❯ This task will execute.
+",
+  "✔ I will change my title if this executes.
+",
+]
+`;
+
+exports[`simple renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+
+exports[`simple renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+]
+`;
+
+exports[`simple renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+[
+  "❯ This task will fail.
+",
+]
+`;
+
+exports[`test renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+
+exports[`test renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"I have failed [0]"},"task":{"title":"This is a subtask.","hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"error":"I have failed [1]"},"task":{"title":"This is an another subtask.","hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"error":"I will exit on error since I am a direct child of parent task."},"task":{"title":"This task will execute.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute and not quit on errors.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"This is a subtask.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"title":"This is a subtask.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"This is an another subtask.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"title":"This is an another subtask.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"This is yet an another subtask.","hasFinalized":false}}
+",
+  "{"event":"TITLE","data":"I have succeeded.","task":{"title":"I have succeeded.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"I have succeeded.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute and not quit on errors.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"title":"This task will execute.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+[
+  [ListrError: I have failed [0]],
+  [ListrError: I have failed [1]],
+  [ListrError: I will exit on error since I am a direct child of parent task.],
+]
+`;
+
+exports[`test renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`test renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"title":"This task will fail.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will fail.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"title":"This task will fail.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will maybe execute.","hasFinalized":false}}
+",
+  "{"event":"TITLE","data":"I will change my title if this executes.","task":{"title":"I will change my title if this executes.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"I will change my title if this executes.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`test renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"title":"This task will fail.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will fail.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"title":"This task will fail.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+
+exports[`test renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"title":"This task will fail.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will fail.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"title":"This task will fail.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"TITLE","data":"I will change my title if this executes.","task":{"title":"I will change my title if this executes.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"I will change my title if this executes.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+
+exports[`test renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"title":"This task will fail.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`test renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"This task will fail.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"title":"This task will fail.","hasFinalized":true}}
+",
+]
+`;
+
+exports[`verbose renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+
+exports[`verbose renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `
+[
+  "[FAILED] I have failed [0]
+",
+  "[FAILED] I have failed [1]
+",
+  "[FAILED] I will exit on error since I am a direct child of parent task.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+[
+  "[STARTED] This task will execute and not quit on errors.
+",
+  "[STARTED] This is a subtask.
+",
+  "[STARTED] This is an another subtask.
+",
+  "[STARTED] This is yet an another subtask.
+",
+  "[TITLE] I have succeeded.
+",
+  "[COMPLETED] I have succeeded.
+",
+  "[COMPLETED] This task will execute and not quit on errors.
+",
+  "[STARTED] This task will execute.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+[
+  [ListrError: I have failed [0]],
+  [ListrError: I have failed [1]],
+  [ListrError: I will exit on error since I am a direct child of parent task.],
+]
+`;
+
+exports[`verbose renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`verbose renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "[STARTED] This task will fail.
+",
+  "[STARTED] This task will maybe execute.
+",
+  "[TITLE] I will change my title if this executes.
+",
+  "[COMPLETED] I will change my title if this executes.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`verbose renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "[STARTED] This task will fail.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+
+exports[`verbose renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+[
+  "[STARTED] This task will fail.
+",
+  "[STARTED] This task will execute.
+",
+  "[TITLE] I will change my title if this executes.
+",
+  "[COMPLETED] I will change my title if this executes.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+
+exports[`verbose renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+]
+`;
+
+exports[`verbose renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+[
+  "[STARTED] This task will fail.
+",
+]
+`;

@@ -68,15 +68,15 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
       this.errors.push(new ListrError<Ctx>(error, type, this.task))
     }
 
-    this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }
+    this.task.message$ = { error: error.message ?? this.task?.title }
   }
 
   /** Skip current task. */
-  public skip (message: string, ...metadata: any[]): void {
+  public skip (message?: string, ...metadata: any[]): void {
     this.task.state$ = ListrTaskState.SKIPPED
 
     if (message) {
-      this.task.message$ = { skip: splat(message, ...metadata) ?? this.task?.title ?? 'Task with no title.' }
+      this.task.message$ = { skip: message ? splat(message, ...metadata) : this.task?.title }
     }
   }
 

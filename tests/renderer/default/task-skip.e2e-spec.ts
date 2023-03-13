@@ -18,52 +18,6 @@ describe('default renderer: task-skip', () => {
     jest.clearAllMocks()
   })
 
-  // ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F
-  it('should skip from internal function', async () => {
-    await new Listr(
-      [
-        {
-          title: 'This task will execute.',
-          task: (_, task): void => {
-            task.skip('I am skipping this tasks for reasons.')
-          }
-        }
-      ],
-      {
-        concurrent: false,
-        rendererOptions: { lazy: true }
-      }
-    ).run()
-
-    expectProcessOutputToMatchSnapshot(output, 'ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F')
-  })
-
-  // 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e
-  it('should skip from context', async () => {
-    await new Listr(
-      [
-        {
-          title: 'This task will execute.',
-          task: (ctx): void => {
-            ctx.skip = true
-          }
-        },
-
-        {
-          title: 'This task will never execute.',
-          skip: (ctx): boolean => ctx.skip,
-          task: (): void => {}
-        }
-      ],
-      {
-        concurrent: false,
-        rendererOptions: { lazy: true }
-      }
-    ).run()
-
-    expectProcessOutputToMatchSnapshot(output, '8KLp76vGVlGdzoy4HztCYcYe2coxpO7e')
-  })
-
   // 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N
   it('should not collapse skip message', async () => {
     await new Listr(
@@ -88,32 +42,6 @@ describe('default renderer: task-skip', () => {
     ).run()
 
     expectProcessOutputToMatchSnapshot(output, '7IvF8C3RevPE0cdsG7QZonUN1JS26n0N')
-  })
-
-  // BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK
-  it('skip from function', async () => {
-    await new Listr(
-      [
-        {
-          title: 'This task will execute.',
-          task: (ctx): void => {
-            ctx.skip = true
-          }
-        },
-
-        {
-          title: 'This task will never execute.',
-          skip: (ctx): string | boolean => ctx.skip ? 'I will be skipped!' : false,
-          task: (): void => {}
-        }
-      ],
-      {
-        concurrent: false,
-        rendererOptions: { lazy: true }
-      }
-    ).run()
-
-    expectProcessOutputToMatchSnapshot(output, 'BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK')
   })
 
   // omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB

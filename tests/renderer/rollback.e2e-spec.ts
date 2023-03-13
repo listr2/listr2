@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import type { MockProcessOutput } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import type { RendererSetup } from '@tests/utils/renderer-map.constants'
+import { RENDERER_SETUP } from '@tests/utils/renderer-map.constants'
 
 import { Listr } from '@root'
 
-describe('default renderer: rollback', () => {
+describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput
 
   process.stdout.isTTY = true
@@ -62,7 +64,8 @@ describe('default renderer: rollback', () => {
         {
           concurrent: false,
           exitOnError: true,
-          rendererOptions: { lazy: true }
+          renderer,
+          rendererOptions
         }
       ).run()
     } catch (e: any) {
@@ -116,7 +119,8 @@ describe('default renderer: rollback', () => {
         {
           concurrent: false,
           exitOnError: true,
-          rendererOptions: { lazy: true }
+          renderer,
+          rendererOptions
         }
       ).run()
     } catch (e: any) {
@@ -171,7 +175,8 @@ describe('default renderer: rollback', () => {
           concurrent: false,
           exitAfterRollback: true,
           exitOnError: cases,
-          rendererOptions: { lazy: true }
+          renderer,
+          rendererOptions
         }
       ).run()
     } catch (e: any) {
@@ -228,7 +233,8 @@ describe('default renderer: rollback', () => {
           concurrent: false,
           exitOnError: true,
           exitAfterRollback: cases,
-          rendererOptions: { lazy: true }
+          renderer,
+          rendererOptions
         }
       ).run()
     } catch (e: any) {

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`observable as task should work with returning a observable from task: H2L4DnyiqkFuyBKwvsX6ytONqKmaxUBm-exit 1`] = `[]`;
+
+exports[`observable as task should work with returning a observable from task: H2L4DnyiqkFuyBKwvsX6ytONqKmaxUBm-stderr 1`] = `[]`;
+
+exports[`observable as task should work with returning a observable from task: H2L4DnyiqkFuyBKwvsX6ytONqKmaxUBm-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"Observable test.","hasFinalized":false}}
+",
+  "{"event":"OUTPUT","data":"test","task":{"title":"Observable test.","hasFinalized":false}}
+",
+  "{"event":"OUTPUT","data":"changed","task":{"title":"Observable test.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"Observable test.","hasFinalized":true}}
+",
+]
+`;

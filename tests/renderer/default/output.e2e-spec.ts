@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import type { MockProcessOutput } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
-import { Observable } from 'rxjs'
 
 import { Listr } from '@root'
 
@@ -17,33 +16,6 @@ describe('default renderer: output', () => {
   afterEach(async () => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
-  })
-
-  // rMG224TBrLk3ocYtKidc1D4AyZtEHm11
-  it('should yield example output', async () => {
-    await new Listr(
-      [
-        {
-          title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
-            task.output = 'I will push an output. [0]'
-
-            task.output = 'I will push an output. [1]'
-
-            task.output = 'I will push an output. [2]'
-          },
-          options: {
-            persistentOutput: false
-          }
-        }
-      ],
-      {
-        concurrent: false,
-        rendererOptions: { lazy: true }
-      }
-    ).run()
-
-    expectProcessOutputToMatchSnapshot(output, 'rMG224TBrLk3ocYtKidc1D4AyZtEHm11')
   })
 
   // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
@@ -229,31 +201,6 @@ describe('default renderer: output', () => {
     ).run()
 
     expectProcessOutputToMatchSnapshot(output, 'NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus')
-  })
-
-  // SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
-  it('should output to from an observable', async () => {
-    await new Listr(
-      [
-        {
-          title: 'Observable test.',
-          task: (): Observable<string> =>
-            new Observable((observer) => {
-              observer.next('test')
-
-              observer.next('changed')
-
-              observer.complete()
-            })
-        }
-      ],
-      {
-        concurrent: false,
-        rendererOptions: { lazy: true }
-      }
-    ).run()
-
-    expectProcessOutputToMatchSnapshot(output, 'SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT')
   })
 
   // j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
