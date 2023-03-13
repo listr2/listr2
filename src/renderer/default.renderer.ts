@@ -96,6 +96,13 @@ export class DefaultRenderer implements ListrRenderer {
      */
     lazy?: boolean
     /**
+     * activate update through triggers from render hook
+     *
+     * @default true
+     * @global global option that can not be temperated with subtasks
+     */
+    eager?: boolean
+    /**
      * removes empty lines from the data output
      *
      * @default true
@@ -121,6 +128,7 @@ export class DefaultRenderer implements ListrRenderer {
       showErrorMessage: true,
       suffixRetries: true,
       lazy: false,
+      eager: true,
       removeEmptyLines: true,
       formatOutput: 'truncate'
     }
@@ -226,9 +234,11 @@ export class DefaultRenderer implements ListrRenderer {
       })
     }
 
-    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
-      updateRender()
-    })
+    if (this.options?.eager) {
+      this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
+        updateRender()
+      })
+    }
   }
 
   public end (): void {
@@ -407,7 +417,7 @@ export class DefaultRenderer implements ListrRenderer {
 
         // Current Task Output
         if (task?.output) {
-          if ((task.isStarted() || task.isRetrying() || task.isRollingBack()) && task.isPrompt()) {
+          if (task.isPending() && task.isPrompt()) {
             // data output to prompt bar if prompt
             this.promptBar = task.output
           } else if (this.isBottomBar(task) || !task.hasTitle()) {
@@ -432,7 +442,7 @@ export class DefaultRenderer implements ListrRenderer {
             if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
               this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
             }
-          } else if (task.isStarted() || task.isRetrying() || task.isRollingBack() || this.hasPersistentOutput(task)) {
+          } else if (task.isPending() || this.hasPersistentOutput(task)) {
             // keep output if persistent output is set
             output = [ ...output, this.dump(task, level) ]
           }
@@ -444,9 +454,8 @@ export class DefaultRenderer implements ListrRenderer {
           this.getSelfOrParentOption(task, 'showSubtasks') !== false &&
           // if it doesnt have subtasks no need to check
           task.hasSubtasks() &&
-          (task.isStarted() ||
-            task.hasFailed() ||
-            task.isCompleted() && !task.hasTitle() ||
+          (task.isPending() ||
+            task.hasFinalized() && !task.hasTitle() ||
             // have to be completed and have subtasks
             task.isCompleted() && this.getSelfOrParentOption(task, 'collapse') === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
             // if any of the subtasks have the collapse option of
