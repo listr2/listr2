@@ -1,4 +1,5 @@
-import { stderr as logUpdate } from 'log-update'
+import { EOL } from 'os'
+import { UpdateManager } from 'stdout-update'
 
 import { ListrTaskState } from '@constants'
 import { ListrTaskEventType } from '@constants/event.constants'
@@ -18,11 +19,11 @@ export class SimpleRenderer implements ListrRenderer {
   public static nonTTY = true
   // designate your renderer options that will be showed inside the `ListrOptions` as rendererOptions
   public static rendererOptions: RendererPresetTimer & RendererPresetTimestamp & LoggerRendererOptions = {}
-
   // designate your custom internal task-based options that will show as `options` in the task itself
   public static rendererTaskOptions: RendererPresetTimer = {}
 
   private readonly logger: ListrLogger
+  private updateManager: UpdateManager = UpdateManager.getInstance()
 
   constructor (public readonly tasks: Task<any, typeof SimpleRenderer>[], public options: (typeof SimpleRenderer)['rendererOptions']) {
     this.options = { ...SimpleRenderer.rendererOptions, ...options }
@@ -64,6 +65,10 @@ export class SimpleRenderer implements ListrRenderer {
 
         if (state === ListrTaskState.STARTED) {
           this.logger.started(task.title)
+
+          if (task.isPrompt()) {
+            this.updateManager.hook()
+          }
         } else if (state === ListrTaskState.COMPLETED) {
           const timer = this.getSelfOrParentOption(task, 'timer')
 
@@ -77,6 +82,10 @@ export class SimpleRenderer implements ListrRenderer {
               }
             }
           )
+
+          if (task.isPrompt()) {
+            this.updateManager.unhook(true)
+          }
         }
       })
 
@@ -84,7 +93,7 @@ export class SimpleRenderer implements ListrRenderer {
         // ! This is where it gets dirty
         // * We want the prompt to stay visible after confirmation
         if (task.isPrompt() && !String(output).match(/^\n$/)) {
-          logUpdate(output)
+          this.updateManager.update(output.split(EOL))
         } else {
           this.logger.output(output)
         }

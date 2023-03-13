@@ -1,6 +1,6 @@
 import cliTruncate from 'cli-truncate'
-import logUpdate from 'log-update'
 import { EOL } from 'os'
+import { UpdateManager } from 'stdout-update'
 import cliWrap from 'wrap-ansi'
 
 import { ListrEventType } from '@constants/event.constants'
@@ -150,6 +150,11 @@ export class DefaultRenderer implements ListrRenderer {
   private promptBar: string
   private readonly spinner = new Spinner()
   private readonly logger: ListrLogger
+  // updating renderer variables
+  private pointer = { current: 0, total: 0 }
+  private rendered: string[] = []
+  private frozen: string[] = []
+  private updateManager: UpdateManager = UpdateManager.getInstance()
 
   constructor (
     public tasks: Task<any, typeof DefaultRenderer>[],
@@ -182,7 +187,9 @@ export class DefaultRenderer implements ListrRenderer {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
-  public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
+  public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string[] {
+    this.freezeRenderPointer()
+
     options = {
       tasks: true,
       bottomBar: true,
@@ -196,19 +203,19 @@ export class DefaultRenderer implements ListrRenderer {
     const renderBottomBar = this.renderBottomBar()
     const renderPrompt = this.renderPrompt()
 
-    if (options.tasks && renderTasks?.trim().length > 0) {
-      render.push(renderTasks)
+    if (options.tasks && renderTasks?.length > 0) {
+      render.push(...renderTasks)
     }
 
-    if (options.bottomBar && renderBottomBar?.trim().length > 0) {
-      render.push((render.length > 0 ? EOL : '') + renderBottomBar)
+    if (options.bottomBar && renderBottomBar?.length > 0) {
+      render.push(...render?.length > 0 || this.pointer.total > 0 ? EOL : [], ...renderBottomBar)
     }
 
-    if (options.prompt && renderPrompt?.trim().length > 0) {
-      render.push((render.length > 0 ? EOL : '') + renderPrompt)
+    if (options.prompt && renderPrompt?.length > 0) {
+      render.push(...render.length > 0 ? EOL : [], renderPrompt)
     }
 
-    return render.length > 0 ? render.join(EOL) : ''
+    return render.length > 0 ? render : []
   }
 
   public render (): void {
@@ -217,31 +224,33 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
-    const updateRender = (): void => logUpdate(this.createRender())
+    this.updateManager.hook()
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
       this.spinner.start(() => {
-        updateRender()
+        this.updateRender()
       })
     }
 
     this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
-      updateRender()
+      this.updateRender()
     })
   }
 
   public end (): void {
     this.spinner.stop()
 
-    // clear log updater
-    logUpdate.clear()
-    logUpdate.done()
-
-    // directly write to process.stdout, since logupdate only can update the seen height of terminal
     if (!this.options.clearOutput) {
-      this.logger.process.stdout(this.createRender({ prompt: false }))
+      this.updateRender({ prompt: false })
+    } else {
+      this.updateManager.erase(this.pointer.total + this.updateManager.lastLength - this.updateManager.outside)
     }
+
+    this.updateManager.erase(this.updateManager.lastLength)
+
+    // clear log updater
+    this.updateManager.unhook(true)
   }
 
   // eslint-disable-next-line complexity
@@ -316,183 +325,214 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  private renderer (tasks: Task<any, typeof DefaultRenderer>[], level = 0): string {
-    let output: string[] = []
+  private renderer (tasks: Task<any, typeof DefaultRenderer>[], level = 0): string[] {
+    // eslint-disable-next-line complexity
+    const output = tasks.flatMap((task, index) => {
+      if (!task.isEnabled() || this.frozen.includes(task.id)) {
+        return []
+      }
 
-    for (const task of tasks) {
-      if (task.isEnabled()) {
-        // Current Task Title
-        if (task.hasTitle()) {
-          if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
-            // if task is skipped
-            if (task.hasFailed() && this.getSelfOrParentOption(task, 'collapseErrors')) {
-              // current task title and skip change the title
-              output = [
-                ...output,
-                this.format(
-                  !task.hasSubtasks() && task.message.error && this.getSelfOrParentOption(task, 'showErrorMessage') ? task.message.error : task.title,
-                  this.style(task),
-                  level
-                )
-              ]
-            } else if (task.isSkipped() && this.getSelfOrParentOption(task, 'collapseSkips')) {
-              // current task title and skip change the title
-              output = [
-                ...output,
-                this.format(
-                  this.logger.suffix(task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title, {
-                    data: LogLevels.SKIPPED,
-                    condition: this.getSelfOrParentOption(task, 'suffixSkips'),
-                    format: color.dim
-                  }),
-                  this.style(task),
-                  level
-                )
-              ]
-            } else if (task.isRetrying() && this.getSelfOrParentOption(task, 'suffixRetries')) {
-              output = [
-                ...output,
-                this.format(
-                  this.logger.suffix(task.title, {
-                    data: `${LogLevels.RETRY}:${task.message.retry.count}`,
-                    format: color.yellow
-                  }),
-                  this.style(task),
-                  level
-                )
-              ]
-            } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(this.getSelfOrParentOption(task, 'timer')?.condition, task.message.duration)) {
-              // task with timer
-              output = [
-                ...output,
-                this.format(
-                  this.logger.suffix(task?.title, {
-                    ...this.getSelfOrParentOption(task, 'timer'),
-                    args: [ task.message.duration ]
-                  }),
-                  this.style(task),
-                  level
-                )
-              ]
-            } else {
-              // normal state
-              output = [ ...output, this.format(task.title, this.style(task), level) ]
-            }
+      const before = tasks[index - 1]
+
+      let taskOutput: string[] = []
+
+      // Current Task Title
+      if (task.hasTitle()) {
+        if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
+          // if task is skipped
+          if (task.hasFailed() && this.getSelfOrParentOption(task, 'collapseErrors')) {
+            // current task title and skip change the title
+            taskOutput = [
+              ...taskOutput,
+              this.format(
+                !task.hasSubtasks() && task.message.error && this.getSelfOrParentOption(task, 'showErrorMessage') ? task.message.error : task.title,
+                this.style(task),
+                level
+              )
+            ]
+          } else if (task.isSkipped() && this.getSelfOrParentOption(task, 'collapseSkips')) {
+            // current task title and skip change the title
+            taskOutput = [
+              ...taskOutput,
+              this.format(
+                this.logger.suffix(task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title, {
+                  data: LogLevels.SKIPPED,
+                  condition: this.getSelfOrParentOption(task, 'suffixSkips'),
+                  format: color.dim
+                }),
+                this.style(task),
+                level
+              )
+            ]
+          } else if (task.isRetrying() && this.getSelfOrParentOption(task, 'suffixRetries')) {
+            taskOutput = [
+              ...taskOutput,
+              this.format(
+                this.logger.suffix(task.title, {
+                  data: `${LogLevels.RETRY}:${task.message.retry.count}`,
+                  format: color.yellow
+                }),
+                this.style(task),
+                level
+              )
+            ]
+          } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(this.getSelfOrParentOption(task, 'timer')?.condition, task.message.duration)) {
+            // task with timer
+            taskOutput = [
+              ...taskOutput,
+              this.format(
+                this.logger.suffix(task?.title, {
+                  ...this.getSelfOrParentOption(task, 'timer'),
+                  args: [ task.message.duration ]
+                }),
+                this.style(task),
+                level
+              )
+            ]
           } else {
-            // some sibling task but self has failed and this has stopped
-            output = [ ...output, this.format(task.title, color.red(figures.squareSmallFilled), level) ]
+            // normal state
+            taskOutput = [ ...taskOutput, this.format(task.title, this.style(task), level) ]
           }
+        } else {
+          // some sibling task but self has failed and this has stopped
+          taskOutput = [ ...taskOutput, this.format(task.title, color.red(figures.squareSmallFilled), level) ]
         }
+      }
 
-        // task should not have subtasks since subtasks will handle the error already
-        // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
-        if (!task.hasSubtasks() || !this.getSelfOrParentOption(task, 'showSubtasks')) {
-          // without the collapse option for skip and errors
-          if (
-            task.hasFailed() &&
-            this.getSelfOrParentOption(task, 'collapseErrors') === false &&
-            (this.getSelfOrParentOption(task, 'showErrorMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
-          ) {
-            // show skip data if collapsing is not defined
-            output = [ ...output, this.dump(task, level, LogLevels.FAILED) ]
-          } else if (
-            task.isSkipped() &&
-            this.getSelfOrParentOption(task, 'collapseSkips') === false &&
-            (this.getSelfOrParentOption(task, 'showSkipMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
-          ) {
-            // show skip data if collapsing is not defined
-            output = [ ...output, this.dump(task, level, LogLevels.SKIPPED) ]
-          }
-        }
-
-        // Current Task Output
-        if (task?.output) {
-          if ((task.isStarted() || task.isRetrying() || task.isRollingBack()) && task.isPrompt()) {
-            // data output to prompt bar if prompt
-            this.promptBar = task.output
-          } else if (this.isBottomBar(task) || !task.hasTitle()) {
-            // data output to bottom bar
-            const data = [ this.dump(task, -1) ]
-
-            // create new if there is no persistent storage created for bottom bar
-            if (!this.bottomBar[task.id]) {
-              this.bottomBar[task.id] = {}
-              this.bottomBar[task.id].data = []
-
-              const bottomBar = this.getTaskOptions(task).bottomBar
-
-              if (typeof bottomBar === 'boolean') {
-                this.bottomBar[task.id].items = 1
-              } else {
-                this.bottomBar[task.id].items = bottomBar
-              }
-            }
-
-            // persistent bottom bar and limit items in it
-            if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
-              this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
-            }
-          } else if (task.isStarted() || task.isRetrying() || task.isRollingBack() || this.hasPersistentOutput(task)) {
-            // keep output if persistent output is set
-            output = [ ...output, this.dump(task, level) ]
-          }
-        }
-
-        // render subtasks, some complicated conditionals going on
+      // task should not have subtasks since subtasks will handle the error already
+      // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
+      if (!task.hasSubtasks() || !this.getSelfOrParentOption(task, 'showSubtasks')) {
+        // without the collapse option for skip and errors
         if (
-          // check if renderer option is on first
-          this.getSelfOrParentOption(task, 'showSubtasks') !== false &&
-          // if it doesnt have subtasks no need to check
-          task.hasSubtasks() &&
-          (task.isStarted() ||
-            task.hasFailed() ||
-            task.isCompleted() && !task.hasTitle() ||
-            // have to be completed and have subtasks
-            task.isCompleted() && this.getSelfOrParentOption(task, 'collapse') === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
-            // if any of the subtasks have the collapse option of
-            task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
-            // if any of the subtasks has failed
-            task.subtasks.some((subtask) => subtask.hasFailed()) ||
-            // if any of the subtasks rolled back
-            task.subtasks.some((subtask) => subtask.hasRolledBack()))
+          task.hasFailed() &&
+          this.getSelfOrParentOption(task, 'collapseErrors') === false &&
+          (this.getSelfOrParentOption(task, 'showErrorMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
         ) {
-          // set level
-          const subtaskLevel = !task.hasTitle() ? level : level + 1
+          // show skip data if collapsing is not defined
+          taskOutput = [ ...taskOutput, this.dump(task, level, LogLevels.FAILED) ]
+        } else if (
+          task.isSkipped() &&
+          this.getSelfOrParentOption(task, 'collapseSkips') === false &&
+          (this.getSelfOrParentOption(task, 'showSkipMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
+        ) {
+          // show skip data if collapsing is not defined
+          taskOutput = [ ...taskOutput, this.dump(task, level, LogLevels.SKIPPED) ]
+        }
+      }
 
-          // render the subtasks as in the same way
-          const subtaskRender = this.renderer(task.subtasks, subtaskLevel)
+      // Current Task Output
+      if (task?.output) {
+        if ((task.isStarted() || task.isRetrying() || task.isRollingBack()) && task.isPrompt()) {
+          // data output to prompt bar if prompt
+          this.promptBar = task.output
+        } else if (this.isBottomBar(task) || !task.hasTitle()) {
+          // data output to bottom bar
+          const data = [ this.dump(task, -1) ]
 
-          if (subtaskRender?.trim() !== '') {
-            output = [ ...output, subtaskRender ]
+          // create new if there is no persistent storage created for bottom bar
+          if (!this.bottomBar[task.id]) {
+            this.bottomBar[task.id] = {}
+            this.bottomBar[task.id].data = []
+
+            const bottomBar = this.getTaskOptions(task).bottomBar
+
+            if (typeof bottomBar === 'boolean') {
+              this.bottomBar[task.id].items = 1
+            } else {
+              this.bottomBar[task.id].items = bottomBar
+            }
           }
+
+          // persistent bottom bar and limit items in it
+          if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
+            this.bottomBar[task.id].data = [ ...this.bottomBar[task.id].data, ...data ]
+          }
+        } else if (task.isStarted() || task.isRetrying() || task.isRollingBack() || this.hasPersistentOutput(task)) {
+          // keep output if persistent output is set
+          taskOutput = [ ...taskOutput, this.dump(task, level) ]
+        }
+      }
+
+      let subtaskOutput: string[] = []
+
+      // render subtasks, some complicated conditionals going on
+      if (
+        // check if renderer option is on first
+        this.getSelfOrParentOption(task, 'showSubtasks') !== false &&
+        // if it doesnt have subtasks no need to check
+        task.hasSubtasks() &&
+        (task.isStarted() ||
+          task.hasFailed() ||
+          task.isCompleted() && !task.hasTitle() ||
+          // have to be completed and have subtasks
+          task.isCompleted() && this.getSelfOrParentOption(task, 'collapse') === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
+          // if any of the subtasks have the collapse option of
+          task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
+          // if any of the subtasks has failed
+          task.subtasks.some((subtask) => subtask.hasFailed()) ||
+          // if any of the subtasks rolled back
+          task.subtasks.some((subtask) => subtask.hasRolledBack()))
+      ) {
+        // render the subtasks as in the same way
+        subtaskOutput = this.renderer(task.subtasks, !task.hasTitle() ? level : level + 1)
+      }
+
+      // combine outputs from tasks
+      taskOutput = taskOutput.filter(Boolean)
+      subtaskOutput = subtaskOutput.filter(Boolean)
+
+      // after task is finished actions
+      if (task.hasFinalized()) {
+        // clean up prompts
+        this.promptBar = null
+
+        // clean up bottom bar items if not indicated otherwise
+        if (!this.hasPersistentOutput(task)) {
+          delete this.bottomBar[task.id]
         }
 
-        // after task is finished actions
-        if (task.hasFinalized()) {
-          // clean up prompts
-          this.promptBar = null
+        // tasks before this should be finished as well as parent task should be finished
+        if ((before?.hasFinalized() ?? true) && !task.parent) {
+          if (this.rendered.includes(task.id)) {
+            this.shiftRenderPointer(taskOutput.length + subtaskOutput.length)
 
-          // clean up bottom bar items if not indicated otherwise
-          if (!this.hasPersistentOutput(task)) {
-            delete this.bottomBar[task.id]
+            this.frozen.push(task.id)
+          } else {
+            this.rendered.push(task.id)
           }
         }
       }
-    }
 
-    output = output.filter(Boolean)
+      return [ ...taskOutput, ...subtaskOutput ]
+    })
 
-    if (output.length > 0) {
-      return output.join(EOL)
-    } else {
-      return
+    return output
+  }
+
+  private freezeRenderPointer (): void {
+    this.pointer.total += this.pointer.current
+    this.pointer.current = 0
+  }
+
+  private shiftRenderPointer (next: number): void {
+    this.pointer.current += next
+  }
+
+  private updateRender (...args: Parameters<DefaultRenderer['createRender']>): void {
+    const render = this.createRender(...args)
+
+    if (render.length > 0) {
+      this.updateManager.update(render, this.pointer.current)
+    } else if (this.updateManager.lastLength - this.pointer.total > 0) {
+      // clear the not finalized lines, if the render returns empty since update method checks length > 0
+      this.updateManager.erase(this.updateManager.lastLength - this.pointer.total)
     }
   }
 
-  private renderBottomBar (): string {
+  private renderBottomBar (): string[] {
     // parse through all objects return only the last mentioned items
     if (Object.keys(this.bottomBar).length > 0) {
-      this.bottomBar = Object.keys(this.bottomBar).reduce<Record<PropertyKey, { data?: string[], items?: number }>>((o, key) => {
+      this.bottomBar = Object.keys(this.bottomBar).reduce<DefaultRenderer['bottomBar']>((o, key) => {
         if (!o?.[key]) {
           o[key] = {}
         }
@@ -508,7 +548,6 @@ export class DefaultRenderer implements ListrRenderer {
       return Object.values(this.bottomBar)
         .reduce((o, value) => o = [ ...o, ...value.data ], [])
         .filter(Boolean)
-        .join(EOL)
     }
   }
 

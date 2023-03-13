@@ -185,7 +185,7 @@ async function main (): Promise<void> {
           }
         }
       ]
-      // { renderer: 'test' as 'default' }
+      // { rendererOptions: { lazy: true } }
     ).run()
   } catch (e: any) {
     // eslint-disable-next-line no-console

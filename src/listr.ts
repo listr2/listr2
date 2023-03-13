@@ -37,7 +37,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   private renderer: ListrRenderer
 
   constructor (
-    public task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[],
+    tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[],
     public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>,
     public parentTask?: Task<any, any>
   ) {
@@ -88,7 +88,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
     // parse and add tasks
     /* istanbul ignore next */
-    this.add(task ?? [])
+    this.add(tasks ?? [])
 
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */

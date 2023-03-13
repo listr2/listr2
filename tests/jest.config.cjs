@@ -7,7 +7,7 @@ const tsconfig = require(path.join(process.cwd(), 'tests', './tsconfig.json'))
 module.exports = {
   rootDir: '../',
   testRegex: '(/tests/.*|/src/.*).(e2e-)?spec.tsx?$',
-  setupFiles: ['<rootDir>/tests/jest.setup.cjs'],
+  setupFiles: [ '<rootDir>/tests/jest.setup.cjs' ],
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',
