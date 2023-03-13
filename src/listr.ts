@@ -4,7 +4,7 @@ import type { ListrEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import type { ListrEventMap } from '@interfaces/event-map.interface'
 import type { ListrError } from '@interfaces/listr-error.interface'
-import type { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
+import type { ListrBaseClassOptions, ListrContext } from '@interfaces/listr.interface'
 import type {
   ListrDefaultRendererValue,
   ListrFallbackRendererValue,
@@ -14,6 +14,7 @@ import type {
   ListrRendererFactory,
   ListrRendererValue
 } from '@interfaces/renderer.interface'
+import type { ListrTask } from '@interfaces/task.interface'
 import { EventManager } from '@lib/event-manager'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
@@ -93,7 +94,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       process
         .once('SIGINT', () => {
           this.tasks.forEach(async (task) => {
-            if (task.isPending()) {
+            if (task.isStarted()) {
               task.state$ = ListrTaskState.FAILED
             }
           })
@@ -125,7 +126,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
     }
 
-    this.renderer.render()
+    await this.renderer.render()
 
     // create a new context
     this.ctx = this.options?.ctx ?? context ?? ({} as Ctx)
