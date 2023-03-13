@@ -9,7 +9,7 @@ import type { ListrRendererFactory } from '@interfaces/renderer.interface'
 import type { ListrTask } from '@interfaces/task.interface'
 import type { Task } from '@lib/task'
 import { Listr } from '@root/listr'
-import { createPrompt, destroyPrompt } from '@utils'
+import { createPrompt, destroyPrompt, splat } from '@utils'
 import type { PromptOptions } from '@utils'
 
 /**
@@ -28,8 +28,10 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Change the title of the current task. */
-  set title (data: string) {
-    this.task.title$ = data
+  set title (title: string | string[]) {
+    title = Array.isArray(title) ? title : [ title ]
+
+    this.task.title$ = splat(title.shift(), ...title)
   }
 
   /** Get the output from the output channel. */
@@ -38,8 +40,10 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Send a output to the output channel. */
-  set output (data: string) {
-    this.task.output$ = data
+  set output (output: string | string[]) {
+    output = Array.isArray(output) ? output : [ output ]
+
+    this.task.output$ = splat(output.shift(), ...output)
   }
 
   /** Create a new subtask with given renderer selection from the parent task. */
@@ -68,11 +72,11 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Skip current task. */
-  public skip (message?: string): void {
+  public skip (message: string, ...metadata: any[]): void {
     this.task.state$ = ListrTaskState.SKIPPED
 
     if (message) {
-      this.task.message$ = { skip: message ?? this.task?.title ?? 'Task with no title.' }
+      this.task.message$ = { skip: splat(message, ...metadata) ?? this.task?.title ?? 'Task with no title.' }
     }
   }
 
