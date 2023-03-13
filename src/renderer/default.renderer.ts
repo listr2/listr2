@@ -251,7 +251,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  protected getSymbol (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
+  protected style (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
       return colorette.yellow(figures.arrowDown)
     }
@@ -267,11 +267,11 @@ export class DefaultRenderer implements ListrRenderer {
     } else if (task.isCompleted()) {
       return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? colorette.yellow(figures.warning) : colorette.green(figures.tick)
     } else if (task.isRetrying()) {
-      return this.options?.lazy ? colorette.yellow(figures.warning) : colorette.yellow(this.spinner.fetch())
+      return this.options?.lazy ? colorette.yellowBright(figures.warning) : colorette.yellowBright(this.spinner.fetch())
     } else if (task.isRollingBack()) {
-      return this.options?.lazy ? colorette.red(figures.warning) : colorette.red(this.spinner.fetch())
+      return this.options?.lazy ? colorette.redBright(figures.warning) : colorette.redBright(this.spinner.fetch())
     } else if (task.hasRolledBack()) {
-      return colorette.red(figures.arrowLeft)
+      return colorette.redBright(figures.arrowLeft)
     } else if (task.hasFailed()) {
       return task.hasSubtasks() ? colorette.red(figures.pointer) : colorette.red(figures.cross)
     } else if (task.isSkipped() && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
@@ -279,6 +279,46 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     return colorette.dim(figures.squareSmallFilled)
+  }
+
+  protected format (message: string, icon: string, level: number): string {
+    // we dont like empty data around here
+    if (message.trim() === '') {
+      return
+    }
+
+    message = `${icon} ${message}`
+    let parsedStr: string[]
+
+    let columns = process.stdout.columns ? process.stdout.columns : 80
+
+    columns = columns - level * this.options.indentation - 2
+
+    switch (this.options.formatOutput) {
+    case 'truncate':
+      parsedStr = message.split(EOL).map((s, i) => {
+        return cliTruncate(this.indent(s, i), columns)
+      })
+
+      break
+
+    case 'wrap':
+      parsedStr = cliWrap(message, columns, { hard: true })
+        .split(EOL)
+        .map((s, i) => this.indent(s, i))
+
+      break
+
+    default:
+      throw new Error('Format option for the renderer is wrong.')
+    }
+
+    // this removes the empty lines
+    if (this.options.removeEmptyLines) {
+      parsedStr = parsedStr.filter(Boolean)
+    }
+
+    return indentString(parsedStr.join(EOL), level * this.options.indentation)
   }
 
   // eslint-disable-next-line complexity
@@ -297,7 +337,7 @@ export class DefaultRenderer implements ListrRenderer {
                 ...output,
                 this.format(
                   !task.hasSubtasks() && task.message.error && this.getSelfOrParentOption(task, 'showErrorMessage') ? task.message.error : task.title,
-                  this.getSymbol(task),
+                  this.style(task),
                   level
                 )
               ]
@@ -311,7 +351,7 @@ export class DefaultRenderer implements ListrRenderer {
                     condition: this.getSelfOrParentOption(task, 'suffixSkips'),
                     format: colorette.dim
                   }),
-                  this.getSymbol(task),
+                  this.style(task),
                   level
                 )
               ]
@@ -323,7 +363,7 @@ export class DefaultRenderer implements ListrRenderer {
                     data: `${LogLevels.RETRY}:${task.message.retry.count}`,
                     format: colorette.yellow
                   }),
-                  this.getSymbol(task),
+                  this.style(task),
                   level
                 )
               ]
@@ -336,13 +376,13 @@ export class DefaultRenderer implements ListrRenderer {
                     ...this.getSelfOrParentOption(task, 'timer'),
                     args: [ task.message.duration ]
                   }),
-                  this.getSymbol(task),
+                  this.style(task),
                   level
                 )
               ]
             } else {
               // normal state
-              output = [ ...output, this.format(task.title, this.getSymbol(task), level) ]
+              output = [ ...output, this.format(task.title, this.style(task), level) ]
             }
           } else {
             // some sibling task but self has failed and this has stopped
@@ -510,48 +550,8 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     if (typeof data === 'string') {
-      return this.format(data, this.getSymbol(task, true), level + 1)
+      return this.format(data, this.style(task, true), level + 1)
     }
-  }
-
-  private format (str: string, icon: string, level: number): string {
-    // we dont like empty data around here
-    if (str.trim() === '') {
-      return
-    }
-
-    str = `${icon} ${str}`
-    let parsedStr: string[]
-
-    let columns = process.stdout.columns ? process.stdout.columns : 80
-
-    columns = columns - level * this.options.indentation - 2
-
-    switch (this.options.formatOutput) {
-    case 'truncate':
-      parsedStr = str.split(EOL).map((s, i) => {
-        return cliTruncate(this.indent(s, i), columns)
-      })
-
-      break
-
-    case 'wrap':
-      parsedStr = cliWrap(str, columns, { hard: true })
-        .split(EOL)
-        .map((s, i) => this.indent(s, i))
-
-      break
-
-    default:
-      throw new Error('Format option for the renderer is wrong.')
-    }
-
-    // this removes the empty lines
-    if (this.options.removeEmptyLines) {
-      parsedStr = parsedStr.filter(Boolean)
-    }
-
-    return indentString(parsedStr.join(EOL), level * this.options.indentation)
   }
 
   private indent (str: string, i: number): string {

@@ -44,10 +44,6 @@ export class ListrLogger {
     this.process.stdout(this.format(LogLevels.TITLE, message, options))
   }
 
-  public subtask (message: string, options?: LogEntityOptions): void {
-    this.process.stdout(this.format(LogLevels.SUBTASK, message, options))
-  }
-
   public retry (message: string, options?: LogEntityOptions): void {
     this.process.stderr(this.format(LogLevels.RETRY, message, options))
   }
@@ -192,7 +188,7 @@ export class ListrLogger {
     case LogLevels.OUTPUT:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        icon = figures.arrowRight
+        icon = figures.pointerSmall
       } else {
         icon = this.wrap(level)
       }
@@ -203,6 +199,7 @@ export class ListrLogger {
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.pointer
+        coloring = colorette.yellow
       } else {
         icon = this.wrap(level)
       }
@@ -212,7 +209,7 @@ export class ListrLogger {
     case LogLevels.TITLE:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        icon = figures.checkboxOn
+        icon = figures.arrowRight
       } else {
         icon = this.wrap(level)
       }
@@ -222,8 +219,8 @@ export class ListrLogger {
     case LogLevels.RETRY:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = colorette.yellow
-        icon = figures.pointer
+        coloring = colorette.yellowBright
+        icon = figures.warning
       } else {
         icon = this.wrap(level)
       }
@@ -233,19 +230,8 @@ export class ListrLogger {
     case LogLevels.ROLLBACK:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = colorette.red
+        coloring = colorette.redBright
         icon = figures.arrowLeft
-      } else {
-        icon = this.wrap(level)
-      }
-
-      break
-
-    case LogLevels.SUBTASK:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        coloring = colorette.yellowBright
-        icon = figures.pointer
       } else {
         icon = this.wrap(level)
       }

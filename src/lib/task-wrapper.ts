@@ -9,8 +9,8 @@ import type { ListrRendererFactory } from '@interfaces/renderer.interface'
 import type { ListrTask } from '@interfaces/task.interface'
 import type { Task } from '@lib/task'
 import { Listr } from '@root/listr'
-import { createPrompt, destroyPrompt } from '@utils/prompt'
-import type { PromptOptions } from '@utils/prompt.interface'
+import { createPrompt, destroyPrompt } from '@utils'
+import type { PromptOptions } from '@utils'
 
 /**
  * Extend the task to have more functionality while accessing from the outside.

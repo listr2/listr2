@@ -18,7 +18,7 @@ import type { ListrTask } from '@interfaces/task.interface'
 import { EventManager } from '@lib/event-manager'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
-import { getRenderer } from '@utils/renderer'
+import { getRenderer } from '@utils'
 
 /**
  * Creates a new set of Listr2 task list.

@@ -7,6 +7,5 @@ export enum LogLevels {
   OUTPUT = 'OUTPUT',
   TITLE = 'TITLE',
   ROLLBACK = 'ROLLBACK',
-  RETRY = 'RETRY',
-  SUBTASK = 'SUBTASK'
+  RETRY = 'RETRY'
 }

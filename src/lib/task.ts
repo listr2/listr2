@@ -10,9 +10,8 @@ import type { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendere
 import type { ListrTask, ListrTaskFn, ListrTaskMessage, ListrTaskPrompt, ListrTaskRetry } from '@interfaces/task.interface'
 import { EventManager } from '@lib/event-manager'
 import { Listr } from '@root/listr'
-import { isObservable } from '@utils'
+import { isObservable, getRenderer } from '@utils'
 import { assertFunctionOrSelf } from '@utils/assert'
-import { getRenderer } from '@utils/renderer'
 import { generateUUID } from '@utils/uuid'
 
 /**

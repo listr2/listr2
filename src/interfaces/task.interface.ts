@@ -7,7 +7,7 @@ import type { ListrGetRendererTaskOptions, ListrRendererFactory, ListrRendererVa
 import type { Task } from '@lib/task'
 import type { TaskWrapper } from '@lib/task-wrapper'
 import type { Listr } from '@root/listr'
-import type { PromptInstance } from '@utils/prompt.interface'
+import type { PromptInstance } from '@utils'
 
 /**
  * ListrTask.

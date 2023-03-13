@@ -54,10 +54,6 @@ export class SimpleRenderer implements ListrRenderer {
   private renderer (tasks: Task<any, typeof SimpleRenderer>[]): void {
     tasks.forEach((task) => {
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
-        if (task.hasTitle()) {
-          this.logger.subtask(task.title)
-        }
-
         this.renderer(subtasks)
       })
 
