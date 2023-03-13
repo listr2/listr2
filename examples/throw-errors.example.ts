@@ -150,8 +150,8 @@ async function main (): Promise<void> {
   }
 
   // H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM
-  logger.output('You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
-  logger.failed(task.err.toString())
+  logger.output('You can also access all the errors spew out by the tasks by `task.errors` which will return an array of errors.')
+  logger.failed(task.errors.toString())
 
   logger.started('Example for not collapsing errors and show them as output.')
 

@@ -183,7 +183,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         // assign subtasks
         this.subtasks = result.tasks
 
-        result.err = this.listr.err
+        result.errors = this.listr.errors
 
         this.emit(ListrTaskEventType.SUBTASK, this.subtasks)
 

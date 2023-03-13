@@ -194,7 +194,7 @@ describe('default renderer: error handling', () => {
     }
 
     expect(err).toBeTruthy()
-    expect(task.err).toMatchSnapshot('H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM')
+    expect(task.errors).toMatchSnapshot('H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM')
   })
 
   // 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H

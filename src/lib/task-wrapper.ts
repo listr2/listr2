@@ -16,7 +16,11 @@ import type { PromptOptions } from '@utils'
  * Extend the task to have more functionality while accessing from the outside.
  */
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
-  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError<Ctx>[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
+  private errors: ListrError<Ctx>[]
+
+  constructor (public task: Task<Ctx, ListrRendererFactory>, private options: ListrBaseClassOptions<Ctx, any, any>) {
+    this.errors = task.listr.errors
+  }
 
   /** Get the title of the current task. */
   get title (): string {

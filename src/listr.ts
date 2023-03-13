@@ -24,13 +24,13 @@ import { getRenderer } from '@utils'
  * Creates a new set of Listr2 task list.
  */
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
-  public events: EventManager<ListrEventType, ListrEventMap>
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
-  public err: ListrError<Ctx>[] = []
+  public errors: ListrError<Ctx>[] = []
   public ctx: Ctx
+  public events: EventManager<ListrEventType, ListrEventMap>
+  public path: string[] = []
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
-  public path: string[] = []
 
   private concurrency: number
   private renderer: ListrRenderer
@@ -61,6 +61,12 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       this.concurrency = 1
     }
 
+    // Update currentPath
+    if (parentTask) {
+      this.path = [ ...parentTask.listr.path, parentTask.title ]
+      this.errors = parentTask.listr.errors
+    }
+
     if (this.parentTask?.listr.events instanceof EventManager) {
       this.events = this.parentTask.listr.events
     } else {
@@ -82,11 +88,6 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     // parse and add tasks
     /* istanbul ignore next */
     this.add(task ?? [])
-
-    // Update currentPath
-    if (parentTask) {
-      this.path = [ ...parentTask.listr.path, parentTask.title ]
-    }
 
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */
@@ -149,7 +150,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
           // check this item is enabled, conditions may change depending on context
           await task.check(this.ctx)
 
-          return this.runTask(task, this.ctx, this.err)
+          return this.runTask(task, this.ctx)
         },
         { concurrency: this.concurrency }
       )
@@ -167,11 +168,11 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     return this.ctx
   }
 
-  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError<Ctx>[]): Promise<void> {
+  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx): Promise<void> {
     if (!task.isEnabled()) {
       return Promise.resolve()
     }
 
-    return new TaskWrapper(task, errors, this.options).run(context)
+    return new TaskWrapper(task, this.options).run(context)
   }
 }

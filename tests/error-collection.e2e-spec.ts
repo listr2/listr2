@@ -42,8 +42,8 @@ describe('error collection', () => {
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
-    expect(task.err.length).toBe(1)
-    expect(task.err[0]).toMatchObject({ message: '1', type: ListrErrorTypes.HAS_FAILED })
+    expect(task.errors.length).toBe(1)
+    expect(task.errors[0]).toMatchObject({ message: '1', type: ListrErrorTypes.HAS_FAILED })
   })
 
   it('should collect error path', async () => {
@@ -80,8 +80,8 @@ describe('error collection', () => {
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
-    expect(task.err.length).toBe(1)
-    expect(task.err[0]).toMatchObject({
+    expect(task.errors.length).toBe(1)
+    expect(task.errors[0]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
       path: 'test'
@@ -128,13 +128,13 @@ describe('error collection', () => {
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
-    expect(task.err.length).toBe(2)
-    expect(task.err[0]).toMatchObject({
+    expect(task.errors.length).toBe(2)
+    expect(task.errors[0]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
       path: 'test > subtask'
     })
-    expect(task.err[1]).toMatchObject({
+    expect(task.errors[1]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
       path: 'test'
@@ -174,17 +174,17 @@ describe('error collection', () => {
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
-    expect(task.err.length).toBe(2)
-    expect(task.err[0]).toMatchObject({
+    expect(task.errors.length).toBe(2)
+    expect(task.errors[0]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR
     })
-    expect(task.err[1]).toMatchObject({
+    expect(task.errors[1]).toMatchObject({
       message: '2',
       type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR
     })
-    expect(task.err[0].task).toBeDefined()
-    expect(task.err[1].task).toBeDefined()
+    expect(task.errors[0].task).toBeDefined()
+    expect(task.errors[1].task).toBeDefined()
   })
 
   it('should save the context on error', async () => {
@@ -220,9 +220,9 @@ describe('error collection', () => {
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
-    expect(task.err.length).toBe(1)
+    expect(task.errors.length).toBe(1)
     expect(task.ctx).toStrictEqual(ctx)
-    expect(task.err[0]).toMatchObject({ message, ctx })
+    expect(task.errors[0]).toMatchObject({ message, ctx })
   })
 
   it('should save the context on error while having circular dependencies', async () => {
@@ -257,12 +257,12 @@ describe('error collection', () => {
 
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
-    expect(task.err.length).toBe(1)
-    expect(task.err[0].message).toBe(message)
-    expect(task.err[0].ctx).toMatchObject({ test: true, myself: { test: true } })
+    expect(task.errors.length).toBe(1)
+    expect(task.errors[0].message).toBe(message)
+    expect(task.errors[0].ctx).toMatchObject({ test: true, myself: { test: true } })
   })
 
-  it('should collect all the errors from subtasks and fail with subtask error while subtask has exit on error', async () => {
+  it('should collect all the errors from subtasks and fail with subtask.errorsor while subtask has exit on error', async () => {
     const task = new Listr(
       [
         {
@@ -314,10 +314,10 @@ describe('error collection', () => {
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
-    expect(task.err.length).toBe(3)
-    expect(task.err[0]).toMatchObject({ message: '1', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR })
-    expect(task.err[1]).toMatchObject({ message: '3', type: ListrErrorTypes.HAS_FAILED })
-    expect(task.err[2]).toMatchObject({ message: '2', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR })
+    expect(task.errors.length).toBe(3)
+    expect(task.errors[0]).toMatchObject({ message: '1', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR })
+    expect(task.errors[1]).toMatchObject({ message: '3', type: ListrErrorTypes.HAS_FAILED })
+    expect(task.errors[2]).toMatchObject({ message: '2', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR })
   })
 
   it('should collect all the errors from subtasks while not exiting on error', async () => {
@@ -372,11 +372,11 @@ describe('error collection', () => {
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
-    expect(task.err.length).toBe(4)
-    expect(task.err[0]).toMatchObject({ message: '1' })
-    expect(task.err[1]).toMatchObject({ message: '3' })
-    expect(task.err[2]).toMatchObject({ message: '4' })
-    expect(task.err[3]).toMatchObject({ message: '2' })
+    expect(task.errors.length).toBe(4)
+    expect(task.errors[0]).toMatchObject({ message: '1' })
+    expect(task.errors[1]).toMatchObject({ message: '3' })
+    expect(task.errors[2]).toMatchObject({ message: '4' })
+    expect(task.errors[3]).toMatchObject({ message: '2' })
   })
 
   it.each<ListrOptions['collectErrors']>([ 'minimal', 'full' ])('should properly record the context in the given error with collect errors: %s', async (collectErrors) => {
@@ -420,20 +420,20 @@ describe('error collection', () => {
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
-    expect(task.err.length).toBe(3)
+    expect(task.errors.length).toBe(3)
 
     if (collectErrors === 'full') {
-      expect(task.err[0].ctx).toMatchObject({ test1: true })
-      expect(task.err[1].ctx).toMatchObject({ test1: true, test2: true })
-      expect(task.err[2].ctx).toMatchObject({
+      expect(task.errors[0].ctx).toMatchObject({ test1: true })
+      expect(task.errors[1].ctx).toMatchObject({ test1: true, test2: true })
+      expect(task.errors[2].ctx).toMatchObject({
         test1: true,
         test2: true,
         test3: true
       })
     } else {
-      expect(task.err[0].ctx).toBe(undefined)
-      expect(task.err[1].ctx).toBe(undefined)
-      expect(task.err[2].ctx).toBe(undefined)
+      expect(task.errors[0].ctx).toBe(undefined)
+      expect(task.errors[1].ctx).toBe(undefined)
+      expect(task.errors[2].ctx).toBe(undefined)
     }
   })
 
@@ -482,12 +482,12 @@ describe('error collection', () => {
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
 
-    expect(task.err.length).toBe(failRollback ? 3 : 2)
-    expect(task.err[0]).toMatchObject({ message: 'subtask failed.', type: ListrErrorTypes.HAS_FAILED })
-    expect(task.err[1]).toMatchObject({ message: 'subtask failed.', type: ListrErrorTypes.WILL_ROLLBACK })
+    expect(task.errors.length).toBe(failRollback ? 3 : 2)
+    expect(task.errors[0]).toMatchObject({ message: 'subtask failed.', type: ListrErrorTypes.HAS_FAILED })
+    expect(task.errors[1]).toMatchObject({ message: 'subtask failed.', type: ListrErrorTypes.WILL_ROLLBACK })
 
     if (failRollback) {
-      expect(task.err[2]).toMatchObject({ message: 'rollback fails.', type: ListrErrorTypes.HAS_FAILED_TO_ROLLBACK })
+      expect(task.errors[2]).toMatchObject({ message: 'rollback fails.', type: ListrErrorTypes.HAS_FAILED_TO_ROLLBACK })
     }
   })
 
@@ -522,11 +522,11 @@ describe('error collection', () => {
     expect(result).toBeFalsy()
     expect(crash).toBeTruthy()
 
-    expect(task.err.length).toBe(4)
-    expect(task.err[0]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
-    expect(task.err[1]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
-    expect(task.err[2]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
-    expect(task.err[3]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.HAS_FAILED })
+    expect(task.errors.length).toBe(4)
+    expect(task.errors[0]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
+    expect(task.errors[1]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
+    expect(task.errors[2]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.WILL_RETRY })
+    expect(task.errors[3]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.HAS_FAILED })
   })
 
   it('should not collect any errors if disabled', async () => {
@@ -562,6 +562,6 @@ describe('error collection', () => {
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
-    expect(task.err).toHaveLength(0)
+    expect(task.errors).toHaveLength(0)
   })
 })
