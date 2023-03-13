@@ -316,10 +316,10 @@
   optionalDependencies:
     "@commitlint/load" "^17.3.0"
 
-"@cenk1cenk2/eslint-config@2.5.52":
-  version "2.5.52"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-2.5.52.tgz#135a995db8f47a3941e5346f02e231cf006e3512"
-  integrity sha512-/AZfiLWxEnkfSKzANp9y+YFMCj9R0z3Ku4B1YKy1X+QUr04IWpZ0JjKIhQafg6iUy1zfGpiOV9b6PM8TJ+b69g==
+"@cenk1cenk2/eslint-config@2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/eslint-config/-/eslint-config-2.6.0.tgz#1da7451e3d0e11d277d66be5a7700dc3f98b68e3"
+  integrity sha512-YuHEhs2Di11IHpLHHv4r8rsifTF5UVgjGdGmvuABG4wD/LUesX2mvXazYpzoku2FCyNWWscH3tgKKINoliCHeg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.54.0"
     "@typescript-eslint/parser" "^5.54.0"
@@ -1741,11 +1741,6 @@ define-properties@^1.1.4:
   dependencies:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
-
-delay@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/delay/-/delay-5.0.0.tgz#137045ef1b96e5071060dd5be60bf9334436bd1d"
-  integrity sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==
 
 detect-file@^1.0.0:
   version "1.0.0"

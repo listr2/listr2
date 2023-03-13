@@ -1,9 +1,10 @@
 docs/**
 etc/**
-examples/**
+# examples/**
 .github/**
 .gitignore
 README.md
 CHANGELOG.md
 yarn.lock
 LICENSE
+tests/**/__snapshots__/
