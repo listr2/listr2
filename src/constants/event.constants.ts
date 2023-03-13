@@ -9,6 +9,6 @@ export enum ListrTaskEventType {
   STATE = 'STATE',
   ENABLED = 'ENABLED',
   SUBTASK = 'SUBTASK',
-  DATA = 'DATA',
+  OUTPUT = 'OUTPUT',
   MESSAGE = 'MESSAGE'
 }
