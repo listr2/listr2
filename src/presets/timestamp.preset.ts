@@ -1,5 +1,5 @@
 import type { LoggerFieldFn } from '@utils'
-import { colorette, timestamp } from '@utils'
+import { color, parseTimestamp } from '@utils'
 
 export type PresetTimestamp = LoggerFieldFn
 
@@ -9,6 +9,6 @@ export interface RendererPresetTimestamp {
 
 export const RENDERER_TIMESTAMP: PresetTimestamp = {
   condition: true,
-  data: timestamp,
-  format: colorette.dim
+  data: parseTimestamp,
+  format: color.dim
 }

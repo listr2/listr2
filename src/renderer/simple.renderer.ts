@@ -6,7 +6,7 @@ import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { Task } from '@lib/task'
 import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
-import { colorette, ListrLogger, LogLevels } from '@utils'
+import { color, ListrLogger, LogLevels } from '@utils'
 
 /**
  * This is the default renderer which is neither verbose or updating.
@@ -96,28 +96,28 @@ export class SimpleRenderer implements ListrRenderer {
           this.logger.failed(task.title, {
             suffix: {
               data: `${LogLevels.FAILED}: ${message.error}`,
-              format: colorette.red
+              format: color.red
             }
           })
         } else if (message.skip) {
           this.logger.skipped(task.title, {
             suffix: {
               data: `${LogLevels.SKIPPED}: ${message.skip}`,
-              format: colorette.yellow
+              format: color.yellow
             }
           })
         } else if (message.rollback) {
           this.logger.rollback(task.title, {
             suffix: {
               data: `${LogLevels.ROLLBACK}: ${message.rollback}`,
-              format: colorette.red
+              format: color.red
             }
           })
         } else if (message.retry) {
           this.logger.retry(task.title, {
             suffix: {
               data: `${LogLevels.RETRY}:${message.retry.count}`,
-              format: colorette.red
+              format: color.red
             }
           })
         }

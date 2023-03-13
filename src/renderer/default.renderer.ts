@@ -11,7 +11,7 @@ import type { EventManager } from '@lib/event-manager'
 import type { Task } from '@lib/task'
 import type { RendererPresetTimer } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
-import { assertFunctionOrSelf, colorette, figures, indentString, ListrLogger, LogLevels, Spinner } from '@utils'
+import { assertFunctionOrSelf, color, figures, indentString, ListrLogger, LogLevels, Spinner } from '@utils'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -253,7 +253,7 @@ export class DefaultRenderer implements ListrRenderer {
   // eslint-disable-next-line complexity
   protected style (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
     if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
-      return colorette.yellow(figures.arrowDown)
+      return color.yellow(figures.arrowDown)
     }
 
     if (data) {
@@ -262,23 +262,23 @@ export class DefaultRenderer implements ListrRenderer {
 
     if (task.isStarted()) {
       return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
-        ? colorette.yellow(figures.pointer)
-        : colorette.yellowBright(this.spinner.fetch())
+        ? color.yellow(figures.pointer)
+        : color.yellowBright(this.spinner.fetch())
     } else if (task.isCompleted()) {
-      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? colorette.yellow(figures.warning) : colorette.green(figures.tick)
+      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? color.yellow(figures.warning) : color.green(figures.tick)
     } else if (task.isRetrying()) {
-      return this.options?.lazy ? colorette.yellowBright(figures.warning) : colorette.yellowBright(this.spinner.fetch())
+      return this.options?.lazy ? color.yellowBright(figures.warning) : color.yellowBright(this.spinner.fetch())
     } else if (task.isRollingBack()) {
-      return this.options?.lazy ? colorette.redBright(figures.warning) : colorette.redBright(this.spinner.fetch())
+      return this.options?.lazy ? color.redBright(figures.warning) : color.redBright(this.spinner.fetch())
     } else if (task.hasRolledBack()) {
-      return colorette.redBright(figures.arrowLeft)
+      return color.redBright(figures.arrowLeft)
     } else if (task.hasFailed()) {
-      return task.hasSubtasks() ? colorette.red(figures.pointer) : colorette.red(figures.cross)
+      return task.hasSubtasks() ? color.red(figures.pointer) : color.red(figures.cross)
     } else if (task.isSkipped() && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
-      return colorette.yellow(figures.warning)
+      return color.yellow(figures.warning)
     }
 
-    return colorette.dim(figures.squareSmallFilled)
+    return color.dim(figures.squareSmallFilled)
   }
 
   protected format (message: string, icon: string, level: number): string {
@@ -349,7 +349,7 @@ export class DefaultRenderer implements ListrRenderer {
                   this.logger.suffix(task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title, {
                     data: LogLevels.SKIPPED,
                     condition: this.getSelfOrParentOption(task, 'suffixSkips'),
-                    format: colorette.dim
+                    format: color.dim
                   }),
                   this.style(task),
                   level
@@ -361,7 +361,7 @@ export class DefaultRenderer implements ListrRenderer {
                 this.format(
                   this.logger.suffix(task.title, {
                     data: `${LogLevels.RETRY}:${task.message.retry.count}`,
-                    format: colorette.yellow
+                    format: color.yellow
                   }),
                   this.style(task),
                   level
@@ -386,7 +386,7 @@ export class DefaultRenderer implements ListrRenderer {
             }
           } else {
             // some sibling task but self has failed and this has stopped
-            output = [ ...output, this.format(task.title, colorette.red(figures.squareSmallFilled), level) ]
+            output = [ ...output, this.format(task.title, color.red(figures.squareSmallFilled), level) ]
           }
         }
 

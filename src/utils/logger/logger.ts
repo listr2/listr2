@@ -3,7 +3,7 @@ import { EOL } from 'os'
 
 import { LogLevels } from './logger.constants'
 import type { LogEntityOptions, LoggerFormat, ListrLoggerOptions, LoggerField } from './logger.interface'
-import { colorette, figures, ProcessOutput } from '@utils'
+import { color, figures, ProcessOutput } from '@utils'
 
 /**
  * A internal logger for using in the verbose renderer mostly.
@@ -155,7 +155,7 @@ export class ListrLogger {
     case LogLevels.FAILED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = colorette.red
+        coloring = color.red
         icon = figures.cross
       } else {
         icon = this.wrap(level)
@@ -166,7 +166,7 @@ export class ListrLogger {
     case LogLevels.SKIPPED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = colorette.yellow
+        coloring = color.yellow
         icon = figures.arrowDown
       } else {
         icon = this.wrap(level)
@@ -177,7 +177,7 @@ export class ListrLogger {
     case LogLevels.COMPLETED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = colorette.green
+        coloring = color.green
         icon = figures.tick
       } else {
         icon = this.wrap(level)
@@ -199,7 +199,7 @@ export class ListrLogger {
       /* istanbul ignore if */
       if (this.options?.useIcons) {
         icon = figures.pointer
-        coloring = colorette.yellow
+        coloring = color.yellow
       } else {
         icon = this.wrap(level)
       }
@@ -219,7 +219,7 @@ export class ListrLogger {
     case LogLevels.RETRY:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = colorette.yellowBright
+        coloring = color.yellowBright
         icon = figures.warning
       } else {
         icon = this.wrap(level)
@@ -230,7 +230,7 @@ export class ListrLogger {
     case LogLevels.ROLLBACK:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
-        coloring = colorette.redBright
+        coloring = color.redBright
         icon = figures.arrowLeft
       } else {
         icon = this.wrap(level)
