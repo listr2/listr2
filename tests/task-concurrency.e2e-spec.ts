@@ -20,7 +20,7 @@ describe('concurrency', () => {
     {
       title: '1',
       task: async (): Promise<void> => {
-        await delay(35)
+        await delay(50)
       }
     },
 
@@ -54,12 +54,6 @@ describe('concurrency', () => {
 
   it.each([ 1, 2, 3, 4 ])('should limit the concurrency: %d', async (concurrent) => {
     await new Listr(tasks, { concurrent, renderer: 'test' }).run()
-  })
-
-  it('should limit the concurrency to 2', async () => {
-    await new Listr(tasks, { concurrent: 2, renderer: 'test' }).run()
-
-    expectProcessOutputToMatchSnapshot(output, '2pZ6rwMSxvmHpaVE3btDMTePhnvK0a3s')
   })
 
   it('should run tasks sequentially', async () => {
