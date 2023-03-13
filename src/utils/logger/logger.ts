@@ -128,7 +128,7 @@ export class ListrLogger {
     }
 
     multiLineMessage = multiLineMessage
-      .filter((msg) => msg && msg.trim() !== '')
+      .filter((msg) => String(msg).trim() !== '')
       .map((msg) => {
         // format messages
         return this.applyToEntity(this.style(level, msg), {
