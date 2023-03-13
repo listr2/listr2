@@ -1,12 +1,12 @@
 import { stderr as logUpdate } from 'log-update'
-import { EOL } from 'os'
 
+import type { RendererPresetTimer, RendererPresetTimestamp } from './renderer-presets.interface'
 import { ListrTaskState } from '@constants'
 import { ListrTaskEventType } from '@constants/event.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { Task } from '@lib/task'
-import { colorette } from '@utils/colorette'
-import { figures } from '@utils/figures'
+import type { LoggerRendererOptions } from '@utils'
+import { colorette, ListrLogger, LogLevels } from '@utils'
 
 /**
  * This is the default renderer which is neither verbose or updating.
@@ -16,124 +16,114 @@ import { figures } from '@utils/figures'
 export class SimpleRenderer implements ListrRenderer {
   // Designate this renderer as tty or nonTTY
   public static nonTTY = true
-
   // designate your renderer options that will be showed inside the `ListrOptions` as rendererOptions
-  public static rendererOptions: {
-    /**
-     * if true this will add
-     * timestamp at the begin of the rendered line
-     *
-     * @example
-     *
-     * ```bash
-     * [12:33:44] ✔ Do something important
-     * ```
-     *
-     * @default false
-     */
-    prefixWithTimestamp?: boolean
-    /**
-     * choose between process.stdout and process.stderr
-     *
-     * @default stdout
-     */
-    output?: 'stdout' | 'stderr'
-  } = { prefixWithTimestamp: false, output: 'stdout' }
+  public static rendererOptions: RendererPresetTimer & RendererPresetTimestamp & LoggerRendererOptions = {}
 
   // designate your custom internal task-based options that will show as `options` in the task itself
-  public static rendererTaskOptions: never
+  public static rendererTaskOptions: RendererPresetTimer = {}
+
+  private readonly logger: ListrLogger
 
   constructor (public readonly tasks: Task<any, typeof SimpleRenderer>[], public options: (typeof SimpleRenderer)['rendererOptions']) {
     this.options = { ...SimpleRenderer.rendererOptions, ...options }
-  }
 
-  // This is used for mocks, since mocking Date is cumbesome
-  public static now (): Date {
-    return new Date()
-  }
-
-  // Used to sanitize title output
-  public static formatTitle (task?: Task<any, typeof SimpleRenderer>): string {
-    return task?.title ? ` ${task.title}` : ''
-  }
-
-  // Writes sanitized output
-  public log (output?: string): void {
-    const logOut = (msg: string): void => {
-      // Need appent \n to mimic console.log
-      process[this.options.output].write(msg.endsWith(EOL) ? msg : `${msg}${EOL}`)
-    }
-
-    if (!this.options.prefixWithTimestamp) {
-      logOut(`${output}`)
-
-      return
-    }
-
-    const now = SimpleRenderer.now()
-
-    const timestamp = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ':' + String(now.getSeconds()).padStart(2, '0')
-
-    logOut(`${colorette.dim(`[${timestamp}]`)} ${output}`)
+    this.logger =
+      this.options.logger ??
+      new ListrLogger({
+        useIcons: true,
+        entityOptions: {
+          prefix: [ this.options.timestamp ]
+        }
+      })
   }
 
   // eslint-disable-next-line
   public end(): void {}
 
   public render (): void {
-    this.simpleRenderer(this.tasks)
+    this.renderer(this.tasks)
   }
 
-  private simpleRenderer (tasks: Task<any, typeof SimpleRenderer>[]): void {
+  public getSelfOrParentOption<K extends keyof (typeof SimpleRenderer)['rendererOptions']>(
+    task: Task<any, typeof SimpleRenderer>,
+    key: K
+  ): (typeof SimpleRenderer)['rendererOptions'][K] {
+    return task?.rendererOptions?.[key] ?? this.options?.[key]
+  }
+
+  private renderer (tasks: Task<any, typeof SimpleRenderer>[]): void {
     tasks.forEach((task) => {
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         if (task.hasTitle()) {
-          // if Task has subtasks where we want to log the group indication
-          this.log(`${colorette.blue(figures.pointer)} ${task.title}`)
+          this.logger.subtask(task.title)
         }
 
-        this.simpleRenderer(subtasks)
+        this.renderer(subtasks)
       })
 
       task.on(ListrTaskEventType.STATE, (state) => {
-        if (state === ListrTaskState.COMPLETED && task.hasTitle()) {
-          // The title is only logged at the end of the task execution
-          this.log(`${colorette.green(figures.tick)} ${task.title}`)
+        if (!task.hasTitle()) {
+          return
+        }
+
+        if (state === ListrTaskState.STARTED) {
+          this.logger.started(task.title)
+        } else if (state === ListrTaskState.COMPLETED) {
+          const timer = this.getSelfOrParentOption(task, 'timer')
+
+          this.logger.completed(
+            task.title,
+            timer && {
+              suffix: {
+                ...timer,
+                condition: !!task.message?.duration && timer.condition,
+                args: [ task.message.duration ]
+              }
+            }
+          )
         }
       })
 
-      task.on(ListrTaskEventType.DATA, (data) => {
+      task.on(ListrTaskEventType.OUTPUT, (output) => {
         // ! This is where it gets dirty
         // * We want the prompt to stay visible after confirmation
-        if (task.isPrompt() && !String(data).match(/^\n$/)) {
-          logUpdate(data)
+        if (task.isPrompt() && !String(output).match(/^\n$/)) {
+          logUpdate(output)
         } else {
-          this.log(`${figures.pointerSmall} ${data}`)
+          this.logger.output(output)
         }
       })
 
       task.on(ListrTaskEventType.MESSAGE, (message) => {
         if (message.error) {
           // error message
-          const title = SimpleRenderer.formatTitle(task)
-
-          this.log(`${colorette.red(figures.cross)}${title}: ${message.error}`)
+          this.logger.failed(task.title, {
+            suffix: {
+              data: `${LogLevels.FAILED}: ${message.error}`,
+              format: colorette.red
+            }
+          })
         } else if (message.skip) {
-          // Skip message
-          const title = SimpleRenderer.formatTitle(task)
-          const skip = task.title !== message.skip ? `: ${message.skip}` : ''
-
-          this.log(`${colorette.yellow(figures.arrowDown)}${title} [${colorette.yellow(`skipped${skip}`)}]`)
+          this.logger.skipped(task.title, {
+            suffix: {
+              data: `${LogLevels.SKIPPED}: ${message.skip}`,
+              format: colorette.yellow
+            }
+          })
         } else if (message.rollback) {
-          // rollback message
-          const title = SimpleRenderer.formatTitle(task)
-
-          this.log(`${colorette.red(figures.arrowLeft)}${title}: ${message.rollback}`)
+          this.logger.rollback(task.title, {
+            suffix: {
+              data: `${LogLevels.ROLLBACK}: ${message.rollback}`,
+              format: colorette.red
+            }
+          })
         } else if (message.retry) {
-          // Retry Message
-          const title = SimpleRenderer.formatTitle(task)
-
-          this.log(`[${colorette.yellow(`${message.retry.count}`)}]${title}`)
+          this.logger.retry(task.title, {
+            suffix: {
+              data: `${LogLevels.RETRY}:${message.retry.count}`,
+              format: colorette.red
+            }
+          })
         }
       })
     })

@@ -1,4 +1,4 @@
-import { isUnicodeSupported } from './is-unicode-supported'
+import { isUnicodeSupported } from '@utils'
 
 const FIGURES_MAIN = {
   warning: '⚠',
@@ -23,4 +23,6 @@ const FIGURES_FALLBACK = {
   squareSmallFilled: '■'
 }
 
-export const figures = isUnicodeSupported() ? FIGURES_MAIN : FIGURES_FALLBACK
+export type Figures = typeof FIGURES_MAIN
+
+export const figures: Figures = isUnicodeSupported() ? FIGURES_MAIN : FIGURES_FALLBACK

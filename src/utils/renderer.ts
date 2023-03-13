@@ -3,13 +3,15 @@ import type { SupportedRenderer, ListrRendererFactory, ListrRendererValue, Listr
 import { DefaultRenderer } from '@renderer/default.renderer'
 import { SilentRenderer } from '@renderer/silent.renderer'
 import { SimpleRenderer } from '@renderer/simple.renderer'
+import { TestRenderer } from '@renderer/test.renderer'
 import { VerboseRenderer } from '@renderer/verbose.renderer'
 import { assertFunctionOrSelf } from '@utils/assert'
 
-const renderers: Record<'default' | 'simple' | 'verbose' | 'silent', typeof ListrRenderer> = {
+const RENDERERS: Record<'default' | 'simple' | 'verbose' | 'test' | 'silent', typeof ListrRenderer> = {
   default: DefaultRenderer,
   simple: SimpleRenderer,
   verbose: VerboseRenderer,
+  test: TestRenderer,
   silent: SilentRenderer
 }
 
@@ -19,10 +21,10 @@ function isRendererSupported (renderer: ListrRendererFactory): boolean {
 
 export function getRendererClass (renderer: ListrRendererValue): ListrRendererFactory {
   if (typeof renderer === 'string') {
-    return renderers[renderer] || renderers.default
+    return RENDERERS[renderer] ?? RENDERERS.default
   }
 
-  return typeof renderer === 'function' ? renderer : renderers.default
+  return typeof renderer === 'function' ? renderer : RENDERERS.default
 }
 
 export function getRenderer (
@@ -31,22 +33,15 @@ export function getRenderer (
   fallbackCondition?: ListrOptions['rendererFallback'],
   silentCondition?: ListrOptions['rendererSilent']
 ): SupportedRenderer {
-  let returnValue: SupportedRenderer
-  let ret = getRendererClass(renderer)
-
-  returnValue = { renderer: ret, nonTTY: false }
-
-  const evaluateSilent = assertFunctionOrSelf(silentCondition)
-
-  const evaluateFallback = assertFunctionOrSelf(fallbackCondition)
-
-  if (evaluateSilent) {
-    ret = getRendererClass('silent')
-    returnValue = { renderer: ret, nonTTY: true }
-  } else if (!isRendererSupported(ret) || evaluateFallback) {
-    ret = getRendererClass(fallbackRenderer)
-    returnValue = { renderer: ret, nonTTY: true }
+  if (assertFunctionOrSelf(silentCondition)) {
+    return { renderer: getRendererClass('silent'), nonTTY: true }
   }
 
-  return returnValue
+  const r = { renderer: getRendererClass(renderer), nonTTY: false }
+
+  if (!isRendererSupported(r.renderer) || assertFunctionOrSelf(fallbackCondition)) {
+    return { renderer: getRendererClass(fallbackRenderer), nonTTY: true }
+  }
+
+  return r
 }

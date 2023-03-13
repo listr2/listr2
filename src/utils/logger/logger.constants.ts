@@ -1,12 +1,12 @@
 /** Default loglevels for the logger */
 export enum LogLevels {
-  SILENT = 'SILENT',
+  STARTED = 'STARTED',
+  COMPLETED = 'COMPLETED',
   FAILED = 'FAILED',
   SKIPPED = 'SKIPPED',
-  SUCCESS = 'SUCCESS',
-  DATA = 'DATA',
-  STARTED = 'STARTED',
+  OUTPUT = 'OUTPUT',
   TITLE = 'TITLE',
+  ROLLBACK = 'ROLLBACK',
   RETRY = 'RETRY',
-  ROLLBACK = 'ROLLBACK'
+  SUBTASK = 'SUBTASK'
 }
