@@ -5,6 +5,7 @@ import type { Task } from '@lib/task'
 import type { DefaultRenderer } from '@renderer/default.renderer'
 import type { SilentRenderer } from '@renderer/silent.renderer'
 import type { SimpleRenderer } from '@renderer/simple.renderer'
+import type { TestRenderer } from '@renderer/test.renderer'
 import type { VerboseRenderer } from '@renderer/verbose.renderer'
 
 /** The default renderer value used in Listr2 applications */
@@ -15,6 +16,10 @@ export type ListrDefaultRenderer = typeof DefaultRenderer
 export type ListrFallbackRendererValue = 'verbose'
 /** Type of default fallback renderer */
 export type ListrFallbackRenderer = typeof VerboseRenderer
+/** Name of testing renderer */
+export type ListrTestRendererValue = 'test'
+/** Type of testing renderer */
+export type ListrTestRenderer = typeof TestRenderer
 /** Silent rendere for internal usage */
 export type ListrSilentRendererValue = 'silent'
 /** Typeof silent renderer */
@@ -28,7 +33,13 @@ export type ListrSimpleRenderer = typeof SimpleRenderer
  * Listr2 can process either the integrated renderers as string aliases,
  * or utilize a compatible style renderer that extends the ListrRenderer abstract class.
  */
-export type ListrRendererValue = ListrSilentRendererValue | ListrDefaultRendererValue | ListrSimpleRendererValue | ListrFallbackRendererValue | ListrRendererFactory
+export type ListrRendererValue =
+  | ListrSilentRendererValue
+  | ListrDefaultRendererValue
+  | ListrSimpleRendererValue
+  | ListrFallbackRendererValue
+  | ListrTestRendererValue
+  | ListrRendererFactory
 /**
  * Returns the class type from friendly names of the renderers.
  */
@@ -38,11 +49,13 @@ export type ListrGetRendererClassFromValue<T extends ListrRendererValue> = T ext
     ? ListrSimpleRenderer
     : T extends ListrFallbackRendererValue
       ? ListrFallbackRenderer
-      : T extends ListrSilentRenderer
-        ? ListrSilentRenderer
-        : T extends ListrRendererFactory
-          ? T
-          : never
+      : T extends ListrTestRendererValue
+        ? ListrTestRenderer
+        : T extends ListrSilentRenderer
+          ? ListrSilentRenderer
+          : T extends ListrRendererFactory
+            ? T
+            : never
 
 /**
  * Returns the friendly names from the type of renderer classes.
@@ -53,11 +66,13 @@ export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = T e
     ? ListrSimpleRendererValue
     : T extends VerboseRenderer
       ? ListrFallbackRendererValue
-      : T extends SilentRenderer
-        ? ListrSilentRenderer
-        : T extends ListrRendererFactory
-          ? T
-          : never
+      : T extends TestRenderer
+        ? ListrTestRendererValue
+        : T extends SilentRenderer
+          ? ListrSilentRenderer
+          : T extends ListrRendererFactory
+            ? T
+            : never
 
 /**
  * Returns renderer global options depending on the renderer type.
@@ -68,11 +83,13 @@ export type ListrGetRendererOptions<T extends ListrRendererValue> = T extends Li
     ? ListrSimpleRenderer['rendererOptions']
     : T extends ListrFallbackRendererValue
       ? ListrFallbackRenderer['rendererOptions']
-      : T extends ListrSilentRenderer
-        ? ListrSilentRenderer['rendererOptions']
-        : T extends ListrRendererFactory
-          ? T['rendererOptions']
-          : never
+      : T extends ListrTestRendererValue
+        ? ListrTestRenderer['rendererOptions']
+        : T extends ListrSilentRenderer
+          ? ListrSilentRenderer['rendererOptions']
+          : T extends ListrRendererFactory
+            ? T['rendererOptions']
+            : never
 
 /**
  * Returns renderer per task options depending on the renderer type.
@@ -83,11 +100,13 @@ export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = T extend
     ? ListrSimpleRenderer
     : T extends ListrFallbackRendererValue
       ? ListrFallbackRenderer['rendererTaskOptions']
-      : T extends ListrSilentRenderer
-        ? ListrSilentRenderer['rendererTaskOptions']
-        : T extends ListrRendererFactory
-          ? T['rendererTaskOptions']
-          : never
+      : T extends ListrTestRendererValue
+        ? ListrTestRenderer['rendererTaskOptions']
+        : T extends ListrSilentRenderer
+          ? ListrSilentRenderer['rendererTaskOptions']
+          : T extends ListrRendererFactory
+            ? T['rendererTaskOptions']
+            : never
 
 /** Select renderer as default renderer */
 export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {
@@ -118,7 +137,7 @@ export declare class ListrRenderer {
   /** designate whether this renderer can work in non-tty environments */
   public static nonTTY: boolean
   /** A function to what to do on render */
-  public render: () => void
+  public render: () => void | Promise<void>
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
@@ -136,7 +155,7 @@ export declare class ListrBaseRenderer implements ListrRenderer {
   public tasks: Task<any, typeof ListrBaseRenderer>[]
   public options: typeof ListrBaseRenderer.rendererOptions
   /** A function to what to do on render */
-  public render: () => void
+  public render: () => void | Promise<void>
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
