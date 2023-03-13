@@ -1,16 +1,43 @@
-# [5.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-03-11)
-
+# [6.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.2...v6.0.0-beta.1) (2023-03-13)
 
 ### Bug Fixes
 
-* expose colorrette and some more utils ([d9e0812](https://github.com/cenk1cenk2/listr2/commit/d9e08126d4d2f0773fe0f26702ca4403f5521fb6))
-
-# [5.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.8...v5.1.0-beta.1) (2023-03-11)
-
+- comply with breaking changes on types ([23d1855](https://github.com/cenk1cenk2/listr2/commit/23d1855b35cb5a9be6f7af9604771a68be6307c3))
+- update dependencies and configuration ([ee07b2a](https://github.com/cenk1cenk2/listr2/commit/ee07b2a9c841c8d00adb6efe809a5decd46386f2))
 
 ### Features
 
-* ditch rxjs completely and use event emitter based approach ([213bc76](https://github.com/cenk1cenk2/listr2/commit/213bc76fec973719926927178b9a167aa89c563f))
+- adds new test renderer ([6098586](https://github.com/cenk1cenk2/listr2/commit/6098586adff1369565b79c43a546338731b4a13c))
+
+### Performance Improvements
+
+- change the exposed API of the application ([513ed76](https://github.com/cenk1cenk2/listr2/commit/513ed767a069ba91e0fa27481308c420df40f6fa))
+- changes and reuses logger component and pluggable plugins for renderers ([cbf668c](https://github.com/cenk1cenk2/listr2/commit/cbf668c1ddfbaf2d8ee4d980071305b8586f8d3d)), closes [#651](https://github.com/cenk1cenk2/listr2/issues/651) [#646](https://github.com/cenk1cenk2/listr2/issues/646) [#613](https://github.com/cenk1cenk2/listr2/issues/613)
+- **constants:** changes names of listr states ([cf9c19d](https://github.com/cenk1cenk2/listr2/commit/cf9c19df04099e354a2ac6d51cd853c6def0c4bf))
+
+### BREAKING CHANGES
+
+- This completely breaks old behavior with the renderers, even the basic parameters are changed.
+
+Now the renderers for things like timer and timestamps takes in pluggable components through the shared constants, which makes them user configurable.
+
+The logger interface and logger itself has changed to handle all the common cases for any kind of renderer, eventhough it does not use all of them at the same time.
+
+This is a big change that might make the user checkout the new README.
+
+- **constants:** State names has been changed, which might break backwards compatability.
+
+# [5.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-03-11)
+
+### Bug Fixes
+
+- expose colorrette and some more utils ([d9e0812](https://github.com/cenk1cenk2/listr2/commit/d9e08126d4d2f0773fe0f26702ca4403f5521fb6))
+
+# [5.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.8...v5.1.0-beta.1) (2023-03-11)
+
+### Features
+
+- ditch rxjs completely and use event emitter based approach ([213bc76](https://github.com/cenk1cenk2/listr2/commit/213bc76fec973719926927178b9a167aa89c563f))
 
 ## [5.0.8](https://github.com/cenk1cenk2/listr2/compare/v5.0.7...v5.0.8) (2023-03-11)
 
