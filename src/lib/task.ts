@@ -44,6 +44,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   /** This will be triggered each time a new render should happen. */
   public prompt: ListrTaskPrompt
+  public parent?: Task<Ctx, Renderer>
+
   private enabled: boolean
 
   constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
@@ -53,6 +55,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     this.initialTitle = this.tasks?.title
 
     this.task = this.tasks.task
+    this.parent = this.listr.parentTask
 
     // task options
     this.rendererTaskOptions = this.tasks.options
@@ -117,6 +120,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   /** Returns whether this task is finalized in someform. */
   public hasFinalized (): boolean {
     return this.isCompleted() || this.hasFailed() || this.isSkipped() || this.hasRolledBack()
+  }
+
+  public isPending (): boolean {
+    return this.isStarted() || this.isRetrying() || this.isRollingBack()
   }
 
   /** Returns whether this task is in progress. */

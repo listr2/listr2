@@ -96,7 +96,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       process
         .once('SIGINT', () => {
           this.tasks.forEach(async (task) => {
-            if (task.isStarted()) {
+            if (task.isPending()) {
               task.state$ = ListrTaskState.FAILED
             }
           })
