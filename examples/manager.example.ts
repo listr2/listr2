@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 import type { ListrBaseClassOptions } from '@interfaces/listr.interface'
 import { Manager } from '@root/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager<T> {
   const myDefaultOptions: ListrBaseClassOptions = {
@@ -25,7 +25,7 @@ interface Ctx {
 
 class MyMainClass {
   private tasks = TaskManagerFactory<Ctx>()
-  private logger = new Logger({ useIcons: false })
+  private logger = new ListrLogger({ useIcons: false })
 
   constructor () {
     void this.run()
@@ -85,11 +85,11 @@ class MyMainClass {
       { concurrent: false }
     )
 
-    this.logger.start('This will run all the tasks in a queue and clear the queue afterwards.')
+    this.logger.started('This will run all the tasks in a queue and clear the queue afterwards.')
     await this.tasks.runAll()
 
-    this.logger.start('You can use listr directly without importing it.')
-    this.logger.start('It will use the options set on the manager so you dont have to initialize it with options everytime.')
+    this.logger.started('You can use listr directly without importing it.')
+    this.logger.started('It will use the options set on the manager so you dont have to initialize it with options everytime.')
 
     try {
       await this.tasks.run([
@@ -101,14 +101,14 @@ class MyMainClass {
         }
       ])
     } catch (e: any) {
-      this.logger.fail(e)
+      this.logger.failed(e)
     }
 
-    this.logger.start('Access the errors on the last run as in a similar way.')
-    this.logger.data(this.tasks.err.toString())
+    this.logger.started('Access the errors on the last run as in a similar way.')
+    this.logger.output(this.tasks.err.toString())
 
-    this.logger.start('You can also access Listr directly in the same way.')
-    this.logger.start('It is not the same manager instance, just a jumper function.')
+    this.logger.started('You can also access Listr directly in the same way.')
+    this.logger.started('It is not the same manager instance, just a jumper function.')
 
     try {
       await this.tasks
@@ -122,10 +122,10 @@ class MyMainClass {
         ])
         .run()
     } catch (e: any) {
-      this.logger.fail(e)
+      this.logger.failed(e)
     }
 
-    this.logger.start('You can inject context directly to main instance.')
+    this.logger.started('You can inject context directly to main instance.')
     this.tasks.ctx = { injected: true }
     await this.tasks.run([
       {
@@ -136,7 +136,7 @@ class MyMainClass {
       }
     ])
 
-    this.logger.start('There is an embedded function of getting the run time, that can be useful in concurrent tasks.')
+    this.logger.started('There is an embedded function of getting the run time, that can be useful in concurrent tasks.')
     await this.tasks.run(
       [
         {

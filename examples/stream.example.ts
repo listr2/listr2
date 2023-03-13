@@ -4,18 +4,18 @@ import { spawn } from 'child_process'
 import type { Readable } from 'stream'
 
 import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 interface Ctx {
   output: string
 }
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
-  logger.start('Example output from a task.')
+  logger.started('Example output from a task.')
 
   // eslint-disable-next-line prefer-const
   task = new Listr<Ctx>(
@@ -36,9 +36,9 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 }
 

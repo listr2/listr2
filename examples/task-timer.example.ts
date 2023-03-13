@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
-import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+import { Listr, RENDERER_TIMER } from '@root/index'
+import { ListrLogger } from '@utils/logger'
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
   let task: Listr<any>
 
-  logger.start('Example for showing the timer per task.')
+  logger.started('Example for showing the timer per task.')
 
   task = new Listr<any>(
     [
@@ -19,7 +19,7 @@ async function main (): Promise<void> {
           await delay(1000)
         },
         options: {
-          showTimer: true
+          timer: RENDERER_TIMER
         }
       },
 
@@ -29,7 +29,7 @@ async function main (): Promise<void> {
           await delay(1000)
         },
         options: {
-          showTimer: false
+          timer: RENDERER_TIMER
         }
       }
     ],
@@ -39,12 +39,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Example for showing the timer per listr.')
+  logger.started('Example for showing the timer per listr.')
 
   task = new Listr<any>(
     [
@@ -63,18 +63,18 @@ async function main (): Promise<void> {
         }
       }
     ],
-    { concurrent: false, rendererOptions: { showTimer: true } }
+    { concurrent: false, rendererOptions: { timer: RENDERER_TIMER } }
   )
 
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Example for showing the timer per listr in verbose renderer when on fallback.')
+  logger.started('Example for showing the timer per listr in verbose renderer when on fallback.')
 
   task = new Listr<any>(
     [
@@ -95,18 +95,18 @@ async function main (): Promise<void> {
     ],
     {
       concurrent: false,
-      rendererOptions: { showTimer: true },
+      rendererOptions: { timer: RENDERER_TIMER },
       rendererFallback: true,
-      nonTTYRendererOptions: { showTimer: true, useIcons: true }
+      nonTTYRendererOptions: { timer: RENDERER_TIMER }
     }
   )
 
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 }
 

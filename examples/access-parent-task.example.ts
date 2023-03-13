@@ -1,17 +1,17 @@
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 interface Ctx {
   skip: boolean
 }
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
-  logger.start('Example for subtasks with different renderer options.')
+  logger.started('Example for subtasks with different renderer options.')
 
   const task: Listr<Ctx> = new Listr<Ctx>(
     [
@@ -44,9 +44,9 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 }
 

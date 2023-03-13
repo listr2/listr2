@@ -1,20 +1,20 @@
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 interface Ctx {
   skip: boolean
 }
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
   // JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU
-  logger.start('Example for enabling a task by utilizing previous tasks and the general context.')
+  logger.started('Example for enabling a task by utilizing previous tasks and the general context.')
 
   task = new Listr<Ctx>(
     [
@@ -40,13 +40,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB
-  logger.start('A more complex enable example with subtasks.')
+  logger.started('A more complex enable example with subtasks.')
   task = new Listr<Ctx>(
     [
       {
@@ -82,9 +82,9 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 }
 

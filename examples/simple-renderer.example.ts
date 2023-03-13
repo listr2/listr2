@@ -1,6 +1,6 @@
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
-import { Listr } from '@root/index'
+import { Listr, RENDERER_TIMER, RENDERER_TIMESTAMP } from '@root/index'
 
 async function main (): Promise<void> {
   try {
@@ -61,6 +61,9 @@ async function main (): Promise<void> {
                     await delay(500)
                     task.output = 'Task Manager'
                     await delay(500)
+                  },
+                  options: {
+                    timer: RENDERER_TIMER
                   }
                 }
               ],
@@ -182,7 +185,7 @@ async function main (): Promise<void> {
           }
         }
       ],
-      { renderer: 'simple', rendererOptions: { prefixWithTimestamp: true } }
+      { renderer: 'simple', rendererOptions: { timestamp: RENDERER_TIMESTAMP } }
     ).run()
   } catch (e: any) {
     // eslint-disable-next-line no-console

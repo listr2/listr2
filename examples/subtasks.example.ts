@@ -1,20 +1,20 @@
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 interface Ctx {
   skip: boolean
 }
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
   // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
-  logger.start('Example for subtasks.')
+  logger.started('Example for subtasks.')
 
   task = new Listr<Ctx>(
     [
@@ -37,14 +37,14 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0kA
   // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
-  logger.start('Example for subtasks with different renderer options.')
+  logger.started('Example for subtasks with different renderer options.')
 
   task = new Listr<Ctx>(
     [
@@ -98,12 +98,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Example for subtasks with different disabled rendering from parent.')
+  logger.started('Example for subtasks with different disabled rendering from parent.')
 
   task = new Listr<Ctx>(
     [
@@ -135,13 +135,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY
-  logger.start('Example for subtasks that change exit on error.')
+  logger.started('Example for subtasks that change exit on error.')
 
   task = new Listr<Ctx>(
     [
@@ -185,13 +185,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.data('You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
-  logger.fail(task.err.toString())
+  logger.output('You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
+  logger.failed(task.err.toString())
 }
 
 void main()

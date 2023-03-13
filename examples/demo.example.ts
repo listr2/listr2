@@ -1,4 +1,4 @@
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 import { Listr } from '@root/index'
 
@@ -184,8 +184,8 @@ async function main (): Promise<void> {
             task.title = 'Created a beautiful CLI interface!'
           }
         }
-      ],
-      {}
+      ]
+      // { renderer: 'test' as 'default' }
     ).run()
   } catch (e: any) {
     // eslint-disable-next-line no-console

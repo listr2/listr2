@@ -1,20 +1,20 @@
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 interface Ctx {
   skip: boolean
 }
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
   // 4SIhMkI14b8s2hW1esiORoa1UINGHwAr
-  logger.start('This would trigger the rollback functionality if the parent task fails.')
+  logger.started('This would trigger the rollback functionality if the parent task fails.')
 
   task = new Listr<Ctx>(
     [
@@ -61,13 +61,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx
-  logger.start('Rollback in normal task.')
+  logger.started('Rollback in normal task.')
 
   task = new Listr<Ctx>(
     [
@@ -115,9 +115,9 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 }
 

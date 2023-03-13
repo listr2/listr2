@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import delay from 'delay'
+import { delay } from '@tests/utils'
 import { Observable } from 'rxjs'
 
 import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 interface Ctx {
   skip: boolean
 }
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
   // rMG224TBrLk3ocYtKidc1D4AyZtEHm11
-  logger.start('Example output from a task.')
+  logger.started('Example output from a task.')
 
   task = new Listr<Ctx>(
     [
@@ -39,13 +39,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
-  logger.start('Example output with task with persistent output.')
+  logger.started('Example output with task with persistent output.')
 
   task = new Listr<Ctx>(
     [
@@ -70,13 +70,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // 767BkeBTfR1lrS2ANYYH7CLWPATxqyat
-  logger.start('Example output to bottom bar from a task.')
+  logger.started('Example output to bottom bar from a task.')
 
   task = new Listr<Ctx>(
     [
@@ -103,13 +103,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP
-  logger.start('Example output from a task with no title.')
+  logger.started('Example output from a task with no title.')
 
   task = new Listr<Ctx>(
     [
@@ -132,13 +132,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus
-  logger.start('Example persistent output from a task.')
+  logger.started('Example persistent output from a task.')
 
   task = new Listr<Ctx>(
     [
@@ -184,13 +184,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
-  logger.start('Example output from a observable.')
+  logger.started('Example output from a observable.')
 
   task = new Listr<Ctx>(
     [
@@ -220,13 +220,13 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
   // j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
-  logger.start('Example long multiline output with task with persistent output.')
+  logger.started('Example long multiline output with task with persistent output.')
 
   task = new Listr<Ctx>(
     [
@@ -249,12 +249,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Example long multiline output with task with persistent output and wrap.')
+  logger.started('Example long multiline output with task with persistent output and wrap.')
 
   task = new Listr<Ctx>(
     [
@@ -277,12 +277,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Example long multiline output with task with persistent output and word wrap.')
+  logger.started('Example long multiline output with task with persistent output and word wrap.')
 
   task = new Listr<Ctx>(
     [
@@ -305,12 +305,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Example long multiline output with task with persistent output and with skipping empty lines.')
+  logger.started('Example long multiline output with task with persistent output and with skipping empty lines.')
 
   task = new Listr<Ctx>(
     [
@@ -333,12 +333,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Example long multiline output with task with persistent output and without skipping empty lines.')
+  logger.started('Example long multiline output with task with persistent output and without skipping empty lines.')
 
   task = new Listr<Ctx>(
     [
@@ -361,9 +361,9 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 }
 

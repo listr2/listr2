@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 interface Ctx {
   skip: boolean
 }
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
-  logger.start('Renderer fallback when conditions is true.')
+  logger.started('Renderer fallback when conditions is true.')
 
   task = new Listr<Ctx>(
     [
@@ -31,12 +31,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Renderer fallback when conditions is false.')
+  logger.started('Renderer fallback when conditions is false.')
 
   task = new Listr<Ctx>(
     [
@@ -54,12 +54,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Fallback try with function.')
+  logger.started('Fallback try with function.')
 
   task = new Listr<Ctx>(
     [
@@ -77,9 +77,9 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 }
 

@@ -1,4 +1,4 @@
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 import { Listr } from '@root/index'
 

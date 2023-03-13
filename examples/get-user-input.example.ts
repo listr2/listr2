@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import delay from 'delay'
+import { delay } from '@tests/utils'
 
 import { Listr } from '../src/index'
-import { Logger } from '@utils/logger'
+import { ListrLogger } from '@utils/logger'
 
 interface Ctx {
   input: boolean | Record<PropertyKey, boolean>
 }
 
-const logger = new Logger({ useIcons: false })
+const logger = new ListrLogger({ useIcons: false })
 
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
-  logger.start('Example for getting user input.')
+  logger.started('Example for getting user input.')
 
   task = new Listr<Ctx>(
     [
@@ -61,12 +61,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('You can go ahead with complicated functions with prompts as well.')
+  logger.started('You can go ahead with complicated functions with prompts as well.')
   task = new Listr<Ctx>(
     [
       {
@@ -87,12 +87,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('More complicated prompt.')
+  logger.started('More complicated prompt.')
   task = new Listr<Ctx>(
     [
       {
@@ -112,12 +112,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Very complicated prompt.')
+  logger.started('Very complicated prompt.')
   task = new Listr<Ctx>(
     [
       {
@@ -166,12 +166,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Skipping a prompt.')
+  logger.started('Skipping a prompt.')
   task = new Listr<Ctx>(
     [
       {
@@ -202,12 +202,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 
-  logger.start('Canceling a prompt.')
+  logger.started('Canceling a prompt.')
   task = new Listr<Ctx>(
     [
       {
@@ -265,9 +265,9 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
+    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
   } catch (e: any) {
-    logger.fail(e)
+    logger.failed(e)
   }
 }
 
