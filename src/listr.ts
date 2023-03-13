@@ -1,5 +1,6 @@
 import pMap from 'p-map'
 
+import { ListrEnvironmentVariables } from '@constants'
 import type { ListrEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import type { ListrEventMap } from '@interfaces/event-map.interface'
@@ -109,14 +110,18 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
     // disable color programatically for CI purposes
     if (this.options?.disableColor) {
-      process.env.LISTR_DISABLE_COLOR = '1'
+      process.env[ListrEnvironmentVariables.DISABLE_COLOR] = '1'
     } else if (this.options?.forceColor) {
-      process.env.FORCE_COLOR = '1'
+      process.env[ListrEnvironmentVariables.FORCE_COLOR] = '1'
     }
 
     if (this.options?.forceTTY) {
       process.stdout.isTTY = true
       process.stderr.isTTY = true
+    }
+
+    if (this.options?.forceUnicode) {
+      process.env[ListrEnvironmentVariables.FORCE_UNICODE] = '1'
     }
   }
 

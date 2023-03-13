@@ -89,11 +89,17 @@ export interface ListrOptions<Ctx = ListrContext> {
    */
   forceColor?: boolean
   /**
-   * Forces TTY stdout eventhough it might not support it.
+   * Forces TTY stdout eventhough current terminal might not support it.
    *
    * @default false
    */
   forceTTY?: boolean
+  /**
+   * Forces unicode eventhough current terminal might not support it.
+   *
+   * @default false
+   */
+  forceUnicode?: boolean
   /**
    * Inject data directly to TaskWrapper.
    */

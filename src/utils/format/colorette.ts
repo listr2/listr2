@@ -1,3 +1,5 @@
 import { createColors } from 'colorette'
 
-export const color = createColors({ useColor: process.env?.LISTR_DISABLE_COLOR !== '1' })
+import { ListrEnvironmentVariables } from '@constants'
+
+export const color = createColors({ useColor: !process.env[ListrEnvironmentVariables.DISABLE_COLOR] })
