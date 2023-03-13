@@ -1,82 +1,15 @@
 import type Enquirer from 'enquirer'
-import type { Observable } from 'rxjs'
-import type { Readable } from 'stream'
 
 import type {
   ListrDefaultNonTTYRendererOptions,
   ListrDefaultRendererOptions,
   ListrDefaultRendererValue,
   ListrFallbackRendererValue,
-  ListrGetRendererTaskOptions,
-  ListrRendererFactory,
   ListrRendererValue
 } from './renderer.interface'
-import type { ListrTaskEventType } from '@constants/event.constants'
-import type { Task } from '@lib/task'
-import type { TaskWrapper } from '@lib/task-wrapper'
-import type { Listr } from '@root/listr'
 
 /** Listr Default Context */
 export type ListrContext = any | undefined
-
-/**
- * ListrTask.
- *
- * Defines the task, conditions and options to run a specific task in the listr.
- */
-export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
-  /**
-   * Title of the task.
-   *
-   * Give this task a title if you want to track it by name in the current renderer.
-   *
-   * Tasks without a title will hide in the default renderer and are useful for running a background instance.
-   * On verbose renderer, state changes from these tasks will log as 'Task without a title.'
-   */
-  title?: string
-  /**
-   * The task itself.
-   *
-   * Task can be a sync or async function, an Observable, or a Stream.
-   * Task will be executed, if the certain criteria of the state are met and whenever the time for that specific task has come.
-   */
-  task: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
-  /**
-   * Skip this task depending on the context.
-   *
-   * The function that has been passed in will be evaluated at the runtime when the task tries to initially run.
-   */
-  skip?: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean | string>)
-  /**
-   * Enable a task depending on the context.
-   *
-   * The function that has been passed in will be evaluated at the initial creation of the Listr class for rendering purposes,
-   * as well as re-evaluated when the time for that specific task has come.
-   */
-  enabled?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
-  /**
-   * Adds the given number of retry attempts to the task if the task fails.
-   */
-  retry?: number
-  /**
-   * Runs a specific event if the current task or any of the subtasks has failed.
-   *
-   * Mostly useful for rollback purposes for subtasks.
-   * But can also be useful whenever a task is failed and some measures have to be taken to ensure the state is not changed.
-   */
-  rollback?: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
-  /**
-   * Set exit on the error option from task-level instead of setting it for all the subtasks.
-   */
-  exitOnError?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
-  /**
-   * Per task options, that depends on the selected renderer.
-   *
-   * These options depend on the implementation of the selected renderer. If the selected renderer has no options it will
-   * be displayed as never.
-   */
-  options?: ListrGetRendererTaskOptions<Renderer>
-}
 
 /**
  * Options to set the behavior of this base task.
@@ -159,11 +92,6 @@ export interface ListrOptions<Ctx = ListrContext> {
 }
 
 /**
- * Task can be set of sync or async function, an Observable or a stream.
- */
-export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRendererValue, any> | Readable | NodeJS.ReadableStream | Observable<any>
-
-/**
  * Parent class options.
  *
  * Parent class has more options where you can also select the and set renderer and non-tty renderer.
@@ -183,18 +111,3 @@ export type ListrBaseClassOptions<
  */
 export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> = ListrOptions<Ctx> &
 Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>
-
-/** The internal communication event. */
-export type ListrEvent =
-  | {
-    type: Exclude<ListrTaskEventType, 'MESSAGE' | 'DATA'>
-    data?: string | boolean
-  }
-  | {
-    type: ListrTaskEventType.DATA
-    data: string
-  }
-  | {
-    type: ListrTaskEventType.MESSAGE
-    data: Task<any, any>['message']
-  }

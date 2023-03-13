@@ -1,17 +1,17 @@
 import { Readable } from 'stream'
 
 import type { TaskWrapper } from './task-wrapper'
-import type { TaskFn, TaskMessage, TaskPrompt, TaskRetry } from './task.interface'
 import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import type { ListrTaskEventMap } from '@interfaces/event-map.interface'
 import { ListrErrorTypes, PromptError } from '@interfaces/listr-error.interface'
-import type { ListrOptions, ListrTask } from '@interfaces/listr.interface'
+import type { ListrOptions } from '@interfaces/listr.interface'
 import type { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
+import type { ListrTask, ListrTaskFn, ListrTaskMessage, ListrTaskPrompt, ListrTaskRetry } from '@interfaces/task.interface'
 import { EventManager } from '@lib/event-manager'
 import { Listr } from '@root/listr'
+import { isObservable } from '@utils'
 import { assertFunctionOrSelf } from '@utils/assert'
-import { isObservable } from '@utils/is-observable'
 import { getRenderer } from '@utils/renderer'
 import { generateUUID } from '@utils/uuid'
 
@@ -24,7 +24,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   /** The current state of the task. */
   public state: ListrTaskState = ListrTaskState.UNINITIALIZED
   /** The task object itself, to further utilize it. */
-  public task: TaskFn<Ctx, Renderer>
+  public task: ListrTaskFn<Ctx, Renderer>
   /** Extend current task with multiple subtasks. */
   public subtasks: Task<Ctx, Renderer>[]
   /** Title of the task */
@@ -34,17 +34,17 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   /** Output data from the task. */
   public output?: string
   /** Current retry number of the task if retrying */
-  public retry?: TaskRetry
+  public retry?: ListrTaskRetry
   /**
    * A channel for messages.
    *
    * This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
    */
-  public message: TaskMessage = {}
+  public message: ListrTaskMessage = {}
   /** Per task options for the current renderer of the task. */
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   /** This will be triggered each time a new render should happen. */
-  public prompt: TaskPrompt
+  public prompt: ListrTaskPrompt
   private enabled: boolean
 
   constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
@@ -67,7 +67,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     // cancel the subtasks if this has already failed
     if (this.hasSubtasks() && this.hasFailed()) {
       for (const subtask of this.subtasks as Task<any, any>[]) {
-        if (subtask.state === ListrTaskState.PENDING) {
+        if (subtask.state === ListrTaskState.STARTED) {
           subtask.state$ = ListrTaskState.FAILED
         }
       }
@@ -79,7 +79,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   set output$ (data: string) {
     this.output = data
 
-    this.emit(ListrTaskEventType.DATA, data)
+    this.emit(ListrTaskEventType.OUTPUT, data)
     this.emitShouldRefreshRender()
   }
 
@@ -121,8 +121,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   }
 
   /** Returns whether this task is in progress. */
-  public isPending (): boolean {
-    return this.state === ListrTaskState.PENDING
+  public isStarted (): boolean {
+    return this.state === ListrTaskState.STARTED
   }
 
   /** Returns whether this task is skipped. */
@@ -222,7 +222,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     const startTime = Date.now()
 
     // finish the task first
-    this.state$ = ListrTaskState.PENDING
+    this.state$ = ListrTaskState.STARTED
 
     // check if this function wants to be skipped
     const skipped = await assertFunctionOrSelf(this.tasks?.skip ?? false, context)
@@ -267,7 +267,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         }
       }
 
-      if (this.isPending() || this.isRetrying()) {
+      if (this.isStarted() || this.isRetrying()) {
         this.message$ = { duration: Date.now() - startTime }
         this.state$ = ListrTaskState.COMPLETED
       }
@@ -287,9 +287,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
 
           await this.tasks.rollback(context, wrapper)
 
-          this.state$ = ListrTaskState.ROLLED_BACK
-
           this.message$ = { rollback: this.title }
+
+          this.state$ = ListrTaskState.ROLLED_BACK
         } catch (err: any) {
           this.state$ = ListrTaskState.FAILED
 
