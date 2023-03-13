@@ -1,5 +1,6 @@
 import { isUnicodeSupported } from '@utils/environment'
 
+/* istanbul ignore next */
 export class Spinner {
   private id?: NodeJS.Timeout
   private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]

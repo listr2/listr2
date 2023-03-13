@@ -21,35 +21,35 @@ export class ListrLogger {
   }
 
   public started (message: string, options?: LogEntityOptions): void {
-    this.process.stdout(this.format(LogLevels.STARTED, message, options))
+    this.process.writeToStdout(this.format(LogLevels.STARTED, message, options))
   }
 
   public failed (message: string, options?: LogEntityOptions): void {
-    this.process.stderr(this.format(LogLevels.FAILED, message, options))
+    this.process.writeToStderr(this.format(LogLevels.FAILED, message, options))
   }
 
   public skipped (message: string, options?: LogEntityOptions): void {
-    this.process.stdout(this.format(LogLevels.SKIPPED, message, options))
+    this.process.writeToStdout(this.format(LogLevels.SKIPPED, message, options))
   }
 
   public completed (message: string, options?: LogEntityOptions): void {
-    this.process.stdout(this.format(LogLevels.COMPLETED, message, options))
+    this.process.writeToStdout(this.format(LogLevels.COMPLETED, message, options))
   }
 
   public output (message: string, options?: LogEntityOptions): void {
-    this.process.stdout(this.format(LogLevels.OUTPUT, message, options))
+    this.process.writeToStdout(this.format(LogLevels.OUTPUT, message, options))
   }
 
   public title (message: string, options?: LogEntityOptions): void {
-    this.process.stdout(this.format(LogLevels.TITLE, message, options))
+    this.process.writeToStdout(this.format(LogLevels.TITLE, message, options))
   }
 
   public retry (message: string, options?: LogEntityOptions): void {
-    this.process.stderr(this.format(LogLevels.RETRY, message, options))
+    this.process.writeToStderr(this.format(LogLevels.RETRY, message, options))
   }
 
   public rollback (message: string, options?: LogEntityOptions): void {
-    this.process.stderr(this.format(LogLevels.ROLLBACK, message, options))
+    this.process.writeToStderr(this.format(LogLevels.ROLLBACK, message, options))
   }
 
   public wrap (message: string, options?: { format?: LoggerFormat }): string {

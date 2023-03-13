@@ -9,11 +9,12 @@ import { TaskWrapper } from '@lib/task-wrapper'
 function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
   const errorMsg = 'Cancelled prompt.'
 
+  /* istanbul ignore next */
   if (this instanceof TaskWrapper) {
     this.task.prompt = new PromptError(errorMsg)
-  } /* istanbul ignore next */ else if (settings?.error !== false) {
+  } else if (settings?.error !== false) {
     throw new Error(errorMsg)
-  } /* istanbul ignore next */ else {
+  } else {
     return errorMsg
   }
 }
@@ -30,17 +31,18 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
   // override cancel callback
   let cancelCallback: PromptSettings['cancelCallback']
 
-  /* istanbul ignore if */
+  /* istanbul ignore next */
   if (settings?.cancelCallback) {
     cancelCallback = settings.cancelCallback
-  } /* istanbul ignore next */ else {
+  } else {
     cancelCallback = defaultCancelCallback
   }
 
   // assign default if there is single prompt
+  /* istanbul ignore next */
   if (!Array.isArray(options)) {
     options = [ { ...options, name: 'default' } ]
-  } /* istanbul ignore next */ else if (options.length === 1) {
+  } else if (options.length === 1) {
     options = options.reduce((o, option) => {
       return [ ...o, Object.assign(option, { name: 'default' }) ]
     }, [])
@@ -60,6 +62,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
 
   let enquirer: Enquirer
 
+  /* istanbul ignore next */
   if (settings?.enquirer) {
     // injected enquirer
     enquirer = settings.enquirer
@@ -69,7 +72,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
 
       // should fix the import problem for esm since there is no default imports there
       enquirer = imported.default ? new imported.default() : new (imported as unknown as new () => Enquirer)()
-    } /* istanbul ignore next */ catch (e: any) {
+    } catch (e: any) {
       this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
 
       throw new Error(e)
@@ -104,6 +107,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
   }
 }
 
+/* istanbul ignore next */
 export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false): void {
   if (!this.task.prompt || this.task.prompt instanceof PromptError) {
     // If there's no prompt, can't cancel

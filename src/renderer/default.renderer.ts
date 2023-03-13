@@ -1,4 +1,5 @@
 import cliTruncate from 'cli-truncate'
+import type { LogUpdate } from 'log-update'
 import logUpdate from 'log-update'
 import { EOL } from 'os'
 import cliWrap from 'wrap-ansi'
@@ -158,6 +159,7 @@ export class DefaultRenderer implements ListrRenderer {
   private promptBar: string
   private readonly spinner = new Spinner()
   private readonly logger: ListrLogger
+  private readonly updater: LogUpdate
 
   constructor (
     public tasks: Task<any, typeof DefaultRenderer>[],
@@ -167,6 +169,7 @@ export class DefaultRenderer implements ListrRenderer {
     this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
 
     this.logger = this.options.logger ?? new ListrLogger()
+    this.updater = logUpdate.create(this.logger.process.stdout)
   }
 
   public getTaskOptions (task: Task<any, typeof DefaultRenderer>): (typeof DefaultRenderer)['rendererTaskOptions'] {
@@ -196,7 +199,9 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
-    const updateRender = (): void => logUpdate(this.createRender())
+    this.logger.process.hijack()
+
+    const updateRender = (): void => this.updater(this.createRender())
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
@@ -216,13 +221,15 @@ export class DefaultRenderer implements ListrRenderer {
     this.spinner.stop()
 
     // clear log updater
-    logUpdate.clear()
-    logUpdate.done()
+    this.updater.clear()
+    this.updater.done()
 
     // directly write to process.stdout, since logupdate only can update the seen height of terminal
     if (!this.options.clearOutput) {
-      this.logger.process.stdout(this.createRender({ prompt: false }))
+      this.logger.process.writeToStdout(this.createRender({ prompt: false }))
     }
+
+    this.logger.process.release()
   }
 
   public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {

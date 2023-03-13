@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 export function parseTimestamp (): string {
   const now = new Date()
 

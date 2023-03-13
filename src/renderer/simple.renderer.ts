@@ -1,4 +1,5 @@
-import { stderr as logUpdate } from 'log-update'
+import type { LogUpdate } from 'log-update'
+import logUpdate from 'log-update'
 
 import { ListrTaskState } from '@constants'
 import { ListrTaskEventType } from '@constants/event.constants'
@@ -23,6 +24,7 @@ export class SimpleRenderer implements ListrRenderer {
   public static rendererTaskOptions: RendererPresetTimer = {}
 
   private readonly logger: ListrLogger
+  private readonly updater: LogUpdate
 
   constructor (public readonly tasks: Task<any, typeof SimpleRenderer>[], public options: (typeof SimpleRenderer)['rendererOptions']) {
     this.options = { ...SimpleRenderer.rendererOptions, ...options }
@@ -35,6 +37,8 @@ export class SimpleRenderer implements ListrRenderer {
           prefix: [ this.options.timestamp ]
         }
       })
+
+    this.updater = logUpdate.create(this.logger.process.stderr)
   }
 
   // eslint-disable-next-line
@@ -84,7 +88,7 @@ export class SimpleRenderer implements ListrRenderer {
         // ! This is where it gets dirty
         // * We want the prompt to stay visible after confirmation
         if (task.isPrompt() && !String(output).match(/^\n$/)) {
-          logUpdate(output)
+          this.updater(output)
         } else {
           this.logger.output(output)
         }

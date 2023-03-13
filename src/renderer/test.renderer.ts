@@ -19,12 +19,14 @@ export class TestRenderer implements ListrRenderer {
     output?: boolean
     title?: boolean
     messages?: (keyof ListrTaskMessage)[]
+    messagesToStderr?: (keyof ListrTaskMessage)[]
   } & LoggerRendererOptions = {
       subtasks: true,
       state: Object.values(ListrTaskState),
       output: true,
       title: true,
-      messages: [ 'skip', 'error', 'retry', 'rollback' ]
+      messages: [ 'skip', 'error', 'retry', 'rollback' ],
+      messagesToStderr: [ 'error', 'rollback', 'retry' ]
     }
   /** per task options for the verbose renderer */
   public static rendererTaskOptions: never
@@ -55,19 +57,19 @@ export class TestRenderer implements ListrRenderer {
 
       if (this.options.state) {
         task.on(ListrTaskEventType.STATE, (state) => {
-          this.logger.process.stdout(new TestRendererEvent(ListrTaskEventType.STATE, state, task).toJson())
+          this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.STATE, state, task).toJson())
         })
       }
 
       if (this.options.output) {
         task.on(ListrTaskEventType.OUTPUT, (data) => {
-          this.logger.process.stdout(new TestRendererEvent(ListrTaskEventType.OUTPUT, data, task).toJson())
+          this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.OUTPUT, data, task).toJson())
         })
       }
 
       if (this.options.title) {
         task.on(ListrTaskEventType.TITLE, (title) => {
-          this.logger.process.stdout(new TestRendererEvent(ListrTaskEventType.TITLE, title, task).toJson())
+          this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.TITLE, title, task).toJson())
         })
       }
 
@@ -85,10 +87,10 @@ export class TestRenderer implements ListrRenderer {
         if (Object.keys(parsed).length > 0) {
           const output = new TestRendererEvent(ListrTaskEventType.MESSAGE, parsed, task).toJson()
 
-          if ([ 'error', 'rollback', 'retry' ].some((state) => Object.keys(parsed).includes(state))) {
-            this.logger.process.stderr(output)
+          if (this.options.messagesToStderr.some((state) => Object.keys(parsed).includes(state))) {
+            this.logger.process.writeToStderr(output)
           } else {
-            this.logger.process.stdout(output)
+            this.logger.process.writeToStdout(output)
           }
         }
       })

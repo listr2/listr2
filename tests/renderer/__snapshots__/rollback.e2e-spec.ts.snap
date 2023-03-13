@@ -211,7 +211,7 @@ exports[`default renderer: rollback should contunie execution or stop there with
 
 exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G◼ Something with rollback.
+  "◼ Something with rollback.
 ",
   "[2K[1A[2K[G◼ Something with rollback.
 ◼ This task will maybe execute.

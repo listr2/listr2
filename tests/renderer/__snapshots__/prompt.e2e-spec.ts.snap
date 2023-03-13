@@ -202,7 +202,7 @@ exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXk
 
 exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `
 [
-  "[2K[1A[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
   "[2K[1A[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
@@ -232,7 +232,7 @@ exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQ
 
 exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
 [
-  "[2K[1A[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
   "[2K[1A[2K[G[35m✖[39m [1mGive me some input.[22m [2m·[22m 
 ",
@@ -254,7 +254,7 @@ exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbte
 
 exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `
 [
-  "[2K[1A[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
   "[2K[1A[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m 
 ",
@@ -278,7 +278,7 @@ exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsC
 
 exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `
 [
-  "[2K[1A[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
   "[2K[1A[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",

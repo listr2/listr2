@@ -5,6 +5,7 @@
  * @param {number} duration
  * @returns {string}
  */
+/* istanbul ignore next */
 export function parseTaskTime (duration: number): string {
   const seconds = Math.floor(duration / 1000)
   const minutes = Math.floor(seconds / 60)

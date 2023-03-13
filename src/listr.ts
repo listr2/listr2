@@ -109,17 +109,20 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
 
     // disable color programatically for CI purposes
+    /* istanbul ignore next */
     if (this.options?.disableColor) {
       process.env[ListrEnvironmentVariables.DISABLE_COLOR] = '1'
     } else if (this.options?.forceColor) {
       process.env[ListrEnvironmentVariables.FORCE_COLOR] = '1'
     }
 
+    /* istanbul ignore if */
     if (this.options?.forceTTY) {
       process.stdout.isTTY = true
       process.stderr.isTTY = true
     }
 
+    /* istanbul ignore if */
     if (this.options?.forceUnicode) {
       process.env[ListrEnvironmentVariables.FORCE_UNICODE] = '1'
     }
