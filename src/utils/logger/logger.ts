@@ -2,7 +2,7 @@
 import { EOL } from 'os'
 
 import { LogLevels } from './logger.constants'
-import type { LogEntityOptions, LoggerFormat, ListrLoggerOptions, LoggerPrefixOrSuffix } from './logger.interface'
+import type { LogEntityOptions, LoggerFormat, ListrLoggerOptions, LoggerField } from './logger.interface'
 import { colorette, figures, ProcessOutput } from '@utils'
 
 /**
@@ -62,7 +62,7 @@ export class ListrLogger {
     return message
   }
 
-  public suffix (message: string, ...suffixes: LoggerPrefixOrSuffix[]): string {
+  public suffix (message: string, ...suffixes: LoggerField[]): string {
     suffixes.filter(Boolean).forEach((suffix) => {
       if (typeof suffix === 'string') {
         message = message + ` ${this.wrap(suffix)}`
@@ -84,7 +84,7 @@ export class ListrLogger {
     return message
   }
 
-  public prefix (message: string, ...prefixes: LoggerPrefixOrSuffix[]): string {
+  public prefix (message: string, ...prefixes: LoggerField[]): string {
     prefixes.filter(Boolean).forEach((prefix) => {
       if (typeof prefix === 'string') {
         message = `${this.wrap(prefix)} ` + message
