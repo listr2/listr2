@@ -1,31 +1,8 @@
-import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock-process'
-
 import { ListrErrorTypes } from '@interfaces/listr-error.interface'
 import type { ListrOptions } from '@root'
 import { Listr } from '@root'
 
 describe('error collection', () => {
-  let mockExit: jest.SpyInstance<never, [number?]>
-
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  let mockStdout: jest.SpyInstance<boolean, [string, string?, Function?]>
-
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  let mockStderr: jest.SpyInstance<boolean, [string, string?, Function?]>
-
-  beforeEach(async () => {
-    mockExit = mockProcessExit()
-    mockStdout = mockProcessStdout()
-    mockStderr = mockProcessStderr()
-  })
-
-  afterEach(async () => {
-    mockExit.mockRestore()
-    mockStdout.mockRestore()
-    mockStderr.mockRestore()
-    jest.clearAllMocks()
-  })
-
   it('should have the default behavior of minimal', async () => {
     const task = new Listr([])
 

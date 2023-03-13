@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: parent should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-exit 1`] = `[]`;
+
+exports[`default renderer: parent should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stderr 1`] = `[]`;
+
+exports[`default renderer: parent should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
+  ✔ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
+  ✔ This is a subtask.
+  ❯ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
+  ✔ This is a subtask.
+  ✔ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ Title changed from subtask.
+",
+  "[2K[1A[2K[G",
+  "✔ Title changed from subtask.
+",
+]
+`;

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`skip a task should add tasks to the manager: GFB8X86ruFomKEgjsONBJpAyKOAF3NXP-exit 1`] = `[]`;
+
+exports[`skip a task should add tasks to the manager: GFB8X86ruFomKEgjsONBJpAyKOAF3NXP-stderr 1`] = `[]`;
+
+exports[`skip a task should add tasks to the manager: GFB8X86ruFomKEgjsONBJpAyKOAF3NXP-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`skip a task should change the context in manager: 5DzFgF4pfTuE12WN84l3ogCgRJPb6t9L-exit 1`] = `[]`;
+
+exports[`skip a task should change the context in manager: 5DzFgF4pfTuE12WN84l3ogCgRJPb6t9L-stderr 1`] = `[]`;
+
+exports[`skip a task should change the context in manager: 5DzFgF4pfTuE12WN84l3ogCgRJPb6t9L-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"child","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"child","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`skip a task should indent the task in manager: iKVBsenKiZgkkgSQSW6OEluZqkppF7j8-exit 1`] = `[]`;
+
+exports[`skip a task should indent the task in manager: iKVBsenKiZgkkgSQSW6OEluZqkppF7j8-stderr 1`] = `[]`;
+
+exports[`skip a task should indent the task in manager: iKVBsenKiZgkkgSQSW6OEluZqkppF7j8-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+",
+]
+`;

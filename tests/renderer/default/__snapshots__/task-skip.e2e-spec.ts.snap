@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: task-skip should not collapse skip message: 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N-exit 1`] = `[]`;
+
+exports[`default renderer: task-skip should not collapse skip message: 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N-stderr 1`] = `[]`;
+
+exports[`default renderer: task-skip should not collapse skip message: 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+⚠ This task will never execute.
+  ↓ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+⚠ This task will never execute.
+  ↓ This task will never execute.
+",
+]
+`;
+
+exports[`default renderer: task-skip should show the original title of the task when skipped with empty message: 3n2w67J8KnAihH5KaGDGnHe2O9xawvnx-exit 1`] = `[]`;
+
+exports[`default renderer: task-skip should show the original title of the task when skipped with empty message: 3n2w67J8KnAihH5KaGDGnHe2O9xawvnx-stderr 1`] = `[]`;
+
+exports[`default renderer: task-skip should show the original title of the task when skipped with empty message: 3n2w67J8KnAihH5KaGDGnHe2O9xawvnx-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+",
+  "[2K[1A[2K[G",
+  "↓ This task will execute. [SKIPPED]
+",
+]
+`;
+
+exports[`default renderer: task-skip should show the original title of the task: c4Q9Hk2x725caX6F6qXGMgyUQh36HQls-exit 1`] = `[]`;
+
+exports[`default renderer: task-skip should show the original title of the task: c4Q9Hk2x725caX6F6qXGMgyUQh36HQls-stderr 1`] = `[]`;
+
+exports[`default renderer: task-skip should show the original title of the task: c4Q9Hk2x725caX6F6qXGMgyUQh36HQls-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+",
+  "[2K[1A[2K[G",
+  "↓ This task will execute. [SKIPPED]
+",
+]
+`;
+
+exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-exit 1`] = `[]`;
+
+exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-stderr 1`] = `[]`;
+
+exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+↓ This task will never execute. [SKIPPED]
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+↓ This task will never execute. [SKIPPED]
+",
+]
+`;
+
+exports[`default renderer: task-skip should skip from internal function: ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F-exit 1`] = `[]`;
+
+exports[`default renderer: task-skip should skip from internal function: ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F-stderr 1`] = `[]`;
+
+exports[`default renderer: task-skip should skip from internal function: ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+",
+  "[2K[1A[2K[G↓ I am skipping this tasks for reasons. [SKIPPED]
+",
+  "[2K[1A[2K[G",
+  "↓ I am skipping this tasks for reasons. [SKIPPED]
+",
+]
+`;
+
+exports[`default renderer: task-skip should skip without a suffix: omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB-exit 1`] = `[]`;
+
+exports[`default renderer: task-skip should skip without a suffix: omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB-stderr 1`] = `[]`;
+
+exports[`default renderer: task-skip should skip without a suffix: omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G↓ This task will execute.
+",
+  "[2K[1A[2K[G↓ I am skipping this tasks for reasons.
+",
+  "[2K[1A[2K[G",
+  "↓ I am skipping this tasks for reasons.
+",
+]
+`;
+
+exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-exit 1`] = `[]`;
+
+exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-stderr 1`] = `[]`;
+
+exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+↓ I will be skipped! [SKIPPED]
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+↓ I will be skipped! [SKIPPED]
+",
+]
+`;

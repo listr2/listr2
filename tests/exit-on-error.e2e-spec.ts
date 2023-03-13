@@ -1,15 +1,16 @@
+import type { MockProcessOutput } from './utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from './utils'
 import { Listr } from '@root'
 
 describe('exit on error', () => {
-  let log: jest.SpyInstance<void, string[][]>
-  let error: jest.SpyInstance<void, string[][]>
+  const output: MockProcessOutput = {} as MockProcessOutput
 
   beforeEach(async () => {
-    log = jest.spyOn(console, 'log').mockImplementation()
-    error = jest.spyOn(console, 'error').mockImplementation()
+    mockProcessOutput(output)
   })
 
   afterEach(async () => {
+    unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
@@ -27,7 +28,7 @@ describe('exit on error', () => {
           }
         }
       ],
-      { renderer: 'verbose', exitOnError: true }
+      { renderer: 'test', exitOnError: true }
     )
 
     let result: any
@@ -42,8 +43,7 @@ describe('exit on error', () => {
 
     expect(crash).toBeTruthy()
     expect(result).toBeFalsy()
-    expect(log).toBeCalledTimes(1)
-    expect(error).toBeCalledTimes(1)
+    expectProcessOutputToMatchSnapshot(output, 'LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM')
   })
 
   it('should contunie execution while exit on error is disabled', async () => {
@@ -60,14 +60,13 @@ describe('exit on error', () => {
           }
         }
       ],
-      { renderer: 'verbose', exitOnError: false }
+      { renderer: 'test', exitOnError: false }
     )
 
     const result = await task.run()
 
     expect(result).toBeTruthy()
-    expect(log).toBeCalledTimes(2)
-    expect(error).toBeCalledTimes(2)
+    expectProcessOutputToMatchSnapshot(output, 'EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH')
   })
 
   it('should contunie execution while exit on error is disabled in subtask', async () => {
@@ -87,13 +86,13 @@ describe('exit on error', () => {
             )
         }
       ],
-      { renderer: 'verbose', exitOnError: true }
+      { renderer: 'test', exitOnError: true }
     )
 
     const result = await task.run()
 
     expect(result).toBeTruthy()
-    expect(log).toBeCalledTimes(3)
+    expectProcessOutputToMatchSnapshot(output, 'MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3')
   })
 
   it('should contunie execution while exit on error is disabled in parenttask', async () => {
@@ -113,7 +112,7 @@ describe('exit on error', () => {
             )
         }
       ],
-      { renderer: 'verbose', exitOnError: false }
+      { renderer: 'test', exitOnError: false }
     )
 
     const result = await task.run()
@@ -138,7 +137,7 @@ describe('exit on error', () => {
             )
         }
       ],
-      { renderer: 'verbose', exitOnError: true }
+      { renderer: 'test', exitOnError: true }
     )
 
     let result: any
@@ -153,8 +152,7 @@ describe('exit on error', () => {
 
     expect(crash).toBeTruthy()
     expect(result).toBeFalsy()
-    expect(log).toBeCalledTimes(2)
-    expect(error).toBeCalledTimes(2)
+    expectProcessOutputToMatchSnapshot(output, '4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8')
   })
 
   it('should throw out an error if subtask in subtask fails while exit on error is disabled', async () => {
@@ -179,7 +177,7 @@ describe('exit on error', () => {
             )
         }
       ],
-      { renderer: 'verbose', exitOnError: true }
+      { renderer: 'test', exitOnError: true }
     )
 
     let result: any
@@ -194,7 +192,6 @@ describe('exit on error', () => {
 
     expect(crash).toBeTruthy()
     expect(result).toBeFalsy()
-    expect(log).toBeCalledTimes(3)
-    expect(error).toBeCalledTimes(3)
+    expectProcessOutputToMatchSnapshot(output, 'cAcT7aLZ2rDDFDH6EllJjYaG4mTe7Rrb')
   })
 })

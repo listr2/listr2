@@ -1,0 +1,448 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-exit 1`] = `[]`;
+
+exports[`show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-stderr 1`] = `[]`;
+
+exports[`show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+✔ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+",
+]
+`;
+
+exports[`show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-exit 1`] = `[]`;
+
+exports[`show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-stderr 1`] = `[]`;
+
+exports[`show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ❯ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+]
+`;
+
+exports[`show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-exit 1`] = `[]`;
+
+exports[`show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-stderr 1`] = `[]`;
+
+exports[`show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-stdout 1`] = `
+[
+  "◼ This task will execute and not quit on errors.
+",
+  "[2K[1A[2K[G◼ This task will execute and not quit on errors.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ❯ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ exit
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ exit
+",
+]
+`;
+
+exports[`show subtasks should be able to render subtasks with no title with correct indentation: 9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-exit 1`] = `[]`;
+
+exports[`show subtasks should be able to render subtasks with no title with correct indentation: 9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-stderr 1`] = `[]`;
+
+exports[`show subtasks should be able to render subtasks with no title with correct indentation: 9VMxFnaAKNjetcT1a9gLgN0dnasB7BRc-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will execute a task without titles.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute a task without titles.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute a task without titles.
+
+› output
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute a task without titles.
+
+› output
+› some more output
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute a task without titles.
+
+› output
+› some more output
+› even more output
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will execute a task without titles.
+
+› output
+› some more output
+› even more output
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute a task without titles.
+
+› output
+› some more output
+› even more output
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute a task without titles.
+
+› output
+› some more output
+› even more output
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+✔ This task will execute a task without titles.
+
+› output
+› some more output
+› even more output
+",
+]
+`;
+
+exports[`show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-exit 1`] = `[]`;
+
+exports[`show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-stderr 1`] = `[]`;
+
+exports[`show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+]
+`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: true and show subtasks: false: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-exit 1`] = `[]`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: true and show subtasks: false: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-stderr 1`] = `[]`;
+
+exports[`show subtasks should output the task error in parent task with collapseErrors: true and show subtasks: false: oGL7rWlMEOEDNqOOFgj2R9ilvahlLAuR-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "❯ This task will execute.
+",
+]
+`;
+
+exports[`show subtasks should output the task error in parent task with: collapseErrors: false showsubtasks: true: bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-exit 1`] = `[]`;
+
+exports[`show subtasks should output the task error in parent task with: collapseErrors: false showsubtasks: true: bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-stderr 1`] = `[]`;
+
+exports[`show subtasks should output the task error in parent task with: collapseErrors: false showsubtasks: true: bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✖ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✖ This is a subtask.
+    › bye
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "❯ This task will execute.
+  ✖ This is a subtask.
+    › bye
+  ◼ This is a subtask.
+",
+]
+`;
+
+exports[`show subtasks should output the task error in parent task with: collapseErrors: true showsubtasks: true: bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-exit 1`] = `[]`;
+
+exports[`show subtasks should output the task error in parent task with: collapseErrors: true showsubtasks: true: bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-stderr 1`] = `[]`;
+
+exports[`show subtasks should output the task error in parent task with: collapseErrors: true showsubtasks: true: bcaTpU40igebiNC4Koho5ObSuJxhYPsJ-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✖ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✖ bye
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "❯ This task will execute.
+  ✖ bye
+  ◼ This is a subtask.
+",
+]
+`;

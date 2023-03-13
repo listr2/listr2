@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`concurrency should limit the concurrency to 2: 2pZ6rwMSxvmHpaVE3btDMTePhnvK0a3s-exit 1`] = `[]`;
+
+exports[`concurrency should limit the concurrency to 2: 2pZ6rwMSxvmHpaVE3btDMTePhnvK0a3s-stderr 1`] = `[]`;
+
+exports[`concurrency should limit the concurrency to 2: 2pZ6rwMSxvmHpaVE3btDMTePhnvK0a3s-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"1","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"2","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"2","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"3","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"3","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"4","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"4","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"1","hasFinalized":true}}
+",
+]
+`;
+
+exports[`concurrency should run tasks in parallel: WKPv1yKZBa2LY7IStPAL9emHNpaTSsQQ-exit 1`] = `[]`;
+
+exports[`concurrency should run tasks in parallel: WKPv1yKZBa2LY7IStPAL9emHNpaTSsQQ-stderr 1`] = `[]`;
+
+exports[`concurrency should run tasks in parallel: WKPv1yKZBa2LY7IStPAL9emHNpaTSsQQ-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"1","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"2","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"3","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"4","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"4","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"3","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"2","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"1","hasFinalized":true}}
+",
+]
+`;
+
+exports[`concurrency should run tasks sequentially: wqpFCLvXmbjnc3DNDBL76AWAK8uxEHlo-exit 1`] = `[]`;
+
+exports[`concurrency should run tasks sequentially: wqpFCLvXmbjnc3DNDBL76AWAK8uxEHlo-stderr 1`] = `[]`;
+
+exports[`concurrency should run tasks sequentially: wqpFCLvXmbjnc3DNDBL76AWAK8uxEHlo-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"1","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"1","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"2","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"2","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"3","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"3","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"4","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"4","hasFinalized":true}}
+",
+]
+`;

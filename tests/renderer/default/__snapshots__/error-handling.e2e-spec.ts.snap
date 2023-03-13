@@ -1,0 +1,302 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+[
+  "◼ This task will execute and not quit on errors.
+",
+  "[2K[1A[2K[G◼ This task will execute and not quit on errors.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ❯ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ I will exit on error since I am a direct child of parent task.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ I will exit on error since I am a direct child of parent task.
+",
+]
+`;
+
+exports[`default renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+[
+  [ListrError: I have failed [0]],
+  [ListrError: I have failed [1]],
+  [ListrError: I will exit on error since I am a direct child of parent task.],
+]
+`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ I will change my title if this executes.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+]
+`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task failed after 2 seconds.
+◼ This task will maybe execute.
+",
+]
+`;
+
+exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+❯ I will change my title if this executes.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.
+",
+]
+`;
+
+exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task will fail.
+◼ This task will never execute.
+",
+]
+`;
+
+exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+  › This task failed after 2 seconds.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "✖ This task will fail.
+  › This task failed after 2 seconds.
+◼ This task will never execute.
+",
+]
+`;
+
+exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+[
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task failed after 2 seconds.
+◼ This task will never execute.
+",
+]
+`;

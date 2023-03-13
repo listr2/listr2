@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`skip a task should skip the task from async skip method returning either boolean or string: dKEmraxPfJH3cEj4bHeTsieEALbqcFIR-exit 1`] = `[]`;
+
+exports[`skip a task should skip the task from async skip method returning either boolean or string: dKEmraxPfJH3cEj4bHeTsieEALbqcFIR-stderr 1`] = `[]`;
+
+exports[`skip a task should skip the task from async skip method returning either boolean or string: dKEmraxPfJH3cEj4bHeTsieEALbqcFIR-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"MESSAGE","data":{"skip":"Skipped task without a title."},"task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`skip a task should skip the task from internal call: xbUV7hvMZiVL4dEYDyiXKFhpTNo9ASiA-exit 1`] = `[]`;
+
+exports[`skip a task should skip the task from internal call: xbUV7hvMZiVL4dEYDyiXKFhpTNo9ASiA-stderr 1`] = `[]`;
+
+exports[`skip a task should skip the task from internal call: xbUV7hvMZiVL4dEYDyiXKFhpTNo9ASiA-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`skip a task should skip the task from skip method: uOy7d3bwwmW4LXWPY3HDh4k25LDwa5RZ-exit 1`] = `[]`;
+
+exports[`skip a task should skip the task from skip method: uOy7d3bwwmW4LXWPY3HDh4k25LDwa5RZ-stderr 1`] = `[]`;
+
+exports[`skip a task should skip the task from skip method: uOy7d3bwwmW4LXWPY3HDh4k25LDwa5RZ-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`skip a task skip to enable by context will not work properly in concurrent: WKhUc2IR0U5Hc7hKFuvFUq36ovxjyPy6-exit 1`] = `[]`;
+
+exports[`skip a task skip to enable by context will not work properly in concurrent: WKhUc2IR0U5Hc7hKFuvFUq36ovxjyPy6-stderr 1`] = `[]`;
+
+exports[`skip a task skip to enable by context will not work properly in concurrent: WKhUc2IR0U5Hc7hKFuvFUq36ovxjyPy6-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`skip a task skip to enable by context will work properly in serial: CR5tEdrMVapfqwMjIa4nP1CgEYZu3tfc-exit 1`] = `[]`;
+
+exports[`skip a task skip to enable by context will work properly in serial: CR5tEdrMVapfqwMjIa4nP1CgEYZu3tfc-stderr 1`] = `[]`;
+
+exports[`skip a task skip to enable by context will work properly in serial: CR5tEdrMVapfqwMjIa4nP1CgEYZu3tfc-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"OUTPUT","data":"enabled","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+",
+]
+`;

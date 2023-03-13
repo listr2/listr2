@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`task: title should change title on async function 1`] = `[]`;
+
+exports[`task: title should change title on async function 2`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"test","hasFinalized":false}}
+",
+  "{"event":"TITLE","data":"changed","task":{"title":"changed","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"changed","hasFinalized":true}}
+",
+]
+`;
+
+exports[`task: title should change title on async function 3`] = `[]`;
+
+exports[`task: title should change title on function 1`] = `[]`;
+
+exports[`task: title should change title on function 2`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"test","hasFinalized":false}}
+",
+  "{"event":"TITLE","data":"changed","task":{"title":"changed","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"changed","hasFinalized":true}}
+",
+]
+`;
+
+exports[`task: title should change title on function 3`] = `[]`;

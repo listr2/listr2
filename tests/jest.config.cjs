@@ -1,16 +1,15 @@
 const path = require('path')
 const { pathsToModuleNameMapper } = require('ts-jest')
 
-const tsconfig = require(path.join(process.cwd(), './tsconfig.json'))
+const tsconfig = require(path.join(process.cwd(), 'tests', './tsconfig.json'))
 
 /** @type import("@jest/types").Config.InitialOptions */
 module.exports = {
-  preset: 'ts-jest',
   rootDir: '../',
   testRegex: '(/tests/.*|/src/.*).(e2e-)?spec.tsx?$',
-  setupFiles: [ '<rootDir>/tests/jest.setup.cjs' ],
+  setupFiles: ['<rootDir>/tests/jest.setup.cjs'],
   transform: {
-    ['.tsx?$']: [
+    '^.+\\.tsx?$': [
       'ts-jest',
       {
         tsconfig: '<rootDir>/tests/tsconfig.json'
@@ -18,6 +17,6 @@ module.exports = {
     ]
   },
   moduleNameMapper: pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
-    prefix: '<rootDir>/src/'
+    prefix: '<rootDir>/'
   })
 }

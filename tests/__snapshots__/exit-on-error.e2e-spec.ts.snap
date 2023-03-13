@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`exit on error should contunie execution while exit on error is disabled in subtask: MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3-exit 1`] = `[]`;
+
+exports[`exit on error should contunie execution while exit on error is disabled in subtask: MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should contunie execution while exit on error is disabled in subtask: MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should contunie execution while exit on error is disabled: EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH-exit 1`] = `[]`;
+
+exports[`exit on error should contunie execution while exit on error is disabled: EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should contunie execution while exit on error is disabled: EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error if subtask fails while exit on error is disabled: 4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8-exit 1`] = `[]`;
+
+exports[`exit on error should throw out an error if subtask fails while exit on error is disabled: 4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error if subtask fails while exit on error is disabled: 4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error if subtask in subtask fails while exit on error is disabled: cAcT7aLZ2rDDFDH6EllJjYaG4mTe7Rrb-exit 1`] = `[]`;
+
+exports[`exit on error should throw out an error if subtask in subtask fails while exit on error is disabled: cAcT7aLZ2rDDFDH6EllJjYaG4mTe7Rrb-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error if subtask in subtask fails while exit on error is disabled: cAcT7aLZ2rDDFDH6EllJjYaG4mTe7Rrb-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error when exit on error is disabled: LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM-exit 1`] = `[]`;
+
+exports[`exit on error should throw out an error when exit on error is disabled: LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasFinalized":true}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error when exit on error is disabled: LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasFinalized":true}}
+",
+]
+`;

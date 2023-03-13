@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-exit 1`] = `[]`;
+
+exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stderr 1`] = `[]`;
+
+exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
+[
+  "◼ Some type errors
+",
+  "[2K[1A[2K[G❯ Some type errors
+",
+  "[2K[1A[2K[G❯ Some type errors
+  › test
+",
+  "[2K[1A[2K[1A[2K[G❯ Some type errors
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  › test
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  › I am self aware that I am retrying for the 1th time.
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  › I am self aware that I am retrying for the 1th time.
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  › test
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  › I am self aware that I am retrying for the 2th time.
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  › I am self aware that I am retrying for the 2th time.
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  › test
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  › I am self aware that I am retrying for the 3th time.
+",
+  "[2K[1A[2K[1A[2K[G✖ This type can not be assigned to type with, oh noes
+",
+  "[2K[1A[2K[G",
+  "✖ This type can not be assigned to type with, oh noes
+",
+]
+`;
+
+exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-exit 1`] = `[]`;
+
+exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stderr 1`] = `[]`;
+
+exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
+[
+  "◼ Some type errors
+",
+  "[2K[1A[2K[G❯ Some type errors
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+",
+  "[2K[1A[2K[G⚠ Successed at 3th try. [RETRY:3]
+",
+  "[2K[1A[2K[G✔ Successed at 3th try.
+",
+  "[2K[1A[2K[G",
+  "✔ Successed at 3th try.
+",
+]
+`;

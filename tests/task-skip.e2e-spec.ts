@@ -1,18 +1,18 @@
-import delay from 'delay'
+/* eslint-disable @typescript-eslint/no-empty-function */
+import type { MockProcessOutput } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 
-import { TASK_WITHOUT_TITLE } from '@constants/listr.constants'
 import { Listr } from '@root'
 
 describe('skip a task', () => {
-  let log: jest.SpyInstance<void, string[][]>
-  let info: jest.SpyInstance<void, string[][]>
+  const output: MockProcessOutput = {} as MockProcessOutput
 
   beforeEach(async () => {
-    log = jest.spyOn(console, 'log').mockImplementation()
-    info = jest.spyOn(console, 'info').mockImplementation()
+    mockProcessOutput(output)
   })
 
   afterEach(async () => {
+    unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
@@ -25,11 +25,10 @@ describe('skip a task', () => {
           }
         }
       ],
-      { renderer: 'verbose' }
+      { renderer: 'test' }
     ).run()
 
-    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
-    expect(info).toBeCalledWith('[SKIPPED] skipped')
+    expectProcessOutputToMatchSnapshot(output, 'xbUV7hvMZiVL4dEYDyiXKFhpTNo9ASiA')
   })
 
   it('should skip the task from skip method', async () => {
@@ -39,15 +38,13 @@ describe('skip a task', () => {
           skip (): string {
             return 'skipped'
           },
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
           task: async (): Promise<void> => {}
         }
       ],
-      { renderer: 'verbose' }
+      { renderer: 'test' }
     ).run()
 
-    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
-    expect(info).toBeCalledWith('[SKIPPED] skipped')
+    expectProcessOutputToMatchSnapshot(output, 'uOy7d3bwwmW4LXWPY3HDh4k25LDwa5RZ')
   })
 
   it('skip to enable by context will work properly in serial', async () => {
@@ -66,12 +63,10 @@ describe('skip a task', () => {
           }
         }
       ],
-      { renderer: 'verbose', concurrent: false }
+      { renderer: 'test', concurrent: false }
     ).run()
 
-    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
-    expect(info).toBeCalledWith('[SKIPPED] skipped')
-    expect(info).toBeCalledWith('[DATA] enabled')
+    expectProcessOutputToMatchSnapshot(output, 'CR5tEdrMVapfqwMjIa4nP1CgEYZu3tfc')
   })
 
   it('skip to enable by context will not work properly in concurrent', async () => {
@@ -90,35 +85,30 @@ describe('skip a task', () => {
           }
         }
       ],
-      { renderer: 'verbose', concurrent: true }
+      { renderer: 'test', concurrent: true }
     ).run()
 
-    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
-    expect(info).toBeCalledWith('[SKIPPED] skipped')
-    expect(info).not.toBeCalledWith('[DATA] enabled')
+    expectProcessOutputToMatchSnapshot(output, 'WKhUc2IR0U5Hc7hKFuvFUq36ovxjyPy6')
   })
 
-  it.each<[boolean | string, string]>([
-    [ true, 'Skipped task without a title.' ],
-    [ 'skipped', 'skipped' ]
-  ])('should skip the task from async skip method returning either boolean or string', async (skip, expected) => {
-    await new Listr(
-      [
-        {
-          skip: async (): Promise<boolean | string> => {
-            await delay(20)
-
-            return skip
-          },
-          task: async (_, task): Promise<void> => {
-            task.output = 'This will never execute.'
+  it.each<[boolean | string, string]>([ [ true, 'Skipped task without a title.' ] ])(
+    'should skip the task from async skip method returning either boolean or string',
+    async (skip) => {
+      await new Listr(
+        [
+          {
+            skip: async (): Promise<boolean | string> => {
+              return skip
+            },
+            task: async (_, task): Promise<void> => {
+              task.output = 'This will never execute.'
+            }
           }
-        }
-      ],
-      { renderer: 'verbose' }
-    ).run()
+        ],
+        { renderer: 'test' }
+      ).run()
 
-    expect(log).toBeCalledWith(`[STARTED] ${TASK_WITHOUT_TITLE}`)
-    expect(info).toBeCalledWith('[SKIPPED] ' + expected)
-  })
+      expectProcessOutputToMatchSnapshot(output, 'dKEmraxPfJH3cEj4bHeTsieEALbqcFIR')
+    }
+  )
 })

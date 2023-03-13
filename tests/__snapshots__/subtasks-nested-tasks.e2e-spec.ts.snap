@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`subtask nested handling should run concurrent on parent, serial on child: JGkuFCkPH1hvpem4paRkCU0aYRKcyFAX-exit 1`] = `[]`;
+
+exports[`subtask nested handling should run concurrent on parent, serial on child: JGkuFCkPH1hvpem4paRkCU0aYRKcyFAX-stderr 1`] = `[]`;
+
+exports[`subtask nested handling should run concurrent on parent, serial on child: JGkuFCkPH1hvpem4paRkCU0aYRKcyFAX-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"1","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"2","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"3","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"4","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"subtask","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"1","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"2","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"3","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"4","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"sub1","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"sub1","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"sub2","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"sub2","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"sub3","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"sub3","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"sub4","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"sub4","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"subtask","hasFinalized":true}}
+",
+]
+`;
+
+exports[`subtask nested handling should run serial on parent, concurrent on child: zFdEUbIjy1pWE2Me1Zk9EVxEcAcCVw5G-exit 1`] = `[]`;
+
+exports[`subtask nested handling should run serial on parent, concurrent on child: zFdEUbIjy1pWE2Me1Zk9EVxEcAcCVw5G-stderr 1`] = `[]`;
+
+exports[`subtask nested handling should run serial on parent, concurrent on child: zFdEUbIjy1pWE2Me1Zk9EVxEcAcCVw5G-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"title":"1","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"1","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"2","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"2","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"3","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"3","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"4","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"4","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"subtask","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"sub1","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"sub2","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"sub3","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"title":"sub4","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"sub1","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"sub2","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"sub3","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"sub4","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"subtask","hasFinalized":true}}
+",
+]
+`;

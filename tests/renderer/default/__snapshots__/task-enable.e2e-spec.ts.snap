@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-exit 1`] = `[]`;
+
+exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-stderr 1`] = `[]`;
+
+exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will show subtasks.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will show subtasks.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will show subtasks.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will show subtasks.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will show subtasks.
+  ◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will show subtasks.
+  ❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will show subtasks.
+  ✔ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will show subtasks.
+  ✔ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+✔ This task will show subtasks.
+  ✔ This task will execute.
+",
+]
+`;
+
+exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-exit 1`] = `[]`;
+
+exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-stderr 1`] = `[]`;
+
+exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-stdout 1`] = `
+[
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+]
+`;
