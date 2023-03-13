@@ -109,6 +109,13 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     // disable color programatically for CI purposes
     if (this.options?.disableColor) {
       process.env.LISTR_DISABLE_COLOR = '1'
+    } else if (this.options?.forceColor) {
+      process.env.FORCE_COLOR = '1'
+    }
+
+    if (this.options?.forceTTY) {
+      process.stdout.isTTY = true
+      process.stderr.isTTY = true
     }
   }
 

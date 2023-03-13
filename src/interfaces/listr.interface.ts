@@ -83,6 +83,18 @@ export interface ListrOptions<Ctx = ListrContext> {
    */
   disableColor?: boolean
   /**
+   * Forces usage of color.
+   *
+   * @default false
+   */
+  forceColor?: boolean
+  /**
+   * Forces TTY stdout eventhough it might not support it.
+   *
+   * @default false
+   */
+  forceTTY?: boolean
+  /**
    * Inject data directly to TaskWrapper.
    */
   injectWrapper?: {
