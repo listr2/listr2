@@ -1,6 +1,7 @@
 import { EOL } from 'os'
 
 import { ProcessOutputHook } from './process-output-hook'
+import { ANSI_ESCAPE_CODES } from '@constants/ansi-escape-codes.constants'
 
 export class ProcessOutput {
   public readonly stream: {
@@ -24,11 +25,13 @@ export class ProcessOutput {
   }
 
   public hijack (): void {
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
     Object.values(this.stream).forEach((stream) => stream.hijack())
   }
 
   public release (): void {
     Object.values(this.stream).forEach((stream) => stream.release())
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
   }
 
   public writeToStdout (buffer: string): boolean {
