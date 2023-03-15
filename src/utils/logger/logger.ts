@@ -20,43 +20,43 @@ export class ListrLogger {
     this.process = this.options.processOutput ?? new ProcessOutput()
   }
 
-  public started (message: string | string[], options?: LogEntityOptions): void {
+  public started (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.STARTED, message, options))
   }
 
-  public failed (message: string | string[], options?: LogEntityOptions): void {
+  public failed (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStderr(this.format(LogLevels.FAILED, message, options))
   }
 
-  public skipped (message: string | string[], options?: LogEntityOptions): void {
+  public skipped (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.SKIPPED, message, options))
   }
 
-  public completed (message: string | string[], options?: LogEntityOptions): void {
+  public completed (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.COMPLETED, message, options))
   }
 
-  public output (message: string | string[], options?: LogEntityOptions): void {
+  public output (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.OUTPUT, message, options))
   }
 
-  public title (message: string | string[], options?: LogEntityOptions): void {
+  public title (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.TITLE, message, options))
   }
 
-  public retry (message: string | string[], options?: LogEntityOptions): void {
+  public retry (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStderr(this.format(LogLevels.RETRY, message, options))
   }
 
-  public rollback (message: string | string[], options?: LogEntityOptions): void {
+  public rollback (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStderr(this.format(LogLevels.ROLLBACK, message, options))
   }
 
-  public prompt (message: string | string[], options?: LogEntityOptions): void {
+  public prompt (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.PROMPT, message, options))
   }
 
-  public stdout (message: string | string[], options?: LogEntityOptions): void {
+  public stdout (message: string | any[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.STDOUT, message, options))
   }
 
@@ -129,7 +129,7 @@ export class ListrLogger {
     return message
   }
 
-  protected format (level: LogLevels, message: string | string[], options?: LogEntityOptions): string {
+  protected format (level: LogLevels, message: string | any[], options?: LogEntityOptions): string {
     if (!Array.isArray(message)) {
       message = [ message ]
     }
