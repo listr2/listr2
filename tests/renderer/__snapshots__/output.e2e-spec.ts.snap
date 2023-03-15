@@ -6,6 +6,7 @@ exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtK
 
 exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G❯ This task will execute.
@@ -24,6 +25,7 @@ exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtK
   "[2K[1A[2K[G",
   "✔ This task will execute.
 ",
+  "[?25h",
 ]
 `;
 

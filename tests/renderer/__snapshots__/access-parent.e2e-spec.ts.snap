@@ -6,6 +6,7 @@ exports[`default renderer: parent task access should be able to change the title
 
 exports[`default renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G❯ This task will execute.
@@ -42,6 +43,7 @@ exports[`default renderer: parent task access should be able to change the title
   "[2K[1A[2K[G",
   "✔ Title changed from subtask.
 ",
+  "[?25h",
 ]
 `;
 

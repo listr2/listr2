@@ -6,6 +6,7 @@ exports[`default renderer: option: line wrap should skip empty lines false: lEAj
 
 exports[`default renderer: option: line wrap should skip empty lines false: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-stdout 1`] = `
 [
+  "[?25l",
   "◼ This will skip empty lines on output: false
 ",
   "[2K[1A[2K[G❯ This will skip empty lines on output: false
@@ -29,6 +30,7 @@ exports[`default renderer: option: line wrap should skip empty lines false: lEAj
   "[2K[1A[2K[G",
   "✔ This will skip empty lines on output: false
 ",
+  "[?25h",
 ]
 `;
 
@@ -38,6 +40,7 @@ exports[`default renderer: option: line wrap should skip empty lines true: lEAjB
 
 exports[`default renderer: option: line wrap should skip empty lines true: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-stdout 1`] = `
 [
+  "[?25l",
   "◼ This will skip empty lines on output: true
 ",
   "[2K[1A[2K[G❯ This will skip empty lines on output: true
@@ -59,6 +62,7 @@ exports[`default renderer: option: line wrap should skip empty lines true: lEAjB
   "[2K[1A[2K[G",
   "✔ This will skip empty lines on output: true
 ",
+  "[?25h",
 ]
 `;
 
@@ -72,6 +76,7 @@ exports[`default renderer: option: line wrap should truncate long strings: 31Xbk
 
 exports[`default renderer: option: line wrap should truncate long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will with formating the output with truncate output.
 ",
   "[2K[1A[2K[G❯ This task will with formating the output with truncate output.
@@ -84,11 +89,13 @@ exports[`default renderer: option: line wrap should truncate long strings: 31Xbk
   "[2K[1A[2K[G",
   "✔ This task will with formating the output with truncate output.
 ",
+  "[?25h",
 ]
 `;
 
 exports[`default renderer: option: line wrap should truncate long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stdout 2`] = `
 [
+  "[?25l",
   "◼ This task will with formating the output with truncate output.
 ",
   "[2K[1A[2K[G❯ This task will with formating the output with truncate output.
@@ -112,6 +119,7 @@ exports[`default renderer: option: line wrap should truncate long strings: 31Xbk
   "[2K[1A[2K[G",
   "✔ This task will with formating the output with truncate output.
 ",
+  "[?25h",
 ]
 `;
 
@@ -125,6 +133,7 @@ exports[`default renderer: option: line wrap should truncate long titles: effxCy
 
 exports[`default renderer: option: line wrap should truncate long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stdout 1`] = `
 [
+  "[?25l",
   "◼ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
 ",
   "[2K[1A[2K[G❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
@@ -137,11 +146,13 @@ exports[`default renderer: option: line wrap should truncate long titles: effxCy
   "[2K[1A[2K[G",
   "✔ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
 ",
+  "[?25h",
 ]
 `;
 
 exports[`default renderer: option: line wrap should truncate long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stdout 2`] = `
 [
+  "[?25l",
   "◼ THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
@@ -209,6 +220,7 @@ exports[`default renderer: option: line wrap should truncate long titles: effxCy
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
 ",
+  "[?25h",
 ]
 `;
 
@@ -222,6 +234,7 @@ exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zz
 
 exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will with formating the output with wrap output.
 ",
   "[2K[1A[2K[G❯ This task will with formating the output with wrap output.
@@ -238,11 +251,13 @@ exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zz
   "[2K[1A[2K[G",
   "✔ This task will with formating the output with wrap output.
 ",
+  "[?25h",
 ]
 `;
 
 exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stdout 2`] = `
 [
+  "[?25l",
   "◼ This task will with formating the output with wrap output.
 ",
   "[2K[1A[2K[G❯ This task will with formating the output with wrap output.
@@ -266,6 +281,7 @@ exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zz
   "[2K[1A[2K[G",
   "✔ This task will with formating the output with wrap output.
 ",
+  "[?25h",
 ]
 `;
 
@@ -279,6 +295,7 @@ exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0
 
 exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stdout 1`] = `
 [
+  "[?25l",
   "◼ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
   MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
   LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A
@@ -311,11 +328,13 @@ exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0
   LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS
   IS A LONG LONG MESSAGE
 ",
+  "[?25h",
 ]
 `;
 
 exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stdout 2`] = `
 [
+  "[?25l",
   "◼ THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
@@ -383,5 +402,6 @@ exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
 ",
+  "[?25h",
 ]
 `;

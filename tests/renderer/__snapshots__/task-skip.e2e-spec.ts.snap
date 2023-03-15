@@ -6,6 +6,7 @@ exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4H
 
 exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G◼ This task will execute.
@@ -27,6 +28,7 @@ exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4H
   "✔ This task will execute.
 ↓ This task will never execute. [SKIPPED]
 ",
+  "[?25h",
 ]
 `;
 
@@ -36,6 +38,7 @@ exports[`default renderer: task-skip should skip from internal function: ws7S3nD
 
 exports[`default renderer: task-skip should skip from internal function: ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G❯ This task will execute.
@@ -47,6 +50,7 @@ exports[`default renderer: task-skip should skip from internal function: ws7S3nD
   "[2K[1A[2K[G",
   "↓ I am skipping this tasks for reasons. [SKIPPED]
 ",
+  "[?25h",
 ]
 `;
 
@@ -56,6 +60,7 @@ exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuO
 
 exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G◼ This task will execute.
@@ -77,6 +82,7 @@ exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuO
   "✔ This task will execute.
 ↓ I will be skipped! [SKIPPED]
 ",
+  "[?25h",
 ]
 `;
 

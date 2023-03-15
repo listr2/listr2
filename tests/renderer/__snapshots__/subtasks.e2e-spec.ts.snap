@@ -6,6 +6,7 @@ exports[`default renderer: show subtasks should be able to change concurrency se
 
 exports[`default renderer: show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G❯ This task will execute.
@@ -38,6 +39,7 @@ exports[`default renderer: show subtasks should be able to change concurrency se
   "[2K[1A[2K[G",
   "✔ This task will execute.
 ",
+  "[?25h",
 ]
 `;
 
@@ -47,6 +49,7 @@ exports[`default renderer: show subtasks should be able to change exit on error:
 
 exports[`default renderer: show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute and not quit on errors.
 ",
   "[2K[1A[2K[G◼ This task will execute and not quit on errors.
@@ -155,6 +158,7 @@ exports[`default renderer: show subtasks should be able to change exit on error:
   ✔ I have succeeded.
 ✖ exit
 ",
+  "[?25h",
 ]
 `;
 
@@ -164,6 +168,7 @@ exports[`default renderer: show subtasks should create a set of subtasks: JQYWVb
 
 exports[`default renderer: show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G❯ This task will execute.
@@ -196,6 +201,7 @@ exports[`default renderer: show subtasks should create a set of subtasks: JQYWVb
   "[2K[1A[2K[G",
   "✔ This task will execute.
 ",
+  "[?25h",
 ]
 `;
 

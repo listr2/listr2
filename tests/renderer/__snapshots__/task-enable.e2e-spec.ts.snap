@@ -6,6 +6,7 @@ exports[`default renderer: task-enable should enable task with general context i
 
 exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G◼ This task will execute.
@@ -39,6 +40,7 @@ exports[`default renderer: task-enable should enable task with general context i
   "✔ This task will execute.
 ✔ This task will show subtasks.
 ",
+  "[?25h",
 ]
 `;
 
@@ -48,6 +50,7 @@ exports[`default renderer: task-enable should enable task with general context: 
 
 exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G◼ This task will execute.
@@ -64,5 +67,6 @@ exports[`default renderer: task-enable should enable task with general context: 
   "[2K[1A[2K[G",
   "✔ This task will execute.
 ",
+  "[?25h",
 ]
 `;

@@ -6,6 +6,7 @@ exports[`default renderer: process output should hook in to stdout/stderr and lo
 
 exports[`default renderer: process output should hook in to stdout/stderr and log everything after even though there is an error: 77ddpC6bJ1Tj5Mz0JNjCqjq9pkwN7Gxh-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G❯ This task will execute.
@@ -31,6 +32,7 @@ exports[`default renderer: process output should hook in to stdout/stderr and lo
   "this should be logged after [0]",
   "this should be logged after [1]",
   "this should be logged after [2]",
+  "[?25h",
 ]
 `;
 
@@ -40,6 +42,7 @@ exports[`default renderer: process output should hook in to stdout/stderr and lo
 
 exports[`default renderer: process output should hook in to stdout/stderr and log everything after: qI0M3xvUnGRj5hNg9NhHYq5lezkNGlRK-stdout 1`] = `
 [
+  "[?25l",
   "◼ This task will execute.
 ",
   "[2K[1A[2K[G❯ This task will execute.
@@ -63,5 +66,6 @@ exports[`default renderer: process output should hook in to stdout/stderr and lo
   "this should be logged after [0]",
   "this should be logged after [1]",
   "this should be logged after [2]",
+  "[?25h",
 ]
 `;

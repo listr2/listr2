@@ -6,6 +6,7 @@ exports[`default renderer: retry should retry the main task if any of the subtas
 
 exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
 [
+  "[?25l",
   "◼ Some type errors
 ",
   "[2K[1A[2K[G❯ Some type errors
@@ -50,6 +51,7 @@ exports[`default renderer: retry should retry the main task if any of the subtas
   "[2K[1A[2K[G",
   "✖ This type can not be assigned to type with, oh noes
 ",
+  "[?25h",
 ]
 `;
 
@@ -59,6 +61,7 @@ exports[`default renderer: retry should stop retrying if the task succeeds after
 
 exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
 [
+  "[?25l",
   "◼ Some type errors
 ",
   "[2K[1A[2K[G❯ Some type errors
@@ -76,6 +79,7 @@ exports[`default renderer: retry should stop retrying if the task succeeds after
   "[2K[1A[2K[G",
   "✔ Successed at 3th try.
 ",
+  "[?25h",
 ]
 `;
 
