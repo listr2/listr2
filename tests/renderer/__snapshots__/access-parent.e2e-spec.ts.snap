@@ -65,6 +65,7 @@ exports[`simple renderer: parent task access should be able to change the title 
 ",
   "✔ Title changed from subtask.
 ",
+  "[?25h",
 ]
 `;
 

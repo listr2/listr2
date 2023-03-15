@@ -19,21 +19,17 @@ export class Spinner {
     return !!this.id
   }
 
-  public start (cb?: () => void): void {
+  public start (cb?: () => void, interval = 100): void {
     this.id = setInterval(() => {
       this.spin()
 
       if (cb) {
         cb()
       }
-    }, 100)
+    }, interval)
   }
 
   public stop (): void {
     clearInterval(this.id)
-
-    if (this.id) {
-      this.id = undefined
-    }
   }
 }

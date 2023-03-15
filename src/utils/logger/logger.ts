@@ -52,6 +52,14 @@ export class ListrLogger {
     this.process.writeToStderr(this.format(LogLevels.ROLLBACK, message, options))
   }
 
+  public prompt (message: string | string[], options?: LogEntityOptions): void {
+    this.process.writeToStdout(this.format(LogLevels.PROMPT, message, options))
+  }
+
+  public stdout (message: string | string[], options?: LogEntityOptions): void {
+    this.process.writeToStdout(this.format(LogLevels.STDOUT, message, options))
+  }
+
   public wrap (message: string, options?: { format?: LoggerFormat }): string {
     message = `[${message}]`
 
@@ -150,6 +158,9 @@ export class ListrLogger {
     }
 
     switch (level) {
+    case LogLevels.STDOUT:
+      return message
+
     case LogLevels.FAILED:
       /* istanbul ignore if */
       if (this.options?.useIcons) {
@@ -188,6 +199,13 @@ export class ListrLogger {
       if (this.options?.useIcons) {
         icon = figures.pointerSmall
       } else {
+        icon = this.wrap(level)
+      }
+
+      break
+
+    case LogLevels.PROMPT:
+      if (!this.options?.useIcons) {
         icon = this.wrap(level)
       }
 
@@ -237,7 +255,9 @@ export class ListrLogger {
       break
     }
 
-    message = coloring(icon) + ' ' + message
+    if (icon) {
+      message = coloring(icon) + ' ' + message
+    }
 
     return message
   }

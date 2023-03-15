@@ -1,6 +1,6 @@
 import type Enquirer from 'enquirer'
 
-import type { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
+import type { PromptCancelOptions, PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
 import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { PromptError } from '@interfaces/listr-error.interface'
@@ -54,7 +54,7 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
       ...o,
       Object.assign(option, {
         // this is for outside calls, if it is not called from taskwrapper with bind
-        stdout: this instanceof TaskWrapper ? settings?.stdout ?? this.stdout() : process.stdout,
+        stdout: this instanceof TaskWrapper ? settings?.stdout ?? this.stdout(ListrTaskEventType.PROMPT) : process.stdout,
         onCancel: cancelCallback.bind(this, settings)
       })
     ]
@@ -73,14 +73,22 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
       // should fix the import problem for esm since there is no default imports there
       enquirer = imported.default ? new imported.default() : new (imported as unknown as new () => Enquirer)()
     } catch (e: any) {
-      this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
+      if (this instanceof TaskWrapper) {
+        this.task.prompt = new PromptError('Enquirer is a peer dependency that must be installed separately.')
+      }
 
       throw new Error(e)
     }
   }
 
   // i use this externally as well, this is a bandaid
+  let state: ListrTaskState
+
   if (this instanceof TaskWrapper) {
+    state = this.task.state
+
+    this.task.state$ = ListrTaskState.PROMPT
+
     // Capture the prompt instance so we can use it later
     enquirer.on('prompt', (prompt: PromptInstance) => this.task.prompt = prompt)
 
@@ -99,6 +107,12 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
 
   const response = (await enquirer.prompt(options as any)) as any
 
+  if (this instanceof TaskWrapper) {
+    this.task.state$ = ListrTaskState.PROMPT_COMPLETED
+    // without pushing it through the subscriptions again, just set the state back to original
+    this.task.state = state
+  }
+
   // return default name if it is single prompt
   if (options.length === 1) {
     return response.default
@@ -108,13 +122,13 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
 }
 
 /* istanbul ignore next */
-export function destroyPrompt (this: TaskWrapper<any, any>, throwError = false): void {
+export function destroyPrompt (this: TaskWrapper<any, any>, options?: PromptCancelOptions): void {
   if (!this.task.prompt || this.task.prompt instanceof PromptError) {
     // If there's no prompt, can't cancel
     return
   }
 
-  if (throwError) {
+  if (options?.throw) {
     this.task.prompt.cancel()
   } else {
     this.task.prompt.submit()

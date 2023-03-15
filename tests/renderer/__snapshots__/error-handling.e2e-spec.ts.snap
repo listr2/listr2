@@ -287,6 +287,7 @@ exports[`simple renderer: error handling should change exit on error per subtask
 ",
   "❯ This task will execute.
 ",
+  "[?25h",
 ]
 `;
 
@@ -315,6 +316,7 @@ exports[`simple renderer: error handling should disable exitOnError from task le
 ",
   "✔ I will change my title if this executes.
 ",
+  "[?25h",
 ]
 `;
 
@@ -331,6 +333,7 @@ exports[`simple renderer: error handling should disable exitOnError from task le
 [
   "❯ This task will fail.
 ",
+  "[?25h",
 ]
 `;
 
@@ -351,6 +354,7 @@ exports[`simple renderer: error handling should not throw out an error when exit
 ",
   "✔ I will change my title if this executes.
 ",
+  "[?25h",
 ]
 `;
 
@@ -367,6 +371,7 @@ exports[`simple renderer: error handling should throw out an error: vxSr6uKuGeO4
 [
   "❯ This task will fail.
 ",
+  "[?25h",
 ]
 `;
 

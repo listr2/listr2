@@ -1,6 +1,6 @@
-import through from 'through'
+import { Writable } from 'stream'
 
-import { BELL_REGEX, CLEAR_LINE_REGEX } from '@constants/clearline-regex.constants'
+import { ListrTaskEventType } from '@constants'
 import { ListrTaskState } from '@constants/state.constants'
 import type { ListrErrorTypes } from '@interfaces/listr-error.interface'
 import { ListrError } from '@interfaces/listr-error.interface'
@@ -9,8 +9,8 @@ import type { ListrRendererFactory } from '@interfaces/renderer.interface'
 import type { ListrTask } from '@interfaces/task.interface'
 import type { Task } from '@lib/task'
 import { Listr } from '@root/listr'
+import type { PromptCancelOptions, PromptOptions } from '@utils'
 import { createPrompt, destroyPrompt, splat } from '@utils'
-import type { PromptOptions } from '@utils'
 
 /**
  * Extend the task to have more functionality while accessing from the outside.
@@ -44,6 +44,11 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     output = Array.isArray(output) ? output : [ output ]
 
     this.task.output$ = splat(output.shift(), ...output)
+  }
+
+  /** Send a output to the output channel. */
+  private set promptOutput (output: string) {
+    this.task.promptOutput$ = output
   }
 
   /** Create a new subtask with given renderer selection from the parent task. */
@@ -95,8 +100,8 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Cancels the current prompt attach to this task. */
-  public cancelPrompt (throwError = false): void {
-    return destroyPrompt.bind(this)(throwError)
+  public cancelPrompt (options?: PromptCancelOptions): void {
+    return destroyPrompt.bind(this)(options)
   }
 
   /**
@@ -107,17 +112,24 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    *
    * This returns a fake stream to pass any stream inside Listr as task data.
    */
-  public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
-    return through((chunk: string) => {
-      chunk = chunk.toString()
+  public stdout (type?: ListrTaskEventType.OUTPUT | ListrTaskEventType.PROMPT): NodeJS.WritableStream {
+    const writable = new Writable()
 
-      chunk = chunk.replace(new RegExp(CLEAR_LINE_REGEX, 'gmi'), '')
-      chunk = chunk.replace(new RegExp(BELL_REGEX, 'gmi'), '')
+    writable.write = (chunk: Buffer | string): boolean => {
+      switch (type) {
+      case ListrTaskEventType.PROMPT:
+        this.promptOutput = chunk.toString()
 
-      if (chunk !== '') {
-        this.output = chunk
+        break
+
+      default:
+        this.output = chunk.toString()
       }
-    }) as unknown as NodeJS.WriteStream
+
+      return true
+    }
+
+    return writable
   }
 
   /** Run this task. */

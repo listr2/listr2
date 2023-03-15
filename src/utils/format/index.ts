@@ -1,3 +1,4 @@
+export * from './cleanse-ansi'
 export * from './colorette'
 export * from './indent-string'
 export * from './figures'

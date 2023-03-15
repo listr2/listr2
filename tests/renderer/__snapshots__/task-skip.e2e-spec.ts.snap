@@ -100,6 +100,7 @@ exports[`simple renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4Hz
 ",
   "↓ This task will never execute. [SKIPPED: This task will never execute.]
 ",
+  "[?25h",
 ]
 `;
 
@@ -113,6 +114,7 @@ exports[`simple renderer: task-skip should skip from internal function: ws7S3nDQ
 ",
   "↓ This task will execute. [SKIPPED: I am skipping this tasks for reasons.]
 ",
+  "[?25h",
 ]
 `;
 
@@ -130,6 +132,7 @@ exports[`simple renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz
 ",
   "↓ This task will never execute. [SKIPPED: I will be skipped!]
 ",
+  "[?25h",
 ]
 `;
 

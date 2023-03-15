@@ -10,7 +10,7 @@ import type { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendere
 import type { ListrTask, ListrTaskFn, ListrTaskMessage, ListrTaskPrompt, ListrTaskRetry } from '@interfaces/task.interface'
 import { EventManager } from '@lib/event-manager'
 import { Listr } from '@root/listr'
-import { isObservable, getRenderer } from '@utils'
+import { isObservable, getRenderer, cleanseAnsiOutput } from '@utils'
 import { assertFunctionOrSelf } from '@utils/assert'
 import { generateUUID } from '@utils/uuid'
 
@@ -85,6 +85,14 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     this.emitShouldRefreshRender()
   }
 
+  set promptOutput$ (data: string) {
+    this.emit(ListrTaskEventType.PROMPT, data)
+
+    if (cleanseAnsiOutput(data)) {
+      this.emitShouldRefreshRender()
+    }
+  }
+
   set message$ (data: Task<Ctx, Renderer>['message']) {
     this.message = { ...this.message, ...data }
 
@@ -123,7 +131,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   }
 
   public isPending (): boolean {
-    return this.isStarted() || this.isRetrying() || this.isRollingBack()
+    return this.isStarted() || this.isRetrying() || this.isRollingBack() || this.isPrompt()
   }
 
   /** Returns whether this task is in progress. */
@@ -173,7 +181,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
 
   /** Returns whether this task has a prompt inside. */
   public isPrompt (): boolean {
-    return !!this.prompt
+    return this.state === ListrTaskState.PROMPT || this.state === ListrTaskState.PROMPT_COMPLETED
   }
 
   /** Run the current task. */
@@ -195,8 +203,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
         this.emit(ListrTaskEventType.SUBTASK, this.subtasks)
 
         result = result.run(context)
-      } else if (this.isPrompt()) {
-        // do nothing, it is already being handled
       } else if (result instanceof Promise) {
         // Detect promise
         result = result.then(handleResult)
@@ -328,7 +334,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
     }
   }
 
-  private emitShouldRefreshRender (): void {
+  public emitShouldRefreshRender (): void {
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 }

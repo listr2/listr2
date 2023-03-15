@@ -4,15 +4,17 @@ import logUpdate from 'log-update'
 import { EOL } from 'os'
 import cliWrap from 'wrap-ansi'
 
-import { ListrEventType } from '@constants/event.constants'
-import type { ListrEventMap } from '@interfaces/event-map.interface'
+import { ListrTaskState } from '@constants'
+import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
+import { PromptError } from '@interfaces'
+import type { ListrEventMap, ListrTaskEventMap } from '@interfaces/event-map.interface'
 import type { ListrContext } from '@interfaces/listr.interface'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { EventManager } from '@lib/event-manager'
 import type { Task } from '@lib/task'
 import type { RendererPresetTimer } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
-import { assertFunctionOrSelf, color, figures, indentString, ListrLogger, LogLevels, Spinner } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsiOutput, color, figures, indentString, ListrLogger, LogLevels, Spinner } from '@utils'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -155,8 +157,9 @@ export class DefaultRenderer implements ListrRenderer {
     persistentOutput?: boolean
   } & RendererPresetTimer
 
-  private bottomBar: Record<string, { data?: string[], items?: number }> = {}
-  private promptBar: string
+  private bottom: Record<string, { data?: string[], items?: number }> = {}
+  private prompt: string
+  private activePrompt: string
   private readonly spinner = new Spinner()
   private readonly logger: ListrLogger
   private readonly updater: LogUpdate
@@ -195,26 +198,30 @@ export class DefaultRenderer implements ListrRenderer {
 
   public render (): void {
     // Do not render if we are already rendering
+    /* istanbul ignore if */
     if (this.spinner.isRunning()) {
       return
     }
 
     this.logger.process.hijack()
 
-    const updateRender = (): void => this.updater(this.createRender())
-
     /* istanbul ignore if */
     if (!this.options?.lazy) {
       this.spinner.start(() => {
-        updateRender()
+        this.update()
       })
     }
 
+    /* istanbul ignore if */
     if (this.options?.eager) {
       this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
-        updateRender()
+        this.update()
       })
     }
+  }
+
+  public update (): void {
+    this.updater(this.create())
   }
 
   public end (): void {
@@ -226,13 +233,13 @@ export class DefaultRenderer implements ListrRenderer {
 
     // directly write to process.stdout, since logupdate only can update the seen height of terminal
     if (!this.options.clearOutput) {
-      this.logger.process.writeToStdout(this.createRender({ prompt: false }))
+      this.logger.process.writeToStdout(this.create({ prompt: false }))
     }
 
     this.logger.process.release()
   }
 
-  public createRender (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
+  public create (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
     options = {
       tasks: true,
       bottomBar: true,
@@ -279,7 +286,7 @@ export class DefaultRenderer implements ListrRenderer {
       return figures.pointerSmall
     }
 
-    if (task.isStarted()) {
+    if (task.isStarted() || task.isPrompt()) {
       return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
         ? color.yellow(figures.pointer)
         : color.yellowBright(this.spinner.fetch())
@@ -347,6 +354,32 @@ export class DefaultRenderer implements ListrRenderer {
 
       if (!task.isEnabled()) {
         return []
+      }
+
+      if (task.isPrompt()) {
+        if (this.activePrompt && this.activePrompt !== task.id) {
+          throw new PromptError('Only one prompt can be active at the given time, please reevaluate your task design.')
+        } else if (!this.activePrompt) {
+          const cb = (prompt: ListrTaskEventMap[ListrTaskEventType.PROMPT]): void => {
+            const cleansed = cleanseAnsiOutput(prompt).trim()
+
+            if (cleansed) {
+              this.prompt = cleansed
+            }
+          }
+
+          task.on(ListrTaskEventType.PROMPT, cb)
+
+          task.on(ListrTaskEventType.STATE, (state) => {
+            if (state === ListrTaskState.PROMPT_COMPLETED || task.hasFinalized()) {
+              this.prompt = null
+              this.activePrompt = null
+              task.off(ListrTaskEventType.PROMPT)
+            }
+          })
+
+          this.activePrompt = task.id
+        }
       }
 
       // Current Task Title
@@ -431,30 +464,27 @@ export class DefaultRenderer implements ListrRenderer {
 
       // Current Task Output
       if (task?.output) {
-        if (task.isPending() && task.isPrompt()) {
-          // data output to prompt bar if prompt
-          this.promptBar = task.output
-        } else if (this.isBottomBar(task) || !task.hasTitle()) {
+        if (this.isBottomBar(task) || !task.hasTitle()) {
           // data output to bottom bar
           const data = this.dump(task, -1)
 
           // create new if there is no persistent storage created for bottom bar
-          if (!this.bottomBar[task.id]) {
-            this.bottomBar[task.id] = {}
-            this.bottomBar[task.id].data = []
+          if (!this.bottom[task.id]) {
+            this.bottom[task.id] = {}
+            this.bottom[task.id].data = []
 
             const bottomBar = this.getTaskOptions(task).bottomBar
 
             if (typeof bottomBar === 'boolean') {
-              this.bottomBar[task.id].items = 1
+              this.bottom[task.id].items = 1
             } else {
-              this.bottomBar[task.id].items = bottomBar
+              this.bottom[task.id].items = bottomBar
             }
           }
 
           // persistent bottom bar and limit items in it
-          if (!this.bottomBar[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
-            this.bottomBar[task.id].data.push(...data)
+          if (!this.bottom[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
+            this.bottom[task.id].data.push(...data)
           }
         } else if (task.isPending() || this.hasPersistentOutput(task)) {
           // keep output if persistent output is set
@@ -490,12 +520,9 @@ export class DefaultRenderer implements ListrRenderer {
 
       // after task is finished actions
       if (task.hasFinalized()) {
-        // clean up prompts
-        this.promptBar = null
-
         // clean up bottom bar items if not indicated otherwise
         if (!this.hasPersistentOutput(task)) {
-          delete this.bottomBar[task.id]
+          delete this.bottom[task.id]
         }
       }
 
@@ -505,32 +532,32 @@ export class DefaultRenderer implements ListrRenderer {
 
   private renderBottomBar (): string[] {
     // parse through all objects return only the last mentioned items
-    if (Object.keys(this.bottomBar).length === 0) {
+    if (Object.keys(this.bottom).length === 0) {
       return []
     }
 
-    this.bottomBar = Object.keys(this.bottomBar).reduce<Record<PropertyKey, { data?: string[], items?: number }>>((o, key) => {
+    this.bottom = Object.keys(this.bottom).reduce<Record<PropertyKey, { data?: string[], items?: number }>>((o, key) => {
       if (!o?.[key]) {
         o[key] = {}
       }
 
-      o[key] = this.bottomBar[key]
+      o[key] = this.bottom[key]
 
-      this.bottomBar[key].data = this.bottomBar[key].data.slice(-this.bottomBar[key].items)
-      o[key].data = this.bottomBar[key].data
+      this.bottom[key].data = this.bottom[key].data.slice(-this.bottom[key].items)
+      o[key].data = this.bottom[key].data
 
       return o
     }, {})
 
-    return Object.values(this.bottomBar).reduce((o, value) => o = [ ...o, ...value.data ], [])
+    return Object.values(this.bottom).reduce((o, value) => o = [ ...o, ...value.data ], [])
   }
 
   private renderPrompt (): string[] {
-    if (!this.promptBar) {
+    if (!this.prompt) {
       return []
     }
 
-    return [ this.promptBar ]
+    return [ this.prompt ]
   }
 
   private dump (task: Task<ListrContext, typeof DefaultRenderer>, level: number, source: LogLevels.OUTPUT | LogLevels.SKIPPED | LogLevels.FAILED = LogLevels.OUTPUT): string[] {
@@ -538,7 +565,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     switch (source) {
     case LogLevels.OUTPUT:
-      data = task.output
+      data = cleanseAnsiOutput(task.output)
 
       break
 

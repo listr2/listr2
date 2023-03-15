@@ -75,7 +75,7 @@ export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRende
 
 export type ListrTaskFn<Ctx, Renderer extends ListrRendererFactory> = (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
 
-export type ListrTaskPrompt = undefined | PromptInstance | PromptError
+export type ListrTaskPrompt = PromptInstance | PromptError
 
 export interface ListrTaskRetry {
   count: number

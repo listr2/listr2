@@ -20,11 +20,8 @@ exports[`default renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5
 [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-
-
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[G✔ This task will execute.
 ",
   "[2K[1A[2K[G",
   "✔ This task will execute.
@@ -54,11 +51,6 @@ exports[`default renderer: prompt should render multiple prompt: ZyUB9J2StmYMasX
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
 
-
-
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
 [36m?[39m [1mGive me more input.[22m [2m…[22m 
 [36m▸[39m [36m[4mtest1[24m[39m
   test2
@@ -68,11 +60,8 @@ exports[`default renderer: prompt should render multiple prompt: ZyUB9J2StmYMasX
 [32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-
-
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[G✔ This task will execute.
 ",
   "[2K[1A[2K[G",
   "✔ This task will execute.
@@ -98,14 +87,9 @@ exports[`default renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bP
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
 
-[35m✖[39m [1mGive me some input.[22m [2m·[22m 
+[35m✖[39m [1mGive me some input.[22m [2m·[22m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-
-
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute.
 ",
   "[2K[1A[2K[G✖ Cancelled prompt.
 ",
@@ -139,14 +123,20 @@ exports[`default renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbt
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
 ◼ Another task.
 ",
-  "[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ Another task.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ Another task.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ❯ Another task.
 ",
-  "[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ✔ Another task.
 ",
   "[2K[1A[2K[1A[2K[G",
-  "↓ This task will execute. [SKIPPED]
+  "✔ This task will execute.
 ✔ Another task.
 ",
   "[?25h",
@@ -173,11 +163,8 @@ exports[`default renderer: prompt should use the passed in enquirer: t3VXfqT0crs
 [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-
-
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[G✔ This task will execute.
 ",
   "[2K[1A[2K[G",
   "✔ This task will execute.
@@ -190,9 +177,20 @@ exports[`simple renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct59
 
 exports[`simple renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `
 [
-  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  "[2K[1A[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[?25l",
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
+  "[1D",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "
 ",
 ]
 `;
@@ -201,10 +199,11 @@ exports[`simple renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct59
 [
   "❯ This task will execute.
 ",
-  "
-",
+  "[?25l",
+  "[?25h",
   "✔ This task will execute.
 ",
+  "[?25h",
 ]
 `;
 
@@ -212,15 +211,30 @@ exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXk
 
 exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `
 [
-  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[?25l",
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
+  "[1D",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "
 ",
-  "[2K[1A[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
-",
-  "[2K[1A[2K[G[36m?[39m [1mGive me more input.[22m [2m…[22m 
+  "[?25l",
+  "[36m?[39m [1mGive me more input.[22m [2m…[22m 
 [36m▸[39m [36m[4mtest1[24m[39m
-  test2
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m
+  test2",
+  "[2A[25G",
+  "[2B[2K[F[2K[F[2K[1G",
+  "[32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m",
+  "[4D",
+  "
 ",
 ]
 `;
@@ -229,12 +243,11 @@ exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXk
 [
   "❯ This task will execute.
 ",
-  "
-",
-  "
-",
+  "[?25l",
+  "[?25h",
   "✔ This task will execute.
 ",
+  "[?25h",
 ]
 `;
 
@@ -242,9 +255,12 @@ exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQ
 
 exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
 [
-  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  "[2K[1A[2K[G[35m✖[39m [1mGive me some input.[22m [2m·[22m 
+  "[?25l",
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
+  "[1D",
+  "[2K[1G",
+  "[35m✖[39m [1mGive me some input.[22m [2m·[22m ",
+  "
 ",
   "✖ This task will execute. [FAILED: Cancelled prompt.]
 ",
@@ -255,8 +271,8 @@ exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQ
 [
   "❯ This task will execute.
 ",
-  "
-",
+  "[?25l",
+  "[?25h",
 ]
 `;
 
@@ -264,9 +280,12 @@ exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbte
 
 exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `
 [
-  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  "[2K[1A[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m 
+  "[?25l",
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
+  "[1D",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m ",
+  "
 ",
 ]
 `;
@@ -275,12 +294,15 @@ exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbte
 [
   "❯ This task will execute.
 ",
-  "
+  "[?25l",
+  "[?25h",
+  "✔ This task will execute.
 ",
   "❯ Another task.
 ",
   "✔ Another task.
 ",
+  "[?25h",
 ]
 `;
 
@@ -288,9 +310,20 @@ exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsC
 
 exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `
 [
-  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-",
-  "[2K[1A[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[?25l",
+  "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
+  "[1D",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "[2K[1G",
+  "[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m",
+  "
 ",
 ]
 `;
@@ -299,10 +332,11 @@ exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsC
 [
   "❯ This task will execute.
 ",
-  "
-",
+  "[?25l",
+  "[?25h",
   "✔ This task will execute.
 ",
+  "[?25h",
 ]
 `;
 
@@ -314,19 +348,37 @@ exports[`test renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973
 [
   "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
   "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
 ",
@@ -341,25 +393,51 @@ exports[`test renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHs
 [
   "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me more input.\\u001b[22m \\u001b[2m…\\u001b[22m \\n\\u001b[36m▸\\u001b[39m \\u001b[36m\\u001b[4mtest1\\u001b[24m\\u001b[39m\\n  test2","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me more input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[36mtest1\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me more input.\\u001b[22m \\u001b[2m…\\u001b[22m \\n\\u001b[36m▸\\u001b[39m \\u001b[36m\\u001b[4mtest1\\u001b[24m\\u001b[39m\\n  test2","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2A\\u001b[25G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2B\\u001b[2K\\u001b[F\\u001b[2K\\u001b[F\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me more input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[36mtest1\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[4D","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
   "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
 ",
@@ -379,11 +457,19 @@ exports[`test renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRB
 [
   "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[35m✖\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[35m✖\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
   "{"event":"STATE","data":"FAILED","task":{"title":"This task will execute.","hasFinalized":true}}
 ",
@@ -398,13 +484,25 @@ exports[`test renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKn
 [
   "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
   "{"event":"STATE","data":"SKIPPED","task":{"title":"This task will execute.","hasFinalized":true}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":true}}
 ",
-  "{"event":"OUTPUT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"title":"This task will execute.","hasFinalized":true}}
+",
+  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":true}}
+",
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
 ",
   "{"event":"STATE","data":"STARTED","task":{"title":"Another task.","hasFinalized":false}}
 ",
@@ -421,19 +519,37 @@ exports[`test renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYR
 [
   "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
-  "{"event":"OUTPUT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+",
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"title":"This task will execute.","hasFinalized":false}}
 ",
   "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
 ",
@@ -448,19 +564,17 @@ exports[`verbose renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5
 [
   "[STARTED] This task will execute.
 ",
-  "[OUTPUT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
-",
-  "
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
   "[COMPLETED] This task will execute.
 ",
@@ -475,27 +589,23 @@ exports[`verbose renderer: prompt should render multiple prompt: ZyUB9J2StmYMasX
 [
   "[STARTED] This task will execute.
 ",
-  "[OUTPUT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "
+  "[PROMPT] [36m?[39m [1mGive me more input.[22m [2m…[22m 
+[PROMPT] [36m▸[39m [36m[4mtest1[24m[39m
+[PROMPT]   test2
 ",
-  "[OUTPUT] [36m?[39m [1mGive me more input.[22m [2m…[22m 
-[OUTPUT] [36m▸[39m [36m[4mtest1[24m[39m
-[OUTPUT]   test2
-",
-  "[OUTPUT] [32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m
-",
-  "
+  "[PROMPT] [32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m
 ",
   "[COMPLETED] This task will execute.
 ",
@@ -515,11 +625,9 @@ exports[`verbose renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bP
 [
   "[STARTED] This task will execute.
 ",
-  "[OUTPUT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[OUTPUT] [35m✖[39m [1mGive me some input.[22m [2m·[22m 
-",
-  "
+  "[PROMPT] [35m✖[39m [1mGive me some input.[22m [2m·[22m
 ",
 ]
 `;
@@ -532,11 +640,11 @@ exports[`verbose renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbt
 [
   "[STARTED] This task will execute.
 ",
-  "[OUTPUT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m 
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m
 ",
-  "
+  "[COMPLETED] This task will execute.
 ",
   "[STARTED] Another task.
 ",
@@ -553,19 +661,17 @@ exports[`verbose renderer: prompt should use the passed in enquirer: t3VXfqT0crs
 [
   "[STARTED] This task will execute.
 ",
-  "[OUTPUT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+  "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[OUTPUT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
-",
-  "
+  "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
   "[COMPLETED] This task will execute.
 ",

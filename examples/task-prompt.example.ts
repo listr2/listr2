@@ -238,7 +238,7 @@ async function main (): Promise<void> {
           ])
 
           delay(1000)
-            .then(() => task.cancelPrompt(true))
+            .then(() => task.cancelPrompt({ throw: true }))
             .catch(() => {})
           ctx.input = await task.prompt({
             type: 'Input',

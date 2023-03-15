@@ -448,6 +448,7 @@ exports[`simple renderer: rollback should both stop the execution with exitOnErr
 ",
   "❯ This task will fail.
 ",
+  "[?25h",
 ]
 `;
 
@@ -474,6 +475,7 @@ exports[`simple renderer: rollback should contunie execution or stop there with 
 ",
   "✔ This task will maybe execute.
 ",
+  "[?25h",
 ]
 `;
 
@@ -496,6 +498,7 @@ exports[`simple renderer: rollback should contunie execution or stop there with 
 ",
   "❯ This task will fail.
 ",
+  "[?25h",
 ]
 `;
 
@@ -518,6 +521,7 @@ exports[`simple renderer: rollback should rollback the main task if any of the s
 ",
   "❯ This task will fail.
 ",
+  "[?25h",
 ]
 `;
 
@@ -540,6 +544,7 @@ exports[`simple renderer: rollback should rollback the subtask if the subtask it
 ",
   "❯ This task will fail.
 ",
+  "[?25h",
 ]
 `;
 

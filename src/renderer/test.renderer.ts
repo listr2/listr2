@@ -17,6 +17,7 @@ export class TestRenderer implements ListrRenderer {
     subtasks?: boolean
     state?: ListrTaskState[]
     output?: boolean
+    prompt?: boolean
     title?: boolean
     messages?: (keyof ListrTaskMessage)[]
     messagesToStderr?: (keyof ListrTaskMessage)[]
@@ -24,6 +25,7 @@ export class TestRenderer implements ListrRenderer {
       subtasks: true,
       state: Object.values(ListrTaskState),
       output: true,
+      prompt: true,
       title: true,
       messages: [ 'skip', 'error', 'retry', 'rollback' ],
       messagesToStderr: [ 'error', 'rollback', 'retry' ]
@@ -64,6 +66,12 @@ export class TestRenderer implements ListrRenderer {
       if (this.options.output) {
         task.on(ListrTaskEventType.OUTPUT, (data) => {
           this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.OUTPUT, data, task).toJson())
+        })
+      }
+
+      if (this.options.prompt) {
+        task.on(ListrTaskEventType.PROMPT, (prompt) => {
+          this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.PROMPT, prompt, task).toJson())
         })
       }
 

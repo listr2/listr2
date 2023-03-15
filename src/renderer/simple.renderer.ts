@@ -41,8 +41,9 @@ export class SimpleRenderer implements ListrRenderer {
     this.updater = logUpdate.create(this.logger.process.stderr)
   }
 
-  // eslint-disable-next-line
-  public end(): void {}
+  public end (): void {
+    this.logger.process.release()
+  }
 
   public render (): void {
     this.renderer(this.tasks)
@@ -81,17 +82,19 @@ export class SimpleRenderer implements ListrRenderer {
               }
             }
           )
+        } else if (state === ListrTaskState.PROMPT) {
+          this.logger.process.hijack()
+        } else if (state === ListrTaskState.PROMPT_COMPLETED) {
+          this.logger.process.release()
         }
       })
 
       task.on(ListrTaskEventType.OUTPUT, (output) => {
-        // ! This is where it gets dirty
-        // * We want the prompt to stay visible after confirmation
-        if (task.isPrompt() && !String(output).match(/^\n$/)) {
-          this.updater(output)
-        } else {
-          this.logger.output(output)
-        }
+        this.logger.output(output)
+      })
+
+      task.on(ListrTaskEventType.PROMPT, (prompt) => {
+        this.logger.process.stderr.write(prompt)
       })
 
       task.on(ListrTaskEventType.MESSAGE, (message) => {

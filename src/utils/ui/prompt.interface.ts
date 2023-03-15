@@ -91,6 +91,10 @@ interface TogglePromptOptions extends BasePromptOptions {
   disabled?: string
 }
 
+export interface PromptCancelOptions {
+  throw?: boolean
+}
+
 /** Returns all the prompt options depending on the type selected. */
 export type PromptOptions<T extends boolean = false> =
   | Unionize<{

@@ -13,6 +13,14 @@ export class EventManager<Event extends string = string, Map extends Partial<Rec
     this.emitter.addListener(dispatch, handler)
   }
 
+  public once<E extends Event = Event>(dispatch: E, handler: (data: EventData<E, Map>) => void): void {
+    this.emitter.once(dispatch, handler)
+  }
+
+  public off<E extends Event = Event>(dispatch: E, handler?: (data: EventData<E, Map>) => void): void {
+    this.emitter.off(dispatch, handler)
+  }
+
   public complete (): void {
     this.emitter.removeAllListeners()
   }

@@ -1,5 +1,6 @@
 import type { EventMap } from './event.interface'
 import { BaseEventMap } from './event.interface'
+import type { ListrTaskMessage } from './task.interface'
 import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
 import type { ListrTaskState } from '@constants/state.constants'
 import type { Task } from '@lib/task'
@@ -16,5 +17,6 @@ export declare class ListrTaskEventMap extends BaseEventMap implements EventMap<
   [ListrTaskEventType.SUBTASK]: Task<any, any>[];
   [ListrTaskEventType.TITLE]: string;
   [ListrTaskEventType.OUTPUT]: string;
-  [ListrTaskEventType.MESSAGE]: Task<any, any>['message']
+  [ListrTaskEventType.MESSAGE]: ListrTaskMessage;
+  [ListrTaskEventType.PROMPT]: string
 }
