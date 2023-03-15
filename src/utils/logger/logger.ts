@@ -3,7 +3,7 @@ import { EOL } from 'os'
 
 import { LogLevels } from './logger.constants'
 import type { LogEntityOptions, LoggerFormat, ListrLoggerOptions, LoggerField } from './logger.interface'
-import { color, figures, ProcessOutput } from '@utils'
+import { color, figures, ProcessOutput, splat } from '@utils'
 
 /**
  * A internal logger for using in the verbose renderer mostly.
@@ -20,35 +20,35 @@ export class ListrLogger {
     this.process = this.options.processOutput ?? new ProcessOutput()
   }
 
-  public started (message: string, options?: LogEntityOptions): void {
+  public started (message: string | string[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.STARTED, message, options))
   }
 
-  public failed (message: string, options?: LogEntityOptions): void {
+  public failed (message: string | string[], options?: LogEntityOptions): void {
     this.process.writeToStderr(this.format(LogLevels.FAILED, message, options))
   }
 
-  public skipped (message: string, options?: LogEntityOptions): void {
+  public skipped (message: string | string[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.SKIPPED, message, options))
   }
 
-  public completed (message: string, options?: LogEntityOptions): void {
+  public completed (message: string | string[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.COMPLETED, message, options))
   }
 
-  public output (message: string, options?: LogEntityOptions): void {
+  public output (message: string | string[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.OUTPUT, message, options))
   }
 
-  public title (message: string, options?: LogEntityOptions): void {
+  public title (message: string | string[], options?: LogEntityOptions): void {
     this.process.writeToStdout(this.format(LogLevels.TITLE, message, options))
   }
 
-  public retry (message: string, options?: LogEntityOptions): void {
+  public retry (message: string | string[], options?: LogEntityOptions): void {
     this.process.writeToStderr(this.format(LogLevels.RETRY, message, options))
   }
 
-  public rollback (message: string, options?: LogEntityOptions): void {
+  public rollback (message: string | string[], options?: LogEntityOptions): void {
     this.process.writeToStderr(this.format(LogLevels.ROLLBACK, message, options))
   }
 
@@ -60,6 +60,10 @@ export class ListrLogger {
     }
 
     return message
+  }
+
+  public splat (...args: Parameters<typeof splat>): ReturnType<typeof splat> {
+    return splat(...args)
   }
 
   public suffix (message: string, ...suffixes: LoggerField[]): string {
@@ -117,18 +121,14 @@ export class ListrLogger {
     return message
   }
 
-  protected format (level: LogLevels, message: string, options?: LogEntityOptions): string {
-    // parse multi line messages
-    let multiLineMessage: string[]
-
-    try {
-      multiLineMessage = message.split(EOL)
-    } catch /* istanbul ignore next */ {
-      multiLineMessage = [ message ]
+  protected format (level: LogLevels, message: string | string[], options?: LogEntityOptions): string {
+    if (!Array.isArray(message)) {
+      message = [ message ]
     }
 
-    multiLineMessage = multiLineMessage
-      .filter((msg) => String(msg).trim() !== '')
+    message = this.splat(message.shift(), ...message)
+      .split(EOL)
+      .filter((msg) => msg.trim() !== '')
       .map((msg) => {
         // format messages
         return this.applyToEntity(this.style(level, msg), {
@@ -136,9 +136,7 @@ export class ListrLogger {
           suffix: [ ...this.options?.entityOptions?.suffix ?? [], ...Array.isArray(options?.suffix) ? options.suffix : [ options?.suffix ] ]
         })
       })
-
-    // join back multi line messages
-    message = multiLineMessage.join(EOL)
+      .join(EOL)
 
     return message
   }
