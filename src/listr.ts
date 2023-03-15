@@ -1,5 +1,3 @@
-import pMap from 'p-map'
-
 import { ListrEnvironmentVariables } from '@constants'
 import type { ListrEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
@@ -20,6 +18,7 @@ import { EventManager } from '@lib/event-manager'
 import { Task } from '@lib/task'
 import { TaskWrapper } from '@lib/task-wrapper'
 import { getRenderer } from '@utils'
+import { Concurrency } from '@utils/concurrency'
 
 /**
  * Creates a new set of Listr2 task list.
@@ -150,17 +149,16 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     // check if the items are enabled
     await Promise.all(this.tasks.map((task) => task.check(this.ctx)))
 
+    const concurrency = new Concurrency({ concurrency: this.concurrency })
+
     // run tasks
     try {
-      await pMap(
-        this.tasks,
-        async (task): Promise<void> => {
-          // check this item is enabled, conditions may change depending on context
-          await task.check(this.ctx)
-
-          return this.runTask(task, this.ctx)
-        },
-        { concurrency: this.concurrency }
+      await Promise.all(
+        this.tasks.map(async (task) => {
+          return concurrency.add(async () => {
+            return this.runTask(task, this.ctx)
+          })
+        })
       )
 
       this.renderer.end()
@@ -176,9 +174,9 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     return this.ctx
   }
 
-  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx): Promise<void> {
-    if (!task.isEnabled()) {
-      return Promise.resolve()
+  private async runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx): Promise<void> {
+    if (!await task.check(this.ctx)) {
+      return
     }
 
     return new TaskWrapper(task, this.options).run(context)

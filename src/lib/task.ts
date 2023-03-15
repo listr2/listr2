@@ -110,7 +110,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   /**
    * A function to check whether this task should run at all via enable.
    */
-  public async check (ctx: Ctx): Promise<void> {
+  public async check (ctx: Ctx): Promise<boolean> {
     // Check if a task is enabled or disabled
     if (this.state === ListrTaskState.UNINITIALIZED) {
       this.enabled = await assertFunctionOrSelf(this.task?.enabled ?? true, ctx)
@@ -118,6 +118,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
       this.emit(ListrTaskEventType.ENABLED, this.enabled)
       this.emitShouldRefreshRender()
     }
+
+    return this.enabled
   }
 
   /** Returns whether this task has subtasks. */
