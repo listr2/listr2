@@ -34,11 +34,19 @@ export class ProcessOutput {
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
   }
 
-  public writeToStdout (buffer: string): boolean {
-    return this.stream.stdout.write(buffer + EOL)
+  public toStdout (buffer: string, eol = true): boolean {
+    if (eol) {
+      buffer = buffer + EOL
+    }
+
+    return this.stream.stdout.write(buffer)
   }
 
-  public writeToStderr (buffer: string): boolean {
-    return this.stream.stderr.write(buffer + EOL)
+  public toStderr (buffer: string, eol = true): boolean {
+    if (eol) {
+      buffer = buffer + EOL
+    }
+
+    return this.stream.stderr.write(buffer)
   }
 }
