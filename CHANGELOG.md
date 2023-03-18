@@ -1,3 +1,9 @@
+# [6.0.0-beta.8](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.7...v6.0.0-beta.8) (2023-03-18)
+
+### Performance Improvements
+
+- go full esm on jest/ts-node, use dynamic imports for esm modules on default renderer ([9cc01c0](https://github.com/cenk1cenk2/listr2/commit/9cc01c0bd972f7adfd12c00669bbed21d65052e6))
+
 # [6.0.0-beta.7](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.6...v6.0.0-beta.7) (2023-03-18)
 
 ### Performance Improvements
