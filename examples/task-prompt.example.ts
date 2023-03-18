@@ -48,7 +48,7 @@ async function main (): Promise<void> {
       {
         title: 'Now I will show the input value.',
         task: (ctx, task): void => {
-          task.output = JSON.stringify(ctx.input)
+          task.output = [ '%o', ctx.input ]
         },
         options: {
           persistentOutput: true
@@ -61,7 +61,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
+    logger.completed([ 'ctx: %o', context ])
   } catch (e: any) {
     logger.failed(e)
   }
@@ -87,7 +87,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
+    logger.completed([ 'ctx: %o', context ])
   } catch (e: any) {
     logger.failed(e)
   }
@@ -112,7 +112,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
+    logger.completed([ 'ctx: %o', context ])
   } catch (e: any) {
     logger.failed(e)
   }
@@ -166,7 +166,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
+    logger.completed([ 'ctx: %o', context ])
   } catch (e: any) {
     logger.failed(e)
   }
@@ -202,7 +202,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
+    logger.completed([ 'ctx: %o', context ])
   } catch (e: any) {
     logger.failed(e)
   }
@@ -265,7 +265,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed(`Context: ${JSON.stringify(context, null, 2)}`)
+    logger.completed([ 'ctx: %o', context ])
   } catch (e: any) {
     logger.failed(e)
   }
