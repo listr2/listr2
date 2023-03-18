@@ -1,6 +1,4 @@
-import type { LogUpdate } from 'log-update'
-import logUpdate from 'log-update'
-
+import type { ListrSimpleRendererOptions, ListrSimpleRendererTasks } from './renderer.interface'
 import { ListrTaskState } from '@constants'
 import { ListrTaskEventType } from '@constants/event.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
@@ -24,9 +22,7 @@ export class SimpleRenderer implements ListrRenderer {
   public static rendererTaskOptions: RendererPresetTimer = {}
 
   private readonly logger: ListrLogger
-  private readonly updater: LogUpdate
-
-  constructor (public readonly tasks: Task<any, typeof SimpleRenderer>[], public options: (typeof SimpleRenderer)['rendererOptions']) {
+  constructor (private readonly tasks: ListrSimpleRendererTasks, private options: ListrSimpleRendererOptions) {
     this.options = { ...SimpleRenderer.rendererOptions, ...options }
 
     this.logger =
@@ -37,8 +33,6 @@ export class SimpleRenderer implements ListrRenderer {
           prefix: [ this.options.timestamp ]
         }
       })
-
-    this.updater = logUpdate.create(this.logger.process.stderr)
   }
 
   public end (): void {
@@ -49,14 +43,11 @@ export class SimpleRenderer implements ListrRenderer {
     this.renderer(this.tasks)
   }
 
-  public getSelfOrParentOption<K extends keyof (typeof SimpleRenderer)['rendererOptions']>(
-    task: Task<any, typeof SimpleRenderer>,
-    key: K
-  ): (typeof SimpleRenderer)['rendererOptions'][K] {
+  public getSelfOrParentOption<K extends keyof ListrSimpleRendererOptions>(task: Task<any, typeof SimpleRenderer>, key: K): ListrSimpleRendererOptions[K] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
-  private renderer (tasks: Task<any, typeof SimpleRenderer>[]): void {
+  private renderer (tasks: ListrSimpleRendererTasks): void {
     tasks.forEach((task) => {
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         this.renderer(subtasks)
@@ -94,7 +85,7 @@ export class SimpleRenderer implements ListrRenderer {
       })
 
       task.on(ListrTaskEventType.PROMPT, (prompt) => {
-        this.logger.process.stderr.write(prompt)
+        this.logger.process.toStderr(prompt, false)
       })
 
       task.on(ListrTaskEventType.MESSAGE, (message) => {

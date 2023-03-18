@@ -1,11 +1,9 @@
-/* eslint-disable no-console */
-
+import type { ListrTestRendererOptions, ListrTestRendererTasks } from './renderer.interface'
+import { TestRendererEvent } from './renderer.interface'
 import { ListrTaskState } from '@constants'
 import { ListrTaskEventType } from '@constants/event.constants'
-import type { ListrTaskEventMap } from '@interfaces/event-map.interface'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { ListrTaskMessage } from '@interfaces/task.interface'
-import type { Task } from '@lib/task'
 import type { LoggerRendererOptions } from '@utils'
 import { ListrLogger } from '@utils'
 
@@ -35,7 +33,7 @@ export class TestRenderer implements ListrRenderer {
 
   private readonly logger: ListrLogger
 
-  constructor (public tasks: Task<any, typeof TestRenderer>[], public options: (typeof TestRenderer)['rendererOptions']) {
+  constructor (private readonly tasks: ListrTestRendererTasks, private readonly options: ListrTestRendererOptions) {
     this.options = { ...TestRenderer.rendererOptions, ...this.options }
 
     this.logger = this.options.logger ?? new ListrLogger()
@@ -49,7 +47,7 @@ export class TestRenderer implements ListrRenderer {
   public end (): void {}
 
   // verbose renderer multi-level
-  private renderer (tasks: Task<any, typeof TestRenderer>[]): void {
+  private renderer (tasks: ListrTestRendererTasks): void {
     return tasks?.forEach((task) => {
       if (this.options.subtasks) {
         task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
@@ -59,25 +57,25 @@ export class TestRenderer implements ListrRenderer {
 
       if (this.options.state) {
         task.on(ListrTaskEventType.STATE, (state) => {
-          this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.STATE, state, task).toJson())
+          this.logger.process.toStdout(new TestRendererEvent(ListrTaskEventType.STATE, state, task).toJson())
         })
       }
 
       if (this.options.output) {
         task.on(ListrTaskEventType.OUTPUT, (data) => {
-          this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.OUTPUT, data, task).toJson())
+          this.logger.process.toStdout(new TestRendererEvent(ListrTaskEventType.OUTPUT, data, task).toJson())
         })
       }
 
       if (this.options.prompt) {
         task.on(ListrTaskEventType.PROMPT, (prompt) => {
-          this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.PROMPT, prompt, task).toJson())
+          this.logger.process.toStdout(new TestRendererEvent(ListrTaskEventType.PROMPT, prompt, task).toJson())
         })
       }
 
       if (this.options.title) {
         task.on(ListrTaskEventType.TITLE, (title) => {
-          this.logger.process.writeToStdout(new TestRendererEvent(ListrTaskEventType.TITLE, title, task).toJson())
+          this.logger.process.toStdout(new TestRendererEvent(ListrTaskEventType.TITLE, title, task).toJson())
         })
       }
 
@@ -96,27 +94,12 @@ export class TestRenderer implements ListrRenderer {
           const output = new TestRendererEvent(ListrTaskEventType.MESSAGE, parsed, task).toJson()
 
           if (this.options.messagesToStderr.some((state) => Object.keys(parsed).includes(state))) {
-            this.logger.process.writeToStderr(output)
+            this.logger.process.toStderr(output)
           } else {
-            this.logger.process.writeToStdout(output)
+            this.logger.process.toStdout(output)
           }
         }
       })
-    })
-  }
-}
-
-export class TestRendererEvent<T extends ListrTaskEventType> {
-  constructor (public event: T, public data: ListrTaskEventMap[T], public task?: Task<any, typeof TestRenderer>) {}
-
-  public toJson (): string {
-    return JSON.stringify({
-      event: this.event,
-      data: this.data,
-      task: {
-        title: this.task?.title,
-        hasFinalized: this.task?.hasFinalized()
-      }
     })
   }
 }

@@ -1,5 +1,6 @@
 import type { ListrLogger } from './logger'
-import type { ProcessOutputRendererOptions } from '@utils'
+import type { RendererStyleMap } from '@interfaces'
+import type { LogLevels, ProcessOutputRendererOptions } from '@utils'
 
 /**
  * Options for the logger
@@ -11,7 +12,10 @@ export interface ListrLoggerOptions extends ProcessOutputRendererOptions {
    */
   useIcons?: boolean
   entityOptions?: LogEntityOptions<true>
+  style?: ListrLoggerOptionStyle
 }
+
+export type ListrLoggerOptionStyle = RendererStyleMap<LogLevels>
 
 export interface LogEntityOptions<MultipleOnly extends boolean = false> {
   prefix?: MultipleOnly extends false ? LoggerField | LoggerField[] : LoggerField[]

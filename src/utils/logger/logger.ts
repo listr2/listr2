@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 import { EOL } from 'os'
 
 import { LogLevels } from './logger.constants'
 import type { LogEntityOptions, LoggerFormat, ListrLoggerOptions, LoggerField } from './logger.interface'
+import type { RendererStyleMap } from '@interfaces'
 import { color, figures, ProcessOutput, splat } from '@utils'
 
 /**
@@ -14,50 +14,72 @@ export class ListrLogger {
   constructor (private options?: ListrLoggerOptions) {
     this.options = {
       useIcons: true,
-      ...options
+      ...options,
+      style: {
+        icon: {
+          [LogLevels.STARTED]: figures.pointer,
+          [LogLevels.FAILED]: figures.cross,
+          [LogLevels.SKIPPED]: figures.arrowDown,
+          [LogLevels.COMPLETED]: figures.tick,
+          [LogLevels.OUTPUT]: figures.pointerSmall,
+          [LogLevels.TITLE]: figures.arrowRight,
+          [LogLevels.RETRY]: figures.warning,
+          [LogLevels.ROLLBACK]: figures.arrowLeft,
+          ...options?.style?.icon ?? {}
+        },
+        color: {
+          [LogLevels.STARTED]: color.yellow,
+          [LogLevels.FAILED]: color.red,
+          [LogLevels.SKIPPED]: color.yellow,
+          [LogLevels.COMPLETED]: color.green,
+          [LogLevels.RETRY]: color.yellowBright,
+          [LogLevels.ROLLBACK]: color.redBright,
+          ...options?.style?.color ?? {}
+        }
+      }
     }
 
     this.process = this.options.processOutput ?? new ProcessOutput()
   }
 
   public started (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStdout(this.format(LogLevels.STARTED, message, options))
+    this.process.toStdout(this.format(LogLevels.STARTED, message, options))
   }
 
   public failed (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStderr(this.format(LogLevels.FAILED, message, options))
+    this.process.toStderr(this.format(LogLevels.FAILED, message, options))
   }
 
   public skipped (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStdout(this.format(LogLevels.SKIPPED, message, options))
+    this.process.toStdout(this.format(LogLevels.SKIPPED, message, options))
   }
 
   public completed (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStdout(this.format(LogLevels.COMPLETED, message, options))
+    this.process.toStdout(this.format(LogLevels.COMPLETED, message, options))
   }
 
   public output (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStdout(this.format(LogLevels.OUTPUT, message, options))
+    this.process.toStdout(this.format(LogLevels.OUTPUT, message, options))
   }
 
   public title (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStdout(this.format(LogLevels.TITLE, message, options))
+    this.process.toStdout(this.format(LogLevels.TITLE, message, options))
   }
 
   public retry (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStderr(this.format(LogLevels.RETRY, message, options))
+    this.process.toStderr(this.format(LogLevels.RETRY, message, options))
   }
 
   public rollback (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStderr(this.format(LogLevels.ROLLBACK, message, options))
+    this.process.toStderr(this.format(LogLevels.ROLLBACK, message, options))
   }
 
   public prompt (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStdout(this.format(LogLevels.PROMPT, message, options))
+    this.process.toStdout(this.format(LogLevels.PROMPT, message, options))
   }
 
   public stdout (message: string | any[], options?: LogEntityOptions): void {
-    this.process.writeToStdout(this.format(LogLevels.STDOUT, message, options))
+    this.process.toStdout(this.format(null, message, options))
   }
 
   public wrap (message: string, options?: { format?: LoggerFormat }): string {
@@ -117,7 +139,7 @@ export class ListrLogger {
     return message
   }
 
-  public applyToEntity (message: string, options?: LogEntityOptions<true>): string {
+  public fields (message: string, options?: LogEntityOptions<true>): string {
     if (options?.prefix) {
       message = this.prefix(message, ...options.prefix)
     }
@@ -127,6 +149,23 @@ export class ListrLogger {
     }
 
     return message
+  }
+
+  public icon<T extends RendererStyleMap<K>, K extends string>(map: T, level: K, icon?: string | false): string {
+    if (!level) {
+      return null
+    }
+
+    icon = icon || map.icon?.[level]
+
+    // do the coloring
+    const coloring: LoggerFormat = map.color?.[level]
+
+    if (icon && coloring) {
+      icon = coloring(icon)
+    }
+
+    return icon
   }
 
   protected format (level: LogLevels, message: string | any[], options?: LogEntityOptions): string {
@@ -139,7 +178,7 @@ export class ListrLogger {
       .filter((msg) => msg.trim() !== '')
       .map((msg) => {
         // format messages
-        return this.applyToEntity(this.style(level, msg), {
+        return this.fields(this.style(level, msg), {
           prefix: [ ...this.options?.entityOptions?.prefix ?? [], ...Array.isArray(options?.prefix) ? options.prefix : [ options?.prefix ] ],
           suffix: [ ...this.options?.entityOptions?.suffix ?? [], ...Array.isArray(options?.suffix) ? options.suffix : [ options?.suffix ] ]
         })
@@ -150,113 +189,26 @@ export class ListrLogger {
   }
 
   protected style (level: LogLevels, message: string): string {
-    let icon: string
-
-    // do the coloring
-    let coloring: LoggerFormat = (input: string): string => {
-      return input
+    if (!level) {
+      return message
     }
 
-    switch (level) {
-    case LogLevels.STDOUT:
-      return message
+    let icon: string
 
-    case LogLevels.FAILED:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        coloring = color.red
-        icon = figures.cross
-      } else {
-        icon = this.wrap(level)
+    if (this.options.useIcons) {
+      icon = this.options.style.icon?.[level]
+      // do the coloring
+      const coloring: LoggerFormat = this.options.style.color?.[level]
+
+      if (icon && coloring) {
+        icon = coloring(icon)
       }
-
-      break
-
-    case LogLevels.SKIPPED:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        coloring = color.yellow
-        icon = figures.arrowDown
-      } else {
-        icon = this.wrap(level)
-      }
-
-      break
-
-    case LogLevels.COMPLETED:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        coloring = color.green
-        icon = figures.tick
-      } else {
-        icon = this.wrap(level)
-      }
-
-      break
-
-    case LogLevels.OUTPUT:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        icon = figures.pointerSmall
-      } else {
-        icon = this.wrap(level)
-      }
-
-      break
-
-    case LogLevels.PROMPT:
-      if (!this.options?.useIcons) {
-        icon = this.wrap(level)
-      }
-
-      break
-
-    case LogLevels.STARTED:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        icon = figures.pointer
-        coloring = color.yellow
-      } else {
-        icon = this.wrap(level)
-      }
-
-      break
-
-    case LogLevels.TITLE:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        icon = figures.arrowRight
-      } else {
-        icon = this.wrap(level)
-      }
-
-      break
-
-    case LogLevels.RETRY:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        coloring = color.yellowBright
-        icon = figures.warning
-      } else {
-        icon = this.wrap(level)
-      }
-
-      break
-
-    case LogLevels.ROLLBACK:
-      /* istanbul ignore if */
-      if (this.options?.useIcons) {
-        coloring = color.redBright
-        icon = figures.arrowLeft
-      } else {
-        icon = this.wrap(level)
-      }
-
-      break
+    } else {
+      icon = this.wrap(level)
     }
 
     if (icon) {
-      message = coloring(icon) + ' ' + message
+      message = icon + ' ' + message
     }
 
     return message

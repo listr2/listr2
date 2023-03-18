@@ -1,6 +1,6 @@
 /** Available task states. */
 export enum ListrTaskState {
-  UNINITIALIZED = 'UNINITIALIZED',
+  WAITING = 'WAITING',
   STARTED = 'STARTED',
   COMPLETED = 'COMPLETED',
   FAILED = 'FAILED',

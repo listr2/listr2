@@ -1,3 +1,4 @@
+import type { ListrVerboseRendererOptions, ListrVerboseRendererTasks } from './renderer.interface'
 import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
@@ -27,7 +28,7 @@ export class VerboseRenderer implements ListrRenderer {
 
   private logger: ListrLogger
 
-  constructor (public tasks: Task<any, typeof VerboseRenderer>[], public options: (typeof VerboseRenderer)['rendererOptions']) {
+  constructor (private readonly tasks: ListrVerboseRendererTasks, private readonly options: ListrVerboseRendererOptions) {
     this.options = { ...VerboseRenderer.rendererOptions, ...this.options }
 
     this.logger =
@@ -47,15 +48,12 @@ export class VerboseRenderer implements ListrRenderer {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   public end (): void {}
 
-  public getSelfOrParentOption<K extends keyof (typeof VerboseRenderer)['rendererOptions']>(
-    task: Task<any, typeof VerboseRenderer>,
-    key: K
-  ): (typeof VerboseRenderer)['rendererOptions'][K] {
+  public getSelfOrParentOption<K extends keyof ListrVerboseRendererOptions>(task: Task<any, typeof VerboseRenderer>, key: K): ListrVerboseRendererOptions[K] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
   // verbose renderer multi-level
-  private renderer (tasks: Task<any, typeof VerboseRenderer>[]): void {
+  private renderer (tasks: ListrVerboseRendererTasks): void {
     return tasks?.forEach((task) => {
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         this.renderer(subtasks)

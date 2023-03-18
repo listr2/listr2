@@ -4,6 +4,8 @@ import logUpdate from 'log-update'
 import { EOL } from 'os'
 import cliWrap from 'wrap-ansi'
 
+import { ListrDefaultRendererLogLevels } from './renderer.constants'
+import type { ListrDefaultRendererOptions, ListrDefaultRendererOptionsStyle, ListrDefaultRendererTasks } from './renderer.interface'
 import { ListrTaskState } from '@constants'
 import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
 import { PromptError } from '@interfaces'
@@ -99,13 +101,6 @@ export class DefaultRenderer implements ListrRenderer {
      */
     lazy?: boolean
     /**
-     * activate update through triggers from render hook
-     *
-     * @default true
-     * @global global option that can not be temperated with subtasks
-     */
-    eager?: boolean
-    /**
      * removes empty lines from the data output
      *
      * @default true
@@ -118,6 +113,14 @@ export class DefaultRenderer implements ListrRenderer {
      * @global global option that can not be temperated with subtasks
      */
     formatOutput?: 'truncate' | 'wrap'
+    /**
+     * Options for styling with icon and color.
+     *
+     * @global global option that can not be temperated with subtasks
+     */
+    style?: ListrDefaultRendererOptionsStyle
+
+    spinner?: Spinner
   } & RendererPresetTimer &
   LoggerRendererOptions = {
       indentation: 2,
@@ -131,7 +134,6 @@ export class DefaultRenderer implements ListrRenderer {
       showErrorMessage: true,
       suffixRetries: true,
       lazy: false,
-      eager: true,
       removeEmptyLines: true,
       formatOutput: 'truncate'
     }
@@ -160,18 +162,56 @@ export class DefaultRenderer implements ListrRenderer {
   private bottom: Record<string, { data?: string[], items?: number }> = {}
   private prompt: string
   private activePrompt: string
-  private readonly spinner = new Spinner()
+  private readonly spinner: Spinner
   private readonly logger: ListrLogger
   private readonly updater: LogUpdate
 
   constructor (
-    public tasks: Task<any, typeof DefaultRenderer>[],
-    public options: (typeof DefaultRenderer)['rendererOptions'],
-    public events: EventManager<ListrEventType, ListrEventMap>
+    private readonly tasks: ListrDefaultRendererTasks,
+    private readonly options: ListrDefaultRendererOptions,
+    private readonly events: EventManager<ListrEventType, ListrEventMap>
   ) {
-    this.options = { ...DefaultRenderer.rendererOptions, ...this.options }
+    this.options = {
+      ...DefaultRenderer.rendererOptions,
+      ...this.options,
+      style: {
+        icon: {
+          [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: figures.arrowDown,
+          [ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE]: figures.warning,
+          [ListrDefaultRendererLogLevels.OUTPUT]: figures.pointerSmall,
+          [ListrDefaultRendererLogLevels.PENDING]: figures.pointer,
+          [ListrDefaultRendererLogLevels.COMPLETED]: figures.tick,
+          [ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS]: figures.warning,
+          [ListrDefaultRendererLogLevels.COMPLETED_WITH_SISTER_TASKS_FAILED]: figures.squareSmallFilled,
+          [ListrDefaultRendererLogLevels.RETRY]: figures.warning,
+          [ListrDefaultRendererLogLevels.ROLLING_BACK]: figures.warning,
+          [ListrDefaultRendererLogLevels.ROLLED_BACK]: figures.arrowLeft,
+          [ListrDefaultRendererLogLevels.FAILED]: figures.cross,
+          [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: figures.pointer,
+          [ListrDefaultRendererLogLevels.WAITING]: figures.squareSmallFilled,
+          ...options?.style?.icon ?? {}
+        },
+        color: {
+          [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: color.yellow,
+          [ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE]: color.yellow,
+          [ListrDefaultRendererLogLevels.PENDING]: color.yellow,
+          [ListrDefaultRendererLogLevels.COMPLETED]: color.green,
+          [ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS]: color.yellow,
+          [ListrDefaultRendererLogLevels.COMPLETED_WITH_SISTER_TASKS_FAILED]: color.red,
+          [ListrDefaultRendererLogLevels.RETRY]: color.yellowBright,
+          [ListrDefaultRendererLogLevels.ROLLING_BACK]: color.redBright,
+          [ListrDefaultRendererLogLevels.ROLLED_BACK]: color.redBright,
+          [ListrDefaultRendererLogLevels.FAILED]: color.red,
+          [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: color.red,
+          [ListrDefaultRendererLogLevels.WAITING]: color.dim,
+          ...options?.style?.color ?? {}
+        }
+      }
+    }
 
     this.logger = this.options.logger ?? new ListrLogger()
+    this.spinner = this.options.spinner ?? new Spinner()
+
     this.updater = logUpdate.create(this.logger.process.stdout)
   }
 
@@ -189,20 +229,11 @@ export class DefaultRenderer implements ListrRenderer {
     return this.getTaskOptions(task).persistentOutput === true
   }
 
-  public getSelfOrParentOption<K extends keyof (typeof DefaultRenderer)['rendererOptions']>(
-    task: Task<any, typeof DefaultRenderer>,
-    key: K
-  ): (typeof DefaultRenderer)['rendererOptions'][K] {
+  public getSelfOrParentOption<K extends keyof ListrDefaultRendererOptions>(task: Task<any, typeof DefaultRenderer>, key: K): ListrDefaultRendererOptions[K] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
   public render (): void {
-    // Do not render if we are already rendering
-    /* istanbul ignore if */
-    if (this.spinner.isRunning()) {
-      return
-    }
-
     this.logger.process.hijack()
 
     /* istanbul ignore if */
@@ -212,12 +243,9 @@ export class DefaultRenderer implements ListrRenderer {
       })
     }
 
-    /* istanbul ignore if */
-    if (this.options?.eager) {
-      this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
-        this.update()
-      })
-    }
+    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
+      this.update()
+    })
   }
 
   public update (): void {
@@ -233,7 +261,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     // directly write to process.stdout, since logupdate only can update the seen height of terminal
     if (!this.options.clearOutput) {
-      this.logger.process.writeToStdout(this.create({ prompt: false }))
+      this.logger.process.toStdout(this.create({ prompt: false }))
     }
 
     this.logger.process.release()
@@ -277,34 +305,44 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  protected style (task: Task<ListrContext, typeof DefaultRenderer>, data = false): string {
-    if (task.isSkipped() && (data || this.getSelfOrParentOption(task, 'collapseSkips'))) {
-      return color.yellow(figures.arrowDown)
+  protected style (task: Task<ListrContext, typeof DefaultRenderer>, output = false): string {
+    if (task.isSkipped()) {
+      if (output || this.getSelfOrParentOption(task, 'collapseSkips')) {
+        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE)
+      } else if (this.getSelfOrParentOption(task, 'collapseSkips') === false) {
+        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE)
+      }
     }
 
-    if (data) {
-      return figures.pointerSmall
+    if (output) {
+      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.OUTPUT)
+    }
+
+    if (task.hasSubtasks()) {
+      if (task.isStarted() || task.isPrompt() && this.getSelfOrParentOption(task, 'showSubtasks') !== false && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
+        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.PENDING)
+      } else if (task.isCompleted() && task.subtasks.some((subtask) => subtask.hasFailed())) {
+        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS)
+      } else if (task.hasFailed()) {
+        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS)
+      }
     }
 
     if (task.isStarted() || task.isPrompt()) {
-      return this.options?.lazy || this.getSelfOrParentOption(task, 'showSubtasks') !== false && task.hasSubtasks() && !task.subtasks.every((subtask) => !subtask.hasTitle())
-        ? color.yellow(figures.pointer)
-        : color.yellowBright(this.spinner.fetch())
+      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.PENDING, !this.options?.lazy && this.spinner.fetch())
     } else if (task.isCompleted()) {
-      return task.hasSubtasks() && task.subtasks.some((subtask) => subtask.hasFailed()) ? color.yellow(figures.warning) : color.green(figures.tick)
+      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.COMPLETED)
     } else if (task.isRetrying()) {
-      return this.options?.lazy ? color.yellowBright(figures.warning) : color.yellowBright(this.spinner.fetch())
+      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.RETRY, !this.options?.lazy && this.spinner.fetch())
     } else if (task.isRollingBack()) {
-      return this.options?.lazy ? color.redBright(figures.warning) : color.redBright(this.spinner.fetch())
+      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.ROLLING_BACK, !this.options?.lazy && this.spinner.fetch())
     } else if (task.hasRolledBack()) {
-      return color.redBright(figures.arrowLeft)
+      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.ROLLED_BACK)
     } else if (task.hasFailed()) {
-      return task.hasSubtasks() ? color.red(figures.pointer) : color.red(figures.cross)
-    } else if (task.isSkipped() && this.getSelfOrParentOption(task, 'collapseSkips') === false) {
-      return color.yellow(figures.warning)
+      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.FAILED)
     }
 
-    return color.dim(figures.squareSmallFilled)
+    return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.WAITING)
   }
 
   protected format (message: string, icon: string, level: number): string[] {
@@ -347,7 +385,7 @@ export class DefaultRenderer implements ListrRenderer {
     return parsed.map((str) => indentString(str, level * this.options.indentation))
   }
 
-  private renderer (tasks: Task<any, typeof DefaultRenderer>[], level = 0): string[] {
+  private renderer (tasks: ListrDefaultRendererTasks, level = 0): string[] {
     // eslint-disable-next-line complexity
     return tasks.flatMap((task) => {
       const output: string[] = []
@@ -360,18 +398,16 @@ export class DefaultRenderer implements ListrRenderer {
         if (this.activePrompt && this.activePrompt !== task.id) {
           throw new PromptError('Only one prompt can be active at the given time, please reevaluate your task design.')
         } else if (!this.activePrompt) {
-          const cb = (prompt: ListrTaskEventMap[ListrTaskEventType.PROMPT]): void => {
+          task.on(ListrTaskEventType.PROMPT, (prompt: ListrTaskEventMap[ListrTaskEventType.PROMPT]): void => {
             const cleansed = cleanseAnsiOutput(prompt).trim()
 
             if (cleansed) {
               this.prompt = cleansed
             }
-          }
-
-          task.on(ListrTaskEventType.PROMPT, cb)
+          })
 
           task.on(ListrTaskEventType.STATE, (state) => {
-            if (state === ListrTaskState.PROMPT_COMPLETED || task.hasFinalized()) {
+            if (state === ListrTaskState.PROMPT_COMPLETED || task.hasFinalized() || task.hasReset()) {
               this.prompt = null
               this.activePrompt = null
               task.off(ListrTaskEventType.PROMPT)
@@ -437,7 +473,7 @@ export class DefaultRenderer implements ListrRenderer {
           }
         } else {
           // some sibling task but self has failed and this has stopped
-          output.push(...this.format(task.title, color.red(figures.squareSmallFilled), level))
+          output.push(...this.format(task.title, this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.COMPLETED_WITH_SISTER_TASKS_FAILED), level))
         }
       }
 

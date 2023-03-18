@@ -8,6 +8,5 @@ export enum LogLevels {
   TITLE = 'TITLE',
   ROLLBACK = 'ROLLBACK',
   RETRY = 'RETRY',
-  PROMPT = 'PROMPT',
-  STDOUT = 'STDOUT'
+  PROMPT = 'PROMPT'
 }

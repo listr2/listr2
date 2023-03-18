@@ -1,10 +1,6 @@
 import type { ListrOptions } from '@interfaces/listr.interface'
 import type { SupportedRenderer, ListrRendererFactory, ListrRendererValue, ListrRenderer } from '@interfaces/renderer.interface'
-import { DefaultRenderer } from '@renderer/default.renderer'
-import { SilentRenderer } from '@renderer/silent.renderer'
-import { SimpleRenderer } from '@renderer/simple.renderer'
-import { TestRenderer } from '@renderer/test.renderer'
-import { VerboseRenderer } from '@renderer/verbose.renderer'
+import { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
 import { assertFunctionOrSelf } from '@utils/assert'
 
 const RENDERERS: Record<'default' | 'simple' | 'verbose' | 'test' | 'silent', typeof ListrRenderer> = {
