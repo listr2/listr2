@@ -1,18 +1,3 @@
-import type { LoggerFieldFn } from '@utils'
-import { color } from '@utils'
-
-export type PresetTimer = LoggerFieldFn<[number]>
-
-export interface RendererPresetTimer {
-  /**
-   * show duration for all tasks
-   *
-   * @default false
-   * @global global option that can not be temperated with subtasks
-   */
-  timer?: PresetTimer
-}
-
 /**
  * A basic function to parse minutes and tasks passed given a duration.
  * Useful for renderers to show the task time.
@@ -40,10 +25,4 @@ export function parseTimer (duration: number): string {
   }
 
   return parsedTime
-}
-
-export const RENDERER_TIMER: PresetTimer = {
-  condition: true,
-  field: parseTimer,
-  format: () => color.dim
 }

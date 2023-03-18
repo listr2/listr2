@@ -1,2 +1,2 @@
-export * from './timer.preset'
-export * from './timestamp.preset'
+export * from './timer'
+export * from './timestamp'
