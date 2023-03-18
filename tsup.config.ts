@@ -8,7 +8,7 @@ export default defineConfig((options) => ({
 
   dts: true,
 
-  target: 'node14',
+  target: 'es2021',
   format: [ 'cjs', 'esm' ],
 
   sourcemap: options.watch ? true : undefined,

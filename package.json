@@ -20,7 +20,7 @@
     "url": "https://cenk.kilic.dev"
   },
   "engines": {
-    "node": "^14.13.1 || >=16.0.0"
+    "node": ">=16.0.0"
   },
   "scripts": {
     "build": "tsup-node",
