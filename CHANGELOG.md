@@ -1,3 +1,9 @@
+# [6.0.0-beta.7](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.6...v6.0.0-beta.7) (2023-03-18)
+
+### Performance Improvements
+
+- **logger:** use logger prototype instead of instance for initiating, always pass default ([1fc7ef9](https://github.com/cenk1cenk2/listr2/commit/1fc7ef992a81d687ccc68010f68106969f36211a))
+
 # [6.0.0-beta.6](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.5...v6.0.0-beta.6) (2023-03-18)
 
 ### Bug Fixes
