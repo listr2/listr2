@@ -1,3 +1,39 @@
+# [6.0.0-beta.6](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.5...v6.0.0-beta.6) (2023-03-18)
+
+### Bug Fixes
+
+- update splat from logger ([142be8c](https://github.com/cenk1cenk2/listr2/commit/142be8c5cd61a51d7344187180deadc05432d080))
+
+### Features
+
+- **process-output:** hide cursor as before when hijacking output ([a0e150c](https://github.com/cenk1cenk2/listr2/commit/a0e150c7e0d62e2c8f0cb95babca933e773ed2c0))
+
+### Performance Improvements
+
+- bump node version to 16 since 14 dies in less than 1 month ([36dde30](https://github.com/cenk1cenk2/listr2/commit/36dde30661103126949480639edf9fe77864efc3))
+- **deps:** ditch-pmap instead of a basic implementation ([eb7cfdc](https://github.com/cenk1cenk2/listr2/commit/eb7cfdceaf357f415f3f8d2237a6631b2ec2db0e))
+- **logger:** move splat to logger as well and refactor multiline message handling ([fea0227](https://github.com/cenk1cenk2/listr2/commit/fea0227e6874b2dd35f789db5a13722705c052a2))
+- move prompt to own instance ([7cacdbd](https://github.com/cenk1cenk2/listr2/commit/7cacdbdd9e0b28a4273bb34c3d465c70b8f30907))
+- refactor the name to shorten it, since it is still understandable ([acfe5bd](https://github.com/cenk1cenk2/listr2/commit/acfe5bd5e96cccc60d2639832739c0c0b775c74d))
+- rename nonttyrenderer and its related settings ([f29bb12](https://github.com/cenk1cenk2/listr2/commit/f29bb12eece8cc9b5c8c6a1e9157c5768d641824))
+
+### BREAKING CHANGES
+
+- `nonTTYRenderer`, `nonTTYRendererOptions` in Listr tasks has been renamed to `fallbackRenderer` and `fallbackRendererOptions` respectively.
+
+To be honest this was staying for the original Listr compatability but since so much is refactored, it made sense to change it to match where the others are used.
+
+- Minimum node version usable is increased to node16 since node14 has been put out of the maintenance circle.
+- Moves prompt to another channel and avoids using the output channel for prompts.
+
+Properly uses the ProcessOutputHook for Simpler Renderer. Hooks on prompts.
+
+Moves the ProcessOutputBuffer logic in to its own class, where streams can be recorded.
+
+Deprecated through has been ditched by using a basic WritableStream, idk why i did use it in the first place, I guess it was coming from the original Listr implementation.
+
+Still uses ansi escape parsing to properly render the output, still limited by mostly the log-update but buffering output for bells and clear line or hide cursor charachters breaks stuff too much, so it is the safe way.
+
 # [6.0.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.4...v6.0.0-beta.5) (2023-03-13)
 
 ### Performance Improvements
