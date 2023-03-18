@@ -1,6 +1,6 @@
 import type Enquirer from 'enquirer'
 
-import type { PromptCancelOptions, PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
+import type { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
 import { ListrTaskEventType } from '@constants/event.constants'
 import { ListrTaskState } from '@constants/state.constants'
 import { PromptError } from '@interfaces/listr-error.interface'
@@ -118,19 +118,5 @@ export async function createPrompt (this: any, options: PromptOptions | PromptOp
     return response.default
   } else {
     return response
-  }
-}
-
-/* istanbul ignore next */
-export function destroyPrompt (this: TaskWrapper<any, any>, options?: PromptCancelOptions): void {
-  if (!this.task.prompt || this.task.prompt instanceof PromptError) {
-    // If there's no prompt, can't cancel
-    return
-  }
-
-  if (options?.throw) {
-    this.task.prompt.cancel()
-  } else {
-    this.task.prompt.submit()
   }
 }

@@ -3,14 +3,14 @@ import { Writable } from 'stream'
 import { ListrTaskEventType } from '@constants'
 import { ListrTaskState } from '@constants/state.constants'
 import type { ListrErrorTypes } from '@interfaces/listr-error.interface'
-import { ListrError } from '@interfaces/listr-error.interface'
+import { PromptError, ListrError } from '@interfaces/listr-error.interface'
 import type { ListrBaseClassOptions, ListrSubClassOptions } from '@interfaces/listr.interface'
 import type { ListrRendererFactory } from '@interfaces/renderer.interface'
 import type { ListrTask } from '@interfaces/task.interface'
 import type { Task } from '@lib/task'
 import { Listr } from '@root/listr'
 import type { PromptCancelOptions, PromptOptions } from '@utils'
-import { createPrompt, destroyPrompt, splat } from '@utils'
+import { createPrompt, splat } from '@utils'
 
 /**
  * Extend the task to have more functionality while accessing from the outside.
@@ -40,7 +40,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /** Send a output to the output channel. */
-  set output (output: string | string[]) {
+  set output (output: string | any[]) {
     output = Array.isArray(output) ? output : [ output ]
 
     this.task.output$ = splat(output.shift(), ...output)
@@ -99,9 +99,19 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     return createPrompt.bind(this)(options, { ...this.options?.injectWrapper })
   }
 
+  /* istanbul ignore next */
   /** Cancels the current prompt attach to this task. */
   public cancelPrompt (options?: PromptCancelOptions): void {
-    return destroyPrompt.bind(this)(options)
+    if (!this.task.prompt || this.task.prompt instanceof PromptError) {
+      // If there's no prompt, can't cancel
+      return
+    }
+
+    if (options?.throw) {
+      this.task.prompt.cancel()
+    } else {
+      this.task.prompt.submit()
+    }
   }
 
   /**
