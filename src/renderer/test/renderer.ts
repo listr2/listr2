@@ -26,7 +26,8 @@ export class TestRenderer implements ListrRenderer {
       prompt: true,
       title: true,
       messages: [ 'skip', 'error', 'retry', 'rollback' ],
-      messagesToStderr: [ 'error', 'rollback', 'retry' ]
+      messagesToStderr: [ 'error', 'rollback', 'retry' ],
+      logger: ListrLogger
     }
   /** per task options for the verbose renderer */
   public static rendererTaskOptions: never
@@ -36,7 +37,7 @@ export class TestRenderer implements ListrRenderer {
   constructor (private readonly tasks: ListrTestRendererTasks, private readonly options: ListrTestRendererOptions) {
     this.options = { ...TestRenderer.rendererOptions, ...this.options }
 
-    this.logger = this.options.logger ?? new ListrLogger()
+    this.logger = new this.options.logger(this.options.loggerOptions)
   }
 
   public render (): void {

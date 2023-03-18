@@ -135,7 +135,8 @@ export class DefaultRenderer implements ListrRenderer {
       suffixRetries: true,
       lazy: false,
       removeEmptyLines: true,
-      formatOutput: 'truncate'
+      formatOutput: 'truncate',
+      logger: ListrLogger
     }
 
   /** per task options for the default renderer */
@@ -186,7 +187,7 @@ export class DefaultRenderer implements ListrRenderer {
       }
     }
 
-    this.logger = this.options.logger ?? new ListrLogger()
+    this.logger = new this.options.logger(this.options.loggerOptions)
     this.spinner = this.options.spinner ?? new Spinner()
 
     this.updater = logUpdate.create(this.logger.process.stdout)

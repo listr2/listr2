@@ -21,7 +21,8 @@ export class VerboseRenderer implements ListrRenderer {
   } & RendererPresetTimer &
   RendererPresetTimestamp &
   LoggerRendererOptions = {
-      logTitleChange: false
+      logTitleChange: false,
+      logger: ListrLogger
     }
   /** per task options for the verbose renderer */
   public static rendererTaskOptions: RendererPresetTimer
@@ -29,16 +30,18 @@ export class VerboseRenderer implements ListrRenderer {
   private logger: ListrLogger
 
   constructor (private readonly tasks: ListrVerboseRendererTasks, private readonly options: ListrVerboseRendererOptions) {
-    this.options = { ...VerboseRenderer.rendererOptions, ...this.options }
-
-    this.logger =
-      this.options.logger ??
-      new ListrLogger({
+    this.options = {
+      ...VerboseRenderer.rendererOptions,
+      loggerOptions: {
         useIcons: false,
-        entityOptions: {
+        fieldOptions: {
           prefix: [ this.options.timestamp ]
         }
-      })
+      },
+      ...this.options
+    }
+
+    this.logger = new this.options.logger(this.options.loggerOptions)
   }
 
   public render (): void {

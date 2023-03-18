@@ -16,23 +16,27 @@ export class SimpleRenderer implements ListrRenderer {
   // Designate this renderer as tty or nonTTY
   public static nonTTY = true
   // designate your renderer options that will be showed inside the `ListrOptions` as rendererOptions
-  public static rendererOptions: RendererPresetTimer & RendererPresetTimestamp & LoggerRendererOptions = {}
+  public static rendererOptions: RendererPresetTimer & RendererPresetTimestamp & LoggerRendererOptions = {
+    logger: ListrLogger
+  }
 
   // designate your custom internal task-based options that will show as `options` in the task itself
   public static rendererTaskOptions: RendererPresetTimer = {}
 
   private readonly logger: ListrLogger
   constructor (private readonly tasks: ListrSimpleRendererTasks, private options: ListrSimpleRendererOptions) {
-    this.options = { ...SimpleRenderer.rendererOptions, ...options }
-
-    this.logger =
-      this.options.logger ??
-      new ListrLogger({
+    this.options = {
+      ...SimpleRenderer.rendererOptions,
+      loggerOptions: {
         useIcons: true,
-        entityOptions: {
+        fieldOptions: {
           prefix: [ this.options.timestamp ]
         }
-      })
+      },
+      ...options
+    }
+
+    this.logger = new this.options.logger(this.options.loggerOptions)
   }
 
   public end (): void {

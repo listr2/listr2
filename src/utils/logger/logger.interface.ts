@@ -11,13 +11,25 @@ export interface ListrLoggerOptions extends ProcessOutputRendererOptions {
    * @default false
    */
   useIcons?: boolean
-  entityOptions?: LogEntityOptions<true>
+  /**
+   * Apply fields and templates as presets before and after each message.
+   */
+  fieldOptions?: LoggerFieldOptions<true>
+  /**
+   * Style map for coloring and icons.
+   */
   style?: ListrLoggerOptionStyle
+  /**
+   * Pass custom options to user created logger on different environments.
+   *
+   * Not used on the default logger.
+   */
+  user?: any
 }
 
 export type ListrLoggerOptionStyle<T extends string = LogLevels> = RendererStyleMap<T>
 
-export interface LogEntityOptions<MultipleOnly extends boolean = false> {
+export interface LoggerFieldOptions<MultipleOnly extends boolean = false> {
   prefix?: MultipleOnly extends false ? LoggerField | LoggerField[] : LoggerField[]
   suffix?: MultipleOnly extends false ? LoggerField | LoggerField[] : LoggerField[]
 }
@@ -34,5 +46,6 @@ export interface LoggerFieldFn<Args extends any[] = any[]> {
 export type LoggerField<Args extends any[] = any[]> = LoggerFieldFn<Args> | string
 
 export interface LoggerRendererOptions {
-  logger?: ListrLogger
+  logger?: typeof ListrLogger
+  loggerOptions?: ListrLoggerOptions
 }
