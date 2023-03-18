@@ -1,9 +1,9 @@
 import { EOL } from 'os'
 
-import { LogLevels } from './logger.constants'
-import type { LogEntityOptions, LoggerFormat, ListrLoggerOptions, LoggerField } from './logger.interface'
+import { LISTR_LOGGER_STYLE, LogLevels } from './logger.constants'
+import type { ListrLoggerOptions, LogEntityOptions, LoggerField, LoggerFormat } from './logger.interface'
 import type { RendererStyleMap } from '@interfaces'
-import { color, figures, ProcessOutput, splat } from '@utils'
+import { ProcessOutput, splat } from '@utils'
 
 /**
  * A internal logger for using in the verbose renderer mostly.
@@ -11,30 +11,18 @@ import { color, figures, ProcessOutput, splat } from '@utils'
 export class ListrLogger {
   public readonly process: ProcessOutput
 
-  constructor (private options?: ListrLoggerOptions) {
+  constructor (private readonly options?: ListrLoggerOptions) {
     this.options = {
       useIcons: true,
       ...options,
       style: {
         icon: {
-          [LogLevels.STARTED]: figures.pointer,
-          [LogLevels.FAILED]: figures.cross,
-          [LogLevels.SKIPPED]: figures.arrowDown,
-          [LogLevels.COMPLETED]: figures.tick,
-          [LogLevels.OUTPUT]: figures.pointerSmall,
-          [LogLevels.TITLE]: figures.arrowRight,
-          [LogLevels.RETRY]: figures.warning,
-          [LogLevels.ROLLBACK]: figures.arrowLeft,
-          ...options?.style?.icon ?? {}
+          ...LISTR_LOGGER_STYLE.icon,
+          ...this.options.style?.icon
         },
         color: {
-          [LogLevels.STARTED]: color.yellow,
-          [LogLevels.FAILED]: color.red,
-          [LogLevels.SKIPPED]: color.yellow,
-          [LogLevels.COMPLETED]: color.green,
-          [LogLevels.RETRY]: color.yellowBright,
-          [LogLevels.ROLLBACK]: color.redBright,
-          ...options?.style?.color ?? {}
+          ...LISTR_LOGGER_STYLE.color,
+          ...this.options.style?.color
         }
       }
     }
@@ -193,19 +181,7 @@ export class ListrLogger {
       return message
     }
 
-    let icon: string
-
-    if (this.options.useIcons) {
-      icon = this.options.style.icon?.[level]
-      // do the coloring
-      const coloring: LoggerFormat = this.options.style.color?.[level]
-
-      if (icon && coloring) {
-        icon = coloring(icon)
-      }
-    } else {
-      icon = this.wrap(level)
-    }
+    const icon = this.icon(this.options.style, level, !this.options.useIcons && this.wrap(level))
 
     if (icon) {
       message = icon + ' ' + message

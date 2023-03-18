@@ -4,7 +4,7 @@ import logUpdate from 'log-update'
 import { EOL } from 'os'
 import cliWrap from 'wrap-ansi'
 
-import { ListrDefaultRendererLogLevels } from './renderer.constants'
+import { ListrDefaultRendererLogLevels, LISTR_DEFAULT_RENDERER_STYLE } from './renderer.constants'
 import type { ListrDefaultRendererOptions, ListrDefaultRendererOptionsStyle, ListrDefaultRendererTasks } from './renderer.interface'
 import { ListrTaskState } from '@constants'
 import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
@@ -16,7 +16,7 @@ import type { EventManager } from '@lib/event-manager'
 import type { Task } from '@lib/task'
 import type { RendererPresetTimer } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
-import { assertFunctionOrSelf, cleanseAnsiOutput, color, figures, indentString, ListrLogger, LogLevels, Spinner } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsiOutput, color, indentString, ListrLogger, LogLevels, Spinner } from '@utils'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -176,35 +176,12 @@ export class DefaultRenderer implements ListrRenderer {
       ...this.options,
       style: {
         icon: {
-          [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: figures.arrowDown,
-          [ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE]: figures.warning,
-          [ListrDefaultRendererLogLevels.OUTPUT]: figures.pointerSmall,
-          [ListrDefaultRendererLogLevels.PENDING]: figures.pointer,
-          [ListrDefaultRendererLogLevels.COMPLETED]: figures.tick,
-          [ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS]: figures.warning,
-          [ListrDefaultRendererLogLevels.COMPLETED_WITH_SISTER_TASKS_FAILED]: figures.squareSmallFilled,
-          [ListrDefaultRendererLogLevels.RETRY]: figures.warning,
-          [ListrDefaultRendererLogLevels.ROLLING_BACK]: figures.warning,
-          [ListrDefaultRendererLogLevels.ROLLED_BACK]: figures.arrowLeft,
-          [ListrDefaultRendererLogLevels.FAILED]: figures.cross,
-          [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: figures.pointer,
-          [ListrDefaultRendererLogLevels.WAITING]: figures.squareSmallFilled,
-          ...options?.style?.icon ?? {}
+          ...LISTR_DEFAULT_RENDERER_STYLE.icon,
+          ...this.options.style?.icon
         },
         color: {
-          [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: color.yellow,
-          [ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE]: color.yellow,
-          [ListrDefaultRendererLogLevels.PENDING]: color.yellow,
-          [ListrDefaultRendererLogLevels.COMPLETED]: color.green,
-          [ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS]: color.yellow,
-          [ListrDefaultRendererLogLevels.COMPLETED_WITH_SISTER_TASKS_FAILED]: color.red,
-          [ListrDefaultRendererLogLevels.RETRY]: color.yellowBright,
-          [ListrDefaultRendererLogLevels.ROLLING_BACK]: color.redBright,
-          [ListrDefaultRendererLogLevels.ROLLED_BACK]: color.redBright,
-          [ListrDefaultRendererLogLevels.FAILED]: color.red,
-          [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: color.red,
-          [ListrDefaultRendererLogLevels.WAITING]: color.dim,
-          ...options?.style?.color ?? {}
+          ...LISTR_DEFAULT_RENDERER_STYLE.color,
+          ...this.options.style?.color
         }
       }
     }

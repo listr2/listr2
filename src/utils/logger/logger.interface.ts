@@ -15,7 +15,7 @@ export interface ListrLoggerOptions extends ProcessOutputRendererOptions {
   style?: ListrLoggerOptionStyle
 }
 
-export type ListrLoggerOptionStyle = RendererStyleMap<LogLevels>
+export type ListrLoggerOptionStyle<T extends string = LogLevels> = RendererStyleMap<T>
 
 export interface LogEntityOptions<MultipleOnly extends boolean = false> {
   prefix?: MultipleOnly extends false ? LoggerField | LoggerField[] : LoggerField[]
