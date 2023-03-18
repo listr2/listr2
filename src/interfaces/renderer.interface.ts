@@ -2,11 +2,8 @@ import type { ListrEventType } from '@constants/event.constants'
 import type { ListrEventMap } from '@interfaces/event-map.interface'
 import type { EventManager } from '@lib/event-manager'
 import type { Task } from '@lib/task'
-import type { DefaultRenderer } from '@renderer/default.renderer'
-import type { SilentRenderer } from '@renderer/silent.renderer'
-import type { SimpleRenderer } from '@renderer/simple.renderer'
-import type { TestRenderer } from '@renderer/test.renderer'
-import type { VerboseRenderer } from '@renderer/verbose.renderer'
+import type { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
+import type { LoggerFormat } from '@utils'
 
 /** The default renderer value used in Listr2 applications */
 export type ListrDefaultRendererValue = 'default'
@@ -77,39 +74,15 @@ export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = T e
 /**
  * Returns renderer global options depending on the renderer type.
  */
-export type ListrGetRendererOptions<T extends ListrRendererValue> = T extends ListrDefaultRendererValue
-  ? ListrDefaultRenderer['rendererOptions']
-  : T extends ListrSimpleRendererValue
-    ? ListrSimpleRenderer['rendererOptions']
-    : T extends ListrFallbackRendererValue
-      ? ListrFallbackRenderer['rendererOptions']
-      : T extends ListrTestRendererValue
-        ? ListrTestRenderer['rendererOptions']
-        : T extends ListrSilentRenderer
-          ? ListrSilentRenderer['rendererOptions']
-          : T extends ListrRendererFactory
-            ? T['rendererOptions']
-            : never
+export type ListrGetRendererOptions<T extends ListrRendererValue> = T extends ListrRendererValue ? ListrGetRendererClassFromValue<T>['rendererOptions'] : never
 
 /**
  * Returns renderer per task options depending on the renderer type.
  */
-export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = T extends ListrDefaultRendererValue
-  ? ListrDefaultRenderer['rendererTaskOptions']
-  : T extends ListrSimpleRendererValue
-    ? ListrSimpleRenderer
-    : T extends ListrFallbackRendererValue
-      ? ListrFallbackRenderer['rendererTaskOptions']
-      : T extends ListrTestRendererValue
-        ? ListrTestRenderer['rendererTaskOptions']
-        : T extends ListrSilentRenderer
-          ? ListrSilentRenderer['rendererTaskOptions']
-          : T extends ListrRendererFactory
-            ? T['rendererTaskOptions']
-            : never
+export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = T extends ListrRendererValue ? ListrGetRendererClassFromValue<T>['rendererTaskOptions'] : never
 
 /** Select renderer as default renderer */
-export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {
+export interface ListrPrimaryRendererOptions<T extends ListrRendererValue> {
   /** the default renderer */
   renderer?: T
   /** Renderer options depending on the current renderer */
@@ -117,16 +90,16 @@ export interface ListrDefaultRendererOptions<T extends ListrRendererValue> {
 }
 
 /** Select a fallback renderer to fallback to in non-tty conditions */
-export interface ListrDefaultNonTTYRendererOptions<T extends ListrRendererValue> {
+export interface ListrSecondaryRendererOptions<T extends ListrRendererValue> {
   /** the fallback renderer to fallback to on non-tty conditions */
-  nonTTYRenderer?: T
+  fallbackRenderer?: T
   /** Renderer options depending on the current renderer */
-  nonTTYRendererOptions?: ListrGetRendererOptions<T>
+  fallbackRendererOptions?: ListrGetRendererOptions<T>
 }
 
 /** Renderer options for the base class, including setup for selecting default and fallback renderers.  */
-export type ListrRendererOptions<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> = ListrDefaultRendererOptions<Renderer> &
-ListrDefaultNonTTYRendererOptions<FallbackRenderer>
+export type ListrRendererOptions<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> = ListrPrimaryRendererOptions<Renderer> &
+ListrSecondaryRendererOptions<FallbackRenderer>
 
 /** The bones of a listr renderer. */
 export declare class ListrRenderer {
@@ -159,7 +132,7 @@ export declare class ListrBaseRenderer implements ListrRenderer {
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
-  constructor (tasks: Task<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions, events?: EventManager<ListrEventType, ListrEventMap>)
+  constructor (tasks: readonly Task<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions, events?: EventManager<ListrEventType, ListrEventMap>)
 }
 
 /** A renderer factory from the current type */
@@ -169,4 +142,9 @@ export type ListrRendererFactory = typeof ListrRenderer
 export interface SupportedRenderer {
   renderer: ListrRendererFactory
   nonTTY: boolean
+}
+
+export interface RendererStyleMap<Levels extends string> {
+  color: Partial<Record<Levels, LoggerFormat>>
+  icon: Partial<Record<Levels, string>>
 }

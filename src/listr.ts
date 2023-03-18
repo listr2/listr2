@@ -44,7 +44,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.options = {
       concurrent: false,
       renderer: 'default',
-      nonTTYRenderer: 'verbose',
+      fallbackRenderer: 'verbose',
       exitOnError: true,
       exitAfterRollback: true,
       collectErrors: 'minimal',
@@ -74,7 +74,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
 
     // get renderer class
-    const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
+    const renderer = getRenderer(this.options.renderer, this.options.fallbackRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
 
     this.rendererClass = renderer.renderer
 
@@ -82,7 +82,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     if (!renderer.nonTTY) {
       this.rendererClassOptions = this.options.rendererOptions
     } else {
-      this.rendererClassOptions = this.options.nonTTYRendererOptions
+      this.rendererClassOptions = this.options.fallbackRendererOptions
     }
 
     // parse and add tasks

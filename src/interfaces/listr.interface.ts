@@ -1,12 +1,6 @@
 import type Enquirer from 'enquirer'
 
-import type {
-  ListrDefaultNonTTYRendererOptions,
-  ListrDefaultRendererOptions,
-  ListrDefaultRendererValue,
-  ListrFallbackRendererValue,
-  ListrRendererValue
-} from './renderer.interface'
+import type { ListrSecondaryRendererOptions, ListrPrimaryRendererOptions, ListrDefaultRendererValue, ListrFallbackRendererValue, ListrRendererValue } from './renderer.interface'
 
 /** Listr Default Context */
 export type ListrContext = any | undefined
@@ -120,7 +114,7 @@ export type ListrBaseClassOptions<
   Ctx = ListrContext,
   Renderer extends ListrRendererValue = ListrDefaultRendererValue,
   FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue
-> = ListrOptions<Ctx> & ListrDefaultRendererOptions<Renderer> & ListrDefaultNonTTYRendererOptions<FallbackRenderer>
+> = ListrOptions<Ctx> & ListrPrimaryRendererOptions<Renderer> & ListrSecondaryRendererOptions<FallbackRenderer>
 
 /**
  * Sub class options.
@@ -128,4 +122,4 @@ export type ListrBaseClassOptions<
  * Subtasks has reduced set options where the missing ones are explicitly set by the base class.
  */
 export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> = ListrOptions<Ctx> &
-Omit<ListrDefaultRendererOptions<Renderer>, 'renderer'>
+Omit<ListrPrimaryRendererOptions<Renderer>, 'renderer'>

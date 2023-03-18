@@ -21,7 +21,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   /** Unique id per task, randomly generated in the uuid v4 format */
   public id: string = generateUUID()
   /** The current state of the task. */
-  public state: ListrTaskState = ListrTaskState.UNINITIALIZED
+  public state: ListrTaskState = ListrTaskState.WAITING
   /** Extend current task with multiple subtasks. */
   public subtasks: Task<Ctx, Renderer>[]
   /** Title of the task */
@@ -112,7 +112,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
    */
   public async check (ctx: Ctx): Promise<boolean> {
     // Check if a task is enabled or disabled
-    if (this.state === ListrTaskState.UNINITIALIZED) {
+    if (this.state === ListrTaskState.WAITING) {
       this.enabled = await assertFunctionOrSelf(this.task?.enabled ?? true, ctx)
 
       this.emit(ListrTaskEventType.ENABLED, this.enabled)
@@ -133,7 +133,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   }
 
   public isPending (): boolean {
-    return this.isStarted() || this.isRetrying() || this.isRollingBack() || this.isPrompt()
+    return this.isStarted() || this.isPrompt() || this.hasReset()
   }
 
   /** Returns whether this task is in progress. */
@@ -169,6 +169,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   /** Returns whether this task has an actively retrying task going on. */
   public isRetrying (): boolean {
     return this.state === ListrTaskState.RETRY
+  }
+
+  public hasReset (): boolean {
+    return this.state === ListrTaskState.RETRY || this.state === ListrTaskState.ROLLING_BACK
   }
 
   /** Returns whether enabled function resolves to true. */

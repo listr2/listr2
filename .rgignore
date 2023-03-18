@@ -8,3 +8,4 @@ CHANGELOG.md
 yarn.lock
 LICENSE
 tests/**/__snapshots__/
+tests/
