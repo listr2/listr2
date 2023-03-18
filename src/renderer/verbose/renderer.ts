@@ -4,7 +4,7 @@ import { ListrTaskState } from '@constants/state.constants'
 import type { ListrRenderer } from '@interfaces/renderer.interface'
 import type { Task } from '@lib/task'
 import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
-import { cleanseAnsiOutput } from '@utils'
+import { cleanseAnsi } from '@utils'
 import type { LoggerRendererOptions } from '@utils/logger'
 import { ListrLogger } from '@utils/logger'
 
@@ -90,7 +90,7 @@ export class VerboseRenderer implements ListrRenderer {
       })
 
       task.on(ListrTaskEventType.PROMPT, (prompt) => {
-        const cleansed = cleanseAnsiOutput(prompt).trim()
+        const cleansed = cleanseAnsi(prompt).trim()
 
         if (cleansed) {
           this.logger.prompt(cleansed)

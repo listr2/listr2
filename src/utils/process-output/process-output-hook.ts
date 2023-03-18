@@ -1,7 +1,7 @@
 import { EOL } from 'os'
 
 import { ProcessOutputBuffer } from './process-output-buffer'
-import { cleanseAnsiOutput } from '@utils/format'
+import { cleanseAnsi } from '@utils/format'
 
 // taken from https://github.com/keindev/stdout-update/blob/main/src/Hook.ts
 // with all credits to keindev, wish i could integrate the stdout-update
@@ -26,7 +26,7 @@ export class ProcessOutputHook {
   public release (): void {
     this.stream.write = this.method
 
-    const buffer = this.buffer.all.map((message) => cleanseAnsiOutput(message)).filter(Boolean)
+    const buffer = this.buffer.all.map((message) => cleanseAnsi(message)).filter(Boolean)
 
     if (buffer.length > 0) {
       this.write(EOL)

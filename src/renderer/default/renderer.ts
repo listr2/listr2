@@ -16,7 +16,7 @@ import type { EventManager } from '@lib/event-manager'
 import type { Task } from '@lib/task'
 import type { RendererPresetTimer } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
-import { assertFunctionOrSelf, cleanseAnsiOutput, color, indentString, ListrLogger, LogLevels, Spinner } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsi, color, indent, ListrLogger, LogLevels, Spinner } from '@utils'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -360,7 +360,7 @@ export class DefaultRenderer implements ListrRenderer {
       parsed = parsed.filter(Boolean)
     }
 
-    return parsed.map((str) => indentString(str, level * this.options.indentation))
+    return parsed.map((str) => indent(str, level * this.options.indentation))
   }
 
   private renderer (tasks: ListrDefaultRendererTasks, level = 0): string[] {
@@ -377,7 +377,7 @@ export class DefaultRenderer implements ListrRenderer {
           throw new PromptError('Only one prompt can be active at the given time, please reevaluate your task design.')
         } else if (!this.activePrompt) {
           task.on(ListrTaskEventType.PROMPT, (prompt: ListrTaskEventMap[ListrTaskEventType.PROMPT]): void => {
-            const cleansed = cleanseAnsiOutput(prompt).trim()
+            const cleansed = cleanseAnsi(prompt).trim()
 
             if (cleansed) {
               this.prompt = cleansed
@@ -451,7 +451,7 @@ export class DefaultRenderer implements ListrRenderer {
           }
         } else {
           // some sibling task but self has failed and this has stopped
-          output.push(...this.format(task.title, this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.COMPLETED_WITH_SISTER_TASKS_FAILED), level))
+          output.push(...this.format(task.title, this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), level))
         }
       }
 
@@ -579,7 +579,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     switch (source) {
     case LogLevels.OUTPUT:
-      data = cleanseAnsiOutput(task.output)
+      data = cleanseAnsi(task.output)
 
       break
 
@@ -607,6 +607,6 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private indent (str: string, i: number): string {
-    return i > 0 ? indentString(str.trim(), 2) : str.trim()
+    return i > 0 ? indent(str.trim(), 2) : str.trim()
   }
 }

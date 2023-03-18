@@ -10,7 +10,7 @@ import type { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendere
 import type { ListrTask, ListrTaskFn, ListrTaskMessage, ListrTaskPrompt, ListrTaskRetry } from '@interfaces/task.interface'
 import { EventManager } from '@lib/event-manager'
 import { Listr } from '@root/listr'
-import { isObservable, getRenderer, cleanseAnsiOutput } from '@utils'
+import { isObservable, getRenderer, cleanseAnsi } from '@utils'
 import { assertFunctionOrSelf } from '@utils/assert'
 import { generateUUID } from '@utils/uuid'
 
@@ -88,7 +88,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
   set promptOutput$ (data: string) {
     this.emit(ListrTaskEventType.PROMPT, data)
 
-    if (cleanseAnsiOutput(data)) {
+    if (cleanseAnsi(data)) {
       this.emitShouldRefreshRender()
     }
   }
