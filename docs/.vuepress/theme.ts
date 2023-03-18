@@ -25,6 +25,7 @@ export default hopeTheme({
 
   mobileBreakPoint: 959,
   wideBreakPoint: 1920,
+  print: false,
 
   docsDir: 'docs/',
 
@@ -46,29 +47,29 @@ export default hopeTheme({
 
   plugins: {
     comment: false,
+    git: {
+      createdTime: true,
+      updatedTime: true,
+      contributors: true
+    },
 
     mdEnhance: {
       align: true,
       attrs: true,
-      chart: true,
+      chart: false,
       codetabs: true,
       demo: true,
-      echarts: true,
+      echarts: false,
       figure: true,
-      flowchart: true,
+      flowchart: false,
       gfm: true,
+      footnote: true,
       imgLazyload: true,
       imgSize: true,
       include: true,
-      katex: true,
+      katex: false,
       mark: true,
-      mermaid: true,
-      playground: {
-        presets: [ 'ts', 'vue' ]
-      },
-      presentation: {
-        plugins: [ 'highlight', 'math', 'search', 'notes', 'zoom' ]
-      },
+      mermaid: false,
       stylize: [
         {
           matcher: 'Recommended',
@@ -85,8 +86,7 @@ export default hopeTheme({
       ],
       sub: true,
       sup: true,
-      tabs: true,
-      vPre: true
+      tabs: true
     },
 
     autoCatalog: true

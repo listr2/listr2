@@ -7,7 +7,7 @@ export const enSidebar = sidebar({
     {
       text: 'Getting Started',
       icon: 'note',
-      prefix: 'getting-started',
+      prefix: 'getting-started/',
       children: 'structure'
     },
     {
@@ -19,7 +19,7 @@ export const enSidebar = sidebar({
     },
     {
       text: 'Repository',
-      icon: 'api-outlined',
+      icon: 'mdi:git',
       prefix: 'repository/',
       children: [ { text: 'CHANGELOG', link: '/repository/changelog.html' } ]
     }

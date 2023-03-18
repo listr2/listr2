@@ -8,11 +8,13 @@ category:
   - task
 ---
 
-`listr2` is a collection of tasks that are housed in a single instance as we have just created. Therefore the task is the smallest building block of your task list. A single task is an object with the [given properties](/api/interfaces/ListrTask.html#properties), where the `task` is the main attraction that the desired function gets executed.
+`listr2` is a collection of tasks that are housed in a single instance as we have just created. Therefore the task is the smallest building block of your task list.
 
 <!-- more -->
 
-## Task Function
+## Task
+
+A single task is an object with the [given properties](/api/interfaces/ListrTask.html#properties), where the `task` is the main attraction that the desired function gets executed.
 
 A task can be in the form of, which is ensured by the typings:
 
@@ -25,30 +27,4 @@ A task can be in the form of, which is ensured by the typings:
 
 ## Creating Your First Task
 
-```typescript {9-14}
-import { Listr } from 'listr2'
-
-interface Ctx {
-  /* some variables for internal use */
-}
-
-const tasks = new Listr<Ctx>(
-  [
-    {
-      title: 'This task will execute.',
-      task: async (ctx): Promise<void> => {
-        // perform some operations
-      }
-    }
-  ],
-  {
-    /* options */
-  }
-)
-
-try {
-  await tasks.run()
-} catch (e) {
-  console.error(e)
-}
-```
+@[code typescript{9-14}](../../examples/docs/getting-started/task.ts)

@@ -121,5 +121,8 @@ export type ListrBaseClassOptions<
  *
  * Subtasks has reduced set options where the missing ones are explicitly set by the base class.
  */
-export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> = ListrOptions<Ctx> &
+export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> = Omit<
+ListrOptions<Ctx>,
+'registerSignalListeners' | 'rendererFallback' | 'rendererSilent' | 'disableColor' | 'forceColor' | 'forceTTY' | 'forceUnicode'
+> &
 Omit<ListrPrimaryRendererOptions<Renderer>, 'renderer'>

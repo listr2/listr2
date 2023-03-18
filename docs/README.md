@@ -6,7 +6,7 @@ heroText: listr2
 tagline: Create beautiful CLI interfaces via easy and logical-to-implement task lists that feel alive and interactive.
 actions:
   - text: Start building!
-    link: /docs/
+    link: /getting-started/
     type: primary
 
 copyright: false
