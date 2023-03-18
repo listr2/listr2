@@ -141,7 +141,7 @@ export type ListrRendererFactory = typeof ListrRenderer
 /** Supported type of renderers for each type in the listr. */
 export interface SupportedRenderer {
   renderer: ListrRendererFactory
-  nonTTY: boolean
+  isFallbackRenderer: boolean
 }
 
 export interface RendererStyleMap<Levels extends string> {

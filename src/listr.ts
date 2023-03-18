@@ -79,7 +79,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.rendererClass = renderer.renderer
 
     // depending on the result pass the given options in
-    if (!renderer.nonTTY) {
+    if (!renderer.isFallbackRenderer) {
       this.rendererClassOptions = this.options.rendererOptions
     } else {
       this.rendererClassOptions = this.options.fallbackRendererOptions

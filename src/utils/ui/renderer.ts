@@ -30,13 +30,13 @@ export function getRenderer (
   silentCondition?: ListrOptions['rendererSilent']
 ): SupportedRenderer {
   if (assertFunctionOrSelf(silentCondition)) {
-    return { renderer: getRendererClass('silent'), nonTTY: true }
+    return { renderer: getRendererClass('silent'), isFallbackRenderer: true }
   }
 
-  const r = { renderer: getRendererClass(renderer), nonTTY: false }
+  const r: SupportedRenderer = { renderer: getRendererClass(renderer), isFallbackRenderer: false }
 
   if (!isRendererSupported(r.renderer) || assertFunctionOrSelf(fallbackCondition)) {
-    return { renderer: getRendererClass(fallbackRenderer), nonTTY: true }
+    return { renderer: getRendererClass(fallbackRenderer), isFallbackRenderer: true }
   }
 
   return r
