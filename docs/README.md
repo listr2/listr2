@@ -1,9 +1,21 @@
-# listr2
+---
+home: true
+icon: home
+title: listr2
+heroText: listr2
+tagline: Create beautiful CLI interfaces via easy and logical-to-implement task lists that feel alive and interactive.
+actions:
+  - text: Start building!
+    link: /docs/
+    type: primary
 
-## Modules
+copyright: false
+---
 
-- [index](modules/index.md)
-- [renderer/default.renderer](modules/renderer_default_renderer.md)
-- [renderer/silent.renderer](modules/renderer_silent_renderer.md)
-- [renderer/simple.renderer](modules/renderer_simple_renderer.md)
-- [renderer/verbose.renderer](modules/renderer_verbose_renderer.md)
+::: center
+
+This is the expanded and re-written Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr).
+
+:::
+
+![demo](https://raw.githubusercontent.com/cenk1cenk2/listr2/master/demo/demo.gif)

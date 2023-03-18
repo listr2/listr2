@@ -1,24 +1,21 @@
-import { ListrEnvironmentVariables } from '@constants'
-import type { ListrEventType } from '@constants/event.constants'
-import { ListrTaskState } from '@constants/state.constants'
-import type { ListrEventMap } from '@interfaces/event-map.interface'
-import type { ListrError } from '@interfaces/listr-error.interface'
-import type { ListrBaseClassOptions, ListrContext } from '@interfaces/listr.interface'
+import type { ListrEventType } from '@constants'
+import { ListrEnvironmentVariables, ListrTaskState } from '@constants'
 import type {
+  ListrEventMap,
+  ListrError,
+  ListrBaseClassOptions,
+  ListrContext,
   ListrDefaultRendererValue,
   ListrFallbackRendererValue,
   ListrGetRendererClassFromValue,
   ListrGetRendererOptions,
   ListrRenderer,
   ListrRendererFactory,
-  ListrRendererValue
-} from '@interfaces/renderer.interface'
-import type { ListrTask } from '@interfaces/task.interface'
-import { EventManager } from '@lib/event-manager'
-import { Task } from '@lib/task'
-import { TaskWrapper } from '@lib/task-wrapper'
-import { getRenderer } from '@utils'
-import { Concurrency } from '@utils/concurrency'
+  ListrRendererValue,
+  ListrTask
+} from '@interfaces'
+import { EventManager, Task, TaskWrapper } from '@lib'
+import { getRenderer, Concurrency } from '@utils'
 
 /**
  * Creates a new set of Listr2 task list.

@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+import type { ListrBaseClassOptions } from '@interfaces'
 import { delay } from '@tests/utils'
-
-import type { ListrBaseClassOptions } from '@interfaces/listr.interface'
-import { Manager } from '@root/index'
-import { ListrLogger } from '@utils/logger'
+import { ListrLogger } from '@utils'
+import { Manager } from 'listr2'
 
 function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager<T> {
   const myDefaultOptions: ListrBaseClassOptions = {
@@ -27,11 +25,7 @@ class MyMainClass {
   private tasks = TaskManagerFactory<Ctx>()
   private logger = new ListrLogger({ useIcons: false })
 
-  constructor () {
-    void this.run()
-  }
-
-  private async run (): Promise<void> {
+  public async run (): Promise<void> {
     this.tasks.add(
       [
         {
@@ -150,9 +144,6 @@ class MyMainClass {
           task: async (): Promise<void> => {
             await delay(1000)
           }
-        },
-        {
-          task: async (ctx, task): Promise<string> => task.title = this.tasks.getRuntime(ctx.runTime)
         }
       ],
       { concurrent: false }
@@ -160,4 +151,4 @@ class MyMainClass {
   }
 }
 
-new MyMainClass()
+await new MyMainClass().run()

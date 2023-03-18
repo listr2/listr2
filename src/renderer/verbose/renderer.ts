@@ -1,12 +1,10 @@
 import type { ListrVerboseRendererOptions, ListrVerboseRendererTasks } from './renderer.interface'
-import { ListrTaskEventType } from '@constants/event.constants'
-import { ListrTaskState } from '@constants/state.constants'
-import type { ListrRenderer } from '@interfaces/renderer.interface'
-import type { Task } from '@lib/task'
+import { ListrTaskEventType, ListrTaskState } from '@constants'
+import type { ListrRenderer } from '@interfaces'
+import type { Task } from '@lib'
 import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
-import { cleanseAnsi } from '@utils'
-import type { LoggerRendererOptions } from '@utils/logger'
-import { ListrLogger } from '@utils/logger'
+import type { LoggerRendererOptions } from '@utils'
+import { cleanseAnsi, ListrLogger } from '@utils'
 
 export class VerboseRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */

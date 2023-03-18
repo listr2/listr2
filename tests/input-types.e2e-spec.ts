@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import type { MockProcessOutput } from '@tests/utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 import { Observable } from 'rxjs'
 
 import { Listr } from '@root'
+import type { MockProcessOutput } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 
 describe('observable as task', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

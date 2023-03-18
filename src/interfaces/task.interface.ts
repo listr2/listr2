@@ -4,9 +4,8 @@ import type { Readable } from 'stream'
 import type { PromptError } from './listr-error.interface'
 import type { ListrContext } from './listr.interface'
 import type { ListrGetRendererTaskOptions, ListrRendererFactory, ListrRendererValue } from './renderer.interface'
-import type { Task } from '@lib/task'
-import type { TaskWrapper } from '@lib/task-wrapper'
-import type { Listr } from '@root/listr'
+import type { Task, TaskWrapper } from '@lib'
+import type { Listr } from '@root'
 import type { PromptInstance } from '@utils'
 
 /**

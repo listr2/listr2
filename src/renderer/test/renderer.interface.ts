@@ -1,7 +1,7 @@
 import type { TestRenderer } from './renderer'
-import type { ListrTaskEventType } from '@constants/event.constants'
-import type { ListrTaskEventMap } from '@interfaces/event-map.interface'
-import type { Task } from '@lib/task'
+import type { ListrTaskEventType } from '@constants'
+import type { ListrTaskEventMap } from '@interfaces'
+import type { Task } from '@lib'
 
 export type ListrTestRendererTasks = Task<any, typeof TestRenderer>[]
 export type ListrTestRendererOptions = (typeof TestRenderer)['rendererOptions']

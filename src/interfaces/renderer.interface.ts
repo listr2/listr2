@@ -1,7 +1,6 @@
-import type { ListrEventType } from '@constants/event.constants'
-import type { ListrEventMap } from '@interfaces/event-map.interface'
-import type { EventManager } from '@lib/event-manager'
-import type { Task } from '@lib/task'
+import type { ListrEventType } from '@constants'
+import type { ListrEventMap } from '@interfaces'
+import type { EventManager, Task } from '@lib'
 import type { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
 import type { LoggerFormat } from '@utils'
 

@@ -1,9 +1,7 @@
 import type { ListrTestRendererOptions, ListrTestRendererTasks } from './renderer.interface'
 import { TestRendererEvent } from './renderer.interface'
-import { ListrTaskState } from '@constants'
-import { ListrTaskEventType } from '@constants/event.constants'
-import type { ListrRenderer } from '@interfaces/renderer.interface'
-import type { ListrTaskMessage } from '@interfaces/task.interface'
+import { ListrTaskState, ListrTaskEventType } from '@constants'
+import type { ListrRenderer, ListrTaskMessage } from '@interfaces'
 import type { LoggerRendererOptions } from '@utils'
 import { ListrLogger } from '@utils'
 

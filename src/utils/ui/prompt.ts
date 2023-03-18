@@ -1,10 +1,9 @@
 import type Enquirer from 'enquirer'
 
 import type { PromptInstance, PromptOptions, PromptSettings } from './prompt.interface'
-import { ListrTaskEventType } from '@constants/event.constants'
-import { ListrTaskState } from '@constants/state.constants'
-import { PromptError } from '@interfaces/listr-error.interface'
-import { TaskWrapper } from '@lib/task-wrapper'
+import { ListrTaskEventType, ListrTaskState } from '@constants'
+import { PromptError } from '@interfaces'
+import { TaskWrapper } from '@lib'
 
 function defaultCancelCallback (this: any, settings: PromptSettings): string | Error | PromptError | void {
   const errorMsg = 'Cancelled prompt.'

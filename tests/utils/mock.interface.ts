@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 export type MockProcessExit = jest.SpyInstance<never, [code?: number]>
 
 export type MockProcessOut = jest.SpyInstance<boolean, [str: string, encoding?: string, cb?: Function]>

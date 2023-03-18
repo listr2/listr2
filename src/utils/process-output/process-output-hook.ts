@@ -1,7 +1,7 @@
 import { EOL } from 'os'
 
 import { ProcessOutputBuffer } from './process-output-buffer'
-import { cleanseAnsi } from '@utils/format'
+import { cleanseAnsi } from '@utils'
 
 // taken from https://github.com/keindev/stdout-update/blob/main/src/Hook.ts
 // with all credits to keindev, wish i could integrate the stdout-update

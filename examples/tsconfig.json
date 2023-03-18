@@ -4,28 +4,18 @@
     "outDir": "./dist",
     "rootDir": "../",
     "baseUrl": "../",
+    "module": "ESNext",
+    "target": "ESNext",
     "paths": {
-      "@constants": ["./src/constants"],
-      "@constants/*": ["./src/constants/*"],
-      "@interfaces": ["./src/interfaces"],
-      "@interfaces/*": ["./src/interfaces/*"],
-      "@lib": ["./src/lib"],
-      "@lib/*": ["./src/lib/*"],
-      "@presets": ["./src/presets"],
-      "@presets/*": ["./src/presets/*"],
-      "@renderer": ["./src/renderer"],
-      "@renderer/*": ["./src/renderer/*"],
-      "@utils": ["./src/utils"],
-      "@utils/*": ["./src/utils/*"],
-      "@tests/*": ["./tests/*"],
+      "@constants": ["./src/constants/index"],
+      "@interfaces": ["./src/interfaces/index"],
+      "@lib": ["./src/lib/index"],
+      "@presets": ["./src/presets/index"],
+      "@renderer": ["./src/renderer/index"],
+      "@utils": ["./src/utils/index"],
+      "@tests/utils": ["./tests/utils/index"],
       "@root": ["./src/index"],
-      "@root/*": ["./src/*"]
-    }
-  },
-  "ts-node": {
-    "esm": false,
-    "compilerOptions": {
-      "module": "CommonJS"
+      "listr2": ["./src/index"]
     }
   },
   "include": ["../src", "../examples"],

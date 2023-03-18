@@ -1,29 +1,30 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
-    "moduleResolution": "node",
     "outDir": "./dist",
     "rootDir": "./src/",
     "baseUrl": "./src/",
     "paths": {
-      "@constants": ["./constants"],
-      "@constants/*": ["./constants/*"],
-      "@interfaces": ["./interfaces"],
-      "@interfaces/*": ["./interfaces/*"],
-      "@lib": ["./lib"],
-      "@lib/*": ["./lib/*"],
-      "@presets": ["./presets"],
-      "@presets/*": ["./presets/*"],
-      "@renderer": ["./renderer"],
-      "@renderer/*": ["./renderer/*"],
-      "@utils": ["./utils"],
-      "@utils/*": ["./utils/*"],
-      "@root": ["./index"],
-      "@root/*": ["./*"]
+      "@constants": ["./constants/index"],
+      "@interfaces": ["./interfaces/index"],
+      "@lib": ["./lib/index"],
+      "@presets": ["./presets/index"],
+      "@renderer": ["./renderer/index"],
+      "@utils": ["./utils/index"],
+      "@root": ["./index"]
     }
+  },
+  "ts-node": {
+    "esm": true,
+    "compilerOptions": {
+      "module": "ESNext",
+      "target": "ESNext"
+    },
+    "swc": true
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import { Listr } from '@root'
 
 describe('show output from task', () => {

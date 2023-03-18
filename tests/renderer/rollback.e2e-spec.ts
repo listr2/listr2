@@ -1,10 +1,6 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import type { MockProcessOutput } from '@tests/utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
-import type { RendererSetup } from '@tests/utils/renderer-map.constants'
-import { RENDERER_SETUP } from '@tests/utils/renderer-map.constants'
-
 import { Listr } from '@root'
+import type { MockProcessOutput, RendererSetup } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput

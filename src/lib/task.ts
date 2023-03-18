@@ -1,18 +1,23 @@
 import { Readable } from 'stream'
 
 import type { TaskWrapper } from './task-wrapper'
-import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
-import { ListrTaskState } from '@constants/state.constants'
-import type { ListrTaskEventMap } from '@interfaces/event-map.interface'
-import { ListrErrorTypes, PromptError } from '@interfaces/listr-error.interface'
-import type { ListrOptions } from '@interfaces/listr.interface'
-import type { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
-import type { ListrTask, ListrTaskFn, ListrTaskMessage, ListrTaskPrompt, ListrTaskRetry } from '@interfaces/task.interface'
-import { EventManager } from '@lib/event-manager'
-import { Listr } from '@root/listr'
-import { isObservable, getRenderer, cleanseAnsi } from '@utils'
-import { assertFunctionOrSelf } from '@utils/assert'
-import { generateUUID } from '@utils/uuid'
+import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
+import type {
+  ListrTaskEventMap,
+  ListrOptions,
+  ListrGetRendererOptions,
+  ListrGetRendererTaskOptions,
+  ListrRendererFactory,
+  ListrTask,
+  ListrTaskFn,
+  ListrTaskMessage,
+  ListrTaskPrompt,
+  ListrTaskRetry
+} from '@interfaces'
+import { ListrErrorTypes, PromptError } from '@interfaces'
+import { EventManager } from '@lib'
+import { Listr } from '@root'
+import { isObservable, getRenderer, cleanseAnsi, assertFunctionOrSelf, generateUUID } from '@utils'
 
 /**
  * Create a task from the given set of variables and make it runnable.

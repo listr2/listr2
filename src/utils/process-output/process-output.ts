@@ -1,7 +1,7 @@
 import { EOL } from 'os'
 
 import { ProcessOutputHook } from './process-output-hook'
-import { ANSI_ESCAPE_CODES } from '@constants/ansi-escape-codes.constants'
+import { ANSI_ESCAPE_CODES } from '@constants'
 
 export class ProcessOutput {
   public readonly stream: {

@@ -1,8 +1,6 @@
 import { delay } from '@tests/utils'
-
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { Listr } from '@root/index'
-import { ListrLogger } from '@utils/logger'
+import { ListrLogger } from '@utils'
+import { Listr } from 'listr2'
 
 interface Ctx {
   skip: boolean

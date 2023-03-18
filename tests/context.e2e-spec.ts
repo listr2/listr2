@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Listr } from '@root'
 
 describe('show inject context', () => {

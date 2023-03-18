@@ -1,11 +1,12 @@
-docs/**
-etc/**
-# examples/**
 .github/**
 .gitignore
+.gitlab-ci.yml
 README.md
 CHANGELOG.md
 yarn.lock
 LICENSE
 tests/**/__snapshots__/
-tests/
+
+# tests/
+examples/
+docs/

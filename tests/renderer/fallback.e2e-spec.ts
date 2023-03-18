@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
+import { Listr } from '@root'
 import type { MockProcessOutput } from '@tests/utils'
 import { mockProcessOutput, unmockProcessOutput } from '@tests/utils'
-
-import { Listr } from '@root'
 
 describe('fallback renderer', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

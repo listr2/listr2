@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+import { Listr } from '@root'
 import type { MockProcessOutput } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
-
-import { Listr } from '@root'
 
 describe('default renderer: task-enable', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

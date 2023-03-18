@@ -1,6 +1,6 @@
 import type { ListrContext } from './listr.interface'
 import type { ListrRendererFactory } from './renderer.interface'
-import type { Task } from '@lib/task'
+import type { Task } from '@lib'
 import { cloneObject } from '@utils'
 
 /** The internal error handling mechanism.. */

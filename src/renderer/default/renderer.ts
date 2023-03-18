@@ -1,19 +1,14 @@
-import cliTruncate from 'cli-truncate'
-import type { LogUpdate } from 'log-update'
-import logUpdate from 'log-update'
+import type truncate from 'cli-truncate'
+import type { createLogUpdate } from 'log-update'
 import { EOL } from 'os'
-import cliWrap from 'wrap-ansi'
+import type wrap from 'wrap-ansi'
 
 import { ListrDefaultRendererLogLevels, LISTR_DEFAULT_RENDERER_STYLE } from './renderer.constants'
 import type { ListrDefaultRendererOptions, ListrDefaultRendererOptionsStyle, ListrDefaultRendererTasks } from './renderer.interface'
-import { ListrTaskState } from '@constants'
-import { ListrEventType, ListrTaskEventType } from '@constants/event.constants'
+import { ListrTaskState, ListrEventType, ListrTaskEventType } from '@constants'
 import { PromptError } from '@interfaces'
-import type { ListrEventMap, ListrTaskEventMap } from '@interfaces/event-map.interface'
-import type { ListrContext } from '@interfaces/listr.interface'
-import type { ListrRenderer } from '@interfaces/renderer.interface'
-import type { EventManager } from '@lib/event-manager'
-import type { Task } from '@lib/task'
+import type { ListrEventMap, ListrTaskEventMap, ListrContext, ListrRenderer } from '@interfaces'
+import type { EventManager, Task } from '@lib'
 import type { RendererPresetTimer } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
 import { assertFunctionOrSelf, cleanseAnsi, color, indent, ListrLogger, LogLevels, Spinner } from '@utils'
@@ -165,7 +160,9 @@ export class DefaultRenderer implements ListrRenderer {
   private activePrompt: string
   private readonly spinner: Spinner
   private readonly logger: ListrLogger
-  private readonly updater: LogUpdate
+  private updater: ReturnType<typeof createLogUpdate>
+  private truncate: typeof truncate
+  private wrap: typeof wrap
 
   constructor (
     private readonly tasks: ListrDefaultRendererTasks,
@@ -178,19 +175,17 @@ export class DefaultRenderer implements ListrRenderer {
       style: {
         icon: {
           ...LISTR_DEFAULT_RENDERER_STYLE.icon,
-          ...this.options.style?.icon
+          ...this.options?.style?.icon ?? {}
         },
         color: {
           ...LISTR_DEFAULT_RENDERER_STYLE.color,
-          ...this.options.style?.color
+          ...this.options?.style?.color ?? {}
         }
       }
     }
 
     this.logger = new this.options.logger(this.options.loggerOptions)
     this.spinner = this.options.spinner ?? new Spinner()
-
-    this.updater = logUpdate.create(this.logger.process.stdout)
   }
 
   public getTaskOptions (task: Task<any, typeof DefaultRenderer>): (typeof DefaultRenderer)['rendererTaskOptions'] {
@@ -211,7 +206,15 @@ export class DefaultRenderer implements ListrRenderer {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
-  public render (): void {
+  public async render (): Promise<void> {
+    const { createLogUpdate } = await import('log-update')
+    const { default: truncate } = await import('cli-truncate')
+    const { default: wrap } = await import('wrap-ansi')
+
+    this.updater = createLogUpdate(this.logger.process.stdout)
+    this.truncate = truncate
+    this.wrap = wrap
+
     this.logger.process.hijack()
 
     /* istanbul ignore if */
@@ -339,13 +342,13 @@ export class DefaultRenderer implements ListrRenderer {
     switch (this.options.formatOutput) {
     case 'truncate':
       parsed = message.split(EOL).map((s, i) => {
-        return cliTruncate(this.indent(s, i), columns)
+        return this.truncate(this.indent(s, i), columns)
       })
 
       break
 
     case 'wrap':
-      parsed = cliWrap(message, columns, { hard: true })
+      parsed = this.wrap(message, columns, { hard: true })
         .split(EOL)
         .map((s, i) => this.indent(s, i))
 

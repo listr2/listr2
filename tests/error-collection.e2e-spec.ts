@@ -1,4 +1,4 @@
-import { ListrErrorTypes } from '@interfaces/listr-error.interface'
+import { ListrErrorTypes } from '@interfaces'
 import type { ListrOptions } from '@root'
 import { Listr } from '@root'
 
@@ -34,7 +34,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -72,7 +71,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -120,7 +118,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -166,7 +163,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -210,7 +206,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -249,7 +244,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -306,7 +300,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -364,7 +357,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -412,7 +404,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -473,7 +464,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -513,7 +503,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
@@ -554,7 +543,6 @@ describe('error collection', () => {
     let crash: Error
 
     try {
-      // eslint-disable-next-line prefer-const
       result = await task.run()
     } catch (e: any) {
       crash = e
