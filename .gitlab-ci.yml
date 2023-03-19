@@ -41,7 +41,7 @@ vuepress:
       - master
       - main
 
-docker-build:
+docker-build-docs:
   stage: publish
   extends: .docker-build-internal
   variables:
