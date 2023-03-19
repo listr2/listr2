@@ -48,7 +48,7 @@ Since observables and streams are supported they can also be used to generate ou
 
 :::
 
-## Render a WritableStream Directly <Badge><FontIcon icon="mdi:tag-text-outline" /> v2.1.0</Badge> <Badge type="warning"><FontIcon icon="mdi:github" /> [#141](https://github.com/cenk1cenk2/listr2/issues/31)</Badge>
+## Render a WritableStream Directly <Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/31" target="_blank">#31</a></Badge>
 
 `process.stdout` and `process.stderr` might get hooked depending on the usage of _ProcessOutputHook_ on the selected renderer. So anything that requires a `WritableStream` while the task running to dump the output, should go through the _Listr_ itself by creating a temporary `WritableStream` with `task.stdout()`.
 

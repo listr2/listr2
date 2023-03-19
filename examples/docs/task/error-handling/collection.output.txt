@@ -1,0 +1,99 @@
+[
+  Error: 1
+      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:8:15)
+      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35) {
+    error: Error: 1
+        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:8:15)
+        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35),
+    type: 'HAS_FAILED_WITHOUT_ERROR',
+    task: Task {
+      emitter: [EventEmitter],
+      listr: [Listr],
+      task: [Object],
+      options: [Object],
+      rendererOptions: {},
+      id: '9.ad307ebe93ea0.4269f841e24df.2588cd95ab791.ae567d9361f1.f27f1ef34dd6f.b24bffdcc5657.5cfa52399321c.721f69395564-6.d0e7bbfc0e292.8e7c505903a49.53799a1bc0bc5.f5f73c51ee35-49.74044ba5197fa.77674ded24f1a.4f01f298c6ef-3c.a0f40837cc841.24207ee189742.d8a97eb8f794-6.0ae10becd3eab.639b7f63a2c5d.3e8b80afee846.790c00483fa45.0d3f9c957b7cf.aa1659bc48fcf.22d6cb0bf4bc5.690d6bc39b7d1.25fdd6dc46a57.75cd06727f
+3a0.2adcccf5de6bd.f7bc15515ce',
+      state: 'FAILED',
+      subtasks: undefined,
+      title: undefined,
+      initialTitle: undefined,
+      output: undefined,
+      retry: undefined,
+      message: [Object],
+      rendererTaskOptions: undefined,
+      prompt: undefined,
+      parent: undefined,
+      enabled: true,
+      taskFn: [Function: task]
+    },
+    path: '',
+    ctx: undefined,
+    name: 'ListrError'
+  },
+  Error: 3
+      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:17:23)
+      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35) {
+    error: Error: 3
+        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:17:23)
+        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35),
+    type: 'HAS_FAILED',
+    task: Task {
+      emitter: [EventEmitter],
+      listr: [Listr],
+      task: [Object],
+      options: [Object],
+      rendererOptions: {},
+      id: '8.2a65394fa08f4.8b5e930c84961.fb2adab42e42a.935abfc6589c3.5335107681873.8962b49213f76.8c9cecad964b5.062b4007af36-a.b09d927457f53.69cc39befa64a.ae97e6ef8542b.9d95c4b595f5-4b.b9f21515e1585.12538a6c6896d.a962a60588db-33.bf484bb990fd.1475aac3b0fb9.7c35efae1eb-3.be5f2fac3ab91.c0163604f32f8.4b1f946aaf65f.d1e9ccb5c9527.af66206b276c2.e10c953f0e8e6.c74dc7124bab6.edc04597060a8.215ad017ae8c2.4c8a99002ed
+16.ddcbd9603d4c4.048de12b9dd',
+      state: 'FAILED',
+      subtasks: undefined,
+      title: undefined,
+      initialTitle: undefined,
+      output: undefined,
+      retry: undefined,
+      message: [Object],
+      rendererTaskOptions: undefined,
+      prompt: undefined,
+      parent: [Task],
+      enabled: true,
+      taskFn: [Function: task]
+    },
+    path: ' > ',
+    ctx: undefined,
+    name: 'ListrError'
+  },
+  Error: 2
+      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:32:15)
+      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35) {
+    error: Error: 2
+        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:32:15)
+        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35),
+    type: 'HAS_FAILED_WITHOUT_ERROR',
+    task: Task {
+      emitter: [EventEmitter],
+      listr: [Listr],
+      task: [Object],
+      options: [Object],
+      rendererOptions: {},
+      id: '8.f283f8da74ae3.9e94d814e9883.10e27d22f0b7c.b817dcd4d9c30.36e99f3c37d30.16db1930463b2.b0ec8521bc26e.bfb1b8330eef-b.4e022e82b22f6.167067cf82169.7597c85bc6599.3137cca5afa1-4c.a3e319ce867a8.59995b969e89d.7f58330a401c-3e.581990bbee7e6.9c13477d7bb39.161f23a4232f-8.63f0efd3f698b.12ea94ce0bc6.0d706af8d7579.07ac283060ba.1f94ca2a9e1f2.0d03822a75dd9.26b6a2684bc76.19149a65485b9.8deb6d649d966.5e3c7395889
+91.aac85cf231545.277f65a71161',
+      state: 'FAILED',
+      subtasks: undefined,
+      title: undefined,
+      initialTitle: undefined,
+      output: undefined,
+      retry: undefined,
+      message: [Object],
+      rendererTaskOptions: undefined,
+      prompt: undefined,
+      parent: undefined,
+      enabled: true,
+      taskFn: [Function: task]
+    },
+    path: '',
+    ctx: undefined,
+    name: 'ListrError'
+  }
+]
+

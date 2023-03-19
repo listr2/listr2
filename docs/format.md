@@ -31,8 +31,8 @@ You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tr
 
 <!-- github issue -->
 
-<Badge type="warning"><FontIcon icon="mdi:github" /> [#141](https://github.com/cenk1cenk2/listr2/issues/31)</Badge>
+<Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/257" target="_blank">#257</a></Badge>
 
 <!-- version released -->
 
-<Badge><FontIcon icon="mdi:tag-text-outline" /> v2.1.0</Badge>
+<Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge>

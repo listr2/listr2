@@ -7,6 +7,7 @@ title: Subtasks
 order: 10
 tag:
   - basic
+  - flow
 category:
   - task
 ---
@@ -45,7 +46,7 @@ Due to design limitations of making renderers a bit simpler, some of the options
 
 :::
 
-## Access Parent Task from Subtasks <Badge><FontIcon icon="mdi:tag-text-outline" /> v2.6.0</Badge> <Badge type="warning"><FontIcon icon="mdi:github" /> [#141](https://github.com/cenk1cenk2/listr2/issues/141)</Badge>
+## Access Parent Task from Subtasks <Badge><FontIcon icon="mdi:tag-text-outline"/>v2.6.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/141" target="_blank">#141</a></Badge>
 
 You can access the parent task class from subtasks by passing the function signature `(parent) => Listr` to `task.newListr`. This way you can change the title of the parent task or access its functionality.
 

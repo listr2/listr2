@@ -45,7 +45,7 @@ Context can be injected as an option to the _Listr_.
 
 @[code{3-} typescript{6}](../../examples/docs/getting-started/context/as-option.ts)
 
-#### Multiple Contexts <Badge type="warning"><FontIcon icon="mdi:github" /> [#141](https://github.com/cenk1cenk2/listr2/issues/612)</Badge>
+#### Multiple Contexts <Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/612" target="_blank">#612</a></Badge>
 
 This can also be used to inject a different context into subtasks. Imagine that you want to have some set of variables that you want to use only the subtask context, then you can pass it through the option. This variable will be garbage-collected whenever the subtasks finish. So if you want to return some values before it gets lost forever, you can just assign them to the parent context since it is accessible.
 
