@@ -159,15 +159,15 @@ exports[`test renderer: retry should retry the main task if any of the subtasks 
 
 exports[`test renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stderr 1`] = `
 [
-  "{"event":"MESSAGE","data":{"retry":{"count":1,"withError":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"retry":{"count":1,"error":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
   "{"event":"MESSAGE","data":{"error":"This type can not be assigned to type with, oh noes"},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
-  "{"event":"MESSAGE","data":{"retry":{"count":2,"withError":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"retry":{"count":2,"error":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
   "{"event":"MESSAGE","data":{"error":"This type can not be assigned to type with, oh noes"},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
-  "{"event":"MESSAGE","data":{"retry":{"count":3,"withError":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"retry":{"count":3,"error":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
   "{"event":"MESSAGE","data":{"error":"This type can not be assigned to type with, oh noes"},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
@@ -215,15 +215,15 @@ exports[`test renderer: retry should stop retrying if the task succeeds afterwar
 
 exports[`test renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stderr 1`] = `
 [
-  "{"event":"MESSAGE","data":{"retry":{"count":1,"withError":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"retry":{"count":1,"error":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
   "{"event":"MESSAGE","data":{"error":"not enough"},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
-  "{"event":"MESSAGE","data":{"retry":{"count":2,"withError":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"retry":{"count":2,"error":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
   "{"event":"MESSAGE","data":{"error":"not enough"},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
-  "{"event":"MESSAGE","data":{"retry":{"count":3,"withError":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"retry":{"count":3,"error":{}}},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
   "{"event":"MESSAGE","data":{"error":"not enough"},"task":{"title":"Some type errors","hasFinalized":false}}
 ",
