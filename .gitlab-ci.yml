@@ -40,6 +40,8 @@ vuepress:
     refs:
       - master
       - main
+      # TODO: REMOVE ME AFTERWARDS THE UPSTREAM RELEASE
+      - beta
 
 docker-build-docs:
   stage: publish
