@@ -36,6 +36,8 @@ vuepress:
   artifacts:
     paths:
       - docs/.vuepress/dist
+  dependencies:
+    - install
   only:
     refs:
       - master
