@@ -6,8 +6,8 @@ author:
 title: Output
 order: 30
 tag:
-  - mandatory
   - basic
+  - visual
 category:
   - task
 ---

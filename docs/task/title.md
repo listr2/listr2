@@ -6,8 +6,8 @@ author:
 title: Title
 order: 20
 tag:
-  - mandatory
   - basic
+  - visual
 category:
   - task
 ---

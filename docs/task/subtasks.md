@@ -6,7 +6,6 @@ author:
 title: Subtasks
 order: 10
 tag:
-  - mandatory
   - basic
 category:
   - task
