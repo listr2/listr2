@@ -29,7 +29,7 @@ export class DefaultRenderer implements ListrRenderer {
     suffixRetries: true,
     lazy: false,
     removeEmptyLines: true,
-    formatOutput: 'truncate',
+    formatOutput: 'wrap',
     logger: ListrLogger
   }
 

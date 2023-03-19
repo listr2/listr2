@@ -96,7 +96,7 @@ export interface DefaultRendererOptions extends RendererPresetTimer, LoggerRende
   /**
    * formats data output depending on your requirements.
    *
-   * @default 'truncate'
+   * @default 'wrap'
    * @global global option that can not be temperated with subtasks
    */
   formatOutput?: 'truncate' | 'wrap'
