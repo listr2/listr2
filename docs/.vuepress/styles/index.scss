@@ -19,14 +19,20 @@
   border-radius: 0;
 }
 
+.footer-wrapper {
+  justify-content: space-between;
+}
+
 .footer-wrapper .footer {
   font-size: 1rem;
   font-weight: 600;
+  text-align: left;
 }
 
 .footer-wrapper .copyright {
   font-size: 0.75rem;
   font-weight: 600;
+  text-align: right;
   color: var(--grey);
   a {
     color: var(--grey);

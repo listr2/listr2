@@ -46,15 +46,13 @@ const tasks = new Listr<Ctx>(
 
 This can also be used to inject a different context into subtasks. Imagine that you want to have some set of variables that you want to use only the subtask context, then you can pass it through the option. This variable will be garbage-collected whenever the subtasks finish. So if you want to return some values before it gets lost forever, you can just assign them to the parent context since it is accessible.
 
-::: note :::github
+::: details <FontIcon icon="mdi:github" /> Github Issue
 
-This is related to the discussions on issue #612: "Allow Changing `Context` in `newListr()`".
+[#612](https://github.com/cenk1cenk2/listr2/pull/612)
 
-Thanks BeeeQueue for bringing this up!
+This has been added as a response to the issue, where it allows the user to inject different contexts into a subtask.
 
 :::
-
-<GithubIssueLink issue="612"></GithubIssueLink>
 
 ```typescript
 const ctx: Ctx = {}
@@ -101,7 +99,7 @@ try {
 
 ### As the Result of the Task
 
-A successful task will always return the context at the end of the tasks.
+A successful task will always return the context at the end of the task.
 
 ```typescript
 const tasks = new Listr([

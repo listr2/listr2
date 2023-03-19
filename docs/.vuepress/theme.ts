@@ -18,7 +18,14 @@ export default hopeTheme({
 
   repo: 'cenk1cenk2/listr2',
 
-  footer: '<a href="https://kilic.dev">kilic.dev</a>',
+  favicon: 'https://main.s3.kilic.dev/html/favicon.ico',
+
+  footer: `
+<img src="https://main.s3.kilic.dev/html/icon.png" height="16px" style="margin-bottom: -2px;" />
+<a href="https://kilic.dev" target="_blank">kilic.dev</a>
+<br/>
+<small>Made with <a href="https://theme-hope.vuejs.press/" target="_blank">VuePress - Mr.Hope</a>.</small>
+`,
   copyright: '<a href="https://github.com/cenk1cenk2/listr2/blob/master/LICENSE">MIT LICENSE</a>',
 
   displayFooter: true,
