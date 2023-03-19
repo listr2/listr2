@@ -21,6 +21,10 @@ While running a `listr2` task list, a self-contained variable is shared across t
 
 A context is an object that is shared across the task list. Even though external variables can be used to do the same operation, context gives a self-contained way to process internal tasks.
 
+Context can be anything that satisfies the type [ListrContext](/api/types/ListrContext.html) which mostly types `any`, but it is advised to be an object, due to the intention of using it as a mutable structure that goes through the task.
+
+Context type can be injected as a type parameter to Listr class to limit what is being used as the context throughout the task and ensure type safety.
+
 - A successful task will return the context for further operation.
 - Context can be injected from outside while creating the task list or running the task list.
 - If an error is encountered, the context at the time will be recorded as a frozen object to give the ability to further debug the issue.
@@ -37,102 +41,34 @@ If all tasks are in the same task list, the context will be automatically inject
 
 ### Injecting Context as an Option
 
-```typescript
-const ctx: Ctx = {}
+Context can be injected as an option to the _Listr_.
 
-const tasks = new Listr<Ctx>(
-  [
-    /* tasks */
-  ],
-  { ctx }
-)
-```
+@[code{3-} typescript{6}](../../examples/docs/getting-started/context/as-option.ts)
+
+#### Multiple Contexts <Badge type="warning"><FontIcon icon="mdi:github" /> [#141](https://github.com/cenk1cenk2/listr2/issues/612)</Badge>
 
 This can also be used to inject a different context into subtasks. Imagine that you want to have some set of variables that you want to use only the subtask context, then you can pass it through the option. This variable will be garbage-collected whenever the subtasks finish. So if you want to return some values before it gets lost forever, you can just assign them to the parent context since it is accessible.
 
-::: details <FontIcon icon="mdi:github" /> Github Issue
+::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-[#612](https://github.com/cenk1cenk2/listr2/pull/612)
-
-This has been added as a response to the issue, where it allows the user to inject different contexts into a subtask.
+@[code typescript](../../examples/docs/getting-started/context/multiple-contexts.ts)
 
 :::
 
-```typescript
-const ctx: Ctx = {}
-const subtaskContext: SubtaskCtx = {}
-
-const tasks = new Listr<Ctx>(
-  [
-    task: (ctx, task): Listr => task.newListr(
-        task.newListr(
-          [
-            {
-              title: 'This is a subtask.',
-              task: async (subCtx, task): Promise<void> => {
-                subCtx.operation = true
-              }
-            },
-
-            {
-              title: 'This is a subtask.',
-              skip: (subCtx) => !subCtx.operation
-              task: async (subCtx, task): Promise<void> => {
-                ctx.subtask = true
-              }
-            },
-          ],
-          { ctx: subtaskContext }
-    )
-  ],
-  { ctx }
-)
-```
-
 ### Injecting Context at Runtime
 
-```typescript
-try {
-  await tasks.run({ ctx })
-} catch (e) {
-  console.error(e)
-}
-```
+@[code{3-} typescript{9}](../../examples/docs/getting-started/context/at-runtime.ts)
 
 ## Retrieving Context
 
-### As the Result of the Task
+### As the ReturnValue of the Task
 
 A successful task will always return the context at the end of the task.
 
-```typescript
-const tasks = new Listr([
-  {
-    task: (ctx): void => {
-      ctx.test = true
-    }
-  }
-])
-
-const ctx = await tasks.run()
-
-console.log(ctx.test) // true
-```
+@[code{3-} typescript{9,11}](../../examples/docs/getting-started/context/retrieve-return.ts)
 
 ### As Property of Task List
 
-The root `listr` class itself holds the context value as a public property.
+The root _Listr_ class itself holds the context value as a public property.
 
-```typescript
-const tasks = new Listr([
-  {
-    task: (ctx): void => {
-      ctx.test = true
-    }
-  }
-])
-
-const ctx = await tasks.run()
-
-console.log(tasks.ctx.test) // true
-```
+@[code{3-} typescript{1,11}](../../examples/docs/getting-started/context/retrieve-property.ts)

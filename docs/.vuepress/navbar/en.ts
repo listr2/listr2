@@ -5,7 +5,12 @@ export const enNavbar = navbar([
   {
     text: 'documentation',
     icon: 'discover',
-    link: '/getting-started'
+    link: '/getting-started/installation.html'
+  },
+  {
+    text: 'foreword',
+    icon: 'discover',
+    link: '/repository/foreword.html'
   },
   {
     text: '',

@@ -7,6 +7,6 @@ yarn.lock
 LICENSE
 tests/**/__snapshots__/
 
-# tests/
-examples/
-docs/
+tests/
+# examples/
+# docs/

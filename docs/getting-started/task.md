@@ -23,12 +23,16 @@ A single task is an object with the [given properties](/api/interfaces/ListrTask
 A task can be in the form of, which is ensured by the typings:
 
 - `Function`/`Promise`
-- `Listr` [^subtasks]
+- _Listr_ [^subtasks]
 - `Stream`
 - `Observable`
 
-[^subtasks]: A subtask must be created through the helper function of `task.newListr` since there are injections of singleton instances of parent task performed while creating a subtask.
+[^subtasks]: A subtask must be created through the helper function of `task.newListr` since there are injections of singleton instances of parent task performed while creating a subtask. Please check out the [related section](/task/subtasks.html).
 
 ## Creating Your First Task
 
-@[code typescript{9-14}](../../examples/docs/getting-started/task.ts)
+@[code typescript{9-14}](../../examples/docs/getting-started/task/basic.ts)
+
+## Append To Existing _Listr_
+
+@[code typescript{7,11,20}](../../examples/docs/getting-started/task/append.ts)

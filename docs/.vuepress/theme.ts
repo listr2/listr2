@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { hopeTheme } from 'vuepress-theme-hope'
 
+import { STYLIZE } from './enchance.js'
 import { enNavbar } from './navbar/index.js'
 import { enSidebar } from './sidebar/index.js'
 
@@ -68,20 +69,7 @@ export default hopeTheme({
       katex: false,
       mark: true,
       mermaid: false,
-      stylize: [
-        {
-          matcher: 'Recommended',
-          replacer: ({ tag }) => {
-            if (tag === 'em') {
-              return {
-                tag: 'Badge',
-                attrs: { type: 'tip' },
-                content: 'Recommended'
-              }
-            }
-          }
-        }
-      ],
+      stylize: STYLIZE,
       sub: true,
       sup: true,
       tabs: true

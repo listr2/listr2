@@ -4,7 +4,7 @@ author:
   url: https://cenk.kilic.dev
   email: cenk@kilic.dev
 title: Installation
-order: 1
+order: 5
 ---
 
 Add `listr2` dependency to your project through your preferred package manager.
@@ -26,20 +26,3 @@ yarn add listr2
 ```
 
 :::
-
-<code-group>
-  <code-block label="Yarn" active>
-
-```bash
-yarn add listr2
-```
-
-  </code-block>
-  <code-block label="NPM">
-
-```bash
-npm install listr2
-```
-
-  </code-block>
-</code-group>

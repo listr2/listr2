@@ -5,9 +5,19 @@ export const enSidebar = sidebar({
   '/': [
     '',
     {
+      text: 'Repository',
+      icon: 'mdi:git',
+      prefix: 'repository/',
+      children: 'structure'
+    },
+    {
       text: 'Getting Started',
-      icon: 'note',
       prefix: 'getting-started/',
+      children: 'structure'
+    },
+    {
+      text: 'Task',
+      prefix: 'task/',
       children: 'structure'
     },
     {
@@ -16,12 +26,6 @@ export const enSidebar = sidebar({
       prefix: 'api/',
       children: 'structure',
       collapsible: true
-    },
-    {
-      text: 'Repository',
-      icon: 'mdi:git',
-      prefix: 'repository/',
-      children: [ { text: 'CHANGELOG', link: '/repository/changelog.html' } ]
     }
   ]
 })

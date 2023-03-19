@@ -3,7 +3,7 @@ author:
   name: Cenk Kılıç
   url: https://cenk.kilic.dev
   email: cenk@kilic.dev
-title: Support
+title: Environment
 order: 10
 ---
 
