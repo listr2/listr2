@@ -23,7 +23,10 @@ export default defineUserConfig({
       entryPoints: [ './src/index.ts' ],
       tsconfig: './tsconfig.build.json',
       hideInPageTOC: true,
-      readme: 'none'
+      readme: 'none',
+      allReflectionsHaveOwnDocument: true,
+      categorizeByGroup: false,
+      sort: [ 'source-order' ]
     })
   ],
 

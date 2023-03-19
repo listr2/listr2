@@ -1,5 +1,6 @@
 ---
 title: Installation
+order: 1
 ---
 
 Add `listr2` dependency to your project through your preferred package manager.

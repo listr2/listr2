@@ -12,7 +12,7 @@ order: 10
 
 ## Supporting Multiple Node Module Structures
 
-At some point, the support for `cjs` will be dropped in favor of keeping the dependencies up-to-date. This will of course be done through a major release.
+At some point, the support for `cjs` will be dropped in favor of keeping up with the `node.js` ecosystem. This will of course be done through a major release.
 
 But now also taking into hand my current situation of using mostly `cjs` capable libraries, I do want to keep the `cjs` version as everything slowly migrates to `esm`.
 

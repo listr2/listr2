@@ -47,11 +47,6 @@ export default hopeTheme({
 
   plugins: {
     comment: false,
-    git: {
-      createdTime: true,
-      updatedTime: true,
-      contributors: true
-    },
 
     mdEnhance: {
       align: true,
@@ -87,9 +82,8 @@ export default hopeTheme({
       sub: true,
       sup: true,
       tabs: true
-    },
+    }
 
-    autoCatalog: true
     // uncomment these if you want a pwa
     // pwa: {
     //   favicon: "/favicon.ico",

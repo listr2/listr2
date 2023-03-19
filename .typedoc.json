@@ -1,9 +1,0 @@
-{
-  "entryPoints": ["./src/index.ts"],
-  "tsconfig": "./tsconfig.build.json",
-  "readme": "none",
-  "allReflectionsHaveOwnDocument": true,
-  "categorizeByGroup": false,
-  "sort": ["source-order"],
-  "out": "api"
-}

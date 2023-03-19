@@ -14,3 +14,25 @@
   text-transform: uppercase;
   color: var(--dark-grey);
 }
+
+.page-nav .nav-link {
+  border-radius: 0;
+}
+
+.footer-wrapper .footer {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footer-wrapper .copyright {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--grey);
+  a {
+    color: var(--grey);
+  }
+}
+
+.back-to-top {
+  bottom: 1rem;
+}
