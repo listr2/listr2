@@ -1,0 +1,64 @@
+name: Bug Report
+description: File a bug report.
+title: '[Bug]: '
+labels: ['bug', 'triage']
+assignees:
+  - cenk1cenk2
+body:
+  - type: textarea
+    id: replication
+    attributes:
+      label: Replication of the Problem
+      description: Provide replication through snippets, repository or [replit](https://replit.com/) if possible.
+    validations:
+      required: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Please describe the problem as clear as it can be.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide your environment details.
+      placeholder: |
+        operating system:
+        node.js version:
+        terminal:
+        listr2 version:
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log Output
+      description: Please copy and paste any relevant log output, if applicable.
+      render: bash
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      description: By submitting this issue, you agree that you have gone through the given requirements.
+      options:
+        - label: Read/Search existing issues and the provided [documentation](https://listr2.kilic.dev).
+          required: true
+        - label: Be sure to not open an issue in the [looking for contributions section](/repository/contributions.html#looking-for-contributions).
+          required: true
+        - label: Checking the latest version of the software to confirm it has not been fixed already.
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+        If you have any further thing to add to this bug report, now is the time!

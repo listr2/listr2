@@ -56,6 +56,7 @@ So we can kind of give users an `ETA` of something whenever there are long-runni
 - [x] Create an issue for a preliminary discussion or link the existing issue.
 - [x] Read/Search existing issues and the provided documentation.
 - [x] Provide the implementation, and a pull request whenever finalized.
+- [x] Follow guidelines enforced by `git-hooks` of linting, tests, and commit convention, which is [Angular conventional commits](https://www.conventionalcommits.org/).
 - [ ] Add tests whenever or if possible.
 - [ ] Update the documentation.
 
@@ -73,12 +74,15 @@ So we can kind of give users an `ETA` of something whenever there are long-runni
 
 ### Checklist for Opening an Issue for Feature Requests
 
-- [x] Describe what is missing from the current implementation, and how is it not achievable with whatever is provided.
+- [x] Read/Search existing issues and the provided [documentation](https://listr2.kilic.dev).
 - [x] Be sure to not open an issue in the [looking for contributions section](/repository/contributions.html#looking-for-contributions).
+- [x] Describe what is missing from the current implementation, and how is it not achievable with whatever is provided.
+- [x] Checking the latest version of the software to confirm it has not been added already.
 
 ### Checklist for Opening an Issue for Bug Fixes
 
-- [x] Read/Search existing issues and the provided documentation.
+- [x] Read/Search existing issues and the provided [documentation](https://listr2.kilic.dev).
+- [x] Be sure to not open an issue in the [looking for contributions section](/repository/contributions.html#looking-for-contributions).
 - [x] Describe your problem clearly.
 - [x] Provide replication through snippets, repository or [replit](https://replit.com/) if possible.
-- [x] Be sure to not open an issue in the [looking for contributions section](/repository/contributions.html#looking-for-contributions).
+- [x] Checking the latest version of the software to confirm it has not been fixed already.

@@ -1,0 +1,52 @@
+name: Feature request.
+description: Request a feature.
+title: '[Feature]: '
+labels: ['feature']
+assignees:
+  - cenk1cenk2
+body:
+  - type: textarea
+    id: feature-request
+    attributes:
+      label: Feature Request
+      description: Please describe the requested feature clearly.
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Please provide a use-case for this feature, if possible.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to give it a go to try to implement this feature?
+      options:
+        - label: I can implement this feature without anything else required, when specification finalizes.
+        - label: I can implement this feature with guidence.
+        - label: It is just a request.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      description: By submitting this issue, you agree that you have gone through the given requirements.
+      options:
+        - label: Read/Search existing issues and the provided [documentation](https://listr2.kilic.dev).
+          required: true
+        - label: Be sure to not open an issue in the [looking for contributions section](/repository/contributions.html#looking-for-contributions).
+          required: true
+        - label: Checking the latest version of the software to confirm it has not been added already.
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request template!
+
+        If you have any further thing to add like the proposed specification of the request, now is the time!
