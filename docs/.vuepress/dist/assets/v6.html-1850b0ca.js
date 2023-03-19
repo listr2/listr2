@@ -1,0 +1,1 @@
+import{_ as e,W as t,X as o,Y as _}from"./framework-4c9bc095.js";const c={},n=_("p",null,"v6 migration will go here.",-1),s=[n];function r(l,a){return t(),o("div",null,s)}const d=e(c,[["render",r],["__file","v6.html.vue"]]);export{d as default};

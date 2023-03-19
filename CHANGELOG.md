@@ -1,3 +1,29 @@
+# [6.0.0-beta.9](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.8...v6.0.0-beta.9) (2023-03-19)
+
+
+### Bug Fixes
+
+* missing stuff ([9d442f8](https://github.com/cenk1cenk2/listr2/commit/9d442f8ae709d1096ce43dac569f596cca1a7ff1))
+
+
+### Features
+
+* expose and alias more of the interfaces since they can be used outside ([38479b0](https://github.com/cenk1cenk2/listr2/commit/38479b0bb9ae0942aa5d0cf0cca628c49cf0f5df))
+
+
+### Performance Improvements
+
+* rename property ([5e8a7be](https://github.com/cenk1cenk2/listr2/commit/5e8a7be8f3eef71a78927cd0f4408c61309394fb))
+* **renderer:** change the default ([796826a](https://github.com/cenk1cenk2/listr2/commit/796826a2b431f74561807cd24e46b9e213dd844f))
+* update api and rename for consistency ([ffbe9f2](https://github.com/cenk1cenk2/listr2/commit/ffbe9f25e5254fca6291997a1b6b3230c89159ac))
+
+
+### BREAKING CHANGES
+
+* err field in manager has been renamed to errors as well
+* renames retry property withError to basically error
+* **renderer:** The default behavior of handling longer output has been changed to `wrap`.
+
 # [6.0.0-beta.8](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.7...v6.0.0-beta.8) (2023-03-18)
 
 ### Performance Improvements
