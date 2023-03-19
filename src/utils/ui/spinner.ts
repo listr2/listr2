@@ -2,8 +2,8 @@ import { isUnicodeSupported } from '@utils'
 
 /* istanbul ignore next */
 export class Spinner {
+  protected readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
   private id?: NodeJS.Timeout
-  private readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
 
   private spinnerPosition = 0
 

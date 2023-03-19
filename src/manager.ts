@@ -7,10 +7,14 @@ import type { ListrError, ListrBaseClassOptions, ListrContext, ListrSubClassOpti
  * Useful for creating a single instance of Listr2 with pre-set settings.
  */
 export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
-  public err: ListrError[] = []
+  public errors: ListrError[] = []
   private tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
 
   constructor (public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>) {}
+
+  get ctx (): Ctx {
+    return this.options.ctx
+  }
 
   set ctx (ctx: Ctx) {
     this.options.ctx = ctx
@@ -80,7 +84,7 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
     const ctx = await task.run()
 
     // reset error queue
-    this.err = task.errors
+    this.errors = task.errors
 
     return ctx
   }
