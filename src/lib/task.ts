@@ -1,12 +1,12 @@
 import { Readable } from 'stream'
 
+import { ListrTaskEventManager } from './listr-task-event-manager'
 import type { TaskWrapper } from './task-wrapper'
 import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type {
-  ListrTaskEventMap,
-  ListrOptions,
   ListrGetRendererOptions,
   ListrGetRendererTaskOptions,
+  ListrOptions,
   ListrRendererFactory,
   ListrTask,
   ListrTaskFn,
@@ -15,14 +15,13 @@ import type {
   ListrTaskRetry
 } from '@interfaces'
 import { ListrErrorTypes, PromptError } from '@interfaces'
-import { EventManager } from '@lib'
 import { Listr } from '@root'
-import { isObservable, getRenderer, cleanseAnsi, assertFunctionOrSelf, generateUUID } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsi, generateUUID, getRenderer, isObservable } from '@utils'
 
 /**
  * Create a task from the given set of variables and make it runnable.
  */
-export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManager<ListrTaskEventType, ListrTaskEventMap> {
+export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskEventManager {
   /** Unique id per task, randomly generated in the uuid v4 format */
   public id: string = generateUUID()
   /** The current state of the task. */

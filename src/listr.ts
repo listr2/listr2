@@ -1,11 +1,9 @@
-import type { ListrEventType } from '@constants'
 import { ListrEnvironmentVariables, ListrTaskState } from '@constants'
 import type {
-  ListrEventMap,
-  ListrError,
   ListrBaseClassOptions,
   ListrContext,
   ListrDefaultRendererValue,
+  ListrError,
   ListrFallbackRendererValue,
   ListrGetRendererClassFromValue,
   ListrGetRendererOptions,
@@ -14,8 +12,8 @@ import type {
   ListrRendererValue,
   ListrTask
 } from '@interfaces'
-import { EventManager, Task, TaskWrapper } from '@lib'
-import { getRenderer, Concurrency } from '@utils'
+import { ListrEventManager, Task, TaskWrapper } from '@lib'
+import { Concurrency, getRenderer } from '@utils'
 
 /**
  * Creates a new set of Listr2 task list.
@@ -24,7 +22,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public errors: ListrError<Ctx>[] = []
   public ctx: Ctx
-  public events: EventManager<ListrEventType, ListrEventMap>
+  public events: ListrEventManager
   public path: string[] = []
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
@@ -64,10 +62,10 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       this.errors = parentTask.listr.errors
     }
 
-    if (this.parentTask?.listr.events instanceof EventManager) {
+    if (this.parentTask?.listr.events instanceof ListrEventManager) {
       this.events = this.parentTask.listr.events
     } else {
-      this.events = new EventManager()
+      this.events = new ListrEventManager()
     }
 
     // get renderer class

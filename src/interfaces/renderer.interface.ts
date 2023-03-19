@@ -1,6 +1,4 @@
-import type { ListrEventType } from '@constants'
-import type { ListrEventMap } from '@interfaces'
-import type { EventManager, Task } from '@lib'
+import type { ListrEventManager, Task } from '@lib'
 import type { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
 import type { LoggerFormat } from '@utils'
 
@@ -113,7 +111,7 @@ export declare class ListrRenderer {
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
-  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, events?: EventManager<ListrEventType, ListrEventMap>)
+  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, events?: ListrEventManager)
 }
 
 /** Exported for javascript applications to extend the base renderer */
@@ -131,7 +129,7 @@ export declare class ListrBaseRenderer implements ListrRenderer {
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
-  constructor (tasks: readonly Task<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions, events?: EventManager<ListrEventType, ListrEventMap>)
+  constructor (tasks: readonly Task<any, typeof ListrBaseRenderer>[], options: typeof ListrBaseRenderer.rendererOptions, events?: ListrEventManager)
 }
 
 /** A renderer factory from the current type */

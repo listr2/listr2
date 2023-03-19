@@ -6,9 +6,9 @@ import type wrap from 'wrap-ansi'
 import { LISTR_DEFAULT_RENDERER_STYLE, ListrDefaultRendererLogLevels } from './renderer.constants'
 import type { DefaultRendererOptions, DefaultRendererTaskOptions, ListrDefaultRendererOptions, ListrDefaultRendererTasks } from './renderer.interface'
 import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrContext, ListrEventMap, ListrRenderer, ListrTaskEventMap } from '@interfaces'
+import type { ListrContext, ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { PromptError } from '@interfaces'
-import type { EventManager, Task } from '@lib'
+import type { ListrEventManager, Task } from '@lib'
 import { ListrLogger, LogLevels, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
 
 /** Default updating renderer for Listr2 */
@@ -45,11 +45,7 @@ export class DefaultRenderer implements ListrRenderer {
   private truncate: typeof truncate
   private wrap: typeof wrap
 
-  constructor (
-    private readonly tasks: ListrDefaultRendererTasks,
-    private readonly options: ListrDefaultRendererOptions,
-    private readonly events: EventManager<ListrEventType, ListrEventMap>
-  ) {
+  constructor (private readonly tasks: ListrDefaultRendererTasks, private readonly options: ListrDefaultRendererOptions, private readonly events: ListrEventManager) {
     this.options = {
       ...DefaultRenderer.rendererOptions,
       ...this.options,
