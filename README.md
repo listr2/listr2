@@ -13,5 +13,3 @@
 # Documentation
 
 **[Read the documentation...](https://listr2.kilic.dev)**
-
-<iframe src="https://github.com/sponsors/cenk1cenk2/button" title="Sponsor cenk1cenk2" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
