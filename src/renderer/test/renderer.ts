@@ -1,32 +1,23 @@
-import type { ListrTestRendererOptions, ListrTestRendererTasks } from './renderer.interface'
+import type { ListrTestRendererOptions, ListrTestRendererTasks, TestRendererOptions } from './renderer.interface'
 import { TestRendererEvent } from './renderer.interface'
-import { ListrTaskState, ListrTaskEventType } from '@constants'
+import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer, ListrTaskMessage } from '@interfaces'
-import type { LoggerRendererOptions } from '@utils'
 import { ListrLogger } from '@utils'
 
 export class TestRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
   /** renderer options for the verbose renderer */
-  public static rendererOptions: {
-    subtasks?: boolean
-    state?: ListrTaskState[]
-    output?: boolean
-    prompt?: boolean
-    title?: boolean
-    messages?: (keyof ListrTaskMessage)[]
-    messagesToStderr?: (keyof ListrTaskMessage)[]
-  } & LoggerRendererOptions = {
-      subtasks: true,
-      state: Object.values(ListrTaskState),
-      output: true,
-      prompt: true,
-      title: true,
-      messages: [ 'skip', 'error', 'retry', 'rollback' ],
-      messagesToStderr: [ 'error', 'rollback', 'retry' ],
-      logger: ListrLogger
-    }
+  public static rendererOptions: TestRendererOptions = {
+    subtasks: true,
+    state: Object.values(ListrTaskState),
+    output: true,
+    prompt: true,
+    title: true,
+    messages: [ 'skip', 'error', 'retry', 'rollback' ],
+    messagesToStderr: [ 'error', 'rollback', 'retry' ],
+    logger: ListrLogger
+  }
   /** per task options for the verbose renderer */
   public static rendererTaskOptions: never
 

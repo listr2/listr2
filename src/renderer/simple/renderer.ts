@@ -1,10 +1,8 @@
-import type { ListrSimpleRendererOptions, ListrSimpleRendererTasks } from './renderer.interface'
-import { ListrTaskState, ListrTaskEventType } from '@constants'
+import type { ListrSimpleRendererOptions, ListrSimpleRendererTasks, SimpleRendererOptions, SimpleRendererTaskOptions } from './renderer.interface'
+import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import type { Task } from '@lib'
-import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
-import type { LoggerRendererOptions } from '@utils'
-import { color, ListrLogger, LogLevels } from '@utils'
+import { ListrLogger, LogLevels, color } from '@utils'
 
 /**
  * This is the default renderer which is neither verbose or updating.
@@ -15,12 +13,12 @@ export class SimpleRenderer implements ListrRenderer {
   // Designate this renderer as tty or nonTTY
   public static nonTTY = true
   // designate your renderer options that will be showed inside the `ListrOptions` as rendererOptions
-  public static rendererOptions: RendererPresetTimer & RendererPresetTimestamp & LoggerRendererOptions = {
+  public static rendererOptions: SimpleRendererOptions = {
     logger: ListrLogger
   }
 
   // designate your custom internal task-based options that will show as `options` in the task itself
-  public static rendererTaskOptions: RendererPresetTimer = {}
+  public static rendererTaskOptions: SimpleRendererTaskOptions = {}
 
   private readonly logger: ListrLogger
   constructor (private readonly tasks: ListrSimpleRendererTasks, private options: ListrSimpleRendererOptions) {

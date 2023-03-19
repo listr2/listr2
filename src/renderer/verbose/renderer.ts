@@ -1,29 +1,19 @@
-import type { ListrVerboseRendererOptions, ListrVerboseRendererTasks } from './renderer.interface'
+import type { ListrVerboseRendererOptions, ListrVerboseRendererTasks, VerboseRendererOptions, VerboseRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import type { Task } from '@lib'
-import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
-import type { LoggerRendererOptions } from '@utils'
-import { cleanseAnsi, ListrLogger } from '@utils'
+import { ListrLogger, cleanseAnsi } from '@utils'
 
 export class VerboseRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
   /** renderer options for the verbose renderer */
-  public static rendererOptions: {
-    /**
-     * log title changes
-     * @default true
-     */
-    logTitleChange?: boolean
-  } & RendererPresetTimer &
-  RendererPresetTimestamp &
-  LoggerRendererOptions = {
-      logTitleChange: false,
-      logger: ListrLogger
-    }
+  public static rendererOptions: VerboseRendererOptions = {
+    logTitleChange: false,
+    logger: ListrLogger
+  }
   /** per task options for the verbose renderer */
-  public static rendererTaskOptions: RendererPresetTimer
+  public static rendererTaskOptions: VerboseRendererTaskOptions
 
   private logger: ListrLogger
 

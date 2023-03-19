@@ -1,7 +1,8 @@
 import type { TestRenderer } from './renderer'
-import type { ListrTaskEventType } from '@constants'
-import type { ListrTaskEventMap } from '@interfaces'
+import type { ListrTaskEventType, ListrTaskState } from '@constants'
+import type { ListrTaskEventMap, ListrTaskMessage } from '@interfaces'
 import type { Task } from '@lib'
+import type { LoggerRendererOptions } from '@utils'
 
 export type ListrTestRendererTasks = Task<any, typeof TestRenderer>[]
 export type ListrTestRendererOptions = (typeof TestRenderer)['rendererOptions']
@@ -19,4 +20,14 @@ export class TestRendererEvent<T extends ListrTaskEventType> {
       }
     })
   }
+}
+
+export interface TestRendererOptions extends LoggerRendererOptions {
+  subtasks?: boolean
+  state?: ListrTaskState[]
+  output?: boolean
+  prompt?: boolean
+  title?: boolean
+  messages?: (keyof ListrTaskMessage)[]
+  messagesToStderr?: (keyof ListrTaskMessage)[]
 }

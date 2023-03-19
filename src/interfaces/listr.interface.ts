@@ -110,19 +110,19 @@ export interface ListrOptions<Ctx = ListrContext> {
  *
  * Any subtasks will respect those options so they will be stripped of that properties.
  */
-export type ListrBaseClassOptions<
+export interface ListrBaseClassOptions<
   Ctx = ListrContext,
   Renderer extends ListrRendererValue = ListrDefaultRendererValue,
   FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue
-> = ListrOptions<Ctx> & ListrPrimaryRendererOptions<Renderer> & ListrSecondaryRendererOptions<FallbackRenderer>
+> extends ListrOptions<Ctx>,
+  ListrPrimaryRendererOptions<Renderer>,
+  ListrSecondaryRendererOptions<FallbackRenderer> {}
 
 /**
  * Sub class options.
  *
  * Subtasks has reduced set options where the missing ones are explicitly set by the base class.
  */
-export type ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue> = Omit<
-ListrOptions<Ctx>,
-'registerSignalListeners' | 'rendererFallback' | 'rendererSilent' | 'disableColor' | 'forceColor' | 'forceTTY' | 'forceUnicode'
-> &
-Omit<ListrPrimaryRendererOptions<Renderer>, 'renderer'>
+export interface ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue>
+  extends Omit<ListrOptions<Ctx>, 'registerSignalListeners' | 'rendererFallback' | 'rendererSilent' | 'disableColor' | 'forceColor' | 'forceTTY' | 'forceUnicode'>,
+  Omit<ListrPrimaryRendererOptions<Renderer>, 'renderer'> {}
