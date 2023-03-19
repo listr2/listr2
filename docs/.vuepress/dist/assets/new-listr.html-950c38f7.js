@@ -1,0 +1,20 @@
+import{_ as a,W as e,X as t,a4 as i,Y as s,$ as n,a5 as l}from"./framework-4c9bc095.js";const c={},r=s("p",null,[s("code",null,"listr2"),n(" is a stateful task list, therefore it is based on classes. To create a new task list, you must create an instance of "),s("a",{href:"/api/classes/Listr.html",target:"_blank"},"Listr"),n(" first.")],-1),p=l(`<h2 id="generate-new-class" tabindex="-1"><a class="header-anchor" href="#generate-new-class" aria-hidden="true">#</a> Generate New Class</h2><p>Import and create a new task list from the prototype. It will return the created <a href="/api/classes/Listr.html" target="_blank">Listr</a> class.</p><div class="language-typescript line-numbers-mode" data-ext="ts"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Listr <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;listr2&#39;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Ctx</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* some variables for internal use */</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> tasks <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Listr<span class="token operator">&lt;</span>Ctx<span class="token operator">&gt;</span></span><span class="token punctuation">(</span>
+  <span class="token punctuation">[</span>
+    <span class="token comment">/* tasks */</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">/* options */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+</code></pre><div class="highlight-lines"><div class="highlight-line"> </div><br><br><br><br><br><div class="highlight-line"> </div><br><br><br><br><br><br><br></div><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="run-the-generated-task-list" tabindex="-1"><a class="header-anchor" href="#run-the-generated-task-list" aria-hidden="true">#</a> Run the Generated Task List</h2><p>Then you can run this task list as an <code>async</code> function and as the result, it will return the context through the tasks.</p><div class="language-typescript line-numbers-mode" data-ext="ts"><pre class="language-typescript"><code><span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> tasks<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="highlight-lines"><br><div class="highlight-line"> </div><br><br><br></div><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,6);function o(d,u){return e(),t("div",null,[r,i(" more "),p])}const v=a(c,[["render",o],["__file","new-listr.html.vue"]]);export{v as default};
