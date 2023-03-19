@@ -117,28 +117,58 @@ exports[`default renderer: output should indent long multiline output with persi
   "[2K[1A[2K[G❯ This task will execute.
 ",
   "[2K[1A[2K[G❯ This task will execute.
-  › This is along long long long long long long long long long long long long…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
+  › This is along long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
     multi line output.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-  › This is along long long long long long long long long long long long long…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+  › This is along long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
     multi line output.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
-  › This is along long long long long long long long long long long long long…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
-    long long long long long long long long long long long long long long lon…
+  › This is along long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
     multi line output.
 ",
   "[?25h",
