@@ -276,7 +276,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends EventManag
           break
         } catch (err: any) {
           if (retries !== retryCount) {
-            this.retry = { count: retries, withError: err }
+            this.retry = { count: retries, error: err }
             this.message$ = { retry: this.retry }
             this.title$ = this.initialTitle
             this.output = undefined

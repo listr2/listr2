@@ -78,7 +78,7 @@ export type ListrTaskPrompt = PromptInstance | PromptError
 
 export interface ListrTaskRetry {
   count: number
-  withError?: Error
+  error?: Error
 }
 
 export interface ListrTaskMessage {
