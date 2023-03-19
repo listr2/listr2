@@ -1,4 +1,8 @@
 ---
+author:
+  name: Cenk Kılıç
+  url: https://cenk.kilic.dev
+  email: cenk@kilic.dev
 title: Creating a New Instance
 order: 20
 tag:

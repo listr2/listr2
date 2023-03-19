@@ -8,12 +8,6 @@ import { enSidebar } from './sidebar/index.js'
 export default hopeTheme({
   hostname: 'https://listr2.kilic.dev',
 
-  author: {
-    name: 'Cenk Kılıç',
-    url: 'https://cenk.kilic.dev',
-    email: 'cenk@kilic.dev'
-  },
-
   navbarAutoHide: 'none',
 
   repo: 'cenk1cenk2/listr2',
@@ -24,9 +18,11 @@ export default hopeTheme({
 <img src="https://main.s3.kilic.dev/html/icon.png" height="16px" style="margin-bottom: -2px;" />
 <a href="https://kilic.dev" target="_blank">kilic.dev</a>
 <br/>
-<small>Made with <a href="https://theme-hope.vuejs.press/" target="_blank">VuePress - Mr.Hope</a>.</small>
+<small>Made with <a href="https://theme-hope.vuejs.press/" target="_blank">VuePress - Mr.Hope Theme</a>.</small>
 `,
-  copyright: '<a href="https://github.com/cenk1cenk2/listr2/blob/master/LICENSE">MIT LICENSE</a>',
+  copyright: `
+<a href="https://github.com/cenk1cenk2/listr2/blob/master/LICENSE">MIT LICENSE</a>
+`,
 
   displayFooter: true,
 

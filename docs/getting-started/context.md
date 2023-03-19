@@ -1,4 +1,8 @@
 ---
+author:
+  name: Cenk Kılıç
+  url: https://cenk.kilic.dev
+  email: cenk@kilic.dev
 title: Concept of Context
 shortTitle: Context
 order: 40

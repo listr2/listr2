@@ -1,3 +1,5 @@
+@import './config.scss';
+
 // place your custom styles here
 .navbar .nav-links a {
   font-weight: 600 !important;
@@ -20,23 +22,38 @@
 }
 
 .footer-wrapper {
-  justify-content: space-between;
+  @media (min-width: $pad) {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block-end: 60px;
 }
 
 .footer-wrapper .footer {
   font-size: 1rem;
   font-weight: 600;
-  text-align: left;
+  @media (min-width: $pad) {
+    text-align: left;
+  }
+  text-align: center;
 }
 
 .footer-wrapper .copyright {
   font-size: 0.75rem;
   font-weight: 600;
-  text-align: right;
   color: var(--grey);
   a {
     color: var(--grey);
   }
+  @media (min-width: $pad) {
+    text-align: left;
+    padding-top: 0;
+  }
+  padding-top: 0.5rem;
+  text-align: center;
 }
 
 .back-to-top {
