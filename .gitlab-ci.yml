@@ -19,6 +19,9 @@ include:
   - project: devops/pipes
     file: /templates/semantic-release.gitlab-ci.yml
 
+  - project: devops/pipes
+    file: /templates/v2/docker-build-internal.gitlab-ci.yml
+
 test:
   parallel:
     matrix:
@@ -44,6 +47,7 @@ docker-build:
   variables:
     DOCKERFILE_NAME: Dockerfile
     DOCKERFILE_CONTEXT: docs
+    DOCKER_IMAGE_NAME: docs-listr2
     DOCKER_IMAGE_TAGS: latest
   dependencies:
     - vuepress
