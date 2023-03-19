@@ -33,8 +33,12 @@ html[data-theme='dark'] #app {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  padding-block-end: 60px;
+  // padding-block-end: 60px;
 }
+
+// .sidebar {
+// padding-bottom: calc(5rem + 60px);
+// }
 
 .footer-wrapper .footer {
   font-size: 1rem;

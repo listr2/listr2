@@ -36,3 +36,11 @@ You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tr
 <!-- version released -->
 
 <Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge>
+
+<!-- include details -->
+
+::: details
+
+@include(../api/interfaces/DefaultRendererOptions.md{156-186})
+
+:::

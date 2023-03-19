@@ -51,3 +51,5 @@ docker-build:
     refs:
       - master
       - main
+      # TODO: REMOVE ME AFTERWARDS THE UPSTREAM RELEASE
+      - beta

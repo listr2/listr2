@@ -13,12 +13,32 @@ export const enSidebar = sidebar({
     {
       text: 'Getting Started',
       prefix: 'getting-started/',
-      children: 'structure'
+      children: 'structure',
+      collapsible: true
     },
     {
       text: 'Task',
       prefix: 'task/',
-      children: 'structure'
+      children: 'structure',
+      collapsible: true
+    },
+    {
+      text: 'Renderer',
+      prefix: 'renderer/',
+      children: 'structure',
+      collapsible: true
+    },
+    {
+      text: 'Manager',
+      prefix: 'manager/',
+      children: 'structure',
+      collapsible: true
+    },
+    {
+      text: 'Migration',
+      prefix: 'migration/',
+      children: 'structure',
+      collapsible: true
     },
     {
       text: 'API',

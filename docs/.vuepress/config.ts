@@ -8,7 +8,7 @@ export default defineUserConfig({
   base: '/',
 
   // now any file with `.snippet.md` extension will not be rendered as a page
-  pagePatterns: [ '**/*.md', '!*.snippet.md', '!.vuepress', '!node_modules' ],
+  pagePatterns: [ '**/*.md', '!format.md', '!*.snippet.md', '!.vuepress', '!node_modules' ],
 
   locales: {
     '/': {
