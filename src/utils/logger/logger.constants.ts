@@ -15,7 +15,7 @@ export enum LogLevels {
   PAUSED = 'PAUSED'
 }
 
-export const LISTR_LOGGER_STYLE: ListrLoggerOptionStyle = {
+export const LISTR_LOGGER_STYLE: ListrLoggerOptionStyle<LogLevels> = {
   icon: {
     [LogLevels.STARTED]: figures.pointer,
     [LogLevels.FAILED]: figures.cross,

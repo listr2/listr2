@@ -3,7 +3,7 @@ import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import type { Task } from '@lib'
 import { parseTimer } from '@presets'
-import { ListrLogger, cleanseAnsi } from '@utils'
+import { ListrLogger, LogLevels, cleanseAnsi } from '@utils'
 
 export class VerboseRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
@@ -57,11 +57,12 @@ export class VerboseRenderer implements ListrRenderer {
         }
 
         if (state === ListrTaskState.STARTED) {
-          this.logger.started(task.title)
+          this.logger.log(LogLevels.STARTED, task.title)
         } else if (state === ListrTaskState.COMPLETED) {
           const timer = this.getSelfOrParentOption(task, 'timer')
 
-          this.logger.completed(
+          this.logger.log(
+            LogLevels.COMPLETED,
             task.title,
             timer && {
               suffix: {
@@ -75,37 +76,37 @@ export class VerboseRenderer implements ListrRenderer {
       })
 
       task.on(ListrTaskEventType.OUTPUT, (data) => {
-        this.logger.output(data)
+        this.logger.log(LogLevels.OUTPUT, data)
       })
 
       task.on(ListrTaskEventType.PROMPT, (prompt) => {
         const cleansed = cleanseAnsi(prompt).trim()
 
         if (cleansed) {
-          this.logger.prompt(cleansed)
+          this.logger.log(LogLevels.PROMPT, cleansed)
         }
       })
 
       if (this.options?.logTitleChange !== false) {
         task.on(ListrTaskEventType.TITLE, (title) => {
-          this.logger.title(title)
+          this.logger.log(LogLevels.TITLE, title)
         })
       }
 
       task.on(ListrTaskEventType.MESSAGE, (message) => {
         if (message?.error) {
           // error message
-          this.logger.failed(message.error)
+          this.logger.log(LogLevels.FAILED, message.error)
         } else if (message?.skip) {
           // skip message
-          this.logger.skipped(message.skip)
+          this.logger.log(LogLevels.SKIPPED, message.skip)
         } else if (message?.rollback) {
           // rollback message
-          this.logger.rollback(message.rollback)
+          this.logger.log(LogLevels.ROLLBACK, message.rollback)
         } else if (message?.retry) {
-          this.logger.retry(task.title, { suffix: message.retry.count.toString() })
+          this.logger.log(LogLevels.RETRY, task.title, { suffix: message.retry.count.toString() })
         } else if (message?.paused) {
-          this.logger.paused(task.title, { suffix: parseTimer(message.paused - Date.now()) })
+          this.logger.log(LogLevels.PAUSED, task.title, { suffix: parseTimer(message.paused - Date.now()) })
         }
       })
     })

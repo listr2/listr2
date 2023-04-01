@@ -1,77 +1,51 @@
 import { EOL } from 'os'
 
-import { LISTR_LOGGER_STYLE, LogLevels } from './logger.constants'
-import type { ListrLoggerOptions, LoggerFieldOptions, LoggerField, LoggerFormat } from './logger.interface'
-import type { RendererStyleMap } from '@interfaces'
+import { LogLevels, LISTR_LOGGER_STYLE } from './logger.constants'
+import type { ListrLoggerOptions, LoggerField, LoggerFieldOptions, LoggerFormat } from './logger.interface'
 import { ProcessOutput, splat } from '@utils'
 
 /**
  * A internal logger for using in the verbose renderer mostly.
  */
-export class ListrLogger {
+export class ListrLogger<Levels extends string = LogLevels> {
   public readonly process: ProcessOutput
 
-  constructor (private readonly options?: ListrLoggerOptions) {
+  constructor (private readonly options?: ListrLoggerOptions<Levels>) {
     this.options = {
       useIcons: true,
       ...options,
       style: {
         icon: {
-          ...LISTR_LOGGER_STYLE.icon,
+          ...(LISTR_LOGGER_STYLE.icon as any),
           ...this.options?.style?.icon ?? {}
         },
         color: {
-          ...LISTR_LOGGER_STYLE.color,
+          ...(LISTR_LOGGER_STYLE.color as any),
           ...this.options?.style?.color ?? {}
         }
-      }
+      },
+      toStderr: [ LogLevels.FAILED, LogLevels.RETRY, LogLevels.ROLLBACK ] as Levels[]
     }
 
     this.process = this.options.processOutput ?? new ProcessOutput()
   }
 
-  public started (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStdout(this.format(LogLevels.STARTED, message, options))
+  public log (level: Levels, message: string | any[], options?: LoggerFieldOptions): void {
+    if (this.options.toStderr.includes(level)) {
+      this.process.toStderr(this.format(level, message, options))
+
+      return
+    }
+
+    this.process.toStdout(this.format(level, message, options))
   }
 
-  public failed (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStderr(this.format(LogLevels.FAILED, message, options))
+  public stdout (message: string | any[], options?: LoggerFieldOptions, eol = true): void {
+    this.process.toStdout(this.format(null, message, options), eol)
   }
 
-  public skipped (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStdout(this.format(LogLevels.SKIPPED, message, options))
-  }
-
-  public completed (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStdout(this.format(LogLevels.COMPLETED, message, options))
-  }
-
-  public output (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStdout(this.format(LogLevels.OUTPUT, message, options))
-  }
-
-  public title (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStdout(this.format(LogLevels.TITLE, message, options))
-  }
-
-  public retry (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStderr(this.format(LogLevels.RETRY, message, options))
-  }
-
-  public rollback (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStderr(this.format(LogLevels.ROLLBACK, message, options))
-  }
-
-  public prompt (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStdout(this.format(LogLevels.PROMPT, message, options))
-  }
-
-  public paused (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStdout(this.format(LogLevels.PAUSED, message, options))
-  }
-
-  public stdout (message: string | any[], options?: LoggerFieldOptions): void {
-    this.process.toStdout(this.format(null, message, options))
+  public stderr (message: string | any[], options?: LoggerFieldOptions, eol = true): void {
+    this.process.toStderr(this.format(null, message, options), eol)
   }
 
   public wrap (message: string, options?: { format?: LoggerFormat }): string {
@@ -143,15 +117,15 @@ export class ListrLogger {
     return message
   }
 
-  public icon<T extends RendererStyleMap<K>, K extends string>(map: T, level: K, icon?: string | false): string {
+  public icon (level: Levels, icon?: string | false): string {
     if (!level) {
       return null
     }
 
-    icon = icon || map.icon?.[level]
+    icon = icon || this.options.style.icon?.[level]
 
     // do the coloring
-    const coloring: LoggerFormat = map.color?.[level]
+    const coloring: LoggerFormat = this.options.style.color?.[level]
 
     if (icon && coloring) {
       icon = coloring(icon)
@@ -160,7 +134,7 @@ export class ListrLogger {
     return icon
   }
 
-  protected format (level: LogLevels, message: string | any[], options?: LoggerFieldOptions): string {
+  protected format (level: Levels, message: string | any[], options?: LoggerFieldOptions): string {
     if (!Array.isArray(message)) {
       message = [ message ]
     }
@@ -180,12 +154,12 @@ export class ListrLogger {
     return message
   }
 
-  protected style (level: LogLevels, message: string): string {
+  protected style (level: Levels, message: string): string {
     if (!level) {
       return message
     }
 
-    const icon = this.icon(this.options.style, level, !this.options.useIcons && this.wrap(level))
+    const icon = this.icon(level, !this.options.useIcons && this.wrap(level))
 
     if (icon) {
       message = icon + ' ' + message

@@ -61,11 +61,12 @@ export class SimpleRenderer implements ListrRenderer {
         }
 
         if (state === ListrTaskState.STARTED) {
-          this.logger.started(task.title)
+          this.logger.log(LogLevels.STARTED, task.title)
         } else if (state === ListrTaskState.COMPLETED) {
           const timer = this.getSelfOrParentOption(task, 'timer')
 
-          this.logger.completed(
+          this.logger.log(
+            LogLevels.COMPLETED,
             task.title,
             timer && {
               suffix: {
@@ -89,41 +90,41 @@ export class SimpleRenderer implements ListrRenderer {
       })
 
       task.on(ListrTaskEventType.OUTPUT, (output) => {
-        this.logger.output(output)
+        this.logger.log(LogLevels.OUTPUT, output)
       })
 
       task.on(ListrTaskEventType.MESSAGE, (message) => {
         if (message.error) {
           // error message
-          this.logger.failed(task.title, {
+          this.logger.log(LogLevels.FAILED, task.title, {
             suffix: {
               field: `${LogLevels.FAILED}: ${message.error}`,
               format: () => color.red
             }
           })
         } else if (message.skip) {
-          this.logger.skipped(task.title, {
+          this.logger.log(LogLevels.SKIPPED, task.title, {
             suffix: {
               field: `${LogLevels.SKIPPED}: ${message.skip}`,
               format: () => color.yellow
             }
           })
         } else if (message.rollback) {
-          this.logger.rollback(task.title, {
+          this.logger.log(LogLevels.ROLLBACK, task.title, {
             suffix: {
               field: `${LogLevels.ROLLBACK}: ${message.rollback}`,
               format: () => color.red
             }
           })
         } else if (message.retry) {
-          this.logger.retry(task.title, {
+          this.logger.log(LogLevels.RETRY, task.title, {
             suffix: {
               field: `${LogLevels.RETRY}:${message.retry.count}`,
               format: () => color.red
             }
           })
         } else if (message.paused) {
-          this.logger.paused(task.title, {
+          this.logger.log(LogLevels.PAUSED, task.title, {
             suffix: {
               field: `${LogLevels.PAUSED}: ${parseTimer(message.paused - Date.now())}`,
               format: () => color.dim

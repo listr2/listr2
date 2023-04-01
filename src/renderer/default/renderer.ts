@@ -41,7 +41,7 @@ export class DefaultRenderer implements ListrRenderer {
   private prompt: string
   private activePrompt: string
   private readonly spinner: Spinner
-  private readonly logger: ListrLogger
+  private readonly logger: ListrLogger<ListrDefaultRendererLogLevels>
   private updater: ReturnType<typeof createLogUpdate>
   private truncate: typeof truncate
   private wrap: typeof wrap
@@ -50,15 +50,20 @@ export class DefaultRenderer implements ListrRenderer {
     this.options = {
       ...DefaultRenderer.rendererOptions,
       ...this.options,
-      style: {
-        icon: {
-          ...LISTR_DEFAULT_RENDERER_STYLE.icon,
-          ...this.options?.style?.icon ?? {}
+      loggerOptions: {
+        useIcons: true,
+        ...this.options?.loggerOptions ?? {},
+        style: {
+          icon: {
+            ...LISTR_DEFAULT_RENDERER_STYLE.icon,
+            ...this.options?.loggerOptions?.style?.icon ?? {}
+          },
+          color: {
+            ...LISTR_DEFAULT_RENDERER_STYLE.color,
+            ...this.options?.loggerOptions?.style?.color ?? {}
+          }
         },
-        color: {
-          ...LISTR_DEFAULT_RENDERER_STYLE.color,
-          ...this.options?.style?.color ?? {}
-        }
+        toStderr: []
       }
     }
 
@@ -167,47 +172,47 @@ export class DefaultRenderer implements ListrRenderer {
   protected style (task: Task<ListrContext, typeof DefaultRenderer>, output = false): string {
     if (task.isSkipped()) {
       if (output || this.getSelfOrParentOption(task, 'collapseSkips')) {
-        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE)
+        return this.logger.icon(ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE)
       } else if (this.getSelfOrParentOption(task, 'collapseSkips') === false) {
-        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE)
+        return this.logger.icon(ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE)
       }
     }
 
     if (output) {
       if (this.isBottomBar(task)) {
-        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.OUTPUT_WITH_BOTTOMBAR)
+        return this.logger.icon(ListrDefaultRendererLogLevels.OUTPUT_WITH_BOTTOMBAR)
       }
 
-      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.OUTPUT)
+      return this.logger.icon(ListrDefaultRendererLogLevels.OUTPUT)
     }
 
     if (task.hasSubtasks()) {
       if (task.isStarted() || task.isPrompt() && this.getSelfOrParentOption(task, 'showSubtasks') !== false && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
-        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.PENDING)
+        return this.logger.icon(ListrDefaultRendererLogLevels.PENDING)
       } else if (task.isCompleted() && task.subtasks.some((subtask) => subtask.hasFailed())) {
-        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS)
+        return this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS)
       } else if (task.hasFailed()) {
-        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS)
+        return this.logger.icon(ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS)
       }
     }
 
     if (task.isStarted() || task.isPrompt()) {
-      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.PENDING, !this.options?.lazy && this.spinner.fetch())
+      return this.logger.icon(ListrDefaultRendererLogLevels.PENDING, !this.options?.lazy && this.spinner.fetch())
     } else if (task.isCompleted()) {
-      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.COMPLETED)
+      return this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED)
     } else if (task.isRetrying()) {
-      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.RETRY, !this.options?.lazy && this.spinner.fetch())
+      return this.logger.icon(ListrDefaultRendererLogLevels.RETRY, !this.options?.lazy && this.spinner.fetch())
     } else if (task.isRollingBack()) {
-      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.ROLLING_BACK, !this.options?.lazy && this.spinner.fetch())
+      return this.logger.icon(ListrDefaultRendererLogLevels.ROLLING_BACK, !this.options?.lazy && this.spinner.fetch())
     } else if (task.hasRolledBack()) {
-      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.ROLLED_BACK)
+      return this.logger.icon(ListrDefaultRendererLogLevels.ROLLED_BACK)
     } else if (task.hasFailed()) {
-      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.FAILED)
+      return this.logger.icon(ListrDefaultRendererLogLevels.FAILED)
     } else if (task.isPaused()) {
-      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.PAUSED)
+      return this.logger.icon(ListrDefaultRendererLogLevels.PAUSED)
     }
 
-    return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.WAITING)
+    return this.logger.icon(ListrDefaultRendererLogLevels.WAITING)
   }
 
   protected format (message: string, icon: string, level: number): string[] {
@@ -217,7 +222,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     if (icon) {
-      message = `${icon} ${message}`
+      message = icon + ' ' + message
     }
 
     let parsed: string[]
@@ -353,7 +358,7 @@ export class DefaultRenderer implements ListrRenderer {
           }
         } else {
           // some sibling task but self has failed and this has stopped
-          output.push(...this.format(task.title, this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), level))
+          output.push(...this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), level))
         }
       }
 

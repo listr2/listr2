@@ -5,7 +5,7 @@ import type { LogLevels, ProcessOutputRendererOptions } from '@utils'
 /**
  * Options for the logger
  */
-export interface ListrLoggerOptions extends ProcessOutputRendererOptions {
+export interface ListrLoggerOptions<Levels extends string> extends ProcessOutputRendererOptions {
   /**
    * useIcons instead of text for log level
    * @default false
@@ -18,16 +18,18 @@ export interface ListrLoggerOptions extends ProcessOutputRendererOptions {
   /**
    * Style map for coloring and icons.
    */
-  style?: ListrLoggerOptionStyle
+  style?: ListrLoggerOptionStyle<Levels>
   /**
    * Pass custom options to user created logger on different environments.
    *
    * Not used on the default logger.
    */
   user?: any
+
+  toStderr?: Levels[]
 }
 
-export type ListrLoggerOptionStyle<T extends string = LogLevels> = RendererStyleMap<T>
+export type ListrLoggerOptionStyle<Levels extends string = LogLevels> = RendererStyleMap<Levels>
 
 export interface LoggerFieldOptions<MultipleOnly extends boolean = false> {
   prefix?: MultipleOnly extends false ? LoggerField | LoggerField[] : LoggerField[]
@@ -45,7 +47,7 @@ export interface LoggerFieldFn<Args extends any[] = any[]> {
 
 export type LoggerField<Args extends any[] = any[]> = LoggerFieldFn<Args> | string
 
-export interface LoggerRendererOptions {
+export interface LoggerRendererOptions<Levels extends string = LogLevels> {
   logger?: typeof ListrLogger
-  loggerOptions?: ListrLoggerOptions
+  loggerOptions?: ListrLoggerOptions<Levels>
 }

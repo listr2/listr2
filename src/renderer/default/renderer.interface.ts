@@ -10,7 +10,7 @@ export type ListrDefaultRendererOptionsStyle = RendererStyleMap<ListrDefaultRend
 export type ListrDefaultRendererTasks = Task<any, typeof DefaultRenderer>[]
 export type ListrDefaultRendererOptions = (typeof DefaultRenderer)['rendererOptions']
 
-export interface DefaultRendererOptions extends RendererPresetTimer, LoggerRendererOptions {
+export interface DefaultRendererOptions extends RendererPresetTimer, LoggerRendererOptions<ListrDefaultRendererLogLevels> {
   /**
    * indentation per level of subtask
    *
@@ -101,11 +101,8 @@ export interface DefaultRendererOptions extends RendererPresetTimer, LoggerRende
    */
   formatOutput?: 'truncate' | 'wrap'
   /**
-   * Options for styling with icon and color.
-   *
-   * @global global option that can not be temperated with subtasks
+   * Implement your own spinner.
    */
-  style?: ListrDefaultRendererOptionsStyle
 
   spinner?: Spinner
 }
