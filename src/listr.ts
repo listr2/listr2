@@ -42,8 +42,9 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       fallbackRenderer: 'verbose',
       exitOnError: true,
       exitAfterRollback: true,
-      collectErrors: 'minimal',
+      collectErrors: false,
       registerSignalListeners: true,
+      ...this.parentTask?.options ?? {},
       ...options
     } as ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
 

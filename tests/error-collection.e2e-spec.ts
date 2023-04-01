@@ -6,7 +6,7 @@ describe('error collection', () => {
   it('should have the default behavior of minimal', async () => {
     const task = new Listr([])
 
-    expect(task.options.collectErrors).toBe('minimal')
+    expect(task.options.collectErrors).toBe(false)
   })
 
   it('should collect only the first error while exiting on error', async () => {
@@ -82,7 +82,7 @@ describe('error collection', () => {
     expect(task.errors[0]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
-      path: 'test'
+      path: [ 'test' ]
     })
   })
 
@@ -129,12 +129,12 @@ describe('error collection', () => {
     expect(task.errors[0]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
-      path: 'test > subtask'
+      path: [ 'test', 'subtask' ]
     })
     expect(task.errors[1]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
-      path: 'test'
+      path: [ 'test' ]
     })
   })
 

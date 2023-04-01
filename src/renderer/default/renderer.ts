@@ -381,8 +381,6 @@ export class DefaultRenderer implements ListrRenderer {
       // Current Task Output
       if (task?.output) {
         if (this.isBottomBar(task)) {
-          // data output to bottom bar
-
           // create new if there is no persistent storage created for bottom bar
           if (!this.bottom.has(task.id)) {
             const bottomBar = this.getTaskOptions(task).bottomBar

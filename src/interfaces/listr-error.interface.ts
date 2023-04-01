@@ -5,7 +5,7 @@ import { cloneObject } from '@utils'
 
 /** The internal error handling mechanism.. */
 export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
-  public path: string
+  public path: string[]
   public ctx: Ctx
 
   constructor (public error: Error, public type: ListrErrorTypes, public task: Task<Ctx, ListrRendererFactory>) {
@@ -13,7 +13,7 @@ export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
 
     this.name = 'ListrError'
 
-    this.path = [ ...task.listr.path ?? [], task.title ].join(' > ')
+    this.path = [ ...task.listr.path ?? [], task.title ]
 
     // memory intensive error collection for circular objects on demand
     if (task?.options.collectErrors === 'full') {
