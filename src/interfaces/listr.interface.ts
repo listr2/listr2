@@ -49,7 +49,7 @@ export interface ListrOptions<Ctx = ListrContext> {
    * - 'minimal' will only collect the error message and the location
    * - false will collect no errors
    *
-   * @default 'minimal'
+   * @default false
    */
   collectErrors?: false | 'minimal' | 'full'
   /**

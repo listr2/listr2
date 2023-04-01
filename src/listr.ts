@@ -39,7 +39,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     this.options = {
       concurrent: false,
       renderer: 'default',
-      fallbackRenderer: 'verbose',
+      fallbackRenderer: 'simple',
       exitOnError: true,
       exitAfterRollback: true,
       collectErrors: false,
