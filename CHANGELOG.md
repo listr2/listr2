@@ -1,3 +1,26 @@
+# [6.0.0-beta.12](https://github.com/listr2/listr2/compare/v6.0.0-beta.11...v6.0.0-beta.12) (2023-04-01)
+
+
+### Performance Improvements
+
+* change the default behavior for error collection ([4785730](https://github.com/listr2/listr2/commit/478573001ebd519582891b82230f49219f5f9101))
+* default fallback renderer changed to simple renderer ([67b5b62](https://github.com/listr2/listr2/commit/67b5b62d1a3a06fc97a29f0d4b27b7e0c99211d0))
+* rename for consistency ([0530c22](https://github.com/listr2/listr2/commit/0530c22ed37f93e61baf127734c1e1892b632abf))
+* update documentation, rename presets ([4041410](https://github.com/listr2/listr2/commit/4041410d8ee540fe564bc65a940ec1c5a89414f1))
+
+
+### BREAKING CHANGES
+
+* On the main `Listr` task list, conditions for fallback and silent renderer have been
+renamed.
+
+- `rendererSilent` has been renamed to `silentRendererCondition`.
+- `rendererFallback` has been renamed to `fallbackRendererCondition`.
+* Default fallback renderer has been changed from `verbose` to `simple`, since
+`simple` can mostly handle non-tty at this point.
+* Changes default error collection behavior to `false` from `minimal`, since this is
+the most hidden feature of them all, and it should be opt-in.
+
 # [6.0.0-beta.11](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.10...v6.0.0-beta.11) (2023-04-01)
 
 
