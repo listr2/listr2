@@ -28,7 +28,7 @@ export default hopeTheme({
   displayFooter: true,
 
   mobileBreakPoint: 959,
-  wideBreakPoint: 1920,
+  pcBreakPoint: 1920,
   print: false,
 
   docsDir: 'docs/',
