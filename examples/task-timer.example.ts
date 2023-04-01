@@ -1,6 +1,5 @@
-import { delay } from '@tests/utils'
 import { ListrLogger } from '@utils'
-import { Listr, RENDERER_TIMER } from 'listr2'
+import { delay, Listr, RENDERER_TIMER } from 'listr2'
 
 const logger = new ListrLogger({ useIcons: false })
 

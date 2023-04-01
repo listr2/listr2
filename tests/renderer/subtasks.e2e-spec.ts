@@ -1,6 +1,6 @@
-import { Listr } from '@root'
+import { Listr, delay } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
-import { delay, expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput

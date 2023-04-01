@@ -1,5 +1,4 @@
-import { delay } from '@tests/utils'
-import { Listr } from 'listr2'
+import { delay, Listr } from 'listr2'
 
 try {
   await new Listr(

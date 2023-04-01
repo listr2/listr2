@@ -14,7 +14,7 @@ export class TestRenderer implements ListrRenderer {
     output: true,
     prompt: true,
     title: true,
-    messages: [ 'skip', 'error', 'retry', 'rollback' ],
+    messages: [ 'skip', 'error', 'retry', 'rollback', 'paused' ],
     messagesToStderr: [ 'error', 'rollback', 'retry' ],
     logger: ListrLogger
   }

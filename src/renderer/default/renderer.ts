@@ -9,6 +9,7 @@ import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrContext, ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { PromptError } from '@interfaces'
 import type { ListrEventManager, Task } from '@lib'
+import { parseTimer } from '@presets'
 import { ProcessOutputBuffer, ListrLogger, LogLevels, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
 
 /** Default updating renderer for Listr2 */
@@ -202,6 +203,8 @@ export class DefaultRenderer implements ListrRenderer {
       return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.ROLLED_BACK)
     } else if (task.hasFailed()) {
       return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.FAILED)
+    } else if (task.isPaused()) {
+      return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.PAUSED)
     }
 
     return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.WAITING)
@@ -309,12 +312,13 @@ export class DefaultRenderer implements ListrRenderer {
                 level
               )
             )
-          } else if (task.isRetrying() && this.getSelfOrParentOption(task, 'suffixRetries')) {
+          } else if (task.isRetrying()) {
             output.push(
               ...this.format(
                 this.logger.suffix(task.title, {
                   field: `${LogLevels.RETRY}:${task.message.retry.count}`,
-                  format: () => color.yellow
+                  format: () => color.yellow,
+                  condition: this.getSelfOrParentOption(task, 'suffixRetries')
                 }),
                 this.style(task),
                 level
@@ -327,6 +331,17 @@ export class DefaultRenderer implements ListrRenderer {
                 this.logger.suffix(task?.title, {
                   ...this.getSelfOrParentOption(task, 'timer'),
                   args: [ task.message.duration ]
+                }),
+                this.style(task),
+                level
+              )
+            )
+          } else if (task.isPaused()) {
+            output.push(
+              ...this.format(
+                this.logger.suffix(task.title, {
+                  field: parseTimer(task.message.paused - Date.now()),
+                  format: () => color.dim
                 }),
                 this.style(task),
                 level

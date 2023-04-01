@@ -1,8 +1,8 @@
 import Enquirer from 'enquirer'
 
-import { Listr } from '@root'
+import { Listr, delay } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
-import { expectProcessOutputToMatchSnapshot, delay, KEYS, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, KEYS, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput

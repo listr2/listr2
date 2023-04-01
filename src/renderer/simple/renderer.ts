@@ -2,6 +2,7 @@ import type { ListrSimpleRendererOptions, ListrSimpleRendererTasks, SimpleRender
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import type { Task } from '@lib'
+import { parseTimer } from '@presets'
 import { ListrLogger, LogLevels, color } from '@utils'
 
 /**
@@ -27,7 +28,7 @@ export class SimpleRenderer implements ListrRenderer {
       loggerOptions: {
         useIcons: true,
         fieldOptions: {
-          prefix: [ this.options.timestamp ]
+          prefix: [ this.options?.timestamp ]
         }
       },
       ...options
@@ -76,17 +77,19 @@ export class SimpleRenderer implements ListrRenderer {
           )
         } else if (state === ListrTaskState.PROMPT) {
           this.logger.process.hijack()
+
+          task.on(ListrTaskEventType.PROMPT, (prompt) => {
+            this.logger.process.toStderr(prompt, false)
+          })
         } else if (state === ListrTaskState.PROMPT_COMPLETED) {
+          task.off(ListrTaskEventType.PROMPT)
+
           this.logger.process.release()
         }
       })
 
       task.on(ListrTaskEventType.OUTPUT, (output) => {
         this.logger.output(output)
-      })
-
-      task.on(ListrTaskEventType.PROMPT, (prompt) => {
-        this.logger.process.toStderr(prompt, false)
       })
 
       task.on(ListrTaskEventType.MESSAGE, (message) => {
@@ -117,6 +120,13 @@ export class SimpleRenderer implements ListrRenderer {
             suffix: {
               field: `${LogLevels.RETRY}:${message.retry.count}`,
               format: () => color.red
+            }
+          })
+        } else if (message.paused) {
+          this.logger.paused(task.title, {
+            suffix: {
+              field: `${LogLevels.PAUSED}: ${parseTimer(message.paused - Date.now())}`,
+              format: () => color.dim
             }
           })
         }

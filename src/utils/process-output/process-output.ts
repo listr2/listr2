@@ -9,6 +9,7 @@ export class ProcessOutput {
     stdout: ProcessOutputStream
     stderr: ProcessOutputStream
   }
+  private active: boolean
 
   constructor (stdout: NodeJS.WriteStream = process.stdout, stderr: NodeJS.WriteStream = process.stderr) {
     this.stream = {
@@ -26,8 +27,13 @@ export class ProcessOutput {
   }
 
   public hijack (): void {
+    if (this.active) {
+      throw new Error('ProcessOutput has been already hijacked!')
+    }
+
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
     Object.values(this.stream).forEach((stream) => stream.hijack())
+    this.active = true
   }
 
   public release (): void {
@@ -53,6 +59,8 @@ export class ProcessOutput {
     }
 
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+
+    this.active = false
   }
 
   public toStdout (buffer: string, eol = true): boolean {

@@ -15,7 +15,8 @@ export enum ListrDefaultRendererLogLevels {
   ROLLED_BACK = 'ROLLED_BACK',
   FAILED = 'FAILED',
   FAILED_WITH_FAILED_SUBTASKS = 'FAILED_WITH_SUBTASKS',
-  WAITING = 'WAITING'
+  WAITING = 'WAITING',
+  PAUSED = 'PAUSED'
 }
 
 export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerOptionStyle<ListrDefaultRendererLogLevels> = {
@@ -33,7 +34,8 @@ export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerOptionStyle<ListrDefaultRe
     [ListrDefaultRendererLogLevels.ROLLED_BACK]: figures.arrowLeft,
     [ListrDefaultRendererLogLevels.FAILED]: figures.cross,
     [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: figures.pointer,
-    [ListrDefaultRendererLogLevels.WAITING]: figures.squareSmallFilled
+    [ListrDefaultRendererLogLevels.WAITING]: figures.squareSmallFilled,
+    [ListrDefaultRendererLogLevels.PAUSED]: figures.squareSmallFilled
   },
   color: {
     [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: color.yellow,
@@ -47,6 +49,7 @@ export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerOptionStyle<ListrDefaultRe
     [ListrDefaultRendererLogLevels.ROLLED_BACK]: color.redBright,
     [ListrDefaultRendererLogLevels.FAILED]: color.red,
     [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: color.red,
-    [ListrDefaultRendererLogLevels.WAITING]: color.dim
+    [ListrDefaultRendererLogLevels.WAITING]: color.dim,
+    [ListrDefaultRendererLogLevels.PAUSED]: color.yellowBright
   }
 }

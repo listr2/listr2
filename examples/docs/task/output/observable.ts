@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs'
 
-import { delay } from '@tests/utils'
-import { Listr } from 'listr2'
+import { delay, Listr } from 'listr2'
 
 const tasks = new Listr(
   [

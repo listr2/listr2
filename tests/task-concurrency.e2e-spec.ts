@@ -1,7 +1,7 @@
 import type { ListrTask } from '@root'
-import { Listr } from '@root'
+import { Listr, delay } from '@root'
 import type { MockProcessOutput } from '@tests/utils'
-import { expectProcessOutputToMatchSnapshot, delay, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 
 describe('concurrency', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

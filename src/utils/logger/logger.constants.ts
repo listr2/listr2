@@ -11,7 +11,8 @@ export enum LogLevels {
   TITLE = 'TITLE',
   ROLLBACK = 'ROLLBACK',
   RETRY = 'RETRY',
-  PROMPT = 'PROMPT'
+  PROMPT = 'PROMPT',
+  PAUSED = 'PAUSED'
 }
 
 export const LISTR_LOGGER_STYLE: ListrLoggerOptionStyle = {
@@ -23,7 +24,8 @@ export const LISTR_LOGGER_STYLE: ListrLoggerOptionStyle = {
     [LogLevels.OUTPUT]: figures.pointerSmall,
     [LogLevels.TITLE]: figures.arrowRight,
     [LogLevels.RETRY]: figures.warning,
-    [LogLevels.ROLLBACK]: figures.arrowLeft
+    [LogLevels.ROLLBACK]: figures.arrowLeft,
+    [LogLevels.PAUSED]: figures.squareSmallFilled
   },
   color: {
     [LogLevels.STARTED]: color.yellow,
@@ -31,6 +33,7 @@ export const LISTR_LOGGER_STYLE: ListrLoggerOptionStyle = {
     [LogLevels.SKIPPED]: color.yellow,
     [LogLevels.COMPLETED]: color.green,
     [LogLevels.RETRY]: color.yellowBright,
-    [LogLevels.ROLLBACK]: color.redBright
+    [LogLevels.ROLLBACK]: color.redBright,
+    [LogLevels.PAUSED]: color.yellowBright
   }
 }

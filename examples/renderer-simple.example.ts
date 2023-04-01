@@ -1,5 +1,4 @@
-import { delay } from '@tests/utils'
-import { Listr, RENDERER_TIMER, RENDERER_TIMESTAMP } from 'listr2'
+import { delay, Listr, RENDERER_TIMER, RENDERER_TIMESTAMP } from 'listr2'
 
 try {
   await new Listr(

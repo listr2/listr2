@@ -1,6 +1,5 @@
-import { delay } from '@tests/utils'
 import { ListrLogger } from '@utils'
-import { Listr } from 'listr2'
+import { delay, Listr } from 'listr2'
 
 interface Ctx {
   skip: boolean

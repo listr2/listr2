@@ -1,7 +1,6 @@
 import type { ListrBaseClassOptions } from '@interfaces'
-import { delay } from '@tests/utils'
 import { ListrLogger } from '@utils'
-import { Manager } from 'listr2'
+import { delay, Manager } from 'listr2'
 
 function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager<T> {
   const myDefaultOptions: ListrBaseClassOptions = {

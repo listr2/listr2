@@ -66,6 +66,10 @@ export class ListrLogger {
     this.process.toStdout(this.format(LogLevels.PROMPT, message, options))
   }
 
+  public paused (message: string | any[], options?: LoggerFieldOptions): void {
+    this.process.toStdout(this.format(LogLevels.PAUSED, message, options))
+  }
+
   public stdout (message: string | any[], options?: LoggerFieldOptions): void {
     this.process.toStdout(this.format(null, message, options))
   }
@@ -97,7 +101,7 @@ export class ListrLogger {
 
         message =
           message +
-          ` ${this.wrap(typeof suffix.field === 'string' ? suffix.field : suffix.field(...args), {
+          ` ${this.wrap(typeof suffix.field === 'function' ? suffix.field(...args) : suffix.field, {
             format: suffix?.format(...args)
           })}`
       }
@@ -118,7 +122,7 @@ export class ListrLogger {
         }
 
         message =
-          `${this.wrap(typeof prefix.field === 'string' ? prefix.field : prefix.field(...args), {
+          `${this.wrap(typeof prefix.field === 'function' ? prefix.field(...args) : prefix.field, {
             format: prefix?.format()
           })} ` + message
       }

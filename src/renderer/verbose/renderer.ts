@@ -2,6 +2,7 @@ import type { ListrVerboseRendererOptions, ListrVerboseRendererTasks, VerboseRen
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import type { Task } from '@lib'
+import { parseTimer } from '@presets'
 import { ListrLogger, cleanseAnsi } from '@utils'
 
 export class VerboseRenderer implements ListrRenderer {
@@ -23,7 +24,7 @@ export class VerboseRenderer implements ListrRenderer {
       loggerOptions: {
         useIcons: false,
         fieldOptions: {
-          prefix: [ this.options.timestamp ]
+          prefix: [ this.options?.timestamp ]
         }
       },
       ...this.options
@@ -103,6 +104,8 @@ export class VerboseRenderer implements ListrRenderer {
           this.logger.rollback(message.rollback)
         } else if (message?.retry) {
           this.logger.retry(task.title, { suffix: message.retry.count.toString() })
+        } else if (message?.paused) {
+          this.logger.paused(task.title, { suffix: parseTimer(message.paused - Date.now()) })
         }
       })
     })

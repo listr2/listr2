@@ -46,7 +46,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
   /**
    * Adds the given number of retry attempts to the task if the task fails.
    */
-  retry?: number
+  retry?: number | { tries: number, delay?: number }
   /**
    * Runs a specific event if the current task or any of the subtasks has failed.
    *
@@ -92,6 +92,8 @@ export interface ListrTaskMessage {
   rollback?: string
   /** Retry messages */
   retry?: ListrTaskRetry
+  /** When this task is last paused. */
+  paused?: number
 }
 
 export type { Task as ListrTaskObject }

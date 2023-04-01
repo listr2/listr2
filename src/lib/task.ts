@@ -16,7 +16,7 @@ import type {
 } from '@interfaces'
 import { ListrErrorTypes, PromptError } from '@interfaces'
 import { Listr } from '@root'
-import { assertFunctionOrSelf, cleanseAnsi, generateUUID, getRenderer, isObservable } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsi, delay, generateUUID, getRenderer, isObservable } from '@utils'
 
 /**
  * Create a task from the given set of variables and make it runnable.
@@ -194,6 +194,25 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     return this.state === ListrTaskState.PROMPT || this.state === ListrTaskState.PROMPT_COMPLETED
   }
 
+  /** Returns whether this task is currently paused. */
+  public isPaused (): boolean {
+    return this.state === ListrTaskState.PAUSED
+  }
+
+  public async pause (time: number): Promise<void> {
+    const state = this.state
+
+    this.state$ = ListrTaskState.PAUSED
+    this.message$ = {
+      paused: Date.now() + time
+    }
+    await delay(time)
+    this.state$ = state
+    this.message$ = {
+      paused: null
+    }
+  }
+
   /** Run the current task. */
   public async run (context: Ctx, wrapper: TaskWrapper<Ctx, Renderer>): Promise<void> {
     const handleResult = (result: any): Promise<any> => {
@@ -265,7 +284,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
 
     try {
       // add retry functionality
-      const retryCount = this.task?.retry && this.task?.retry > 0 ? this.task.retry + 1 : 1
+      const retryCount =
+        typeof this.task?.retry === 'number' && this.task.retry > 0
+          ? this.task.retry + 1
+          : typeof this.task?.retry === 'object' && this.task.retry.tries > 0
+            ? this.task.retry.tries + 1
+            : 1
+      const retryDelay = typeof this.task.retry === 'object' && this.task.retry.delay
 
       for (let retries = 1; retries <= retryCount; retries++) {
         try {
@@ -283,6 +308,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
             wrapper.report(err, ListrErrorTypes.WILL_RETRY)
 
             this.state$ = ListrTaskState.RETRY
+
+            if (retryDelay) {
+              await this.pause(retryDelay)
+            }
           } else {
             throw err
           }
