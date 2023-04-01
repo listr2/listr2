@@ -1,3 +1,10 @@
+# [6.0.0-beta.11](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.10...v6.0.0-beta.11) (2023-04-01)
+
+
+### Features
+
+* add task retry delay ([b72eaf3](https://github.com/cenk1cenk2/listr2/commit/b72eaf3242e4837680d55c6a9204d5b9da5dd017)), closes [#668](https://github.com/cenk1cenk2/listr2/issues/668)
+
 # [6.0.0-beta.10](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.9...v6.0.0-beta.10) (2023-04-01)
 
 ### Performance Improvements
