@@ -75,8 +75,8 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
       rendererOptions: this.options.rendererOptions,
       fallbackRenderer: this.options.fallbackRenderer,
       fallbackRendererOptions: this.options.fallbackRendererOptions,
-      fallbackCondition: this.options?.rendererFallback,
-      silentCondition: this.options?.rendererSilent
+      fallbackRendererCondition: this.options?.fallbackRendererCondition,
+      silentRendererCondition: this.options?.silentRendererCondition
     })
 
     this.rendererClass = renderer.renderer

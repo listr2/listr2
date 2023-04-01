@@ -27,16 +27,16 @@ export function getRenderer<Renderer extends ListrRendererValue, FallbackRendere
   rendererOptions: ListrGetRendererOptions<Renderer>
   fallbackRenderer: FallbackRenderer
   fallbackRendererOptions: ListrGetRendererOptions<FallbackRenderer>
-  fallbackCondition?: ListrOptions['rendererFallback']
-  silentCondition?: ListrOptions['rendererSilent']
+  fallbackRendererCondition?: ListrOptions['fallbackRendererCondition']
+  silentRendererCondition?: ListrOptions['silentRendererCondition']
 }): SupportedRenderer<ListrRendererFactory> {
-  if (assertFunctionOrSelf(options?.silentCondition)) {
+  if (assertFunctionOrSelf(options?.silentRendererCondition)) {
     return { renderer: getRendererClass('silent') }
   }
 
   const r: SupportedRenderer<ListrRendererFactory> = { renderer: getRendererClass(options.renderer), options: options.rendererOptions }
 
-  if (!isRendererSupported(r.renderer) || assertFunctionOrSelf(options?.fallbackCondition)) {
+  if (!isRendererSupported(r.renderer) || assertFunctionOrSelf(options?.fallbackRendererCondition)) {
     return { renderer: getRendererClass(options.fallbackRenderer), options: options.fallbackRendererOptions }
   }
 

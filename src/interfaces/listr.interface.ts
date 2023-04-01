@@ -63,13 +63,13 @@ export interface ListrOptions<Ctx = ListrContext> {
    *
    * @default null > handled internally
    */
-  rendererFallback?: boolean | (() => boolean)
+  fallbackRendererCondition?: boolean | (() => boolean)
   /**
    * Determine the certain condition required to use the silent renderer.
    *
    * @default null > handled internally
    */
-  rendererSilent?: boolean | (() => boolean)
+  silentRendererCondition?: boolean | (() => boolean)
   /**
    * Disabling the color, useful for tests and such.
    *
