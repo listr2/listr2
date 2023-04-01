@@ -9,7 +9,7 @@ import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrContext, ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { PromptError } from '@interfaces'
 import type { ListrEventManager, Task } from '@lib'
-import { ListrLogger, LogLevels, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
+import { ProcessOutputBuffer, ListrLogger, LogLevels, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -36,7 +36,7 @@ export class DefaultRenderer implements ListrRenderer {
   /** per task options for the default renderer */
   public static rendererTaskOptions: DefaultRendererTaskOptions
 
-  private bottom: Record<string, { data?: string[], items?: number }> = {}
+  private bottom: Map<string, ProcessOutputBuffer> = new Map()
   private prompt: string
   private activePrompt: string
   private readonly spinner: Spinner
@@ -72,7 +72,7 @@ export class DefaultRenderer implements ListrRenderer {
   public isBottomBar (task: Task<any, typeof DefaultRenderer>): boolean {
     const bottomBar = this.getTaskOptions(task).bottomBar
 
-    return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false
+    return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false || !task.hasTitle()
   }
 
   public hasPersistentOutput (task: Task<any, typeof DefaultRenderer>): boolean {
@@ -173,6 +173,10 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     if (output) {
+      if (this.isBottomBar(task)) {
+        return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.OUTPUT_WITH_BOTTOMBAR)
+      }
+
       return this.logger.icon(this.options.style, ListrDefaultRendererLogLevels.OUTPUT)
     }
 
@@ -209,7 +213,10 @@ export class DefaultRenderer implements ListrRenderer {
       return []
     }
 
-    message = `${icon} ${message}`
+    if (icon) {
+      message = `${icon} ${message}`
+    }
+
     let parsed: string[]
 
     let columns = process.stdout.columns ? process.stdout.columns : 80
@@ -358,27 +365,20 @@ export class DefaultRenderer implements ListrRenderer {
 
       // Current Task Output
       if (task?.output) {
-        if (this.isBottomBar(task) || !task.hasTitle()) {
+        if (this.isBottomBar(task)) {
           // data output to bottom bar
-          const data = this.dump(task, -1)
 
           // create new if there is no persistent storage created for bottom bar
-          if (!this.bottom[task.id]) {
-            this.bottom[task.id] = {}
-            this.bottom[task.id].data = []
-
+          if (!this.bottom.has(task.id)) {
             const bottomBar = this.getTaskOptions(task).bottomBar
 
-            if (typeof bottomBar === 'boolean') {
-              this.bottom[task.id].items = 1
-            } else {
-              this.bottom[task.id].items = bottomBar
-            }
-          }
+            this.bottom.set(task.id, new ProcessOutputBuffer({ limit: typeof bottomBar === 'boolean' ? 1 : bottomBar }))
 
-          // persistent bottom bar and limit items in it
-          if (!this.bottom[task.id]?.data?.some((element) => data.includes(element)) && !task.isSkipped()) {
-            this.bottom[task.id].data.push(...data)
+            task.on(ListrTaskEventType.OUTPUT, (output) => {
+              const data = this.dump(task, -1, LogLevels.OUTPUT, output)
+
+              this.bottom.get(task.id).write(data.join(EOL))
+            })
           }
         } else if (task.isPending() || this.hasPersistentOutput(task)) {
           // keep output if persistent output is set
@@ -416,7 +416,7 @@ export class DefaultRenderer implements ListrRenderer {
       if (task.hasFinalized()) {
         // clean up bottom bar items if not indicated otherwise
         if (!this.hasPersistentOutput(task)) {
-          delete this.bottom[task.id]
+          this.bottom.delete(task.id)
         }
       }
 
@@ -426,24 +426,14 @@ export class DefaultRenderer implements ListrRenderer {
 
   private renderBottomBar (): string[] {
     // parse through all objects return only the last mentioned items
-    if (Object.keys(this.bottom).length === 0) {
+    if (this.bottom.size === 0) {
       return []
     }
 
-    this.bottom = Object.keys(this.bottom).reduce<Record<PropertyKey, { data?: string[], items?: number }>>((o, key) => {
-      if (!o?.[key]) {
-        o[key] = {}
-      }
-
-      o[key] = this.bottom[key]
-
-      this.bottom[key].data = this.bottom[key].data.slice(-this.bottom[key].items)
-      o[key].data = this.bottom[key].data
-
-      return o
-    }, {})
-
-    return Object.values(this.bottom).reduce((o, value) => o = [ ...o, ...value.data ], [])
+    return Array.from(this.bottom.values())
+      .flatMap((output) => output.all)
+      .sort((a, b) => a.time - b.time)
+      .map((output) => output.entry)
   }
 
   private renderPrompt (): string[] {
@@ -454,36 +444,41 @@ export class DefaultRenderer implements ListrRenderer {
     return [ this.prompt ]
   }
 
-  private dump (task: Task<ListrContext, typeof DefaultRenderer>, level: number, source: LogLevels.OUTPUT | LogLevels.SKIPPED | LogLevels.FAILED = LogLevels.OUTPUT): string[] {
-    let data: string | boolean
+  private dump (
+    task: Task<ListrContext, typeof DefaultRenderer>,
+    level: number,
+    source: LogLevels.OUTPUT | LogLevels.SKIPPED | LogLevels.FAILED = LogLevels.OUTPUT,
+    data?: string | boolean
+  ): string[] {
+    if (!data) {
+      switch (source) {
+      case LogLevels.OUTPUT:
+        data = task.output
 
-    switch (source) {
-    case LogLevels.OUTPUT:
-      data = cleanseAnsi(task.output)
+        break
 
-      break
+      case LogLevels.SKIPPED:
+        data = task.message.skip
 
-    case LogLevels.SKIPPED:
-      data = task.message.skip
+        break
 
-      break
+      case LogLevels.FAILED:
+        data = task.message.error
 
-    case LogLevels.FAILED:
-      data = task.message.error
-
-      break
+        break
+      }
     }
 
     // dont return anything on some occasions
-    if (task.hasTitle() && source === LogLevels.FAILED && data === task.title) {
+    if (task.hasTitle() && source === LogLevels.FAILED && data === task.title || typeof data !== 'string') {
       return []
     }
 
-    if (typeof data === 'string') {
-      return this.format(data, this.style(task, true), level + 1)
+    if ([ LogLevels.OUTPUT ].includes(source)) {
+      data = cleanseAnsi(data)
     }
 
-    return []
+    return this.format(data, this.style(task, true), level + 1)
   }
 
   private indent (str: string, i: number): string {

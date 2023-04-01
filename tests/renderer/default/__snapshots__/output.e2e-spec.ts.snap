@@ -47,10 +47,6 @@ exports[`default renderer: output should have persistent output on task fail wit
 ",
   "[2K[1A[2K[G❯ This task will execute.
 
-› I will push an output. [0]
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
 › I will push an output. [1]
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
@@ -188,14 +184,9 @@ exports[`default renderer: output should limit output to bottom bar persistently
 ",
   "[2K[1A[2K[G❯ This task will execute.
 
-› I will push an output. [0]
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-› I will push an output. [0]
 › I will push an output. [1]
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
 
 › I will push an output. [1]
 › I will push an output. [2]
@@ -227,11 +218,6 @@ exports[`default renderer: output should output to bottom bar 2 times at most an
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will execute.
 
-› I will push an output. [0]
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ This task will execute.
-
 › I will push an output. [1]
 ",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
@@ -246,11 +232,6 @@ exports[`default renderer: output should output to bottom bar 2 times at most an
 ❯ This task will execute.
 ",
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will execute.
-
-› I will push an output. [0]
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
 ❯ This task will execute.
 
 › I will push an output. [1]
@@ -284,18 +265,13 @@ exports[`default renderer: output should output to bottom bar from task with no 
   "[?25l",
   "
 ",
-  "[2K[1A[2K[G› I will push an output. [0]
+  "[2K[1A[2K[G› I will push an output. [1]
 ",
-  "[2K[1A[2K[G› I will push an output. [0]
-› I will push an output. [1]
-",
-  "[2K[1A[2K[1A[2K[G› I will push an output. [0]
-› I will push an output. [1]
+  "[2K[1A[2K[G› I will push an output. [1]
 › I will push an output. [2]
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G",
-  "› I will push an output. [0]
-› I will push an output. [1]
+  "[2K[1A[2K[1A[2K[G",
+  "› I will push an output. [1]
 › I will push an output. [2]
 ",
   "[?25h",
@@ -311,16 +287,12 @@ exports[`default renderer: output should output to bottom bar from task with no 
   "[?25l",
   "
 ",
-  "[2K[1A[2K[G› I will push an output. [0]
+  "[2K[1A[2K[G› I will push an output. [1]
 ",
-  "[2K[1A[2K[G› I will push an output. [0]
-› I will push an output. [1]
-",
-  "[2K[1A[2K[1A[2K[G› I will push an output. [0]
-› I will push an output. [1]
+  "[2K[1A[2K[G› I will push an output. [1]
 › I will push an output. [2]
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G
+  "[2K[1A[2K[1A[2K[G
 ",
   "[2K[1A[2K[G",
   "
@@ -342,29 +314,21 @@ exports[`default renderer: output should output to bottom bar persistently: HhZE
 ",
   "[2K[1A[2K[G❯ This task will execute.
 
-› I will push an output. [0]
+› I will push an output. [1]
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
 
-› I will push an output. [0]
-› I will push an output. [1]
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-› I will push an output. [0]
 › I will push an output. [1]
 › I will push an output. [2]
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
 
-› I will push an output. [0]
 › I will push an output. [1]
 › I will push an output. [2]
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
 
-› I will push an output. [0]
 › I will push an output. [1]
 › I will push an output. [2]
 ",
@@ -385,20 +349,14 @@ exports[`default renderer: output should output to bottom bar: 767BkeBTfR1lrS2AN
 ",
   "[2K[1A[2K[G❯ This task will execute.
 
-› I will push an output. [0]
+› I will push an output. [1]
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
 
-› I will push an output. [0]
-› I will push an output. [1]
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-
-› I will push an output. [0]
 › I will push an output. [1]
 › I will push an output. [2]
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
 ",
   "[2K[1A[2K[G",
   "✔ This task will execute.
