@@ -1,0 +1,4 @@
+const e = JSON.parse(
+  '{"key":"v-4a96075e","path":"/repository/changelog.html","title":"Changelog","lang":"en-US","frontmatter":{"title":"Changelog","description":"The changelog of the library.","headerDepth":1,"order":-10,"head":[["meta",{"property":"og:url","content":"https://listr2.kilic.dev/repository/changelog.html"}],["meta",{"property":"og:site_name","content":"listr2"}],["meta",{"property":"og:title","content":"Changelog"}],["meta",{"property":"og:description","content":"The changelog of the library."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"en-US"}],["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"Changelog\\",\\"image\\":[\\"\\"],\\"dateModified\\":null,\\"author\\":[]}"]]},"headers":[],"git":{},"readingTime":{"minutes":0.05,"words":16},"filePathRelative":"repository/changelog.md"}'
+)
+export { e as data }
