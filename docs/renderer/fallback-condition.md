@@ -32,18 +32,18 @@ These checks are primal at best but do not forget that in many cases, your termi
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tree/master/examples/renderer-fallback-condition.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/renderer-fallback-condition.example.ts).
 
 :::
 
 ### Renderer Fallback
 
-You can use the `rendererFallback` condition on _Listr_ to determine changing your renderer to the fallback renderer.
+You can use the `fallbackRendererCondition` condition on _Listr_ to determine changing your renderer to the fallback renderer.
 
-@[code{4-} typescript{13}](../../examples/docs/renderer/fallback-condition/renderer-fallback.ts)
+@[code{3-} typescript{13}](../../examples/docs/renderer/fallback-condition/renderer-fallback.ts)
 
 ### Silent Renderer Fallback
 
-You can use the `rendererSilent` condition on _Listr_ to determine changing your renderer to the fallback renderer.
+You can use the `silentRendererCondition` condition on _Listr_ to determine changing your renderer to the fallback renderer.
 
-@[code{4-} typescript{13}](../../examples/docs/renderer/fallback-condition/renderer-silent.ts)
+@[code{3-} typescript{13}](../../examples/docs/renderer/fallback-condition/renderer-silent.ts)

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { defineUserConfig } from 'vuepress'
 import { typedocPlugin } from 'vuepress-plugin-typedoc/next'
 
@@ -27,6 +28,11 @@ export default defineUserConfig({
       allReflectionsHaveOwnDocument: true,
       categorizeByGroup: false,
       sort: [ 'source-order' ]
+    }),
+    docsearchPlugin({
+      appId: process.env.ALGOLIA_APP_ID as string,
+      apiKey: process.env.ALGOLIA_API_KEY as string,
+      indexName: 'listr2'
     })
   ],
 

@@ -1,5 +1,4 @@
-import { ListrLogger } from '@utils'
-import { delay, Listr } from 'listr2'
+import { delay, Listr, ListrLogger, LogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -10,7 +9,7 @@ const logger = new ListrLogger({ useIcons: false })
 async function main (): Promise<void> {
   let task: Listr<Ctx>
 
-  logger.started('Example for throwing out an error.')
+  logger.log(LogLevels.STARTED, 'Example for throwing out an error.')
 
   task = new Listr<Ctx>(
     [
@@ -34,12 +33,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed([ 'ctx: %o', context ])
+    logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
   } catch (e: any) {
-    logger.failed(e)
+    logger.log(LogLevels.FAILED, e)
   }
 
-  logger.started('Example for throwing out an error in concurrent tasks.')
+  logger.log(LogLevels.STARTED, 'Example for throwing out an error in concurrent tasks.')
 
   task = new Listr<Ctx>(
     [
@@ -63,12 +62,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed([ 'ctx: %o', context ])
+    logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
   } catch (e: any) {
-    logger.failed(e)
+    logger.log(LogLevels.FAILED, e)
   }
 
-  logger.started('Example for throwing out an error with exitOnError disabled.')
+  logger.log(LogLevels.STARTED, 'Example for throwing out an error with exitOnError disabled.')
 
   task = new Listr<Ctx>(
     [
@@ -92,12 +91,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed([ 'ctx: %o', context ])
+    logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
   } catch (e: any) {
-    logger.failed(e)
+    logger.log(LogLevels.FAILED, e)
   }
 
-  logger.started('Example for subtasks that change exit on error.')
+  logger.log(LogLevels.STARTED, 'Example for subtasks that change exit on error.')
 
   task = new Listr<Ctx>(
     [
@@ -141,16 +140,16 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed([ 'ctx: %o', context ])
+    logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
   } catch (e: any) {
-    logger.failed(e)
+    logger.log(LogLevels.FAILED, e)
   }
 
   // H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM
-  logger.output('You can also access all the errors spew out by the tasks by `task.errors` which will return an array of errors.')
-  logger.failed(task.errors.toString())
+  logger.log(LogLevels.OUTPUT, 'You can also access all the errors spew out by the tasks by `task.errors` which will return an array of errors.')
+  logger.log(LogLevels.FAILED, task.errors.toString())
 
-  logger.started('Example for not collapsing errors and show them as output.')
+  logger.log(LogLevels.STARTED, 'Example for not collapsing errors and show them as output.')
 
   task = new Listr<Ctx>(
     [
@@ -178,12 +177,12 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed([ 'ctx: %o', context ])
+    logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
   } catch (e: any) {
-    logger.failed(e)
+    logger.log(LogLevels.FAILED, e)
   }
 
-  logger.started('You can set the throw error from the task level.')
+  logger.log(LogLevels.STARTED, 'You can set the throw error from the task level.')
 
   task = new Listr<Ctx>(
     [
@@ -211,9 +210,9 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.completed([ 'ctx: %o', context ])
+    logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
   } catch (e: any) {
-    logger.failed(e)
+    logger.log(LogLevels.FAILED, e)
   }
 }
 

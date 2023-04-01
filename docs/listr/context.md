@@ -21,7 +21,7 @@ While running a `listr2` task list, a self-contained variable is shared across t
 
 A context is an object that is shared across the task list. Even though external variables can be used to do the same operation, context gives a self-contained way to process internal tasks.
 
-Context can be anything that satisfies the type [ListrContext](/api/types/ListrContext.html) which mostly types `any`, but it is advised to be an object, due to the intention of using it as a mutable structure that goes through the task.
+Context can be anything that satisfies the type [ListrContext](/api/types/ListrContext.html), which is by default of type `any`, but it is advised to be an object, due to the intention of using it as a mutable structure that goes through the task.
 
 Context type can be injected as a type parameter to Listr class to limit what is being used as the context throughout the task and ensure type safety.
 
@@ -43,21 +43,21 @@ If all tasks are in the same task list, the context will be automatically inject
 
 Context can be injected as an option to the _Listr_.
 
-@[code{3-} typescript{6}](../../examples/docs/getting-started/context/as-option.ts)
+@[code{3-} typescript{9}](../../examples/docs/listr/context/as-option.ts)
 
-#### Multiple Contexts <Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/612" target="_blank">#612</a></Badge>
+#### Multiple Contexts <Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/612" target="_blank">#612</a></Badge>
 
 This can also be used to inject a different context into subtasks. Imagine that you want to have some set of variables that you want to use only the subtask context, then you can pass it through the option. This variable will be garbage-collected whenever the subtasks finish. So if you want to return some values before it gets lost forever, you can just assign them to the parent context since it is accessible.
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/getting-started/context/multiple-contexts.ts)
+@[code typescript](../../examples/docs/listr/context/multiple-contexts.ts)
 
 :::
 
 ### Injecting Context at Runtime
 
-@[code{3-} typescript{9}](../../examples/docs/getting-started/context/at-runtime.ts)
+@[code{3-} typescript{9}](../../examples/docs/listr/context/at-runtime.ts)
 
 ## Retrieving Context
 
@@ -65,10 +65,10 @@ This can also be used to inject a different context into subtasks. Imagine that 
 
 A successful task will always return the context at the end of the task.
 
-@[code{3-} typescript{9,11}](../../examples/docs/getting-started/context/retrieve-return.ts)
+@[code{3-} typescript{9,11}](../../examples/docs/listr/context/retrieve-return.ts)
 
 ### As Property of Task List
 
 The root _Listr_ class itself holds the context value as a public property.
 
-@[code{3-} typescript{1,11}](../../examples/docs/getting-started/context/retrieve-property.ts)
+@[code{3-} typescript{1,11}](../../examples/docs/listr/context/retrieve-property.ts)

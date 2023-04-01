@@ -18,7 +18,7 @@ _Task_ can push output while running for informing the user of what is going on 
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tree/master/examples/task-output.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/task-output.example.ts).
 
 :::
 
@@ -30,7 +30,7 @@ Depending on the renderer selected, the format of the output will change. For _D
 
 This will show the output in a small bar that can only show the last output from the task.
 
-@[code{4-} typescript{6,9,12}](../../examples/docs/task/output/with-task.ts)
+@[code{3-} typescript{6,9,12}](../../examples/docs/task/output/with-task.ts)
 
 ### Passing Data Through an Observable or a Stream
 
@@ -48,9 +48,11 @@ Since observables and streams are supported they can also be used to generate ou
 
 :::
 
-## Render a WritableStream Directly <Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/31" target="_blank">#31</a></Badge>
+## Render a WritableStream Directly
 
-`process.stdout` and `process.stderr` might get hooked depending on the usage of _ProcessOutputHook_ on the selected renderer. So anything that requires a `WritableStream` while the task running to dump the output, should go through the _Listr_ itself by creating a temporary `WritableStream` with `task.stdout()`.
+<Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/31" target="_blank">#31</a></Badge>
+
+`process.stdout` and `process.stderr` might get hooked depending on the usage of _ProcessOutput_ on the selected renderer. So anything that requires a `WritableStream` while the task running to dump the output, should go through the _Listr_ itself by creating a temporary `WritableStream` with `task.stdout()`.
 
 ## Renderer
 

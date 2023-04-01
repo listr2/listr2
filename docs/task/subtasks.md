@@ -24,11 +24,11 @@ Subtasks give the advantage of grouping similar tasks, changing the behavior of 
 
 ## Usage
 
-@[code{4-} typescript{6}](../../examples/docs/task/subtasks/usage.ts)
+@[code{4-} typescript{5}](../../examples/docs/task/subtasks/usage.ts)
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tree/master/examples/subtasks.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/subtasks.example.ts).
 
 :::
 
@@ -42,16 +42,18 @@ Due to design limitations of making renderers a bit simpler, some of the options
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code{4-} typescript{9,24,31,46,50}](../../examples/docs/task/subtasks/overwriting-options.ts)
+@[code{3-} typescript{6,21,28,43}](../../examples/docs/task/subtasks/overwriting-options.ts)
 
 :::
 
-## Access Parent Task from Subtasks <Badge><FontIcon icon="mdi:tag-text-outline"/>v2.6.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/141" target="_blank">#141</a></Badge>
+## Access Parent Task from Subtasks
+
+<Badge><FontIcon icon="mdi:tag-text-outline"/>v2.6.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/141" target="_blank">#141</a></Badge>
 
 You can access the parent task class from subtasks by passing the function signature `(parent) => Listr` to `task.newListr`. This way you can change the title of the parent task or access its functionality.
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code{4-} typescript{7,13}](../../examples/docs/task/subtasks/access-parent-task.ts)
+@[code{3-} typescript{7,13}](../../examples/docs/task/subtasks/access-parent-task.ts)
 
 :::

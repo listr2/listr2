@@ -24,11 +24,13 @@ Please pay attention to asynchronous operation while designing a context-enabled
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tree/master/examples/task-skip.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/task-skip.example.ts).
 
 :::
 
 ## Usage
+
+Skip call can either have or not have a message, therefore it is optional. Having a message combined with the selected renderer and its settings will yield a different output, where skip message could be directly shown.
 
 ## Skip inside a _Task_
 
@@ -46,6 +48,6 @@ The default renderer has options where you can change how the skip messages are 
 
 ::: details
 
-@include(../api/interfaces/DefaultRendererOptions.md{105-152})
+<!-- @include: ../api/interfaces/DefaultRendererOptions.md{105-152} -->
 
 :::

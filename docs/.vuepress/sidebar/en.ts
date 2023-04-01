@@ -11,8 +11,8 @@ export const enSidebar = sidebar({
       children: 'structure'
     },
     {
-      text: 'Getting Started',
-      prefix: 'getting-started/',
+      text: 'Listr',
+      prefix: 'listr/',
       children: 'structure',
       collapsible: true
     },
@@ -25,12 +25,6 @@ export const enSidebar = sidebar({
     {
       text: 'Renderer',
       prefix: 'renderer/',
-      children: 'structure',
-      collapsible: true
-    },
-    {
-      text: 'Manager',
-      prefix: 'manager/',
       children: 'structure',
       collapsible: true
     },

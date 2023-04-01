@@ -1,5 +1,4 @@
-import { ListrLogger } from '@utils'
-import { delay, Listr } from 'listr2'
+import { delay, Listr, ListrLogger, LogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -9,7 +8,7 @@ const logger = new ListrLogger({ useIcons: false })
 
 let task: Listr<Ctx>
 
-logger.started('Renderer fallback when conditions is true.')
+logger.log(LogLevels.STARTED, 'Renderer fallback when conditions is true.')
 
 task = new Listr<Ctx>(
   [
@@ -21,18 +20,18 @@ task = new Listr<Ctx>(
       options: { persistentOutput: true }
     }
   ],
-  { concurrent: false, rendererFallback: (): boolean => 3 > 0 }
+  { concurrent: false, fallbackRendererCondition: (): boolean => 3 > 0 }
 )
 
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
-logger.started('Renderer fallback when conditions is false.')
+logger.log(LogLevels.STARTED, 'Renderer fallback when conditions is false.')
 
 task = new Listr<Ctx>(
   [
@@ -44,18 +43,18 @@ task = new Listr<Ctx>(
       options: { persistentOutput: true }
     }
   ],
-  { concurrent: false, rendererFallback: (): boolean => 3 < 0 }
+  { concurrent: false, fallbackRendererCondition: (): boolean => 3 < 0 }
 )
 
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
-logger.started('Fallback try with function.')
+logger.log(LogLevels.STARTED, 'Fallback try with function.')
 
 task = new Listr<Ctx>(
   [
@@ -67,15 +66,15 @@ task = new Listr<Ctx>(
       options: { persistentOutput: true }
     }
   ],
-  { concurrent: false, rendererFallback: someTestFunction }
+  { concurrent: false, fallbackRendererCondition: someTestFunction }
 )
 
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
 function someTestFunction (): boolean {

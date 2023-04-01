@@ -11,7 +11,7 @@ export default hopeTheme({
 
   navbarAutoHide: 'none',
 
-  repo: 'cenk1cenk2/listr2',
+  repo: 'listr2/listr2',
 
   favicon: 'https://main.s3.kilic.dev/html/favicon.ico',
 
@@ -66,6 +66,7 @@ export default hopeTheme({
       imgLazyload: true,
       imgSize: true,
       include: true,
+      tasklist: true,
       katex: false,
       mark: true,
       mermaid: false,

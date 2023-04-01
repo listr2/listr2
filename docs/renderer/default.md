@@ -7,19 +7,21 @@ title: Default Renderer
 order: 10
 ---
 
-_DefaultRenderer_ is the main renderer of `listr2` and has been on showcase in the entry image.
+_DefaultRenderer_ is the main renderer of `listr2`.
 
 <!-- more -->
 
 _DefaultRenderer_ is intended for `TTY` environments with `vt100` terminal compatibility, where it updates the current update constantly depending on the changes in _Task_. This renderer has many options for customization, these options can be changed at _Listr_, _Subtask_ or _Task_ level.
 
-This renderer uses _ProcessOutputHook_ to take control of the terminal.
+This renderer uses _ProcessOutput_ to take control of the terminal.
+
+![demo](../../examples/renderer-default.gif)
 
 ## Renderer Options
 
 ::: details
 
-@include(../api/interfaces/DefaultRendererOptions.md)
+<!-- @include: ../api/interfaces/DefaultRendererOptions.md -->
 
 :::
 
@@ -27,6 +29,6 @@ This renderer uses _ProcessOutputHook_ to take control of the terminal.
 
 ::: details
 
-@include(../api/interfaces/DefaultRendererTaskOptions.md)
+<!-- @include: ../api/interfaces/DefaultRendererTaskOptions.md -->
 
 :::

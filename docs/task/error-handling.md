@@ -13,11 +13,11 @@ category:
   - listr
 ---
 
-Exceptions that occur while running the _Task_ will be handled internally through _Listr_. You can throw errors out of the tasks to show they are unsuccessful or stop execution. This can further be customized at _Listr_ or _Task_ level.
+Exceptions that occur while running the _Task_ will be handled internally through _Listr_. You can throw errors out of the tasks to show they are unsuccessful or stop execution. This can further be customized at _Listr_, _Subtask_ or _Task_ level.
 
-Errors will yield a visual output on the terminal, and will also handle the _Task_ that has failed depending on the configuration. If an application needs to quit prematurely and fail a specific task just throw out an `Error`.
+Errors will yield a visual output on the terminal depending on the current renderer, and will also handle the _Task_ that has failed depending on the configuration. If an application needs to quit prematurely and fail a specific task just throw out an instance of `Error`.
 
-The default behavior is if any of the tasks have failed, it will deem itself as unsuccessful and exit. This behavior can be changed with the `exitOnError` option. If the `exitOnError` is `true`, the first error encountered will be thrown out again.
+The default behavior is if any of the tasks have failed, it will deem itself as unsuccessful and exit. This behavior can be changed with the `exitOnError` option. If the `exitOnError` is `true`, the first error encountered will be thrown out, and it will propagate outwards starting from the _Task_.
 
 <!-- more -->
 
@@ -29,13 +29,13 @@ An `Error` should be always a real `Error` type extended from the JavaScript/Typ
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tree/master/examples/error-handling.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/error-handling.example.ts).
 
 :::
 
 ## Throwing a Error
 
-Throwing an error will stop any further action of not yet started tasks whether it is in running with the `concurrent` flag or not.
+Throwing an error will stop any further action from the current _Task_ and will propagate outwards of the _Task_ to _Listr_ and depending on the `exitOnError` configuration, execution will be slowly halted for upcoming or concurrent tasks.
 
 ::: info
 
@@ -49,21 +49,21 @@ Be aware that the execution will only stop after the error is thrown out. This c
 
 :::
 
-@[code{4-} typescript{7}](../../examples/docs/task/error-handling/basic-error.ts)
+@[code{4-} typescript{6}](../../examples/docs/task/error-handling/basic-error.ts)
 
 ## Changing the Behavior
 
 ### Per _Listr_
 
-@[code{4-} typescript{7,17}](../../examples/docs/task/error-handling/change-behavior-exitonerror-listr.ts)
+@[code{4-} typescript{6,16}](../../examples/docs/task/error-handling/change-behavior-exitonerror-listr.ts)
 
 ### Per _Subtask_
 
-@[code{4-} typescript{11,21,27,31}](../../examples/docs/task/error-handling/change-behavior-exitonerror-subtask.ts)
+@[code{4-} typescript{10,20,26,30}](../../examples/docs/task/error-handling/change-behavior-exitonerror-subtask.ts)
 
 ### Per _Task_
 
-@[code{4-} typescript{7,9,20}](../../examples/docs/task/error-handling/change-behavior-exitonerror-task.ts)
+@[code{4-} typescript{6,8,19}](../../examples/docs/task/error-handling/change-behavior-exitonerror-task.ts)
 
 ## Renderer
 
@@ -73,19 +73,23 @@ Default renderer has options where you can change how the errors are displayed.
 
 ::: details
 
-@include(../api/interfaces/DefaultRendererOptions.md{156-186})
+<!-- @include: ../api/interfaces/DefaultRendererOptions.md{156-186} -->
 
 :::
 
 ## Collected Errors
 
-Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.error` where `tasks` is the _Listr_ class. Since there are options to ignore some errors on cases like `exitOnError`, or the ability to retry the given task through `task.retry`, encountered errors can be swallowed while the execution. To deal with those swallowed errors, all the errors that are encountered even though it does not stops the execution gets collected through this property.
+Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.error` where `tasks` is the _Listr_ class. **This option is opt-in since <Badge>v6.0.0</Badge>.**
 
-### Modes <Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/615" target="_blank">#615</a></Badge>
+Since there are options to ignore some errors on cases like `exitOnError`, or the ability to retry the given task through `task.retry`, encountered errors can be swallowed while the execution. To deal with those swallowed errors, all the errors that are encountered even though it does not stops the execution gets collected through this property.
 
-Error collection now has three modes to choose from which are, `false`, `minimal` and `full`. This can be set through per _Task_ in the _Listr_ options with the key `collectErrors`.
+### Modes
 
-Due to potential memory leaks from cloning the context and task to the `ListrError`, default mode is `minimal`, which will only collect where the error has occurred, when it has been encountered and what the `error.message` is.
+<Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/615" target="_blank">#615</a></Badge>
+
+Error collection now has three modes to choose from which are, `false`, `minimal` and `full`. This can be set through per _Task_ in the _Listr_ options with the key `collectErrors`. The default mode is `false` since I decided that this is the most-underused functionality, and it should be at least opt-in for saving some memory.
+
+Due to potential memory leaks from cloning the context and task to the `ListrError`, advised mode is `minimal`, which will only collect where the error has occurred, when it has been encountered and what the `error.message` is.
 
 If you want to fetch the full information for debugging you can set the mode to `full`. This will also clone the current context and task to the `ListrError`.
 

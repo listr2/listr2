@@ -9,8 +9,8 @@ import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrContext, ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { PromptError } from '@interfaces'
 import type { ListrEventManager, Task } from '@lib'
-import { parseTimer } from '@presets'
-import { ProcessOutputBuffer, ListrLogger, LogLevels, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
+import { PRESET_TIMER } from '@presets'
+import { ListrLogger, LogLevels, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -345,8 +345,8 @@ export class DefaultRenderer implements ListrRenderer {
             output.push(
               ...this.format(
                 this.logger.suffix(task.title, {
-                  field: parseTimer(task.message.paused - Date.now()),
-                  format: () => color.dim
+                  ...PRESET_TIMER,
+                  args: [ task.message.paused - Date.now() ]
                 }),
                 this.style(task),
                 level
@@ -500,6 +500,6 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private indent (str: string, i: number): string {
-    return i > 0 ? indent(str.trim(), 2) : str.trim()
+    return i > 0 ? indent(str.trim(), this.options.indentation) : str.trim()
   }
 }

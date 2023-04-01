@@ -3,25 +3,13 @@ import type { StylizeOptions } from 'vuepress-plugin-md-enhance'
 
 export const STYLIZE: StylizeOptions = [
   {
-    matcher: 'Recommended',
-    replacer: ({ tag }) => {
-      if (tag === 'em') {
-        return {
-          tag: 'Badge',
-          attrs: { type: 'tip' },
-          content: 'Recommended'
-        }
-      }
-    }
-  },
-  {
     matcher: 'Listr',
     replacer: ({ tag, ...rest }) => {
       if (tag === 'em') {
         return {
           ...rest,
           tag: 'a',
-          attrs: { href: '/api/classes/Listr.html', target: '_blank' }
+          attrs: { href: '/listr/listr.html' }
         }
       }
     }
@@ -33,7 +21,7 @@ export const STYLIZE: StylizeOptions = [
         return {
           ...rest,
           tag: 'a',
-          attrs: { href: '/api/interfaces/ListrTask.html#properties', target: '_blank' }
+          attrs: { href: '/task/task.html' }
         }
       }
     }
@@ -45,7 +33,7 @@ export const STYLIZE: StylizeOptions = [
         return {
           ...rest,
           tag: 'a',
-          attrs: { href: '/task/subtasks.html', target: '_blank' }
+          attrs: { href: '/task/subtasks.html' }
         }
       }
     }
@@ -57,7 +45,7 @@ export const STYLIZE: StylizeOptions = [
         return {
           ...rest,
           tag: 'a',
-          attrs: { href: '/renderer/default.html', target: '_blank' }
+          attrs: { href: '/renderer/default.html' }
         }
       }
     }
@@ -69,7 +57,7 @@ export const STYLIZE: StylizeOptions = [
         return {
           ...rest,
           tag: 'a',
-          attrs: { href: '/renderer/simple.html', target: '_blank' }
+          attrs: { href: '/renderer/simple.html' }
         }
       }
     }
@@ -81,7 +69,19 @@ export const STYLIZE: StylizeOptions = [
         return {
           ...rest,
           tag: 'a',
-          attrs: { href: '/renderer/verbose.html', target: '_blank' }
+          attrs: { href: '/renderer/verbose.html' }
+        }
+      }
+    }
+  },
+  {
+    matcher: 'SilentRenderer',
+    replacer: ({ tag, ...rest }) => {
+      if (tag === 'em') {
+        return {
+          ...rest,
+          tag: 'a',
+          attrs: { href: '/renderer/silent.html' }
         }
       }
     }
@@ -93,7 +93,55 @@ export const STYLIZE: StylizeOptions = [
         return {
           ...rest,
           tag: 'a',
-          attrs: { href: '/renderer/test.html', target: '_blank' }
+          attrs: { href: '/renderer/test.html' }
+        }
+      }
+    }
+  },
+  {
+    matcher: 'ListrLogger',
+    replacer: ({ tag, ...rest }) => {
+      if (tag === 'em') {
+        return {
+          ...rest,
+          tag: 'a',
+          attrs: { href: '/renderer/logger.html' }
+        }
+      }
+    }
+  },
+  {
+    matcher: 'ProcessOutput',
+    replacer: ({ tag, ...rest }) => {
+      if (tag === 'em') {
+        return {
+          ...rest,
+          tag: 'a',
+          attrs: { href: '/renderer/process-output.html' }
+        }
+      }
+    }
+  },
+  {
+    matcher: 'presets',
+    replacer: ({ tag, ...rest }) => {
+      if (tag === 'em') {
+        return {
+          ...rest,
+          tag: 'a',
+          attrs: { href: '/renderer/logger.html#presets' }
+        }
+      }
+    }
+  },
+  {
+    matcher: 'style',
+    replacer: ({ tag, ...rest }) => {
+      if (tag === 'em') {
+        return {
+          ...rest,
+          tag: 'a',
+          attrs: { href: '/renderer/logger.html#style' }
         }
       }
     }

@@ -9,4 +9,4 @@ order: -10
 
 <!-- more -->
 
-@include(../../CHANGELOG.md)
+<!-- @include: ../../CHANGELOG.md -->

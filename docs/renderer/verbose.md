@@ -11,11 +11,13 @@ _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logg
 
 <!-- more -->
 
+![demo](../../examples/renderer-verbose.gif)
+
 ## Renderer Options
 
 ::: details
 
-@include(../api/interfaces/VerboseRendererOptions.md)
+<!-- @include: ../api/interfaces/VerboseRendererOptions.md -->
 
 :::
 
@@ -23,6 +25,6 @@ _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logg
 
 ::: details
 
-@include(../api/interfaces/VerboseRendererTaskOptions.md)
+<!-- @include: ../api/interfaces/VerboseRendererTaskOptions.md -->
 
 :::

@@ -90,6 +90,7 @@
     "@types/through": "^0.0.30",
     "@types/wrap-ansi": "^8.0.1",
     "@vuepress/client": "2.0.0-beta.61",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.61",
     "enquirer": "^2.3.6",
     "eslint": "^8.37.0",
     "jest": "^29.0.2",

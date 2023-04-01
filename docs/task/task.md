@@ -4,7 +4,7 @@ author:
   url: https://cenk.kilic.dev
   email: cenk@kilic.dev
 title: Task
-order: 30
+order: 1
 tag:
   - mandatory
   - basic
@@ -12,7 +12,7 @@ category:
   - task
 ---
 
-`listr2` is a collection of tasks that are housed in a single instance as we have just created. Therefore the task is the smallest building block of your task list.
+`listr2` is a collection of tasks that are housed in a single instance as we have just created. Therefore the [Task](/api/interfaces/ListrTask.html) is the smallest building block of your task list.
 
 <!-- more -->
 
@@ -31,8 +31,8 @@ A task can be in the form of, which is ensured by the typings:
 
 ## Creating Your First Task
 
-@[code typescript{9-14}](../../examples/docs/getting-started/task/basic.ts)
+@[code typescript{9-14}](../../examples/docs/task/task/basic.ts)
 
 ## Append To Existing _Listr_
 
-@[code typescript{7,11,20}](../../examples/docs/getting-started/task/append.ts)
+@[code typescript{7,11}](../../examples/docs/task/task/append.ts)

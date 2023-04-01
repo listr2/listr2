@@ -25,13 +25,13 @@ order: 0
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tree/master/examples/subtasks.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/subtasks.example.ts).
 
 :::
 
 <!-- github issue -->
 
-<Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/257" target="_blank">#257</a></Badge>
+<Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/257" target="_blank">#257</a></Badge>
 
 <!-- version released -->
 
@@ -41,6 +41,6 @@ You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tr
 
 ::: details
 
-@include(../api/interfaces/DefaultRendererOptions.md{156-186})
+<!-- @include: ../api/interfaces/DefaultRendererOptions.md{156-186} -->
 
 :::

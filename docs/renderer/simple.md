@@ -13,11 +13,13 @@ _SimpleRenderer_ is an alternative to _DefaultRenderer_, which does not directly
 
 _SimpleRenderer_ still requires `vt100` terminal compatibility if you are using prompts, but can work in `non-TTY` environments other than that.
 
+![demo](../../examples/renderer-simple.gif)
+
 ## Renderer Options
 
 ::: details
 
-@include(../api/interfaces/SimpleRendererOptions.md)
+<!-- @include: ../api/interfaces/SimpleRendererOptions.md -->
 
 :::
 
@@ -25,6 +27,6 @@ _SimpleRenderer_ still requires `vt100` terminal compatibility if you are using 
 
 ::: details
 
-@include(../api/interfaces/SimpleRendererTaskOptions.md)
+<!-- @include: ../api/interfaces/SimpleRendererTaskOptions.md -->
 
 :::

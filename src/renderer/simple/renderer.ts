@@ -25,13 +25,15 @@ export class SimpleRenderer implements ListrRenderer {
   constructor (private readonly tasks: ListrSimpleRendererTasks, private options: ListrSimpleRendererOptions) {
     this.options = {
       ...SimpleRenderer.rendererOptions,
+      ...options,
       loggerOptions: {
         useIcons: true,
+        ...this.options?.loggerOptions ?? {},
         fieldOptions: {
-          prefix: [ this.options?.timestamp ]
+          prefix: [ this.options?.timestamp ],
+          ...this.options?.loggerOptions?.fieldOptions ?? {}
         }
-      },
-      ...options
+      }
     }
 
     this.logger = new this.options.logger(this.options.loggerOptions)

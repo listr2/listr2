@@ -13,7 +13,7 @@ You can create a custom renderer that is fit for your application.
 
 ## Implement or Extend the Default _Listr_ Renderer
 
-@[code{-14} typescript](../../examples/docs/renderer/custom/create-renderer.ts)
+@[code{-25} typescript](../../examples/docs/renderer/custom/create-renderer.ts)
 
 ::: info
 
@@ -33,7 +33,15 @@ Take a look at _DefaultRenderer_ since it is implemented this way.
 
 ## Utilizing the Events
 
-Take a look at _VerboseRenderer_ since it is implemented this way.
+_Listr_ and its _Task_ fires many events to indicate the task status. _Task_ depending on what is currently done will fire [ListrTaskState](/api/enums/ListrTaskState.html) and [ListrTaskEventType](/api/enums/ListrTaskEventType.html) through [ListrTaskEventManager](/api/classes/ListrTaskEventManager.html) which you can subscribe.
+
+Take a look at _SimpleRenderer_ or _VerboseRenderer_ since it is implemented this way.
+
+::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+
+@[code typescript](../../src/renderer/simple/renderer.ts)
+
+:::
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
@@ -41,7 +49,9 @@ Take a look at _VerboseRenderer_ since it is implemented this way.
 
 :::
 
-## Using Render Hooks <Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge>
+## Using Render Hooks
+
+<Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge>
 
 Additional to listening to the events, another singleton hook that come from the root _Listr_ is `events`. This provides some generic events like [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/enums/ListrEventType.html#should-refresh-render) which can be used to trigger an update on an updating renderer.
 
@@ -65,4 +75,4 @@ this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
 
 You can tell Listr to use your custom renderer by setting the `renderer` option in _Listr_ to your custom renderer.
 
-@[code{15-} typescript](../../examples/docs/renderer/custom/create-renderer.ts)
+@[code{26-} typescript](../../examples/docs/renderer/custom/create-renderer.ts)

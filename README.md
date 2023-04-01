@@ -6,10 +6,12 @@
 
 **Create beautiful CLI interfaces via easy and logical to-implement task lists that feel alive and interactive.**
 
-![Demo](./demo/demo.gif)
-
 ---
 
-# Documentation
+## Documentation
 
 **[Read the documentation...](https://listr2.kilic.dev)**
+
+## Demo
+
+![Demo](./examples/renderer-default.gif)

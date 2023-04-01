@@ -1,10 +1,10 @@
 [
   Error: 1
-      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:8:15)
-      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35) {
+      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:7:15)
+      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:298:35) {
     error: Error: 1
-        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:8:15)
-        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35),
+        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:7:15)
+        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:298:35),
     type: 'HAS_FAILED_WITHOUT_ERROR',
     task: Task {
       emitter: [EventEmitter],
@@ -12,8 +12,8 @@
       task: [Object],
       options: [Object],
       rendererOptions: {},
-      id: '9.ad307ebe93ea0.4269f841e24df.2588cd95ab791.ae567d9361f1.f27f1ef34dd6f.b24bffdcc5657.5cfa52399321c.721f69395564-6.d0e7bbfc0e292.8e7c505903a49.53799a1bc0bc5.f5f73c51ee35-49.74044ba5197fa.77674ded24f1a.4f01f298c6ef-3c.a0f40837cc841.24207ee189742.d8a97eb8f794-6.0ae10becd3eab.639b7f63a2c5d.3e8b80afee846.790c00483fa45.0d3f9c957b7cf.aa1659bc48fcf.22d6cb0bf4bc5.690d6bc39b7d1.25fdd6dc46a57.75cd06727f
-3a0.2adcccf5de6bd.f7bc15515ce',
+      id: '5.1ffae60d8631f.efd766868b915.866e1eec8dcb1.6c49d60beb37d.a3a892931a5ef.e78a8650db4c1.74a7a66109265.bcc1d65fd77f-9.16ae5bbd949de.84a3445d953d9.b4ff3c4de3d24.6847e6b03009-48.845a4ab1c8fec.0406e1d03a734.306961606f12-3f.d63122b38bc71.2c6be88b853d.aa5a66a00
+fa3-2.67a25dc32b275.05069591f2917.99ad61f61433b.62d2b3fcf014.6c3ab12e8638b.a012e95dfadb6.5ac0b32dde1f5.3783719aafae9.f7cf95351bc3.b468fee844f0.c9627515807f4.3c546e82beb7',
       state: 'FAILED',
       subtasks: undefined,
       title: undefined,
@@ -27,16 +27,16 @@
       enabled: true,
       taskFn: [Function: task]
     },
-    path: '',
+    path: [ undefined ],
     ctx: undefined,
     name: 'ListrError'
   },
   Error: 3
-      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:17:23)
-      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35) {
+      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:16:23)
+      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:298:35) {
     error: Error: 3
-        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:17:23)
-        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35),
+        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:16:23)
+        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:298:35),
     type: 'HAS_FAILED',
     task: Task {
       emitter: [EventEmitter],
@@ -44,8 +44,8 @@
       task: [Object],
       options: [Object],
       rendererOptions: {},
-      id: '8.2a65394fa08f4.8b5e930c84961.fb2adab42e42a.935abfc6589c3.5335107681873.8962b49213f76.8c9cecad964b5.062b4007af36-a.b09d927457f53.69cc39befa64a.ae97e6ef8542b.9d95c4b595f5-4b.b9f21515e1585.12538a6c6896d.a962a60588db-33.bf484bb990fd.1475aac3b0fb9.7c35efae1eb-3.be5f2fac3ab91.c0163604f32f8.4b1f946aaf65f.d1e9ccb5c9527.af66206b276c2.e10c953f0e8e6.c74dc7124bab6.edc04597060a8.215ad017ae8c2.4c8a99002ed
-16.ddcbd9603d4c4.048de12b9dd',
+      id: 'e.b91e31c7a8633.a5c0d756a30ed.8653c1351752e.73b560a042c80.64e107220cbf3.fc2b7bd6f02f5.c9688ca346799.cb51fffc2226-a.6e976cd950398.b054762b266ad.464a3f3110918.e466da24f4d6-45.96ed406986ecb.11850cc6105df.560383a2d91c-36.0c1b392d14abe.9f89babe09822.45b315ac
+4bb8-1.ee031a687fb11.86d5245ac9fc3.55e9067a7e183.53d94301c813.9591c72743037.4922af1ed491f.2bdb77eed4ee.ec002d1dfb8e1.7882a17eb2377.049051202a2e0.0c942ce10bc6b.0d33f80a6803',
       state: 'FAILED',
       subtasks: undefined,
       title: undefined,
@@ -59,16 +59,16 @@
       enabled: true,
       taskFn: [Function: task]
     },
-    path: ' > ',
+    path: [ undefined, undefined ],
     ctx: undefined,
     name: 'ListrError'
   },
   Error: 2
-      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:32:15)
-      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35) {
+      at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:31:15)
+      at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:298:35) {
     error: Error: 2
-        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:32:15)
-        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:274:35),
+        at Task.taskFn (file:///home/cenk/development/listr2/examples/docs/task/error-handling/collection.ts:31:15)
+        at Task.run (file:///home/cenk/development/listr2/src/lib/task.ts:298:35),
     type: 'HAS_FAILED_WITHOUT_ERROR',
     task: Task {
       emitter: [EventEmitter],
@@ -76,8 +76,8 @@
       task: [Object],
       options: [Object],
       rendererOptions: {},
-      id: '8.f283f8da74ae3.9e94d814e9883.10e27d22f0b7c.b817dcd4d9c30.36e99f3c37d30.16db1930463b2.b0ec8521bc26e.bfb1b8330eef-b.4e022e82b22f6.167067cf82169.7597c85bc6599.3137cca5afa1-4c.a3e319ce867a8.59995b969e89d.7f58330a401c-3e.581990bbee7e6.9c13477d7bb39.161f23a4232f-8.63f0efd3f698b.12ea94ce0bc6.0d706af8d7579.07ac283060ba.1f94ca2a9e1f2.0d03822a75dd9.26b6a2684bc76.19149a65485b9.8deb6d649d966.5e3c7395889
-91.aac85cf231545.277f65a71161',
+      id: '8.255d2f2e3fa9c.8870108a62aee.14a04d8597aa4.da8da95f37b79.575d8732ea0b5.cb0d308db7b40.f19fb8db928d.5ed830c8904b-e.b944062c0ab5f.d339986948bdf.5ad93c6148292.01e745100f4c-47.fe4e954aec826.032487f91f53b.df78f4442433-31.591906fa76151.dbe812f35d5a8.17d8b12a5
+3c8-d.6919e94a5b5d7.e0f5853c6cc2e.c1020891d643a.1235a6678d71d.f39b92415cafb.0c07b9db54fc0.02522dfb9af63.c2fd91995b050.ef96265e70f54.d2ad4fff8edd0.ed4249a0f67f6.b78b6510ccf9',
       state: 'FAILED',
       subtasks: undefined,
       title: undefined,
@@ -91,9 +91,8 @@
       enabled: true,
       taskFn: [Function: task]
     },
-    path: '',
+    path: [ undefined ],
     ctx: undefined,
     name: 'ListrError'
   }
 ]
-

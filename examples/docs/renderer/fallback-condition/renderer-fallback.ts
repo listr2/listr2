@@ -12,7 +12,7 @@ const tasks = new Listr(
       options: { persistentOutput: true }
     }
   ],
-  { concurrent: false, rendererFallback: (): boolean => 3 < 1 }
+  { concurrent: false, fallbackRendererCondition: (): boolean => 3 < 1 }
 )
 
 await tasks.run()

@@ -1,5 +1,4 @@
-import { ListrLogger } from '@utils'
-import { delay, Listr } from 'listr2'
+import { delay, Listr, ListrLogger, LogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -10,7 +9,7 @@ const logger = new ListrLogger({ useIcons: false })
 let task: Listr<Ctx>
 
 // 4SIhMkI14b8s2hW1esiORoa1UINGHwAr
-logger.started('This would trigger the rollback functionality if the parent task fails.')
+logger.log(LogLevels.STARTED, 'This would trigger the rollback functionality if the parent task fails.')
 
 task = new Listr<Ctx>(
   [
@@ -57,13 +56,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
 // vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx
-logger.started('Rollback in normal task.')
+logger.log(LogLevels.STARTED, 'Rollback in normal task.')
 
 task = new Listr<Ctx>(
   [
@@ -111,7 +110,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }

@@ -1,4 +1,4 @@
-import { ListrLogger } from '@utils'
+import { ListrLogger, LogLevels } from '@utils'
 import { Listr } from 'listr2'
 
 interface Ctx {
@@ -10,7 +10,7 @@ const logger = new ListrLogger({ useIcons: false })
 let task: Listr<any>
 
 // ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F
-logger.started('Example for skipping a task from the results of function.')
+logger.log(LogLevels.STARTED, 'Example for skipping a task from the results of function.')
 
 task = new Listr<Ctx>(
   [
@@ -27,13 +27,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
 // 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e
-logger.started('Example for skipping a task by using context.')
+logger.log(LogLevels.STARTED, 'Example for skipping a task by using context.')
 
 task = new Listr<Ctx>(
   [
@@ -56,13 +56,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
 // 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N
-logger.started('You can also not collapse the skip messages instead of changing the title by setting the collapseSkips option of the default renderer to false.')
+logger.log(LogLevels.STARTED, 'You can also not collapse the skip messages instead of changing the title by setting the collapseSkips option of the default renderer to false.')
 
 task = new Listr<Ctx>(
   [
@@ -85,13 +85,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
 // BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK
-logger.started('skip from function.')
+logger.log(LogLevels.STARTED, 'skip from function.')
 task = new Listr<Ctx>(
   [
     {
@@ -113,7 +113,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }

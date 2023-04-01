@@ -32,7 +32,7 @@ const tasks = new Listr(
       }
     }
   ],
-  { exitOnError: false }
+  { exitOnError: false, collectErrors: 'minimal' }
 )
 
 await tasks.run()

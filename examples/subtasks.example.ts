@@ -1,5 +1,4 @@
-import { ListrLogger } from '@utils'
-import { delay, Listr } from 'listr2'
+import { delay, Listr, ListrLogger, LogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -10,7 +9,7 @@ const logger = new ListrLogger({ useIcons: false })
 let task: Listr<Ctx>
 
 // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
-logger.started('Example for subtasks.')
+logger.log(LogLevels.STARTED, 'Example for subtasks.')
 
 task = new Listr<Ctx>(
   [
@@ -33,14 +32,14 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
 // 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0kA
 // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
-logger.started('Example for subtasks with different renderer options.')
+logger.log(LogLevels.STARTED, 'Example for subtasks with different renderer options.')
 
 task = new Listr<Ctx>(
   [
@@ -94,12 +93,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
-logger.started('Example for subtasks with different disabled rendering from parent.')
+logger.log(LogLevels.STARTED, 'Example for subtasks with different disabled rendering from parent.')
 
 task = new Listr<Ctx>(
   [
@@ -131,13 +130,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
 // 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY
-logger.started('Example for subtasks that change exit on error.')
+logger.log(LogLevels.STARTED, 'Example for subtasks that change exit on error.')
 
 task = new Listr<Ctx>(
   [
@@ -181,10 +180,10 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
-logger.output('You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
-logger.failed([ '%o', task.errors ])
+logger.log(LogLevels.OUTPUT, 'You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
+logger.log(LogLevels.FAILED, [ '%o', task.errors ])

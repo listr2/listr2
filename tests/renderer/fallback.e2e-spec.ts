@@ -28,7 +28,7 @@ describe('fallback renderer', () => {
         renderer: 'default',
         fallbackRenderer: 'verbose',
         ctx: { test: true },
-        rendererFallback: (): boolean => 3 > 0
+        fallbackRendererCondition: (): boolean => 3 > 0
       }
     )
 
@@ -49,7 +49,7 @@ describe('fallback renderer', () => {
         renderer: 'default',
         fallbackRenderer: 'verbose',
         ctx: { test: true },
-        rendererFallback: true
+        fallbackRendererCondition: true
       }
     )
 
@@ -70,7 +70,7 @@ describe('fallback renderer', () => {
         renderer: 'default',
         fallbackRenderer: 'verbose',
         ctx: { test: true },
-        rendererSilent: (): boolean => 3 > 0
+        silentRendererCondition: (): boolean => 3 > 0
       }
     )
 
@@ -91,7 +91,7 @@ describe('fallback renderer', () => {
         renderer: 'default',
         fallbackRenderer: 'verbose',
         ctx: { test: true },
-        rendererSilent: true
+        silentRendererCondition: true
       }
     )
 

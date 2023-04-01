@@ -20,7 +20,7 @@ The input module uses the beautiful and not very well-maintained (xD) [enquirer]
 
 :::
 
-Inside a _Task_, the `task.prompt` function gives you access to any [`enquirer`](https://www.npmjs.com/package/enquirer) default prompts as well as the underlying instance for using a custom `enquirer` prompt.
+Inside a _Task_, the `task.prompt` function gives you access to any [`enquirer`](https://www.npmjs.com/package/enquirer) default prompt as well as ability to modify the underlying instance for using a custom `enquirer` prompt.
 
 <!-- more -->
 
@@ -36,7 +36,7 @@ This has been disabled to do in some renderers, but you are still able to do it 
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tree/master/examples/task-prompt.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/task-prompt.example.ts).
 
 :::
 
@@ -48,7 +48,7 @@ To access the prompts just utilize the `task.prompt` jumper function by passing 
 
 Please note that I rewrote the types for the `enquirer` and bundle them with this application.
 
-So it is highly likely that it has some mistakes in it since I usually do not use all of them. I will merge the original types when the `enquirer` fixes them with the pending merge request <Badge type="warning"><FontIcon icon="mdi:github" /><a href="https://github.com/cenk1cenk2/listr2/issues/235" target="_blank">#235</a></Badge>, which can be tracked in issue , which will probably never happen!
+So it is highly likely that it has some mistakes in it since I usually do not use all of them. I will merge the original types when the `enquirer` fixes them with the pending merge request <Badge type="warning"><FontIcon icon="mdi:github" /><a href="https://github.com/listr2/listr2/issues/235" target="_blank">#235</a></Badge>, which can be tracked in issue , which will probably never happen!
 
 :::
 
@@ -108,7 +108,9 @@ const ctx = await tasks.run()
 console.log(ctx)
 ```
 
-## Cancel a Prompt <Badge><FontIcon icon="mdi:tag-text-outline"/>v3.1.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/cenk1cenk2/listr2/issues/173" target="_blank">#173</a></Badge>
+## Cancel a Prompt
+
+<Badge><FontIcon icon="mdi:tag-text-outline"/>v3.1.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/173" target="_blank">#173</a></Badge>
 
 You can cancel a prompt while it is still active through the `cancelPrompt` function.
 

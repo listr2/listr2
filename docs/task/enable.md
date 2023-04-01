@@ -26,13 +26,13 @@ After the initial evaluation when the execution time comes for that particular _
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/cenk1cenk2/listr2/tree/master/examples/task-enable.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/task-enable.example.ts).
 
 :::
 
 ## Usage
 
-@[code{4-} typescript{16}](../../examples/docs/task/enable/basic.ts)
+@[code{3-} typescript{16}](../../examples/docs/task/enable/basic.ts)
 
 ## Renderer
 

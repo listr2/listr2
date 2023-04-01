@@ -177,7 +177,7 @@ try {
         }
       }
     ],
-    { renderer: 'simple' }
+    { renderer: 'verbose' }
   ).run()
 } catch (e: any) {
   // eslint-disable-next-line no-console

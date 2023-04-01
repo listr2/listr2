@@ -4,7 +4,7 @@ author:
   url: https://cenk.kilic.dev
   email: cenk@kilic.dev
 title: Task Options
-order: 30
+order: 2
 tag:
   - mandatory
   - basic
@@ -12,7 +12,7 @@ category:
   - task
 ---
 
-`listr2` can have global or per-task options to change the behavior of how a task, or the whole set of tasks in subtask behaves.
+`listr2` can have global or per-task options to change the behavior of how a task or the whole set of tasks in subtask behaves.
 
 <!-- more -->
 
@@ -32,6 +32,6 @@ Some properties of the task options even propagate to the per-task setting, thes
 
 ## Adding Task Options
 
-Task options can be added globally or per task as follows.
+Task options can be added as follows.
 
-@[code typescript{28-32,36-39}](../../examples/docs/getting-started/task-options/task-options.ts)
+@[code typescript{26-27,30-34,38-41}](../../examples/docs/task/task-options/task-options.ts)

@@ -1,11 +1,10 @@
-import { ListrLogger } from '@utils'
-import { delay, Listr, RENDERER_TIMER } from 'listr2'
+import { delay, Listr, PRESET_TIMER, ListrLogger, LogLevels } from 'listr2'
 
 const logger = new ListrLogger({ useIcons: false })
 
 let task: Listr<any>
 
-logger.started('Example for showing the timer per task.')
+logger.log(LogLevels.STARTED, 'Example for showing the timer per task.')
 
 task = new Listr<any>(
   [
@@ -15,7 +14,7 @@ task = new Listr<any>(
         await delay(1000)
       },
       options: {
-        timer: RENDERER_TIMER
+        timer: PRESET_TIMER
       }
     },
 
@@ -25,7 +24,7 @@ task = new Listr<any>(
         await delay(1000)
       },
       options: {
-        timer: RENDERER_TIMER
+        timer: PRESET_TIMER
       }
     }
   ],
@@ -35,12 +34,12 @@ task = new Listr<any>(
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
-logger.started('Example for showing the timer per listr.')
+logger.log(LogLevels.STARTED, 'Example for showing the timer per listr.')
 
 task = new Listr<any>(
   [
@@ -59,18 +58,18 @@ task = new Listr<any>(
       }
     }
   ],
-  { concurrent: false, rendererOptions: { timer: RENDERER_TIMER } }
+  { concurrent: false, rendererOptions: { timer: PRESET_TIMER } }
 )
 
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }
 
-logger.started('Example for showing the timer per listr in verbose renderer when on fallback.')
+logger.log(LogLevels.STARTED, 'Example for showing the timer per listr in verbose renderer when on fallback.')
 
 task = new Listr<any>(
   [
@@ -91,16 +90,16 @@ task = new Listr<any>(
   ],
   {
     concurrent: false,
-    rendererOptions: { timer: RENDERER_TIMER },
-    rendererFallback: true,
-    fallbackRendererOptions: { timer: RENDERER_TIMER }
+    rendererOptions: { timer: PRESET_TIMER },
+    fallbackRendererCondition: true,
+    fallbackRendererOptions: { timer: PRESET_TIMER }
   }
 )
 
 try {
   const context = await task.run()
 
-  logger.completed([ 'ctx: %o', context ])
+  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.failed(e)
+  logger.log(LogLevels.FAILED, e)
 }

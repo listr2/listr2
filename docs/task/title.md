@@ -22,7 +22,7 @@ The title of the _Task_ can be initiated while creating the task itself and, can
 
 This allows the user to change the title depending on the progress that has been made throughout the task or just inform the user that the task is finished, so looking from a grammar perspective it will all look right.
 
-@[code{4-} typescript{3,7,11}](../../examples/docs/task/title/task-title.ts)
+@[code{3-} typescript{3,7,11}](../../examples/docs/task/title/task-title.ts)
 
 ## Tasks without a Title
 
@@ -34,6 +34,6 @@ You can always use `task.title` programmatically to add titles, and visually pop
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code{4-} typescript{6,10,17,21}](../../examples/docs/task/title/task-title-pop.ts)
+@[code{3-} typescript{6,10,17,21}](../../examples/docs/task/title/task-title-pop.ts)
 
 :::

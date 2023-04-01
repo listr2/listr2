@@ -17,15 +17,6 @@ tasks.add([
   }
 ])
 
-tasks.add([
-  {
-    title: 'This task will execute.',
-    task: async (ctx): Promise<void> => {
-      // perform some operations
-    }
-  }
-])
-
 try {
   await tasks.run()
 } catch (e) {

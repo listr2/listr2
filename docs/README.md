@@ -6,7 +6,7 @@ heroText: listr2
 tagline: Create beautiful CLI interfaces via easy and logical-to-implement task lists that feel alive and interactive.
 actions:
   - text: Start building!
-    link: /getting-started/installation.html
+    link: /listr/installation.html
     type: primary
   - text: Read the foreword.
     link: /repository/foreword.html
@@ -32,7 +32,7 @@ copyright: false
 
 This is the expanded and re-written Typescript version of the beautiful plugin by [Sam Verschueren](https://github.com/SamVerschueren) called [Listr](https://github.com/SamVerschueren/listr).
 
-![demo](https://raw.githubusercontent.com/cenk1cenk2/listr2/master/demo/demo.gif)
+![demo](../examples/renderer-default.gif)
 
 ### Showcase
 

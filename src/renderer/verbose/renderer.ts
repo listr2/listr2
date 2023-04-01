@@ -21,13 +21,15 @@ export class VerboseRenderer implements ListrRenderer {
   constructor (private readonly tasks: ListrVerboseRendererTasks, private readonly options: ListrVerboseRendererOptions) {
     this.options = {
       ...VerboseRenderer.rendererOptions,
+      ...this.options,
       loggerOptions: {
         useIcons: false,
+        ...this.options?.loggerOptions ?? {},
         fieldOptions: {
-          prefix: [ this.options?.timestamp ]
+          prefix: [ this.options?.timestamp ],
+          ...this.options?.loggerOptions?.fieldOptions ?? {}
         }
-      },
-      ...this.options
+      }
     }
 
     this.logger = new this.options.logger(this.options.loggerOptions)

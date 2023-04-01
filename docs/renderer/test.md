@@ -17,6 +17,6 @@ This JSON format specific can be seen [here](/api/classes/TestRendererEvent.html
 
 ::: details
 
-@include(../api/interfaces/TestRendererOptions.md)
+<!-- @include: ../api/interfaces/TestRendererOptions.md -->
 
 :::
