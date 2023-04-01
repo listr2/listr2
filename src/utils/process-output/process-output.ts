@@ -1,18 +1,19 @@
 import { EOL } from 'os'
 
-import { ProcessOutputHook } from './process-output-hook'
+import { ProcessOutputStream } from './process-output-stream'
 import { ANSI_ESCAPE_CODES } from '@constants'
+import { cleanseAnsi } from '@utils'
 
 export class ProcessOutput {
   public readonly stream: {
-    stdout: ProcessOutputHook
-    stderr: ProcessOutputHook
+    stdout: ProcessOutputStream
+    stderr: ProcessOutputStream
   }
 
   constructor (stdout: NodeJS.WriteStream = process.stdout, stderr: NodeJS.WriteStream = process.stderr) {
     this.stream = {
-      stdout: new ProcessOutputHook(stdout),
-      stderr: new ProcessOutputHook(stderr)
+      stdout: new ProcessOutputStream(stdout),
+      stderr: new ProcessOutputStream(stderr)
     }
   }
 
@@ -30,7 +31,27 @@ export class ProcessOutput {
   }
 
   public release (): void {
-    Object.values(this.stream).forEach((stream) => stream.release())
+    const output = Object.values(this.stream)
+      .map((stream) => stream.release())
+      .flat()
+      .sort((a, b) => a.time - b.time)
+      .map((message) => {
+        return {
+          ...message,
+          entry: cleanseAnsi(message.entry)
+        }
+      })
+
+    if (output.length > 0) {
+      this.stdout.write(EOL)
+
+      output.forEach((message) => {
+        const stream = message.stream ?? this.stdout
+
+        stream.write(message.entry)
+      })
+    }
+
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
   }
 

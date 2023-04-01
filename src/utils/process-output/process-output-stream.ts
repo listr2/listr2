@@ -1,16 +1,15 @@
-import { EOL } from 'os'
-
 import { ProcessOutputBuffer } from './process-output-buffer'
-import { cleanseAnsi } from '@utils'
+import type { ProcessOutputBufferEntry } from '@utils'
 
 // taken from https://github.com/keindev/stdout-update/blob/main/src/Hook.ts
 // with all credits to keindev, wish i could integrate the stdout-update
-export class ProcessOutputHook {
+export class ProcessOutputStream {
   private readonly method: NodeJS.WriteStream['write']
-  private buffer = new ProcessOutputBuffer()
+  private readonly buffer: ProcessOutputBuffer
 
   constructor (private stream: NodeJS.WriteStream) {
     this.method = stream.write
+    this.buffer = new ProcessOutputBuffer({ stream })
   }
 
   get out (): NodeJS.WriteStream {
@@ -23,18 +22,14 @@ export class ProcessOutputHook {
     this.stream.write = this.buffer.write.bind(this.buffer)
   }
 
-  public release (): void {
+  public release (): ProcessOutputBufferEntry[] {
     this.stream.write = this.method
 
-    const buffer = this.buffer.all.map((message) => cleanseAnsi(message)).filter(Boolean)
-
-    if (buffer.length > 0) {
-      this.write(EOL)
-
-      buffer.forEach((message) => this.write(message), this)
-    }
+    const buffer = [ ...this.buffer.all ]
 
     this.buffer.reset()
+
+    return buffer
   }
 
   public write (...args: Parameters<NodeJS.WriteStream['write']>): ReturnType<NodeJS.WriteStream['write']> {
