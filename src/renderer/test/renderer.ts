@@ -47,25 +47,25 @@ export class TestRenderer implements ListrRenderer {
 
       if (this.options.state) {
         task.on(ListrTaskEventType.STATE, (state) => {
-          this.logger.process.toStdout(new TestRendererEvent(ListrTaskEventType.STATE, state, task).toJson())
+          this.logger.toStdout(new TestRendererEvent(ListrTaskEventType.STATE, state, task).toJson())
         })
       }
 
       if (this.options.output) {
         task.on(ListrTaskEventType.OUTPUT, (data) => {
-          this.logger.process.toStdout(new TestRendererEvent(ListrTaskEventType.OUTPUT, data, task).toJson())
+          this.logger.toStdout(new TestRendererEvent(ListrTaskEventType.OUTPUT, data, task).toJson())
         })
       }
 
       if (this.options.prompt) {
         task.on(ListrTaskEventType.PROMPT, (prompt) => {
-          this.logger.process.toStdout(new TestRendererEvent(ListrTaskEventType.PROMPT, prompt, task).toJson())
+          this.logger.toStdout(new TestRendererEvent(ListrTaskEventType.PROMPT, prompt, task).toJson())
         })
       }
 
       if (this.options.title) {
         task.on(ListrTaskEventType.TITLE, (title) => {
-          this.logger.process.toStdout(new TestRendererEvent(ListrTaskEventType.TITLE, title, task).toJson())
+          this.logger.toStdout(new TestRendererEvent(ListrTaskEventType.TITLE, title, task).toJson())
         })
       }
 
@@ -84,9 +84,9 @@ export class TestRenderer implements ListrRenderer {
           const output = new TestRendererEvent(ListrTaskEventType.MESSAGE, parsed, task).toJson()
 
           if (this.options.messagesToStderr.some((state) => Object.keys(parsed).includes(state))) {
-            this.logger.process.toStderr(output)
+            this.logger.toStderr(output)
           } else {
-            this.logger.process.toStdout(output)
+            this.logger.toStdout(output)
           }
         }
       })

@@ -16,7 +16,7 @@ import type {
 } from '@interfaces'
 import { ListrErrorTypes, PromptError } from '@interfaces'
 import { Listr } from '@root'
-import { assertFunctionOrSelf, cleanseAnsi, delay, generateUUID, getRenderer, isObservable } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsi, delay, generateUUID, getRendererClass, isObservable } from '@utils'
 
 /**
  * Create a task from the given set of variables and make it runnable.
@@ -222,7 +222,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
         result.options = { ...this.options, ...result.options }
 
         // switch to silent renderer since already rendering
-        result.rendererClass = getRenderer('silent').renderer
+        result.rendererClass = getRendererClass('silent')
 
         // assign subtasks
         this.subtasks = result.tasks

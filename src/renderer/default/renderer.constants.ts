@@ -1,4 +1,4 @@
-import type { ListrLoggerOptionStyle } from '@utils'
+import type { ListrLoggerStyleMap } from '@utils'
 import { color, figures } from '@utils'
 
 export enum ListrDefaultRendererLogLevels {
@@ -19,7 +19,7 @@ export enum ListrDefaultRendererLogLevels {
   PAUSED = 'PAUSED'
 }
 
-export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerOptionStyle<ListrDefaultRendererLogLevels> = {
+export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRendererLogLevels> = {
   icon: {
     [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: figures.arrowDown,
     [ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE]: figures.warning,

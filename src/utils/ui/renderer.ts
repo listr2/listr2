@@ -1,4 +1,4 @@
-import type { ListrOptions, SupportedRenderer, ListrRendererFactory, ListrRendererValue, ListrRenderer } from '@interfaces'
+import type { ListrGetRendererOptions, ListrOptions, ListrRenderer, ListrRendererFactory, ListrRendererValue, SupportedRenderer } from '@interfaces'
 import { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
 import { assertFunctionOrSelf } from '@utils'
 
@@ -22,20 +22,22 @@ export function getRendererClass (renderer: ListrRendererValue): ListrRendererFa
   return typeof renderer === 'function' ? renderer : RENDERERS.default
 }
 
-export function getRenderer (
-  renderer: ListrRendererValue,
-  fallbackRenderer?: ListrRendererValue,
-  fallbackCondition?: ListrOptions['rendererFallback'],
+export function getRenderer<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> (options: {
+  renderer: Renderer
+  rendererOptions: ListrGetRendererOptions<Renderer>
+  fallbackRenderer: FallbackRenderer
+  fallbackRendererOptions: ListrGetRendererOptions<FallbackRenderer>
+  fallbackCondition?: ListrOptions['rendererFallback']
   silentCondition?: ListrOptions['rendererSilent']
-): SupportedRenderer {
-  if (assertFunctionOrSelf(silentCondition)) {
-    return { renderer: getRendererClass('silent'), isFallbackRenderer: true }
+}): SupportedRenderer<ListrRendererFactory> {
+  if (assertFunctionOrSelf(options?.silentCondition)) {
+    return { renderer: getRendererClass('silent') }
   }
 
-  const r: SupportedRenderer = { renderer: getRendererClass(renderer), isFallbackRenderer: false }
+  const r: SupportedRenderer<ListrRendererFactory> = { renderer: getRendererClass(options.renderer), options: options.rendererOptions }
 
-  if (!isRendererSupported(r.renderer) || assertFunctionOrSelf(fallbackCondition)) {
-    return { renderer: getRendererClass(fallbackRenderer), isFallbackRenderer: true }
+  if (!isRendererSupported(r.renderer) || assertFunctionOrSelf(options?.fallbackCondition)) {
+    return { renderer: getRendererClass(options.fallbackRenderer), options: options.fallbackRendererOptions }
   }
 
   return r

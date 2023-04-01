@@ -1,4 +1,4 @@
-import type { ListrLoggerOptionStyle } from './logger.interface'
+import type { ListrLoggerStyleMap } from './logger.interface'
 import { color, figures } from '@utils'
 
 /** Default loglevels for the logger */
@@ -15,7 +15,7 @@ export enum LogLevels {
   PAUSED = 'PAUSED'
 }
 
-export const LISTR_LOGGER_STYLE: ListrLoggerOptionStyle<LogLevels> = {
+export const LISTR_LOGGER_STYLE: ListrLoggerStyleMap<LogLevels> = {
   icon: {
     [LogLevels.STARTED]: figures.pointer,
     [LogLevels.FAILED]: figures.cross,

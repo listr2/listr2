@@ -1,6 +1,5 @@
 import type { ListrEventManager, Task } from '@lib'
 import type { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
-import type { LoggerFormat } from '@utils'
 
 /** The default renderer value used in Listr2 applications */
 export type ListrDefaultRendererValue = 'default'
@@ -136,12 +135,7 @@ export declare class ListrBaseRenderer implements ListrRenderer {
 export type ListrRendererFactory = typeof ListrRenderer
 
 /** Supported type of renderers for each type in the listr. */
-export interface SupportedRenderer {
-  renderer: ListrRendererFactory
-  isFallbackRenderer: boolean
-}
-
-export interface RendererStyleMap<Levels extends string> {
-  color: Partial<Record<Levels, LoggerFormat>>
-  icon: Partial<Record<Levels, string>>
+export interface SupportedRenderer<Renderer extends ListrRendererFactory> {
+  renderer: Renderer
+  options?: ListrGetRendererOptions<Renderer>
 }

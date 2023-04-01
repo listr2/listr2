@@ -40,11 +40,11 @@ export class ListrLogger<Levels extends string = LogLevels> {
     this.process.toStdout(this.format(level, message, options))
   }
 
-  public stdout (message: string | any[], options?: LoggerFieldOptions, eol = true): void {
+  public toStdout (message: string | any[], options?: LoggerFieldOptions, eol = true): void {
     this.process.toStdout(this.format(null, message, options), eol)
   }
 
-  public stderr (message: string | any[], options?: LoggerFieldOptions, eol = true): void {
+  public toStderr (message: string | any[], options?: LoggerFieldOptions, eol = true): void {
     this.process.toStderr(this.format(null, message, options), eol)
   }
 

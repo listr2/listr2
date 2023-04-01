@@ -70,16 +70,17 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
 
     // get renderer class
-    const renderer = getRenderer(this.options.renderer, this.options.fallbackRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
+    const renderer = getRenderer({
+      renderer: this.options.renderer,
+      rendererOptions: this.options.rendererOptions,
+      fallbackRenderer: this.options.fallbackRenderer,
+      fallbackRendererOptions: this.options.fallbackRendererOptions,
+      fallbackCondition: this.options?.rendererFallback,
+      silentCondition: this.options?.rendererSilent
+    })
 
     this.rendererClass = renderer.renderer
-
-    // depending on the result pass the given options in
-    if (!renderer.isFallbackRenderer) {
-      this.rendererClassOptions = this.options.rendererOptions
-    } else {
-      this.rendererClassOptions = this.options.fallbackRendererOptions
-    }
+    this.rendererClassOptions = renderer.options
 
     // parse and add tasks
     /* istanbul ignore next */
