@@ -5,6 +5,11 @@ author:
   email: cenk@kilic.dev
 title: Custom Renderer
 order: 50
+tag:
+  - advanced
+  - customization
+category:
+  - renderer
 ---
 
 You can create a custom renderer that is fit for your application.

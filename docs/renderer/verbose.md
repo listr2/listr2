@@ -5,6 +5,10 @@ author:
   email: cenk@kilic.dev
 title: Verbose Renderer
 order: 30
+tag:
+  - basic
+category:
+  - renderer
 ---
 
 _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logger.

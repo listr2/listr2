@@ -5,6 +5,10 @@ author:
   email: cenk@kilic.dev
 title: Renderer
 order: 1
+tag:
+  - basic
+category:
+  - renderer
 ---
 
 Renderers are the communication interface with your _Listr_.

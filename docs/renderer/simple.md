@@ -5,6 +5,10 @@ author:
   email: cenk@kilic.dev
 title: Simple Renderer
 order: 20
+tag:
+  - basic
+category:
+  - renderer
 ---
 
 _SimpleRenderer_ is an alternative to _DefaultRenderer_, which does not directly update the terminal but works more in a logger-like manner.

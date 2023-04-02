@@ -5,6 +5,11 @@ author:
   email: cenk@kilic.dev
 title: Logger
 order: 100
+tag:
+  - advanced
+  - output
+category:
+  - logger
 ---
 
 [ListrLogger](/api/classes/ListrLogger.html) is a common interface that enables the renderers to have a certain output format.

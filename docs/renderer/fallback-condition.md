@@ -5,6 +5,11 @@ author:
   email: cenk@kilic.dev
 title: Fallback Condition
 order: 5
+tag:
+  - advanced
+  - flow
+category:
+  - renderer
 ---
 
 There are times other than `non-TTY` environments when you want to fallback to a fallback/silent renderer than the selected renderer.

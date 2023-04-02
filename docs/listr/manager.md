@@ -5,6 +5,11 @@ author:
   email: cenk@kilic.dev
 title: Manager
 order: 100
+tag:
+  - advanced
+  - flow
+category:
+  - manager
 ---
 
 [Manager](/api/classes/Manager.html) is a great way to create a custom-tailored _Listr_ class once and then utilize it more than once.

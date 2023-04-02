@@ -5,6 +5,10 @@ author:
   email: cenk@kilic.dev
 title: Silent Renderer
 order: 35
+tag:
+  - basic
+category:
+  - renderer
 ---
 
 _SilentRenderer_ outputs nothing.

@@ -5,6 +5,11 @@ author:
   email: cenk@kilic.dev
 title: Process Output
 order: 110
+tag:
+  - advanced
+  - output
+category:
+  - logger
 ---
 
 [ProcessOutput](/api/classes/ProcessOutput.html), [ProcessOutputHook](/api/classes/ProcessOutputHook.html), [ProcessOutputStream](/api/classes/ProcessOutputStream.html), [ProcessOutputBuffer](/api/classes/ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.

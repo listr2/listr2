@@ -4,7 +4,7 @@ export const enNavbar = navbar([
   '/',
   {
     text: 'Repository',
-    icon: 'discover',
+    icon: 'mdi:git',
     link: '/repository/foreword.html'
   },
   {
@@ -20,7 +20,12 @@ export const enNavbar = navbar([
     link: '/renderer/renderer.html'
   },
   {
+    text: 'Migration',
+    link: '/migration'
+  },
+  {
     text: 'API',
+    icon: 'eos-icons:api-outlined',
     link: '/api'
   }
 ])

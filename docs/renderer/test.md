@@ -5,6 +5,11 @@ author:
   email: cenk@kilic.dev
 title: Test Renderer
 order: 40
+tag:
+  - basic
+  - tests
+category:
+  - renderer
 ---
 
 _TestRenderer_ is intended to use in tests and provides a per-line JSON format output, that is configurable through the renderer options.
