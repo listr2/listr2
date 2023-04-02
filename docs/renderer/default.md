@@ -5,6 +5,10 @@ author:
   email: cenk@kilic.dev
 title: Default Renderer
 order: 10
+tag:
+  - basic
+category:
+  - renderer
 ---
 
 _DefaultRenderer_ is the main renderer of `listr2`.
