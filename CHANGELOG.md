@@ -1,3 +1,9 @@
+# [6.0.0-beta.15](https://github.com/listr2/listr2/compare/v6.0.0-beta.14...v6.0.0-beta.15) (2023-04-05)
+
+### Bug Fixes
+
+- move wrong dependency type to dev ([d93f135](https://github.com/listr2/listr2/commit/d93f1353386b165bf085c09990f4002e7c4c9ca1))
+
 # [6.0.0-beta.14](https://github.com/listr2/listr2/compare/v6.0.0-beta.13...v6.0.0-beta.14) (2023-04-05)
 
 ### Features
