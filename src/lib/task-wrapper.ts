@@ -1,8 +1,8 @@
 import { Writable } from 'stream'
 
 import { ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrErrorTypes, ListrBaseClassOptions, ListrSubClassOptions, ListrRendererFactory, ListrTask } from '@interfaces'
-import { PromptError, ListrError } from '@interfaces'
+import type { ListrBaseClassOptions, ListrErrorTypes, ListrRendererFactory, ListrSubClassOptions, ListrTask } from '@interfaces'
+import { ListrError, PromptError } from '@interfaces'
 import type { Task } from '@lib'
 import { Listr } from '@root'
 import type { PromptCancelOptions, PromptOptions } from '@utils'

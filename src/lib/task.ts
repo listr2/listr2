@@ -111,6 +111,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.emitShouldRefreshRender()
   }
 
+  get path (): string[] {
+    return [ ...this.listr.path, this.task.title ]
+  }
+
   /**
    * A function to check whether this task should run at all via enable.
    */

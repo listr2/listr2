@@ -37,12 +37,12 @@ export class Concurrency {
   }
 
   private run<T>(fn: () => Promise<T>): Promise<T> {
-    this.count += 1
+    this.count++
 
     const promise = fn()
 
     const cleanup = (): void => {
-      this.count -= 1
+      this.count--
 
       this.flush()
     }

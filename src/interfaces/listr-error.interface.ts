@@ -13,7 +13,7 @@ export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
 
     this.name = 'ListrError'
 
-    this.path = [ ...task.listr.path ?? [], task.title ]
+    this.path = task.path
 
     // memory intensive error collection for circular objects on demand
     if (task?.options.collectErrors === 'full') {

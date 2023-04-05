@@ -27,7 +27,7 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
 
-  private concurrency: number
+  private concurrency: Concurrency
   private renderer: ListrRenderer
 
   constructor (
@@ -50,12 +50,12 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
 
     // define parallel options
     if (this.options.concurrent === true) {
-      this.concurrency = Infinity
-    } else if (typeof this.options.concurrent === 'number') {
-      this.concurrency = this.options.concurrent
-    } else {
-      this.concurrency = 1
+      this.options.concurrent = Infinity
+    } else if (typeof this.options.concurrent !== 'number') {
+      this.options.concurrent = 1
     }
+
+    this.concurrency = new Concurrency({ concurrency: this.options.concurrent as number })
 
     // Update currentPath
     if (parentTask) {
@@ -124,12 +124,8 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     }
   }
 
-  public add (task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
-    const tasks = Array.isArray(task) ? task : [ task ]
-
-    tasks.forEach((task): void => {
-      this.tasks.push(new Task(this, task, this.options, { ...(this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>), ...task.options }))
-    })
+  public add (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
+    this.tasks.push(...this.generate(tasks))
   }
 
   public async run (context?: Ctx): Promise<Ctx> {
@@ -146,17 +142,9 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     // check if the items are enabled
     await Promise.all(this.tasks.map((task) => task.check(this.ctx)))
 
-    const concurrency = new Concurrency({ concurrency: this.concurrency })
-
     // run tasks
     try {
-      await Promise.all(
-        this.tasks.map(async (task) => {
-          return concurrency.add(async () => {
-            return this.runTask(task, this.ctx)
-          })
-        })
-      )
+      await Promise.all(this.tasks.map((task) => this.concurrency.add(() => this.runTask(task))))
 
       this.renderer.end()
     } catch (err: any) {
@@ -171,11 +159,21 @@ export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = Lis
     return this.ctx
   }
 
-  private async runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx): Promise<void> {
+  private generate (
+    tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]
+  ): Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] {
+    tasks = Array.isArray(tasks) ? tasks : [ tasks ]
+
+    return tasks.map(
+      (task) => new Task(this, task, this.options, { ...(this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>), ...task.options })
+    )
+  }
+
+  private async runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>): Promise<void> {
     if (!await task.check(this.ctx)) {
       return
     }
 
-    return new TaskWrapper(task, this.options).run(context)
+    return new TaskWrapper(task, this.options).run(this.ctx)
   }
 }
