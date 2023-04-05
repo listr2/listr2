@@ -1,3 +1,14 @@
+# [6.0.0-beta.14](https://github.com/listr2/listr2/compare/v6.0.0-beta.13...v6.0.0-beta.14) (2023-04-05)
+
+### Features
+
+- expose path from task directly ([5c393d0](https://github.com/listr2/listr2/commit/5c393d0d3137c3aa0980251297ce542f3ad47097))
+
+### Performance Improvements
+
+- change naming scheme for renderer tasks to make it singular ([cbcdfe2](https://github.com/listr2/listr2/commit/cbcdfe23870d08e660ccf9bd4e067e36e5664f3a))
+- update how test renderer logs and use a serializer instead of constantly creating objects ([5859ac4](https://github.com/listr2/listr2/commit/5859ac40e43f6cb2eeca8c2d6bf48da1fe03fa18))
+
 # [6.0.0-beta.13](https://github.com/listr2/listr2/compare/v6.0.0-beta.12...v6.0.0-beta.13) (2023-04-02)
 
 ### Bug Fixes
