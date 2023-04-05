@@ -76,10 +76,10 @@
     "eventemitter3": "^5.0.0",
     "log-update": "^5.0.1",
     "rfdc": "^1.3.0",
-    "vuepress-plugin-typedoc": "^0.11.2",
     "wrap-ansi": "^8.1.0"
   },
   "devDependencies": {
+    "vuepress-plugin-typedoc": "^0.11.2",
     "@cenk1cenk2/cz-cc": "^1.5.9",
     "@cenk1cenk2/eslint-config": "2.6.4",
     "@jest/globals": "^29.5.0",
