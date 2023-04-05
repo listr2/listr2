@@ -3,7 +3,7 @@ import type { Task } from '@lib'
 import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
 
-export type ListrVerboseRendererTasks = Task<any, typeof VerboseRenderer>[]
+export type ListrVerboseRendererTask = Task<any, typeof VerboseRenderer>
 export type ListrVerboseRendererOptions = (typeof VerboseRenderer)['rendererOptions']
 
 export interface VerboseRendererOptions extends RendererPresetTimer, RendererPresetTimestamp, LoggerRendererOptions {

@@ -1,4 +1,4 @@
-import type { ListrVerboseRendererOptions, ListrVerboseRendererTasks, VerboseRendererOptions, VerboseRendererTaskOptions } from './renderer.interface'
+import type { ListrVerboseRendererOptions, ListrVerboseRendererTask, VerboseRendererOptions, VerboseRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import type { Task } from '@lib'
@@ -18,7 +18,7 @@ export class VerboseRenderer implements ListrRenderer {
 
   private logger: ListrLogger
 
-  constructor (private readonly tasks: ListrVerboseRendererTasks, private readonly options: ListrVerboseRendererOptions) {
+  constructor (private readonly tasks: ListrVerboseRendererTask[], private readonly options: ListrVerboseRendererOptions) {
     this.options = {
       ...VerboseRenderer.rendererOptions,
       ...this.options,
@@ -47,7 +47,7 @@ export class VerboseRenderer implements ListrRenderer {
   }
 
   // verbose renderer multi-level
-  private renderer (tasks: ListrVerboseRendererTasks): void {
+  private renderer (tasks: ListrVerboseRendererTask[]): void {
     return tasks?.forEach((task) => {
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         this.renderer(subtasks)

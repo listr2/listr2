@@ -1,4 +1,4 @@
-import type { ListrSimpleRendererOptions, ListrSimpleRendererTasks, SimpleRendererOptions, SimpleRendererTaskOptions } from './renderer.interface'
+import type { ListrSimpleRendererOptions, ListrSimpleRendererTask, SimpleRendererOptions, SimpleRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import type { Task } from '@lib'
@@ -22,7 +22,7 @@ export class SimpleRenderer implements ListrRenderer {
   public static rendererTaskOptions: SimpleRendererTaskOptions = {}
 
   private readonly logger: ListrLogger
-  constructor (private readonly tasks: ListrSimpleRendererTasks, private options: ListrSimpleRendererOptions) {
+  constructor (private readonly tasks: ListrSimpleRendererTask[], private options: ListrSimpleRendererOptions) {
     this.options = {
       ...SimpleRenderer.rendererOptions,
       ...options,
@@ -51,7 +51,7 @@ export class SimpleRenderer implements ListrRenderer {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
-  private renderer (tasks: ListrSimpleRendererTasks): void {
+  private renderer (tasks: ListrSimpleRendererTask[]): void {
     tasks.forEach((task) => {
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         this.renderer(subtasks)

@@ -6,7 +6,7 @@ import type { ListrLoggerStyleMap, LoggerRendererOptions, Spinner } from '@utils
 
 export type ListrDefaultRendererOptionsStyle = ListrLoggerStyleMap<ListrDefaultRendererLogLevels>
 
-export type ListrDefaultRendererTasks = Task<any, typeof DefaultRenderer>[]
+export type ListrDefaultRendererTask = Task<any, typeof DefaultRenderer>
 export type ListrDefaultRendererOptions = (typeof DefaultRenderer)['rendererOptions']
 
 export interface DefaultRendererOptions extends RendererPresetTimer, LoggerRendererOptions<ListrDefaultRendererLogLevels> {

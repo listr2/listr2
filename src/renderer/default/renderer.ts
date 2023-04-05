@@ -4,7 +4,7 @@ import { EOL } from 'os'
 import type wrap from 'wrap-ansi'
 
 import { LISTR_DEFAULT_RENDERER_STYLE, ListrDefaultRendererLogLevels } from './renderer.constants'
-import type { DefaultRendererOptions, DefaultRendererTaskOptions, ListrDefaultRendererOptions, ListrDefaultRendererTasks } from './renderer.interface'
+import type { DefaultRendererOptions, DefaultRendererTaskOptions, ListrDefaultRendererOptions, ListrDefaultRendererTask } from './renderer.interface'
 import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrContext, ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { PromptError } from '@interfaces'
@@ -46,7 +46,7 @@ export class DefaultRenderer implements ListrRenderer {
   private truncate: typeof truncate
   private wrap: typeof wrap
 
-  constructor (private readonly tasks: ListrDefaultRendererTasks, private readonly options: ListrDefaultRendererOptions, private readonly events: ListrEventManager) {
+  constructor (private readonly tasks: ListrDefaultRendererTask[], private readonly options: ListrDefaultRendererOptions, private readonly events: ListrEventManager) {
     this.options = {
       ...DefaultRenderer.rendererOptions,
       ...this.options,
@@ -258,7 +258,7 @@ export class DefaultRenderer implements ListrRenderer {
     return parsed.map((str) => indent(str, level * this.options.indentation))
   }
 
-  private renderer (tasks: ListrDefaultRendererTasks, level = 0): string[] {
+  private renderer (tasks: ListrDefaultRendererTask[], level = 0): string[] {
     // eslint-disable-next-line complexity
     return tasks.flatMap((task) => {
       const output: string[] = []
