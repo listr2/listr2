@@ -288,17 +288,17 @@ exports[`test renderer: show subtasks should be able to change concurrency setti
 
 exports[`test renderer: show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This is a subtask.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute.","This is a subtask."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This is an another subtask.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This is an another subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute.","This is an another subtask."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This is an another subtask.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is an another subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute.","This is an another subtask."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This is a subtask.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute.","This is a subtask."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
@@ -307,38 +307,38 @@ exports[`test renderer: show subtasks should be able to change exit on error: 12
 
 exports[`test renderer: show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-stderr 1`] = `
 [
-  "{"event":"MESSAGE","data":{"error":"I have failed [0]"},"task":{"title":"This is a subtask.","hasFinalized":true}}
+  "{"event":"MESSAGE","data":{"error":"I have failed [0]"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is a subtask."]}}
 ",
-  "{"event":"MESSAGE","data":{"error":"I have failed [1]"},"task":{"title":"This is an another subtask.","hasFinalized":true}}
+  "{"event":"MESSAGE","data":{"error":"I have failed [1]"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is an another subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is an another subtask."]}}
 ",
-  "{"event":"MESSAGE","data":{"error":"exit"},"task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"MESSAGE","data":{"error":"exit"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
 
 exports[`test renderer: show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute and not quit on errors.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute and not quit on errors.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This is a subtask.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is a subtask."]}}
 ",
-  "{"event":"STATE","data":"FAILED","task":{"title":"This is a subtask.","hasFinalized":true}}
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is a subtask."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This is an another subtask.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This is an another subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is an another subtask."]}}
 ",
-  "{"event":"STATE","data":"FAILED","task":{"title":"This is an another subtask.","hasFinalized":true}}
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is an another subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is an another subtask."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This is yet an another subtask.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This is yet an another subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is yet an another subtask."]}}
 ",
-  "{"event":"TITLE","data":"I have succeeded.","task":{"title":"I have succeeded.","hasFinalized":false}}
+  "{"event":"TITLE","data":"I have succeeded.","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"I have succeeded.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is yet an another subtask."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"I have succeeded.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"I have succeeded.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is yet an another subtask."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute and not quit on errors.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"This task will execute and not quit on errors.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"FAILED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
@@ -349,17 +349,17 @@ exports[`test renderer: show subtasks should create a set of subtasks: JQYWVb3x1
 
 exports[`test renderer: show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This is a subtask.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute.","This is a subtask."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This is a subtask.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute.","This is a subtask."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This is a subtask.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute.","This is a subtask."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This is a subtask.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute.","This is a subtask."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;

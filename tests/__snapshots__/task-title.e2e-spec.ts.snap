@@ -4,11 +4,11 @@ exports[`task: title should change title on async function 1`] = `[]`;
 
 exports[`task: title should change title on async function 2`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"test","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"test","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["test"]}}
 ",
-  "{"event":"TITLE","data":"changed","task":{"title":"changed","hasFinalized":false}}
+  "{"event":"TITLE","data":"changed","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"changed","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["test"]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"changed","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"changed","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["test"]}}
 ",
 ]
 `;
@@ -19,11 +19,11 @@ exports[`task: title should change title on function 1`] = `[]`;
 
 exports[`task: title should change title on function 2`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"test","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"test","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["test"]}}
 ",
-  "{"event":"TITLE","data":"changed","task":{"title":"changed","hasFinalized":false}}
+  "{"event":"TITLE","data":"changed","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"changed","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["test"]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"changed","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"changed","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["test"]}}
 ",
 ]
 `;

@@ -346,41 +346,41 @@ exports[`test renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973
 
 exports[`test renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\n","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
@@ -391,55 +391,55 @@ exports[`test renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHs
 
 exports[`test renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\n","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me more input.\\u001b[22m \\u001b[2m…\\u001b[22m \\n\\u001b[36m▸\\u001b[39m \\u001b[36m\\u001b[4mtest1\\u001b[24m\\u001b[39m\\n  test2","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me more input.\\u001b[22m \\u001b[2m…\\u001b[22m \\n\\u001b[36m▸\\u001b[39m \\u001b[36m\\u001b[4mtest1\\u001b[24m\\u001b[39m\\n  test2","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2A\\u001b[25G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2A\\u001b[25G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2B\\u001b[2K\\u001b[F\\u001b[2K\\u001b[F\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2B\\u001b[2K\\u001b[F\\u001b[2K\\u001b[F\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me more input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[36mtest1\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me more input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[36mtest1\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[4D","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[4D","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\n","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
@@ -448,30 +448,30 @@ exports[`test renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRB
 
 exports[`test renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
 [
-  "{"event":"MESSAGE","data":{"error":"Cancelled prompt."},"task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"MESSAGE","data":{"error":"Cancelled prompt."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
 
 exports[`test renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[35m✖\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[35m✖\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\n","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"FAILED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
@@ -482,31 +482,31 @@ exports[`test renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKn
 
 exports[`test renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"PROMPT","data":"\\n","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"Another task.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Another task.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Another task."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"Another task.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"Another task.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Another task."]}}
 ",
 ]
 `;
@@ -517,41 +517,41 @@ exports[`test renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYR
 
 exports[`test renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[?25l","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[36m?\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m‣\\u001b[22m \\u001b[46m\\u001b[30m\\u001b[30m \\u001b[39m\\u001b[30m\\u001b[39m\\u001b[49m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[1D","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[1D","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m \\u001b[32mtest\\u001b[39m","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\n","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"PROMPT","data":"\\n","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;

@@ -142,15 +142,15 @@ exports[`test renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztC
 
 exports[`test renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will never execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will never execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will never execute."]}}
 ",
-  "{"event":"MESSAGE","data":{"skip":"This task will never execute."},"task":{"title":"This task will never execute.","hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"skip":"This task will never execute."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will never execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will never execute."]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"title":"This task will never execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will never execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will never execute."]}}
 ",
 ]
 `;
@@ -161,11 +161,11 @@ exports[`test renderer: task-skip should skip from internal function: ws7S3nDQgI
 
 exports[`test renderer: task-skip should skip from internal function: ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"MESSAGE","data":{"skip":"I am skipping this tasks for reasons."},"task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"MESSAGE","data":{"skip":"I am skipping this tasks for reasons."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
@@ -176,15 +176,15 @@ exports[`test renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b
 
 exports[`test renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"This task will execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"title":"This task will never execute.","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will never execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will never execute."]}}
 ",
-  "{"event":"MESSAGE","data":{"skip":"I will be skipped!"},"task":{"title":"This task will never execute.","hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"skip":"I will be skipped!"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will never execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will never execute."]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"title":"This task will never execute.","hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will never execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will never execute."]}}
 ",
 ]
 `;

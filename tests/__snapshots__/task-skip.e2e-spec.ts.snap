@@ -6,11 +6,11 @@ exports[`skip a task should skip the task from async skip method returning eithe
 
 exports[`skip a task should skip the task from async skip method returning either boolean or string: dKEmraxPfJH3cEj4bHeTsieEALbqcFIR-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"MESSAGE","data":{"skip":"Skipped task without a title."},"task":{"hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"skip":"Skipped task without a title."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
 ]
 `;
@@ -21,11 +21,11 @@ exports[`skip a task should skip the task from internal call: xbUV7hvMZiVL4dEYDy
 
 exports[`skip a task should skip the task from internal call: xbUV7hvMZiVL4dEYDyiXKFhpTNo9ASiA-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasFinalized":true}}
+  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
 ]
 `;
@@ -36,11 +36,11 @@ exports[`skip a task should skip the task from skip method: uOy7d3bwwmW4LXWPY3HD
 
 exports[`skip a task should skip the task from skip method: uOy7d3bwwmW4LXWPY3HDh4k25LDwa5RZ-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasFinalized":false}}
+  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
 ]
 `;
@@ -51,11 +51,11 @@ exports[`skip a task skip to enable by context will not work properly in concurr
 
 exports[`skip a task skip to enable by context will not work properly in concurrent: WKhUc2IR0U5Hc7hKFuvFUq36ovxjyPy6-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasFinalized":true}}
+  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
 ]
 `;
@@ -66,17 +66,17 @@ exports[`skip a task skip to enable by context will work properly in serial: CR5
 
 exports[`skip a task skip to enable by context will work properly in serial: CR5tEdrMVapfqwMjIa4nP1CgEYZu3tfc-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"STATE","data":"SKIPPED","task":{"hasFinalized":true}}
+  "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasFinalized":true}}
+  "{"event":"MESSAGE","data":{"skip":"skipped"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"STATE","data":"STARTED","task":{"hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"OUTPUT","data":"enabled","task":{"hasFinalized":false}}
+  "{"event":"OUTPUT","data":"enabled","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
 ",
 ]
 `;

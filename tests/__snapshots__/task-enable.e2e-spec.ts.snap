@@ -6,9 +6,9 @@ exports[`enable with context should be disabled depending on the context with an
 
 exports[`enable with context should be disabled depending on the context with an context variable: jbyappoYDm16wG6ARf5qOnS8CgSjhd7S-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"pre-task","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"pre-task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["pre-task"]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"pre-task","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"pre-task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["pre-task"]}}
 ",
 ]
 `;
@@ -37,9 +37,9 @@ exports[`enable with context should be enabled with a function returning boolean
 
 exports[`enable with context should be enabled with a function returning boolean: AebhVo1EK6MRCWEubovgNXHDo093g8YV-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"enabled","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"enabled","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["enabled"]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"enabled","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"enabled","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["enabled"]}}
 ",
 ]
 `;
@@ -50,9 +50,9 @@ exports[`enable with context should be enabled with async function returning boo
 
 exports[`enable with context should be enabled with async function returning boolean: ve1QT0lP54yGe3x0e6yPYfb2SVEDulCE-stdout 1`] = `
 [
-  "{"event":"STATE","data":"STARTED","task":{"title":"enabled","hasFinalized":false}}
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"enabled","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["enabled"]}}
 ",
-  "{"event":"STATE","data":"COMPLETED","task":{"title":"enabled","hasFinalized":true}}
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"enabled","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["enabled"]}}
 ",
 ]
 `;
