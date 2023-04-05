@@ -4,8 +4,7 @@ import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
 
 export type ListrSimpleRendererTask = Task<any, typeof SimpleRenderer>
-export type ListrSimpleRendererOptions = (typeof SimpleRenderer)['rendererOptions']
 
-export interface SimpleRendererOptions extends RendererPresetTimer, RendererPresetTimestamp, LoggerRendererOptions {}
+export interface ListrSimpleRendererOptions extends RendererPresetTimer, RendererPresetTimestamp, LoggerRendererOptions {}
 
-export interface SimpleRendererTaskOptions extends RendererPresetTimer {}
+export interface ListrSimpleRendererTaskOptions extends RendererPresetTimer {}

@@ -1,7 +1,6 @@
-import type { ListrVerboseRendererOptions, ListrVerboseRendererTask, VerboseRendererOptions, VerboseRendererTaskOptions } from './renderer.interface'
+import type { ListrVerboseRendererOptions, ListrVerboseRendererTask, ListrVerboseRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
-import type { Task } from '@lib'
 import { parseTimer } from '@presets'
 import { ListrLogger, LogLevels, cleanseAnsi } from '@utils'
 
@@ -9,12 +8,12 @@ export class VerboseRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
   /** renderer options for the verbose renderer */
-  public static rendererOptions: VerboseRendererOptions = {
+  public static rendererOptions: ListrVerboseRendererOptions = {
     logTitleChange: false,
     logger: ListrLogger
   }
   /** per task options for the verbose renderer */
-  public static rendererTaskOptions: VerboseRendererTaskOptions
+  public static rendererTaskOptions: ListrVerboseRendererTaskOptions
 
   private logger: ListrLogger
 
@@ -42,7 +41,7 @@ export class VerboseRenderer implements ListrRenderer {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   public end (): void {}
 
-  public getSelfOrParentOption<K extends keyof ListrVerboseRendererOptions>(task: Task<any, typeof VerboseRenderer>, key: K): ListrVerboseRendererOptions[K] {
+  public getSelfOrParentOption<K extends keyof ListrVerboseRendererOptions>(task: ListrVerboseRendererTask, key: K): ListrVerboseRendererOptions[K] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
@@ -82,7 +81,7 @@ export class VerboseRenderer implements ListrRenderer {
       })
 
       task.on(ListrTaskEventType.PROMPT, (prompt) => {
-        const cleansed = cleanseAnsi(prompt).trim()
+        const cleansed = cleanseAnsi(prompt)
 
         if (cleansed) {
           this.logger.log(LogLevels.PROMPT, cleansed)

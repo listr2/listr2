@@ -7,9 +7,8 @@ import type { ListrLoggerStyleMap, LoggerRendererOptions, Spinner } from '@utils
 export type ListrDefaultRendererOptionsStyle = ListrLoggerStyleMap<ListrDefaultRendererLogLevels>
 
 export type ListrDefaultRendererTask = Task<any, typeof DefaultRenderer>
-export type ListrDefaultRendererOptions = (typeof DefaultRenderer)['rendererOptions']
 
-export interface DefaultRendererOptions extends RendererPresetTimer, LoggerRendererOptions<ListrDefaultRendererLogLevels> {
+export interface ListrDefaultRendererOptions extends RendererPresetTimer, LoggerRendererOptions<ListrDefaultRendererLogLevels> {
   /**
    * indentation per level of subtask
    *
@@ -106,7 +105,7 @@ export interface DefaultRendererOptions extends RendererPresetTimer, LoggerRende
   spinner?: Spinner
 }
 
-export interface DefaultRendererTaskOptions extends RendererPresetTimer {
+export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
   /**
    * write task output to the bottom bar instead of the gap under the task title itself.
    * useful for a stream of data.

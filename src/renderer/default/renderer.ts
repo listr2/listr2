@@ -4,11 +4,11 @@ import { EOL } from 'os'
 import type wrap from 'wrap-ansi'
 
 import { LISTR_DEFAULT_RENDERER_STYLE, ListrDefaultRendererLogLevels } from './renderer.constants'
-import type { DefaultRendererOptions, DefaultRendererTaskOptions, ListrDefaultRendererOptions, ListrDefaultRendererTask } from './renderer.interface'
+import type { ListrDefaultRendererOptions, ListrDefaultRendererTask, ListrDefaultRendererTaskOptions } from './renderer.interface'
 import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrContext, ListrRenderer, ListrTaskEventMap } from '@interfaces'
+import type { ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { PromptError } from '@interfaces'
-import type { ListrEventManager, Task } from '@lib'
+import type { ListrEventManager } from '@lib'
 import { PRESET_TIMER } from '@presets'
 import { ListrLogger, LogLevels, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
 
@@ -17,7 +17,7 @@ export class DefaultRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = false
   /** renderer options for the defauult renderer */
-  public static rendererOptions: DefaultRendererOptions = {
+  public static rendererOptions: ListrDefaultRendererOptions = {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
@@ -35,7 +35,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   /** per task options for the default renderer */
-  public static rendererTaskOptions: DefaultRendererTaskOptions
+  public static rendererTaskOptions: ListrDefaultRendererTaskOptions
 
   private bottom: Map<string, ProcessOutputBuffer> = new Map()
   private prompt: string
@@ -71,21 +71,21 @@ export class DefaultRenderer implements ListrRenderer {
     this.spinner = this.options.spinner ?? new Spinner()
   }
 
-  public getTaskOptions (task: Task<any, typeof DefaultRenderer>): (typeof DefaultRenderer)['rendererTaskOptions'] {
+  public getTaskOptions (task: ListrDefaultRendererTask): ListrDefaultRendererTaskOptions {
     return { ...DefaultRenderer.rendererTaskOptions, ...task.rendererTaskOptions }
   }
 
-  public isBottomBar (task: Task<any, typeof DefaultRenderer>): boolean {
+  public isBottomBar (task: ListrDefaultRendererTask): boolean {
     const bottomBar = this.getTaskOptions(task).bottomBar
 
     return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false || !task.hasTitle()
   }
 
-  public hasPersistentOutput (task: Task<any, typeof DefaultRenderer>): boolean {
+  public hasPersistentOutput (task: ListrDefaultRendererTask): boolean {
     return this.getTaskOptions(task).persistentOutput === true
   }
 
-  public getSelfOrParentOption<K extends keyof ListrDefaultRendererOptions>(task: Task<any, typeof DefaultRenderer>, key: K): ListrDefaultRendererOptions[K] {
+  public getSelfOrParentOption<K extends keyof ListrDefaultRendererOptions>(task: ListrDefaultRendererTask, key: K): ListrDefaultRendererOptions[K] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 
@@ -169,7 +169,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  protected style (task: Task<ListrContext, typeof DefaultRenderer>, output = false): string {
+  protected style (task: ListrDefaultRendererTask, output = false): string {
     if (task.isSkipped()) {
       if (output || this.getSelfOrParentOption(task, 'collapseSkips')) {
         return this.logger.icon(ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE)
@@ -272,7 +272,7 @@ export class DefaultRenderer implements ListrRenderer {
           throw new PromptError('Only one prompt can be active at the given time, please reevaluate your task design.')
         } else if (!this.activePrompt) {
           task.on(ListrTaskEventType.PROMPT, (prompt: ListrTaskEventMap[ListrTaskEventType.PROMPT]): void => {
-            const cleansed = cleanseAnsi(prompt).trim()
+            const cleansed = cleanseAnsi(prompt)
 
             if (cleansed) {
               this.prompt = cleansed
@@ -463,7 +463,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private dump (
-    task: Task<ListrContext, typeof DefaultRenderer>,
+    task: ListrDefaultRendererTask,
     level: number,
     source: LogLevels.OUTPUT | LogLevels.SKIPPED | LogLevels.FAILED = LogLevels.OUTPUT,
     data?: string | boolean

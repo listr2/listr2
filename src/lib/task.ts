@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import { Readable } from 'stream'
 
 import { ListrTaskEventManager } from './listr-task-event-manager'
@@ -16,14 +17,14 @@ import type {
 } from '@interfaces'
 import { ListrErrorTypes, PromptError } from '@interfaces'
 import { Listr } from '@root'
-import { assertFunctionOrSelf, cleanseAnsi, delay, generateUUID, getRendererClass, isObservable } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable } from '@utils'
 
 /**
  * Create a task from the given set of variables and make it runnable.
  */
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskEventManager {
   /** Unique id per task, randomly generated in the uuid v4 format */
-  public id: string = generateUUID()
+  public id: string = randomUUID()
   /** The current state of the task. */
   public state: ListrTaskState = ListrTaskState.WAITING
   /** Extend current task with multiple subtasks. */
@@ -92,6 +93,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
   set promptOutput$ (data: string) {
     this.emit(ListrTaskEventType.PROMPT, data)
 
+    // this acts wierd without cleansing the output!, have no idea why
+    // it produces double output when a prompt is canceled
     if (cleanseAnsi(data)) {
       this.emitShouldRefreshRender()
     }

@@ -4,9 +4,8 @@ import type { RendererPresetTimer, RendererPresetTimestamp } from '@presets'
 import type { LoggerRendererOptions } from '@utils'
 
 export type ListrVerboseRendererTask = Task<any, typeof VerboseRenderer>
-export type ListrVerboseRendererOptions = (typeof VerboseRenderer)['rendererOptions']
 
-export interface VerboseRendererOptions extends RendererPresetTimer, RendererPresetTimestamp, LoggerRendererOptions {
+export interface ListrVerboseRendererOptions extends RendererPresetTimer, RendererPresetTimestamp, LoggerRendererOptions {
   /**
    * log title changes
    * @default true
@@ -14,4 +13,4 @@ export interface VerboseRendererOptions extends RendererPresetTimer, RendererPre
   logTitleChange?: boolean
 }
 
-export interface VerboseRendererTaskOptions extends RendererPresetTimer {}
+export interface ListrVerboseRendererTaskOptions extends RendererPresetTimer {}

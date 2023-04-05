@@ -1,7 +1,6 @@
-import type { ListrSimpleRendererOptions, ListrSimpleRendererTask, SimpleRendererOptions, SimpleRendererTaskOptions } from './renderer.interface'
+import type { ListrSimpleRendererOptions, ListrSimpleRendererTask, ListrSimpleRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
-import type { Task } from '@lib'
 import { parseTimer } from '@presets'
 import { ListrLogger, LogLevels, color } from '@utils'
 
@@ -14,12 +13,12 @@ export class SimpleRenderer implements ListrRenderer {
   // Designate this renderer as tty or nonTTY
   public static nonTTY = true
   // designate your renderer options that will be showed inside the `ListrOptions` as rendererOptions
-  public static rendererOptions: SimpleRendererOptions = {
+  public static rendererOptions: ListrSimpleRendererOptions = {
     logger: ListrLogger
   }
 
   // designate your custom internal task-based options that will show as `options` in the task itself
-  public static rendererTaskOptions: SimpleRendererTaskOptions = {}
+  public static rendererTaskOptions: ListrSimpleRendererTaskOptions = {}
 
   private readonly logger: ListrLogger
   constructor (private readonly tasks: ListrSimpleRendererTask[], private options: ListrSimpleRendererOptions) {
@@ -47,7 +46,7 @@ export class SimpleRenderer implements ListrRenderer {
     this.renderer(this.tasks)
   }
 
-  public getSelfOrParentOption<K extends keyof ListrSimpleRendererOptions>(task: Task<any, typeof SimpleRenderer>, key: K): ListrSimpleRendererOptions[K] {
+  public getSelfOrParentOption<K extends keyof ListrSimpleRendererOptions>(task: ListrSimpleRendererTask, key: K): ListrSimpleRendererOptions[K] {
     return task?.rendererOptions?.[key] ?? this.options?.[key]
   }
 

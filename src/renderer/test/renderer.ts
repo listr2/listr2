@@ -1,5 +1,5 @@
-import type { ListrTestRendererOptions, ListrTestRendererTask, TestRendererOptions } from './renderer.interface'
-import { TestRendererSerializer } from './renderer.interface'
+import type { ListrTestRendererOptions, ListrTestRendererTask, ListrTestRendererTaskOptions } from './renderer.interface'
+import { TestRendererSerializer } from './serializer'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer, ListrTaskMessage } from '@interfaces'
 import { ListrLogger } from '@utils'
@@ -8,7 +8,7 @@ export class TestRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
   /** renderer options for the verbose renderer */
-  public static rendererOptions: TestRendererOptions = {
+  public static rendererOptions: ListrTestRendererOptions = {
     subtasks: true,
     state: Object.values(ListrTaskState),
     output: true,
@@ -39,7 +39,7 @@ export class TestRenderer implements ListrRenderer {
     logger: ListrLogger
   }
   /** per task options for the verbose renderer */
-  public static rendererTaskOptions: never
+  public static rendererTaskOptions: ListrTestRendererTaskOptions
 
   private readonly logger: ListrLogger
   private serializer: TestRendererSerializer
