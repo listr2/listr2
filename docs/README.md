@@ -21,6 +21,10 @@ showcases:
   - name: lint-staged
     href: test
 
+head:
+  - - script
+    - src: https://buttons.github.io/buttons.js
+
 copyright: false
 ---
 
@@ -43,8 +47,6 @@ This is the expanded and re-written Typescript version of the beautiful plugin b
 :::
 
 <script setup>
-import 'https://buttons.github.io/buttons.js'
-
 let showcases = [
   "lint-staged",
   "cypress",

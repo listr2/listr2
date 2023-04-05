@@ -30,8 +30,8 @@ export default defineUserConfig({
       sort: [ 'source-order' ]
     }),
     docsearchPlugin({
-      appId: process.env.ALGOLIA_APP_ID as string,
-      apiKey: process.env.ALGOLIA_API_KEY as string,
+      appId: '4G64M4W5QP',
+      apiKey: '4cdadab526edbb306f6fb0d195f634e6',
       indexName: 'listr2'
     })
   ],

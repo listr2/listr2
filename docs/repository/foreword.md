@@ -29,10 +29,4 @@ Even though I know nobody even cares, and this library is mostly hidden in tools
 
 [![github sponsors](https://img.shields.io/github/sponsors/cenk1cenk2?label=github%20sponsors&style=flat-square&logo=github)](https://github.com/sponsors/cenk1cenk2) [![opencollective](https://img.shields.io/opencollective/sponsors/listr2?label=open%20collective&logo=opencollective)](https://opencollective.com/listr2)
 
-<a class="github-button" href="https://github.com/sponsors/cenk1cenk2" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @listr2 on GitHub">Sponsor</a>
-
 :::
-
-<script setup>
-import 'https://buttons.github.io/buttons.js'
-</script>
