@@ -1,3 +1,18 @@
+# [6.0.0-beta.17](https://github.com/listr2/listr2/compare/v6.0.0-beta.16...v6.0.0-beta.17) (2023-04-06)
+
+### Bug Fixes
+
+- update logger to be more flexible ([3b76139](https://github.com/listr2/listr2/commit/3b76139bfc59e571c679b1f13160c5a9747ac419))
+- update option name ([9ddfea3](https://github.com/listr2/listr2/commit/9ddfea3ebb483b729c3a96de9efb2d9df61aae84))
+
+### Performance Improvements
+
+- rename field ([aa831bd](https://github.com/listr2/listr2/commit/aa831bd59eda51573ae578bd0d24264a86999c15))
+
+### BREAKING CHANGES
+
+- renames default renderer options `collapse` to `collapseSubtasks`
+
 # [6.0.0-beta.16](https://github.com/listr2/listr2/compare/v6.0.0-beta.15...v6.0.0-beta.16) (2023-04-06)
 
 ### Bug Fixes
