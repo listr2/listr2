@@ -17,7 +17,7 @@ export interface ListrLoggerOptions<Levels extends string, T = any> extends Proc
   /**
    * Style map for coloring and icons.
    */
-  style?: ListrLoggerStyleMap<Levels>
+  style?: ListrLoggerStyleMap<Levels | string>
   /**
    * Pass custom options to user created logger on different environments.
    *
@@ -25,7 +25,7 @@ export interface ListrLoggerOptions<Levels extends string, T = any> extends Proc
    */
   user?: T
 
-  toStderr?: Levels[]
+  toStderr?: Levels | string[]
 }
 
 export interface ListrLoggerStyleMap<Levels extends string> {
@@ -50,6 +50,6 @@ export interface LoggerFieldFn<Args extends any[] = any[]> {
 export type LoggerField<Args extends any[] = any[]> = LoggerFieldFn<Args> | string
 
 export interface LoggerRendererOptions<Levels extends string = ListrLogLevels> {
-  logger?: typeof ListrLogger
+  logger?: typeof ListrLogger<Levels>
   loggerOptions?: ListrLoggerOptions<Levels>
 }
