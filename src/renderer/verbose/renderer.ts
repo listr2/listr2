@@ -2,7 +2,7 @@ import type { ListrVerboseRendererOptions, ListrVerboseRendererTask, ListrVerbos
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import { parseTimer } from '@presets'
-import { ListrLogger, LogLevels, cleanseAnsi } from '@utils'
+import { ListrLogger, ListrLogLevels, cleanseAnsi } from '@utils'
 
 export class VerboseRenderer implements ListrRenderer {
   /** designates whether this renderer can output to a non-tty console */
@@ -58,12 +58,12 @@ export class VerboseRenderer implements ListrRenderer {
         }
 
         if (state === ListrTaskState.STARTED) {
-          this.logger.log(LogLevels.STARTED, task.title)
+          this.logger.log(ListrLogLevels.STARTED, task.title)
         } else if (state === ListrTaskState.COMPLETED) {
           const timer = this.getSelfOrParentOption(task, 'timer')
 
           this.logger.log(
-            LogLevels.COMPLETED,
+            ListrLogLevels.COMPLETED,
             task.title,
             timer && {
               suffix: {
@@ -77,37 +77,37 @@ export class VerboseRenderer implements ListrRenderer {
       })
 
       task.on(ListrTaskEventType.OUTPUT, (data) => {
-        this.logger.log(LogLevels.OUTPUT, data)
+        this.logger.log(ListrLogLevels.OUTPUT, data)
       })
 
       task.on(ListrTaskEventType.PROMPT, (prompt) => {
         const cleansed = cleanseAnsi(prompt)
 
         if (cleansed) {
-          this.logger.log(LogLevels.PROMPT, cleansed)
+          this.logger.log(ListrLogLevels.PROMPT, cleansed)
         }
       })
 
       if (this.options?.logTitleChange !== false) {
         task.on(ListrTaskEventType.TITLE, (title) => {
-          this.logger.log(LogLevels.TITLE, title)
+          this.logger.log(ListrLogLevels.TITLE, title)
         })
       }
 
       task.on(ListrTaskEventType.MESSAGE, (message) => {
         if (message?.error) {
           // error message
-          this.logger.log(LogLevels.FAILED, message.error)
+          this.logger.log(ListrLogLevels.FAILED, message.error)
         } else if (message?.skip) {
           // skip message
-          this.logger.log(LogLevels.SKIPPED, message.skip)
+          this.logger.log(ListrLogLevels.SKIPPED, message.skip)
         } else if (message?.rollback) {
           // rollback message
-          this.logger.log(LogLevels.ROLLBACK, message.rollback)
+          this.logger.log(ListrLogLevels.ROLLBACK, message.rollback)
         } else if (message?.retry) {
-          this.logger.log(LogLevels.RETRY, task.title, { suffix: message.retry.count.toString() })
+          this.logger.log(ListrLogLevels.RETRY, task.title, { suffix: message.retry.count.toString() })
         } else if (message?.paused) {
-          this.logger.log(LogLevels.PAUSED, task.title, { suffix: parseTimer(message.paused - Date.now()) })
+          this.logger.log(ListrLogLevels.PAUSED, task.title, { suffix: parseTimer(message.paused - Date.now()) })
         }
       })
     })

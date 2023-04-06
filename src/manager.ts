@@ -32,10 +32,12 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
   public async runAll<InjectCtx = Ctx>(options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>): Promise<InjectCtx> {
     options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
-    const ctx = await this.run<InjectCtx>(this.tasks, options)
+    const tasks = [ ...this.tasks ]
 
     // clear out queues
     this.tasks = []
+
+    const ctx = await this.run<InjectCtx>(tasks, options)
 
     return ctx
   }
@@ -54,22 +56,18 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
   ): ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>> {
     options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
-    let newTask: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>
-
     // type function or directly
     if (typeof tasks === 'function') {
-      newTask = {
+      return {
         ...taskOptions,
         task: (ctx): Listr<InjectCtx, Renderer, FallbackRenderer> => this.newListr<InjectCtx, Renderer, FallbackRenderer>(tasks(ctx), options)
       }
-    } else {
-      newTask = {
-        ...taskOptions,
-        task: (): Listr<InjectCtx, Renderer, FallbackRenderer> => this.newListr<InjectCtx, Renderer, FallbackRenderer>(tasks, options)
-      }
     }
 
-    return newTask
+    return {
+      ...taskOptions,
+      task: (): Listr<InjectCtx, Renderer, FallbackRenderer> => this.newListr<InjectCtx, Renderer, FallbackRenderer>(tasks, options)
+    }
   }
 
   public async run<InjectCtx = Ctx>(
@@ -84,7 +82,7 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
     const ctx = await task.run()
 
     // reset error queue
-    this.errors = task.errors
+    this.errors.push(...task.errors)
 
     return ctx
   }

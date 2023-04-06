@@ -2,7 +2,7 @@ import type { ListrLoggerStyleMap } from './logger.interface'
 import { color, figures } from '@utils'
 
 /** Default loglevels for the logger */
-export enum LogLevels {
+export enum ListrLogLevels {
   STARTED = 'STARTED',
   COMPLETED = 'COMPLETED',
   FAILED = 'FAILED',
@@ -15,25 +15,25 @@ export enum LogLevels {
   PAUSED = 'PAUSED'
 }
 
-export const LISTR_LOGGER_STYLE: ListrLoggerStyleMap<LogLevels> = {
+export const LISTR_LOGGER_STYLE: ListrLoggerStyleMap<ListrLogLevels> = {
   icon: {
-    [LogLevels.STARTED]: figures.pointer,
-    [LogLevels.FAILED]: figures.cross,
-    [LogLevels.SKIPPED]: figures.arrowDown,
-    [LogLevels.COMPLETED]: figures.tick,
-    [LogLevels.OUTPUT]: figures.pointerSmall,
-    [LogLevels.TITLE]: figures.arrowRight,
-    [LogLevels.RETRY]: figures.warning,
-    [LogLevels.ROLLBACK]: figures.arrowLeft,
-    [LogLevels.PAUSED]: figures.squareSmallFilled
+    [ListrLogLevels.STARTED]: figures.pointer,
+    [ListrLogLevels.FAILED]: figures.cross,
+    [ListrLogLevels.SKIPPED]: figures.arrowDown,
+    [ListrLogLevels.COMPLETED]: figures.tick,
+    [ListrLogLevels.OUTPUT]: figures.pointerSmall,
+    [ListrLogLevels.TITLE]: figures.arrowRight,
+    [ListrLogLevels.RETRY]: figures.warning,
+    [ListrLogLevels.ROLLBACK]: figures.arrowLeft,
+    [ListrLogLevels.PAUSED]: figures.squareSmallFilled
   },
   color: {
-    [LogLevels.STARTED]: color.yellow,
-    [LogLevels.FAILED]: color.red,
-    [LogLevels.SKIPPED]: color.yellow,
-    [LogLevels.COMPLETED]: color.green,
-    [LogLevels.RETRY]: color.yellowBright,
-    [LogLevels.ROLLBACK]: color.redBright,
-    [LogLevels.PAUSED]: color.yellowBright
+    [ListrLogLevels.STARTED]: color.yellow,
+    [ListrLogLevels.FAILED]: color.red,
+    [ListrLogLevels.SKIPPED]: color.yellow,
+    [ListrLogLevels.COMPLETED]: color.green,
+    [ListrLogLevels.RETRY]: color.yellowBright,
+    [ListrLogLevels.ROLLBACK]: color.redBright,
+    [ListrLogLevels.PAUSED]: color.yellowBright
   }
 }

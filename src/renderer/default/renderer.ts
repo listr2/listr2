@@ -10,7 +10,7 @@ import type { ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { PromptError } from '@interfaces'
 import type { ListrEventManager } from '@lib'
 import { PRESET_TIMER } from '@presets'
-import { ListrLogger, LogLevels, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
+import { ListrLogger, ListrLogLevels, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
 
 /** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
@@ -309,7 +309,7 @@ export class DefaultRenderer implements ListrRenderer {
             output.push(
               ...this.format(
                 this.logger.suffix(task.message.skip && this.getSelfOrParentOption(task, 'showSkipMessage') ? task.message.skip : task.title, {
-                  field: LogLevels.SKIPPED,
+                  field: ListrLogLevels.SKIPPED,
                   condition: this.getSelfOrParentOption(task, 'suffixSkips'),
                   format: () => color.dim
                 }),
@@ -321,7 +321,7 @@ export class DefaultRenderer implements ListrRenderer {
             output.push(
               ...this.format(
                 this.logger.suffix(task.title, {
-                  field: `${LogLevels.RETRY}:${task.message.retry.count}`,
+                  field: `${ListrLogLevels.RETRY}:${task.message.retry.count}`,
                   format: () => color.yellow,
                   condition: this.getSelfOrParentOption(task, 'suffixRetries')
                 }),
@@ -372,14 +372,14 @@ export class DefaultRenderer implements ListrRenderer {
           (this.getSelfOrParentOption(task, 'showErrorMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
         ) {
           // show skip data if collapsing is not defined
-          output.push(...this.dump(task, level, LogLevels.FAILED))
+          output.push(...this.dump(task, level, ListrLogLevels.FAILED))
         } else if (
           task.isSkipped() &&
           this.getSelfOrParentOption(task, 'collapseSkips') === false &&
           (this.getSelfOrParentOption(task, 'showSkipMessage') || !this.getSelfOrParentOption(task, 'showSubtasks'))
         ) {
           // show skip data if collapsing is not defined
-          output.push(...this.dump(task, level, LogLevels.SKIPPED))
+          output.push(...this.dump(task, level, ListrLogLevels.SKIPPED))
         }
       }
 
@@ -393,7 +393,7 @@ export class DefaultRenderer implements ListrRenderer {
             this.bottom.set(task.id, new ProcessOutputBuffer({ limit: typeof bottomBar === 'boolean' ? 1 : bottomBar }))
 
             task.on(ListrTaskEventType.OUTPUT, (output) => {
-              const data = this.dump(task, -1, LogLevels.OUTPUT, output)
+              const data = this.dump(task, -1, ListrLogLevels.OUTPUT, output)
 
               this.bottom.get(task.id).write(data.join(EOL))
             })
@@ -465,22 +465,22 @@ export class DefaultRenderer implements ListrRenderer {
   private dump (
     task: ListrDefaultRendererTask,
     level: number,
-    source: LogLevels.OUTPUT | LogLevels.SKIPPED | LogLevels.FAILED = LogLevels.OUTPUT,
+    source: ListrLogLevels.OUTPUT | ListrLogLevels.SKIPPED | ListrLogLevels.FAILED = ListrLogLevels.OUTPUT,
     data?: string | boolean
   ): string[] {
     if (!data) {
       switch (source) {
-      case LogLevels.OUTPUT:
+      case ListrLogLevels.OUTPUT:
         data = task.output
 
         break
 
-      case LogLevels.SKIPPED:
+      case ListrLogLevels.SKIPPED:
         data = task.message.skip
 
         break
 
-      case LogLevels.FAILED:
+      case ListrLogLevels.FAILED:
         data = task.message.error
 
         break
@@ -488,11 +488,11 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     // dont return anything on some occasions
-    if (task.hasTitle() && source === LogLevels.FAILED && data === task.title || typeof data !== 'string') {
+    if (task.hasTitle() && source === ListrLogLevels.FAILED && data === task.title || typeof data !== 'string') {
       return []
     }
 
-    if ([ LogLevels.OUTPUT ].includes(source)) {
+    if ([ ListrLogLevels.OUTPUT ].includes(source)) {
       data = cleanseAnsi(data)
     }
 

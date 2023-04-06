@@ -1,16 +1,16 @@
 import { EOL } from 'os'
 
-import { LogLevels, LISTR_LOGGER_STYLE } from './logger.constants'
+import { ListrLogLevels, LISTR_LOGGER_STYLE } from './logger.constants'
 import type { ListrLoggerOptions, LoggerField, LoggerFieldOptions, LoggerFormat } from './logger.interface'
 import { ProcessOutput, splat } from '@utils'
 
 /**
  * A internal logger for using in the verbose renderer mostly.
  */
-export class ListrLogger<Levels extends string = LogLevels> {
+export class ListrLogger<Levels extends string = ListrLogLevels> {
   public readonly process: ProcessOutput
 
-  constructor (private readonly options?: ListrLoggerOptions<Levels>) {
+  constructor (protected readonly options?: ListrLoggerOptions<Levels>) {
     this.options = {
       useIcons: true,
       ...options,
@@ -24,20 +24,22 @@ export class ListrLogger<Levels extends string = LogLevels> {
           ...this.options?.style?.color ?? {}
         }
       },
-      toStderr: [ LogLevels.FAILED, LogLevels.RETRY, LogLevels.ROLLBACK ] as Levels[]
+      toStderr: [ ListrLogLevels.FAILED, ListrLogLevels.RETRY, ListrLogLevels.ROLLBACK ] as Levels[]
     }
 
     this.process = this.options.processOutput ?? new ProcessOutput()
   }
 
   public log (level: Levels, message: string | any[], options?: LoggerFieldOptions): void {
+    const output = this.format(level, message, options)
+
     if (this.options.toStderr.includes(level)) {
-      this.process.toStderr(this.format(level, message, options))
+      this.process.toStderr(output)
 
       return
     }
 
-    this.process.toStdout(this.format(level, message, options))
+    this.process.toStdout(output)
   }
 
   public toStdout (message: string | any[], options?: LoggerFieldOptions, eol = true): void {

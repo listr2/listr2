@@ -2,7 +2,7 @@ import type { ListrSimpleRendererOptions, ListrSimpleRendererTask, ListrSimpleRe
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import { parseTimer } from '@presets'
-import { ListrLogger, LogLevels, color } from '@utils'
+import { ListrLogger, ListrLogLevels, color } from '@utils'
 
 /**
  * This is the default renderer which is neither verbose or updating.
@@ -62,12 +62,12 @@ export class SimpleRenderer implements ListrRenderer {
         }
 
         if (state === ListrTaskState.STARTED) {
-          this.logger.log(LogLevels.STARTED, task.title)
+          this.logger.log(ListrLogLevels.STARTED, task.title)
         } else if (state === ListrTaskState.COMPLETED) {
           const timer = this.getSelfOrParentOption(task, 'timer')
 
           this.logger.log(
-            LogLevels.COMPLETED,
+            ListrLogLevels.COMPLETED,
             task.title,
             timer && {
               suffix: {
@@ -91,43 +91,43 @@ export class SimpleRenderer implements ListrRenderer {
       })
 
       task.on(ListrTaskEventType.OUTPUT, (output) => {
-        this.logger.log(LogLevels.OUTPUT, output)
+        this.logger.log(ListrLogLevels.OUTPUT, output)
       })
 
       task.on(ListrTaskEventType.MESSAGE, (message) => {
         if (message.error) {
           // error message
-          this.logger.log(LogLevels.FAILED, task.title, {
+          this.logger.log(ListrLogLevels.FAILED, task.title, {
             suffix: {
-              field: `${LogLevels.FAILED}: ${message.error}`,
+              field: `${ListrLogLevels.FAILED}: ${message.error}`,
               format: () => color.red
             }
           })
         } else if (message.skip) {
-          this.logger.log(LogLevels.SKIPPED, task.title, {
+          this.logger.log(ListrLogLevels.SKIPPED, task.title, {
             suffix: {
-              field: `${LogLevels.SKIPPED}: ${message.skip}`,
+              field: `${ListrLogLevels.SKIPPED}: ${message.skip}`,
               format: () => color.yellow
             }
           })
         } else if (message.rollback) {
-          this.logger.log(LogLevels.ROLLBACK, task.title, {
+          this.logger.log(ListrLogLevels.ROLLBACK, task.title, {
             suffix: {
-              field: `${LogLevels.ROLLBACK}: ${message.rollback}`,
+              field: `${ListrLogLevels.ROLLBACK}: ${message.rollback}`,
               format: () => color.red
             }
           })
         } else if (message.retry) {
-          this.logger.log(LogLevels.RETRY, task.title, {
+          this.logger.log(ListrLogLevels.RETRY, task.title, {
             suffix: {
-              field: `${LogLevels.RETRY}:${message.retry.count}`,
+              field: `${ListrLogLevels.RETRY}:${message.retry.count}`,
               format: () => color.red
             }
           })
         } else if (message.paused) {
-          this.logger.log(LogLevels.PAUSED, task.title, {
+          this.logger.log(ListrLogLevels.PAUSED, task.title, {
             suffix: {
-              field: `${LogLevels.PAUSED}: ${parseTimer(message.paused - Date.now())}`,
+              field: `${ListrLogLevels.PAUSED}: ${parseTimer(message.paused - Date.now())}`,
               format: () => color.dim
             }
           })
