@@ -120,7 +120,7 @@ exports[`default renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbt
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G↓ This task will execute.
 ◼ Another task.
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will execute.

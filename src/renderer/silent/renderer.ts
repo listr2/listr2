@@ -3,11 +3,8 @@ import type { ListrSilentRendererOptions, ListrSilentRendererTask, ListrSilentRe
 import type { ListrRenderer } from '@interfaces'
 
 export class SilentRenderer implements ListrRenderer {
-  /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
-  /** renderer options for the silent renderer */
   public static rendererOptions: ListrSilentRendererOptions
-  /** per task options for the silent renderer */
   public static rendererTaskOptions: ListrSilentRendererTaskOptions
 
   constructor (public tasks: ListrSilentRendererTask[], public options: ListrSilentRendererOptions) {}

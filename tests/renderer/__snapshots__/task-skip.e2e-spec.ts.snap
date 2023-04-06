@@ -22,11 +22,11 @@ exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4H
 ❯ This task will never execute.
 ",
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
-↓ This task will never execute. [SKIPPED]
+↓ This task will never execute.
 ",
   "[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
-↓ This task will never execute. [SKIPPED]
+↓ This task will never execute.
 ",
   "[?25h",
 ]
@@ -43,12 +43,12 @@ exports[`default renderer: task-skip should skip from internal function: ws7S3nD
 ",
   "[2K[1A[2K[G❯ This task will execute.
 ",
-  "[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+  "[2K[1A[2K[G↓ This task will execute.
 ",
-  "[2K[1A[2K[G↓ I am skipping this tasks for reasons. [SKIPPED]
+  "[2K[1A[2K[G↓ I am skipping this tasks for reasons.
 ",
   "[2K[1A[2K[G",
-  "↓ I am skipping this tasks for reasons. [SKIPPED]
+  "↓ I am skipping this tasks for reasons.
 ",
   "[?25h",
 ]
@@ -76,11 +76,11 @@ exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuO
 ❯ This task will never execute.
 ",
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
-↓ I will be skipped! [SKIPPED]
+↓ I will be skipped!
 ",
   "[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
-↓ I will be skipped! [SKIPPED]
+↓ I will be skipped!
 ",
   "[?25h",
 ]

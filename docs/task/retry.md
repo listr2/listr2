@@ -52,10 +52,10 @@ Retrying is self-aware, and you can access the task if it is retrying via `task.
 
 - When retrying, the task title will be reset to the original task title.
 
-### Default Renderer
+### _DefaultRenderer_
 
 ::: details
 
-<!-- @include: ../api/interfaces/DefaultRendererOptions.md{190-202} -->
+<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md{259-276} -->
 
 :::

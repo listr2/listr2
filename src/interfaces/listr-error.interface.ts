@@ -1,9 +1,14 @@
 import type { ListrContext } from './listr.interface'
 import type { ListrRendererFactory } from './renderer.interface'
+import type { ListrErrorTypes } from '@constants'
 import type { Task } from '@lib'
 import { cloneObject } from '@utils'
 
-/** The internal error handling mechanism.. */
+/**
+ * Internal error handling mechanism for Listr collects the errors and details for a failed task.
+ *
+ * @see {@link https://listr2.kilic.dev/task/error-handling.html}
+ */
 export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
   public path: string[]
   public ctx: Ctx
@@ -26,22 +31,10 @@ export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
 }
 
 /**
- * The actual error type that is collected and to help identify where the error is triggered from.
+ * Internal error handling mechanism for Listr prompts to identify the failing cause is coming from a prompt.
+ *
+ * @see {@link https://listr2.kilic.dev/task/prompts.html}
  */
-export enum ListrErrorTypes {
-  /** Task has failed and will try to retry. */
-  WILL_RETRY = 'WILL_RETRY',
-  /** Task has failed and will try to rollback. */
-  WILL_ROLLBACK = 'WILL_ROLLBACK',
-  /** Task has failed, ran the rollback action but the rollback action itself has failed. */
-  HAS_FAILED_TO_ROLLBACK = 'HAS_FAILED_TO_ROLLBACK',
-  /** Task has failed. */
-  HAS_FAILED = 'HAS_FAILED',
-  /** Task has failed, but exitOnError is set to false, so will ignore this error. */
-  HAS_FAILED_WITHOUT_ERROR = 'HAS_FAILED_WITHOUT_ERROR'
-}
-
-/** The internal error handling mechanism for prompts only. */
 export class PromptError extends Error {
   constructor (message: string) {
     super(message)

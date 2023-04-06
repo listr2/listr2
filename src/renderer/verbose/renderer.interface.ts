@@ -7,8 +7,9 @@ export type ListrVerboseRendererTask = Task<any, typeof VerboseRenderer>
 
 export interface ListrVerboseRendererOptions extends RendererPresetTimer, RendererPresetTimestamp, LoggerRendererOptions {
   /**
-   * log title changes
-   * @default true
+   * Log the title changes of the task.
+   *
+   * @default `false`
    */
   logTitleChange?: boolean
 }

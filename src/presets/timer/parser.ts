@@ -1,9 +1,6 @@
 /**
  * A basic function to parse minutes and tasks passed given a duration.
  * Useful for renderers to show the task time.
- *
- * @param {number} duration
- * @returns {string}
  */
 /* istanbul ignore next */
 export function parseTimer (duration: number): string {

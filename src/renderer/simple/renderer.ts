@@ -4,23 +4,15 @@ import type { ListrRenderer } from '@interfaces'
 import { parseTimer } from '@presets'
 import { ListrLogger, ListrLogLevels, color } from '@utils'
 
-/**
- * This is the default renderer which is neither verbose or updating.
- * It provides short output like update renderer, but does not disturb
- * stdin during execution of listr tasks
- */
 export class SimpleRenderer implements ListrRenderer {
-  // Designate this renderer as tty or nonTTY
   public static nonTTY = true
-  // designate your renderer options that will be showed inside the `ListrOptions` as rendererOptions
   public static rendererOptions: ListrSimpleRendererOptions = {
     logger: ListrLogger
   }
-
-  // designate your custom internal task-based options that will show as `options` in the task itself
   public static rendererTaskOptions: ListrSimpleRendererTaskOptions = {}
 
   private readonly logger: ListrLogger
+
   constructor (private readonly tasks: ListrSimpleRendererTask[], private options: ListrSimpleRendererOptions) {
     this.options = {
       ...SimpleRenderer.rendererOptions,

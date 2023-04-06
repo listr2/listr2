@@ -2,111 +2,119 @@ import type Enquirer from 'enquirer'
 
 import type { ListrSecondaryRendererOptions, ListrPrimaryRendererOptions, ListrDefaultRendererValue, ListrFallbackRendererValue, ListrRendererValue } from './renderer.interface'
 
-/** Listr Default Context */
+/** Listr context. */
 export type ListrContext = any | undefined
 
 /**
- * Options to set the behavior of this base task.
+ * Options to set the behavior of Listr.
  */
 export interface ListrOptions<Ctx = ListrContext> {
   /**
-   * To inject a context through this options wrapper. Context can also be defined in run time.
+   * Inject a context through this options wrapper.
    *
-   * @default {}
+   * @defaultValue `{}`
+   * @see {@link https://listr2.kilic.dev/listr/context.html}
    */
   ctx?: Ctx
   /**
-   * Concurrency sets how many tasks will be run at the same time in parallel.
+   * Concurrency limits how many tasks will be running in parallel.
    *
-   * @default false > Default is to run everything synchronously.
+   * - `false` will only run a single task at a time.
+   * - `true` will set it to `Infinity` to run all the tasks in parallel.
+   * - Given a `number` it will limit the concurrency to that number.
    *
-   * `true` will set it to `Infinity`, `false` will set it to synchronous.
-   *
-   * If you pass in a `number` it will limit it to that number.
+   * @defaultValue `false`
    */
   concurrent?: boolean | number
   /**
    * Determine the default behavior of exiting on errors.
    *
-   * @default true > exit on any error coming from the tasks.
+   * - `true` will exit the current Listr whenever it encounters an error.
+   * - `false` will continue the execution of current Listr if it encounters an error.
+   *
+   * @defaultValue `true`
    */
   exitOnError?: boolean
   /**
    * Determine the behavior of exiting after rollback actions.
    *
-   * This is independent of exitOnError, since failure of a rollback can be a more critical operation comparing to
+   * This is independent of `exitOnError`, since failure of a rollback can be a more critical operation comparing to
    * failing a single task.
    *
-   * @default true > exit after rolling back tasks
+   * - `true` will stop the execution whenever a rollback happens.
+   * - `false` will continue after successfully recovering from a rollback.
+   *
+   * @defaultValue `true`
    */
   exitAfterRollback?: boolean
   /**
-   * Collects errors to `ListrInstance.errors`
+   * Collects errors inside the `Listr.errors`.
    *
-   * This can take up a lot of memory, so disabling it can fix out-of-memory errors
+   * - `false` will collect no errors.
+   * - `minimal` will only collect the error message and the location.
+   * - `full` will clone the current context and task in to the error instance.
    *
-   * - 'full' will clone the current context and task in to the error instance
-   * - 'minimal' will only collect the error message and the location
-   * - false will collect no errors
-   *
-   * @default false
+   * @defaultValue `false`
+   * @see {@link https://listr2.kilic.dev/task/error-handling.html#collected-errors}
    */
   collectErrors?: false | 'minimal' | 'full'
   /**
-   * By default, Listr2 will track SIGINIT signal to update the renderer one last time before completely failing.
+   * Listr will track SIGINIT signal to update the renderer one last time before failing, therefore it needs to
+   * register exit listeners.
    *
-   * @default true
+   * @defaultValue true
    */
   registerSignalListeners?: boolean
   /**
-   * Determine the certain condition required to use the non-TTY renderer.
+   * Determine the certain condition required to use the fallback renderer.
    *
-   * @default null > handled internally
+   * @defaultValue handled internally
    */
   fallbackRendererCondition?: boolean | (() => boolean)
   /**
    * Determine the certain condition required to use the silent renderer.
    *
-   * @default null > handled internally
+   * @defaultValue handled internally
    */
   silentRendererCondition?: boolean | (() => boolean)
   /**
-   * Disabling the color, useful for tests and such.
+   * Disable the color output coming from Listr for all renderers.
    *
-   * @default false
+   * @defaultValue `false`
    */
   disableColor?: boolean
   /**
-   * Forces usage of color.
+   * Force use color, even though the underlying library detects your current output may not be compatible.
    *
-   * @default false
+   * @defaultValue `false`
    */
   forceColor?: boolean
   /**
-   * Forces TTY stdout eventhough current terminal might not support it.
+   * Forces TTY stdout even though your current output may not be compatible.
    *
-   * @default false
+   * @defaultValue `false`
    */
   forceTTY?: boolean
   /**
-   * Forces unicode eventhough current terminal might not support it.
+   * Forces unicode icons even though your current output may not be compatible.
    *
-   * @default false
+   * @defaultValue `false`
    */
   forceUnicode?: boolean
   /**
    * Inject data directly to TaskWrapper.
    */
   injectWrapper?: {
+    /**
+     * Inject an `enquirer` instance for using with prompts.
+     */
     // eslint-disable-next-line @typescript-eslint/ban-types
     enquirer?: Enquirer<object>
   }
 }
 
 /**
- * Parent class options.
- *
- * Parent class has more options where you can also select the and set renderer and non-tty renderer.
+ * Parent Listr has more options where you can also change global settings.
  *
  * Any subtasks will respect those options so they will be stripped of that properties.
  */
@@ -119,8 +127,6 @@ export interface ListrBaseClassOptions<
   ListrSecondaryRendererOptions<FallbackRenderer> {}
 
 /**
- * Sub class options.
- *
  * Subtasks has reduced set options where the missing ones are explicitly set by the base class.
  */
 export interface ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue>

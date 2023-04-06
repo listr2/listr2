@@ -5,14 +5,11 @@ import { parseTimer } from '@presets'
 import { ListrLogger, ListrLogLevels, cleanseAnsi } from '@utils'
 
 export class VerboseRenderer implements ListrRenderer {
-  /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
-  /** renderer options for the verbose renderer */
   public static rendererOptions: ListrVerboseRendererOptions = {
     logTitleChange: false,
     logger: ListrLogger
   }
-  /** per task options for the verbose renderer */
   public static rendererTaskOptions: ListrVerboseRendererTaskOptions
 
   private logger: ListrLogger

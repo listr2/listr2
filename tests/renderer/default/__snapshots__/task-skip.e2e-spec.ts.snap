@@ -45,10 +45,10 @@ exports[`default renderer: task-skip should show the original title of the task 
 ",
   "[2K[1A[2K[G❯ This task will execute.
 ",
-  "[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+  "[2K[1A[2K[G↓ This task will execute.
 ",
   "[2K[1A[2K[G",
-  "↓ This task will execute. [SKIPPED]
+  "↓ This task will execute.
 ",
   "[?25h",
 ]
@@ -65,10 +65,10 @@ exports[`default renderer: task-skip should show the original title of the task:
 ",
   "[2K[1A[2K[G❯ This task will execute.
 ",
-  "[2K[1A[2K[G↓ This task will execute. [SKIPPED]
+  "[2K[1A[2K[G↓ This task will execute.
 ",
   "[2K[1A[2K[G",
-  "↓ This task will execute. [SKIPPED]
+  "↓ This task will execute.
 ",
   "[?25h",
 ]

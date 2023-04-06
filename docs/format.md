@@ -41,6 +41,6 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 ::: details
 
-<!-- @include: ../api/interfaces/DefaultRendererOptions.md{156-186} -->
+<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md{156-186} -->
 
 :::

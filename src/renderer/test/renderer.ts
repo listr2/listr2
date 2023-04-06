@@ -5,9 +5,7 @@ import type { ListrRenderer, ListrTaskMessage } from '@interfaces'
 import { ListrLogger } from '@utils'
 
 export class TestRenderer implements ListrRenderer {
-  /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = true
-  /** renderer options for the verbose renderer */
   public static rendererOptions: ListrTestRendererOptions = {
     subtasks: true,
     state: Object.values(ListrTaskState),
@@ -38,7 +36,6 @@ export class TestRenderer implements ListrRenderer {
     ],
     logger: ListrLogger
   }
-  /** per task options for the verbose renderer */
   public static rendererTaskOptions: ListrTestRendererTaskOptions
 
   private readonly logger: ListrLogger

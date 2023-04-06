@@ -3,7 +3,7 @@ import { Readable } from 'stream'
 
 import { ListrTaskEventManager } from './listr-task-event-manager'
 import type { TaskWrapper } from './task-wrapper'
-import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
+import { ListrErrorTypes, ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type {
   ListrGetRendererOptions,
   ListrGetRendererTaskOptions,
@@ -15,27 +15,27 @@ import type {
   ListrTaskPrompt,
   ListrTaskRetry
 } from '@interfaces'
-import { PromptError, ListrErrorTypes } from '@interfaces'
+import { PromptError } from '@interfaces'
 import { Listr } from '@root'
 import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable } from '@utils'
 
 /**
- * Create a task from the given set of variables and make it runnable.
+ * Creates and handles a runnable instance of the Task.
  */
 export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskEventManager {
-  /** Unique id per task, randomly generated in the uuid v4 format */
+  /** Unique id per task, can be used for identifying a Task. */
   public id: string = randomUUID()
   /** The current state of the task. */
   public state: ListrTaskState = ListrTaskState.WAITING
-  /** Extend current task with multiple subtasks. */
+  /** Subtasks of the current task. */
   public subtasks: Task<Ctx, Renderer>[]
-  /** Title of the task */
+  /** Title of the task. */
   public title?: string
-  /** Untouched unchanged title of the task */
+  /** Initial/Untouched version of the title for using whenever task has a reset. */
   public readonly initialTitle?: string
-  /** Output data from the task. */
+  /** Output channel for the task. */
   public output?: string
-  /** Current retry number of the task if retrying */
+  /** Current state of the retry process whenever the task is retrying. */
   public retry?: ListrTaskRetry
   /**
    * A channel for messages.
@@ -43,14 +43,16 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
    * This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
    */
   public message: ListrTaskMessage = {}
-  /** Per task options for the current renderer of the task. */
+  /** Per-task options for the current renderer of the task. */
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
-  /** This will be triggered each time a new render should happen. */
+  /** Current prompt instance or prompt error whenever the task is prompting. */
   public prompt: ListrTaskPrompt
+  /** Parent task of the current task. */
   public parent?: Task<Ctx, Renderer>
 
+  /** Enable flag of this task. */
   private enabled: boolean
-  /** The task object itself, to further utilize it. */
+  /** User provided Task callback function to run. */
   private taskFn: ListrTaskFn<Ctx, Renderer>
 
   constructor (public listr: Listr<Ctx, any, any>, public task: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
@@ -66,6 +68,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.rendererTaskOptions = this.task.options
   }
 
+  /**
+   * Update the current state of the Task and emit the neccassary events.
+   */
   set state$ (state: ListrTaskState) {
     this.state = state
 
@@ -83,6 +88,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.emitShouldRefreshRender()
   }
 
+  /**
+   * Update the current output of the Task and emit the neccassary events.
+   */
   set output$ (data: string) {
     this.output = data
 
@@ -90,6 +98,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.emitShouldRefreshRender()
   }
 
+  /**
+   * Update the current prompt output of the Task and emit the neccassary events.
+   */
   set promptOutput$ (data: string) {
     this.emit(ListrTaskEventType.PROMPT, data)
 
@@ -100,6 +111,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     }
   }
 
+  /**
+   * Update or extend the current message of the Task and emit the neccassary events.
+   */
   set message$ (data: Task<Ctx, Renderer>['message']) {
     this.message = { ...this.message, ...data }
 
@@ -107,6 +121,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.emitShouldRefreshRender()
   }
 
+  /**
+   * Update the current title of the Task and emit the neccassary events.
+   */
   set title$ (title: string) {
     this.title = title
 
@@ -114,12 +131,15 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.emitShouldRefreshRender()
   }
 
+  /**
+   * Current task path in the hierarchy.
+   */
   get path (): string[] {
     return [ ...this.listr.path, this.task.title ]
   }
 
   /**
-   * A function to check whether this task should run at all via enable.
+   * Checks whether the current task with the given context should be set as enabled.
    */
   public async check (ctx: Ctx): Promise<boolean> {
     // Check if a task is enabled or disabled
@@ -143,11 +163,12 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     return this.isCompleted() || this.hasFailed() || this.isSkipped() || this.hasRolledBack()
   }
 
+  /** Returns whether this task is in progress. */
   public isPending (): boolean {
     return this.isStarted() || this.isPrompt() || this.hasReset()
   }
 
-  /** Returns whether this task is in progress. */
+  /** Returns whether this task has started. */
   public isStarted (): boolean {
     return this.state === ListrTaskState.STARTED
   }
@@ -182,6 +203,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     return this.state === ListrTaskState.RETRY
   }
 
+  /** Returns whether this task has some kind of reset like retry and rollback going on. */
   public hasReset (): boolean {
     return this.state === ListrTaskState.RETRY || this.state === ListrTaskState.ROLLING_BACK
   }
@@ -206,6 +228,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     return this.state === ListrTaskState.PAUSED
   }
 
+  /** Pause the given task for certain time. */
   public async pause (time: number): Promise<void> {
     const state = this.state
 
@@ -380,7 +403,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     }
   }
 
-  public emitShouldRefreshRender (): void {
+  private emitShouldRefreshRender (): void {
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 }

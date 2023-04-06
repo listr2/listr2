@@ -12,11 +12,8 @@ import type { ListrEventManager } from '@lib'
 import { PRESET_TIMER } from '@presets'
 import { ListrLogger, ListrLogLevels, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
 
-/** Default updating renderer for Listr2 */
 export class DefaultRenderer implements ListrRenderer {
-  /** designates whether this renderer can output to a non-tty console */
   public static nonTTY = false
-  /** renderer options for the defauult renderer */
   public static rendererOptions: ListrDefaultRendererOptions = {
     indentation: 2,
     clearOutput: false,
@@ -24,7 +21,7 @@ export class DefaultRenderer implements ListrRenderer {
     collapseSubtasks: true,
     collapseSkips: true,
     showSkipMessage: true,
-    suffixSkips: true,
+    suffixSkips: false,
     collapseErrors: true,
     showErrorMessage: true,
     suffixRetries: true,
@@ -33,8 +30,6 @@ export class DefaultRenderer implements ListrRenderer {
     formatOutput: 'wrap',
     logger: ListrLogger
   }
-
-  /** per task options for the default renderer */
   public static rendererTaskOptions: ListrDefaultRendererTaskOptions
 
   private bottom: Map<string, ProcessOutputBuffer> = new Map()

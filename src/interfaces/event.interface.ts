@@ -7,11 +7,11 @@ export class BaseEventMap {
 }
 
 /**
- * Request type of an event.
+ * Parameters for the given event in the {@link EventMap}.
  */
 export type EventData<Event extends string, Map extends Record<string, unknown>> = Event extends keyof Map ? Map[Event] : never
 
 /**
- * For fast typing the event map.
+ * An event map of given events that defined the parameters and return types for firing a certain event.
  */
 export type EventMap<Events extends string> = Partial<Record<Events, unknown>>
