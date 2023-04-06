@@ -50,6 +50,6 @@ export interface LoggerFieldFn<Args extends any[] = any[]> {
 export type LoggerField<Args extends any[] = any[]> = LoggerFieldFn<Args> | string
 
 export interface LoggerRendererOptions<Levels extends string = ListrLogLevels> {
-  logger?: typeof ListrLogger<Levels>
+  logger?: typeof ListrLogger
   loggerOptions?: ListrLoggerOptions<Levels>
 }
