@@ -1,3 +1,9 @@
+# [6.0.0-beta.16](https://github.com/listr2/listr2/compare/v6.0.0-beta.15...v6.0.0-beta.16) (2023-04-06)
+
+### Bug Fixes
+
+- refactor some of the api for work ([4bce0c0](https://github.com/listr2/listr2/commit/4bce0c0832462ab69f37cefa250325230aaa43bb))
+
 # [6.0.0-beta.15](https://github.com/listr2/listr2/compare/v6.0.0-beta.14...v6.0.0-beta.15) (2023-04-05)
 
 ### Bug Fixes
