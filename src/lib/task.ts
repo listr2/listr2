@@ -15,7 +15,7 @@ import type {
   ListrTaskPrompt,
   ListrTaskRetry
 } from '@interfaces'
-import { ListrErrorTypes, PromptError } from '@interfaces'
+import { PromptError, ListrErrorTypes } from '@interfaces'
 import { Listr } from '@root'
 import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable } from '@utils'
 
@@ -333,7 +333,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
-        error = new Error(this.prompt.message)
+        error = this.prompt
       }
 
       // execute the task on error function

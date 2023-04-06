@@ -1,6 +1,6 @@
 import Enquirer from 'enquirer'
 
-import { Listr, delay } from '@root'
+import { Listr, PromptError, delay } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, KEYS, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
 
@@ -129,7 +129,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, r
       err = e
     }
 
-    expect(err).toStrictEqual(new Error('Cancelled prompt.'))
+    expect(err).toStrictEqual(new PromptError('Cancelled prompt.'))
     expectProcessOutputToMatchSnapshot(output, 'HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w')
   })
 

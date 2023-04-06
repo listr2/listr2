@@ -3,8 +3,6 @@ import type Enquirer from 'enquirer'
 import type { WriteStream } from 'fs'
 import type { Writable } from 'stream'
 
-import type { PromptError } from '@interfaces'
-
 interface BasePromptOptions {
   message: string | (() => string) | (() => Promise<string>)
   initial?: boolean | number | number[] | string | (() => string) | (() => Promise<string>)
@@ -157,7 +155,6 @@ export declare class PromptOptionsMap implements Record<PromptTypes, Record<Prop
 
 export interface PromptSettings {
   error?: boolean
-  cancelCallback?: (settings?: PromptSettings) => string | Error | PromptError | void
   stdout?: WriteStream | Writable
   enquirer?: Enquirer
 }

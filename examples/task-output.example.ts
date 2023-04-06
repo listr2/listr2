@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs'
 
-import { delay, Listr, ListrLogger, LogLevels } from 'listr2'
+import { delay, Listr, ListrLogger, ListrLogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -11,7 +11,7 @@ const logger = new ListrLogger({ useIcons: false })
 let task: Listr<Ctx>
 
 // rMG224TBrLk3ocYtKidc1D4AyZtEHm11
-logger.log(LogLevels.STARTED, 'Example output from a task.')
+logger.log(ListrLogLevels.STARTED, 'Example output from a task.')
 
 task = new Listr<Ctx>(
   [
@@ -35,13 +35,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
-logger.log(LogLevels.STARTED, 'Example output with task with persistent output.')
+logger.log(ListrLogLevels.STARTED, 'Example output with task with persistent output.')
 
 task = new Listr<Ctx>(
   [
@@ -66,13 +66,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // 767BkeBTfR1lrS2ANYYH7CLWPATxqyat
-logger.log(LogLevels.STARTED, 'Example output to bottom bar from a task.')
+logger.log(ListrLogLevels.STARTED, 'Example output to bottom bar from a task.')
 
 task = new Listr<Ctx>(
   [
@@ -99,13 +99,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP
-logger.log(LogLevels.STARTED, 'Example output from a task with no title.')
+logger.log(ListrLogLevels.STARTED, 'Example output from a task with no title.')
 
 task = new Listr<Ctx>(
   [
@@ -128,13 +128,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus
-logger.log(LogLevels.STARTED, 'Example persistent output from a task.')
+logger.log(ListrLogLevels.STARTED, 'Example persistent output from a task.')
 
 task = new Listr<Ctx>(
   [
@@ -180,13 +180,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
-logger.log(LogLevels.STARTED, 'Example output from a observable.')
+logger.log(ListrLogLevels.STARTED, 'Example output from a observable.')
 
 task = new Listr<Ctx>(
   [
@@ -216,13 +216,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
-logger.log(LogLevels.STARTED, 'Example long multiline output with task with persistent output.')
+logger.log(ListrLogLevels.STARTED, 'Example long multiline output with task with persistent output.')
 
 task = new Listr<Ctx>(
   [
@@ -245,12 +245,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Example long multiline output with task with persistent output and wrap.')
+logger.log(ListrLogLevels.STARTED, 'Example long multiline output with task with persistent output and wrap.')
 
 task = new Listr<Ctx>(
   [
@@ -273,12 +273,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Example long multiline output with task with persistent output and word wrap.')
+logger.log(ListrLogLevels.STARTED, 'Example long multiline output with task with persistent output and word wrap.')
 
 task = new Listr<Ctx>(
   [
@@ -301,12 +301,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Example long multiline output with task with persistent output and with skipping empty lines.')
+logger.log(ListrLogLevels.STARTED, 'Example long multiline output with task with persistent output and with skipping empty lines.')
 
 task = new Listr<Ctx>(
   [
@@ -329,12 +329,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Example long multiline output with task with persistent output and without skipping empty lines.')
+logger.log(ListrLogLevels.STARTED, 'Example long multiline output with task with persistent output and without skipping empty lines.')
 
 task = new Listr<Ctx>(
   [
@@ -357,7 +357,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }

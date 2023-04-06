@@ -3,7 +3,7 @@ import type { createLogUpdate } from 'log-update'
 import { EOL } from 'os'
 import type wrap from 'wrap-ansi'
 
-import { LISTR_DEFAULT_RENDERER_STYLE, ListrDefaultRendererLogLevels } from './renderer.constants'
+import { LISTR_DEFAULT_RENDERER_STYLE, ListrDefaultRendererListrLogLevels } from './renderer.constants'
 import type { ListrDefaultRendererOptions, ListrDefaultRendererTask, ListrDefaultRendererTaskOptions } from './renderer.interface'
 import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer, ListrTaskEventMap } from '@interfaces'
@@ -41,7 +41,7 @@ export class DefaultRenderer implements ListrRenderer {
   private prompt: string
   private activePrompt: string
   private readonly spinner: Spinner
-  private readonly logger: ListrLogger<ListrDefaultRendererLogLevels>
+  private readonly logger: ListrLogger<ListrDefaultRendererListrLogLevels>
   private updater: ReturnType<typeof createLogUpdate>
   private truncate: typeof truncate
   private wrap: typeof wrap
@@ -172,47 +172,47 @@ export class DefaultRenderer implements ListrRenderer {
   protected style (task: ListrDefaultRendererTask, output = false): string {
     if (task.isSkipped()) {
       if (output || this.getSelfOrParentOption(task, 'collapseSkips')) {
-        return this.logger.icon(ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE)
+        return this.logger.icon(ListrDefaultRendererListrLogLevels.SKIPPED_WITH_COLLAPSE)
       } else if (this.getSelfOrParentOption(task, 'collapseSkips') === false) {
-        return this.logger.icon(ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE)
+        return this.logger.icon(ListrDefaultRendererListrLogLevels.SKIPPED_WITHOUT_COLLAPSE)
       }
     }
 
     if (output) {
       if (this.isBottomBar(task)) {
-        return this.logger.icon(ListrDefaultRendererLogLevels.OUTPUT_WITH_BOTTOMBAR)
+        return this.logger.icon(ListrDefaultRendererListrLogLevels.OUTPUT_WITH_BOTTOMBAR)
       }
 
-      return this.logger.icon(ListrDefaultRendererLogLevels.OUTPUT)
+      return this.logger.icon(ListrDefaultRendererListrLogLevels.OUTPUT)
     }
 
     if (task.hasSubtasks()) {
       if (task.isStarted() || task.isPrompt() && this.getSelfOrParentOption(task, 'showSubtasks') !== false && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
-        return this.logger.icon(ListrDefaultRendererLogLevels.PENDING)
+        return this.logger.icon(ListrDefaultRendererListrLogLevels.PENDING)
       } else if (task.isCompleted() && task.subtasks.some((subtask) => subtask.hasFailed())) {
-        return this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS)
+        return this.logger.icon(ListrDefaultRendererListrLogLevels.COMPLETED_WITH_FAILED_SUBTASKS)
       } else if (task.hasFailed()) {
-        return this.logger.icon(ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS)
+        return this.logger.icon(ListrDefaultRendererListrLogLevels.FAILED_WITH_FAILED_SUBTASKS)
       }
     }
 
     if (task.isStarted() || task.isPrompt()) {
-      return this.logger.icon(ListrDefaultRendererLogLevels.PENDING, !this.options?.lazy && this.spinner.fetch())
+      return this.logger.icon(ListrDefaultRendererListrLogLevels.PENDING, !this.options?.lazy && this.spinner.fetch())
     } else if (task.isCompleted()) {
-      return this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED)
+      return this.logger.icon(ListrDefaultRendererListrLogLevels.COMPLETED)
     } else if (task.isRetrying()) {
-      return this.logger.icon(ListrDefaultRendererLogLevels.RETRY, !this.options?.lazy && this.spinner.fetch())
+      return this.logger.icon(ListrDefaultRendererListrLogLevels.RETRY, !this.options?.lazy && this.spinner.fetch())
     } else if (task.isRollingBack()) {
-      return this.logger.icon(ListrDefaultRendererLogLevels.ROLLING_BACK, !this.options?.lazy && this.spinner.fetch())
+      return this.logger.icon(ListrDefaultRendererListrLogLevels.ROLLING_BACK, !this.options?.lazy && this.spinner.fetch())
     } else if (task.hasRolledBack()) {
-      return this.logger.icon(ListrDefaultRendererLogLevels.ROLLED_BACK)
+      return this.logger.icon(ListrDefaultRendererListrLogLevels.ROLLED_BACK)
     } else if (task.hasFailed()) {
-      return this.logger.icon(ListrDefaultRendererLogLevels.FAILED)
+      return this.logger.icon(ListrDefaultRendererListrLogLevels.FAILED)
     } else if (task.isPaused()) {
-      return this.logger.icon(ListrDefaultRendererLogLevels.PAUSED)
+      return this.logger.icon(ListrDefaultRendererListrLogLevels.PAUSED)
     }
 
-    return this.logger.icon(ListrDefaultRendererLogLevels.WAITING)
+    return this.logger.icon(ListrDefaultRendererListrLogLevels.WAITING)
   }
 
   protected format (message: string, icon: string, level: number): string[] {
@@ -358,7 +358,7 @@ export class DefaultRenderer implements ListrRenderer {
           }
         } else {
           // some sibling task but self has failed and this has stopped
-          output.push(...this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), level))
+          output.push(...this.format(task.title, this.logger.icon(ListrDefaultRendererListrLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), level))
         }
       }
 

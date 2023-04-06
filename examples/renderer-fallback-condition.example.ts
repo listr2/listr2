@@ -1,4 +1,4 @@
-import { delay, Listr, ListrLogger, LogLevels } from 'listr2'
+import { delay, Listr, ListrLogger, ListrLogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -8,7 +8,7 @@ const logger = new ListrLogger({ useIcons: false })
 
 let task: Listr<Ctx>
 
-logger.log(LogLevels.STARTED, 'Renderer fallback when conditions is true.')
+logger.log(ListrLogLevels.STARTED, 'Renderer fallback when conditions is true.')
 
 task = new Listr<Ctx>(
   [
@@ -26,12 +26,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Renderer fallback when conditions is false.')
+logger.log(ListrLogLevels.STARTED, 'Renderer fallback when conditions is false.')
 
 task = new Listr<Ctx>(
   [
@@ -49,12 +49,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Fallback try with function.')
+logger.log(ListrLogLevels.STARTED, 'Fallback try with function.')
 
 task = new Listr<Ctx>(
   [
@@ -72,9 +72,9 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 function someTestFunction (): boolean {

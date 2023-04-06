@@ -22,7 +22,7 @@ _ListrLogger_ is used for every renderer to a certain degree. _ListrLogger_ is a
 
 Log levels for the _ListrLogger_ are dynamically injected while creating an instance of _ListrLogger_ and will affect the styling section of the instance.
 
-By default, [LogLevels](/api/enums/LogLevels.html) is used for text-based renderers. For renderers like _DefaultRenderer_ styling require more cases than usual compared to the text-based renderers, therefore custom log levels [ListrDefaultRendererLogLevels](/api/enums/ListrDefaultRendererLogLevels.html) are injected.
+By default, [ListrLogLevels](/api/enums/ListrLogLevels.html) is used for text-based renderers. For renderers like _DefaultRenderer_ styling require more cases than usual compared to the text-based renderers, therefore custom log levels [ListrDefaultRendererListrLogLevels](/api/enums/ListrDefaultRendererListrLogLevels.html) are injected.
 
 ## Style
 

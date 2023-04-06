@@ -1,10 +1,10 @@
-import { delay, Listr, PRESET_TIMER, ListrLogger, LogLevels } from 'listr2'
+import { delay, Listr, PRESET_TIMER, ListrLogger, ListrLogLevels } from 'listr2'
 
 const logger = new ListrLogger({ useIcons: false })
 
 let task: Listr<any>
 
-logger.log(LogLevels.STARTED, 'Example for showing the timer per task.')
+logger.log(ListrLogLevels.STARTED, 'Example for showing the timer per task.')
 
 task = new Listr<any>(
   [
@@ -34,12 +34,12 @@ task = new Listr<any>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Example for showing the timer per listr.')
+logger.log(ListrLogLevels.STARTED, 'Example for showing the timer per listr.')
 
 task = new Listr<any>(
   [
@@ -64,12 +64,12 @@ task = new Listr<any>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Example for showing the timer per listr in verbose renderer when on fallback.')
+logger.log(ListrLogLevels.STARTED, 'Example for showing the timer per listr in verbose renderer when on fallback.')
 
 task = new Listr<any>(
   [
@@ -99,7 +99,7 @@ task = new Listr<any>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }

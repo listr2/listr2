@@ -1,5 +1,5 @@
 import type { ListrBaseClassOptions } from 'listr2'
-import { delay, Manager, ListrLogger, LogLevels } from 'listr2'
+import { delay, Manager, ListrLogger, ListrLogLevels } from 'listr2'
 
 function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager<T> {
   const myDefaultOptions: ListrBaseClassOptions = {
@@ -77,11 +77,11 @@ class MyMainClass {
       { concurrent: false }
     )
 
-    this.logger.log(LogLevels.STARTED, 'This will run all the tasks in a queue and clear the queue afterwards.')
+    this.logger.log(ListrLogLevels.STARTED, 'This will run all the tasks in a queue and clear the queue afterwards.')
     await this.tasks.runAll()
 
-    this.logger.log(LogLevels.STARTED, 'You can use listr directly without importing it.')
-    this.logger.log(LogLevels.STARTED, 'It will use the options set on the manager so you dont have to initialize it with options everytime.')
+    this.logger.log(ListrLogLevels.STARTED, 'You can use listr directly without importing it.')
+    this.logger.log(ListrLogLevels.STARTED, 'It will use the options set on the manager so you dont have to initialize it with options everytime.')
 
     try {
       await this.tasks.run([
@@ -93,14 +93,14 @@ class MyMainClass {
         }
       ])
     } catch (e: any) {
-      this.logger.log(LogLevels.FAILED, e)
+      this.logger.log(ListrLogLevels.FAILED, e)
     }
 
-    this.logger.log(LogLevels.STARTED, 'Access the errors on the last run as in a similar way.')
-    this.logger.log(LogLevels.OUTPUT, this.tasks.errors)
+    this.logger.log(ListrLogLevels.STARTED, 'Access the errors on the last run as in a similar way.')
+    this.logger.log(ListrLogLevels.OUTPUT, this.tasks.errors)
 
-    this.logger.log(LogLevels.STARTED, 'You can also access Listr directly in the same way.')
-    this.logger.log(LogLevels.STARTED, 'It is not the same manager instance, just a jumper function.')
+    this.logger.log(ListrLogLevels.STARTED, 'You can also access Listr directly in the same way.')
+    this.logger.log(ListrLogLevels.STARTED, 'It is not the same manager instance, just a jumper function.')
 
     try {
       await this.tasks
@@ -114,10 +114,10 @@ class MyMainClass {
         ])
         .run()
     } catch (e: any) {
-      this.logger.log(LogLevels.FAILED, e)
+      this.logger.log(ListrLogLevels.FAILED, e)
     }
 
-    this.logger.log(LogLevels.STARTED, 'You can inject context directly to main instance.')
+    this.logger.log(ListrLogLevels.STARTED, 'You can inject context directly to main instance.')
     this.tasks.ctx = { injected: true }
     await this.tasks.run([
       {
@@ -128,7 +128,7 @@ class MyMainClass {
       }
     ])
 
-    this.logger.log(LogLevels.STARTED, 'There is an embedded function of getting the run time, that can be useful in concurrent tasks.')
+    this.logger.log(ListrLogLevels.STARTED, 'There is an embedded function of getting the run time, that can be useful in concurrent tasks.')
     await this.tasks.run(
       [
         {

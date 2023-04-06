@@ -1,4 +1,4 @@
-import { delay, Listr, ListrLogger, LogLevels } from 'listr2'
+import { delay, Listr, ListrLogger, ListrLogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -9,7 +9,7 @@ const logger = new ListrLogger({ useIcons: false })
 let task: Listr<Ctx>
 
 // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
-logger.log(LogLevels.STARTED, 'Example for subtasks.')
+logger.log(ListrLogLevels.STARTED, 'Example for subtasks.')
 
 task = new Listr<Ctx>(
   [
@@ -32,14 +32,14 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0kA
 // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
-logger.log(LogLevels.STARTED, 'Example for subtasks with different renderer options.')
+logger.log(ListrLogLevels.STARTED, 'Example for subtasks with different renderer options.')
 
 task = new Listr<Ctx>(
   [
@@ -93,12 +93,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Example for subtasks with different disabled rendering from parent.')
+logger.log(ListrLogLevels.STARTED, 'Example for subtasks with different disabled rendering from parent.')
 
 task = new Listr<Ctx>(
   [
@@ -130,13 +130,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY
-logger.log(LogLevels.STARTED, 'Example for subtasks that change exit on error.')
+logger.log(ListrLogLevels.STARTED, 'Example for subtasks that change exit on error.')
 
 task = new Listr<Ctx>(
   [
@@ -180,10 +180,10 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.OUTPUT, 'You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
-logger.log(LogLevels.FAILED, [ '%o', task.errors ])
+logger.log(ListrLogLevels.OUTPUT, 'You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
+logger.log(ListrLogLevels.FAILED, [ '%o', task.errors ])

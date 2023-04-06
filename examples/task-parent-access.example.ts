@@ -1,4 +1,4 @@
-import { delay, Listr, ListrLogger, LogLevels } from 'listr2'
+import { delay, Listr, ListrLogger, ListrLogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -6,7 +6,7 @@ interface Ctx {
 
 const logger = new ListrLogger({ useIcons: false })
 
-logger.log(LogLevels.STARTED, 'Example for subtasks with different renderer options.')
+logger.log(ListrLogLevels.STARTED, 'Example for subtasks with different renderer options.')
 
 const task: Listr<Ctx> = new Listr<Ctx>(
   [
@@ -39,7 +39,7 @@ const task: Listr<Ctx> = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }

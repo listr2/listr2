@@ -1,4 +1,4 @@
-import { delay, Listr, LogLevels, ListrLogger } from 'listr2'
+import { delay, Listr, ListrLogLevels, ListrLogger } from 'listr2'
 
 interface Ctx {
   skip: boolean
@@ -9,7 +9,7 @@ const logger = new ListrLogger({ useIcons: false })
 let task: Listr<Ctx>
 
 // JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU
-logger.log(LogLevels.STARTED, 'Example for enabling a task by utilizing previous tasks and the general context.')
+logger.log(ListrLogLevels.STARTED, 'Example for enabling a task by utilizing previous tasks and the general context.')
 
 task = new Listr<Ctx>(
   [
@@ -35,13 +35,13 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
 // 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB
-logger.log(LogLevels.STARTED, 'A more complex enable example with subtasks.')
+logger.log(ListrLogLevels.STARTED, 'A more complex enable example with subtasks.')
 task = new Listr<Ctx>(
   [
     {
@@ -77,7 +77,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }

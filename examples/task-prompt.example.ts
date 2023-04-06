@@ -1,4 +1,4 @@
-import { ListrLogger, LogLevels } from '@utils'
+import { ListrLogger, ListrLogLevels } from '@utils'
 import { delay, Listr } from 'listr2'
 
 interface Ctx {
@@ -9,7 +9,7 @@ const logger = new ListrLogger({ useIcons: false })
 
 let task: Listr<Ctx>
 
-logger.log(LogLevels.STARTED, 'Example for getting user input.')
+logger.log(ListrLogLevels.STARTED, 'Example for getting user input.')
 
 task = new Listr<Ctx>(
   [
@@ -57,12 +57,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'You can go ahead with complicated functions with prompts as well.')
+logger.log(ListrLogLevels.STARTED, 'You can go ahead with complicated functions with prompts as well.')
 task = new Listr<Ctx>(
   [
     {
@@ -83,12 +83,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'More complicated prompt.')
+logger.log(ListrLogLevels.STARTED, 'More complicated prompt.')
 task = new Listr<Ctx>(
   [
     {
@@ -108,12 +108,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Very complicated prompt.')
+logger.log(ListrLogLevels.STARTED, 'Very complicated prompt.')
 task = new Listr<Ctx>(
   [
     {
@@ -162,12 +162,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Skipping a prompt.')
+logger.log(ListrLogLevels.STARTED, 'Skipping a prompt.')
 task = new Listr<Ctx>(
   [
     {
@@ -198,12 +198,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(LogLevels.STARTED, 'Canceling a prompt.')
+logger.log(ListrLogLevels.STARTED, 'Canceling a prompt.')
 task = new Listr<Ctx>(
   [
     {
@@ -261,7 +261,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(LogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
 } catch (e: any) {
-  logger.log(LogLevels.FAILED, e)
+  logger.log(ListrLogLevels.FAILED, e)
 }

@@ -1,7 +1,7 @@
 import type { ListrLoggerStyleMap } from './logger.interface'
 import { color, figures } from '@utils'
 
-/** Default loglevels for the logger */
+/** Default ListrLogLevels for the logger */
 export enum ListrLogLevels {
   STARTED = 'STARTED',
   COMPLETED = 'COMPLETED',
