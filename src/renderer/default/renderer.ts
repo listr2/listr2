@@ -413,7 +413,9 @@ export class DefaultRenderer implements ListrRenderer {
         (task.isPending() ||
           task.hasFinalized() && !task.hasTitle() ||
           // have to be completed and have subtasks
-          task.isCompleted() && this.getSelfOrParentOption(task, 'collapse') === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapseSubtasks === true) ||
+          task.isCompleted() &&
+            this.getSelfOrParentOption(task, 'collapseSubtasks') === false &&
+            !task.subtasks.some((subtask) => subtask.rendererOptions.collapseSubtasks === true) ||
           // if any of the subtasks have the collapse option of
           task.subtasks.some((subtask) => subtask.rendererOptions.collapseSubtasks === false) ||
           // if any of the subtasks has failed
