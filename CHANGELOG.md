@@ -1,3 +1,15 @@
+# [6.0.0-beta.18](https://github.com/listr2/listr2/compare/v6.0.0-beta.17...v6.0.0-beta.18) (2023-04-06)
+
+
+### Bug Fixes
+
+* update jsdocs, change default renderer option ([2d99b67](https://github.com/listr2/listr2/commit/2d99b672ac85b04653672913c72c80449f9716df))
+
+
+### Performance Improvements
+
+* handle prompts properly, rename loglevels to listrloglevels ([73cad76](https://github.com/listr2/listr2/commit/73cad7614d571fad175d4da0d0e8c4031ea541cb))
+
 # [6.0.0-beta.17](https://github.com/listr2/listr2/compare/v6.0.0-beta.16...v6.0.0-beta.17) (2023-04-06)
 
 ### Bug Fixes
