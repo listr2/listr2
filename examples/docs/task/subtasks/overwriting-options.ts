@@ -20,7 +20,7 @@ const tasks = new Listr(
               }
             }
           ],
-          { concurrent: true, rendererOptions: { collapse: true } }
+          { concurrent: true, rendererOptions: { collapseSubtasks: true } }
         )
     },
 
@@ -42,7 +42,7 @@ const tasks = new Listr(
               }
             }
           ],
-          { concurrent: false, rendererOptions: { collapse: false } }
+          { concurrent: false, rendererOptions: { collapseSubtasks: false } }
         )
     }
   ],

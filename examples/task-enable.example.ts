@@ -67,7 +67,7 @@ task = new Listr<Ctx>(
               task: (): void => {}
             }
           ],
-          { rendererOptions: { collapse: false }, concurrent: true }
+          { rendererOptions: { collapseSubtasks: false }, concurrent: true }
         )
     }
   ],

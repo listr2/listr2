@@ -83,7 +83,7 @@ task = new Listr<Ctx>(
               }
             }
           ],
-          { concurrent: true, rendererOptions: { collapse: false } }
+          { concurrent: true, rendererOptions: { collapseSubtasks: false } }
         )
     }
   ],

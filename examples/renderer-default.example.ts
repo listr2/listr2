@@ -62,7 +62,7 @@ try {
                 }
               }
             ],
-            { concurrent: true, rendererOptions: { collapse: false } }
+            { concurrent: true, rendererOptions: { collapseSubtasks: false } }
           )
       },
 
@@ -94,7 +94,7 @@ try {
                 }
               }
             ],
-            { concurrent: true, rendererOptions: { collapse: false } }
+            { concurrent: true, rendererOptions: { collapseSubtasks: false } }
           )
       },
 
@@ -132,7 +132,7 @@ try {
                 }
               }
             ],
-            { concurrent: false, rendererOptions: { collapse: true } }
+            { concurrent: false, rendererOptions: { collapseSubtasks: true } }
           )
       },
 

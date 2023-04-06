@@ -6,7 +6,7 @@ function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager
     concurrent: false,
     exitOnError: false,
     rendererOptions: {
-      collapse: false,
+      collapseSubtasks: false,
       collapseSkips: false
     }
   }

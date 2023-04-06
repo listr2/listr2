@@ -30,7 +30,7 @@ const tasks = new Listr<Ctx>(
           {
             concurrent: true,
             collectErrors: false,
-            rendererOptions: { collapse: false }
+            rendererOptions: { collapseSubtasks: false }
           }
         )
     }

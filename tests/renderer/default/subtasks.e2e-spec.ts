@@ -51,13 +51,13 @@ describe('default renderer: show subtasks', () => {
                   task: async (): Promise<void> => {}
                 }
               ],
-              { rendererOptions: { collapse: false } }
+              { rendererOptions: { collapseSubtasks: false } }
             )
         }
       ],
       {
         concurrent: false,
-        rendererOptions: { lazy: true, collapse: true }
+        rendererOptions: { lazy: true, collapseSubtasks: true }
       }
     ).run()
 
