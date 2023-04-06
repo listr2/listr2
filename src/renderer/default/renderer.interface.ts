@@ -33,7 +33,7 @@ export interface ListrDefaultRendererOptions extends RendererPresetTimer, Logger
    *
    * @default true
    */
-  collapse?: boolean
+  collapseSubtasks?: boolean
   /**
    * show skip messages or show the original title of the task, this will also disable collapseSkips mode
    *

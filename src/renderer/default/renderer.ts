@@ -21,7 +21,7 @@ export class DefaultRenderer implements ListrRenderer {
     indentation: 2,
     clearOutput: false,
     showSubtasks: true,
-    collapse: true,
+    collapseSubtasks: true,
     collapseSkips: true,
     showSkipMessage: true,
     suffixSkips: true,
@@ -413,9 +413,9 @@ export class DefaultRenderer implements ListrRenderer {
         (task.isPending() ||
           task.hasFinalized() && !task.hasTitle() ||
           // have to be completed and have subtasks
-          task.isCompleted() && this.getSelfOrParentOption(task, 'collapse') === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapse === true) ||
+          task.isCompleted() && this.getSelfOrParentOption(task, 'collapse') === false && !task.subtasks.some((subtask) => subtask.rendererOptions.collapseSubtasks === true) ||
           // if any of the subtasks have the collapse option of
-          task.subtasks.some((subtask) => subtask.rendererOptions.collapse === false) ||
+          task.subtasks.some((subtask) => subtask.rendererOptions.collapseSubtasks === false) ||
           // if any of the subtasks has failed
           task.subtasks.some((subtask) => subtask.hasFailed()) ||
           // if any of the subtasks rolled back
