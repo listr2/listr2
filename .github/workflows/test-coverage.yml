@@ -14,14 +14,14 @@ jobs:
           - 18.x
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v2
-        with:
-          version: latest
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test:cov
       - uses: codecov/codecov-action@v3
