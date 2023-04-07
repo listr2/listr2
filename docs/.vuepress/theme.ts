@@ -50,6 +50,12 @@ export default hopeTheme({
   iconAssets: 'iconify',
 
   plugins: {
+    git: {
+      contributors: true,
+      createdTime: false,
+      updatedTime: true
+    },
+
     comment: false,
 
     mdEnhance: {

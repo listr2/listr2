@@ -4,6 +4,7 @@
 README.md
 CHANGELOG.md
 yarn.lock
+pnpm-lock.yaml
 LICENSE
 tests/**/__snapshots__/
 

@@ -1,160 +1,137 @@
 ## [6.0.1](https://github.com/listr2/listr2/compare/v6.0.0...v6.0.1) (2023-04-07)
 
+### Bug Fixes
+
+- update npm demo ([fc24708](https://github.com/listr2/listr2/commit/fc24708941e290210b42bd40838a2436fdd62826))
+
+## [6.0.0](https://github.com/listr2/listr2/compare/v5.0.8...v6.0.0) (2023-04-07)
 
 ### Bug Fixes
 
-* update npm demo ([fc24708](https://github.com/listr2/listr2/commit/fc24708941e290210b42bd40838a2436fdd62826))
-
-# [6.0.0](https://github.com/listr2/listr2/compare/v5.0.8...v6.0.0) (2023-04-07)
-
-
-### Bug Fixes
-
-* comply with breaking changes on types ([23d1855](https://github.com/listr2/listr2/commit/23d1855b35cb5a9be6f7af9604771a68be6307c3))
-* expose colorrette and some more utils ([d9e0812](https://github.com/listr2/listr2/commit/d9e08126d4d2f0773fe0f26702ca4403f5521fb6))
-* handle non string values ([04c583c](https://github.com/listr2/listr2/commit/04c583c790af74f835321d2b922a6a02ca3a34c1))
-* issue with empty skips from before ([5c04f19](https://github.com/listr2/listr2/commit/5c04f1962db5232c1ba7f6d2a51f1689faa44147))
-* issue with test coverage ([1bd74d9](https://github.com/listr2/listr2/commit/1bd74d90785b56a24f4713ae556c8866e7832f00))
-* missing stuff ([9d442f8](https://github.com/listr2/listr2/commit/9d442f8ae709d1096ce43dac569f596cca1a7ff1))
-* move wrong dependency type to dev ([d93f135](https://github.com/listr2/listr2/commit/d93f1353386b165bf085c09990f4002e7c4c9ca1))
-* refactor some of the api for work ([4bce0c0](https://github.com/listr2/listr2/commit/4bce0c0832462ab69f37cefa250325230aaa43bb))
-* **task:** update naming scheme and hide taskfn ([1b19a89](https://github.com/listr2/listr2/commit/1b19a89f4a908ab038866e29ee3644537299b863))
-* the issue with rendering, make default renderer method naming scheme similar to logger ([6c5c172](https://github.com/listr2/listr2/commit/6c5c172684e388cc5367cfa40ca0459fc8b46cc5))
-* update ci configuration for codecov and semantic-release pushback ([4f94de6](https://github.com/listr2/listr2/commit/4f94de62a8a3fd80ff7c8017aea862a525750ac5))
-* update dependencies and configuration ([ee07b2a](https://github.com/listr2/listr2/commit/ee07b2a9c841c8d00adb6efe809a5decd46386f2))
-* update deps ([8140f28](https://github.com/listr2/listr2/commit/8140f280c701702e7b5fe0fe3c67ac79820396ee))
-* update jsdocs, change default renderer option ([2d99b67](https://github.com/listr2/listr2/commit/2d99b672ac85b04653672913c72c80449f9716df))
-* update logger to be more flexible ([3b76139](https://github.com/listr2/listr2/commit/3b76139bfc59e571c679b1f13160c5a9747ac419))
-* update option name ([9ddfea3](https://github.com/listr2/listr2/commit/9ddfea3ebb483b729c3a96de9efb2d9df61aae84))
-* update splat from logger ([142be8c](https://github.com/listr2/listr2/commit/142be8c5cd61a51d7344187180deadc05432d080))
-* update typescript path and the import paths accordingly ([0d3afcb](https://github.com/listr2/listr2/commit/0d3afcb7bfea4d4e3afec4ce2171ada894ee7b9b))
-
+- comply with breaking changes on types ([23d1855](https://github.com/listr2/listr2/commit/23d1855b35cb5a9be6f7af9604771a68be6307c3))
+- expose colorrette and some more utils ([d9e0812](https://github.com/listr2/listr2/commit/d9e08126d4d2f0773fe0f26702ca4403f5521fb6))
+- handle non string values ([04c583c](https://github.com/listr2/listr2/commit/04c583c790af74f835321d2b922a6a02ca3a34c1))
+- issue with empty skips from before ([5c04f19](https://github.com/listr2/listr2/commit/5c04f1962db5232c1ba7f6d2a51f1689faa44147))
+- issue with test coverage ([1bd74d9](https://github.com/listr2/listr2/commit/1bd74d90785b56a24f4713ae556c8866e7832f00))
+- missing stuff ([9d442f8](https://github.com/listr2/listr2/commit/9d442f8ae709d1096ce43dac569f596cca1a7ff1))
+- move wrong dependency type to dev ([d93f135](https://github.com/listr2/listr2/commit/d93f1353386b165bf085c09990f4002e7c4c9ca1))
+- refactor some of the api for work ([4bce0c0](https://github.com/listr2/listr2/commit/4bce0c0832462ab69f37cefa250325230aaa43bb))
+- **task:** update naming scheme and hide taskfn ([1b19a89](https://github.com/listr2/listr2/commit/1b19a89f4a908ab038866e29ee3644537299b863))
+- the issue with rendering, make default renderer method naming scheme similar to logger ([6c5c172](https://github.com/listr2/listr2/commit/6c5c172684e388cc5367cfa40ca0459fc8b46cc5))
+- update ci configuration for codecov and semantic-release pushback ([4f94de6](https://github.com/listr2/listr2/commit/4f94de62a8a3fd80ff7c8017aea862a525750ac5))
+- update dependencies and configuration ([ee07b2a](https://github.com/listr2/listr2/commit/ee07b2a9c841c8d00adb6efe809a5decd46386f2))
+- update deps ([8140f28](https://github.com/listr2/listr2/commit/8140f280c701702e7b5fe0fe3c67ac79820396ee))
+- update jsdocs, change default renderer option ([2d99b67](https://github.com/listr2/listr2/commit/2d99b672ac85b04653672913c72c80449f9716df))
+- update logger to be more flexible ([3b76139](https://github.com/listr2/listr2/commit/3b76139bfc59e571c679b1f13160c5a9747ac419))
+- update option name ([9ddfea3](https://github.com/listr2/listr2/commit/9ddfea3ebb483b729c3a96de9efb2d9df61aae84))
+- update splat from logger ([142be8c](https://github.com/listr2/listr2/commit/142be8c5cd61a51d7344187180deadc05432d080))
+- update typescript path and the import paths accordingly ([0d3afcb](https://github.com/listr2/listr2/commit/0d3afcb7bfea4d4e3afec4ce2171ada894ee7b9b))
 
 ### Features
 
-* add new options for base listr ([1a41939](https://github.com/listr2/listr2/commit/1a419391a8a5c5352345b66c4269ebf03b958c1f))
-* add possiblity to force unicode on all systems ([08ba157](https://github.com/listr2/listr2/commit/08ba157dc5184dabbdf4187d8571866e3b1bd360))
-* add process hooks to hook terminal to obstruct anything while rendering ([db7398d](https://github.com/listr2/listr2/commit/db7398d438f56a829e81a73981420e7b0f7230c8)), closes [#662](https://github.com/listr2/listr2/issues/662)
-* add splat util.format to output, title and skip ([02e5432](https://github.com/listr2/listr2/commit/02e5432cd751be0e0f5cecc29a7d02b7e9668dbe))
-* add task retry delay ([b72eaf3](https://github.com/listr2/listr2/commit/b72eaf3242e4837680d55c6a9204d5b9da5dd017)), closes [#668](https://github.com/listr2/listr2/issues/668)
-* adds new test renderer ([6098586](https://github.com/listr2/listr2/commit/6098586adff1369565b79c43a546338731b4a13c))
-* ditch rxjs completely and use event emitter based approach ([213bc76](https://github.com/listr2/listr2/commit/213bc76fec973719926927178b9a167aa89c563f))
-* expose and alias more of the interfaces since they can be used outside ([38479b0](https://github.com/listr2/listr2/commit/38479b0bb9ae0942aa5d0cf0cca628c49cf0f5df))
-* expose more api for pending tasks ([a7b1981](https://github.com/listr2/listr2/commit/a7b1981f5db3f72bc4d489417ad4d87cb50941cc))
-* expose path from task directly ([5c393d0](https://github.com/listr2/listr2/commit/5c393d0d3137c3aa0980251297ce542f3ad47097))
-* expose spinner through its own stateful class ([99bd97d](https://github.com/listr2/listr2/commit/99bd97db217aeee4fda702d42f7632bf0b5673aa))
-* **process-output:** ability to overwrite streams on process output ([474e096](https://github.com/listr2/listr2/commit/474e096346eab10f2deca2347b2e34e89fc284c8))
-* **process-output:** hide cursor as before when hijacking output ([a0e150c](https://github.com/listr2/listr2/commit/a0e150c7e0d62e2c8f0cb95babca933e773ed2c0))
-* **renderer:** simplify and add eager option ([5248c78](https://github.com/listr2/listr2/commit/5248c78b01583da5d65a83ea75f4f6f52a6956f6))
-
+- add new options for base listr ([1a41939](https://github.com/listr2/listr2/commit/1a419391a8a5c5352345b66c4269ebf03b958c1f))
+- add possiblity to force unicode on all systems ([08ba157](https://github.com/listr2/listr2/commit/08ba157dc5184dabbdf4187d8571866e3b1bd360))
+- add process hooks to hook terminal to obstruct anything while rendering ([db7398d](https://github.com/listr2/listr2/commit/db7398d438f56a829e81a73981420e7b0f7230c8)), closes [#662](https://github.com/listr2/listr2/issues/662)
+- add splat util.format to output, title and skip ([02e5432](https://github.com/listr2/listr2/commit/02e5432cd751be0e0f5cecc29a7d02b7e9668dbe))
+- add task retry delay ([b72eaf3](https://github.com/listr2/listr2/commit/b72eaf3242e4837680d55c6a9204d5b9da5dd017)), closes [#668](https://github.com/listr2/listr2/issues/668)
+- adds new test renderer ([6098586](https://github.com/listr2/listr2/commit/6098586adff1369565b79c43a546338731b4a13c))
+- ditch rxjs completely and use event emitter based approach ([213bc76](https://github.com/listr2/listr2/commit/213bc76fec973719926927178b9a167aa89c563f))
+- expose and alias more of the interfaces since they can be used outside ([38479b0](https://github.com/listr2/listr2/commit/38479b0bb9ae0942aa5d0cf0cca628c49cf0f5df))
+- expose more api for pending tasks ([a7b1981](https://github.com/listr2/listr2/commit/a7b1981f5db3f72bc4d489417ad4d87cb50941cc))
+- expose path from task directly ([5c393d0](https://github.com/listr2/listr2/commit/5c393d0d3137c3aa0980251297ce542f3ad47097))
+- expose spinner through its own stateful class ([99bd97d](https://github.com/listr2/listr2/commit/99bd97db217aeee4fda702d42f7632bf0b5673aa))
+- **process-output:** ability to overwrite streams on process output ([474e096](https://github.com/listr2/listr2/commit/474e096346eab10f2deca2347b2e34e89fc284c8))
+- **process-output:** hide cursor as before when hijacking output ([a0e150c](https://github.com/listr2/listr2/commit/a0e150c7e0d62e2c8f0cb95babca933e773ed2c0))
+- **renderer:** simplify and add eager option ([5248c78](https://github.com/listr2/listr2/commit/5248c78b01583da5d65a83ea75f4f6f52a6956f6))
 
 ### Performance Improvements
 
-* bump node version to 16 since 14 dies in less than 1 month ([36dde30](https://github.com/listr2/listr2/commit/36dde30661103126949480639edf9fe77864efc3))
-* change field name ([91f6fda](https://github.com/listr2/listr2/commit/91f6fdabfaf6fd10674b3c4388cc9c91760c297a))
-* change naming scheme for renderer tasks to make it singular ([cbcdfe2](https://github.com/listr2/listr2/commit/cbcdfe23870d08e660ccf9bd4e067e36e5664f3a))
-* change the default behavior for error collection ([4785730](https://github.com/listr2/listr2/commit/478573001ebd519582891b82230f49219f5f9101))
-* change the exposed API of the application ([513ed76](https://github.com/listr2/listr2/commit/513ed767a069ba91e0fa27481308c420df40f6fa))
-* changes and reuses logger component and pluggable plugins for renderers ([cbf668c](https://github.com/listr2/listr2/commit/cbf668c1ddfbaf2d8ee4d980071305b8586f8d3d)), closes [#651](https://github.com/listr2/listr2/issues/651) [#646](https://github.com/listr2/listr2/issues/646) [#613](https://github.com/listr2/listr2/issues/613)
-* **constants:** changes names of listr states ([cf9c19d](https://github.com/listr2/listr2/commit/cf9c19df04099e354a2ac6d51cd853c6def0c4bf))
-* default fallback renderer changed to simple renderer ([67b5b62](https://github.com/listr2/listr2/commit/67b5b62d1a3a06fc97a29f0d4b27b7e0c99211d0))
-* **deps:** ditch-pmap instead of a basic implementation ([eb7cfdc](https://github.com/listr2/listr2/commit/eb7cfdceaf357f415f3f8d2237a6631b2ec2db0e))
-* go full esm on jest/ts-node, use dynamic imports for esm modules on default renderer ([9cc01c0](https://github.com/listr2/listr2/commit/9cc01c0bd972f7adfd12c00669bbed21d65052e6))
-* handle prompts properly, rename loglevels to listrloglevels ([73cad76](https://github.com/listr2/listr2/commit/73cad7614d571fad175d4da0d0e8c4031ea541cb))
-* **logger:** move splat to logger as well and refactor multiline message handling ([fea0227](https://github.com/listr2/listr2/commit/fea0227e6874b2dd35f789db5a13722705c052a2))
-* **logger:** unify the logger field input ([30a2658](https://github.com/listr2/listr2/commit/30a26588d1728163364aff493d7a4c4a45d204cf))
-* **logger:** use logger prototype instead of instance for initiating, always pass default ([1fc7ef9](https://github.com/listr2/listr2/commit/1fc7ef992a81d687ccc68010f68106969f36211a))
-* move prompt to own instance ([7cacdbd](https://github.com/listr2/listr2/commit/7cacdbdd9e0b28a4273bb34c3d465c70b8f30907))
-* refactor and simplify default renderer ([a9ec3c4](https://github.com/listr2/listr2/commit/a9ec3c40f6cd922bb03f820f61a18109960e59ea))
-* refactor the name to shorten it, since it is still understandable ([acfe5bd](https://github.com/listr2/listr2/commit/acfe5bd5e96cccc60d2639832739c0c0b775c74d))
-* rename error field of listr and share through parent tasks ([88eb34e](https://github.com/listr2/listr2/commit/88eb34e5052109501856af08d03284899c43519d))
-* rename field ([aa831bd](https://github.com/listr2/listr2/commit/aa831bd59eda51573ae578bd0d24264a86999c15))
-* rename for consistency ([0530c22](https://github.com/listr2/listr2/commit/0530c22ed37f93e61baf127734c1e1892b632abf))
-* rename nonttyrenderer and its related settings ([f29bb12](https://github.com/listr2/listr2/commit/f29bb12eece8cc9b5c8c6a1e9157c5768d641824))
-* rename property ([5e8a7be](https://github.com/listr2/listr2/commit/5e8a7be8f3eef71a78927cd0f4408c61309394fb))
-* **renderer:** change the default ([796826a](https://github.com/listr2/listr2/commit/796826a2b431f74561807cd24e46b9e213dd844f))
-* update api and rename for consistency ([ffbe9f2](https://github.com/listr2/listr2/commit/ffbe9f25e5254fca6291997a1b6b3230c89159ac))
-* update documentation, rename presets ([4041410](https://github.com/listr2/listr2/commit/4041410d8ee540fe564bc65a940ec1c5a89414f1))
-* update how bottom bar is handled through process output buffer ([1729962](https://github.com/listr2/listr2/commit/1729962a503eceb5e4925cc24eb80a2d84807a0a))
-* update how logger is implemented and injected ([3146082](https://github.com/listr2/listr2/commit/31460828258e949fdab6e387a6e2bea5c2710a52))
-* update how test renderer logs and use a serializer instead of constantly creating objects ([5859ac4](https://github.com/listr2/listr2/commit/5859ac40e43f6cb2eeca8c2d6bf48da1fe03fa18))
-* update naming scheme ([acc1f9d](https://github.com/listr2/listr2/commit/acc1f9d082f429d7240b91987ed2d53bc315558e))
-
+- bump node version to 16 since 14 dies in less than 1 month ([36dde30](https://github.com/listr2/listr2/commit/36dde30661103126949480639edf9fe77864efc3))
+- change field name ([91f6fda](https://github.com/listr2/listr2/commit/91f6fdabfaf6fd10674b3c4388cc9c91760c297a))
+- change naming scheme for renderer tasks to make it singular ([cbcdfe2](https://github.com/listr2/listr2/commit/cbcdfe23870d08e660ccf9bd4e067e36e5664f3a))
+- change the default behavior for error collection ([4785730](https://github.com/listr2/listr2/commit/478573001ebd519582891b82230f49219f5f9101))
+- change the exposed API of the application ([513ed76](https://github.com/listr2/listr2/commit/513ed767a069ba91e0fa27481308c420df40f6fa))
+- changes and reuses logger component and pluggable plugins for renderers ([cbf668c](https://github.com/listr2/listr2/commit/cbf668c1ddfbaf2d8ee4d980071305b8586f8d3d)), closes [#651](https://github.com/listr2/listr2/issues/651) [#646](https://github.com/listr2/listr2/issues/646) [#613](https://github.com/listr2/listr2/issues/613)
+- **constants:** changes names of listr states ([cf9c19d](https://github.com/listr2/listr2/commit/cf9c19df04099e354a2ac6d51cd853c6def0c4bf))
+- default fallback renderer changed to simple renderer ([67b5b62](https://github.com/listr2/listr2/commit/67b5b62d1a3a06fc97a29f0d4b27b7e0c99211d0))
+- **deps:** ditch-pmap instead of a basic implementation ([eb7cfdc](https://github.com/listr2/listr2/commit/eb7cfdceaf357f415f3f8d2237a6631b2ec2db0e))
+- go full esm on jest/ts-node, use dynamic imports for esm modules on default renderer ([9cc01c0](https://github.com/listr2/listr2/commit/9cc01c0bd972f7adfd12c00669bbed21d65052e6))
+- handle prompts properly, rename loglevels to listrloglevels ([73cad76](https://github.com/listr2/listr2/commit/73cad7614d571fad175d4da0d0e8c4031ea541cb))
+- **logger:** move splat to logger as well and refactor multiline message handling ([fea0227](https://github.com/listr2/listr2/commit/fea0227e6874b2dd35f789db5a13722705c052a2))
+- **logger:** unify the logger field input ([30a2658](https://github.com/listr2/listr2/commit/30a26588d1728163364aff493d7a4c4a45d204cf))
+- **logger:** use logger prototype instead of instance for initiating, always pass default ([1fc7ef9](https://github.com/listr2/listr2/commit/1fc7ef992a81d687ccc68010f68106969f36211a))
+- move prompt to own instance ([7cacdbd](https://github.com/listr2/listr2/commit/7cacdbdd9e0b28a4273bb34c3d465c70b8f30907))
+- refactor and simplify default renderer ([a9ec3c4](https://github.com/listr2/listr2/commit/a9ec3c40f6cd922bb03f820f61a18109960e59ea))
+- refactor the name to shorten it, since it is still understandable ([acfe5bd](https://github.com/listr2/listr2/commit/acfe5bd5e96cccc60d2639832739c0c0b775c74d))
+- rename error field of listr and share through parent tasks ([88eb34e](https://github.com/listr2/listr2/commit/88eb34e5052109501856af08d03284899c43519d))
+- rename field ([aa831bd](https://github.com/listr2/listr2/commit/aa831bd59eda51573ae578bd0d24264a86999c15))
+- rename for consistency ([0530c22](https://github.com/listr2/listr2/commit/0530c22ed37f93e61baf127734c1e1892b632abf))
+- rename nonttyrenderer and its related settings ([f29bb12](https://github.com/listr2/listr2/commit/f29bb12eece8cc9b5c8c6a1e9157c5768d641824))
+- rename property ([5e8a7be](https://github.com/listr2/listr2/commit/5e8a7be8f3eef71a78927cd0f4408c61309394fb))
+- **renderer:** change the default ([796826a](https://github.com/listr2/listr2/commit/796826a2b431f74561807cd24e46b9e213dd844f))
+- update api and rename for consistency ([ffbe9f2](https://github.com/listr2/listr2/commit/ffbe9f25e5254fca6291997a1b6b3230c89159ac))
+- update documentation, rename presets ([4041410](https://github.com/listr2/listr2/commit/4041410d8ee540fe564bc65a940ec1c5a89414f1))
+- update how bottom bar is handled through process output buffer ([1729962](https://github.com/listr2/listr2/commit/1729962a503eceb5e4925cc24eb80a2d84807a0a))
+- update how logger is implemented and injected ([3146082](https://github.com/listr2/listr2/commit/31460828258e949fdab6e387a6e2bea5c2710a52))
+- update how test renderer logs and use a serializer instead of constantly creating objects ([5859ac4](https://github.com/listr2/listr2/commit/5859ac40e43f6cb2eeca8c2d6bf48da1fe03fa18))
+- update naming scheme ([acc1f9d](https://github.com/listr2/listr2/commit/acc1f9d082f429d7240b91987ed2d53bc315558e))
 
 ### BREAKING CHANGES
 
-* renames default renderer options `collapse` to
-`collapseSubtasks`
-* On the main `Listr` task list, conditions for fallback and silent renderer have been
-renamed.
+- renames default renderer options `collapse` to `collapseSubtasks`
+- On the main `Listr` task list, conditions for fallback and silent renderer have been renamed.
 
-- `rendererSilent` has been renamed to `silentRendererCondition`.
-- `rendererFallback` has been renamed to `fallbackRendererCondition`.
-* Default fallback renderer has been changed from `verbose` to `simple`, since
-`simple` can mostly handle non-tty at this point.
-* Changes default error collection behavior to `false` from `minimal`, since this is
-the most hidden feature of them all, and it should be opt-in.
-* err field in manager has been renamed to errors as well
-* renames retry property withError to basically error
-* **renderer:** The default behavior of handling longer output has been changed to `wrap`.
-* `nonTTYRenderer`, `nonTTYRendererOptions` in Listr tasks has been renamed to
-`fallbackRenderer` and `fallbackRendererOptions` respectively.
+* `rendererSilent` has been renamed to `silentRendererCondition`.
+* `rendererFallback` has been renamed to `fallbackRendererCondition`.
 
-To be honest this was staying for the original Listr compatability but since so much is refactored,
-it made sense to change it to match where the others are used.
-* Minimum node version usable is increased to node16 since node14 has been put out of
-the maintenance circle.
-* Moves prompt to another channel and avoids using the output channel for prompts.
+- Default fallback renderer has been changed from `verbose` to `simple`, since `simple` can mostly handle non-tty at this point.
+- Changes default error collection behavior to `false` from `minimal`, since this is the most hidden feature of them all, and it should be opt-in.
+- err field in manager has been renamed to errors as well
+- renames retry property withError to basically error
+- **renderer:** The default behavior of handling longer output has been changed to `wrap`.
+- `nonTTYRenderer`, `nonTTYRendererOptions` in Listr tasks has been renamed to `fallbackRenderer` and `fallbackRendererOptions` respectively.
+
+To be honest this was staying for the original Listr compatability but since so much is refactored, it made sense to change it to match where the others are used.
+
+- Minimum node version usable is increased to node16 since node14 has been put out of the maintenance circle.
+- Moves prompt to another channel and avoids using the output channel for prompts.
 
 Properly uses the ProcessOutputHook for Simpler Renderer. Hooks on prompts.
 
 Moves the ProcessOutputBuffer logic in to its own class, where streams can be recorded.
 
-Deprecated through has been ditched by using a basic WritableStream, idk why i did use it in the
-first place,
-I guess it was coming from the original Listr implementation.
+Deprecated through has been ditched by using a basic WritableStream, idk why i did use it in the first place, I guess it was coming from the original Listr implementation.
 
-Still uses ansi escape parsing to properly render the output, still limited by mostly the log-update
-but
-buffering output for bells and clear line or hide cursor charachters breaks stuff too much, so it is
-the safe
-way.
-* Renames the err field to errors in Listr class. So error collection is shared
-instead of injected.
-* This completely breaks old behavior with the renderers, even the basic
-parameters are changed.
+Still uses ansi escape parsing to properly render the output, still limited by mostly the log-update but buffering output for bells and clear line or hide cursor charachters breaks stuff too much, so it is the safe way.
 
-Now the renderers for things like timer and timestamps takes in
-pluggable components through the shared constants, which makes them user
-configurable.
+- Renames the err field to errors in Listr class. So error collection is shared instead of injected.
+- This completely breaks old behavior with the renderers, even the basic parameters are changed.
 
-The logger interface and logger itself has changed to handle all the
-common cases for any kind of renderer, eventhough it does not use all of
-them at the same time.
+Now the renderers for things like timer and timestamps takes in pluggable components through the shared constants, which makes them user configurable.
+
+The logger interface and logger itself has changed to handle all the common cases for any kind of renderer, eventhough it does not use all of them at the same time.
 
 This is a big change that might make the user checkout the new README.
-* **constants:** State names has been changed, which might break backwards compatability.
 
-# [6.0.0-beta.19](https://github.com/listr2/listr2/compare/v6.0.0-beta.18...v6.0.0-beta.19) (2023-04-07)
+- **constants:** State names has been changed, which might break backwards compatability.
 
+## [6.0.0-beta.19](https://github.com/listr2/listr2/compare/v6.0.0-beta.18...v6.0.0-beta.19) (2023-04-07)
 
 ### Performance Improvements
 
-* update how logger is implemented and injected ([3146082](https://github.com/listr2/listr2/commit/31460828258e949fdab6e387a6e2bea5c2710a52))
+- update how logger is implemented and injected ([3146082](https://github.com/listr2/listr2/commit/31460828258e949fdab6e387a6e2bea5c2710a52))
 
-# [6.0.0-beta.18](https://github.com/listr2/listr2/compare/v6.0.0-beta.17...v6.0.0-beta.18) (2023-04-06)
-
+## [6.0.0-beta.18](https://github.com/listr2/listr2/compare/v6.0.0-beta.17...v6.0.0-beta.18) (2023-04-06)
 
 ### Bug Fixes
 
-* update jsdocs, change default renderer option ([2d99b67](https://github.com/listr2/listr2/commit/2d99b672ac85b04653672913c72c80449f9716df))
-
+- update jsdocs, change default renderer option ([2d99b67](https://github.com/listr2/listr2/commit/2d99b672ac85b04653672913c72c80449f9716df))
 
 ### Performance Improvements
 
-* handle prompts properly, rename loglevels to listrloglevels ([73cad76](https://github.com/listr2/listr2/commit/73cad7614d571fad175d4da0d0e8c4031ea541cb))
+- handle prompts properly, rename loglevels to listrloglevels ([73cad76](https://github.com/listr2/listr2/commit/73cad7614d571fad175d4da0d0e8c4031ea541cb))
 
-# [6.0.0-beta.17](https://github.com/listr2/listr2/compare/v6.0.0-beta.16...v6.0.0-beta.17) (2023-04-06)
+## [6.0.0-beta.17](https://github.com/listr2/listr2/compare/v6.0.0-beta.16...v6.0.0-beta.17) (2023-04-06)
 
 ### Bug Fixes
 
@@ -169,19 +146,19 @@ This is a big change that might make the user checkout the new README.
 
 - renames default renderer options `collapse` to `collapseSubtasks`
 
-# [6.0.0-beta.16](https://github.com/listr2/listr2/compare/v6.0.0-beta.15...v6.0.0-beta.16) (2023-04-06)
+## [6.0.0-beta.16](https://github.com/listr2/listr2/compare/v6.0.0-beta.15...v6.0.0-beta.16) (2023-04-06)
 
 ### Bug Fixes
 
 - refactor some of the api for work ([4bce0c0](https://github.com/listr2/listr2/commit/4bce0c0832462ab69f37cefa250325230aaa43bb))
 
-# [6.0.0-beta.15](https://github.com/listr2/listr2/compare/v6.0.0-beta.14...v6.0.0-beta.15) (2023-04-05)
+## [6.0.0-beta.15](https://github.com/listr2/listr2/compare/v6.0.0-beta.14...v6.0.0-beta.15) (2023-04-05)
 
 ### Bug Fixes
 
 - move wrong dependency type to dev ([d93f135](https://github.com/listr2/listr2/commit/d93f1353386b165bf085c09990f4002e7c4c9ca1))
 
-# [6.0.0-beta.14](https://github.com/listr2/listr2/compare/v6.0.0-beta.13...v6.0.0-beta.14) (2023-04-05)
+## [6.0.0-beta.14](https://github.com/listr2/listr2/compare/v6.0.0-beta.13...v6.0.0-beta.14) (2023-04-05)
 
 ### Features
 
@@ -192,13 +169,13 @@ This is a big change that might make the user checkout the new README.
 - change naming scheme for renderer tasks to make it singular ([cbcdfe2](https://github.com/listr2/listr2/commit/cbcdfe23870d08e660ccf9bd4e067e36e5664f3a))
 - update how test renderer logs and use a serializer instead of constantly creating objects ([5859ac4](https://github.com/listr2/listr2/commit/5859ac40e43f6cb2eeca8c2d6bf48da1fe03fa18))
 
-# [6.0.0-beta.13](https://github.com/listr2/listr2/compare/v6.0.0-beta.12...v6.0.0-beta.13) (2023-04-02)
+## [6.0.0-beta.13](https://github.com/listr2/listr2/compare/v6.0.0-beta.12...v6.0.0-beta.13) (2023-04-02)
 
 ### Bug Fixes
 
 - issue with test coverage ([1bd74d9](https://github.com/listr2/listr2/commit/1bd74d90785b56a24f4713ae556c8866e7832f00))
 
-# [6.0.0-beta.12](https://github.com/listr2/listr2/compare/v6.0.0-beta.11...v6.0.0-beta.12) (2023-04-01)
+## [6.0.0-beta.12](https://github.com/listr2/listr2/compare/v6.0.0-beta.11...v6.0.0-beta.12) (2023-04-01)
 
 ### Performance Improvements
 
@@ -217,19 +194,19 @@ This is a big change that might make the user checkout the new README.
 - Default fallback renderer has been changed from `verbose` to `simple`, since `simple` can mostly handle non-tty at this point.
 - Changes default error collection behavior to `false` from `minimal`, since this is the most hidden feature of them all, and it should be opt-in.
 
-# [6.0.0-beta.11](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.10...v6.0.0-beta.11) (2023-04-01)
+## [6.0.0-beta.11](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.10...v6.0.0-beta.11) (2023-04-01)
 
 ### Features
 
 - add task retry delay ([b72eaf3](https://github.com/cenk1cenk2/listr2/commit/b72eaf3242e4837680d55c6a9204d5b9da5dd017)), closes [#668](https://github.com/cenk1cenk2/listr2/issues/668)
 
-# [6.0.0-beta.10](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.9...v6.0.0-beta.10) (2023-04-01)
+## [6.0.0-beta.10](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.9...v6.0.0-beta.10) (2023-04-01)
 
 ### Performance Improvements
 
 - update how bottom bar is handled through process output buffer ([1729962](https://github.com/cenk1cenk2/listr2/commit/1729962a503eceb5e4925cc24eb80a2d84807a0a))
 
-# [6.0.0-beta.9](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.8...v6.0.0-beta.9) (2023-03-19)
+## [6.0.0-beta.9](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.8...v6.0.0-beta.9) (2023-03-19)
 
 ### Bug Fixes
 
@@ -251,19 +228,19 @@ This is a big change that might make the user checkout the new README.
 - renames retry property withError to basically error
 - **renderer:** The default behavior of handling longer output has been changed to `wrap`.
 
-# [6.0.0-beta.8](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.7...v6.0.0-beta.8) (2023-03-18)
+## [6.0.0-beta.8](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.7...v6.0.0-beta.8) (2023-03-18)
 
 ### Performance Improvements
 
 - go full esm on jest/ts-node, use dynamic imports for esm modules on default renderer ([9cc01c0](https://github.com/cenk1cenk2/listr2/commit/9cc01c0bd972f7adfd12c00669bbed21d65052e6))
 
-# [6.0.0-beta.7](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.6...v6.0.0-beta.7) (2023-03-18)
+## [6.0.0-beta.7](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.6...v6.0.0-beta.7) (2023-03-18)
 
 ### Performance Improvements
 
 - **logger:** use logger prototype instead of instance for initiating, always pass default ([1fc7ef9](https://github.com/cenk1cenk2/listr2/commit/1fc7ef992a81d687ccc68010f68106969f36211a))
 
-# [6.0.0-beta.6](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.5...v6.0.0-beta.6) (2023-03-18)
+## [6.0.0-beta.6](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.5...v6.0.0-beta.6) (2023-03-18)
 
 ### Bug Fixes
 
@@ -299,19 +276,19 @@ Deprecated through has been ditched by using a basic WritableStream, idk why i d
 
 Still uses ansi escape parsing to properly render the output, still limited by mostly the log-update but buffering output for bells and clear line or hide cursor charachters breaks stuff too much, so it is the safe way.
 
-# [6.0.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.4...v6.0.0-beta.5) (2023-03-13)
+## [6.0.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.4...v6.0.0-beta.5) (2023-03-13)
 
 ### Performance Improvements
 
 - **logger:** unify the logger field input ([30a2658](https://github.com/cenk1cenk2/listr2/commit/30a26588d1728163364aff493d7a4c4a45d204cf))
 
-# [6.0.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2023-03-13)
+## [6.0.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2023-03-13)
 
 ### Features
 
 - add process hooks to hook terminal to obstruct anything while rendering ([db7398d](https://github.com/cenk1cenk2/listr2/commit/db7398d438f56a829e81a73981420e7b0f7230c8)), closes [#662](https://github.com/cenk1cenk2/listr2/issues/662)
 
-# [6.0.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2023-03-13)
+## [6.0.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2023-03-13)
 
 ### Bug Fixes
 
@@ -337,7 +314,7 @@ Still uses ansi escape parsing to properly render the output, still limited by m
 
 - Renames the err field to errors in Listr class. So error collection is shared instead of injected.
 
-# [6.0.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2023-03-13)
+## [6.0.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2023-03-13)
 
 ### Bug Fixes
 
@@ -354,7 +331,7 @@ Still uses ansi escape parsing to properly render the output, still limited by m
 - change field name ([91f6fda](https://github.com/cenk1cenk2/listr2/commit/91f6fdabfaf6fd10674b3c4388cc9c91760c297a))
 - update naming scheme ([acc1f9d](https://github.com/cenk1cenk2/listr2/commit/acc1f9d082f429d7240b91987ed2d53bc315558e))
 
-# [6.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.2...v6.0.0-beta.1) (2023-03-13)
+## [6.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.2...v6.0.0-beta.1) (2023-03-13)
 
 ### Bug Fixes
 
@@ -383,13 +360,13 @@ This is a big change that might make the user checkout the new README.
 
 - **constants:** State names has been changed, which might break backwards compatability.
 
-# [5.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-03-11)
+## [5.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2023-03-11)
 
 ### Bug Fixes
 
 - expose colorrette and some more utils ([d9e0812](https://github.com/cenk1cenk2/listr2/commit/d9e08126d4d2f0773fe0f26702ca4403f5521fb6))
 
-# [5.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.8...v5.1.0-beta.1) (2023-03-11)
+## [5.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v5.0.8...v5.1.0-beta.1) (2023-03-11)
 
 ### Features
 
@@ -443,7 +420,7 @@ This is a big change that might make the user checkout the new README.
 
 - badge ([b6d9bcd](https://github.com/cenk1cenk2/listr2/commit/b6d9bcda584520ecc8a732b946cb30f6f24c5c7a))
 
-# [5.0.0](https://github.com/cenk1cenk2/listr2/compare/v4.0.5...v5.0.0) (2022-07-26)
+## [5.0.0](https://github.com/cenk1cenk2/listr2/compare/v4.0.5...v5.0.0) (2022-07-26)
 
 ### Bug Fixes
 
@@ -457,7 +434,7 @@ This is a big change that might make the user checkout the new README.
 
 - drops support for node12, migrate build to gitlab
 
-# [3.14.0](https://github.com/cenk1cenk2/listr2/compare/v3.13.6...v3.14.0) (2022-01-04)
+## [3.14.0](https://github.com/cenk1cenk2/listr2/compare/v3.13.6...v3.14.0) (2022-01-04)
 
 ### Bug Fixes
 
@@ -503,7 +480,7 @@ This is a big change that might make the user checkout the new README.
 
 - use v8 functions for error collection ([be37833](https://github.com/cenk1cenk2/listr2/commit/be37833807b2f915c53e58946543d257c723ac4b))
 
-# [3.13.0](https://github.com/cenk1cenk2/listr2/compare/v3.12.2...v3.13.0) (2021-10-23)
+## [3.13.0](https://github.com/cenk1cenk2/listr2/compare/v3.12.2...v3.13.0) (2021-10-23)
 
 ### Bug Fixes
 
@@ -526,7 +503,7 @@ This is a big change that might make the user checkout the new README.
 
 - **deps:** update dependency colorette to ^1.4.0 ([4f52e16](https://github.com/cenk1cenk2/listr2/commit/4f52e16f6251490ba4e8f4a3dc49b41a9a997048))
 
-# [3.12.0](https://github.com/cenk1cenk2/listr2/compare/v3.11.1...v3.12.0) (2021-09-12)
+## [3.12.0](https://github.com/cenk1cenk2/listr2/compare/v3.11.1...v3.12.0) (2021-09-12)
 
 ### Features
 
@@ -539,7 +516,7 @@ This is a big change that might make the user checkout the new README.
 - git hook ([5e5c111](https://github.com/cenk1cenk2/listr2/commit/5e5c111255a6bfb5f19bde0dae331ef7e883ba10))
 - node 16 try/catch type changes ([a5e29f4](https://github.com/cenk1cenk2/listr2/commit/a5e29f412f8412002546657275030927146dae25))
 
-# [3.11.0](https://github.com/cenk1cenk2/listr2/compare/v3.10.1...v3.11.0) (2021-07-22)
+## [3.11.0](https://github.com/cenk1cenk2/listr2/compare/v3.10.1...v3.11.0) (2021-07-22)
 
 ### Bug Fixes
 
@@ -556,13 +533,13 @@ This is a big change that might make the user checkout the new README.
 
 - update deps ([84f3529](https://github.com/cenk1cenk2/listr2/commit/84f3529270637d04341aacbc5039ed8b52237b2e))
 
-# [3.10.0](https://github.com/cenk1cenk2/listr2/compare/v3.9.0...v3.10.0) (2021-06-07)
+## [3.10.0](https://github.com/cenk1cenk2/listr2/compare/v3.9.0...v3.10.0) (2021-06-07)
 
 ### Features
 
 - add context to the class itself for outside access ([98ea144](https://github.com/cenk1cenk2/listr2/commit/98ea14453257f9aec93932890e4c8c8d8ac53ead))
 
-# [3.9.0](https://github.com/cenk1cenk2/listr2/compare/v3.8.6...v3.9.0) (2021-05-27)
+## [3.9.0](https://github.com/cenk1cenk2/listr2/compare/v3.8.6...v3.9.0) (2021-05-27)
 
 ### Features
 
@@ -606,7 +583,7 @@ This is a big change that might make the user checkout the new README.
 
 - **deps:** update dependency chalk to ^4.1.1 ([ef4bb19](https://github.com/cenk1cenk2/listr2/commit/ef4bb19dbbc82bb588abb2052f8771818f287aba))
 
-# [3.8.0](https://github.com/cenk1cenk2/listr2/compare/v3.7.1...v3.8.0) (2021-04-25)
+## [3.8.0](https://github.com/cenk1cenk2/listr2/compare/v3.7.1...v3.8.0) (2021-04-25)
 
 ### Features
 
@@ -618,7 +595,7 @@ This is a big change that might make the user checkout the new README.
 
 - add auto generated docs for documentation site imports ([ae3786e](https://github.com/cenk1cenk2/listr2/commit/ae3786e4e4fbf8564a37dfc0c33bb0f5d9b1cc38))
 
-# [3.7.0](https://github.com/cenk1cenk2/listr2/compare/v3.6.3...v3.7.0) (2021-04-18)
+## [3.7.0](https://github.com/cenk1cenk2/listr2/compare/v3.6.3...v3.7.0) (2021-04-18)
 
 ### Features
 
@@ -642,7 +619,7 @@ This is a big change that might make the user checkout the new README.
 
 - fix exporting types in the old format ([f415027](https://github.com/cenk1cenk2/listr2/commit/f41502748d2e85b489a558dd35dd845648c34092))
 
-# [3.6.0](https://github.com/cenk1cenk2/listr2/compare/v3.5.0...v3.6.0) (2021-04-05)
+## [3.6.0](https://github.com/cenk1cenk2/listr2/compare/v3.5.0...v3.6.0) (2021-04-05)
 
 ### Bug Fixes
 
@@ -653,7 +630,7 @@ This is a big change that might make the user checkout the new README.
 
 - fix types and styling ([ef8c9f9](https://github.com/cenk1cenk2/listr2/commit/ef8c9f99fbcc6f37c1c0810a420fbc39a357baa5))
 
-# [3.5.0](https://github.com/cenk1cenk2/listr2/compare/v3.4.5...v3.5.0) (2021-04-05)
+## [3.5.0](https://github.com/cenk1cenk2/listr2/compare/v3.4.5...v3.5.0) (2021-04-05)
 
 ### Features
 
@@ -689,7 +666,7 @@ This is a big change that might make the user checkout the new README.
 
 - return the last error as well from isRetrying ([f94641e](https://github.com/cenk1cenk2/listr2/commit/f94641e064464dddbf736e7f1dea1602a65ec433))
 
-# [3.4.0](https://github.com/cenk1cenk2/listr2/compare/v3.3.4...v3.4.0) (2021-03-05)
+## [3.4.0](https://github.com/cenk1cenk2/listr2/compare/v3.3.4...v3.4.0) (2021-03-05)
 
 ### Features
 
@@ -739,7 +716,7 @@ This is a big change that might make the user checkout the new README.
 
 - rollback types ([7935241](https://github.com/cenk1cenk2/listr2/commit/7935241ef91ed36434242ee00ed838c1fe0979e2)), closes [#276](https://github.com/cenk1cenk2/listr2/issues/276)
 
-# [3.3.0](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0) (2021-01-20)
+## [3.3.0](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0) (2021-01-20)
 
 ### Bug Fixes
 
@@ -755,7 +732,7 @@ This is a big change that might make the user checkout the new README.
 
 - added rollback stuff ([d80c060](https://github.com/cenk1cenk2/listr2/commit/d80c06052a1fdad3dcefda68ef3446d659ba191b))
 
-# [3.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2021-01-18)
+## [3.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2021-01-18)
 
 ### Bug Fixes
 
@@ -763,7 +740,7 @@ This is a big change that might make the user checkout the new README.
 - some fixes for truncation and word wrapping ([18c279a](https://github.com/cenk1cenk2/listr2/commit/18c279a6a5a5b1273e7d372c16f264acf8593a4e))
 - update truncating and word wrap column thingies ([f8662b9](https://github.com/cenk1cenk2/listr2/commit/f8662b9c03d6138409945ce946389235b8e1bafb))
 
-# [3.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0-beta.1) (2021-01-17)
+## [3.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v3.2.3...v3.3.0-beta.1) (2021-01-17)
 
 ### Bug Fixes
 
@@ -793,7 +770,7 @@ This is a big change that might make the user checkout the new README.
 
 - improve tests and disable the unnecassary cases ([929a616](https://github.com/cenk1cenk2/listr2/commit/929a6164444d7790f1a4bdd058378fc50b76e28d))
 
-# [3.2.0](https://github.com/cenk1cenk2/listr2/compare/v3.1.1...v3.2.0) (2020-10-24)
+## [3.2.0](https://github.com/cenk1cenk2/listr2/compare/v3.1.1...v3.2.0) (2020-10-24)
 
 ### Bug Fixes
 
@@ -810,7 +787,7 @@ This is a big change that might make the user checkout the new README.
 - **prompt:** make prompt outside used ([2a61ac8](https://github.com/cenk1cenk2/listr2/commit/2a61ac80c5121ee020abc5b268c540eefad3738d))
 - **prompt:** reenabled external use ([2408aa1](https://github.com/cenk1cenk2/listr2/commit/2408aa1391fb65f07cbcade698a0e834d38b2231))
 
-# [3.1.0](https://github.com/cenk1cenk2/listr2/compare/v3.0.1...v3.1.0) (2020-09-20)
+## [3.1.0](https://github.com/cenk1cenk2/listr2/compare/v3.0.1...v3.1.0) (2020-09-20)
 
 ### Bug Fixes
 
@@ -829,7 +806,7 @@ This is a big change that might make the user checkout the new README.
 
 - **default-renderer:** added some fixes to swallowing error output in collapseErrors: [secure] mode and showErrorMessage ([b0c2bb7](https://github.com/cenk1cenk2/listr2/commit/b0c2bb7d11cd3b3e9cdffdaa4a6a2dfab725a0c7))
 
-# [3.0.0](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0) (2020-09-04)
+## [3.0.0](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0) (2020-09-04)
 
 ### Bug Fixes
 
@@ -857,7 +834,7 @@ This is a big change that might make the user checkout the new README.
 
 Overall there are no breaking changes introduced to the code directly but it might cause the tests which rely on default-renderer, since the rendering method is almost completely revised.
 
-# [3.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0-beta.1) (2020-09-04)
+## [3.0.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0-beta.1) (2020-09-04)
 
 ### Bug Fixes
 
@@ -897,7 +874,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 
 - new version for replicate.npmjs ([09dcb9c](https://github.com/cenk1cenk2/listr2/commit/09dcb9cbcafb7222222560c84cd8e0a08916ef1b))
 
-# [2.6.0](https://github.com/cenk1cenk2/listr2/compare/v2.5.1...v2.6.0) (2020-08-16)
+## [2.6.0](https://github.com/cenk1cenk2/listr2/compare/v2.5.1...v2.6.0) (2020-08-16)
 
 ### Bug Fixes
 
@@ -915,7 +892,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 
 - **prompt:** fixed an issue with one prompt not returning default ([375a441](https://github.com/cenk1cenk2/listr2/commit/375a441cfc560b550c639fe4b977ee2d74aad755))
 
-# [2.5.0](https://github.com/cenk1cenk2/listr2/compare/v2.4.1...v2.5.0) (2020-08-10)
+## [2.5.0](https://github.com/cenk1cenk2/listr2/compare/v2.4.1...v2.5.0) (2020-08-10)
 
 ### Bug Fixes
 
@@ -932,7 +909,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 
 - **default-renderer:** added a tiny fix when persistent bottom bar is enabled and task is skipped ([d6a25a8](https://github.com/cenk1cenk2/listr2/commit/d6a25a886224bf6d0ac3c3a7253901f1fb74dc59))
 
-# [2.4.0](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0) (2020-07-27)
+## [2.4.0](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0) (2020-07-27)
 
 ### Bug Fixes
 
@@ -947,7 +924,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 
 - **deps:** rxjs bundle ([4067164](https://github.com/cenk1cenk2/listr2/commit/4067164ed993368997986223bbec3c22059f27b8))
 
-# [2.4.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.2...v2.4.0-beta.3) (2020-07-27)
+## [2.4.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.2...v2.4.0-beta.3) (2020-07-27)
 
 ### Bug Fixes
 
@@ -957,13 +934,13 @@ Overall there are no breaking changes introduced to the code directly but it mig
 
 - **deps:** rxjs bundle ([4067164](https://github.com/cenk1cenk2/listr2/commit/4067164ed993368997986223bbec3c22059f27b8))
 
-# [2.4.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.1...v2.4.0-beta.2) (2020-07-27)
+## [2.4.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.4.0-beta.1...v2.4.0-beta.2) (2020-07-27)
 
 ### Bug Fixes
 
 - **rxjs:** retry for rxjs export with webpack ([ac537e5](https://github.com/cenk1cenk2/listr2/commit/ac537e5beb2c096acdbb6cb2725f9d7aa434a26d))
 
-# [2.4.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0-beta.1) (2020-07-27)
+## [2.4.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.3.6...v2.4.0-beta.1) (2020-07-27)
 
 ### Features
 
@@ -1008,7 +985,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 
 - **readme:** added badge for npm ([61f6bc3](https://github.com/cenk1cenk2/listr2/commit/61f6bc36a5df27b80d61233dd0880326b93b7d5a))
 
-# [2.3.0](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0) (2020-07-22)
+## [2.3.0](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0) (2020-07-22)
 
 ### Bug Fixes
 
@@ -1021,13 +998,13 @@ Overall there are no breaking changes introduced to the code directly but it mig
 - added lazy option to default renderer. moved enquirer to inject wrapper key from root ([78f3984](https://github.com/cenk1cenk2/listr2/commit/78f3984c19cd31f45edf5fbc8e8bfa5380104331))
 - **prompts:** added external enquirer injection for testing, fallback condition, fixed catching err ([a0bf6fd](https://github.com/cenk1cenk2/listr2/commit/a0bf6fd444caf69b0231f710099e367840c0ed15)), closes [#66](https://github.com/cenk1cenk2/listr2/issues/66) [#67](https://github.com/cenk1cenk2/listr2/issues/67) [#68](https://github.com/cenk1cenk2/listr2/issues/68)
 
-# [2.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2020-07-22)
+## [2.3.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2020-07-22)
 
 ### Features
 
 - added lazy option to default renderer. moved enquirer to inject wrapper key from root ([78f3984](https://github.com/cenk1cenk2/listr2/commit/78f3984c19cd31f45edf5fbc8e8bfa5380104331))
 
-# [2.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0-beta.1) (2020-07-22)
+## [2.3.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.2.1...v2.3.0-beta.1) (2020-07-22)
 
 ### Bug Fixes
 
@@ -1044,7 +1021,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 - **prompts:** added return when prompt error ([6c89e56](https://github.com/cenk1cenk2/listr2/commit/6c89e562713686a1748a0436aef3c2ae43c6c555))
 - **prompts:** fixed prompt error message when enquirer is not installed optionally ([8fc5849](https://github.com/cenk1cenk2/listr2/commit/8fc58492bcac3fb5520360c7c8d1e5c2156b74fc))
 
-# [2.2.0](https://github.com/cenk1cenk2/listr2/compare/v2.1.9...v2.2.0) (2020-07-03)
+## [2.2.0](https://github.com/cenk1cenk2/listr2/compare/v2.1.9...v2.2.0) (2020-07-03)
 
 ### Features
 
@@ -1112,7 +1089,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 
 - **streams:** add legacy streams to accepted types ([f63dd52](https://github.com/cenk1cenk2/listr2/commit/f63dd52167c2babada80ff5d092843ead2ca86e7))
 
-# [2.1.0](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0) (2020-06-03)
+## [2.1.0](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0) (2020-06-03)
 
 ### Bug Fixes
 
@@ -1131,7 +1108,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 - **prompt:** use enquirer directly ([b34e9d0](https://github.com/cenk1cenk2/listr2/commit/b34e9d0b2ef9b0cbf723759c5a236eca8ac86af0)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
 - **renderer:** added hook and stdout support ([bd73c68](https://github.com/cenk1cenk2/listr2/commit/bd73c68b9eb21cd100a266ce05ba36af0c727a4f)), closes [#31](https://github.com/cenk1cenk2/listr2/issues/31)
 
-# [2.1.0-beta.6](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.5...v2.1.0-beta.6) (2020-06-03)
+## [2.1.0-beta.6](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.5...v2.1.0-beta.6) (2020-06-03)
 
 ### Bug Fixes
 
@@ -1140,32 +1117,32 @@ Overall there are no breaking changes introduced to the code directly but it mig
 - **deps:** updated deps to latest ([c4ad38f](https://github.com/cenk1cenk2/listr2/commit/c4ad38f32510d598a4c93d19ca517eef81c841a2))
 - **stream:** fixed streams added example ([614d89f](https://github.com/cenk1cenk2/listr2/commit/614d89fc1b64e7a586a7a590233d4dce1696b7b4)), closes [#37](https://github.com/cenk1cenk2/listr2/issues/37)
 
-# [2.1.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.4...v2.1.0-beta.5) (2020-06-03)
+## [2.1.0-beta.5](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.4...v2.1.0-beta.5) (2020-06-03)
 
 ### Bug Fixes
 
 - **prompt:** types ([110130a](https://github.com/cenk1cenk2/listr2/commit/110130a6c0a6b3443362cd8fc018e18b6ef5fbbc))
 
-# [2.1.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.3...v2.1.0-beta.4) (2020-06-02)
+## [2.1.0-beta.4](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.3...v2.1.0-beta.4) (2020-06-02)
 
 ### Bug Fixes
 
 - **prompt:** enquirer to peer ([cae55e9](https://github.com/cenk1cenk2/listr2/commit/cae55e962faf54f3ddadc6c220567a316c8ee15b))
 
-# [2.1.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.2...v2.1.0-beta.3) (2020-06-02)
+## [2.1.0-beta.3](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.2...v2.1.0-beta.3) (2020-06-02)
 
 ### Bug Fixes
 
 - **prompts:** fixed type for array prompts, added name as mandatory ([a08b1e4](https://github.com/cenk1cenk2/listr2/commit/a08b1e4a9b80fd542384ef3a5dbc111dead0bd6c))
 
-# [2.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.1...v2.1.0-beta.2) (2020-06-02)
+## [2.1.0-beta.2](https://github.com/cenk1cenk2/listr2/compare/v2.1.0-beta.1...v2.1.0-beta.2) (2020-06-02)
 
 ### Features
 
 - **prompt:** make prompt module optional, be more compatible to underlying enqurier ([64cecc1](https://github.com/cenk1cenk2/listr2/commit/64cecc10049f5802a6e7a71071ec698e1226bdc2)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
 - **prompt:** use enquirer directly ([b34e9d0](https://github.com/cenk1cenk2/listr2/commit/b34e9d0b2ef9b0cbf723759c5a236eca8ac86af0)), closes [#34](https://github.com/cenk1cenk2/listr2/issues/34)
 
-# [2.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0-beta.1) (2020-05-25)
+## [2.1.0-beta.1](https://github.com/cenk1cenk2/listr2/compare/v2.0.4...v2.1.0-beta.1) (2020-05-25)
 
 ### Bug Fixes
 
@@ -1201,7 +1178,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
 - **manager:** fixed manager types ([10d74e9](https://github.com/cenk1cenk2/listr2/commit/10d74e9f481fee689f103a08c42c3c60d0fb2bc1)), closes [#22](https://github.com/cenk1cenk2/listr2/issues/22)
 - **manager:** fixed types for manager ([033c7d1](https://github.com/cenk1cenk2/listr2/commit/033c7d180431a7039c9c38a8537b43fc5615f50e))
 
-# [2.0.0](https://github.com/cenk1cenk2/listr2/compare/v1.3.12...v2.0.0) (2020-05-06)
+## [2.0.0](https://github.com/cenk1cenk2/listr2/compare/v1.3.12...v2.0.0) (2020-05-06)
 
 ### Bug Fixes
 
