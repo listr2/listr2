@@ -1,3 +1,133 @@
+# [6.0.0](https://github.com/listr2/listr2/compare/v5.0.8...v6.0.0) (2023-04-07)
+
+
+### Bug Fixes
+
+* comply with breaking changes on types ([23d1855](https://github.com/listr2/listr2/commit/23d1855b35cb5a9be6f7af9604771a68be6307c3))
+* expose colorrette and some more utils ([d9e0812](https://github.com/listr2/listr2/commit/d9e08126d4d2f0773fe0f26702ca4403f5521fb6))
+* handle non string values ([04c583c](https://github.com/listr2/listr2/commit/04c583c790af74f835321d2b922a6a02ca3a34c1))
+* issue with empty skips from before ([5c04f19](https://github.com/listr2/listr2/commit/5c04f1962db5232c1ba7f6d2a51f1689faa44147))
+* issue with test coverage ([1bd74d9](https://github.com/listr2/listr2/commit/1bd74d90785b56a24f4713ae556c8866e7832f00))
+* missing stuff ([9d442f8](https://github.com/listr2/listr2/commit/9d442f8ae709d1096ce43dac569f596cca1a7ff1))
+* move wrong dependency type to dev ([d93f135](https://github.com/listr2/listr2/commit/d93f1353386b165bf085c09990f4002e7c4c9ca1))
+* refactor some of the api for work ([4bce0c0](https://github.com/listr2/listr2/commit/4bce0c0832462ab69f37cefa250325230aaa43bb))
+* **task:** update naming scheme and hide taskfn ([1b19a89](https://github.com/listr2/listr2/commit/1b19a89f4a908ab038866e29ee3644537299b863))
+* the issue with rendering, make default renderer method naming scheme similar to logger ([6c5c172](https://github.com/listr2/listr2/commit/6c5c172684e388cc5367cfa40ca0459fc8b46cc5))
+* update ci configuration for codecov and semantic-release pushback ([4f94de6](https://github.com/listr2/listr2/commit/4f94de62a8a3fd80ff7c8017aea862a525750ac5))
+* update dependencies and configuration ([ee07b2a](https://github.com/listr2/listr2/commit/ee07b2a9c841c8d00adb6efe809a5decd46386f2))
+* update deps ([8140f28](https://github.com/listr2/listr2/commit/8140f280c701702e7b5fe0fe3c67ac79820396ee))
+* update jsdocs, change default renderer option ([2d99b67](https://github.com/listr2/listr2/commit/2d99b672ac85b04653672913c72c80449f9716df))
+* update logger to be more flexible ([3b76139](https://github.com/listr2/listr2/commit/3b76139bfc59e571c679b1f13160c5a9747ac419))
+* update option name ([9ddfea3](https://github.com/listr2/listr2/commit/9ddfea3ebb483b729c3a96de9efb2d9df61aae84))
+* update splat from logger ([142be8c](https://github.com/listr2/listr2/commit/142be8c5cd61a51d7344187180deadc05432d080))
+* update typescript path and the import paths accordingly ([0d3afcb](https://github.com/listr2/listr2/commit/0d3afcb7bfea4d4e3afec4ce2171ada894ee7b9b))
+
+
+### Features
+
+* add new options for base listr ([1a41939](https://github.com/listr2/listr2/commit/1a419391a8a5c5352345b66c4269ebf03b958c1f))
+* add possiblity to force unicode on all systems ([08ba157](https://github.com/listr2/listr2/commit/08ba157dc5184dabbdf4187d8571866e3b1bd360))
+* add process hooks to hook terminal to obstruct anything while rendering ([db7398d](https://github.com/listr2/listr2/commit/db7398d438f56a829e81a73981420e7b0f7230c8)), closes [#662](https://github.com/listr2/listr2/issues/662)
+* add splat util.format to output, title and skip ([02e5432](https://github.com/listr2/listr2/commit/02e5432cd751be0e0f5cecc29a7d02b7e9668dbe))
+* add task retry delay ([b72eaf3](https://github.com/listr2/listr2/commit/b72eaf3242e4837680d55c6a9204d5b9da5dd017)), closes [#668](https://github.com/listr2/listr2/issues/668)
+* adds new test renderer ([6098586](https://github.com/listr2/listr2/commit/6098586adff1369565b79c43a546338731b4a13c))
+* ditch rxjs completely and use event emitter based approach ([213bc76](https://github.com/listr2/listr2/commit/213bc76fec973719926927178b9a167aa89c563f))
+* expose and alias more of the interfaces since they can be used outside ([38479b0](https://github.com/listr2/listr2/commit/38479b0bb9ae0942aa5d0cf0cca628c49cf0f5df))
+* expose more api for pending tasks ([a7b1981](https://github.com/listr2/listr2/commit/a7b1981f5db3f72bc4d489417ad4d87cb50941cc))
+* expose path from task directly ([5c393d0](https://github.com/listr2/listr2/commit/5c393d0d3137c3aa0980251297ce542f3ad47097))
+* expose spinner through its own stateful class ([99bd97d](https://github.com/listr2/listr2/commit/99bd97db217aeee4fda702d42f7632bf0b5673aa))
+* **process-output:** ability to overwrite streams on process output ([474e096](https://github.com/listr2/listr2/commit/474e096346eab10f2deca2347b2e34e89fc284c8))
+* **process-output:** hide cursor as before when hijacking output ([a0e150c](https://github.com/listr2/listr2/commit/a0e150c7e0d62e2c8f0cb95babca933e773ed2c0))
+* **renderer:** simplify and add eager option ([5248c78](https://github.com/listr2/listr2/commit/5248c78b01583da5d65a83ea75f4f6f52a6956f6))
+
+
+### Performance Improvements
+
+* bump node version to 16 since 14 dies in less than 1 month ([36dde30](https://github.com/listr2/listr2/commit/36dde30661103126949480639edf9fe77864efc3))
+* change field name ([91f6fda](https://github.com/listr2/listr2/commit/91f6fdabfaf6fd10674b3c4388cc9c91760c297a))
+* change naming scheme for renderer tasks to make it singular ([cbcdfe2](https://github.com/listr2/listr2/commit/cbcdfe23870d08e660ccf9bd4e067e36e5664f3a))
+* change the default behavior for error collection ([4785730](https://github.com/listr2/listr2/commit/478573001ebd519582891b82230f49219f5f9101))
+* change the exposed API of the application ([513ed76](https://github.com/listr2/listr2/commit/513ed767a069ba91e0fa27481308c420df40f6fa))
+* changes and reuses logger component and pluggable plugins for renderers ([cbf668c](https://github.com/listr2/listr2/commit/cbf668c1ddfbaf2d8ee4d980071305b8586f8d3d)), closes [#651](https://github.com/listr2/listr2/issues/651) [#646](https://github.com/listr2/listr2/issues/646) [#613](https://github.com/listr2/listr2/issues/613)
+* **constants:** changes names of listr states ([cf9c19d](https://github.com/listr2/listr2/commit/cf9c19df04099e354a2ac6d51cd853c6def0c4bf))
+* default fallback renderer changed to simple renderer ([67b5b62](https://github.com/listr2/listr2/commit/67b5b62d1a3a06fc97a29f0d4b27b7e0c99211d0))
+* **deps:** ditch-pmap instead of a basic implementation ([eb7cfdc](https://github.com/listr2/listr2/commit/eb7cfdceaf357f415f3f8d2237a6631b2ec2db0e))
+* go full esm on jest/ts-node, use dynamic imports for esm modules on default renderer ([9cc01c0](https://github.com/listr2/listr2/commit/9cc01c0bd972f7adfd12c00669bbed21d65052e6))
+* handle prompts properly, rename loglevels to listrloglevels ([73cad76](https://github.com/listr2/listr2/commit/73cad7614d571fad175d4da0d0e8c4031ea541cb))
+* **logger:** move splat to logger as well and refactor multiline message handling ([fea0227](https://github.com/listr2/listr2/commit/fea0227e6874b2dd35f789db5a13722705c052a2))
+* **logger:** unify the logger field input ([30a2658](https://github.com/listr2/listr2/commit/30a26588d1728163364aff493d7a4c4a45d204cf))
+* **logger:** use logger prototype instead of instance for initiating, always pass default ([1fc7ef9](https://github.com/listr2/listr2/commit/1fc7ef992a81d687ccc68010f68106969f36211a))
+* move prompt to own instance ([7cacdbd](https://github.com/listr2/listr2/commit/7cacdbdd9e0b28a4273bb34c3d465c70b8f30907))
+* refactor and simplify default renderer ([a9ec3c4](https://github.com/listr2/listr2/commit/a9ec3c40f6cd922bb03f820f61a18109960e59ea))
+* refactor the name to shorten it, since it is still understandable ([acfe5bd](https://github.com/listr2/listr2/commit/acfe5bd5e96cccc60d2639832739c0c0b775c74d))
+* rename error field of listr and share through parent tasks ([88eb34e](https://github.com/listr2/listr2/commit/88eb34e5052109501856af08d03284899c43519d))
+* rename field ([aa831bd](https://github.com/listr2/listr2/commit/aa831bd59eda51573ae578bd0d24264a86999c15))
+* rename for consistency ([0530c22](https://github.com/listr2/listr2/commit/0530c22ed37f93e61baf127734c1e1892b632abf))
+* rename nonttyrenderer and its related settings ([f29bb12](https://github.com/listr2/listr2/commit/f29bb12eece8cc9b5c8c6a1e9157c5768d641824))
+* rename property ([5e8a7be](https://github.com/listr2/listr2/commit/5e8a7be8f3eef71a78927cd0f4408c61309394fb))
+* **renderer:** change the default ([796826a](https://github.com/listr2/listr2/commit/796826a2b431f74561807cd24e46b9e213dd844f))
+* update api and rename for consistency ([ffbe9f2](https://github.com/listr2/listr2/commit/ffbe9f25e5254fca6291997a1b6b3230c89159ac))
+* update documentation, rename presets ([4041410](https://github.com/listr2/listr2/commit/4041410d8ee540fe564bc65a940ec1c5a89414f1))
+* update how bottom bar is handled through process output buffer ([1729962](https://github.com/listr2/listr2/commit/1729962a503eceb5e4925cc24eb80a2d84807a0a))
+* update how logger is implemented and injected ([3146082](https://github.com/listr2/listr2/commit/31460828258e949fdab6e387a6e2bea5c2710a52))
+* update how test renderer logs and use a serializer instead of constantly creating objects ([5859ac4](https://github.com/listr2/listr2/commit/5859ac40e43f6cb2eeca8c2d6bf48da1fe03fa18))
+* update naming scheme ([acc1f9d](https://github.com/listr2/listr2/commit/acc1f9d082f429d7240b91987ed2d53bc315558e))
+
+
+### BREAKING CHANGES
+
+* renames default renderer options `collapse` to
+`collapseSubtasks`
+* On the main `Listr` task list, conditions for fallback and silent renderer have been
+renamed.
+
+- `rendererSilent` has been renamed to `silentRendererCondition`.
+- `rendererFallback` has been renamed to `fallbackRendererCondition`.
+* Default fallback renderer has been changed from `verbose` to `simple`, since
+`simple` can mostly handle non-tty at this point.
+* Changes default error collection behavior to `false` from `minimal`, since this is
+the most hidden feature of them all, and it should be opt-in.
+* err field in manager has been renamed to errors as well
+* renames retry property withError to basically error
+* **renderer:** The default behavior of handling longer output has been changed to `wrap`.
+* `nonTTYRenderer`, `nonTTYRendererOptions` in Listr tasks has been renamed to
+`fallbackRenderer` and `fallbackRendererOptions` respectively.
+
+To be honest this was staying for the original Listr compatability but since so much is refactored,
+it made sense to change it to match where the others are used.
+* Minimum node version usable is increased to node16 since node14 has been put out of
+the maintenance circle.
+* Moves prompt to another channel and avoids using the output channel for prompts.
+
+Properly uses the ProcessOutputHook for Simpler Renderer. Hooks on prompts.
+
+Moves the ProcessOutputBuffer logic in to its own class, where streams can be recorded.
+
+Deprecated through has been ditched by using a basic WritableStream, idk why i did use it in the
+first place,
+I guess it was coming from the original Listr implementation.
+
+Still uses ansi escape parsing to properly render the output, still limited by mostly the log-update
+but
+buffering output for bells and clear line or hide cursor charachters breaks stuff too much, so it is
+the safe
+way.
+* Renames the err field to errors in Listr class. So error collection is shared
+instead of injected.
+* This completely breaks old behavior with the renderers, even the basic
+parameters are changed.
+
+Now the renderers for things like timer and timestamps takes in
+pluggable components through the shared constants, which makes them user
+configurable.
+
+The logger interface and logger itself has changed to handle all the
+common cases for any kind of renderer, eventhough it does not use all of
+them at the same time.
+
+This is a big change that might make the user checkout the new README.
+* **constants:** State names has been changed, which might break backwards compatability.
+
 # [6.0.0-beta.19](https://github.com/listr2/listr2/compare/v6.0.0-beta.18...v6.0.0-beta.19) (2023-04-07)
 
 
