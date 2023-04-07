@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: process output should hook in to stdout/stderr and log everything after even though there is an error: 77ddpC6bJ1Tj5Mz0JNjCqjq9pkwN7Gxh-exit 1`] = `[]`;
+
+exports[`default renderer: process output should hook in to stdout/stderr and log everything after even though there is an error: 77ddpC6bJ1Tj5Mz0JNjCqjq9pkwN7Gxh-stderr 1`] = `[]`;
+
+exports[`default renderer: process output should hook in to stdout/stderr and log everything after even though there is an error: 77ddpC6bJ1Tj5Mz0JNjCqjq9pkwN7Gxh-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will execute.
+",
+  "[2K[1A[2K[G✖ yattara
+",
+  "[2K[1A[2K[G",
+  "✖ yattara
+",
+  "
+",
+  "this should be logged after [0]",
+  "this should be logged after [1]",
+  "this should be logged after [2]",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: process output should hook in to stdout/stderr and log everything after: qI0M3xvUnGRj5hNg9NhHYq5lezkNGlRK-exit 1`] = `[]`;
+
+exports[`default renderer: process output should hook in to stdout/stderr and log everything after: qI0M3xvUnGRj5hNg9NhHYq5lezkNGlRK-stderr 1`] = `[]`;
+
+exports[`default renderer: process output should hook in to stdout/stderr and log everything after: qI0M3xvUnGRj5hNg9NhHYq5lezkNGlRK-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "
+",
+  "this should be logged after [0]",
+  "this should be logged after [1]",
+  "this should be logged after [2]",
+  "[?25h",
+]
+`;

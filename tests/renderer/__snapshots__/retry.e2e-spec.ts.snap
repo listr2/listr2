@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-exit 1`] = `[]`;
+
+exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stderr 1`] = `[]`;
+
+exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
+[
+  "[?25l",
+  "◼ Some type errors
+",
+  "[2K[1A[2K[G❯ Some type errors
+",
+  "[2K[1A[2K[G❯ Some type errors
+  › test
+",
+  "[2K[1A[2K[1A[2K[G❯ Some type errors
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  › test
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  › I am self aware that I am retrying for the 1th time.
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  › I am self aware that I am retrying for the 1th time.
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  › test
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  › I am self aware that I am retrying for the 2th time.
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  › I am self aware that I am retrying for the 2th time.
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  › test
+",
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  › I am self aware that I am retrying for the 3th time.
+",
+  "[2K[1A[2K[1A[2K[G✖ This type can not be assigned to type with, oh noes
+",
+  "[2K[1A[2K[G",
+  "✖ This type can not be assigned to type with, oh noes
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-exit 1`] = `[]`;
+
+exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stderr 1`] = `[]`;
+
+exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
+[
+  "[?25l",
+  "◼ Some type errors
+",
+  "[2K[1A[2K[G❯ Some type errors
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+",
+  "[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+",
+  "[2K[1A[2K[G⚠ Successed at 3th try. [RETRY:3]
+",
+  "[2K[1A[2K[G✔ Successed at 3th try.
+",
+  "[2K[1A[2K[G",
+  "✔ Successed at 3th try.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-exit 1`] = `[]`;
+
+exports[`simple renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stderr 1`] = `
+[
+  "⚠ Some type errors [RETRY:1]
+",
+  "✖ Some type errors [FAILED: This type can not be assigned to type with, oh noes]
+",
+  "⚠ Some type errors [RETRY:2]
+",
+  "✖ Some type errors [FAILED: This type can not be assigned to type with, oh noes]
+",
+  "⚠ Some type errors [RETRY:3]
+",
+  "✖ Some type errors [FAILED: This type can not be assigned to type with, oh noes]
+",
+  "✖ Some type errors [FAILED: This type can not be assigned to type with, oh noes]
+",
+]
+`;
+
+exports[`simple renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
+[
+  "❯ Some type errors
+",
+  "› test
+",
+  "› test
+",
+  "› I am self aware that I am retrying for the 1th time.
+",
+  "› test
+",
+  "› I am self aware that I am retrying for the 2th time.
+",
+  "› test
+",
+  "› I am self aware that I am retrying for the 3th time.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-exit 1`] = `[]`;
+
+exports[`simple renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stderr 1`] = `
+[
+  "⚠ Some type errors [RETRY:1]
+",
+  "✖ Some type errors [FAILED: not enough]
+",
+  "⚠ Some type errors [RETRY:2]
+",
+  "✖ Some type errors [FAILED: not enough]
+",
+  "⚠ Some type errors [RETRY:3]
+",
+  "✖ Some type errors [FAILED: not enough]
+",
+]
+`;
+
+exports[`simple renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
+[
+  "❯ Some type errors
+",
+  "✔ Successed at 3th try.
+",
+  "[?25h",
+]
+`;
+
+exports[`test renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-exit 1`] = `[]`;
+
+exports[`test renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"retry":{"count":1,"error":{}}},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This type can not be assigned to type with, oh noes"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"retry":{"count":2,"error":{}}},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This type can not be assigned to type with, oh noes"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"retry":{"count":3,"error":{}}},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This type can not be assigned to type with, oh noes"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This type can not be assigned to type with, oh noes"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+]
+`;
+
+exports[`test renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"OUTPUT","data":"test","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"TITLE","data":"Some type errors","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"STATE","data":"RETRY","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"OUTPUT","data":"test","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"OUTPUT","data":"I am self aware that I am retrying for the 1th time.","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"TITLE","data":"Some type errors","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"STATE","data":"RETRY","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"OUTPUT","data":"test","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"OUTPUT","data":"I am self aware that I am retrying for the 2th time.","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"TITLE","data":"Some type errors","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"STATE","data":"RETRY","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"OUTPUT","data":"test","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"OUTPUT","data":"I am self aware that I am retrying for the 3th time.","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+]
+`;
+
+exports[`test renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-exit 1`] = `[]`;
+
+exports[`test renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"retry":{"count":1,"error":{}}},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"error":"not enough"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"retry":{"count":2,"error":{}}},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"error":"not enough"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"retry":{"count":3,"error":{}}},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"MESSAGE","data":{"error":"not enough"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+]
+`;
+
+exports[`test renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"TITLE","data":"Some type errors","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+  "{"event":"STATE","data":"RETRY","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"TITLE","data":"Some type errors","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"STATE","data":"RETRY","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"TITLE","data":"Some type errors","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"STATE","data":"RETRY","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some type errors","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"TITLE","data":"Successed at 3th try.","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Successed at 3th try.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":true,"path":["Some type errors"]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"Successed at 3th try.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Some type errors"]}}
+",
+]
+`;
+
+exports[`verbose renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-exit 1`] = `[]`;
+
+exports[`verbose renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stderr 1`] = `
+[
+  "[RETRY] Some type errors [1]
+",
+  "[FAILED] This type can not be assigned to type with, oh noes
+",
+  "[RETRY] Some type errors [2]
+",
+  "[FAILED] This type can not be assigned to type with, oh noes
+",
+  "[RETRY] Some type errors [3]
+",
+  "[FAILED] This type can not be assigned to type with, oh noes
+",
+  "[FAILED] This type can not be assigned to type with, oh noes
+",
+]
+`;
+
+exports[`verbose renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
+[
+  "[STARTED] Some type errors
+",
+  "[OUTPUT] test
+",
+  "[TITLE] Some type errors
+",
+  "[OUTPUT] test
+",
+  "[OUTPUT] I am self aware that I am retrying for the 1th time.
+",
+  "[TITLE] Some type errors
+",
+  "[OUTPUT] test
+",
+  "[OUTPUT] I am self aware that I am retrying for the 2th time.
+",
+  "[TITLE] Some type errors
+",
+  "[OUTPUT] test
+",
+  "[OUTPUT] I am self aware that I am retrying for the 3th time.
+",
+]
+`;
+
+exports[`verbose renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-exit 1`] = `[]`;
+
+exports[`verbose renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stderr 1`] = `
+[
+  "[RETRY] Some type errors [1]
+",
+  "[FAILED] not enough
+",
+  "[RETRY] Some type errors [2]
+",
+  "[FAILED] not enough
+",
+  "[RETRY] Some type errors [3]
+",
+  "[FAILED] not enough
+",
+]
+`;
+
+exports[`verbose renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
+[
+  "[STARTED] Some type errors
+",
+  "[TITLE] Some type errors
+",
+  "[TITLE] Some type errors
+",
+  "[TITLE] Some type errors
+",
+  "[TITLE] Successed at 3th try.
+",
+  "[COMPLETED] Successed at 3th try.
+",
+]
+`;

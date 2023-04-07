@@ -1,11 +1,16 @@
 import type { ListrContext } from './listr.interface'
 import type { ListrRendererFactory } from './renderer.interface'
-import type { Task } from '@lib/task'
-import { cloneObject } from '@utils/general'
+import type { ListrErrorTypes } from '@constants'
+import type { Task } from '@lib'
+import { cloneObject } from '@utils'
 
-/** The internal error handling mechanism.. */
+/**
+ * Internal error handling mechanism for Listr collects the errors and details for a failed task.
+ *
+ * @see {@link https://listr2.kilic.dev/task/error-handling.html}
+ */
 export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
-  public path: string
+  public path: string[]
   public ctx: Ctx
 
   constructor (public error: Error, public type: ListrErrorTypes, public task: Task<Ctx, ListrRendererFactory>) {
@@ -13,7 +18,7 @@ export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
 
     this.name = 'ListrError'
 
-    this.path = [ ...task.listr.path ?? [], task.title ].join(' > ')
+    this.path = task.path
 
     // memory intensive error collection for circular objects on demand
     if (task?.options.collectErrors === 'full') {
@@ -22,30 +27,5 @@ export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
     }
 
     this.stack = error?.stack
-  }
-}
-
-/**
- * The actual error type that is collected and to help identify where the error is triggered from.
- */
-export enum ListrErrorTypes {
-  /** Task has failed and will try to retry. */
-  WILL_RETRY = 'WILL_RETRY',
-  /** Task has failed and will try to rollback. */
-  WILL_ROLLBACK = 'WILL_ROLLBACK',
-  /** Task has failed, ran the rollback action but the rollback action itself has failed. */
-  HAS_FAILED_TO_ROLLBACK = 'HAS_FAILED_TO_ROLLBACK',
-  /** Task has failed. */
-  HAS_FAILED = 'HAS_FAILED',
-  /** Task has failed, but exitOnError is set to false, so will ignore this error. */
-  HAS_FAILED_WITHOUT_ERROR = 'HAS_FAILED_WITHOUT_ERROR'
-}
-
-/** The internal error handling mechanism for prompts only. */
-export class PromptError extends Error {
-  constructor (message: string) {
-    super(message)
-
-    this.name = 'PromptError'
   }
 }

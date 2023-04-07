@@ -1,38 +1,35 @@
-import pMap from 'p-map'
-import { Subject } from 'rxjs'
-
-import { ListrTaskState } from '@constants/state.constants'
-import type { ListrError } from '@interfaces/listr-error.interface'
-import type { ListrBaseClassOptions, ListrContext, ListrTask } from '@interfaces/listr.interface'
+import { ListrEnvironmentVariables, ListrTaskState } from '@constants'
 import type {
+  ListrBaseClassOptions,
+  ListrContext,
   ListrDefaultRendererValue,
+  ListrError,
   ListrFallbackRendererValue,
   ListrGetRendererClassFromValue,
   ListrGetRendererOptions,
   ListrRenderer,
   ListrRendererFactory,
-  ListrRendererValue
-} from '@interfaces/renderer.interface'
-import { Task } from '@lib/task'
-import { TaskWrapper } from '@lib/task-wrapper'
-import { getRenderer } from '@utils/renderer'
+  ListrRendererValue,
+  ListrTask
+} from '@interfaces'
+import { ListrEventManager, Task, TaskWrapper } from '@lib'
+import { Concurrency, getRenderer } from '@utils'
 
 /**
- * Creates a new set of Listr2 task list.
+ * Create a new task list with Listr.
+ *
+ * @see {@link https://listr2.kilic.dev/listr/listr.html}
  */
-export class Listr<
-  Ctx extends ListrContext = ListrContext,
-  Renderer extends ListrRendererValue = ListrDefaultRendererValue,
-  FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue
-> {
+export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
-  public err: ListrError<Ctx>[] = []
+  public errors: ListrError<Ctx>[] = []
   public ctx: Ctx
+  public events: ListrEventManager
+  public path: string[] = []
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
-  public renderHook$: Task<any, any>['renderHook$'] = new Subject()
-  public path: string[] = []
-  private concurrency: number
+
+  private concurrency: Concurrency
   private renderer: ListrRenderer
 
   constructor (
@@ -42,47 +39,54 @@ export class Listr<
   ) {
     // assign over default options
     this.options = {
-      ...{
-        concurrent: false,
-        renderer: 'default',
-        nonTTYRenderer: 'verbose',
-        exitOnError: true,
-        exitAfterRollback: true,
-        collectErrors: 'minimal',
-        registerSignalListeners: true
-      },
+      concurrent: false,
+      renderer: 'default',
+      fallbackRenderer: 'simple',
+      exitOnError: true,
+      exitAfterRollback: true,
+      collectErrors: false,
+      registerSignalListeners: true,
+      ...this.parentTask?.options ?? {},
       ...options
     } as ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
 
     // define parallel options
     if (this.options.concurrent === true) {
-      this.concurrency = Infinity
-    } else if (typeof this.options.concurrent === 'number') {
-      this.concurrency = this.options.concurrent
-    } else {
-      this.concurrency = 1
+      this.options.concurrent = Infinity
+    } else if (typeof this.options.concurrent !== 'number') {
+      this.options.concurrent = 1
     }
 
-    // get renderer class
-    const renderer = getRenderer(this.options.renderer, this.options.nonTTYRenderer, this.options?.rendererFallback, this.options?.rendererSilent)
-
-    this.rendererClass = renderer.renderer
-
-    // depending on the result pass the given options in
-    if (!renderer.nonTTY) {
-      this.rendererClassOptions = this.options.rendererOptions
-    } else {
-      this.rendererClassOptions = this.options.nonTTYRendererOptions
-    }
-
-    // parse and add tasks
-    /* istanbul ignore next */
-    this.add(task ?? [])
+    this.concurrency = new Concurrency({ concurrency: this.options.concurrent as number })
 
     // Update currentPath
     if (parentTask) {
       this.path = [ ...parentTask.listr.path, parentTask.title ]
+      this.errors = parentTask.listr.errors
     }
+
+    if (this.parentTask?.listr.events instanceof ListrEventManager) {
+      this.events = this.parentTask.listr.events
+    } else {
+      this.events = new ListrEventManager()
+    }
+
+    // get renderer class
+    const renderer = getRenderer({
+      renderer: this.options.renderer,
+      rendererOptions: this.options.rendererOptions,
+      fallbackRenderer: this.options.fallbackRenderer,
+      fallbackRendererOptions: this.options.fallbackRendererOptions,
+      fallbackRendererCondition: this.options?.fallbackRendererCondition,
+      silentRendererCondition: this.options?.silentRendererCondition
+    })
+
+    this.rendererClass = renderer.renderer
+    this.rendererClassOptions = renderer.options
+
+    // parse and add tasks
+    /* istanbul ignore next */
+    this.add(task ?? [])
 
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */
@@ -103,46 +107,46 @@ export class Listr<
     }
 
     // disable color programatically for CI purposes
-    /* istanbul ignore if */
+    /* istanbul ignore next */
     if (this.options?.disableColor) {
-      process.env.LISTR_DISABLE_COLOR = '1'
+      process.env[ListrEnvironmentVariables.DISABLE_COLOR] = '1'
+    } else if (this.options?.forceColor) {
+      process.env[ListrEnvironmentVariables.FORCE_COLOR] = '1'
+    }
+
+    /* istanbul ignore if */
+    if (this.options?.forceTTY) {
+      process.stdout.isTTY = true
+      process.stderr.isTTY = true
+    }
+
+    /* istanbul ignore if */
+    if (this.options?.forceUnicode) {
+      process.env[ListrEnvironmentVariables.FORCE_UNICODE] = '1'
     }
   }
 
-  public add (task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
-    const tasks = Array.isArray(task) ? task : [ task ]
-
-    tasks.forEach((task): void => {
-      this.tasks.push(new Task(this, task, this.options, { ...(this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>), ...task.options }))
-    })
+  public add (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
+    this.tasks.push(...this.generate(tasks))
   }
 
   public async run (context?: Ctx): Promise<Ctx> {
     // start the renderer
     if (!this.renderer) {
-      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.renderHook$)
+      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
     }
 
-    this.renderer.render()
+    await this.renderer.render()
 
     // create a new context
     this.ctx = this.options?.ctx ?? context ?? ({} as Ctx)
 
     // check if the items are enabled
-    await this.checkAll(this.ctx)
+    await Promise.all(this.tasks.map((task) => task.check(this.ctx)))
 
     // run tasks
     try {
-      await pMap(
-        this.tasks,
-        async (task): Promise<void> => {
-          // check this item is enabled, conditions may change depending on context
-          await task.check(this.ctx)
-
-          return this.runTask(task, this.ctx, this.err)
-        },
-        { concurrency: this.concurrency }
-      )
+      await Promise.all(this.tasks.map((task) => this.concurrency.add(() => this.runTask(task))))
 
       this.renderer.end()
     } catch (err: any) {
@@ -157,15 +161,21 @@ export class Listr<
     return this.ctx
   }
 
-  private checkAll (context: any): Promise<void[]> {
-    return Promise.all(this.tasks.map((task) => task.check(context)))
+  private generate (
+    tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]
+  ): Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] {
+    tasks = Array.isArray(tasks) ? tasks : [ tasks ]
+
+    return tasks.map(
+      (task) => new Task(this, task, this.options, { ...(this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>), ...task.options })
+    )
   }
 
-  private runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>, context: Ctx, errors: ListrError<Ctx>[]): Promise<void> {
-    if (!task.isEnabled()) {
-      return Promise.resolve()
+  private async runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>): Promise<void> {
+    if (!await task.check(this.ctx)) {
+      return
     }
 
-    return new TaskWrapper(task, errors, this.options).run(context)
+    return new TaskWrapper(task, this.options).run(this.ctx)
   }
 }

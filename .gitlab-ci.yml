@@ -17,7 +17,10 @@ include:
     file: /templates/v2/node-run.gitlab-ci.yml
 
   - project: devops/pipes
-    file: /templates/semantic-release.gitlab-ci.yml
+    file: /templates/v2/semantic-release.gitlab-ci.yml
+
+  - project: devops/pipes
+    file: /templates/v2/docker-build-internal.gitlab-ci.yml
 
 test:
   parallel:
@@ -25,15 +28,46 @@ test:
       - NODE_VERSION: 18-alpine
       - NODE_VERSION: 16-alpine
 
-typedoc:
+vuepress:
   stage: docs
   extends: .node-run
   variables:
-    NODE_COMMAND_SCRIPT: docs:api
+    NODE_COMMAND_SCRIPT: docs:build
   artifacts:
     paths:
-      - docs/
+      - ./docs/.vuepress/dist
+  needs:
+    - install
+  dependencies:
+    - install
   only:
     refs:
       - master
       - main
+
+docker-build-docs:
+  stage: publish
+  extends: .docker-build-internal
+  variables:
+    DOCKERFILE_NAME: Dockerfile
+    DOCKERFILE_CONTEXT: ./docs
+    DOCKER_IMAGE_INTERNAL_NAME: docs-listr2
+    DOCKER_IMAGE_TAGS: latest
+  needs:
+    - vuepress
+  dependencies:
+    - vuepress
+  only:
+    refs:
+      - master
+      - main
+
+semantic-release:
+  stage: publish
+  extends: .semantic-release
+  needs:
+    - build
+    - lint
+    - test
+  dependencies:
+    - build

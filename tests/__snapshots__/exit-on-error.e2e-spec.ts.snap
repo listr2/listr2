@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`exit on error should contunie execution while exit on error is disabled in subtask: MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3-exit 1`] = `[]`;
+
+exports[`exit on error should contunie execution while exit on error is disabled in subtask: MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should contunie execution while exit on error is disabled in subtask: MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should contunie execution while exit on error is disabled: EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH-exit 1`] = `[]`;
+
+exports[`exit on error should contunie execution while exit on error is disabled: EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should contunie execution while exit on error is disabled: EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error if subtask fails while exit on error is disabled: 4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8-exit 1`] = `[]`;
+
+exports[`exit on error should throw out an error if subtask fails while exit on error is disabled: 4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error if subtask fails while exit on error is disabled: 4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error if subtask in subtask fails while exit on error is disabled: cAcT7aLZ2rDDFDH6EllJjYaG4mTe7Rrb-exit 1`] = `[]`;
+
+exports[`exit on error should throw out an error if subtask in subtask fails while exit on error is disabled: cAcT7aLZ2rDDFDH6EllJjYaG4mTe7Rrb-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error if subtask in subtask fails while exit on error is disabled: cAcT7aLZ2rDDFDH6EllJjYaG4mTe7Rrb-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error when exit on error is disabled: LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM-exit 1`] = `[]`;
+
+exports[`exit on error should throw out an error when exit on error is disabled: LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"failed"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;
+
+exports[`exit on error should throw out an error when exit on error is disabled: LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"hasReset":false,"hasTitle":false,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":[null]}}
+",
+]
+`;

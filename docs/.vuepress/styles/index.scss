@@ -1,0 +1,69 @@
+@import './config.scss';
+
+html[data-theme='dark'] #app {
+  --detail-bg-color: #1e2127 !important;
+  --code-bg-color: #1e2127 !important;
+}
+
+.navbar .nav-links a {
+  font-weight: 600 !important;
+  font-size: 1rem;
+}
+
+.navbar .site-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.sidebar-heading .title {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--dark-grey);
+}
+
+.page-nav .nav-link {
+  border-radius: 0;
+}
+
+.footer-wrapper {
+  @media (min-width: $pad) {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  // padding-block-end: 60px;
+}
+
+// .sidebar {
+// padding-bottom: calc(5rem + 60px);
+// }
+
+.footer-wrapper .footer {
+  font-size: 1rem;
+  font-weight: 600;
+  @media (min-width: $pad) {
+    text-align: left;
+  }
+  text-align: center;
+}
+
+.footer-wrapper .copyright {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--grey);
+  a {
+    color: var(--grey);
+  }
+  @media (min-width: $pad) {
+    text-align: left;
+    padding-top: 0;
+  }
+  padding-top: 0.5rem;
+  text-align: center;
+}
+
+.back-to-top {
+  bottom: 1rem;
+}

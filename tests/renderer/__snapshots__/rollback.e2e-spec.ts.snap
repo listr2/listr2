@@ -1,0 +1,905 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
+
+exports[`default renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `[]`;
+
+exports[`default renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
+[
+  "[?25l",
+  "◼ Something with rollback.
+",
+  "[2K[1A[2K[G◼ Something with rollback.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ❯ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+]
+`;
+
+exports[`default renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
+
+exports[`default renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `[]`;
+
+exports[`default renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
+[
+  "[?25l",
+  "◼ Something with rollback.
+",
+  "[2K[1A[2K[G◼ Something with rollback.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ❯ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `[]`;
+
+exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `[]`;
+
+exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
+[
+  "[?25l",
+  "◼ Something with rollback.
+",
+  "[2K[1A[2K[G◼ Something with rollback.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ❯ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+❯ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+✔ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+✔ This task will maybe execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `[]`;
+
+exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `[]`;
+
+exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
+[
+  "[?25l",
+  "◼ Something with rollback.
+",
+  "[2K[1A[2K[G◼ Something with rollback.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ❯ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task will fail.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will maybe execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-exit 1`] = `[]`;
+
+exports[`default renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stderr 1`] = `[]`;
+
+exports[`default renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stdout 1`] = `
+[
+  "[?25l",
+  "◼ Something with rollback.
+",
+  "[2K[1A[2K[G◼ Something with rollback.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ❯ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "← Some actions required rollback stuff.
+  ✖ This task failed after 2 seconds.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-exit 1`] = `[]`;
+
+exports[`default renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stderr 1`] = `[]`;
+
+exports[`default renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stdout 1`] = `
+[
+  "[?25l",
+  "◼ Something with rollback.
+",
+  "[2K[1A[2K[G◼ Something with rollback.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ◼ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ❯ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ⚠ This task will fail.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ⚠ I am trying to rollback stuff, previous action failed.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ⚠ Some actions required rollback stuff.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  ← Some actions required rollback stuff.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "❯ Something with rollback.
+  ← Some actions required rollback stuff.
+  ◼ This task will execute.
+◼ This task will never execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
+
+exports[`simple renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+",
+  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+",
+]
+`;
+
+exports[`simple renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
+[
+  "❯ Something with rollback.
+",
+  "❯ This task will fail.
+",
+]
+`;
+
+exports[`simple renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
+
+exports[`simple renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+",
+  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+",
+]
+`;
+
+exports[`simple renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
+[
+  "❯ Something with rollback.
+",
+  "❯ This task will fail.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `[]`;
+
+exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+",
+  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+",
+]
+`;
+
+exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
+[
+  "❯ Something with rollback.
+",
+  "❯ This task will fail.
+",
+  "❯ This task will maybe execute.
+",
+  "✔ This task will maybe execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `[]`;
+
+exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+",
+  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+",
+]
+`;
+
+exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
+[
+  "❯ Something with rollback.
+",
+  "❯ This task will fail.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-exit 1`] = `[]`;
+
+exports[`simple renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+",
+  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+",
+]
+`;
+
+exports[`simple renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stdout 1`] = `
+[
+  "❯ Something with rollback.
+",
+  "❯ This task will fail.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-exit 1`] = `[]`;
+
+exports[`simple renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stderr 1`] = `
+[
+  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+",
+  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+",
+  "✖ Something with rollback. [FAILED: Some actions required rollback stuff.]
+",
+]
+`;
+
+exports[`simple renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stdout 1`] = `
+[
+  "❯ Something with rollback.
+",
+  "❯ This task will fail.
+",
+  "[?25h",
+]
+`;
+
+exports[`test renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
+
+exports[`test renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"I am trying to rollback stuff, previous action failed.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"I am trying to rollback stuff, previous action failed.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"Some actions required rollback stuff.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
+
+exports[`test renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"I am trying to rollback stuff, previous action failed.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"I am trying to rollback stuff, previous action failed.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"Some actions required rollback stuff.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `[]`;
+
+exports[`test renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"I am trying to rollback stuff, previous action failed.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"I am trying to rollback stuff, previous action failed.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"Some actions required rollback stuff.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will maybe execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will maybe execute."]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will maybe execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will maybe execute."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `[]`;
+
+exports[`test renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"I am trying to rollback stuff, previous action failed.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"I am trying to rollback stuff, previous action failed.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"Some actions required rollback stuff.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-exit 1`] = `[]`;
+
+exports[`test renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Something with rollback.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"I am trying to rollback stuff, previous action failed.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"I am trying to rollback stuff, previous action failed.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"TITLE","data":"Some actions required rollback stuff.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Some actions required rollback stuff.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-exit 1`] = `[]`;
+
+exports[`test renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"MESSAGE","data":{"error":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`test renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"TITLE","data":"I am trying to rollback stuff, previous action failed.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"I am trying to rollback stuff, previous action failed.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"TITLE","data":"Some actions required rollback stuff.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"Some actions required rollback stuff.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+",
+]
+`;
+
+exports[`verbose renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
+
+exports[`verbose renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[ROLLBACK] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
+[
+  "[STARTED] Something with rollback.
+",
+  "[STARTED] This task will fail.
+",
+  "[TITLE] I am trying to rollback stuff, previous action failed.
+",
+  "[TITLE] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
+
+exports[`verbose renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[ROLLBACK] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
+[
+  "[STARTED] Something with rollback.
+",
+  "[STARTED] This task will fail.
+",
+  "[TITLE] I am trying to rollback stuff, previous action failed.
+",
+  "[TITLE] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `[]`;
+
+exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[ROLLBACK] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
+[
+  "[STARTED] Something with rollback.
+",
+  "[STARTED] This task will fail.
+",
+  "[TITLE] I am trying to rollback stuff, previous action failed.
+",
+  "[TITLE] Some actions required rollback stuff.
+",
+  "[STARTED] This task will maybe execute.
+",
+  "[COMPLETED] This task will maybe execute.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-exit 1`] = `[]`;
+
+exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[ROLLBACK] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
+[
+  "[STARTED] Something with rollback.
+",
+  "[STARTED] This task will fail.
+",
+  "[TITLE] I am trying to rollback stuff, previous action failed.
+",
+  "[TITLE] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-exit 1`] = `[]`;
+
+exports[`verbose renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[ROLLBACK] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stdout 1`] = `
+[
+  "[STARTED] Something with rollback.
+",
+  "[STARTED] This task will fail.
+",
+  "[TITLE] I am trying to rollback stuff, previous action failed.
+",
+  "[TITLE] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-exit 1`] = `[]`;
+
+exports[`verbose renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stderr 1`] = `
+[
+  "[FAILED] This task failed after 2 seconds.
+",
+  "[ROLLBACK] Some actions required rollback stuff.
+",
+  "[FAILED] Some actions required rollback stuff.
+",
+]
+`;
+
+exports[`verbose renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stdout 1`] = `
+[
+  "[STARTED] Something with rollback.
+",
+  "[STARTED] This task will fail.
+",
+  "[TITLE] I am trying to rollback stuff, previous action failed.
+",
+  "[TITLE] Some actions required rollback stuff.
+",
+]
+`;

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`enable with context should be disabled depending on the context with an context variable: jbyappoYDm16wG6ARf5qOnS8CgSjhd7S-exit 1`] = `[]`;
+
+exports[`enable with context should be disabled depending on the context with an context variable: jbyappoYDm16wG6ARf5qOnS8CgSjhd7S-stderr 1`] = `[]`;
+
+exports[`enable with context should be disabled depending on the context with an context variable: jbyappoYDm16wG6ARf5qOnS8CgSjhd7S-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"pre-task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["pre-task"]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"pre-task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["pre-task"]}}
+",
+]
+`;
+
+exports[`enable with context should be disabled depending on the context with an injected context: TkhbH3NQuuZN39gvRmwhH6iB6ZrNrxDX-exit 1`] = `[]`;
+
+exports[`enable with context should be disabled depending on the context with an injected context: TkhbH3NQuuZN39gvRmwhH6iB6ZrNrxDX-stderr 1`] = `[]`;
+
+exports[`enable with context should be disabled depending on the context with an injected context: TkhbH3NQuuZN39gvRmwhH6iB6ZrNrxDX-stdout 1`] = `[]`;
+
+exports[`enable with context should be disabled with a function returning boolean: aJWDY40NUyBBGenLqPWsXO6NOncHTUSU-exit 1`] = `[]`;
+
+exports[`enable with context should be disabled with a function returning boolean: aJWDY40NUyBBGenLqPWsXO6NOncHTUSU-stderr 1`] = `[]`;
+
+exports[`enable with context should be disabled with a function returning boolean: aJWDY40NUyBBGenLqPWsXO6NOncHTUSU-stdout 1`] = `[]`;
+
+exports[`enable with context should be disabled with async function returning boolean: QeoNcUfm5iAfZkWwttrc3l5dAB5LRvNx-exit 1`] = `[]`;
+
+exports[`enable with context should be disabled with async function returning boolean: QeoNcUfm5iAfZkWwttrc3l5dAB5LRvNx-stderr 1`] = `[]`;
+
+exports[`enable with context should be disabled with async function returning boolean: QeoNcUfm5iAfZkWwttrc3l5dAB5LRvNx-stdout 1`] = `[]`;
+
+exports[`enable with context should be enabled with a function returning boolean: AebhVo1EK6MRCWEubovgNXHDo093g8YV-exit 1`] = `[]`;
+
+exports[`enable with context should be enabled with a function returning boolean: AebhVo1EK6MRCWEubovgNXHDo093g8YV-stderr 1`] = `[]`;
+
+exports[`enable with context should be enabled with a function returning boolean: AebhVo1EK6MRCWEubovgNXHDo093g8YV-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"enabled","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["enabled"]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"enabled","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["enabled"]}}
+",
+]
+`;
+
+exports[`enable with context should be enabled with async function returning boolean: ve1QT0lP54yGe3x0e6yPYfb2SVEDulCE-exit 1`] = `[]`;
+
+exports[`enable with context should be enabled with async function returning boolean: ve1QT0lP54yGe3x0e6yPYfb2SVEDulCE-stderr 1`] = `[]`;
+
+exports[`enable with context should be enabled with async function returning boolean: ve1QT0lP54yGe3x0e6yPYfb2SVEDulCE-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"enabled","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["enabled"]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"enabled","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["enabled"]}}
+",
+]
+`;

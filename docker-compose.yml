@@ -4,8 +4,13 @@ services:
   node:
     image: cenk1cenk2/node-fnm:latest
     environment:
-      DEFAULTS_LOGS: 'true'
       PROXY_WORKSPACE_ONLY: 'true'
+      SERVICE_0_CWD: .
+      SERVICE_0_COMMAND: yarn run dev:start
+      SERVICE_0_NAME: listr
+      SERVICE_1_CWD: .
+      SERVICE_1_COMMAND: yarn run docs:dev:start
+      SERVICE_1_NAME: docs
     ports:
       - 9229:9229
     volumes:

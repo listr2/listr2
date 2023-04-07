@@ -1,149 +1,156 @@
-import { isObservable, Subject } from 'rxjs'
+import { randomUUID } from 'crypto'
 import { Readable } from 'stream'
 
+import { ListrTaskEventManager } from './listr-task-event-manager'
 import type { TaskWrapper } from './task-wrapper'
-import { ListrEventType } from '@constants/event.constants'
-import { ListrTaskState } from '@constants/state.constants'
-import { ListrErrorTypes, PromptError } from '@interfaces/listr-error.interface'
-import type { ListrEvent, ListrOptions, ListrTask, ListrTaskResult } from '@interfaces/listr.interface'
-import type { ListrGetRendererOptions, ListrGetRendererTaskOptions, ListrRendererFactory } from '@interfaces/renderer.interface'
-import { Listr } from '@root/listr'
-import { assertFunctionOrSelf } from '@utils/assert'
-import type { PromptInstance } from '@utils/prompt.interface'
-import { getRenderer } from '@utils/renderer'
-import { generateUUID } from '@utils/uuid'
+import { ListrErrorTypes, ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
+import type {
+  ListrGetRendererOptions,
+  ListrGetRendererTaskOptions,
+  ListrOptions,
+  ListrRendererFactory,
+  ListrTask,
+  ListrTaskFn,
+  ListrTaskMessage,
+  ListrTaskPrompt,
+  ListrTaskRetry
+} from '@interfaces'
+import { PromptError } from '@interfaces'
+import { Listr } from '@root'
+import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable } from '@utils'
 
 /**
- * Create a task from the given set of variables and make it runnable.
+ * Creates and handles a runnable instance of the Task.
  */
-export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<ListrEvent> {
-  /** Unique id per task, randomly generated in the uuid v4 format */
-  public id: string
+export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskEventManager {
+  /** Unique id per task, can be used for identifying a Task. */
+  public id: string = randomUUID()
   /** The current state of the task. */
-  public state: string
-  /** The task object itself, to further utilize it. */
-  public task: (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
-  /** Extend current task with multiple subtasks. */
-  public subtasks: Task<Ctx, any>[]
-  /** Title of the task */
+  public state: ListrTaskState = ListrTaskState.WAITING
+  /** Subtasks of the current task. */
+  public subtasks: Task<Ctx, Renderer>[]
+  /** Title of the task. */
   public title?: string
-  /** Untouched unchanged title of the task */
-  public initialTitle?: string
-  /** Output data from the task. */
+  /** Initial/Untouched version of the title for using whenever task has a reset. */
+  public readonly initialTitle?: string
+  /** Output channel for the task. */
   public output?: string
-  /** Skip current task. */
-  public skip: boolean | string | ((ctx: Ctx) => boolean | string | Promise<boolean | string>)
-  /** Current retry number of the task if retrying */
-  public retry?: { count: number, withError?: any }
-
+  /** Current state of the retry process whenever the task is retrying. */
+  public retry?: ListrTaskRetry
   /**
    * A channel for messages.
    *
    * This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
    */
-  public message: {
-    /** Run time of the task, if it has been successfully resolved. */
-    duration?: number
-    /** Error message of the task, if it has been failed. */
-    error?: string
-    /** Skip message of the task, if it has been skipped. */
-    skip?: string
-    /** Rollback message of the task, if the rollback finishes */
-    rollback?: string
-    /** Retry messages */
-    retry?: { count: number, withError?: any }
-  } = {}
-  /** Per task options for the current renderer of the task. */
+  public message: ListrTaskMessage = {}
+  /** Per-task options for the current renderer of the task. */
   public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
-  /** This will be triggered each time a new render should happen. */
-  public renderHook$: Subject<void>
+  /** Current prompt instance or prompt error whenever the task is prompting. */
+  public prompt: ListrTaskPrompt
+  /** Parent task of the current task. */
+  public parent?: Task<Ctx, Renderer>
 
-  public prompt: undefined | PromptInstance | PromptError
+  /** Enable flag of this task. */
   private enabled: boolean
-  private enabledFn: ListrTask<Ctx, Renderer>['enabled']
+  /** User provided Task callback function to run. */
+  private taskFn: ListrTaskFn<Ctx, Renderer>
 
-  constructor (public listr: Listr<Ctx, any, any>, public tasks: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
+  constructor (public listr: Listr<Ctx, any, any>, public task: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
-    // this kind of randomness is enough for task ids
-    this.id = generateUUID()
+    this.title = this.task?.title
+    this.initialTitle = this.task?.title
 
-    this.title = this.tasks?.title
-    this.initialTitle = this.tasks?.title
-
-    this.task = this.tasks.task
-
-    // parse functions
-    this.skip = this.tasks?.skip ?? false
-    this.enabledFn = this.tasks?.enabled ?? true
+    this.taskFn = this.task.task
+    this.parent = this.listr.parentTask
 
     // task options
-    this.rendererTaskOptions = this.tasks.options
-
-    this.renderHook$ = this.listr.renderHook$
-    this.subscribe(() => {
-      this.renderHook$.next()
-    })
+    this.rendererTaskOptions = this.task.options
   }
 
+  /**
+   * Update the current state of the Task and emit the neccassary events.
+   */
   set state$ (state: ListrTaskState) {
     this.state = state
 
-    this.next({
-      type: ListrEventType.STATE,
-      data: state
-    })
+    this.emit(ListrTaskEventType.STATE, state)
 
     // cancel the subtasks if this has already failed
     if (this.hasSubtasks() && this.hasFailed()) {
       for (const subtask of this.subtasks as Task<any, any>[]) {
-        if (subtask.state === ListrTaskState.PENDING) {
+        if (subtask.state === ListrTaskState.STARTED) {
           subtask.state$ = ListrTaskState.FAILED
         }
       }
     }
-  }
 
-  set output$ (data: string) {
-    this.output = data
-
-    this.next({
-      type: ListrEventType.DATA,
-      data
-    })
-  }
-
-  set message$ (data: Task<Ctx, Renderer>['message']) {
-    this.message = { ...this.message, ...data }
-
-    this.next({
-      type: ListrEventType.MESSAGE,
-      data
-    })
-  }
-
-  set title$ (title: string) {
-    this.title = title
-
-    this.next({
-      type: ListrEventType.TITLE,
-      data: title
-    })
+    this.emitShouldRefreshRender()
   }
 
   /**
-   * A function to check whether this task should run at all via enable.
+   * Update the current output of the Task and emit the neccassary events.
    */
-  public async check (ctx: Ctx): Promise<void> {
-    // Check if a task is enabled or disabled
-    if (this.state === undefined) {
-      this.enabled = await assertFunctionOrSelf(this.enabledFn, ctx)
+  set output$ (data: string) {
+    this.output = data
 
-      this.next({
-        type: ListrEventType.ENABLED,
-        data: this.enabled
-      })
+    this.emit(ListrTaskEventType.OUTPUT, data)
+    this.emitShouldRefreshRender()
+  }
+
+  /**
+   * Update the current prompt output of the Task and emit the neccassary events.
+   */
+  set promptOutput$ (data: string) {
+    this.emit(ListrTaskEventType.PROMPT, data)
+
+    // this acts wierd without cleansing the output!, have no idea why
+    // it produces double output when a prompt is canceled
+    if (cleanseAnsi(data)) {
+      this.emitShouldRefreshRender()
     }
+  }
+
+  /**
+   * Update or extend the current message of the Task and emit the neccassary events.
+   */
+  set message$ (data: Task<Ctx, Renderer>['message']) {
+    this.message = { ...this.message, ...data }
+
+    this.emit(ListrTaskEventType.MESSAGE, data)
+    this.emitShouldRefreshRender()
+  }
+
+  /**
+   * Update the current title of the Task and emit the neccassary events.
+   */
+  set title$ (title: string) {
+    this.title = title
+
+    this.emit(ListrTaskEventType.TITLE, title)
+    this.emitShouldRefreshRender()
+  }
+
+  /**
+   * Current task path in the hierarchy.
+   */
+  get path (): string[] {
+    return [ ...this.listr.path, this.task.title ]
+  }
+
+  /**
+   * Checks whether the current task with the given context should be set as enabled.
+   */
+  public async check (ctx: Ctx): Promise<boolean> {
+    // Check if a task is enabled or disabled
+    if (this.state === ListrTaskState.WAITING) {
+      this.enabled = await assertFunctionOrSelf(this.task?.enabled ?? true, ctx)
+
+      this.emit(ListrTaskEventType.ENABLED, this.enabled)
+      this.emitShouldRefreshRender()
+    }
+
+    return this.enabled
   }
 
   /** Returns whether this task has subtasks. */
@@ -151,9 +158,19 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     return this.subtasks?.length > 0
   }
 
+  /** Returns whether this task is finalized in someform. */
+  public hasFinalized (): boolean {
+    return this.isCompleted() || this.hasFailed() || this.isSkipped() || this.hasRolledBack()
+  }
+
   /** Returns whether this task is in progress. */
   public isPending (): boolean {
-    return this.state === ListrTaskState.PENDING
+    return this.isStarted() || this.isPrompt() || this.hasReset()
+  }
+
+  /** Returns whether this task has started. */
+  public isStarted (): boolean {
+    return this.state === ListrTaskState.STARTED
   }
 
   /** Returns whether this task is skipped. */
@@ -186,6 +203,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     return this.state === ListrTaskState.RETRY
   }
 
+  /** Returns whether this task has some kind of reset like retry and rollback going on. */
+  public hasReset (): boolean {
+    return this.state === ListrTaskState.RETRY || this.state === ListrTaskState.ROLLING_BACK
+  }
+
   /** Returns whether enabled function resolves to true. */
   public isEnabled (): boolean {
     return this.enabled
@@ -198,7 +220,27 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
   /** Returns whether this task has a prompt inside. */
   public isPrompt (): boolean {
-    return !!this.prompt
+    return this.state === ListrTaskState.PROMPT || this.state === ListrTaskState.PROMPT_COMPLETED
+  }
+
+  /** Returns whether this task is currently paused. */
+  public isPaused (): boolean {
+    return this.state === ListrTaskState.PAUSED
+  }
+
+  /** Pause the given task for certain time. */
+  public async pause (time: number): Promise<void> {
+    const state = this.state
+
+    this.state$ = ListrTaskState.PAUSED
+    this.message$ = {
+      paused: Date.now() + time
+    }
+    await delay(time)
+    this.state$ = state
+    this.message$ = {
+      paused: null
+    }
   }
 
   /** Run the current task. */
@@ -210,21 +252,16 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         result.options = { ...this.options, ...result.options }
 
         // switch to silent renderer since already rendering
-        result.rendererClass = getRenderer('silent').renderer
-        result.renderHook$.subscribe((): void => {
-          this.renderHook$.next()
-        })
+        result.rendererClass = getRendererClass('silent')
 
         // assign subtasks
         this.subtasks = result.tasks
 
-        result.err = this.listr.err
+        result.errors = this.listr.errors
 
-        this.next({ type: ListrEventType.SUBTASK })
+        this.emit(ListrTaskEventType.SUBTASK, this.subtasks)
 
         result = result.run(context)
-      } else if (this.isPrompt()) {
-        // do nothing, it is already being handled
       } else if (result instanceof Promise) {
         // Detect promise
         result = result.then(handleResult)
@@ -256,10 +293,10 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
     const startTime = Date.now()
 
     // finish the task first
-    this.state$ = ListrTaskState.PENDING
+    this.state$ = ListrTaskState.STARTED
 
     // check if this function wants to be skipped
-    const skipped = await assertFunctionOrSelf(this.skip, context)
+    const skipped = await assertFunctionOrSelf(this.task?.skip ?? false, context)
 
     if (skipped) {
       if (typeof skipped === 'string') {
@@ -277,17 +314,23 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
 
     try {
       // add retry functionality
-      const retryCount = this.tasks?.retry && this.tasks?.retry > 0 ? this.tasks.retry + 1 : 1
+      const retryCount =
+        typeof this.task?.retry === 'number' && this.task.retry > 0
+          ? this.task.retry + 1
+          : typeof this.task?.retry === 'object' && this.task.retry.tries > 0
+            ? this.task.retry.tries + 1
+            : 1
+      const retryDelay = typeof this.task.retry === 'object' && this.task.retry.delay
 
       for (let retries = 1; retries <= retryCount; retries++) {
         try {
           // handle the results
-          await handleResult(this.task(context, wrapper))
+          await handleResult(this.taskFn(context, wrapper))
 
           break
         } catch (err: any) {
           if (retries !== retryCount) {
-            this.retry = { count: retries, withError: err }
+            this.retry = { count: retries, error: err }
             this.message$ = { retry: this.retry }
             this.title$ = this.initialTitle
             this.output = undefined
@@ -295,13 +338,17 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
             wrapper.report(err, ListrErrorTypes.WILL_RETRY)
 
             this.state$ = ListrTaskState.RETRY
+
+            if (retryDelay) {
+              await this.pause(retryDelay)
+            }
           } else {
             throw err
           }
         }
       }
 
-      if (this.isPending() || this.isRetrying()) {
+      if (this.isStarted() || this.isRetrying()) {
         this.message$ = { duration: Date.now() - startTime }
         this.state$ = ListrTaskState.COMPLETED
       }
@@ -309,21 +356,21 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
-        error = new Error(this.prompt.message)
+        error = this.prompt
       }
 
       // execute the task on error function
-      if (this.tasks?.rollback) {
+      if (this.task?.rollback) {
         wrapper.report(error, ListrErrorTypes.WILL_ROLLBACK)
 
         try {
           this.state$ = ListrTaskState.ROLLING_BACK
 
-          await this.tasks.rollback(context, wrapper)
-
-          this.state$ = ListrTaskState.ROLLED_BACK
+          await this.task.rollback(context, wrapper)
 
           this.message$ = { rollback: this.title }
+
+          this.state$ = ListrTaskState.ROLLED_BACK
         } catch (err: any) {
           this.state$ = ListrTaskState.FAILED
 
@@ -340,7 +387,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         // mark task as failed
         this.state$ = ListrTaskState.FAILED
 
-        if (this.listr.options.exitOnError !== false && await assertFunctionOrSelf(this.tasks?.exitOnError, context) !== false) {
+        if (this.listr.options.exitOnError !== false && await assertFunctionOrSelf(this.task?.exitOnError, context) !== false) {
           // Do not exit when explicitly set to `false`
           // report error
           wrapper.report(error, ListrErrorTypes.HAS_FAILED)
@@ -352,8 +399,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends Subject<Li
         }
       }
     } finally {
-      // Mark the observable as completed
       this.complete()
     }
+  }
+
+  private emitShouldRefreshRender (): void {
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 }

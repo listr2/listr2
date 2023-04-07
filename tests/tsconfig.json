@@ -5,13 +5,17 @@
     "rootDir": "../",
     "baseUrl": "../",
     "sourceMap": true,
+    "module": "ESNext",
+    "target": "ESNext",
     "paths": {
-      "@root/*": ["./src/*"],
-      "@constants/*": ["src/constants/*"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@lib/*": ["src/lib/*"],
-      "@renderer/*": ["src/renderer/*"],
-      "@utils/*": ["src/utils/*"]
+      "@constants": ["./src/constants/index"],
+      "@interfaces": ["./src/interfaces/index"],
+      "@lib": ["./src/lib/index"],
+      "@presets": ["./src/presets/index"],
+      "@renderer": ["./src/renderer/index"],
+      "@utils": ["./src/utils/index"],
+      "@tests/utils": ["./tests/utils/index"],
+      "@root": ["./src/index"]
     }
   },
   "include": ["../src", "../tests"],

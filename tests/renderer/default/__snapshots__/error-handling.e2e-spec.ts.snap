@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task will fail.
+◼ This task will never execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-exit 1`] = `[]`;
+
+exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-stderr 1`] = `[]`;
+
+exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will fail.
+",
+  "[2K[1A[2K[G◼ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+  › This task failed after 2 seconds.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "✖ This task will fail.
+  › This task failed after 2 seconds.
+◼ This task will never execute.
+",
+  "[?25h",
+]
+`;

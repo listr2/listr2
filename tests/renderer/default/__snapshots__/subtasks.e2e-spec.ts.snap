@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-exit 1`] = `[]`;
+
+exports[`default renderer: show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-stderr 1`] = `[]`;
+
+exports[`default renderer: show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+✔ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[?25h",
+]
+`;

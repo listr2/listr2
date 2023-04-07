@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
+
+exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stderr 1`] = `[]`;
+
+exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
+
+exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stderr 1`] = `[]`;
+
+exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
+[
+  "❯ This task will execute.
+",
+  "› I will push an output. [0]
+",
+  "› I will push an output. [1]
+",
+  "› I will push an output. [2]
+",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`test renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
+
+exports[`test renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stderr 1`] = `[]`;
+
+exports[`test renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"OUTPUT","data":"I will push an output. [0]","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"OUTPUT","data":"I will push an output. [1]","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"OUTPUT","data":"I will push an output. [2]","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+]
+`;
+
+exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
+
+exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stderr 1`] = `[]`;
+
+exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
+[
+  "[STARTED] This task will execute.
+",
+  "[OUTPUT] I will push an output. [0]
+",
+  "[OUTPUT] I will push an output. [1]
+",
+  "[OUTPUT] I will push an output. [2]
+",
+  "[COMPLETED] This task will execute.
+",
+]
+`;

@@ -1,18 +1,22 @@
 import { Listr } from './listr'
-import type { ListrError } from '@interfaces/listr-error.interface'
-import type { ListrBaseClassOptions, ListrContext, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
-import type { ListrGetRendererClassFromValue, ListrRendererValue } from '@interfaces/renderer.interface'
+import type { ListrError, ListrBaseClassOptions, ListrContext, ListrSubClassOptions, ListrGetRendererClassFromValue, ListrRendererValue, ListrTask } from '@interfaces'
 
 /**
  * Creates a new Listr2 task manager.
  *
  * Useful for creating a single instance of Listr2 with pre-set settings.
+ *
+ * @see {@link https://listr2.kilic.dev/listr/manager.html}
  */
 export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
-  public err: ListrError[] = []
+  public errors: ListrError[] = []
   private tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
 
   constructor (public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>) {}
+
+  get ctx (): Ctx {
+    return this.options.ctx
+  }
 
   set ctx (ctx: Ctx) {
     this.options.ctx = ctx
@@ -30,10 +34,12 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
   public async runAll<InjectCtx = Ctx>(options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>): Promise<InjectCtx> {
     options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
-    const ctx = await this.run<InjectCtx>(this.tasks, options)
+    const tasks = [ ...this.tasks ]
 
     // clear out queues
     this.tasks = []
+
+    const ctx = await this.run<InjectCtx>(tasks, options)
 
     return ctx
   }
@@ -52,22 +58,18 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
   ): ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>> {
     options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
-    let newTask: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>
-
     // type function or directly
     if (typeof tasks === 'function') {
-      newTask = {
+      return {
         ...taskOptions,
         task: (ctx): Listr<InjectCtx, Renderer, FallbackRenderer> => this.newListr<InjectCtx, Renderer, FallbackRenderer>(tasks(ctx), options)
       }
-    } else {
-      newTask = {
-        ...taskOptions,
-        task: (): Listr<InjectCtx, Renderer, FallbackRenderer> => this.newListr<InjectCtx, Renderer, FallbackRenderer>(tasks, options)
-      }
     }
 
-    return newTask
+    return {
+      ...taskOptions,
+      task: (): Listr<InjectCtx, Renderer, FallbackRenderer> => this.newListr<InjectCtx, Renderer, FallbackRenderer>(tasks, options)
+    }
   }
 
   public async run<InjectCtx = Ctx>(
@@ -82,14 +84,8 @@ export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = '
     const ctx = await task.run()
 
     // reset error queue
-    this.err = task.err
+    this.errors.push(...task.errors)
 
     return ctx
-  }
-
-  // general utils
-  /* istanbul ignore next */
-  public getRuntime (pipetime: number): string {
-    return `${Math.round(Date.now() - pipetime) / 1000}s`
   }
 }

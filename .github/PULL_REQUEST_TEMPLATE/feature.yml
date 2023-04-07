@@ -1,0 +1,36 @@
+name: Feature Implementation
+description: Close open feature request.
+title: '[Feat]: '
+labels: ['feature', 'triage']
+assignees:
+  - cenk2cenk2
+body:
+  - type: input
+    id: open-issue
+    attributes:
+      label: Open Issue
+      description: Please provide a link/id to currently open issue if applicable.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      description: By submitting this issue, you agree that you have gone through the given requirements.
+      options:
+        - label: Create an issue for a preliminary discussion or link the existing issue.
+          required: true
+        - label: Follow guidelines enforced by `git-hooks` of linting, tests, and commit convention, which is [Angular conventional commits](https://www.conventionalcommits.org/).
+          required: true
+        - label: Add tests whenever or if possible.
+          required: false
+        - label: Update the documentation.
+          required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time and your contributions are greatly appriciated.
+
+        If you have any further thing to add to this, now is the time!

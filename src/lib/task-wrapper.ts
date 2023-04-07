@@ -1,43 +1,62 @@
-import through from 'through'
+import { Writable } from 'stream'
 
-import { BELL_REGEX, CLEAR_LINE_REGEX } from '@constants/clearline-regex.constants'
-import { ListrTaskState } from '@constants/state.constants'
-import type { ListrErrorTypes } from '@interfaces/listr-error.interface'
-import { ListrError } from '@interfaces/listr-error.interface'
-import type { ListrBaseClassOptions, ListrSubClassOptions, ListrTask } from '@interfaces/listr.interface'
-import type { ListrRendererFactory } from '@interfaces/renderer.interface'
-import type { Task } from '@lib/task'
-import { Listr } from '@root/listr'
-import { createPrompt, destroyPrompt } from '@utils/prompt'
-import type { PromptOptions } from '@utils/prompt.interface'
+import type { ListrErrorTypes } from '@constants'
+import { ListrTaskEventType, ListrTaskState } from '@constants'
+import type { ListrBaseClassOptions, ListrRendererFactory, ListrSubClassOptions, ListrTask } from '@interfaces'
+import { ListrError, PromptError } from '@interfaces'
+import type { Task } from '@lib'
+import { Listr } from '@root'
+import type { PromptCancelOptions, PromptOptions } from '@utils'
+import { createPrompt, splat } from '@utils'
 
 /**
- * Extend the task to have more functionality while accessing from the outside.
+ * The original Task that is defined by the user is wrapped with the TaskWrapper to provide additional functionality.
+ *
+ * @see {@link https://listr2.kilic.dev/task/task.html}
  */
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
-  constructor (public task: Task<Ctx, ListrRendererFactory>, public errors: ListrError<Ctx>[], private options: ListrBaseClassOptions<Ctx, any, any>) {}
+  constructor (public task: Task<Ctx, ListrRendererFactory>, private options: ListrBaseClassOptions<Ctx, any, any>) {}
 
-  /** Get the title of the current task. */
   get title (): string {
     return this.task.title
   }
 
-  /** Change the title of the current task. */
-  set title (data: string) {
-    this.task.title$ = data
+  /**
+   * Title of the current task.
+   *
+   * @see {@link https://listr2.kilic.dev/task/title.html}
+   */
+  set title (title: string | string[]) {
+    title = Array.isArray(title) ? title : [ title ]
+
+    this.task.title$ = splat(title.shift(), ...title)
   }
 
-  /** Get the output from the output channel. */
   get output (): string {
     return this.task.output
   }
 
-  /** Send a output to the output channel. */
-  set output (data: string) {
-    this.task.output$ = data
+  /**
+   * Send output from the current task to the renderer.
+   *
+   * @see {@link https://listr2.kilic.dev/task/output.html}
+   */
+  set output (output: string | any[]) {
+    output = Array.isArray(output) ? output : [ output ]
+
+    this.task.output$ = splat(output.shift(), ...output)
   }
 
-  /** Create a new subtask with given renderer selection from the parent task. */
+  /** Send an output to the output channel as prompt. */
+  private set promptOutput (output: string) {
+    this.task.promptOutput$ = output
+  }
+
+  /**
+   * Creates a new set of Listr subtasks.
+   *
+   * @see {@link https://listr2.kilic.dev/task/subtasks.html}
+   */
   public newListr<NewCtx = Ctx>(
     task: ListrTask<NewCtx, Renderer> | ListrTask<NewCtx, Renderer>[] | ((parent: Omit<this, 'skip' | 'enabled'>) => ListrTask<NewCtx, Renderer> | ListrTask<NewCtx, Renderer>[]),
     options?: ListrSubClassOptions<NewCtx, Renderer>
@@ -53,62 +72,94 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     return new Listr<NewCtx, any, any>(tasks, options, this.task)
   }
 
-  /** Report a error in process for error collection. */
+  /**
+   * Report an error that has to be collected and handled.
+   *
+   * @see {@link https://listr2.kilic.dev/task/error-handling.html}
+   */
   public report (error: Error, type: ListrErrorTypes): void {
     if (this.task.options.collectErrors !== false) {
-      this.errors.push(new ListrError<Ctx>(error, type, this.task))
+      this.task.listr.errors.push(new ListrError<Ctx>(error, type, this.task))
     }
 
-    this.task.message$ = { error: error.message ?? this.task?.title ?? 'Task with no title.' }
+    this.task.message$ = { error: error.message ?? this.task?.title }
   }
 
-  /** Skip current task. */
-  public skip (message?: string): void {
+  /**
+   * Skip the current task.
+   *
+   * @see {@link https://listr2.kilic.dev/task/skip.html}
+   */
+  public skip (message?: string, ...metadata: any[]): void {
     this.task.state$ = ListrTaskState.SKIPPED
 
     if (message) {
-      this.task.message$ = { skip: message ?? this.task?.title ?? 'Task with no title.' }
+      this.task.message$ = { skip: message ? splat(message, ...metadata) : this.task?.title }
     }
   }
 
-  /** Get the number of retrying, else returns false */
+  /**
+   * Check whether this task is currently in a retry state.
+   *
+   * @see {@link https://listr2.kilic.dev/task/retry.html}
+   */
   public isRetrying (): Task<Ctx, Renderer>['retry'] {
     return this.task.isRetrying() ? this.task.retry : { count: 0 }
   }
 
   /**
-   * Create a new Enquirer prompt using prompt options.
+   * Create a new prompt for getting user input through `enquirer`.
    *
-   * Since process.stdout is controlled by Listr, this will passthrough all Enquirer data through internal stdout.
+   * - `enquirer` is a optional peer dependency and has to be already installed separately.
+   *
+   * @see {@link https://listr2.kilic.dev/task/prompt.html}
    */
   public async prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T> {
     return createPrompt.bind(this)(options, { ...this.options?.injectWrapper })
   }
 
-  /** Cancels the current prompt attach to this task. */
-  public cancelPrompt (throwError = false): void {
-    return destroyPrompt.bind(this)(throwError)
+  /* istanbul ignore next */
+  /**
+   * Cancel the current active prompt, if there is any.
+   *
+   * @see {@link https://listr2.kilic.dev/task/prompt.html}
+   */
+  public cancelPrompt (options?: PromptCancelOptions): void {
+    if (!this.task.prompt || this.task.prompt instanceof PromptError) {
+      // If there's no prompt, can't cancel
+      return
+    }
+
+    if (options?.throw) {
+      this.task.prompt.cancel()
+    } else {
+      this.task.prompt.submit()
+    }
   }
 
   /**
-   * Pass stream of data to internal stdout.
+   * Generates a fake stdout for your use case, where it will be tunnelled through Listr to handle the rendering process.
    *
-   * Since Listr2 takes control of process.stdout utilizing the default renderer, any data outputted to process.stdout
-   * will corrupt its looks.
-   *
-   * This returns a fake stream to pass any stream inside Listr as task data.
+   * @see {@link https://listr2.kilic.dev/renderer/process-output.html}
    */
-  public stdout (): NodeJS.WriteStream & NodeJS.WritableStream {
-    return through((chunk: string) => {
-      chunk = chunk.toString()
+  public stdout (type?: ListrTaskEventType.OUTPUT | ListrTaskEventType.PROMPT): NodeJS.WritableStream {
+    const writable = new Writable()
 
-      chunk = chunk.replace(new RegExp(CLEAR_LINE_REGEX, 'gmi'), '')
-      chunk = chunk.replace(new RegExp(BELL_REGEX, 'gmi'), '')
+    writable.write = (chunk: Buffer | string): boolean => {
+      switch (type) {
+      case ListrTaskEventType.PROMPT:
+        this.promptOutput = chunk.toString()
 
-      if (chunk !== '') {
-        this.output = chunk
+        break
+
+      default:
+        this.output = chunk.toString()
       }
-    }) as unknown as NodeJS.WriteStream
+
+      return true
+    }
+
+    return writable
   }
 
   /** Run this task. */

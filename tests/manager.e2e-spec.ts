@@ -1,16 +1,20 @@
-import { Manager } from '@root/index'
+import type { MockProcessOutput } from './utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from './utils'
+import { Manager } from '@root'
 
 describe('skip a task', () => {
-  let manager: Manager<any, 'verbose'>
-  let log: jest.SpyInstance<void, string[][]>
+  let manager: Manager<any, 'test'>
+
+  const output: MockProcessOutput = {} as MockProcessOutput
 
   beforeEach(async () => {
-    manager = new Manager<any, 'verbose'>({ renderer: 'verbose' })
+    manager = new Manager<any, 'test'>({ renderer: 'test' })
 
-    log = jest.spyOn(console, 'log').mockImplementation()
+    mockProcessOutput(output)
   })
 
   afterEach(async () => {
+    unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
@@ -23,22 +27,7 @@ describe('skip a task', () => {
 
     await manager.runAll()
 
-    expect(log.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "[STARTED] Task without title.",
-        ],
-        [
-          "[STARTED] Task without title.",
-        ],
-        [
-          "[SUCCESS] Task without title.",
-        ],
-        [
-          "[SUCCESS] Task without title.",
-        ],
-      ]
-    `)
+    expectProcessOutputToMatchSnapshot(output, 'GFB8X86ruFomKEgjsONBJpAyKOAF3NXP')
   })
 
   it('should indent the task in manager', async () => {
@@ -54,28 +43,7 @@ describe('skip a task', () => {
 
     await manager.runAll()
 
-    expect(log.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "[STARTED] Task without title.",
-        ],
-        [
-          "[STARTED] Task without title.",
-        ],
-        [
-          "[STARTED] Task without title.",
-        ],
-        [
-          "[SUCCESS] Task without title.",
-        ],
-        [
-          "[SUCCESS] Task without title.",
-        ],
-        [
-          "[SUCCESS] Task without title.",
-        ],
-      ]
-    `)
+    expectProcessOutputToMatchSnapshot(output, 'iKVBsenKiZgkkgSQSW6OEluZqkppF7j8')
   })
 
   it('should change the context in manager', async () => {
@@ -93,21 +61,6 @@ describe('skip a task', () => {
 
     await manager.runAll()
 
-    expect(log.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "[STARTED] Task without title.",
-        ],
-        [
-          "[STARTED] child",
-        ],
-        [
-          "[SUCCESS] child",
-        ],
-        [
-          "[SUCCESS] Task without title.",
-        ],
-      ]
-    `)
+    expectProcessOutputToMatchSnapshot(output, '5DzFgF4pfTuE12WN84l3ogCgRJPb6t9L')
   })
 })

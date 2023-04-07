@@ -1,113 +1,105 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import delay from 'delay'
+import { delay, Listr, PRESET_TIMER, ListrLogger, ListrLogLevels } from 'listr2'
 
-import { Listr } from '@root/index'
-import { Logger } from '@utils/logger'
+const logger = new ListrLogger({ useIcons: false })
 
-const logger = new Logger({ useIcons: false })
+let task: Listr<any>
 
-async function main (): Promise<void> {
-  let task: Listr<any>
+logger.log(ListrLogLevels.STARTED, 'Example for showing the timer per task.')
 
-  logger.start('Example for showing the timer per task.')
-
-  task = new Listr<any>(
-    [
-      {
-        title: 'This task will execute.',
-        task: async (): Promise<void> => {
-          await delay(1000)
-        },
-        options: {
-          showTimer: true
-        }
-      },
-
-      {
-        title: 'This task will execute.',
-        task: async (): Promise<void> => {
-          await delay(1000)
-        },
-        options: {
-          showTimer: false
-        }
-      }
-    ],
-    { concurrent: false }
-  )
-
-  try {
-    const context = await task.run()
-
-    logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e: any) {
-    logger.fail(e)
-  }
-
-  logger.start('Example for showing the timer per listr.')
-
-  task = new Listr<any>(
-    [
-      {
-        title: 'This task will execute.',
-        task: async (): Promise<void> => {
-          await delay(500)
-        }
-      },
-
-      {
-        title: 'This task will execute.',
-        task: async (_, task): Promise<void> => {
-          task.title = 'Changing task title.'
-          await delay(200)
-        }
-      }
-    ],
-    { concurrent: false, rendererOptions: { showTimer: true } }
-  )
-
-  try {
-    const context = await task.run()
-
-    logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e: any) {
-    logger.fail(e)
-  }
-
-  logger.start('Example for showing the timer per listr in verbose renderer when on fallback.')
-
-  task = new Listr<any>(
-    [
-      {
-        title: 'This task will execute.',
-        task: async (): Promise<void> => {
-          await delay(500)
-        }
-      },
-
-      {
-        title: 'This task will execute.',
-        task: async (_, task): Promise<void> => {
-          task.title = 'Changing task title.'
-          await delay(200)
-        }
-      }
-    ],
+task = new Listr<any>(
+  [
     {
-      concurrent: false,
-      rendererOptions: { showTimer: true },
-      rendererFallback: true,
-      nonTTYRendererOptions: { showTimer: true, useIcons: true }
+      title: 'This task will execute.',
+      task: async (): Promise<void> => {
+        await delay(1000)
+      },
+      options: {
+        timer: PRESET_TIMER
+      }
+    },
+
+    {
+      title: 'This task will execute.',
+      task: async (): Promise<void> => {
+        await delay(1000)
+      },
+      options: {
+        timer: PRESET_TIMER
+      }
     }
-  )
+  ],
+  { concurrent: false }
+)
 
-  try {
-    const context = await task.run()
+try {
+  const context = await task.run()
 
-    logger.success(`Context: ${JSON.stringify(context)}`)
-  } catch (e: any) {
-    logger.fail(e)
-  }
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+} catch (e: any) {
+  logger.log(ListrLogLevels.FAILED, e)
 }
 
-void main()
+logger.log(ListrLogLevels.STARTED, 'Example for showing the timer per listr.')
+
+task = new Listr<any>(
+  [
+    {
+      title: 'This task will execute.',
+      task: async (): Promise<void> => {
+        await delay(500)
+      }
+    },
+
+    {
+      title: 'This task will execute.',
+      task: async (_, task): Promise<void> => {
+        task.title = 'Changing task title.'
+        await delay(200)
+      }
+    }
+  ],
+  { concurrent: false, rendererOptions: { timer: PRESET_TIMER } }
+)
+
+try {
+  const context = await task.run()
+
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+} catch (e: any) {
+  logger.log(ListrLogLevels.FAILED, e)
+}
+
+logger.log(ListrLogLevels.STARTED, 'Example for showing the timer per listr in verbose renderer when on fallback.')
+
+task = new Listr<any>(
+  [
+    {
+      title: 'This task will execute.',
+      task: async (): Promise<void> => {
+        await delay(500)
+      }
+    },
+
+    {
+      title: 'This task will execute.',
+      task: async (_, task): Promise<void> => {
+        task.title = 'Changing task title.'
+        await delay(200)
+      }
+    }
+  ],
+  {
+    concurrent: false,
+    rendererOptions: { timer: PRESET_TIMER },
+    fallbackRendererCondition: true,
+    fallbackRendererOptions: { timer: PRESET_TIMER }
+  }
+)
+
+try {
+  const context = await task.run()
+
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+} catch (e: any) {
+  logger.log(ListrLogLevels.FAILED, e)
+}
