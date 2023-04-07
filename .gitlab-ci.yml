@@ -70,4 +70,5 @@ semantic-release:
     - lint
     - test
   dependencies:
+    - install
     - build

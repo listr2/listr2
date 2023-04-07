@@ -20,6 +20,7 @@ const config: JestConfigWithTsJest = {
       }
     ]
   },
+  collectCoverageFrom: [ 'src/**/*' ],
   moduleFileExtensions: [ 'ts', 'js' ],
   moduleNameMapper: {
     ...pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
