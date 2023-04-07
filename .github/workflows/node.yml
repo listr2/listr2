@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
       - run: pnpm install --frozen-lockfile
       - run: pnpm run lint:check
 
@@ -38,6 +41,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test
 
@@ -54,5 +60,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
