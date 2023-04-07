@@ -32,9 +32,9 @@ The _style_ of _ListrLogger_ can be customized through [ListrLoggerOptions](/api
 
 <Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/613" target="_blank">#613</a></Badge>
 
-_ListrLogger_ can be customized for any renderer through the `loggerOptions` field inside the respective renderer options that use the _ListrLogger_.
+_ListrLogger_ can be customized for any renderer through the exposed fields on your renderer inside the respective renderer options that use the _ListrLogger_.
 
-The `style` section is in the form of [ListrLoggerStyleMap](/api/interfaces/ListrLoggerStyleMap.html). By injecting new style options into the _ListrLogger_ you can change the icons and colors of every possible task.
+The `icon` and `color` section of the supported renderer is in the form of [ListrLoggerStyleMap](/api/interfaces/ListrLoggerStyleMap.html). By injecting new style options into the _ListrLogger_ you can change the icons and colors of every possible task.
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
@@ -83,5 +83,25 @@ This preset is available for the _VerboseRenderer_, _SimpleRenderer_ on _Listr_ 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
 @[code typescript](../../examples/docs/renderer/logger/preset-timestamp.ts)
+
+:::
+
+## Custom Logger
+
+You can use your custom _ListrLogger_ whenever the underlying renderer is using it directly. This argument is always true for the provided renderers that output to the console.
+
+To do this you must expand the original _ListrLogger_ implementation since it is again a stateful class.
+
+::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+
+@[code typescript](../../examples/docs/renderer/logger/custom-implementation.ts)
+
+:::
+
+> After a couple of attempts with <Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge>, this turned out to be the most flexible solution for modifying the logger, where it is shared with multiple different implementations of renderers, and they do not use it the same way.
+
+::: warning
+
+Some options for the _ListrLogger_ are forcefully injected through the selected renderer. These are the options like global field options like `timestamp` or `icon` and `style` options, due to me wanting to expose these options without creating a custom logger since this falls into the more advanced use cases.
 
 :::

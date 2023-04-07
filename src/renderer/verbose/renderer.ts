@@ -2,13 +2,12 @@ import type { ListrVerboseRendererOptions, ListrVerboseRendererTask, ListrVerbos
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import { parseTimer } from '@presets'
-import { ListrLogger, ListrLogLevels, cleanseAnsi } from '@utils'
+import { ListrLogger, ListrLogLevels, cleanseAnsi, LISTR_LOGGER_STYLE, LISTR_LOGGER_STDERR_LEVELS } from '@utils'
 
 export class VerboseRenderer implements ListrRenderer {
   public static nonTTY = true
   public static rendererOptions: ListrVerboseRendererOptions = {
-    logTitleChange: false,
-    logger: ListrLogger
+    logTitleChange: false
   }
   public static rendererTaskOptions: ListrVerboseRendererTaskOptions
 
@@ -18,17 +17,24 @@ export class VerboseRenderer implements ListrRenderer {
     this.options = {
       ...VerboseRenderer.rendererOptions,
       ...this.options,
-      loggerOptions: {
-        useIcons: false,
-        ...this.options?.loggerOptions ?? {},
-        fieldOptions: {
-          prefix: [ this.options?.timestamp ],
-          ...this.options?.loggerOptions?.fieldOptions ?? {}
-        }
+      icon: {
+        ...LISTR_LOGGER_STYLE.icon,
+        ...options?.icon ?? {}
+      },
+      color: {
+        ...LISTR_LOGGER_STYLE.color,
+        ...options?.color ?? {}
       }
     }
 
-    this.logger = new this.options.logger(this.options.loggerOptions)
+    this.logger = this.options.logger ?? new ListrLogger<ListrLogLevels>({ useIcons: false, toStderr: LISTR_LOGGER_STDERR_LEVELS })
+
+    this.logger.options.icon = this.options.icon
+    this.logger.options.color = this.options.color
+
+    if (this.options.timestamp) {
+      this.logger.options.fields.prefix.unshift(this.options.timestamp)
+    }
   }
 
   public render (): void {

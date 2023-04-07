@@ -2,13 +2,11 @@ import type { ListrSimpleRendererOptions, ListrSimpleRendererTask, ListrSimpleRe
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import { parseTimer } from '@presets'
-import { ListrLogger, ListrLogLevels, color } from '@utils'
+import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, color } from '@utils'
 
 export class SimpleRenderer implements ListrRenderer {
   public static nonTTY = true
-  public static rendererOptions: ListrSimpleRendererOptions = {
-    logger: ListrLogger
-  }
+  public static rendererOptions: ListrSimpleRendererOptions = {}
   public static rendererTaskOptions: ListrSimpleRendererTaskOptions = {}
 
   private readonly logger: ListrLogger
@@ -17,17 +15,24 @@ export class SimpleRenderer implements ListrRenderer {
     this.options = {
       ...SimpleRenderer.rendererOptions,
       ...options,
-      loggerOptions: {
-        useIcons: true,
-        ...this.options?.loggerOptions ?? {},
-        fieldOptions: {
-          prefix: [ this.options?.timestamp ],
-          ...this.options?.loggerOptions?.fieldOptions ?? {}
-        }
+      icon: {
+        ...LISTR_LOGGER_STYLE.icon,
+        ...options?.icon ?? {}
+      },
+      color: {
+        ...LISTR_LOGGER_STYLE.color,
+        ...options?.color ?? {}
       }
     }
 
-    this.logger = new this.options.logger(this.options.loggerOptions)
+    this.logger = this.options.logger ?? new ListrLogger<ListrLogLevels>({ useIcons: true, toStderr: LISTR_LOGGER_STDERR_LEVELS })
+
+    this.logger.options.icon = this.options.icon
+    this.logger.options.color = this.options.color
+
+    if (this.options.timestamp) {
+      this.logger.options.fields.prefix.unshift(this.options.timestamp)
+    }
   }
 
   public end (): void {

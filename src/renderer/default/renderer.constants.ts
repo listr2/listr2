@@ -1,7 +1,7 @@
 import type { ListrLoggerStyleMap } from '@utils'
 import { color, figures } from '@utils'
 
-export enum ListrDefaultRendererListrLogLevels {
+export enum ListrDefaultRendererLogLevels {
   SKIPPED_WITH_COLLAPSE = 'SKIPPED_WITH_COLLAPSE',
   SKIPPED_WITHOUT_COLLAPSE = 'SKIPPED_WITHOUT_COLLAPSE',
   OUTPUT = 'OUTPUT',
@@ -19,37 +19,37 @@ export enum ListrDefaultRendererListrLogLevels {
   PAUSED = 'PAUSED'
 }
 
-export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRendererListrLogLevels> = {
+export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRendererLogLevels> = {
   icon: {
-    [ListrDefaultRendererListrLogLevels.SKIPPED_WITH_COLLAPSE]: figures.arrowDown,
-    [ListrDefaultRendererListrLogLevels.SKIPPED_WITHOUT_COLLAPSE]: figures.warning,
-    [ListrDefaultRendererListrLogLevels.OUTPUT]: figures.pointerSmall,
-    [ListrDefaultRendererListrLogLevels.OUTPUT_WITH_BOTTOMBAR]: figures.pointerSmall,
-    [ListrDefaultRendererListrLogLevels.PENDING]: figures.pointer,
-    [ListrDefaultRendererListrLogLevels.COMPLETED]: figures.tick,
-    [ListrDefaultRendererListrLogLevels.COMPLETED_WITH_FAILED_SUBTASKS]: figures.warning,
-    [ListrDefaultRendererListrLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS]: figures.squareSmallFilled,
-    [ListrDefaultRendererListrLogLevels.RETRY]: figures.warning,
-    [ListrDefaultRendererListrLogLevels.ROLLING_BACK]: figures.warning,
-    [ListrDefaultRendererListrLogLevels.ROLLED_BACK]: figures.arrowLeft,
-    [ListrDefaultRendererListrLogLevels.FAILED]: figures.cross,
-    [ListrDefaultRendererListrLogLevels.FAILED_WITH_FAILED_SUBTASKS]: figures.pointer,
-    [ListrDefaultRendererListrLogLevels.WAITING]: figures.squareSmallFilled,
-    [ListrDefaultRendererListrLogLevels.PAUSED]: figures.squareSmallFilled
+    [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: figures.arrowDown,
+    [ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE]: figures.warning,
+    [ListrDefaultRendererLogLevels.OUTPUT]: figures.pointerSmall,
+    [ListrDefaultRendererLogLevels.OUTPUT_WITH_BOTTOMBAR]: figures.pointerSmall,
+    [ListrDefaultRendererLogLevels.PENDING]: figures.pointer,
+    [ListrDefaultRendererLogLevels.COMPLETED]: figures.tick,
+    [ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS]: figures.warning,
+    [ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS]: figures.squareSmallFilled,
+    [ListrDefaultRendererLogLevels.RETRY]: figures.warning,
+    [ListrDefaultRendererLogLevels.ROLLING_BACK]: figures.warning,
+    [ListrDefaultRendererLogLevels.ROLLED_BACK]: figures.arrowLeft,
+    [ListrDefaultRendererLogLevels.FAILED]: figures.cross,
+    [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: figures.pointer,
+    [ListrDefaultRendererLogLevels.WAITING]: figures.squareSmallFilled,
+    [ListrDefaultRendererLogLevels.PAUSED]: figures.squareSmallFilled
   },
   color: {
-    [ListrDefaultRendererListrLogLevels.SKIPPED_WITH_COLLAPSE]: color.yellow,
-    [ListrDefaultRendererListrLogLevels.SKIPPED_WITHOUT_COLLAPSE]: color.yellow,
-    [ListrDefaultRendererListrLogLevels.PENDING]: color.yellow,
-    [ListrDefaultRendererListrLogLevels.COMPLETED]: color.green,
-    [ListrDefaultRendererListrLogLevels.COMPLETED_WITH_FAILED_SUBTASKS]: color.yellow,
-    [ListrDefaultRendererListrLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS]: color.red,
-    [ListrDefaultRendererListrLogLevels.RETRY]: color.yellowBright,
-    [ListrDefaultRendererListrLogLevels.ROLLING_BACK]: color.redBright,
-    [ListrDefaultRendererListrLogLevels.ROLLED_BACK]: color.redBright,
-    [ListrDefaultRendererListrLogLevels.FAILED]: color.red,
-    [ListrDefaultRendererListrLogLevels.FAILED_WITH_FAILED_SUBTASKS]: color.red,
-    [ListrDefaultRendererListrLogLevels.WAITING]: color.dim,
-    [ListrDefaultRendererListrLogLevels.PAUSED]: color.yellowBright
+    [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: color.yellow,
+    [ListrDefaultRendererLogLevels.SKIPPED_WITHOUT_COLLAPSE]: color.yellow,
+    [ListrDefaultRendererLogLevels.PENDING]: color.yellow,
+    [ListrDefaultRendererLogLevels.COMPLETED]: color.green,
+    [ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS]: color.yellow,
+    [ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS]: color.red,
+    [ListrDefaultRendererLogLevels.RETRY]: color.yellowBright,
+    [ListrDefaultRendererLogLevels.ROLLING_BACK]: color.redBright,
+    [ListrDefaultRendererLogLevels.ROLLED_BACK]: color.redBright,
+    [ListrDefaultRendererLogLevels.FAILED]: color.red,
+    [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: color.red,
+    [ListrDefaultRendererLogLevels.WAITING]: color.dim,
+    [ListrDefaultRendererLogLevels.PAUSED]: color.yellowBright
   }
 }

@@ -2,16 +2,15 @@ import type { ListrBaseClassOptions } from 'listr2'
 import { delay, Manager, ListrLogger, ListrLogLevels } from 'listr2'
 
 function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager<T> {
-  const myDefaultOptions: ListrBaseClassOptions = {
+  return new Manager({
     concurrent: false,
     exitOnError: false,
     rendererOptions: {
       collapseSubtasks: false,
       collapseSkips: false
-    }
-  }
-
-  return new Manager({ ...myDefaultOptions, ...override })
+    },
+    ...override
+  })
 }
 
 interface Ctx {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import type { ListrSilentRendererOptions, ListrSilentRendererTask, ListrSilentRendererTaskOptions } from './renderer.interface'
 import type { ListrRenderer } from '@interfaces'
 
@@ -9,7 +8,11 @@ export class SilentRenderer implements ListrRenderer {
 
   constructor (public tasks: ListrSilentRendererTask[], public options: ListrSilentRendererOptions) {}
 
-  public render (): void {}
+  public render (): void {
+    return
+  }
 
-  public end (): void {}
+  public end (): void {
+    return
+  }
 }

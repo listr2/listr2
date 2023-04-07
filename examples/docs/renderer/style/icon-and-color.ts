@@ -1,4 +1,4 @@
-import { color, Listr, ListrDefaultRendererListrLogLevels } from 'listr2'
+import { color, Listr, ListrDefaultRendererLogLevels } from 'listr2'
 
 const tasks = new Listr(
   [
@@ -12,16 +12,12 @@ const tasks = new Listr(
   ],
   {
     rendererOptions: {
-      loggerOptions: {
-        style: {
-          icon: {
-            [ListrDefaultRendererListrLogLevels.COMPLETED]: 'hey completed!'
-          },
-          color: {
-            [ListrDefaultRendererListrLogLevels.COMPLETED]: (data): string => color.bgGreen(color.black(data)),
-            [ListrDefaultRendererListrLogLevels.OUTPUT]: color.cyan
-          }
-        }
+      icon: {
+        [ListrDefaultRendererLogLevels.COMPLETED]: 'hey completed!'
+      },
+      color: {
+        [ListrDefaultRendererLogLevels.COMPLETED]: (data): string => color.bgGreen(color.black(data)),
+        [ListrDefaultRendererLogLevels.OUTPUT]: color.cyan
       }
     }
   }

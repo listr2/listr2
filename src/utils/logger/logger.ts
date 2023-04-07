@@ -1,31 +1,28 @@
 import { EOL } from 'os'
 
-import { ListrLogLevels, LISTR_LOGGER_STYLE } from './logger.constants'
 import type { ListrLoggerOptions, LoggerField, LoggerFieldOptions, LoggerFormat } from './logger.interface'
 import { ProcessOutput, splat } from '@utils'
 
 /**
- * A internal logger for using in the verbose renderer mostly.
+ * Creates a new Listr2 logger.
+ *
+ * This logger is used throughout the renderers for consistency.
+ *
+ * @see {@link https://listr2.kilic.dev/renderer/logger.html}
  */
-export class ListrLogger<Levels extends string = ListrLogLevels> {
+export class ListrLogger<Levels extends string = string> {
   public readonly process: ProcessOutput
 
-  constructor (protected readonly options?: ListrLoggerOptions<Levels>) {
+  constructor (public options?: ListrLoggerOptions<Levels>) {
     this.options = {
       useIcons: true,
-      ...options,
-      style: {
-        icon: {
-          ...(LISTR_LOGGER_STYLE.icon as any),
-          ...this.options?.style?.icon ?? {}
-        },
-        color: {
-          ...(LISTR_LOGGER_STYLE.color as any),
-          ...this.options?.style?.color ?? {}
-        }
-      },
-      toStderr: [ ListrLogLevels.FAILED, ListrLogLevels.RETRY, ListrLogLevels.ROLLBACK ] as Levels[]
+      toStderr: [],
+      ...options ?? {}
     }
+
+    this.options.fields ??= {}
+    this.options.fields.prefix ??= []
+    this.options.fields.suffix ??= []
 
     this.process = this.options.processOutput ?? new ProcessOutput()
   }
@@ -69,16 +66,16 @@ export class ListrLogger<Levels extends string = ListrLogLevels> {
       if (typeof suffix === 'string') {
         message = message + ` ${this.wrap(suffix)}`
       } else if (typeof suffix === 'object') {
-        const args = suffix.args ?? []
+        suffix.args ??= []
 
-        if (typeof suffix.condition === 'function' ? !suffix.condition(...args) : !(suffix.condition ?? true)) {
+        if (typeof suffix.condition === 'function' ? !suffix.condition(...suffix.args) : !(suffix.condition ?? true)) {
           return message
         }
 
         message =
           message +
-          ` ${this.wrap(typeof suffix.field === 'function' ? suffix.field(...args) : suffix.field, {
-            format: suffix?.format(...args)
+          ` ${this.wrap(typeof suffix.field === 'function' ? suffix.field(...suffix.args) : suffix.field, {
+            format: suffix?.format(...suffix.args)
           })}`
       }
     })
@@ -91,14 +88,14 @@ export class ListrLogger<Levels extends string = ListrLogLevels> {
       if (typeof prefix === 'string') {
         message = `${this.wrap(prefix)} ` + message
       } else if (typeof prefix === 'object') {
-        const args = prefix.args ?? []
+        prefix.args ??= []
 
-        if (typeof prefix.condition === 'function' ? !prefix.condition(...args) : !(prefix.condition ?? true)) {
+        if (typeof prefix.condition === 'function' ? !prefix.condition(...prefix.args) : !(prefix.condition ?? true)) {
           return message
         }
 
         message =
-          `${this.wrap(typeof prefix.field === 'function' ? prefix.field(...args) : prefix.field, {
+          `${this.wrap(typeof prefix.field === 'function' ? prefix.field(...prefix.args) : prefix.field, {
             format: prefix?.format()
           })} ` + message
       }
@@ -108,12 +105,20 @@ export class ListrLogger<Levels extends string = ListrLogLevels> {
   }
 
   public fields (message: string, options?: LoggerFieldOptions<true>): string {
+    if (this.options?.fields?.prefix) {
+      message = this.prefix(message, ...this.options.fields.prefix)
+    }
+
     if (options?.prefix) {
       message = this.prefix(message, ...options.prefix)
     }
 
     if (options?.suffix) {
       message = this.suffix(message, ...options.suffix)
+    }
+
+    if (this.options?.fields?.suffix) {
+      message = this.suffix(message, ...this.options.fields.suffix)
     }
 
     return message
@@ -124,10 +129,10 @@ export class ListrLogger<Levels extends string = ListrLogLevels> {
       return null
     }
 
-    icon = icon || this.options.style.icon?.[level]
+    icon = icon || this.options.icon?.[level]
 
     // do the coloring
-    const coloring: LoggerFormat = this.options.style.color?.[level]
+    const coloring: LoggerFormat = this.options.color?.[level]
 
     if (icon && coloring) {
       icon = coloring(icon)
@@ -147,8 +152,8 @@ export class ListrLogger<Levels extends string = ListrLogLevels> {
       .map((msg) => {
         // format messages
         return this.fields(this.style(level, msg), {
-          prefix: [ ...this.options?.fieldOptions?.prefix ?? [], ...Array.isArray(options?.prefix) ? options.prefix : [ options?.prefix ] ],
-          suffix: [ ...this.options?.fieldOptions?.suffix ?? [], ...Array.isArray(options?.suffix) ? options.suffix : [ options?.suffix ] ]
+          prefix: Array.isArray(options?.prefix) ? options.prefix : [ options?.prefix ],
+          suffix: Array.isArray(options?.suffix) ? options.suffix : [ options?.suffix ]
         })
       })
       .join(EOL)

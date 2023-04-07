@@ -73,7 +73,7 @@ Default renderer has options where you can change how the errors are displayed.
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md{221-257} -->
+<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md{227-263} -->
 
 :::
 

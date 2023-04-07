@@ -30,6 +30,10 @@ yarn install
 yarn run example examples/renderer-default.example.ts
 ```
 
+## `jsdoc`
+
+For every exposed option mostly includes a brief explanation, if it is missing in the examples.
+
 ## Tests
 
 In the cases where the examples might not be enough, you can always dive deeper into the tests folder that lives in the folder [`./tests/`](https://github.com/listr2/listr2/tree/master/tests). This application is mostly well-tested for edge conditions, however, it is limited to being a primarily terminal application. Unfortunately, since the terminal is mocked while testing you cannot directly see your changes on the tests, but you can always dive deeper into the examples given there.

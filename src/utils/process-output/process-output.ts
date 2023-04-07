@@ -4,6 +4,13 @@ import { ProcessOutputStream } from './process-output-stream'
 import { ANSI_ESCAPE_CODES } from '@constants'
 import { cleanseAnsi } from '@utils'
 
+/**
+ * Creates a new Listr2 process-output controller.
+ *
+ * This is used to control the flow to `process.stdout` and `process.stderr` for all renderers.
+ *
+ * @see {@link https://listr2.kilic.dev/renderer/process-output.html}
+ */
 export class ProcessOutput {
   public readonly stream: {
     stdout: ProcessOutputStream

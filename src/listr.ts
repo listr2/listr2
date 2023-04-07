@@ -16,7 +16,9 @@ import { ListrEventManager, Task, TaskWrapper } from '@lib'
 import { Concurrency, getRenderer } from '@utils'
 
 /**
- * Creates a new set of Listr2 task list.
+ * Create a new task list with Listr.
+ *
+ * @see {@link https://listr2.kilic.dev/listr/listr.html}
  */
 export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []

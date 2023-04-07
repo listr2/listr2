@@ -5,6 +5,8 @@ import type { ListrError, ListrBaseClassOptions, ListrContext, ListrSubClassOpti
  * Creates a new Listr2 task manager.
  *
  * Useful for creating a single instance of Listr2 with pre-set settings.
+ *
+ * @see {@link https://listr2.kilic.dev/listr/manager.html}
  */
 export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
   public errors: ListrError[] = []

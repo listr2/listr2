@@ -1,10 +1,10 @@
 import type { ListrLogger } from './logger'
-import type { ListrLogLevels, ProcessOutputRendererOptions } from '@utils'
+import type { ProcessOutputRendererOptions } from '@utils'
 
 /**
  * Options for the logger
  */
-export interface ListrLoggerOptions<Levels extends string, T = any> extends ProcessOutputRendererOptions {
+export interface ListrLoggerOptions<Levels extends string> extends ProcessOutputRendererOptions, ListrLoggerStyleMap<Levels | string> {
   /**
    * Use icons for the log levels.
    */
@@ -12,30 +12,29 @@ export interface ListrLoggerOptions<Levels extends string, T = any> extends Proc
   /**
    * Apply fields and templates as presets before and after each message.
    */
-  fieldOptions?: LoggerFieldOptions<true>
-  /**
-   * Style map for coloring and icons.
-   */
-  style?: ListrLoggerStyleMap<Levels | string>
-  /**
-   * Pass custom options to user created logger on different environments.
-   *
-   * Not used on the default logger.
-   */
-  user?: T
+  fields?: LoggerFieldOptions<true>
   /**
    * Send the designated levels to `process.stderr`.
    */
-  toStderr?: Levels | string[]
+  toStderr?: (Levels | string)[]
 }
 
+/**
+ * Inject your custom style map consisting of icons and coloring for the ListrLogger.
+ *
+ * @see {@link https://listr2.kilic.dev/renderer/logger.html}
+ */
 export interface ListrLoggerStyleMap<Levels extends string> {
   /**
    * Coloring of the levels.
+   *
+   * @see {@link https://listr2.kilic.dev/renderer/logger.html#style}
    */
   color?: Partial<Record<Levels, LoggerFormat>>
   /**
    * Icons of the levels.
+   *
+   * @see {@link https://listr2.kilic.dev/renderer/logger.html#style}
    */
   icon?: Partial<Record<Levels, string>>
 }
@@ -74,17 +73,11 @@ export interface LoggerFieldFn<Args extends any[] = any[]> {
 
 export type LoggerField<Args extends any[] = any[]> = LoggerFieldFn<Args> | string
 
-export interface LoggerRendererOptions<Levels extends string = ListrLogLevels> {
+export interface RendererLoggerOptions<Levels extends string> {
   /**
    * Inject your custom implementation of the ListrLogger.
    *
    * @see {@link https://listr2.kilic.dev/renderer/logger.html}
    */
-  logger?: typeof ListrLogger
-  /**
-   * Inject your settings for the ListrLogger.
-   *
-   * @see {@link https://listr2.kilic.dev/renderer/logger.html}
-   */
-  loggerOptions?: ListrLoggerOptions<Levels>
+  logger?: ListrLogger<Levels>
 }

@@ -1,14 +1,17 @@
 import type { DefaultRenderer } from './renderer'
-import type { ListrDefaultRendererListrLogLevels } from './renderer.constants'
+import type { ListrDefaultRendererLogLevels } from './renderer.constants'
 import type { Task } from '@lib'
 import type { RendererPresetTimer } from '@presets'
-import type { ListrLoggerStyleMap, LoggerRendererOptions, Spinner } from '@utils'
+import type { ListrLoggerStyleMap, RendererLoggerOptions, Spinner } from '@utils'
 
-export type ListrDefaultRendererOptionsStyle = ListrLoggerStyleMap<ListrDefaultRendererListrLogLevels>
+export type ListrDefaultRendererOptionsStyle = ListrLoggerStyleMap<ListrDefaultRendererLogLevels>
 
 export type ListrDefaultRendererTask = Task<any, typeof DefaultRenderer>
 
-export interface ListrDefaultRendererOptions extends RendererPresetTimer, LoggerRendererOptions<ListrDefaultRendererListrLogLevels> {
+export interface ListrDefaultRendererOptions
+  extends RendererPresetTimer,
+  RendererLoggerOptions<ListrDefaultRendererLogLevels>,
+  ListrLoggerStyleMap<ListrDefaultRendererLogLevels> {
   // global
 
   /**

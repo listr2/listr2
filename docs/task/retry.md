@@ -56,6 +56,6 @@ Retrying is self-aware, and you can access the task if it is retrying via `task.
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md{259-276} -->
+<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md{265-282} -->
 
 :::

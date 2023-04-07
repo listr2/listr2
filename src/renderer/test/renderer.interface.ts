@@ -3,11 +3,11 @@ import type { TestRendererSerializerTaskKeys } from './serializer.interface'
 import type { ListrTaskState } from '@constants'
 import type { ListrTaskMessage } from '@interfaces'
 import type { Task } from '@lib'
-import type { LoggerRendererOptions } from '@utils'
+import type { ListrLogLevels, RendererLoggerOptions } from '@utils'
 
 export type ListrTestRendererTask = Task<any, typeof TestRenderer>
 
-export interface ListrTestRendererOptions extends LoggerRendererOptions {
+export interface ListrTestRendererOptions extends RendererLoggerOptions<ListrLogLevels> {
   /**
    * Log subtasks.
    *

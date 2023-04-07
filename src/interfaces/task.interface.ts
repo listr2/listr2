@@ -1,8 +1,8 @@
 import type { Observable } from 'rxjs'
 import type { Readable } from 'stream'
 
-import type { PromptError } from './listr-error.interface'
 import type { ListrContext } from './listr.interface'
+import type { PromptError } from './prompt-error.interface'
 import type { ListrGetRendererTaskOptions, ListrRendererFactory, ListrRendererValue } from './renderer.interface'
 import type { Task, TaskWrapper } from '@lib'
 import type { Listr } from '@root'

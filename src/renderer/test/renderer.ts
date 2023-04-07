@@ -33,8 +33,7 @@ export class TestRenderer implements ListrRenderer {
       'isEnabled',
       'isRetrying',
       'path'
-    ],
-    logger: ListrLogger
+    ]
   }
   public static rendererTaskOptions: ListrTestRendererTaskOptions
 
@@ -44,7 +43,7 @@ export class TestRenderer implements ListrRenderer {
   constructor (private readonly tasks: ListrTestRendererTask[], private readonly options: ListrTestRendererOptions) {
     this.options = { ...TestRenderer.rendererOptions, ...this.options }
 
-    this.logger = new this.options.logger(this.options.loggerOptions)
+    this.logger = this.options.logger ?? new ListrLogger<never>({ useIcons: false })
 
     this.serializer = new TestRendererSerializer(this.options)
   }
