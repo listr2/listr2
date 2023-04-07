@@ -1,3 +1,10 @@
+# [6.0.0-beta.19](https://github.com/listr2/listr2/compare/v6.0.0-beta.18...v6.0.0-beta.19) (2023-04-07)
+
+
+### Performance Improvements
+
+* update how logger is implemented and injected ([3146082](https://github.com/listr2/listr2/commit/31460828258e949fdab6e387a6e2bea5c2710a52))
+
 # [6.0.0-beta.18](https://github.com/listr2/listr2/compare/v6.0.0-beta.17...v6.0.0-beta.18) (2023-04-06)
 
 
