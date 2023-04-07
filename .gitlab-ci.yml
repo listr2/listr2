@@ -17,7 +17,7 @@ include:
     file: /templates/v2/node-run.gitlab-ci.yml
 
   - project: devops/pipes
-    file: /templates/semantic-release.gitlab-ci.yml
+    file: /templates/v2/semantic-release.gitlab-ci.yml
 
   - project: devops/pipes
     file: /templates/v2/docker-build-internal.gitlab-ci.yml
@@ -44,8 +44,6 @@ vuepress:
     refs:
       - master
       - main
-      # TODO: REMOVE ME AFTERWARDS THE UPSTREAM RELEASE
-      - beta
 
 docker-build-docs:
   stage: publish
@@ -63,5 +61,13 @@ docker-build-docs:
     refs:
       - master
       - main
-      # TODO: REMOVE ME AFTERWARDS THE UPSTREAM RELEASE
-      - beta
+
+semantic-release:
+  stage: publish
+  extends: .semantic-release
+  needs:
+    - build
+    - lint
+    - test
+  dependencies:
+    - build
