@@ -14,4 +14,4 @@
 
 ## Demo
 
-![Demo](./examples/renderer-default.gif)
+![Demo](https://media.githubusercontent.com/media/listr2/listr2/master/examples/renderer-default.gif)
