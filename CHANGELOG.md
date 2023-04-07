@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/listr2/listr2/compare/v6.0.0...v6.0.1) (2023-04-07)
+
+
+### Bug Fixes
+
+* update npm demo ([fc24708](https://github.com/listr2/listr2/commit/fc24708941e290210b42bd40838a2436fdd62826))
+
 # [6.0.0](https://github.com/listr2/listr2/compare/v5.0.8...v6.0.0) (2023-04-07)
 
 
