@@ -8,7 +8,6 @@ stages:
 variables:
   NODE_VERSION: 18-alpine
   NODE_PACKAGE_MANAGER: pnpm
-  NODE_INSTALL_ARGS: --ignore-scripts
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
   GITHUB_STATUS_PROJECT: listr2/listr2
