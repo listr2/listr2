@@ -1,3 +1,9 @@
+## [6.0.4](https://github.com/listr2/listr2/compare/v6.0.3...v6.0.4) (2023-04-08)
+
+### Bug Fixes
+
+- force publish ([5a770da](https://github.com/listr2/listr2/commit/5a770da2785f3c821e4799f6a91c25b5f4850e1a))
+
 ## [6.0.3](https://github.com/listr2/listr2/compare/v6.0.2...v6.0.3) (2023-04-08)
 
 ### Bug Fixes
