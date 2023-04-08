@@ -10,9 +10,9 @@ export type ListrSimpleRendererValue = 'simple'
 /** Type of simple renderer. */
 export type ListrSimpleRenderer = typeof SimpleRenderer
 /** Name of verbose renderer. */
-export type ListrFallbackRendererValue = 'verbose'
+export type ListrVerboseRendererValue = 'verbose'
 /** Type of verbose renderer. */
-export type ListrFallbackRenderer = typeof VerboseRenderer
+export type ListrVerboseRenderer = typeof VerboseRenderer
 /** Name of test renderer. */
 export type ListrTestRendererValue = 'test'
 /** Type of test renderer. */
@@ -22,6 +22,9 @@ export type ListrSilentRendererValue = 'silent'
 /** Type of silent renderer. */
 export type ListrSilentRenderer = typeof SilentRenderer
 
+export type ListrPrimaryRendererValue = ListrDefaultRendererValue
+export type ListrSecondaryRendererValue = ListrSimpleRendererValue
+
 /**
  * Listr2 can process either the integrated renderers as string aliases,
  * or utilize a compatible style renderer that extends the ListrRenderer abstract class.
@@ -30,7 +33,7 @@ export type ListrRendererValue =
   | ListrSilentRendererValue
   | ListrDefaultRendererValue
   | ListrSimpleRendererValue
-  | ListrFallbackRendererValue
+  | ListrVerboseRendererValue
   | ListrTestRendererValue
   | ListrRendererFactory
 
@@ -41,8 +44,8 @@ export type ListrGetRendererClassFromValue<T extends ListrRendererValue> = T ext
   ? ListrDefaultRenderer
   : T extends ListrSimpleRendererValue
     ? ListrSimpleRenderer
-    : T extends ListrFallbackRendererValue
-      ? ListrFallbackRenderer
+    : T extends ListrVerboseRendererValue
+      ? ListrVerboseRenderer
       : T extends ListrTestRendererValue
         ? ListrTestRenderer
         : T extends ListrSilentRenderer
@@ -59,7 +62,7 @@ export type ListrGetRendererValueFromClass<T extends ListrRendererFactory> = T e
   : T extends SimpleRenderer
     ? ListrSimpleRendererValue
     : T extends VerboseRenderer
-      ? ListrFallbackRendererValue
+      ? ListrVerboseRendererValue
       : T extends TestRenderer
         ? ListrTestRendererValue
         : T extends SilentRenderer

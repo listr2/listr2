@@ -1,6 +1,6 @@
 import type {
   ListrDefaultRendererValue,
-  ListrFallbackRendererValue,
+  ListrVerboseRendererValue,
   ListrGetRendererOptions,
   ListrRendererValue,
   ListrSimpleRendererValue,
@@ -12,6 +12,6 @@ export type RendererSetup = [ListrRendererValue, ListrGetRendererOptions<ListrRe
 export const RENDERER_SETUP: RendererSetup[] = [
   [ 'default', { lazy: true } satisfies ListrGetRendererOptions<ListrDefaultRendererValue> ],
   [ 'simple', {} satisfies ListrGetRendererOptions<ListrSimpleRendererValue> ],
-  [ 'verbose', { logTitleChange: true } satisfies ListrGetRendererOptions<ListrFallbackRendererValue> ],
+  [ 'verbose', { logTitleChange: true } satisfies ListrGetRendererOptions<ListrVerboseRendererValue> ],
   [ 'test', {} satisfies ListrGetRendererOptions<ListrTestRendererValue> ]
 ]

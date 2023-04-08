@@ -2,14 +2,14 @@ import { ListrEnvironmentVariables, ListrTaskState } from '@constants'
 import type {
   ListrBaseClassOptions,
   ListrContext,
-  ListrDefaultRendererValue,
   ListrError,
-  ListrFallbackRendererValue,
   ListrGetRendererClassFromValue,
   ListrGetRendererOptions,
+  ListrPrimaryRendererValue,
   ListrRenderer,
   ListrRendererFactory,
   ListrRendererValue,
+  ListrSecondaryRendererValue,
   ListrTask
 } from '@interfaces'
 import { ListrEventManager, Task, TaskWrapper } from '@lib'
@@ -20,7 +20,11 @@ import { Concurrency, getRenderer } from '@utils'
  *
  * @see {@link https://listr2.kilic.dev/listr/listr.html}
  */
-export class Listr<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrDefaultRendererValue, FallbackRenderer extends ListrRendererValue = ListrFallbackRendererValue> {
+export class Listr<
+  Ctx = ListrContext,
+  Renderer extends ListrRendererValue = ListrPrimaryRendererValue,
+  FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
+> {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
   public errors: ListrError<Ctx>[] = []
   public ctx: Ctx
