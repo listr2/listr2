@@ -1,16 +1,22 @@
 ## [6.0.3](https://github.com/listr2/listr2/compare/v6.0.2...v6.0.3) (2023-04-08)
 
+### Bug Fixes
+
+- **logger:** update logger for empty messages with fields not writing undefined ([30c5baf](https://github.com/listr2/listr2/commit/30c5baf1879e0fefb9b9d80772dd45f7fa3f6250))
+- **renderer:** update typings ([a080d11](https://github.com/listr2/listr2/commit/a080d1122b53a29e4f28705bbb411bd6a0742bae))
+- update logger pushing undefined for tasks without titles ([7bed36c](https://github.com/listr2/listr2/commit/7bed36cd2148da2d5731e0a5c71f814867fb891d))
+
+## [6.0.3](https://github.com/listr2/listr2/compare/v6.0.2...v6.0.3) (2023-04-08)
 
 ### Bug Fixes
 
-* **renderer:** update typings ([a080d11](https://github.com/listr2/listr2/commit/a080d1122b53a29e4f28705bbb411bd6a0742bae))
+- **renderer:** update typings ([a080d11](https://github.com/listr2/listr2/commit/a080d1122b53a29e4f28705bbb411bd6a0742bae))
 
 ## [6.0.2](https://github.com/listr2/listr2/compare/v6.0.1...v6.0.2) (2023-04-08)
 
-
 ### Bug Fixes
 
-* typing issues with secondary renderer not being changed ([f5c9871](https://github.com/listr2/listr2/commit/f5c987194348e4b2062cf1d346414e3d8040affe))
+- typing issues with secondary renderer not being changed ([f5c9871](https://github.com/listr2/listr2/commit/f5c987194348e4b2062cf1d346414e3d8040affe))
 
 ## [6.0.1](https://github.com/listr2/listr2/compare/v6.0.0...v6.0.1) (2023-04-07)
 
