@@ -1,6 +1,6 @@
 import { EOL } from 'os'
 
-import type { ListrLoggerOptions, LoggerField, LoggerFieldOptions, LoggerFormat } from './logger.interface'
+import type { ListrLoggerOptions, LoggerField, LoggerFieldOptions, LoggerFormat, LoggerFormatOptions } from './logger.interface'
 import { ProcessOutput, splat } from '@utils'
 
 /**
@@ -47,24 +47,34 @@ export class ListrLogger<Levels extends string = string> {
     this.process.toStderr(this.format(null, message, options), eol)
   }
 
-  public wrap (message: string, options?: { format?: LoggerFormat }): string {
-    message = `[${message}]`
-
-    if (options?.format) {
-      return options.format(message)
+  public wrap (message: string, options?: LoggerFormatOptions): string {
+    if (!message) {
+      return message
     }
 
-    return message
+    return this.applyFormat(`[${message}]`, options)
   }
 
   public splat (...args: Parameters<typeof splat>): ReturnType<typeof splat> {
-    return splat(...args)
+    const message = args.shift()
+
+    if (typeof message === 'undefined') {
+      return ''
+    }
+
+    if (args.length === 0) {
+      return message
+    }
+
+    return splat(message, args)
   }
 
   public suffix (message: string, ...suffixes: LoggerField[]): string {
     suffixes.filter(Boolean).forEach((suffix) => {
+      message += this.spacing(message)
+
       if (typeof suffix === 'string') {
-        message = message + ` ${this.wrap(suffix)}`
+        message += this.wrap(suffix)
       } else if (typeof suffix === 'object') {
         suffix.args ??= []
 
@@ -72,11 +82,9 @@ export class ListrLogger<Levels extends string = string> {
           return message
         }
 
-        message =
-          message +
-          ` ${this.wrap(typeof suffix.field === 'function' ? suffix.field(...suffix.args) : suffix.field, {
-            format: suffix?.format(...suffix.args)
-          })}`
+        message += this.wrap(typeof suffix.field === 'function' ? suffix.field(...suffix.args) : suffix.field, {
+          format: suffix?.format(...suffix.args)
+        })
       }
     })
 
@@ -85,8 +93,10 @@ export class ListrLogger<Levels extends string = string> {
 
   public prefix (message: string, ...prefixes: LoggerField[]): string {
     prefixes.filter(Boolean).forEach((prefix) => {
+      message = this.spacing(message) + message
+
       if (typeof prefix === 'string') {
-        message = `${this.wrap(prefix)} ` + message
+        message = this.wrap(prefix) + message
       } else if (typeof prefix === 'object') {
         prefix.args ??= []
 
@@ -95,9 +105,9 @@ export class ListrLogger<Levels extends string = string> {
         }
 
         message =
-          `${this.wrap(typeof prefix.field === 'function' ? prefix.field(...prefix.args) : prefix.field, {
+          this.wrap(typeof prefix.field === 'function' ? prefix.field(...prefix.args) : prefix.field, {
             format: prefix?.format()
-          })} ` + message
+          }) + message
       }
     })
 
@@ -129,7 +139,7 @@ export class ListrLogger<Levels extends string = string> {
       return null
     }
 
-    icon = icon || this.options.icon?.[level]
+    icon ||= this.options.icon?.[level]
 
     // do the coloring
     const coloring: LoggerFormat = this.options.color?.[level]
@@ -148,13 +158,16 @@ export class ListrLogger<Levels extends string = string> {
 
     message = this.splat(message.shift(), ...message)
       .split(EOL)
-      .filter((msg) => Boolean(msg) && msg.trim() !== '')
-      .map((msg) => {
+      .filter((m) => !m || m.trim() !== '')
+      .map((m) => {
         // format messages
-        return this.fields(this.style(level, msg), {
-          prefix: Array.isArray(options?.prefix) ? options.prefix : [ options?.prefix ],
-          suffix: Array.isArray(options?.suffix) ? options.suffix : [ options?.suffix ]
-        })
+        return this.style(
+          level,
+          this.fields(m, {
+            prefix: Array.isArray(options?.prefix) ? options.prefix : [ options?.prefix ],
+            suffix: Array.isArray(options?.suffix) ? options.suffix : [ options?.suffix ]
+          })
+        )
       })
       .join(EOL)
 
@@ -162,7 +175,7 @@ export class ListrLogger<Levels extends string = string> {
   }
 
   protected style (level: Levels, message: string): string {
-    if (!level) {
+    if (!level || !message) {
       return message
     }
 
@@ -173,5 +186,17 @@ export class ListrLogger<Levels extends string = string> {
     }
 
     return message
+  }
+
+  protected applyFormat (message: string, options?: LoggerFormatOptions): string {
+    if (options?.format) {
+      return options.format(message)
+    }
+
+    return message
+  }
+
+  protected spacing (message: string | undefined): string {
+    return typeof message === 'undefined' || message.trim() === '' ? '' : ' '
   }
 }

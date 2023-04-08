@@ -143,7 +143,7 @@ try {
             [
               {
                 title: 'Fixing bugs...',
-                task: async (): Promise<void> => {
+                task: async (_, task): Promise<void> => {
                   await delay(1000)
                   task.skip('Can not find any bugs!')
                 }

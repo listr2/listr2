@@ -81,3 +81,7 @@ export interface RendererLoggerOptions<Levels extends string> {
    */
   logger?: ListrLogger<Levels>
 }
+
+export interface LoggerFormatOptions {
+  format?: LoggerFormat
+}
