@@ -1,3 +1,10 @@
+## [6.0.3](https://github.com/listr2/listr2/compare/v6.0.2...v6.0.3) (2023-04-08)
+
+
+### Bug Fixes
+
+* **renderer:** update typings ([a080d11](https://github.com/listr2/listr2/commit/a080d1122b53a29e4f28705bbb411bd6a0742bae))
+
 ## [6.0.2](https://github.com/listr2/listr2/compare/v6.0.1...v6.0.2) (2023-04-08)
 
 
