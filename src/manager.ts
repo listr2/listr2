@@ -1,5 +1,15 @@
 import { Listr } from './listr'
-import type { ListrError, ListrBaseClassOptions, ListrContext, ListrSubClassOptions, ListrGetRendererClassFromValue, ListrRendererValue, ListrTask } from '@interfaces'
+import type {
+  ListrBaseClassOptions,
+  ListrContext,
+  ListrError,
+  ListrGetRendererClassFromValue,
+  ListrPrimaryRendererValue,
+  ListrRendererValue,
+  ListrSecondaryRendererValue,
+  ListrSubClassOptions,
+  ListrTask
+} from '@interfaces'
 
 /**
  * Creates a new Listr2 task manager.
@@ -8,7 +18,11 @@ import type { ListrError, ListrBaseClassOptions, ListrContext, ListrSubClassOpti
  *
  * @see {@link https://listr2.kilic.dev/listr/manager.html}
  */
-export class Manager<Ctx = ListrContext, Renderer extends ListrRendererValue = 'default', FallbackRenderer extends ListrRendererValue = 'verbose'> {
+export class Manager<
+  Ctx = ListrContext,
+  Renderer extends ListrRendererValue = ListrPrimaryRendererValue,
+  FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
+> {
   public errors: ListrError[] = []
   private tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
 

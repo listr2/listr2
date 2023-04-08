@@ -22,7 +22,9 @@ export type ListrSilentRendererValue = 'silent'
 /** Type of silent renderer. */
 export type ListrSilentRenderer = typeof SilentRenderer
 
+/** The default prefered renderer. */
 export type ListrPrimaryRendererValue = ListrDefaultRendererValue
+/** The default fallback renderer. */
 export type ListrSecondaryRendererValue = ListrSimpleRendererValue
 
 /**
