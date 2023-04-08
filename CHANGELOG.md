@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/listr2/listr2/compare/v6.0.1...v6.0.2) (2023-04-08)
+
+
+### Bug Fixes
+
+* typing issues with secondary renderer not being changed ([f5c9871](https://github.com/listr2/listr2/commit/f5c987194348e4b2062cf1d346414e3d8040affe))
+
 ## [6.0.1](https://github.com/listr2/listr2/compare/v6.0.0...v6.0.1) (2023-04-07)
 
 ### Bug Fixes
