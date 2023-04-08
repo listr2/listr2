@@ -148,7 +148,7 @@ export class ListrLogger<Levels extends string = string> {
 
     message = this.splat(message.shift(), ...message)
       .split(EOL)
-      .filter((msg) => msg.trim() !== '')
+      .filter((msg) => Boolean(msg) && msg.trim() !== '')
       .map((msg) => {
         // format messages
         return this.fields(this.style(level, msg), {
