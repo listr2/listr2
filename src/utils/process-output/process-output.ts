@@ -49,10 +49,9 @@ export class ProcessOutput {
 
   public release (): void {
     const output = Object.entries(this.stream)
-      .filter(([ name ]) => this.options.dump.includes(name as keyof ProcessOutputStreamMap))
-      .map(([ , stream ]) => stream)
-      .map((stream) => stream.release())
-      .flat()
+      .map(([ name, stream ]) => ({ name, buffer: stream.release() }))
+      .filter((output) => this.options.dump.includes(output.name as keyof ProcessOutputStreamMap))
+      .flatMap((output) => output.buffer)
       .sort((a, b) => a.time - b.time)
       .map((message) => {
         return {
@@ -60,6 +59,7 @@ export class ProcessOutput {
           entry: cleanseAnsi(message.entry)
         }
       })
+      .filter((message) => message.entry)
 
     if (output.length > 0) {
       if (this.options.leaveEmptyLine) {
