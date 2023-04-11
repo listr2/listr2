@@ -16,10 +16,10 @@ export class ProcessOutput {
   public readonly stream: ProcessOutputStreamMap
   private active: boolean
 
-  constructor (stdout: NodeJS.WriteStream = process.stdout, stderr: NodeJS.WriteStream = process.stderr, private readonly options?: ProcessOutputOptions) {
+  constructor (stdout: NodeJS.WriteStream, stderr: NodeJS.WriteStream, private readonly options?: ProcessOutputOptions) {
     this.stream = {
-      stdout: new ProcessOutputStream(stdout),
-      stderr: new ProcessOutputStream(stderr)
+      stdout: new ProcessOutputStream(stdout ?? process.stdout),
+      stderr: new ProcessOutputStream(stderr ?? process.stderr)
     }
 
     this.options = {
