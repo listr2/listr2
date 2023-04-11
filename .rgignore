@@ -8,6 +8,6 @@ pnpm-lock.yaml
 LICENSE
 tests/**/__snapshots__/
 
-# tests/
+tests/
 examples/
 docs/
