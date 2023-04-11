@@ -1,5 +1,18 @@
 # [6.1.0](https://github.com/listr2/listr2/compare/v6.0.4...v6.1.0) (2023-04-11)
 
+
+### Bug Fixes
+
+* add options to processoutput fix eol problem ([e6d6474](https://github.com/listr2/listr2/commit/e6d64744b28da128cd80c83e7961e4557462507f)), closes [#670](https://github.com/listr2/listr2/issues/670)
+* **process-output:** make everything optional ([148cb81](https://github.com/listr2/listr2/commit/148cb813b8d62aa3f5698c733aecda200996fe31))
+
+
+### Features
+
+* add related documentation to process output and update with feature flag ([c1ede63](https://github.com/listr2/listr2/commit/c1ede6366d2b8c1356ed7171eac80736f5061e7a))
+
+# [6.1.0](https://github.com/listr2/listr2/compare/v6.0.4...v6.1.0) (2023-04-11)
+
 ### Bug Fixes
 
 - add options to processoutput fix eol problem ([e6d6474](https://github.com/listr2/listr2/commit/e6d64744b28da128cd80c83e7961e4557462507f)), closes [#670](https://github.com/listr2/listr2/issues/670)
