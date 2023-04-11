@@ -14,7 +14,7 @@ import { cleanseAnsi } from '@utils'
  */
 export class ProcessOutput {
   public readonly stream: ProcessOutputStreamMap
-  private active: boolean
+  protected active: boolean
 
   constructor (stdout?: NodeJS.WriteStream, stderr?: NodeJS.WriteStream, private readonly options?: ProcessOutputOptions) {
     this.stream = {
@@ -48,6 +48,9 @@ export class ProcessOutput {
   }
 
   public release (): void {
+    // not the most performant of functions, since creating a lots of memory
+    // maybe refactor this sometime, but shouldnt be concern since we do not expect
+    // huge number of outputs being buffered
     const output = Object.entries(this.stream)
       .map(([ name, stream ]) => ({ name, buffer: stream.release() }))
       .filter((output) => this.options.dump.includes(output.name as keyof ProcessOutputStreamMap))
