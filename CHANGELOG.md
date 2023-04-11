@@ -1,3 +1,15 @@
+# [6.2.0](https://github.com/listr2/listr2/compare/v6.1.0...v6.2.0) (2023-04-11)
+
+
+### Bug Fixes
+
+* update filtering reordering mechanism ([a72cc7b](https://github.com/listr2/listr2/commit/a72cc7b2b881e3297f69fb7b2ff259c63b64037f)), closes [#670](https://github.com/listr2/listr2/issues/670)
+
+
+### Features
+
+* force publish since semantic-release is stuck ([fa0fae1](https://github.com/listr2/listr2/commit/fa0fae1bb0e34dedc2b4d784f90d9237b5ff1fab))
+
 # [6.1.0](https://github.com/listr2/listr2/compare/v6.0.4...v6.1.0) (2023-04-11)
 
 
