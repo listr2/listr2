@@ -1,4 +1,5 @@
 import type { ProcessOutput } from './process-output'
+import type { ProcessOutputStream } from './process-output-stream'
 
 export interface ProcessOutputRendererOptions {
   /**
@@ -9,3 +10,23 @@ export interface ProcessOutputRendererOptions {
    */
   processOutput?: ProcessOutput
 }
+
+/**
+ * Customize the behavior of the ProcessOutput.
+ */
+export interface ProcessOutputOptions {
+  /**
+   * After the `ProcessOutput.release()` which streams should be dumped.
+   *
+   * @defaultValue `[ 'stdout', 'stderr' ]`
+   */
+  dump?: (keyof ProcessOutputStreamMap)[]
+  /**
+   * After the `ProcessOutput.release()` whether to leave empty line or not.
+   *
+   * @defaultValue `true`
+   */
+  leaveEmptyLine?: boolean
+}
+
+export type ProcessOutputStreamMap = Record<'stdout' | 'stderr', ProcessOutputStream>

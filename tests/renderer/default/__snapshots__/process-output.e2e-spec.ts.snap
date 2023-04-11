@@ -29,9 +29,12 @@ exports[`default renderer: process output should hook in to stdout/stderr and lo
 ",
   "
 ",
-  "this should be logged after [0]",
-  "this should be logged after [1]",
-  "this should be logged after [2]",
+  "this should be logged after [0]
+",
+  "this should be logged after [1]
+",
+  "this should be logged after [2]
+",
   "[?25h",
 ]
 `;
@@ -63,9 +66,12 @@ exports[`default renderer: process output should hook in to stdout/stderr and lo
 ",
   "
 ",
-  "this should be logged after [0]",
-  "this should be logged after [1]",
-  "this should be logged after [2]",
+  "this should be logged after [0]
+",
+  "this should be logged after [1]
+",
+  "this should be logged after [2]
+",
   "[?25h",
 ]
 `;

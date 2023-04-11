@@ -1,6 +1,7 @@
 import { EOL } from 'os'
 
 import { ProcessOutputStream } from './process-output-stream'
+import type { ProcessOutputOptions, ProcessOutputStreamMap } from './process-output.interface'
 import { ANSI_ESCAPE_CODES } from '@constants'
 import { cleanseAnsi } from '@utils'
 
@@ -12,16 +13,19 @@ import { cleanseAnsi } from '@utils'
  * @see {@link https://listr2.kilic.dev/renderer/process-output.html}
  */
 export class ProcessOutput {
-  public readonly stream: {
-    stdout: ProcessOutputStream
-    stderr: ProcessOutputStream
-  }
+  public readonly stream: ProcessOutputStreamMap
   private active: boolean
 
-  constructor (stdout: NodeJS.WriteStream = process.stdout, stderr: NodeJS.WriteStream = process.stderr) {
+  constructor (stdout: NodeJS.WriteStream, stderr: NodeJS.WriteStream, private readonly options?: ProcessOutputOptions) {
     this.stream = {
-      stdout: new ProcessOutputStream(stdout),
-      stderr: new ProcessOutputStream(stderr)
+      stdout: new ProcessOutputStream(stdout ?? process.stdout),
+      stderr: new ProcessOutputStream(stderr ?? process.stderr)
+    }
+
+    this.options = {
+      dump: [ 'stdout', 'stderr' ],
+      leaveEmptyLine: true,
+      ...options
     }
   }
 
@@ -44,7 +48,9 @@ export class ProcessOutput {
   }
 
   public release (): void {
-    const output = Object.values(this.stream)
+    const output = Object.entries(this.stream)
+      .filter(([ name ]) => this.options.dump.includes(name as keyof ProcessOutputStreamMap))
+      .map(([ , stream ]) => stream)
       .map((stream) => stream.release())
       .flat()
       .sort((a, b) => a.time - b.time)
@@ -56,12 +62,14 @@ export class ProcessOutput {
       })
 
     if (output.length > 0) {
-      this.stdout.write(EOL)
+      if (this.options.leaveEmptyLine) {
+        this.stdout.write(EOL)
+      }
 
       output.forEach((message) => {
         const stream = message.stream ?? this.stdout
 
-        stream.write(message.entry)
+        stream.write(message.entry + EOL)
       })
     }
 

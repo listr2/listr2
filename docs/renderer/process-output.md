@@ -28,4 +28,18 @@ After the renderer releases the _ProcessOutput_ and marks it ready to use, every
 
 ## Extending Process Output
 
-You can override the default _ProcessOutput_ by extending the class with your expected behavior (e.g. writing to a log file) on the _ListrLogger_ since all of the renderers, that either use or do not use the hijacking function, use _ProcessOutput_ through _ListrLogger_ itself. For most cases, just creating a `new ProcessOutput()` by passing your own `WriteStream` for `process.stdout` and `process.stderr` through the constructor should be good enough.
+You can override the default _ProcessOutput_ by extending the class with your expected behavior (e.g. writing to a log file) on the _ListrLogger_ since all the renderers, that either use or do not use the hijacking function, use _ProcessOutput_ through _ListrLogger_ itself. For most cases, just creating a `new ProcessOutput()` by passing your own `WriteStream` for `process.stdout` and `process.stderr` through the constructor should be good enough.
+
+### Changing the Behavior
+
+<Badge><FontIcon icon="mdi:tag-text-outline"/>v6.1.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/670" target="_blank">#670</a></Badge>
+
+You can change the behavior of the _ProcessOutput_ through injecting it to the logger. Since every renderer at some level uses the underlying logger, this can effectively be used to change the behavior of the ProcessOutput as well.
+
+If you do not like the behavior of the _ProcessOutput_, you can always implement and bring your own through this interface as well.
+
+::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+
+@[code typescript](../../examples/docs/renderer/process-output/change-behavior.ts)
+
+:::
