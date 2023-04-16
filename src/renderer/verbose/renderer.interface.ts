@@ -15,3 +15,10 @@ export interface ListrVerboseRendererOptions extends RendererPresetTimer, Render
 }
 
 export interface ListrVerboseRendererTaskOptions extends RendererPresetTimer {}
+
+export interface ListrVerboseRendererCache {
+  rendererOptions: ListrVerboseRendererCacheMap<ListrVerboseRendererOptions>
+  rendererTaskOptions: ListrVerboseRendererCacheMap<ListrVerboseRendererTaskOptions>
+}
+
+export type ListrVerboseRendererCacheMap<T> = Map<ListrVerboseRendererTask['id'], T>

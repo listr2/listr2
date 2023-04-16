@@ -1,4 +1,4 @@
-import type { ListrVerboseRendererOptions, ListrVerboseRendererTask, ListrVerboseRendererTaskOptions } from './renderer.interface'
+import type { ListrVerboseRendererCache, ListrVerboseRendererOptions, ListrVerboseRendererTask, ListrVerboseRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
 import { parseTimer } from '@presets'
@@ -12,6 +12,10 @@ export class VerboseRenderer implements ListrRenderer {
   public static rendererTaskOptions: ListrVerboseRendererTaskOptions
 
   private logger: ListrLogger
+  private readonly cache: ListrVerboseRendererCache = {
+    rendererOptions: new Map(),
+    rendererTaskOptions: new Map()
+  }
 
   constructor (private readonly tasks: ListrVerboseRendererTask[], private readonly options: ListrVerboseRendererOptions) {
     this.options = {
@@ -44,13 +48,16 @@ export class VerboseRenderer implements ListrRenderer {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   public end (): void {}
 
-  public getSelfOrParentOption<K extends keyof ListrVerboseRendererOptions>(task: ListrVerboseRendererTask, key: K): ListrVerboseRendererOptions[K] {
-    return task?.rendererOptions?.[key] ?? this.options?.[key]
-  }
-
-  // verbose renderer multi-level
   private renderer (tasks: ListrVerboseRendererTask[]): void {
     return tasks?.forEach((task) => {
+      this.calculate(task)
+
+      const rendererOptions = this.cache.rendererOptions.get(task.id)
+
+      task.once(ListrTaskEventType.CLOSED, () => {
+        this.reset(task)
+      })
+
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         this.renderer(subtasks)
       })
@@ -63,7 +70,7 @@ export class VerboseRenderer implements ListrRenderer {
         if (state === ListrTaskState.STARTED) {
           this.logger.log(ListrLogLevels.STARTED, task.title)
         } else if (state === ListrTaskState.COMPLETED) {
-          const timer = this.getSelfOrParentOption(task, 'timer')
+          const timer = rendererOptions.timer
 
           this.logger.log(
             ListrLogLevels.COMPLETED,
@@ -114,5 +121,26 @@ export class VerboseRenderer implements ListrRenderer {
         }
       })
     })
+  }
+
+  private calculate (task: ListrVerboseRendererTask): void {
+    if (this.cache.rendererOptions.has(task.id) && this.cache.rendererTaskOptions.has(task.id)) {
+      return
+    }
+
+    this.cache.rendererOptions.set(task.id, {
+      ...this.options,
+      ...task.rendererOptions
+    })
+
+    this.cache.rendererTaskOptions.set(task.id, {
+      ...VerboseRenderer.rendererTaskOptions,
+      ...task.rendererTaskOptions
+    })
+  }
+
+  private reset (task: ListrVerboseRendererTask): void {
+    this.cache.rendererOptions.delete(task.id)
+    this.cache.rendererTaskOptions.delete(task.id)
   }
 }

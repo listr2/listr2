@@ -8,3 +8,10 @@ export type ListrSimpleRendererTask = Task<any, typeof SimpleRenderer>
 export interface ListrSimpleRendererOptions extends RendererPresetTimer, RendererPresetTimestamp, RendererLoggerOptions<ListrLogLevels>, ListrLoggerStyleMap<ListrLogLevels> {}
 
 export interface ListrSimpleRendererTaskOptions extends RendererPresetTimer {}
+
+export interface ListrSimpleRendererCache {
+  rendererOptions: ListrSimpleRendererCacheMap<ListrSimpleRendererOptions>
+  rendererTaskOptions: ListrSimpleRendererCacheMap<ListrSimpleRendererTaskOptions>
+}
+
+export type ListrSimpleRendererCacheMap<T> = Map<ListrSimpleRendererTask['id'], T>

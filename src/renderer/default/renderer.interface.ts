@@ -160,3 +160,11 @@ export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
    */
   persistentOutput?: boolean
 }
+
+export interface ListrDefaultRendererCache {
+  output: ListrDefaultRendererCacheMap<string[]>
+  rendererOptions: ListrDefaultRendererCacheMap<ListrDefaultRendererOptions>
+  rendererTaskOptions: ListrDefaultRendererCacheMap<ListrDefaultRendererTaskOptions>
+}
+
+export type ListrDefaultRendererCacheMap<T> = Map<ListrDefaultRendererTask['id'], T>

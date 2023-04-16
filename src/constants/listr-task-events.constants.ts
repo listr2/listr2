@@ -25,5 +25,7 @@ export enum ListrTaskEventType {
    *
    * @see {module:Listr2.ListrTaskMessage}
    */
-  MESSAGE = 'MESSAGE'
+  MESSAGE = 'MESSAGE',
+  /** The current Task is closed and no further action in expected. */
+  CLOSED = 'CLOSED'
 }

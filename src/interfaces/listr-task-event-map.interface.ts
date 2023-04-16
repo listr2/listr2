@@ -18,5 +18,6 @@ export declare class ListrTaskEventMap extends BaseEventMap implements EventMap<
   [ListrTaskEventType.TITLE]: string;
   [ListrTaskEventType.OUTPUT]: string;
   [ListrTaskEventType.MESSAGE]: ListrTaskMessage;
-  [ListrTaskEventType.PROMPT]: string
+  [ListrTaskEventType.PROMPT]: string;
+  [ListrTaskEventType.CLOSED]: never
 }

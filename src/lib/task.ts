@@ -54,6 +54,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
   private enabled: boolean
   /** User provided Task callback function to run. */
   private taskFn: ListrTaskFn<Ctx, Renderer>
+  /** Marks the task as closed. This is different from finalized since this is not really related to task itself. */
+  private closed: boolean
 
   constructor (public listr: Listr<Ctx, any, any>, public task: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
@@ -228,6 +230,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     return this.state === ListrTaskState.PAUSED
   }
 
+  /** Returns whether this task is closed. */
+  public isClosed (): boolean {
+    return this.closed
+  }
+
   /** Pause the given task for certain time. */
   public async pause (time: number): Promise<void> {
     const state = this.state
@@ -376,12 +383,14 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
 
           wrapper.report(err, ListrErrorTypes.HAS_FAILED_TO_ROLLBACK)
 
+          this.close()
           throw err
         }
 
         if (this.listr.options?.exitAfterRollback !== false) {
           // Do not exit when explicitly set to `false`
-          throw new Error(this.title)
+          this.close()
+          throw error
         }
       } else {
         // mark task as failed
@@ -392,6 +401,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
           // report error
           wrapper.report(error, ListrErrorTypes.HAS_FAILED)
 
+          this.close()
           throw error
         } else if (!this.hasSubtasks()) {
           // subtasks will handle and report their own errors
@@ -399,11 +409,17 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
         }
       }
     } finally {
-      this.complete()
+      this.close()
     }
   }
 
   private emitShouldRefreshRender (): void {
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
+  }
+
+  private close (): void {
+    this.emit(ListrTaskEventType.CLOSED)
+    this.complete()
+    this.emitShouldRefreshRender()
   }
 }
