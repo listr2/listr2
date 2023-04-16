@@ -1,12 +1,18 @@
 import type { ListrSimpleRendererCache, ListrSimpleRendererOptions, ListrSimpleRendererTask, ListrSimpleRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
-import { parseTimer } from '@presets'
+import { PRESET_TIMER } from '@presets'
 import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, color } from '@utils'
 
 export class SimpleRenderer implements ListrRenderer {
   public static nonTTY = true
-  public static rendererOptions: ListrSimpleRendererOptions = {}
+  public static rendererOptions: ListrSimpleRendererOptions = {
+    pausedTimer: {
+      ...PRESET_TIMER,
+      field: (time) => `${ListrLogLevels.PAUSED}:${time}`,
+      format: () => color.yellow
+    }
+  }
   public static rendererTaskOptions: ListrSimpleRendererTaskOptions = {}
 
   private readonly logger: ListrLogger
@@ -56,6 +62,7 @@ export class SimpleRenderer implements ListrRenderer {
       })
 
       const rendererOptions = this.cache.rendererOptions.get(task.id)
+      const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
 
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         this.renderer(subtasks)
@@ -69,7 +76,7 @@ export class SimpleRenderer implements ListrRenderer {
         if (state === ListrTaskState.STARTED) {
           this.logger.log(ListrLogLevels.STARTED, task.title)
         } else if (state === ListrTaskState.COMPLETED) {
-          const timer = rendererOptions?.timer
+          const timer = rendererTaskOptions?.timer
 
           this.logger.log(
             ListrLogLevels.COMPLETED,
@@ -130,12 +137,19 @@ export class SimpleRenderer implements ListrRenderer {
             }
           })
         } else if (message.paused) {
-          this.logger.log(ListrLogLevels.PAUSED, task.title, {
-            suffix: {
-              field: `${ListrLogLevels.PAUSED}: ${parseTimer(message.paused - Date.now())}`,
-              format: () => color.dim
+          const timer = rendererOptions?.pausedTimer
+
+          this.logger.log(
+            ListrLogLevels.PAUSED,
+            task.title,
+            timer && {
+              suffix: {
+                ...timer,
+                condition: !!message?.paused && timer.condition,
+                args: [ message.paused - Date.now() ]
+              }
             }
-          })
+          )
         }
       })
     })
@@ -151,8 +165,11 @@ export class SimpleRenderer implements ListrRenderer {
       ...task.rendererOptions
     })
 
+    const rendererOptions = this.cache.rendererOptions.get(task.id)
+
     this.cache.rendererTaskOptions.set(task.id, {
       ...SimpleRenderer.rendererTaskOptions,
+      timer: rendererOptions.timer,
       ...task.rendererTaskOptions
     })
   }

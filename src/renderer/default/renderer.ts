@@ -7,7 +7,7 @@ import { LISTR_DEFAULT_RENDERER_STYLE, ListrDefaultRendererLogLevels } from './r
 import type { ListrDefaultRendererCache, ListrDefaultRendererOptions, ListrDefaultRendererTask, ListrDefaultRendererTaskOptions } from './renderer.interface'
 import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer, ListrTaskEventMap } from '@interfaces'
-import { PromptError } from '@interfaces'
+import { ListrRendererError } from '@interfaces'
 import type { ListrEventManager } from '@lib'
 import { PRESET_TIMER } from '@presets'
 import { ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
@@ -27,7 +27,11 @@ export class DefaultRenderer implements ListrRenderer {
     suffixRetries: true,
     lazy: false,
     removeEmptyLines: true,
-    formatOutput: 'wrap'
+    formatOutput: 'wrap',
+    pausedTimer: {
+      ...PRESET_TIMER,
+      format: () => color.yellow
+    }
   }
   public static rendererTaskOptions: ListrDefaultRendererTaskOptions
 
@@ -230,7 +234,7 @@ export class DefaultRenderer implements ListrRenderer {
       break
 
     default:
-      throw new Error('Format option for the renderer is wrong.')
+      throw new ListrRendererError('Format option for the renderer is wrong.')
     }
 
     // this removes the empty lines
@@ -262,7 +266,7 @@ export class DefaultRenderer implements ListrRenderer {
 
       if (task.isPrompt()) {
         if (this.activePrompt && this.activePrompt !== task.id) {
-          throw new PromptError('Only one prompt can be active at the given time, please reevaluate your task design.')
+          throw new ListrRendererError('Only one prompt can be active at the given time, please re-evaluate your task design.')
         } else if (!this.activePrompt) {
           task.on(ListrTaskEventType.PROMPT, (prompt: ListrTaskEventMap[ListrTaskEventType.PROMPT]): void => {
             const cleansed = cleanseAnsi(prompt)
@@ -316,12 +320,12 @@ export class DefaultRenderer implements ListrRenderer {
                 level
               )
             )
-          } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererOptions.timer?.condition, task.message.duration)) {
+          } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
             // task with timer
             output.push(
               ...this.format(
                 this.logger.suffix(task?.title, {
-                  ...rendererOptions.timer,
+                  ...rendererTaskOptions.timer,
                   args: [ task.message.duration ]
                 }),
                 this.style(task),
@@ -332,7 +336,7 @@ export class DefaultRenderer implements ListrRenderer {
             output.push(
               ...this.format(
                 this.logger.suffix(task.title, {
-                  ...PRESET_TIMER,
+                  ...rendererOptions.pausedTimer,
                   args: [ task.message.paused - Date.now() ]
                 }),
                 this.style(task),
@@ -454,8 +458,11 @@ export class DefaultRenderer implements ListrRenderer {
       ...task.rendererOptions
     })
 
+    const rendererOptions = this.cache.rendererOptions.get(task.id)
+
     this.cache.rendererTaskOptions.set(task.id, {
       ...DefaultRenderer.rendererTaskOptions,
+      timer: rendererOptions.timer,
       ...task.rendererTaskOptions
     })
   }

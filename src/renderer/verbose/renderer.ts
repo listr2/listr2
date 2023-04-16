@@ -1,13 +1,17 @@
 import type { ListrVerboseRendererCache, ListrVerboseRendererOptions, ListrVerboseRendererTask, ListrVerboseRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer } from '@interfaces'
-import { parseTimer } from '@presets'
-import { ListrLogger, ListrLogLevels, cleanseAnsi, LISTR_LOGGER_STYLE, LISTR_LOGGER_STDERR_LEVELS } from '@utils'
+import { PRESET_TIMER } from '@presets'
+import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, cleanseAnsi, color } from '@utils'
 
 export class VerboseRenderer implements ListrRenderer {
   public static nonTTY = true
   public static rendererOptions: ListrVerboseRendererOptions = {
-    logTitleChange: false
+    logTitleChange: false,
+    pausedTimer: {
+      ...PRESET_TIMER,
+      format: () => color.yellow
+    }
   }
   public static rendererTaskOptions: ListrVerboseRendererTaskOptions
 
@@ -49,14 +53,15 @@ export class VerboseRenderer implements ListrRenderer {
   public end (): void {}
 
   private renderer (tasks: ListrVerboseRendererTask[]): void {
-    return tasks?.forEach((task) => {
+    tasks.forEach((task) => {
       this.calculate(task)
-
-      const rendererOptions = this.cache.rendererOptions.get(task.id)
 
       task.once(ListrTaskEventType.CLOSED, () => {
         this.reset(task)
       })
+
+      const rendererOptions = this.cache.rendererOptions.get(task.id)
+      const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
 
       task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
         this.renderer(subtasks)
@@ -70,7 +75,7 @@ export class VerboseRenderer implements ListrRenderer {
         if (state === ListrTaskState.STARTED) {
           this.logger.log(ListrLogLevels.STARTED, task.title)
         } else if (state === ListrTaskState.COMPLETED) {
-          const timer = rendererOptions.timer
+          const timer = rendererTaskOptions.timer
 
           this.logger.log(
             ListrLogLevels.COMPLETED,
@@ -117,7 +122,19 @@ export class VerboseRenderer implements ListrRenderer {
         } else if (message?.retry) {
           this.logger.log(ListrLogLevels.RETRY, task.title, { suffix: message.retry.count.toString() })
         } else if (message?.paused) {
-          this.logger.log(ListrLogLevels.PAUSED, task.title, { suffix: parseTimer(message.paused - Date.now()) })
+          const timer = rendererOptions?.pausedTimer
+
+          this.logger.log(
+            ListrLogLevels.PAUSED,
+            task.title,
+            timer && {
+              suffix: {
+                ...timer,
+                condition: !!message?.paused && timer.condition,
+                args: [ message.paused - Date.now() ]
+              }
+            }
+          )
         }
       })
     })
@@ -133,8 +150,11 @@ export class VerboseRenderer implements ListrRenderer {
       ...task.rendererOptions
     })
 
+    const rendererOptions = this.cache.rendererOptions.get(task.id)
+
     this.cache.rendererTaskOptions.set(task.id, {
       ...VerboseRenderer.rendererTaskOptions,
+      timer: rendererOptions.timer,
       ...task.rendererTaskOptions
     })
   }

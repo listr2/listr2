@@ -73,6 +73,8 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    * - Options of the current preferred renderer can be changed on task level.
    * - These options depend on the implementation of the preferred renderer.
    * - Whenever the preferred renderer has no options it will be displayed as never.
+   *
+   * **This option will be deprecated in a future major release in favor of having options for both the default and the fallback renderer.**
    */
   options?: ListrGetRendererTaskOptions<Renderer>
 }

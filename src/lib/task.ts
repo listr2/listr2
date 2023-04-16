@@ -87,7 +87,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
       }
     }
 
-    this.emitShouldRefreshRender()
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 
   /**
@@ -97,7 +97,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.output = data
 
     this.emit(ListrTaskEventType.OUTPUT, data)
-    this.emitShouldRefreshRender()
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 
   /**
@@ -109,7 +109,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     // this acts wierd without cleansing the output!, have no idea why
     // it produces double output when a prompt is canceled
     if (cleanseAnsi(data)) {
-      this.emitShouldRefreshRender()
+      this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
     }
   }
 
@@ -120,7 +120,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.message = { ...this.message, ...data }
 
     this.emit(ListrTaskEventType.MESSAGE, data)
-    this.emitShouldRefreshRender()
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 
   /**
@@ -130,7 +130,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.title = title
 
     this.emit(ListrTaskEventType.TITLE, title)
-    this.emitShouldRefreshRender()
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 
   /**
@@ -149,7 +149,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
       this.enabled = await assertFunctionOrSelf(this.task?.enabled ?? true, ctx)
 
       this.emit(ListrTaskEventType.ENABLED, this.enabled)
-      this.emitShouldRefreshRender()
+      this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
     }
 
     return this.enabled
@@ -413,13 +413,9 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     }
   }
 
-  private emitShouldRefreshRender (): void {
-    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
-  }
-
   private close (): void {
     this.emit(ListrTaskEventType.CLOSED)
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
     this.complete()
-    this.emitShouldRefreshRender()
   }
 }
