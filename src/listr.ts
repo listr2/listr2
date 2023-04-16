@@ -170,9 +170,7 @@ export class Listr<
   ): Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] {
     tasks = Array.isArray(tasks) ? tasks : [ tasks ]
 
-    return tasks.map(
-      (task) => new Task(this, task, this.options, { ...(this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>), ...task.options })
-    )
+    return tasks.map((task) => new Task(this, task, this.options, { ...(this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>) }))
   }
 
   private async runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>): Promise<void> {

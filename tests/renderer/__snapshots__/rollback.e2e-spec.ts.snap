@@ -533,7 +533,7 @@ exports[`simple renderer: rollback should rollback the subtask if the subtask it
 ",
   "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
 ",
-  "✖ Something with rollback. [FAILED: Some actions required rollback stuff.]
+  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
 ",
 ]
 `;
@@ -720,7 +720,7 @@ exports[`test renderer: rollback should rollback the subtask if the subtask itse
 ",
   "{"event":"MESSAGE","data":{"rollback":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Some actions required rollback stuff.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Something with rollback.","This task will fail."]}}
 ",
-  "{"event":"MESSAGE","data":{"error":"Some actions required rollback stuff."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
+  "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"Something with rollback.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["Something with rollback."]}}
 ",
 ]
 `;
@@ -886,7 +886,7 @@ exports[`verbose renderer: rollback should rollback the subtask if the subtask i
 ",
   "[ROLLBACK] Some actions required rollback stuff.
 ",
-  "[FAILED] Some actions required rollback stuff.
+  "[FAILED] This task failed after 2 seconds.
 ",
 ]
 `;

@@ -57,7 +57,7 @@ export class TestRenderer implements ListrRenderer {
 
   // verbose renderer multi-level
   private renderer (tasks: ListrTestRendererTask[]): void {
-    return tasks?.forEach((task) => {
+    tasks.forEach((task) => {
       if (this.options.subtasks) {
         task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
           this.renderer(subtasks)

@@ -3,10 +3,4 @@
  *
  * @see {@link https://listr2.kilic.dev/task/prompts.html}
  */
-export class PromptError extends Error {
-  constructor (message: string) {
-    super(message)
-
-    this.name = 'PromptError'
-  }
-}
+export class PromptError extends Error {}

@@ -6,7 +6,7 @@ assignees:
   - cenk1cenk2
 body:
   - type: textarea
-    id: feature-request
+    id: request
     attributes:
       label: Feature Request
       description: Please describe the requested feature clearly.

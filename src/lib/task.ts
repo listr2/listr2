@@ -54,6 +54,8 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
   private enabled: boolean
   /** User provided Task callback function to run. */
   private taskFn: ListrTaskFn<Ctx, Renderer>
+  /** Marks the task as closed. This is different from finalized since this is not really related to task itself. */
+  private closed: boolean
 
   constructor (public listr: Listr<Ctx, any, any>, public task: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
@@ -85,7 +87,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
       }
     }
 
-    this.emitShouldRefreshRender()
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 
   /**
@@ -95,7 +97,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.output = data
 
     this.emit(ListrTaskEventType.OUTPUT, data)
-    this.emitShouldRefreshRender()
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 
   /**
@@ -107,7 +109,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     // this acts wierd without cleansing the output!, have no idea why
     // it produces double output when a prompt is canceled
     if (cleanseAnsi(data)) {
-      this.emitShouldRefreshRender()
+      this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
     }
   }
 
@@ -118,7 +120,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.message = { ...this.message, ...data }
 
     this.emit(ListrTaskEventType.MESSAGE, data)
-    this.emitShouldRefreshRender()
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 
   /**
@@ -128,7 +130,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
     this.title = title
 
     this.emit(ListrTaskEventType.TITLE, title)
-    this.emitShouldRefreshRender()
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 
   /**
@@ -147,7 +149,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
       this.enabled = await assertFunctionOrSelf(this.task?.enabled ?? true, ctx)
 
       this.emit(ListrTaskEventType.ENABLED, this.enabled)
-      this.emitShouldRefreshRender()
+      this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
     }
 
     return this.enabled
@@ -226,6 +228,11 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
   /** Returns whether this task is currently paused. */
   public isPaused (): boolean {
     return this.state === ListrTaskState.PAUSED
+  }
+
+  /** Returns whether this task is closed. */
+  public isClosed (): boolean {
+    return this.closed
   }
 
   /** Pause the given task for certain time. */
@@ -376,12 +383,14 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
 
           wrapper.report(err, ListrErrorTypes.HAS_FAILED_TO_ROLLBACK)
 
+          this.close()
           throw err
         }
 
         if (this.listr.options?.exitAfterRollback !== false) {
           // Do not exit when explicitly set to `false`
-          throw new Error(this.title)
+          this.close()
+          throw error
         }
       } else {
         // mark task as failed
@@ -392,6 +401,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
           // report error
           wrapper.report(error, ListrErrorTypes.HAS_FAILED)
 
+          this.close()
           throw error
         } else if (!this.hasSubtasks()) {
           // subtasks will handle and report their own errors
@@ -399,11 +409,13 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
         }
       }
     } finally {
-      this.complete()
+      this.close()
     }
   }
 
-  private emitShouldRefreshRender (): void {
+  private close (): void {
+    this.emit(ListrTaskEventType.CLOSED)
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
+    this.complete()
   }
 }

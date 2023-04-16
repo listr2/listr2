@@ -1,0 +1,30 @@
+name: Support
+description: Request some support.
+title: '[Support]: '
+labels: ['support']
+assignees:
+  - cenk1cenk2
+body:
+  - type: textarea
+    id: request
+    attributes:
+      label: Support Request
+      description: Please describe what are you trying to achieve?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      description: By submitting this issue, you agree that you have gone through the given requirements.
+      options:
+        - label: Read/Search existing issues and the provided [documentation](https://listr2.kilic.dev).
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this documentation request template!
+
+        If you have any further thing to add like the proposed specification of the request, now is the time!
