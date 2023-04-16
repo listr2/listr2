@@ -1,3 +1,16 @@
+# [6.3.0](https://github.com/listr2/listr2/compare/v6.2.0...v6.3.0) (2023-04-16)
+
+
+### Bug Fixes
+
+* **renderer/default:** update how bottom bar is checked ([0b5dab9](https://github.com/listr2/listr2/commit/0b5dab9a8d5da1d6ee2b3ec51eef5cb6bb75d26b))
+
+
+### Features
+
+* **renderer:** add a caching mechanism for renderers ([4112564](https://github.com/listr2/listr2/commit/4112564b40b88f68a66dd0607f317d423a0c1417)), closes [#672](https://github.com/listr2/listr2/issues/672) [#LISTR2-259](https://github.com/listr2/listr2/issues/LISTR2-259)
+* **renderer:** make paused timer configurable for every renderer ([58f37d4](https://github.com/listr2/listr2/commit/58f37d4da2f54ff0c78aa271bba112200435b8f6))
+
 # [6.2.0](https://github.com/listr2/listr2/compare/v6.1.0...v6.2.0) (2023-04-11)
 
 
