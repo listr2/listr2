@@ -154,7 +154,6 @@ export class DefaultRenderer implements ListrRenderer {
   // eslint-disable-next-line complexity
   protected style (task: ListrDefaultRendererTask, output = false): string {
     const rendererOptions = this.cache.rendererOptions.get(task.id)
-    const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
 
     if (task.isSkipped()) {
       if (output || rendererOptions.collapseSkips) {
@@ -165,7 +164,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     if (output) {
-      if (rendererTaskOptions.bottomBar) {
+      if (this.isBottomBar(task)) {
         return this.logger.icon(ListrDefaultRendererLogLevels.OUTPUT_WITH_BOTTOMBAR)
       }
 
