@@ -72,6 +72,8 @@ docker-build-docs:
 semantic-release:
   stage: publish
   extends: .semantic-release
+  variables:
+    GIT_STRATEGY: none
   needs:
     - build
     - lint
