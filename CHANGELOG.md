@@ -1,3 +1,10 @@
+## [6.3.1](https://github.com/listr2/listr2/compare/v6.3.0...v6.3.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* **task:** splat on titles for brownie and nx repositories ([a756a47](https://github.com/listr2/listr2/commit/a756a47f7524994d191c32b2dfc1b2531bdb5d10))
+
 # [6.3.0](https://github.com/listr2/listr2/compare/v6.2.0...v6.3.0) (2023-04-16)
 
 
