@@ -24,7 +24,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    *
    * @see {@link https://listr2.kilic.dev/task/title.html}
    */
-  title?: string
+  title?: string | any[]
   /**
    * The task itself in the form of a `Function`, `Promise`, `Listr`, `Observable` or `Stream`.
    *

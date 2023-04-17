@@ -17,7 +17,7 @@ import type {
 } from '@interfaces'
 import { PromptError } from '@interfaces'
 import { Listr } from '@root'
-import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable, splat } from '@utils'
 
 /**
  * Creates and handles a runnable instance of the Task.
@@ -60,14 +60,18 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
   constructor (public listr: Listr<Ctx, any, any>, public task: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
     super()
 
-    this.title = this.task?.title
-    this.initialTitle = this.task?.title
+    if (task.title) {
+      const title = Array.isArray(task?.title) ? task.title : [ task.title ]
 
-    this.taskFn = this.task.task
-    this.parent = this.listr.parentTask
+      this.title = splat(title.shift(), ...title)
+      this.initialTitle = this.title
+    }
+
+    this.taskFn = task.task
+    this.parent = listr.parentTask
 
     // task options
-    this.rendererTaskOptions = this.task.options
+    this.rendererTaskOptions = task.options
   }
 
   /**
@@ -137,7 +141,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
    * Current task path in the hierarchy.
    */
   get path (): string[] {
-    return [ ...this.listr.path, this.task.title ]
+    return [ ...this.listr.path, this.initialTitle ]
   }
 
   /**

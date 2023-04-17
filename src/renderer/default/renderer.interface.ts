@@ -1,5 +1,6 @@
 import type { DefaultRenderer } from './renderer'
 import type { ListrDefaultRendererLogLevels } from './renderer.constants'
+import type { ListrRendererCacheMap } from '@interfaces'
 import type { Task } from '@lib'
 import type { PresetTimer, RendererPresetTimer } from '@presets'
 import type { ListrLoggerStyleMap, RendererLoggerOptions, Spinner } from '@utils'
@@ -171,9 +172,7 @@ export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
 }
 
 export interface ListrDefaultRendererCache {
-  output: ListrDefaultRendererCacheMap<string[]>
-  rendererOptions: ListrDefaultRendererCacheMap<ListrDefaultRendererOptions>
-  rendererTaskOptions: ListrDefaultRendererCacheMap<ListrDefaultRendererTaskOptions>
+  output: ListrRendererCacheMap<string[]>
+  rendererOptions: ListrRendererCacheMap<ListrDefaultRendererOptions>
+  rendererTaskOptions: ListrRendererCacheMap<ListrDefaultRendererTaskOptions>
 }
-
-export type ListrDefaultRendererCacheMap<T> = Map<ListrDefaultRendererTask['id'], T>

@@ -10,7 +10,7 @@ export class SimpleRenderer implements ListrRenderer {
     pausedTimer: {
       ...PRESET_TIMER,
       field: (time) => `${ListrLogLevels.PAUSED}:${time}`,
-      format: () => color.yellow
+      format: () => color.yellowBright
     }
   }
   public static rendererTaskOptions: ListrSimpleRendererTaskOptions = {}
@@ -160,12 +160,12 @@ export class SimpleRenderer implements ListrRenderer {
       return
     }
 
-    this.cache.rendererOptions.set(task.id, {
+    const rendererOptions: ListrSimpleRendererOptions = {
       ...this.options,
       ...task.rendererOptions
-    })
+    }
 
-    const rendererOptions = this.cache.rendererOptions.get(task.id)
+    this.cache.rendererOptions.set(task.id, rendererOptions)
 
     this.cache.rendererTaskOptions.set(task.id, {
       ...SimpleRenderer.rendererTaskOptions,

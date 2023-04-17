@@ -131,3 +131,5 @@ export interface SupportedRenderer<Renderer extends ListrRendererFactory> {
   renderer: Renderer
   options?: ListrGetRendererOptions<Renderer>
 }
+
+export type ListrRendererCacheMap<T> = Map<Task<any, any>['id'], T>

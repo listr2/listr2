@@ -10,7 +10,7 @@ export class VerboseRenderer implements ListrRenderer {
     logTitleChange: false,
     pausedTimer: {
       ...PRESET_TIMER,
-      format: () => color.yellow
+      format: () => color.yellowBright
     }
   }
   public static rendererTaskOptions: ListrVerboseRendererTaskOptions
@@ -145,12 +145,12 @@ export class VerboseRenderer implements ListrRenderer {
       return
     }
 
-    this.cache.rendererOptions.set(task.id, {
+    const rendererOptions: ListrVerboseRendererOptions = {
       ...this.options,
       ...task.rendererOptions
-    })
+    }
 
-    const rendererOptions = this.cache.rendererOptions.get(task.id)
+    this.cache.rendererOptions.set(task.id, rendererOptions)
 
     this.cache.rendererTaskOptions.set(task.id, {
       ...VerboseRenderer.rendererTaskOptions,

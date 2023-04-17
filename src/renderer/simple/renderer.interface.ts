@@ -1,4 +1,5 @@
 import type { SimpleRenderer } from './renderer'
+import type { ListrRendererCacheMap } from '@interfaces'
 import type { Task } from '@lib'
 import type { PresetTimer, RendererPresetTimer, RendererPresetTimestamp } from '@presets'
 import type { ListrLogLevels, ListrLoggerStyleMap, RendererLoggerOptions } from '@utils'
@@ -17,8 +18,6 @@ export interface ListrSimpleRendererOptions extends RendererPresetTimer, Rendere
 export interface ListrSimpleRendererTaskOptions extends RendererPresetTimer {}
 
 export interface ListrSimpleRendererCache {
-  rendererOptions: ListrSimpleRendererCacheMap<ListrSimpleRendererOptions>
-  rendererTaskOptions: ListrSimpleRendererCacheMap<ListrSimpleRendererTaskOptions>
+  rendererOptions: ListrRendererCacheMap<ListrSimpleRendererOptions>
+  rendererTaskOptions: ListrRendererCacheMap<ListrSimpleRendererTaskOptions>
 }
-
-export type ListrSimpleRendererCacheMap<T> = Map<ListrSimpleRendererTask['id'], T>

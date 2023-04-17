@@ -30,7 +30,7 @@ export class DefaultRenderer implements ListrRenderer {
     formatOutput: 'wrap',
     pausedTimer: {
       ...PRESET_TIMER,
-      format: () => color.yellow
+      format: () => color.yellowBright
     }
   }
   public static rendererTaskOptions: ListrDefaultRendererTaskOptions
@@ -248,13 +248,13 @@ export class DefaultRenderer implements ListrRenderer {
   private renderer (tasks: ListrDefaultRendererTask[], level = 0): string[] {
     // eslint-disable-next-line complexity
     return tasks.flatMap((task) => {
+      if (!task.isEnabled()) {
+        return []
+      }
+
       // if this is already cached return the cache
       if (this.cache.output.has(task.id)) {
         return this.cache.output.get(task.id)
-      }
-
-      if (!task.isEnabled()) {
-        return []
       }
 
       this.calculate(task)
@@ -417,11 +417,11 @@ export class DefaultRenderer implements ListrRenderer {
         if (!rendererTaskOptions.persistentOutput) {
           this.bottom.delete(task.id)
         }
+      }
 
-        if (task.isClosed()) {
-          this.cache.output.set(task.id, output)
-          this.reset(task)
-        }
+      if (task.isClosed()) {
+        this.cache.output.set(task.id, output)
+        this.reset(task)
       }
 
       return output
@@ -453,12 +453,12 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
-    this.cache.rendererOptions.set(task.id, {
+    const rendererOptions: ListrDefaultRendererOptions = {
       ...this.options,
       ...task.rendererOptions
-    })
+    }
 
-    const rendererOptions = this.cache.rendererOptions.get(task.id)
+    this.cache.rendererOptions.set(task.id, rendererOptions)
 
     this.cache.rendererTaskOptions.set(task.id, {
       ...DefaultRenderer.rendererTaskOptions,
