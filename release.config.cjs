@@ -1,4 +1,5 @@
 module.exports = {
+  repositoryUrl: 'https://gitlab.kilic.dev/libraries/listr2',
   branches: [
     'main',
     'master',
