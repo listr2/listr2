@@ -40,9 +40,9 @@
     "docs:dev:start:clean": "vuepress dev docs --clean-cache"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged",
+    "pre-commit": "[ -n \"$SKIP_GIT_HOOKS\" ] && true || pnpm exec lint-staged",
     "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-    "pre-push": "pnpm run test"
+    "pre-push": "[ -n \"$SKIP_GIT_HOOKS\" ] && true || pnpm run test"
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [

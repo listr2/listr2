@@ -11,6 +11,7 @@ variables:
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
   GITHUB_STATUS_PROJECT: listr2/listr2
+  SKIP_GIT_HOOKS: '1'
 
 include:
   - project: devops/pipes
@@ -31,6 +32,7 @@ include:
 test:
   parallel:
     matrix:
+      - NODE_VERSION: 20-alpine
       - NODE_VERSION: 18-alpine
       - NODE_VERSION: 16-alpine
 
@@ -72,10 +74,8 @@ semantic-release:
   stage: publish
   extends: .semantic-release
   needs:
-    - install
     - build
     - lint
     - test
   dependencies:
-    - install
     - build
