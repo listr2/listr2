@@ -11,7 +11,6 @@ variables:
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
   GITHUB_STATUS_PROJECT: listr2/listr2
-  SKIP_GIT_HOOKS: '1'
 
 include:
   - project: devops/pipes
@@ -77,4 +76,5 @@ semantic-release:
     - lint
     - test
   dependencies:
+    - install
     - build
