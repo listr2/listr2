@@ -41,7 +41,7 @@
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged",
-    "prepare-commit-msg": "[ -t 1 ] && exec < /dev/tty && git cz --hook || true",
+    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
     "pre-push": "pnpm run test"
   },
   "lint-staged": {
