@@ -10,6 +10,7 @@ variables:
   NODE_PACKAGE_MANAGER: pnpm
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
+  NODE_INSTALL_ARGS: --ignore-scripts
   GITHUB_STATUS_PROJECT: listr2/listr2
   SKIP_GIT_HOOKS: '1'
 
