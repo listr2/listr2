@@ -1,3 +1,20 @@
+# [6.4.0](https://github.com/listr2/listr2/compare/v6.3.1...v6.4.0) (2023-04-29)
+
+
+### Bug Fixes
+
+* move `types` condition to the front ([04c20cc](https://github.com/listr2/listr2/commit/04c20cc5cacf6217329caced9583c8e4eba7da4d))
+
+
+### Features
+
+* **package:** export the package.json ([3ec1d41](https://github.com/listr2/listr2/commit/3ec1d410c53b1b2b1c6c18712efd7ca99176ca79))
+
+
+### Reverts
+
+* revert back the skiping hooks for now ([031b536](https://github.com/listr2/listr2/commit/031b53663ead5ec781360ca25bc48951b23dc0ff))
+
 # [6.4.0](https://github.com/listr2/listr2/compare/v6.3.1...v6.4.0) (2023-04-28)
 
 
