@@ -1,3 +1,10 @@
+## [6.4.1](https://github.com/listr2/listr2/compare/v6.4.0...v6.4.1) (2023-04-29)
+
+
+### Bug Fixes
+
+* update dependencies ([3be0d7a](https://github.com/listr2/listr2/commit/3be0d7a021ce0f18bdf6cef497373d607d973648))
+
 # [6.4.0](https://github.com/listr2/listr2/compare/v6.3.1...v6.4.0) (2023-04-29)
 
 
