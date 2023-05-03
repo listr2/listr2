@@ -1,3 +1,10 @@
+## [6.4.2](https://github.com/listr2/listr2/compare/v6.4.1...v6.4.2) (2023-05-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eventemitter3 to ^5.0.1 ([36ad76b](https://github.com/listr2/listr2/commit/36ad76b41bdecdb59d57f02ebd11c80c08624d08))
+
 ## [6.4.1](https://github.com/listr2/listr2/compare/v6.4.0...v6.4.1) (2023-04-29)
 
 
