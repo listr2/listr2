@@ -54,6 +54,26 @@ Since observables and streams are supported they can also be used to generate ou
 
 `process.stdout` and `process.stderr` might get hooked depending on the usage of _ProcessOutput_ on the selected renderer. So anything that requires a `WritableStream` while the task running to dump the output, should go through the _Listr_ itself by creating a temporary `WritableStream` with `task.stdout()`.
 
+## Render Output of a Command
+
+<Badge><FontIcon icon="mdi:tag-text-outline"/>v6.5.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/677" target="_blank">#677</a></Badge>
+
+Task output can be piped to the `task.stdout()` directly since it is a `WritableStream`, whenever you are running something that writes to the `process.output`. This usually can be utilized to show the outputs of the commands.
+
+::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+
+@[code typescript](../../examples/docs/task/output/pass-stdout.ts)
+
+:::
+
+Whenever more control over the stream is required, temporary `WritableStream` can be created through helper function `createWritable` via passing it a callback to dictate the behavior of the `write` call.
+
+::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+
+@[code typescript](../../examples/docs/task/output/pass-stdout-with-control.ts)
+
+:::
+
 ## Renderer
 
 ### _DefaultRenderer_
