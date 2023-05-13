@@ -1,3 +1,10 @@
+# [6.5.0](https://github.com/listr2/listr2/compare/v6.4.2...v6.5.0) (2023-05-13)
+
+
+### Features
+
+* **process:** expose writablestream ([dde145d](https://github.com/listr2/listr2/commit/dde145d191f3663c8e27ffa78110f1b026c567fe)), closes [#677](https://github.com/listr2/listr2/issues/677) [#LISTR2-260](https://github.com/listr2/listr2/issues/LISTR2-260)
+
 ## [6.4.2](https://github.com/listr2/listr2/compare/v6.4.1...v6.4.2) (2023-05-11)
 
 
