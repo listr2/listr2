@@ -13,7 +13,6 @@ variables:
   NODE_INSTALL_ARGS: --ignore-scripts
   GITHUB_STATUS_PROJECT: listr2/listr2
   SKIP_GIT_HOOKS: '1'
-  LOG_LEVEL: 'trace'
 
 include:
   - project: devops/pipes
