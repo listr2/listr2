@@ -6,13 +6,14 @@ stages:
   - publish
 
 variables:
-  NODE_VERSION: 18-alpine
+  NODE_VERSION: 20-alpine
   NODE_PACKAGE_MANAGER: pnpm
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
   NODE_INSTALL_ARGS: --ignore-scripts
   GITHUB_STATUS_PROJECT: listr2/listr2
   SKIP_GIT_HOOKS: '1'
+  LOG_LEVEL: 'trace'
 
 include:
   - project: devops/pipes
