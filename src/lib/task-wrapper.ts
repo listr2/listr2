@@ -1,5 +1,3 @@
-import { Writable } from 'stream'
-
 import type { ListrErrorTypes } from '@constants'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrBaseClassOptions, ListrRendererFactory, ListrSubClassOptions, ListrTask } from '@interfaces'
@@ -7,7 +5,7 @@ import { ListrError, PromptError } from '@interfaces'
 import type { Task } from '@lib'
 import { Listr } from '@root'
 import type { PromptCancelOptions, PromptOptions } from '@utils'
-import { createPrompt, splat } from '@utils'
+import { createPrompt, createWritable, splat } from '@utils'
 
 /**
  * The original Task that is defined by the user is wrapped with the TaskWrapper to provide additional functionality.
@@ -143,9 +141,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    * @see {@link https://listr2.kilic.dev/renderer/process-output.html}
    */
   public stdout (type?: ListrTaskEventType.OUTPUT | ListrTaskEventType.PROMPT): NodeJS.WritableStream {
-    const writable = new Writable()
-
-    writable.write = (chunk: Buffer | string): boolean => {
+    return createWritable((chunk: string): void => {
       switch (type) {
       case ListrTaskEventType.PROMPT:
         this.promptOutput = chunk.toString()
@@ -155,11 +151,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
       default:
         this.output = chunk.toString()
       }
-
-      return true
-    }
-
-    return writable
+    })
   }
 
   /** Run this task. */
