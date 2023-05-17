@@ -24,7 +24,7 @@ export class Manager<
   FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
 > {
   public errors: ListrError[] = []
-  private tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
+  public tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
 
   constructor (public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>) {}
 
