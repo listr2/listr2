@@ -1,3 +1,10 @@
+# [6.6.0](https://github.com/listr2/listr2/compare/v6.5.0...v6.6.0) (2023-05-17)
+
+
+### Features
+
+* expose manager tasks for brownie ([f8fdbf0](https://github.com/listr2/listr2/commit/f8fdbf0df433d7a230f141b8806384710563a3d3))
+
 # [6.5.0](https://github.com/listr2/listr2/compare/v6.4.2...v6.5.0) (2023-05-13)
 
 
