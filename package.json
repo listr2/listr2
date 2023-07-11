@@ -88,8 +88,8 @@
     "@types/jest": "^29.5.2",
     "@types/node": "^20.1.4",
     "@types/wrap-ansi": "^8.0.1",
-    "@vuepress/client": "2.0.0-beta.62",
-    "@vuepress/plugin-docsearch": "2.0.0-beta.62",
+    "@vuepress/client": "2.0.0-beta.66",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.66",
     "enquirer": "^2.3.6",
     "eslint": "^8.42.0",
     "execa": "^7.1.1",
@@ -104,13 +104,13 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "tsup": "7.1.0",
-    "typedoc": "^0.24.7",
+    "typedoc": "^0.24.8",
     "typedoc-plugin-markdown": "^3.15.3",
     "typescript": "^5.1.6",
     "vue": "3.3.1",
-    "vuepress": "2.0.0-beta.62",
+    "vuepress": "2.0.0-beta.66",
     "vuepress-plugin-typedoc": "0.12.1",
-    "vuepress-theme-hope": "2.0.0-beta.210"
+    "vuepress-theme-hope": "2.0.0-beta.231"
   },
   "peerDependencies": {
     "enquirer": ">= 2.3.0 < 3"
