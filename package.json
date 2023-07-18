@@ -83,7 +83,7 @@
     "@cenk1cenk2/cz-cc": "^1.6.4",
     "@cenk1cenk2/eslint-config": "^2.7.4",
     "@jest/globals": "^29.5.0",
-    "@swc/core": "^1.3.69",
+    "@swc/core": "^1.3.70",
     "@tsconfig/node16": "^16.1.0",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.1.4",
