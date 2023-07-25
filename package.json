@@ -80,8 +80,8 @@
     "wrap-ansi": "^8.1.0"
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^1.6.4",
-    "@cenk1cenk2/eslint-config": "^2.7.4",
+    "@cenk1cenk2/cz-cc": "^1.6.6",
+    "@cenk1cenk2/eslint-config": "^2.7.11",
     "@jest/globals": "^29.5.0",
     "@swc/core": "^1.3.71",
     "@tsconfig/node16": "^16.1.0",
