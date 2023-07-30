@@ -62,7 +62,7 @@ export class ListrLogger<Levels extends string = string> {
       return ''
     }
 
-    if (args.length === 0) {
+    if (args.length === 1) {
       return message
     }
 
