@@ -56,17 +56,9 @@ export class ListrLogger<Levels extends string = string> {
   }
 
   public splat (...args: Parameters<typeof splat>): ReturnType<typeof splat> {
-    const message = args.shift()
+    const message: string = args.shift() ?? ''
 
-    if (typeof message === 'undefined') {
-      return ''
-    }
-
-    if (args.length === 1) {
-      return message
-    }
-
-    return splat(message, args)
+    return args.length === 0 ? message : splat(message, args)
   }
 
   public suffix (message: string, ...suffixes: LoggerField[]): string {
@@ -157,6 +149,7 @@ export class ListrLogger<Levels extends string = string> {
     }
 
     message = this.splat(message.shift(), ...message)
+      .toString()
       .split(EOL)
       .filter((m) => !m || m.trim() !== '')
       .map((m) => {
