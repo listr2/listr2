@@ -1,3 +1,11 @@
+## [6.6.1](https://github.com/listr2/listr2/compare/v6.6.0...v6.6.1) (2023-07-30)
+
+
+### Bug Fixes
+
+* issue with splatting logs ([54f338b](https://github.com/listr2/listr2/commit/54f338b6a6cb7ee2c2805d71220c2e4c030b61d6))
+* update problem with splat and loggin ([f75cf22](https://github.com/listr2/listr2/commit/f75cf22b93636dd06ba6bbe4d75172bc42a1d45e))
+
 # [6.6.0](https://github.com/listr2/listr2/compare/v6.5.0...v6.6.0) (2023-05-17)
 
 
