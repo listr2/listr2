@@ -64,7 +64,11 @@ These `events` can be the third optional variable of a given renderer while usin
 
 ```typescript
 export class MyAmazingRenderer implements ListrRenderer {
-  constructor(private readonly tasks: ListrDefaultRendererTasks, private readonly options: ListrDefaultRendererOptions, private readonly events: ListrEventManager) {}
+  constructor(
+    private readonly tasks: ListrDefaultRendererTasks,
+    private readonly options: ListrDefaultRendererOptions,
+    private readonly events: ListrEventManager
+  ) {}
 }
 ```
 

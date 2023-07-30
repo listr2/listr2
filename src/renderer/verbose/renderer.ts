@@ -21,7 +21,10 @@ export class VerboseRenderer implements ListrRenderer {
     rendererTaskOptions: new Map()
   }
 
-  constructor (private readonly tasks: ListrVerboseRendererTask[], private readonly options: ListrVerboseRendererOptions) {
+  constructor (
+    private readonly tasks: ListrVerboseRendererTask[],
+    private readonly options: ListrVerboseRendererOptions
+  ) {
     this.options = {
       ...VerboseRenderer.rendererOptions,
       ...this.options,

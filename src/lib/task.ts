@@ -57,7 +57,12 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
   /** Marks the task as closed. This is different from finalized since this is not really related to task itself. */
   private closed: boolean
 
-  constructor (public listr: Listr<Ctx, any, any>, public task: ListrTask<Ctx, any>, public options: ListrOptions, public rendererOptions: ListrGetRendererOptions<Renderer>) {
+  constructor (
+    public listr: Listr<Ctx, any, any>,
+    public task: ListrTask<Ctx, any>,
+    public options: ListrOptions,
+    public rendererOptions: ListrGetRendererOptions<Renderer>
+  ) {
     super()
 
     if (task.title) {

@@ -40,7 +40,10 @@ export class TestRenderer implements ListrRenderer {
   private readonly logger: ListrLogger
   private serializer: TestRendererSerializer
 
-  constructor (private readonly tasks: ListrTestRendererTask[], private readonly options: ListrTestRendererOptions) {
+  constructor (
+    private readonly tasks: ListrTestRendererTask[],
+    private readonly options: ListrTestRendererOptions
+  ) {
     this.options = { ...TestRenderer.rendererOptions, ...this.options }
 
     this.logger = this.options.logger ?? new ListrLogger<never>({ useIcons: false })

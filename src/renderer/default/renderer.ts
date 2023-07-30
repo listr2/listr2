@@ -49,7 +49,11 @@ export class DefaultRenderer implements ListrRenderer {
     rendererTaskOptions: new Map()
   }
 
-  constructor (private readonly tasks: ListrDefaultRendererTask[], private readonly options: ListrDefaultRendererOptions, private readonly events: ListrEventManager) {
+  constructor (
+    private readonly tasks: ListrDefaultRendererTask[],
+    private readonly options: ListrDefaultRendererOptions,
+    private readonly events: ListrEventManager
+  ) {
     this.options = {
       ...DefaultRenderer.rendererOptions,
       ...this.options,

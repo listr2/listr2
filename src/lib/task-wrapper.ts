@@ -13,7 +13,10 @@ import { createPrompt, createWritable, splat } from '@utils'
  * @see {@link https://listr2.kilic.dev/task/task.html}
  */
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
-  constructor (public task: Task<Ctx, ListrRendererFactory>, private options: ListrBaseClassOptions<Ctx, any, any>) {}
+  constructor (
+    public task: Task<Ctx, ListrRendererFactory>,
+    private options: ListrBaseClassOptions<Ctx, any, any>
+  ) {}
 
   get title (): string {
     return this.task.title

@@ -14,7 +14,10 @@ class MyAmazingRenderer implements ListrRenderer {
   public static rendererTaskOptions: never
 
   // get tasks to be rendered and options of the renderer from the parent
-  constructor (public tasks: MyAmazingRendererTasks, public options: MyAmazingRendererOptions) {}
+  constructor (
+    public tasks: MyAmazingRendererTasks,
+    public options: MyAmazingRendererOptions
+  ) {}
 
   // implement custom logic for render functionality
   public render (): void {}

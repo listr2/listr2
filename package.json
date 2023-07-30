@@ -29,7 +29,7 @@
     "dev:start": "tsup-node --watch",
     "example": "TS_NODE_PROJECT=examples/tsconfig.json NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --loader ./loader.js' node",
     "clean": "rimraf node_modules pnpm-lock.yaml",
-    "format": "prettier --loglevel warn --write src/ tests/ examples/ docs/ && pnpm run lint --fix",
+    "format": "prettier --log-level warn --write src/ tests/ examples/ docs/ && pnpm run lint --fix",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src/ tests/ examples/ docs/",
     "test": "TS_NODE_PROJECT=tests/tsconfig.json NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules' jest --config ./tests/jest.config.ts",
     "test:cov": "pnpm run test --coverage",

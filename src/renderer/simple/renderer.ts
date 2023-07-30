@@ -21,7 +21,10 @@ export class SimpleRenderer implements ListrRenderer {
     rendererTaskOptions: new Map()
   }
 
-  constructor (private readonly tasks: ListrSimpleRendererTask[], private options: ListrSimpleRendererOptions) {
+  constructor (
+    private readonly tasks: ListrSimpleRendererTask[],
+    private options: ListrSimpleRendererOptions
+  ) {
     this.options = {
       ...SimpleRenderer.rendererOptions,
       ...options,
