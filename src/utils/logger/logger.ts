@@ -20,9 +20,9 @@ export class ListrLogger<Levels extends string = string> {
       ...options ?? {}
     }
 
-    this.options.fields ??= {}
-    this.options.fields.prefix ??= []
-    this.options.fields.suffix ??= []
+    this.options.fields ?? (this.options.fields = {})
+    this.options.fields.prefix ?? (this.options.fields.prefix = [])
+    this.options.fields.suffix ?? (this.options.fields.suffix = [])
 
     this.process = this.options.processOutput ?? new ProcessOutput()
   }
@@ -68,7 +68,7 @@ export class ListrLogger<Levels extends string = string> {
       if (typeof suffix === 'string') {
         message += this.wrap(suffix)
       } else if (typeof suffix === 'object') {
-        suffix.args ??= []
+        suffix.args ?? (suffix.args = [])
 
         if (typeof suffix.condition === 'function' ? !suffix.condition(...suffix.args) : !(suffix.condition ?? true)) {
           return message
@@ -90,7 +90,7 @@ export class ListrLogger<Levels extends string = string> {
       if (typeof prefix === 'string') {
         message = this.wrap(prefix) + message
       } else if (typeof prefix === 'object') {
-        prefix.args ??= []
+        prefix.args ?? (prefix.args = [])
 
         if (typeof prefix.condition === 'function' ? !prefix.condition(...prefix.args) : !(prefix.condition ?? true)) {
           return message
