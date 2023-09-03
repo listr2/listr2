@@ -30,7 +30,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, r
               message: 'Give me some input.'
             })
 
-            await delay(10)
+            await delay(50)
 
             process.stdin.emit('data', Buffer.from(`test${KEYS.ENTER}`))
 
@@ -71,11 +71,11 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, r
               }
             ])
 
-            await delay(10)
+            await delay(50)
 
             process.stdin.emit('data', Buffer.from(`test${KEYS.ENTER}`))
 
-            await delay(10)
+            await delay(50)
 
             process.stdin.emit('data', Buffer.from(KEYS.ENTER))
 
