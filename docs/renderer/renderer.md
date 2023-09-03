@@ -36,3 +36,22 @@ Renderers can have global options, which it is set through `rendererOptions`, ca
 Depending on the selected `renderer`, `rendererOptions` as well as the `options` in the `Task` will change accordingly.
 
 For also configuring the `fallbackRenderer`, you can pass `fallbackRendererOptions` to _Listr_.
+
+## Visual Effects
+
+### Coloring
+
+[`colorette`](https://www.npmjs.com/package/colorette) is used as the underlying coloring library.
+
+The library automatically detects whether it should use colored output or not depending on your environment but if you want to force/disable colors, you can use the environment variables that the library uses for that action.
+
+- Environment variable `NO_COLOR` can be set to anything for disabling the coloring.
+- Environment variable `FORCE_COLOR` can be set to anything for forcing the coloring.
+
+### Unicode Support
+
+_Listr_ automatically detects whether to use unicode charachters or not depending on the environment, but you can force to always use them with the _Listr_ option `forceUnicode` or environment variable `LISTR_FORCE_UNICODE` can be set.
+
+### TTY Support
+
+As described with the renderer fallback, on non-tty environments renderer will try to fallback to the selected text based renderer. If you do not want this behavior you can always set `forceTTY` option on _Listr_.
