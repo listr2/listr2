@@ -110,14 +110,6 @@ export class Listr<
         .setMaxListeners(0)
     }
 
-    // disable color programatically for CI purposes
-    /* istanbul ignore next */
-    if (this.options?.disableColor) {
-      process.env[ListrEnvironmentVariables.DISABLE_COLOR] = '1'
-    } else if (this.options?.forceColor) {
-      process.env[ListrEnvironmentVariables.FORCE_COLOR] = '1'
-    }
-
     /* istanbul ignore if */
     if (this.options?.forceTTY) {
       process.stdout.isTTY = true

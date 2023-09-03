@@ -1,5 +1,8 @@
 import { createColors } from 'colorette'
 
-import { ListrEnvironmentVariables } from '@constants'
-
-export const color = createColors({ useColor: !process.env[ListrEnvironmentVariables.DISABLE_COLOR] })
+/**
+ * Creates color palette through underlying dependency of `colorette`.
+ *
+ * @see {@link https://www.npmjs.com/package/colorette}
+ */
+export const color = createColors()
