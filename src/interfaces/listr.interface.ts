@@ -78,20 +78,6 @@ export interface ListrOptions<Ctx = ListrContext> {
    */
   silentRendererCondition?: boolean | (() => boolean)
   /**
-   * @deprecated Does not function as expected will be removed in v7+
-   * Disable the color output coming from Listr for all renderers.
-   *
-   * @defaultValue `false`
-   */
-  disableColor?: boolean
-  /**
-   * @deprecated Does not function as expected will be removed in v7+
-   * Force use color, even though the underlying library detects your current output may not be compatible.
-   *
-   * @defaultValue `false`
-   */
-  forceColor?: boolean
-  /**
    * Forces TTY stdout even though your current output may not be compatible.
    *
    * @defaultValue `false`

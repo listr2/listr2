@@ -111,7 +111,7 @@ export class Listr<
     }
 
     /* istanbul ignore if */
-    if (this.options?.forceTTY) {
+    if (this.options?.forceTTY || process.env[ListrEnvironmentVariables.FORCE_TTY]) {
       process.stdout.isTTY = true
       process.stderr.isTTY = true
     }
