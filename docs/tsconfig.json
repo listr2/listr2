@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "../",
+    "baseUrl": "../",
+    "module": "ESNext",
+    "target": "ESNext"
+  },
+  "include": ["../src", "../docs/**/*", "../docs/.vuepress/**/*", "../examples"],
+  "exclude": ["node_modules", "dist"]
+}
