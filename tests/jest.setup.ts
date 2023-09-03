@@ -1,6 +1,8 @@
 import { jest } from '@jest/globals'
 
-process.env.LISTR_DISABLE_COLOR = '1'
+import { ListrEnvironmentVariables } from '@constants'
+
+process.env[ListrEnvironmentVariables.DISABLE_COLOR] = '1'
 
 global.jest = jest as any
 
