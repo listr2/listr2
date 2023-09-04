@@ -1,145 +1,124 @@
-# [7.0.0-beta.1](https://github.com/listr2/listr2/compare/v6.6.0...v7.0.0-beta.1) (2023-09-04)
-
+## [7.0.0-beta.1](https://github.com/listr2/listr2/compare/v6.6.0...v7.0.0-beta.1) (2023-09-04)
 
 ### Bug Fixes
 
-* esm/cjs issue with the library, bump deps ([9c7a875](https://github.com/listr2/listr2/commit/9c7a875c262d1b2f565a5a987c858f3b3a5e1206))
-* issue with splatting logs ([54f338b](https://github.com/listr2/listr2/commit/54f338b6a6cb7ee2c2805d71220c2e4c030b61d6))
-* remove force/disable color by options ([c2a1da1](https://github.com/listr2/listr2/commit/c2a1da15727debe6e6f0b7eb022cd04d1abd9b14)), closes [#607](https://github.com/listr2/listr2/issues/607)
-* update problem with splat and loggin ([f75cf22](https://github.com/listr2/listr2/commit/f75cf22b93636dd06ba6bbe4d75172bc42a1d45e))
-
+- esm/cjs issue with the library, bump deps ([9c7a875](https://github.com/listr2/listr2/commit/9c7a875c262d1b2f565a5a987c858f3b3a5e1206))
+- issue with splatting logs ([54f338b](https://github.com/listr2/listr2/commit/54f338b6a6cb7ee2c2805d71220c2e4c030b61d6))
+- remove force/disable color by options ([c2a1da1](https://github.com/listr2/listr2/commit/c2a1da15727debe6e6f0b7eb022cd04d1abd9b14)), closes [#607](https://github.com/listr2/listr2/issues/607)
+- update problem with splat and loggin ([f75cf22](https://github.com/listr2/listr2/commit/f75cf22b93636dd06ba6bbe4d75172bc42a1d45e))
 
 ### Performance Improvements
 
-* removes options for disable/force colors on listr level ([df260b0](https://github.com/listr2/listr2/commit/df260b08481fe6cf328b559df5c7a2760175de11))
-
+- removes options for disable/force colors on listr level ([df260b0](https://github.com/listr2/listr2/commit/df260b08481fe6cf328b559df5c7a2760175de11))
 
 ### BREAKING CHANGES
 
-* `LISTR_DISABLE_COLOR` is dropped in favor of using `NO_COLOR` environment variable to make this not differenciate from other libraries.
+- `LISTR_DISABLE_COLOR` is dropped in favor of using `NO_COLOR` environment variable to make this not differenciate from other libraries.
 
 Listr options `disableColor` and `forceColor` has been dropped since they were not working properly anyways.
 
 The other way to do this was to make `color` in to a function that directly calls `createColors` from `colorrette`. But since it is used in constants and such it really did not make much sense.
-* for this little thing since it was not functionining
-properly anyways
+
+- for this little thing since it was not functionining properly anyways
 
 ## [6.6.1](https://github.com/listr2/listr2/compare/v6.6.0...v6.6.1) (2023-07-30)
 
-
 ### Bug Fixes
 
-* issue with splatting logs ([54f338b](https://github.com/listr2/listr2/commit/54f338b6a6cb7ee2c2805d71220c2e4c030b61d6))
-* update problem with splat and loggin ([f75cf22](https://github.com/listr2/listr2/commit/f75cf22b93636dd06ba6bbe4d75172bc42a1d45e))
+- issue with splatting logs ([54f338b](https://github.com/listr2/listr2/commit/54f338b6a6cb7ee2c2805d71220c2e4c030b61d6))
+- update problem with splat and loggin ([f75cf22](https://github.com/listr2/listr2/commit/f75cf22b93636dd06ba6bbe4d75172bc42a1d45e))
 
 # [6.6.0](https://github.com/listr2/listr2/compare/v6.5.0...v6.6.0) (2023-05-17)
 
-
 ### Features
 
-* expose manager tasks for brownie ([f8fdbf0](https://github.com/listr2/listr2/commit/f8fdbf0df433d7a230f141b8806384710563a3d3))
+- expose manager tasks for brownie ([f8fdbf0](https://github.com/listr2/listr2/commit/f8fdbf0df433d7a230f141b8806384710563a3d3))
 
 # [6.5.0](https://github.com/listr2/listr2/compare/v6.4.2...v6.5.0) (2023-05-13)
 
-
 ### Features
 
-* **process:** expose writablestream ([dde145d](https://github.com/listr2/listr2/commit/dde145d191f3663c8e27ffa78110f1b026c567fe)), closes [#677](https://github.com/listr2/listr2/issues/677) [#LISTR2-260](https://github.com/listr2/listr2/issues/LISTR2-260)
+- **process:** expose writablestream ([dde145d](https://github.com/listr2/listr2/commit/dde145d191f3663c8e27ffa78110f1b026c567fe)), closes [#677](https://github.com/listr2/listr2/issues/677) [#LISTR2-260](https://github.com/listr2/listr2/issues/LISTR2-260)
 
 ## [6.4.2](https://github.com/listr2/listr2/compare/v6.4.1...v6.4.2) (2023-05-11)
 
-
 ### Bug Fixes
 
-* **deps:** update dependency eventemitter3 to ^5.0.1 ([36ad76b](https://github.com/listr2/listr2/commit/36ad76b41bdecdb59d57f02ebd11c80c08624d08))
+- **deps:** update dependency eventemitter3 to ^5.0.1 ([36ad76b](https://github.com/listr2/listr2/commit/36ad76b41bdecdb59d57f02ebd11c80c08624d08))
 
 ## [6.4.2](https://github.com/listr2/listr2/compare/v6.4.1...v6.4.2) (2023-05-03)
 
-
 ### Bug Fixes
 
-* **deps:** update dependency eventemitter3 to ^5.0.1 ([36ad76b](https://github.com/listr2/listr2/commit/36ad76b41bdecdb59d57f02ebd11c80c08624d08))
+- **deps:** update dependency eventemitter3 to ^5.0.1 ([36ad76b](https://github.com/listr2/listr2/commit/36ad76b41bdecdb59d57f02ebd11c80c08624d08))
 
 ## [6.4.1](https://github.com/listr2/listr2/compare/v6.4.0...v6.4.1) (2023-04-29)
 
-
 ### Bug Fixes
 
-* update dependencies ([3be0d7a](https://github.com/listr2/listr2/commit/3be0d7a021ce0f18bdf6cef497373d607d973648))
+- update dependencies ([3be0d7a](https://github.com/listr2/listr2/commit/3be0d7a021ce0f18bdf6cef497373d607d973648))
 
 # [6.4.0](https://github.com/listr2/listr2/compare/v6.3.1...v6.4.0) (2023-04-29)
 
-
 ### Bug Fixes
 
-* move `types` condition to the front ([04c20cc](https://github.com/listr2/listr2/commit/04c20cc5cacf6217329caced9583c8e4eba7da4d))
-
+- move `types` condition to the front ([04c20cc](https://github.com/listr2/listr2/commit/04c20cc5cacf6217329caced9583c8e4eba7da4d))
 
 ### Features
 
-* **package:** export the package.json ([3ec1d41](https://github.com/listr2/listr2/commit/3ec1d410c53b1b2b1c6c18712efd7ca99176ca79))
-
+- **package:** export the package.json ([3ec1d41](https://github.com/listr2/listr2/commit/3ec1d410c53b1b2b1c6c18712efd7ca99176ca79))
 
 ### Reverts
 
-* revert back the skiping hooks for now ([031b536](https://github.com/listr2/listr2/commit/031b53663ead5ec781360ca25bc48951b23dc0ff))
+- revert back the skiping hooks for now ([031b536](https://github.com/listr2/listr2/commit/031b53663ead5ec781360ca25bc48951b23dc0ff))
 
 # [6.4.0](https://github.com/listr2/listr2/compare/v6.3.1...v6.4.0) (2023-04-28)
 
-
 ### Features
 
-* **package:** export the package.json ([3ec1d41](https://github.com/listr2/listr2/commit/3ec1d410c53b1b2b1c6c18712efd7ca99176ca79))
-
+- **package:** export the package.json ([3ec1d41](https://github.com/listr2/listr2/commit/3ec1d410c53b1b2b1c6c18712efd7ca99176ca79))
 
 ### Reverts
 
-* revert back the skiping hooks for now ([031b536](https://github.com/listr2/listr2/commit/031b53663ead5ec781360ca25bc48951b23dc0ff))
+- revert back the skiping hooks for now ([031b536](https://github.com/listr2/listr2/commit/031b53663ead5ec781360ca25bc48951b23dc0ff))
 
 ## [6.3.1](https://github.com/listr2/listr2/compare/v6.3.0...v6.3.1) (2023-04-17)
 
-
 ### Bug Fixes
 
-* **task:** splat on titles for brownie and nx repositories ([a756a47](https://github.com/listr2/listr2/commit/a756a47f7524994d191c32b2dfc1b2531bdb5d10))
+- **task:** splat on titles for brownie and nx repositories ([a756a47](https://github.com/listr2/listr2/commit/a756a47f7524994d191c32b2dfc1b2531bdb5d10))
 
 # [6.3.0](https://github.com/listr2/listr2/compare/v6.2.0...v6.3.0) (2023-04-16)
 
-
 ### Bug Fixes
 
-* **renderer/default:** update how bottom bar is checked ([0b5dab9](https://github.com/listr2/listr2/commit/0b5dab9a8d5da1d6ee2b3ec51eef5cb6bb75d26b))
-
+- **renderer/default:** update how bottom bar is checked ([0b5dab9](https://github.com/listr2/listr2/commit/0b5dab9a8d5da1d6ee2b3ec51eef5cb6bb75d26b))
 
 ### Features
 
-* **renderer:** add a caching mechanism for renderers ([4112564](https://github.com/listr2/listr2/commit/4112564b40b88f68a66dd0607f317d423a0c1417)), closes [#672](https://github.com/listr2/listr2/issues/672) [#LISTR2-259](https://github.com/listr2/listr2/issues/LISTR2-259)
-* **renderer:** make paused timer configurable for every renderer ([58f37d4](https://github.com/listr2/listr2/commit/58f37d4da2f54ff0c78aa271bba112200435b8f6))
+- **renderer:** add a caching mechanism for renderers ([4112564](https://github.com/listr2/listr2/commit/4112564b40b88f68a66dd0607f317d423a0c1417)), closes [#672](https://github.com/listr2/listr2/issues/672) [#LISTR2-259](https://github.com/listr2/listr2/issues/LISTR2-259)
+- **renderer:** make paused timer configurable for every renderer ([58f37d4](https://github.com/listr2/listr2/commit/58f37d4da2f54ff0c78aa271bba112200435b8f6))
 
 # [6.2.0](https://github.com/listr2/listr2/compare/v6.1.0...v6.2.0) (2023-04-11)
 
-
 ### Bug Fixes
 
-* update filtering reordering mechanism ([a72cc7b](https://github.com/listr2/listr2/commit/a72cc7b2b881e3297f69fb7b2ff259c63b64037f)), closes [#670](https://github.com/listr2/listr2/issues/670)
-
+- update filtering reordering mechanism ([a72cc7b](https://github.com/listr2/listr2/commit/a72cc7b2b881e3297f69fb7b2ff259c63b64037f)), closes [#670](https://github.com/listr2/listr2/issues/670)
 
 ### Features
 
-* force publish since semantic-release is stuck ([fa0fae1](https://github.com/listr2/listr2/commit/fa0fae1bb0e34dedc2b4d784f90d9237b5ff1fab))
+- force publish since semantic-release is stuck ([fa0fae1](https://github.com/listr2/listr2/commit/fa0fae1bb0e34dedc2b4d784f90d9237b5ff1fab))
 
 # [6.1.0](https://github.com/listr2/listr2/compare/v6.0.4...v6.1.0) (2023-04-11)
 
-
 ### Bug Fixes
 
-* add options to processoutput fix eol problem ([e6d6474](https://github.com/listr2/listr2/commit/e6d64744b28da128cd80c83e7961e4557462507f)), closes [#670](https://github.com/listr2/listr2/issues/670)
-* **process-output:** make everything optional ([148cb81](https://github.com/listr2/listr2/commit/148cb813b8d62aa3f5698c733aecda200996fe31))
-
+- add options to processoutput fix eol problem ([e6d6474](https://github.com/listr2/listr2/commit/e6d64744b28da128cd80c83e7961e4557462507f)), closes [#670](https://github.com/listr2/listr2/issues/670)
+- **process-output:** make everything optional ([148cb81](https://github.com/listr2/listr2/commit/148cb813b8d62aa3f5698c733aecda200996fe31))
 
 ### Features
 
-* add related documentation to process output and update with feature flag ([c1ede63](https://github.com/listr2/listr2/commit/c1ede6366d2b8c1356ed7171eac80736f5061e7a))
+- add related documentation to process output and update with feature flag ([c1ede63](https://github.com/listr2/listr2/commit/c1ede6366d2b8c1356ed7171eac80736f5061e7a))
 
 # [6.1.0](https://github.com/listr2/listr2/compare/v6.0.4...v6.1.0) (2023-04-11)
 
