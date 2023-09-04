@@ -1,3 +1,29 @@
+# [7.0.0-beta.1](https://github.com/listr2/listr2/compare/v6.6.0...v7.0.0-beta.1) (2023-09-04)
+
+
+### Bug Fixes
+
+* esm/cjs issue with the library, bump deps ([9c7a875](https://github.com/listr2/listr2/commit/9c7a875c262d1b2f565a5a987c858f3b3a5e1206))
+* issue with splatting logs ([54f338b](https://github.com/listr2/listr2/commit/54f338b6a6cb7ee2c2805d71220c2e4c030b61d6))
+* remove force/disable color by options ([c2a1da1](https://github.com/listr2/listr2/commit/c2a1da15727debe6e6f0b7eb022cd04d1abd9b14)), closes [#607](https://github.com/listr2/listr2/issues/607)
+* update problem with splat and loggin ([f75cf22](https://github.com/listr2/listr2/commit/f75cf22b93636dd06ba6bbe4d75172bc42a1d45e))
+
+
+### Performance Improvements
+
+* removes options for disable/force colors on listr level ([df260b0](https://github.com/listr2/listr2/commit/df260b08481fe6cf328b559df5c7a2760175de11))
+
+
+### BREAKING CHANGES
+
+* `LISTR_DISABLE_COLOR` is dropped in favor of using `NO_COLOR` environment variable to make this not differenciate from other libraries.
+
+Listr options `disableColor` and `forceColor` has been dropped since they were not working properly anyways.
+
+The other way to do this was to make `color` in to a function that directly calls `createColors` from `colorrette`. But since it is used in constants and such it really did not make much sense.
+* for this little thing since it was not functionining
+properly anyways
+
 ## [6.6.1](https://github.com/listr2/listr2/compare/v6.6.0...v6.6.1) (2023-07-30)
 
 
