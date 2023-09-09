@@ -25,7 +25,6 @@ export default defineUserConfig({
       tsconfig: './tsconfig.build.json',
       hideInPageTOC: true,
       readme: 'none',
-      allReflectionsHaveOwnDocument: true,
       categorizeByGroup: false,
       sort: [ 'source-order' ]
     }),

@@ -5,7 +5,8 @@
     "rootDir": "../",
     "baseUrl": "../",
     "module": "ESNext",
-    "target": "ESNext"
+    "target": "ESNext",
+    "noImplicitAny": false
   },
   "include": ["../src", "../docs/**/*", "../docs/.vuepress/**/*", "../examples"],
   "exclude": ["node_modules", "dist"]
