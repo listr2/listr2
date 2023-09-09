@@ -68,6 +68,7 @@ docker-build-docs:
     DOCKER_IMAGE_TAGS: latest
   needs:
     - vuepress
+    - build
   dependencies:
     - vuepress
   only:
