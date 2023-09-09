@@ -1,3 +1,10 @@
+# [7.0.0-beta.2](https://github.com/listr2/listr2/compare/v7.0.0-beta.1...v7.0.0-beta.2) (2023-09-09)
+
+
+### Features
+
+* add multiline output for default renderer ([6ae3132](https://github.com/listr2/listr2/commit/6ae31324ddec900c8e2d350742bd7f48703b24f5)), closes [#686](https://github.com/listr2/listr2/issues/686)
+
 ## [7.0.0-beta.1](https://github.com/listr2/listr2/compare/v6.6.0...v7.0.0-beta.1) (2023-09-04)
 
 ### Bug Fixes
