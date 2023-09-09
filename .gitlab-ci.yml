@@ -52,7 +52,8 @@ vuepress:
   only:
     refs:
       - master
-      - main
+      - beta
+      - alpha
 
 docker-build-docs:
   stage: publish
@@ -69,7 +70,8 @@ docker-build-docs:
   only:
     refs:
       - master
-      - main
+      - beta
+      - alpha
 
 semantic-release:
   stage: publish
