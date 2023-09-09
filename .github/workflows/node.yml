@@ -4,6 +4,11 @@ on:
   pull_request_target:
     branches:
       - master
+      - next
+      - next-major
+      - alpha
+      - beta
+      - rc
 
 jobs:
   lint:
@@ -11,7 +16,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 18.x
+          - 20.x
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -32,6 +37,7 @@ jobs:
         node-version:
           - 16.x
           - 18.x
+          - 20.x
         os:
           - ubuntu-latest
     steps:
@@ -52,7 +58,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 18.x
+          - 20.x
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2

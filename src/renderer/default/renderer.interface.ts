@@ -3,7 +3,7 @@ import type { ListrDefaultRendererLogLevels } from './renderer.constants'
 import type { ListrRendererCacheMap } from '@interfaces'
 import type { Task } from '@lib'
 import type { PresetTimer, RendererPresetTimer } from '@presets'
-import type { ListrLoggerStyleMap, RendererLoggerOptions, Spinner } from '@utils'
+import type { ListrLoggerStyleMap, ProcessOutputBuffer, RendererLoggerOptions, Spinner } from '@utils'
 
 export type ListrDefaultRendererOptionsStyle = ListrLoggerStyleMap<ListrDefaultRendererLogLevels>
 
@@ -151,12 +151,26 @@ export interface ListrDefaultRendererOptions
 
 export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
   /**
+   * Write task output to the output bar under the title.
+   *
+   * - `true` only keep the last line.
+   * - `Infinity` will keep all the lines.
+   * - `number` will keep the defined amount of lines.
+   * - `false` will not render output with this method.
+   *
+   * @defaultValue `true`
+   */
+  outputBar?: boolean | number
+  /**
    * Write task output to the bottom bar instead of the gap under the task title itself.
    * This can be useful for stream of data coming in and is the default mode for tasks without a title.
    *
-   * - `true` only keep 1 line of the latest data outputted by the task.
-   * - `number` will keep the defined amount of data as the last lines.
-   * - `false` will not use bottom bar if task has a title.
+   * This will take	precedence over the `outputBar` option, if explicitly set.
+   *
+   * - `true` only keep the last line.
+   * - `Infinity` will keep all the lines.
+   * - `number` will keep the defined amount of lines.
+   * - `false` will not render output with this method.
    *
    * @defaultValue `false`
    */
@@ -172,7 +186,12 @@ export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
 }
 
 export interface ListrDefaultRendererCache {
-  output: ListrRendererCacheMap<string[]>
+  render: ListrRendererCacheMap<string[]>
   rendererOptions: ListrRendererCacheMap<ListrDefaultRendererOptions>
   rendererTaskOptions: ListrRendererCacheMap<ListrDefaultRendererTaskOptions>
+}
+
+export interface ListrDefaultRendererOutputBuffer {
+  output: ListrRendererCacheMap<ProcessOutputBuffer>
+  bottom: ListrRendererCacheMap<ProcessOutputBuffer>
 }

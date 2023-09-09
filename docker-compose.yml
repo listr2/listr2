@@ -12,6 +12,7 @@ services:
       SERVICE_1_COMMAND: pnpm run docs:dev:start
       SERVICE_1_NAME: docs
     ports:
+      - 8080:8080
       - 9229:9229
     volumes:
       - .:/data

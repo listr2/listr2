@@ -4,7 +4,13 @@ import { EOL } from 'os'
 import type wrap from 'wrap-ansi'
 
 import { LISTR_DEFAULT_RENDERER_STYLE, ListrDefaultRendererLogLevels } from './renderer.constants'
-import type { ListrDefaultRendererCache, ListrDefaultRendererOptions, ListrDefaultRendererTask, ListrDefaultRendererTaskOptions } from './renderer.interface'
+import type {
+  ListrDefaultRendererCache,
+  ListrDefaultRendererOptions,
+  ListrDefaultRendererOutputBuffer,
+  ListrDefaultRendererTask,
+  ListrDefaultRendererTaskOptions
+} from './renderer.interface'
 import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { ListrRendererError } from '@interfaces'
@@ -33,9 +39,10 @@ export class DefaultRenderer implements ListrRenderer {
       format: () => color.yellowBright
     }
   }
-  public static rendererTaskOptions: ListrDefaultRendererTaskOptions
+  public static rendererTaskOptions: ListrDefaultRendererTaskOptions = {
+    outputBar: true
+  }
 
-  private bottom: Map<string, ProcessOutputBuffer> = new Map()
   private prompt: string
   private activePrompt: string
   private readonly spinner: Spinner
@@ -43,8 +50,12 @@ export class DefaultRenderer implements ListrRenderer {
   private updater: ReturnType<typeof createLogUpdate>
   private truncate: typeof truncate
   private wrap: typeof wrap
-  private readonly cache: ListrDefaultRendererCache = {
+  private readonly buffer: ListrDefaultRendererOutputBuffer = {
     output: new Map(),
+    bottom: new Map()
+  }
+  private readonly cache: ListrDefaultRendererCache = {
+    render: new Map(),
     rendererOptions: new Map(),
     rendererTaskOptions: new Map()
   }
@@ -72,12 +83,6 @@ export class DefaultRenderer implements ListrRenderer {
     this.logger = this.options.logger ?? new ListrLogger<ListrDefaultRendererLogLevels>({ useIcons: true, toStderr: [] })
     this.logger.options.icon = this.options.icon
     this.logger.options.color = this.options.color
-  }
-
-  public isBottomBar (task: ListrDefaultRendererTask): boolean {
-    const bottomBar = this.cache.rendererTaskOptions.get(task.id).bottomBar
-
-    return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false || !task.hasTitle()
   }
 
   public async render (): Promise<void> {
@@ -172,7 +177,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     if (output) {
-      if (this.isBottomBar(task)) {
+      if (this.shouldOutputToBottomBar(task)) {
         return this.logger.icon(ListrDefaultRendererLogLevels.OUTPUT_WITH_BOTTOMBAR)
       }
 
@@ -249,6 +254,18 @@ export class DefaultRenderer implements ListrRenderer {
     return parsed.map((str) => indent(str, level * this.options.indentation))
   }
 
+  protected shouldOutputToOutputBar (task: ListrDefaultRendererTask): boolean {
+    const outputBar = this.cache.rendererTaskOptions.get(task.id).outputBar
+
+    return typeof outputBar === 'number' && outputBar !== 0 || typeof outputBar === 'boolean' && outputBar !== false
+  }
+
+  protected shouldOutputToBottomBar (task: ListrDefaultRendererTask): boolean {
+    const bottomBar = this.cache.rendererTaskOptions.get(task.id).bottomBar
+
+    return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false || !task.hasTitle()
+  }
+
   private renderer (tasks: ListrDefaultRendererTask[], level = 0): string[] {
     // eslint-disable-next-line complexity
     return tasks.flatMap((task) => {
@@ -257,11 +274,12 @@ export class DefaultRenderer implements ListrRenderer {
       }
 
       // if this is already cached return the cache
-      if (this.cache.output.has(task.id)) {
-        return this.cache.output.get(task.id)
+      if (this.cache.render.has(task.id)) {
+        return this.cache.render.get(task.id)
       }
 
       this.calculate(task)
+      this.setupBuffer(task)
 
       const rendererOptions = this.cache.rendererOptions.get(task.id)
       const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
@@ -370,23 +388,8 @@ export class DefaultRenderer implements ListrRenderer {
         }
       }
 
-      // Current Task Output
-      if (task?.output) {
-        if (this.isBottomBar(task)) {
-          // create new if there is no persistent storage created for bottom bar
-          if (!this.bottom.has(task.id)) {
-            this.bottom.set(task.id, new ProcessOutputBuffer({ limit: typeof rendererTaskOptions.bottomBar === 'boolean' ? 1 : rendererTaskOptions.bottomBar }))
-
-            task.on(ListrTaskEventType.OUTPUT, (output) => {
-              const data = this.dump(task, -1, ListrLogLevels.OUTPUT, output)
-
-              this.bottom.get(task.id).write(data.join(EOL))
-            })
-          }
-        } else if (task.isPending() || rendererTaskOptions.persistentOutput) {
-          // keep output if persistent output is set
-          output.push(...this.dump(task, level))
-        }
+      if (task.isPending() || rendererTaskOptions.persistentOutput) {
+        output.push(...this.renderOutputBar(task, level))
       }
 
       // render subtasks, some complicated conditionals going on
@@ -417,14 +420,15 @@ export class DefaultRenderer implements ListrRenderer {
 
       // after task is finished actions
       if (task.hasFinalized()) {
-        // clean up bottom bar items if not indicated otherwise
+        // clean up the output buffer if not persistent
         if (!rendererTaskOptions.persistentOutput) {
-          this.bottom.delete(task.id)
+          this.buffer.bottom.delete(task.id)
+          this.buffer.output.delete(task.id)
         }
       }
 
       if (task.isClosed()) {
-        this.cache.output.set(task.id, output)
+        this.cache.render.set(task.id, output)
         this.reset(task)
       }
 
@@ -432,13 +436,23 @@ export class DefaultRenderer implements ListrRenderer {
     })
   }
 
-  private renderBottomBar (): string[] {
-    // parse through all objects return only the last mentioned items
-    if (this.bottom.size === 0) {
+  private renderOutputBar (task: ListrDefaultRendererTask, level: number): string[] {
+    const output = this.buffer.output.get(task.id)
+
+    if (!output) {
       return []
     }
 
-    return Array.from(this.bottom.values())
+    return output.all.flatMap((o) => this.dump(task, level, ListrLogLevels.OUTPUT, o.entry))
+  }
+
+  private renderBottomBar (): string[] {
+    // parse through all objects return only the last mentioned items
+    if (this.buffer.bottom.size === 0) {
+      return []
+    }
+
+    return Array.from(this.buffer.bottom.values())
       .flatMap((output) => output.all)
       .sort((a, b) => a.time - b.time)
       .map((output) => output.entry)
@@ -471,9 +485,56 @@ export class DefaultRenderer implements ListrRenderer {
     })
   }
 
+  private setupBuffer (task: ListrDefaultRendererTask): void {
+    if (this.buffer.bottom.has(task.id) || this.buffer.output.has(task.id)) {
+      return
+    }
+
+    const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
+
+    // lazily create the process output buffer for the current task output
+    if (this.shouldOutputToBottomBar(task) && !this.buffer.bottom.has(task.id)) {
+      // create new if there is no persistent storage created for bottom bar
+      this.buffer.bottom.set(task.id, new ProcessOutputBuffer({ limit: typeof rendererTaskOptions.bottomBar === 'number' ? rendererTaskOptions.bottomBar : 1 }))
+
+      task.on(ListrTaskEventType.OUTPUT, (output) => {
+        const data = this.dump(task, -1, ListrLogLevels.OUTPUT, output)
+
+        this.buffer.bottom.get(task.id).write(data.join(EOL))
+      })
+
+      task.on(ListrTaskEventType.STATE, (state) => {
+        switch (state) {
+        case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
+          this.buffer.bottom.delete(task.id)
+
+          break
+        }
+      })
+    } else if (this.shouldOutputToOutputBar(task) && !this.buffer.output.has(task.id)) {
+      this.buffer.output.set(task.id, new ProcessOutputBuffer({ limit: typeof rendererTaskOptions.outputBar === 'number' ? rendererTaskOptions.outputBar : 1 }))
+
+      task.on(ListrTaskEventType.OUTPUT, (output) => {
+        this.buffer.output.get(task.id).write(output)
+      })
+
+      task.on(ListrTaskEventType.STATE, (state) => {
+        switch (state) {
+        case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
+          this.buffer.output.delete(task.id)
+
+          break
+        }
+      })
+    }
+  }
+
   private reset (task: ListrDefaultRendererTask): void {
     this.cache.rendererOptions.delete(task.id)
     this.cache.rendererTaskOptions.delete(task.id)
+
+    // no need for this since this is now cached
+    this.buffer.output.delete(task.id)
   }
 
   private dump (
