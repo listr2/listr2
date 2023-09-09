@@ -78,6 +78,42 @@ Whenever more control over the stream is required, temporary `WritableStream` ca
 
 ### _DefaultRenderer_
 
+#### Use the Output Bar
+
+For _DefaultRenderer_, data will be rendered under the task title by default, if the task has a title.
+
+Item count that is desired to be showed in the output bar can be set through the renderer option `outputBar` and is per-task.
+
+- `true` only keep the last line.
+- `Infinity` will keep all the lines.
+- `number` will keep the defined amount of lines.
+- `false` will not render output with this method.
+
+::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+
+@[code typescript](../../examples/docs/task/output/renderer-default-outputbar.ts)
+
+:::
+
+#### Use the Bottom Bar
+
+For _DefaultRenderer_, data can be outputted to a bar below all the render area, this is useful for fast moving logs.
+
+Bottom bar can be selected through _Task_ renderer options, where it will create a bar at the end of the tasks leaving one line return space in between.
+
+Item count that is desired to be showed in the bottom bar can be set through the renderer option `bottomBar` and is per-task.
+
+- `true` only keep the last line.
+- `Infinity` will keep all the lines.
+- `number` will keep the defined amount of lines.
+- `false` will not render output with this method.
+
+::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+
+@[code typescript](../../examples/docs/task/output/renderer-default-bottombar.ts)
+
+:::
+
 #### Persistent Output
 
 To keep the output after the task has been completed while using the default renderer, you can set `{ persistentOutput: true }` in the _Task_ or _Listr_ renderer options.
@@ -85,26 +121,5 @@ To keep the output after the task has been completed while using the default ren
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
 @[code typescript](../../examples/docs/task/output/renderer-default-persistent.ts)
-
-:::
-
-#### Use the Bottom Bar
-
-For default renderer, data can be outputted to a bar below all the render area, this is useful for fast moving logs.
-
-Bottom bar can be selected through _Task_ or _Listr_ renderer options, where it will create a bar at the end of the tasks leaving one line return space in between.
-
-Item count that is desired to be showed in the bottom bar can be set through the renderer option `bottomBar` and is per-task.
-
-The option of persistent output can be combined with this option to persist the output afterwards.
-
-- `true` will only show the last output from the task.
-- `number` will limit the output items.
-- `Infinity` will keep all the output.
-- `false` will use the normal output method.
-
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
-
-@[code typescript](../../examples/docs/task/output/renderer-default-bottombar.ts)
 
 :::

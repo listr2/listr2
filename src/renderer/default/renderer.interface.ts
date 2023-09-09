@@ -153,10 +153,10 @@ export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
   /**
    * Write task output to the output bar under the title.
    *
-   * - `true` only keep 1 line of the latest data outputted by the task.
+   * - `true` only keep the last line.
    * - `Infinity` will keep all the lines.
-   * - `number` will keep the defined amount of data as the last lines.
-   * - `false` will hide the output from the task.
+   * - `number` will keep the defined amount of lines.
+   * - `false` will not render output with this method.
    *
    * @defaultValue `true`
    */
@@ -167,10 +167,10 @@ export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
    *
    * This will take	precedence over the `outputBar` option, if explicitly set.
    *
-   * - `true` only keep 1 line of the latest data outputted by the task.
+   * - `true` only keep the last line.
    * - `Infinity` will keep all the lines.
-   * - `number` will keep the defined amount of data as the last lines.
-   * - `false` will not use bottom bar if task has a title.
+   * - `number` will keep the defined amount of lines.
+   * - `false` will not render output with this method.
    *
    * @defaultValue `false`
    */
