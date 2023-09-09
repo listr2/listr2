@@ -14,9 +14,7 @@ exports[`default renderer: retry should retry the main task if any of the subtas
   "[2K[1A[2K[G❯ Some type errors
   › test
 ",
-  "[2K[1A[2K[1A[2K[G❯ Some type errors
-",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
 ",
   "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
   › test
