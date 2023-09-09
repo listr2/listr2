@@ -78,9 +78,9 @@ Whenever more control over the stream is required, temporary `WritableStream` ca
 
 ### _DefaultRenderer_
 
-#### Use the Output Bar
+#### Use the Output Bar <Badge><FontIcon icon="mdi:tag-text-outline"/>v7.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/686" target="_blank">#686</a></Badge>
 
-For _DefaultRenderer_, data will be rendered under the task title by default, if the task has a title.
+For _DefaultRenderer_, if the task has a title, last line of output will be rendered under the task title by default.
 
 Item count that is desired to be showed in the output bar can be set through the renderer option `outputBar` and is per-task.
 
@@ -97,7 +97,7 @@ Item count that is desired to be showed in the output bar can be set through the
 
 #### Use the Bottom Bar
 
-For _DefaultRenderer_, data can be outputted to a bar below all the render area, this is useful for fast moving logs.
+For _DefaultRenderer_, data can be outputted to a bar below all the render area, this is useful for fast moving logs. If the task has no title, last line of output will be rendered in the bottom bar by default.
 
 Bottom bar can be selected through _Task_ renderer options, where it will create a bar at the end of the tasks leaving one line return space in between.
 
