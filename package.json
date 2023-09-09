@@ -40,7 +40,7 @@
     "test:cov": "pnpm run test --coverage",
     "test:dev": "NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --inspect=0.0.0.0:9229' pnpm run test --verbose --watchAll",
     "test:read-snapshot": "./tests/read-terminal-snapshots.sh",
-    "docs:build": "vuepress build docs",
+    "docs:build": "vuepress build docs && vuepress build docs",
     "docs:dev:start": "vuepress dev docs",
     "docs:dev:start:clean": "vuepress dev docs --clean-cache"
   },

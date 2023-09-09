@@ -48,11 +48,7 @@ export default hopeTheme({
   iconAssets: 'iconify',
 
   plugins: {
-    git: {
-      contributors: true,
-      createdTime: false,
-      updatedTime: true
-    },
+    git: true,
 
     comment: false,
 
