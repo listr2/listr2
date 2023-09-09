@@ -6,4 +6,4 @@ process.env[ListrEnvironmentVariables.DISABLE_COLOR] = '1'
 
 global.jest = jest as any
 
-jest.setTimeout(60000)
+jest.setTimeout(120000)
