@@ -5,8 +5,8 @@ export abstract class ListrPromptAdapter {
   private state: ListrTaskState
 
   constructor (
-    protected task: Task<any, any>,
-    protected wrapper: TaskWrapper<any, any>
+    protected task: Task<any, any, any>,
+    protected wrapper: TaskWrapper<any, any, any>
   ) {}
 
   protected reportStarted (): void {

@@ -57,7 +57,7 @@ task = new Listr<Ctx>(
         task.output = 'I will push an output. [2]'
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false }
@@ -88,7 +88,7 @@ task = new Listr<Ctx>(
         task.output = 'I will push an output. [2]'
         await delay(500)
       },
-      options: {
+      rendererOptions: {
         bottomBar: Infinity
       }
     }
@@ -150,7 +150,7 @@ task = new Listr<Ctx>(
         task.output = 'I will push an output. [2]'
         await delay(500)
       },
-      options: {
+      rendererOptions: {
         bottomBar: true,
         persistentOutput: false
       }
@@ -168,7 +168,7 @@ task = new Listr<Ctx>(
         task.output = 'I will push an persistent output. [2]'
         await delay(500)
       },
-      options: {
+      rendererOptions: {
         bottomBar: Infinity,
         persistentOutput: true
       }
@@ -235,7 +235,7 @@ task = new Listr<Ctx>(
         task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false }
@@ -263,7 +263,7 @@ task = new Listr<Ctx>(
         task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, rendererOptions: { formatOutput: 'wrap' } }
@@ -291,7 +291,7 @@ task = new Listr<Ctx>(
         task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, rendererOptions: { formatOutput: 'wrap' } }
@@ -319,7 +319,7 @@ task = new Listr<Ctx>(
         task.output = start + mid.repeat(100) + '\n' + '\n' + '\n' + mid.repeat(100) + end
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, rendererOptions: { removeEmptyLines: true } }
@@ -347,7 +347,7 @@ task = new Listr<Ctx>(
         task.output = start + mid.repeat(100) + '\n' + '\n' + '\n' + mid.repeat(100) + end
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, rendererOptions: { removeEmptyLines: false } }
@@ -375,7 +375,7 @@ task = new Listr<Ctx>(
         task.output = start + mid.repeat(100) + '\n' + '\n' + '\n' + mid.repeat(100) + end
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, rendererOptions: { formatOutput: 'truncate' } }
@@ -405,7 +405,7 @@ task = new Listr<Ctx>(
         task.output = 'I will push an output. [2]'
         await delay(500)
       },
-      options: { outputBar: Infinity, persistentOutput: true }
+      rendererOptions: { outputBar: Infinity, persistentOutput: true }
     }
   ],
   { concurrent: false }

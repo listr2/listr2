@@ -1,7 +1,6 @@
 import type { TestRenderer } from './renderer'
 import type { ListrTaskEventType } from '@constants'
-import type { ListrTaskEventMap } from '@interfaces'
-import type { Task } from '@lib'
+import type { ListrRendererTask, ListrTaskEventMap } from '@interfaces'
 
 export interface TestRendererSerializerOutput<T extends ListrTaskEventType> {
   event: T
@@ -10,7 +9,7 @@ export interface TestRendererSerializerOutput<T extends ListrTaskEventType> {
 }
 
 export type TestRendererSerializerTaskKeys = Extract<
-keyof Task<any, typeof TestRenderer>,
+keyof ListrRendererTask<typeof TestRenderer>,
 | 'hasSubtasks'
 | 'hasFinalized'
 | 'isPending'

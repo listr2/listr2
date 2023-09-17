@@ -14,7 +14,7 @@ import type { Task } from '@lib'
 export declare class ListrTaskEventMap extends BaseEventMap implements EventMap<ListrTaskEventType> {
   [ListrTaskEventType.STATE]: ListrTaskState;
   [ListrTaskEventType.ENABLED]: boolean;
-  [ListrTaskEventType.SUBTASK]: Task<any, any>[];
+  [ListrTaskEventType.SUBTASK]: Task<any, any, any>[];
   [ListrTaskEventType.TITLE]: string;
   [ListrTaskEventType.OUTPUT]: string;
   [ListrTaskEventType.MESSAGE]: ListrTaskMessage;

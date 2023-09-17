@@ -16,7 +16,7 @@ export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
   constructor (
     public error: Error,
     public type: ListrErrorTypes,
-    public task: Task<Ctx, ListrRendererFactory>
+    public task: Task<Ctx, ListrRendererFactory, ListrRendererFactory>
   ) {
     super(error.message)
 

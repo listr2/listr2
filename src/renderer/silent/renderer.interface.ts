@@ -1,7 +1,7 @@
 import type { SilentRenderer } from './renderer'
-import type { Task } from '@lib'
+import type { ListrRendererTask } from '@interfaces'
 
-export type ListrSilentRendererTask = Task<any, typeof SilentRenderer>
+export type ListrSilentRendererTask = ListrRendererTask<typeof SilentRenderer>
 
 export type ListrSilentRendererOptions = never
 export type ListrSilentRendererTaskOptions = never

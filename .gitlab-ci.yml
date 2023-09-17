@@ -37,6 +37,24 @@ test:
       - NODE_VERSION: 18-alpine
       - NODE_VERSION: 16-alpine
 
+typecheck-examples:
+  stage: docs
+  extends: .node-run
+  variables:
+    NODE_COMMAND_SCRIPT: example:build
+  needs:
+    - install
+  dependencies:
+    - install
+  only:
+    refs:
+      - master
+      - next
+      - next-major
+      - alpha
+      - beta
+      - rc
+
 vuepress:
   stage: docs
   extends: .node-run

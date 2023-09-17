@@ -24,7 +24,7 @@ task = new Listr<Ctx>(
       task: (ctx, task): void => {
         task.output = [ '%o', ctx.input ]
       },
-      options: {
+      rendererOptions: {
         persistentOutput: true
       }
     }

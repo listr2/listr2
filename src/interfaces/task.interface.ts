@@ -2,7 +2,7 @@ import type { Observable } from 'rxjs'
 import type { Readable } from 'stream'
 
 import type { ListrContext } from './listr.interface'
-import type { ListrGetRendererTaskOptions, ListrRendererFactory, ListrRendererValue } from './renderer.interface'
+import type { ListrPrimaryRendererTaskOptions, ListrRendererFactory, ListrRendererValue, ListrSecondaryRendererTaskOptions } from './renderer.interface'
 import type { Task, TaskWrapper } from '@lib'
 import type { Listr } from '@root'
 import type { ListrPromptAdapter } from '@utils'
@@ -13,7 +13,9 @@ import type { ListrPromptAdapter } from '@utils'
  *
  * @see {@link https://listr2.kilic.dev/task/task.html}
  */
-export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any> {
+export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any, FallbackRenderer extends ListrRendererFactory = any>
+  extends ListrPrimaryRendererTaskOptions<Renderer>,
+  ListrSecondaryRendererTaskOptions<FallbackRenderer> {
   /**
    * Title of the task.
    *
@@ -31,7 +33,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    *
    * @see {@link https://listr2.kilic.dev/task/task.html}
    */
-  task: ListrTaskFn<Ctx, Renderer>
+  task: ListrTaskFn<Ctx, Renderer, FallbackRenderer>
   /**
    * Enable a task depending on the context.
    *
@@ -61,32 +63,25 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    *
    * @see {@link https://listr2.kilic.dev/task/rollback.html}
    */
-  rollback?: ListrTaskFn<Ctx, Renderer>
+  rollback?: ListrTaskFn<Ctx, Renderer, FallbackRenderer>
   /**
    * Determine the default behavior of exiting on errors for this attached task.
    */
   exitOnError?: boolean | ((ctx: Ctx) => boolean | Promise<boolean>)
-  /**
-   * Per-task options, that depends on the selected renderer.
-   *
-   * - Options of the current preferred renderer can be changed on task level.
-   * - These options depend on the implementation of the preferred renderer.
-   * - Whenever the preferred renderer has no options it will be displayed as never.
-   *
-   * **This option will be deprecated in a future major release in favor of having options for both the default and the fallback renderer.**
-   */
-  options?: ListrGetRendererTaskOptions<Renderer>
 }
 
 /**
  * Result of the processed task can be any of the supported types.
  */
-export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRendererValue, any> | Readable | NodeJS.ReadableStream | Observable<any>
+export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRendererValue, ListrRendererValue> | Readable | NodeJS.ReadableStream | Observable<any>
 
 /**
  * The callback function from the user that defines the task.
  */
-export type ListrTaskFn<Ctx, Renderer extends ListrRendererFactory> = (ctx: Ctx, task: TaskWrapper<Ctx, Renderer>) => void | ListrTaskResult<Ctx>
+export type ListrTaskFn<Ctx, Renderer extends ListrRendererFactory, FallbackRenderer extends ListrRendererFactory> = (
+  ctx: Ctx,
+  task: TaskWrapper<Ctx, Renderer, FallbackRenderer>
+) => void | ListrTaskResult<Ctx>
 
 /**
  * Tasks can have attached prompts to them.
@@ -122,5 +117,10 @@ export interface ListrTaskMessage {
   /** Holds the time as epoch time of when will this task continue to execute. */
   paused?: number
 }
+
+/**
+ * Listr Task after the renderer has been selected and renderer related options removed.
+ */
+export type ListrRendererTask<SelectedRenderer extends ListrRendererFactory> = Task<any, SelectedRenderer, SelectedRenderer>
 
 export type { Task as ListrTaskObject, TaskWrapper as ListrTaskWrapper }

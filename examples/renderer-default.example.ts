@@ -57,7 +57,7 @@ try {
                   await delay(500)
                   task.output = 'Showing some output to user.'
                 },
-                options: {
+                rendererOptions: {
                   bottomBar: 3
                 }
               }

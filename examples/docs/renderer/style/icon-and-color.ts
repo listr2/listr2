@@ -7,7 +7,7 @@ const tasks = new Listr(
       task: (ctx, task): void => {
         task.output = 'Some data output.'
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   {

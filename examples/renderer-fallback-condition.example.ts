@@ -17,7 +17,7 @@ task = new Listr<Ctx>(
       task: async (): Promise<void> => {
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, fallbackRendererCondition: (): boolean => 3 > 0 }
@@ -40,7 +40,7 @@ task = new Listr<Ctx>(
       task: async (): Promise<void> => {
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, fallbackRendererCondition: (): boolean => 3 < 0 }
@@ -63,7 +63,7 @@ task = new Listr<Ctx>(
       task: async (): Promise<void> => {
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, fallbackRendererCondition: someTestFunction }

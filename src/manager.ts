@@ -24,7 +24,7 @@ export class Manager<
   FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
 > {
   public errors: ListrError[] = []
-  public tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>>[] = []
+  public tasks: ListrTask<ListrContext, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[] = []
 
   constructor (public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>) {}
 
@@ -37,10 +37,12 @@ export class Manager<
   }
 
   public add<InjectCtx = Ctx>(
-    tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[] | ((ctx?: InjectCtx) => ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[]),
-    options?: ListrSubClassOptions<InjectCtx, Renderer>
+    tasks:
+    | ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[]
+    | ((ctx?: InjectCtx) => ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[]),
+    options?: ListrSubClassOptions<InjectCtx, Renderer, FallbackRenderer>
   ): void {
-    options = { ...this.options, ...options } as ListrSubClassOptions<InjectCtx, Renderer>
+    options = { ...this.options, ...options } as ListrSubClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
     this.tasks = [ ...this.tasks, this.indent<InjectCtx>(tasks, options) ]
   }
@@ -58,18 +60,20 @@ export class Manager<
     return ctx
   }
 
-  public newListr<InjectCtx, InjectRenderer extends ListrRendererValue = Renderer, InjectFallbackRenderer extends ListrRendererValue = FallbackRenderer>(
-    tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<InjectRenderer>>[],
+  public newListr<InjectCtx = Ctx, InjectRenderer extends ListrRendererValue = Renderer, InjectFallbackRenderer extends ListrRendererValue = FallbackRenderer>(
+    tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<InjectRenderer>, ListrGetRendererClassFromValue<InjectFallbackRenderer>>[],
     options?: ListrBaseClassOptions<InjectCtx, InjectRenderer, InjectFallbackRenderer>
   ): Listr<InjectCtx, InjectRenderer, InjectFallbackRenderer> {
-    return new Listr<InjectCtx, InjectRenderer, InjectFallbackRenderer>(tasks, options)
+    return new Listr<InjectCtx, InjectRenderer, InjectFallbackRenderer>(tasks as any, options)
   }
 
   public indent<InjectCtx = Ctx>(
-    tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[] | ((ctx?: InjectCtx) => ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[]),
+    tasks:
+    | ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[]
+    | ((ctx?: InjectCtx) => ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[]),
     options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>,
-    taskOptions?: Omit<ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>, 'task'>
-  ): ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>> {
+    taskOptions?: Omit<ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>, 'task'>
+  ): ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>> {
     options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
 
     // type function or directly
@@ -87,7 +91,7 @@ export class Manager<
   }
 
   public async run<InjectCtx = Ctx>(
-    tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>>[],
+    tasks: ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[],
     options?: ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>
   ): Promise<InjectCtx> {
     options = { ...this.options, ...options } as ListrBaseClassOptions<InjectCtx, Renderer, FallbackRenderer>

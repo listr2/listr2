@@ -12,8 +12,8 @@ import { createWritable, splat } from '@utils'
  *
  * @see {@link https://listr2.kilic.dev/task/task.html}
  */
-export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
-  constructor (public task: Task<Ctx, ListrRendererFactory>) {}
+export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRenderer extends ListrRendererFactory> {
+  constructor (public task: Task<Ctx, Renderer, FallbackRenderer>) {}
 
   get title (): string {
     return this.task.title
@@ -56,10 +56,13 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    * @see {@link https://listr2.kilic.dev/task/subtasks.html}
    */
   public newListr<NewCtx = Ctx>(
-    task: ListrTask<NewCtx, Renderer> | ListrTask<NewCtx, Renderer>[] | ((parent: Omit<this, 'skip' | 'enabled'>) => ListrTask<NewCtx, Renderer> | ListrTask<NewCtx, Renderer>[]),
-    options?: ListrSubClassOptions<NewCtx, Renderer>
+    task:
+    | ListrTask<NewCtx, Renderer, FallbackRenderer>
+    | ListrTask<NewCtx, Renderer, FallbackRenderer>[]
+    | ((parent: Omit<this, 'skip' | 'enabled'>) => ListrTask<NewCtx, Renderer, FallbackRenderer> | ListrTask<NewCtx, Renderer, FallbackRenderer>[]),
+    options?: ListrSubClassOptions<NewCtx, Renderer, FallbackRenderer>
   ): Listr<NewCtx, any, any> {
-    let tasks: ListrTask<NewCtx, Renderer> | ListrTask<NewCtx, Renderer>[]
+    let tasks: ListrTask<NewCtx, Renderer, FallbackRenderer> | ListrTask<NewCtx, Renderer, FallbackRenderer>[]
 
     if (typeof task === 'function') {
       tasks = task(this)
@@ -101,7 +104,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    *
    * @see {@link https://listr2.kilic.dev/task/retry.html}
    */
-  public isRetrying (): Task<Ctx, Renderer>['retry'] {
+  public isRetrying (): Task<Ctx, Renderer, FallbackRenderer>['retry'] {
     return this.task.isRetrying() ? this.task.retry : { count: 0 }
   }
 
@@ -113,7 +116,9 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
    *
    * @see {@link https://listr2.kilic.dev/task/prompt.html}
    */
-  public prompt<T extends ListrPromptAdapter = ListrPromptAdapter>(adapter: new (task: Task<Ctx, Renderer>, wrapper: TaskWrapper<Ctx, Renderer>) => T): T {
+  public prompt<T extends ListrPromptAdapter = ListrPromptAdapter>(
+    adapter: new (task: Task<Ctx, Renderer, FallbackRenderer>, wrapper: TaskWrapper<Ctx, Renderer, FallbackRenderer>) => T
+  ): T {
     if (this.task.prompt) {
       return this.task.prompt as T
     }

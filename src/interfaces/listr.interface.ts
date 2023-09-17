@@ -1,6 +1,14 @@
 import type Enquirer from 'enquirer'
 
-import type { ListrPrimaryRendererOptions, ListrPrimaryRendererValue, ListrRendererValue, ListrSecondaryRendererOptions, ListrSecondaryRendererValue } from './renderer.interface'
+import type {
+  ListrPrimaryRendererOptions,
+  ListrPrimaryRendererSelection,
+  ListrPrimaryRendererValue,
+  ListrRendererValue,
+  ListrSecondaryRendererOptions,
+  ListrSecondaryRendererSelection,
+  ListrSecondaryRendererValue
+} from './renderer.interface'
 
 /** Listr context. */
 export type ListrContext = any | undefined
@@ -111,12 +119,16 @@ export interface ListrBaseClassOptions<
   Renderer extends ListrRendererValue = ListrPrimaryRendererValue,
   FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
 > extends ListrOptions<Ctx>,
-  ListrPrimaryRendererOptions<Renderer>,
-  ListrSecondaryRendererOptions<FallbackRenderer> {}
+  ListrPrimaryRendererSelection<Renderer>,
+  ListrSecondaryRendererSelection<FallbackRenderer> {}
 
 /**
  * Subtasks has reduced set options where the missing ones are explicitly set by the base class.
  */
-export interface ListrSubClassOptions<Ctx = ListrContext, Renderer extends ListrRendererValue = ListrPrimaryRendererValue>
-  extends Omit<ListrOptions<Ctx>, 'registerSignalListeners' | 'fallbackRendererCondition' | 'silentRendererCondition' | 'forceTTY' | 'forceUnicode'>,
-  Omit<ListrPrimaryRendererOptions<Renderer>, 'renderer'> {}
+export interface ListrSubClassOptions<
+  Ctx = ListrContext,
+  Renderer extends ListrRendererValue = ListrPrimaryRendererValue,
+  FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
+> extends Omit<ListrOptions<Ctx>, 'registerSignalListeners' | 'fallbackRendererCondition' | 'silentRendererCondition' | 'forceTTY' | 'forceUnicode'>,
+  ListrPrimaryRendererOptions<Renderer>,
+  ListrSecondaryRendererOptions<FallbackRenderer> {}

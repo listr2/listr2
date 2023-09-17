@@ -1,3 +1,4 @@
+import type { ListrRendererSelection } from '@constants'
 import type { ListrEventManager, Task } from '@lib'
 import type { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
 
@@ -84,24 +85,44 @@ export type ListrGetRendererOptions<T extends ListrRendererValue> = T extends Li
 export type ListrGetRendererTaskOptions<T extends ListrRendererValue> = T extends ListrRendererValue ? ListrGetRendererClassFromValue<T>['rendererTaskOptions'] : never
 
 /** Selection and options of the primary preferred renderer. */
-export interface ListrPrimaryRendererOptions<T extends ListrRendererValue> {
+export interface ListrPrimaryRendererSelection<T extends ListrRendererValue> extends ListrPrimaryRendererOptions<T> {
   /** Default renderer preferred. */
   renderer?: T
+}
+
+/** Options of the primary preferred renderer. */
+export interface ListrPrimaryRendererOptions<T extends ListrRendererValue> {
   /** Renderer options depending on the current renderer. */
   rendererOptions?: ListrGetRendererOptions<T>
 }
 
+/** Task options of the primary preferred renderer. */
+export interface ListrPrimaryRendererTaskOptions<T extends ListrRendererValue> {
+  /** Renderer options depending on the current renderer. */
+  rendererOptions?: ListrGetRendererTaskOptions<T>
+}
+
 /** Selection and options of the preferred fallback renderer. */
-export interface ListrSecondaryRendererOptions<T extends ListrRendererValue> {
+export interface ListrSecondaryRendererSelection<T extends ListrRendererValue> extends ListrSecondaryRendererOptions<T> {
   /** Fallback renderer preferred. */
   fallbackRenderer?: T
+}
+
+/** Options of the fallback renderer. */
+export interface ListrSecondaryRendererOptions<T extends ListrRendererValue> {
   /** Renderer options depending on the fallback renderer. */
   fallbackRendererOptions?: ListrGetRendererOptions<T>
 }
 
+/** Task options of the fallback renderer. */
+export interface ListrSecondaryRendererTaskOptions<T extends ListrRendererValue> {
+  /** Renderer options depending on the fallback renderer. */
+  fallbackRendererOptions?: ListrGetRendererTaskOptions<T>
+}
+
 /** Renderer options for the parent Listr class, including setup for selecting default and fallback renderers.  */
-export type ListrRendererOptions<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> = ListrPrimaryRendererOptions<Renderer> &
-ListrSecondaryRendererOptions<FallbackRenderer>
+export type ListrRendererOptions<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> = ListrPrimaryRendererSelection<Renderer> &
+ListrSecondaryRendererSelection<FallbackRenderer>
 
 /**
  * The definition of a ListrRenderer.
@@ -120,7 +141,7 @@ export declare class ListrRenderer {
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
-  constructor (tasks: readonly Task<any, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, events?: ListrEventManager)
+  constructor (tasks: Task<any, ListrRendererFactory, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, events?: ListrEventManager)
 }
 
 /** Factory of compatible Listr renderers. */
@@ -130,6 +151,7 @@ export type ListrRendererFactory = typeof ListrRenderer
 export interface SupportedRenderer<Renderer extends ListrRendererFactory> {
   renderer: Renderer
   options?: ListrGetRendererOptions<Renderer>
+  selection: ListrRendererSelection
 }
 
-export type ListrRendererCacheMap<T> = Map<Task<any, any>['id'], T>
+export type ListrRendererCacheMap<T> = Map<Task<any, any, any>['id'], T>

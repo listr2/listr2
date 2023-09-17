@@ -10,7 +10,7 @@ const tasks = new Listr(
       task: async (): Promise<Readable> => {
         return spawn('ls').stdout
       },
-      options: {
+      rendererOptions: {
         persistentOutput: true
       }
     }

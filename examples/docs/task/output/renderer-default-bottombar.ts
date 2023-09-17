@@ -14,7 +14,7 @@ const tasks = new Listr(
         task.output = 'I will push an output. [2]'
         await delay(500)
       },
-      options: {
+      rendererOptions: {
         bottomBar: Infinity
       }
     }

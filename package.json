@@ -33,6 +33,7 @@
     "build": "tsup-node",
     "dev:start": "tsup-node --watch",
     "example": "TS_NODE_PROJECT=examples/tsconfig.json NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --loader ./loader.js' node",
+    "example:build": "tsc --noEmit -p ./examples/tsconfig.json",
     "clean": "rimraf node_modules pnpm-lock.yaml",
     "format": "prettier --log-level warn --write src/ tests/ examples/ docs/ && pnpm run lint --fix",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src/ tests/ examples/ docs/",

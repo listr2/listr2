@@ -29,7 +29,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { persistentOutput: true }
+          rendererOptions: { persistentOutput: true }
         }
       ],
       {
@@ -54,7 +54,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { outputBar: Infinity }
+          rendererOptions: { outputBar: Infinity }
         }
       ],
       {
@@ -79,7 +79,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { outputBar: 2 }
+          rendererOptions: { outputBar: 2 }
         }
       ],
       {
@@ -104,7 +104,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { outputBar: true }
+          rendererOptions: { outputBar: true }
         }
       ],
       {
@@ -129,7 +129,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { outputBar: false, bottomBar: false }
+          rendererOptions: { outputBar: false, bottomBar: false }
         }
       ],
       {
@@ -154,7 +154,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { bottomBar: Infinity }
+          rendererOptions: { bottomBar: Infinity }
         }
       ],
       {
@@ -178,7 +178,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { bottomBar: Infinity }
+          rendererOptions: { bottomBar: Infinity }
         }
       ],
       {
@@ -202,7 +202,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { bottomBar: Infinity, persistentOutput: true }
+          rendererOptions: { bottomBar: Infinity, persistentOutput: true }
         }
       ],
       {
@@ -227,7 +227,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { bottomBar: Infinity, persistentOutput: true }
+          rendererOptions: { bottomBar: Infinity, persistentOutput: true }
         }
       ],
       {
@@ -252,7 +252,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { bottomBar: 2 }
+          rendererOptions: { bottomBar: 2 }
         }
       ],
       {
@@ -277,7 +277,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { bottomBar: true, persistentOutput: false }
+          rendererOptions: { bottomBar: true, persistentOutput: false }
         },
 
         {
@@ -289,7 +289,7 @@ describe('default renderer: output', () => {
 
             task.output = 'I will push an output. [2]'
           },
-          options: { bottomBar: true, persistentOutput: true }
+          rendererOptions: { bottomBar: true, persistentOutput: true }
         }
       ],
       {
@@ -314,7 +314,7 @@ describe('default renderer: output', () => {
 
             task.output = start + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + mid.repeat(40) + '\n' + end
           },
-          options: { persistentOutput: true }
+          rendererOptions: { persistentOutput: true }
         }
       ],
       {
@@ -341,7 +341,7 @@ describe('default renderer: output', () => {
 
             throw new Error('This task has failed')
           },
-          options: { bottomBar: input, persistentOutput: true }
+          rendererOptions: { bottomBar: input, persistentOutput: true }
         }
       ],
       {

@@ -13,7 +13,7 @@ task = new Listr<any>(
       task: async (): Promise<void> => {
         await delay(1000)
       },
-      options: {
+      rendererOptions: {
         timer: PRESET_TIMER
       }
     },
@@ -23,7 +23,7 @@ task = new Listr<any>(
       task: async (): Promise<void> => {
         await delay(1000)
       },
-      options: {
+      rendererOptions: {
         timer: PRESET_TIMER
       }
     }

@@ -9,7 +9,7 @@ const tasks = new Listr(
 
         await delay(500)
       },
-      options: { persistentOutput: true }
+      rendererOptions: { persistentOutput: true }
     }
   ],
   { concurrent: false, silentRendererCondition: (): boolean => 3 < 1 }

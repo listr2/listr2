@@ -19,7 +19,7 @@ const tasks = new Listr([
 
       await execute
     },
-    options: {
+    rendererOptions: {
       persistentOutput: true
     }
   }

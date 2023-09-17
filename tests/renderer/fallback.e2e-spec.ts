@@ -20,7 +20,7 @@ describe('fallback renderer', () => {
         {
           title: 'This task will execute.',
           task: async (): Promise<void> => {},
-          options: { persistentOutput: true }
+          rendererOptions: { persistentOutput: true }
         }
       ],
       {
@@ -41,7 +41,7 @@ describe('fallback renderer', () => {
         {
           title: 'This task will execute.',
           task: async (): Promise<void> => {},
-          options: { persistentOutput: true }
+          rendererOptions: { persistentOutput: true }
         }
       ],
       {
@@ -62,7 +62,7 @@ describe('fallback renderer', () => {
         {
           title: 'This task will execute.',
           task: async (): Promise<void> => {},
-          options: { persistentOutput: true }
+          rendererOptions: { persistentOutput: true }
         }
       ],
       {
@@ -83,7 +83,7 @@ describe('fallback renderer', () => {
         {
           title: 'This task will execute.',
           task: async (): Promise<void> => {},
-          options: { persistentOutput: true }
+          rendererOptions: { persistentOutput: true }
         }
       ],
       {

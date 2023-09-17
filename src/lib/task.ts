@@ -22,13 +22,17 @@ import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservabl
 /**
  * Creates and handles a runnable instance of the Task.
  */
-export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskEventManager {
+export class Task<
+  Ctx,
+  Renderer extends ListrRendererFactory = ListrRendererFactory,
+  FallbackRenderer extends ListrRendererFactory = ListrRendererFactory
+> extends ListrTaskEventManager {
   /** Unique id per task, can be used for identifying a Task. */
   public id: string = randomUUID()
   /** The current state of the task. */
   public state: ListrTaskState = ListrTaskState.WAITING
   /** Subtasks of the current task. */
-  public subtasks: Task<Ctx, Renderer>[]
+  public subtasks: Task<Ctx, Renderer, FallbackRenderer>[]
   /** Title of the task. */
   public title?: string
   /** Initial/Untouched version of the title for using whenever task has a reset. */
@@ -43,25 +47,25 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
    * This requires a separate channel for messages like error, skip or runtime messages to further utilize in the renderers.
    */
   public message: ListrTaskMessage = {}
-  /** Per-task options for the current renderer of the task. */
-  public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer>
   /** Current prompt instance or prompt error whenever the task is prompting. */
   public prompt: ListrTaskPrompt
   /** Parent task of the current task. */
-  public parent?: Task<Ctx, Renderer>
+  public parent?: Task<Ctx, any, any>
 
   /** Enable flag of this task. */
   private enabled: boolean
   /** User provided Task callback function to run. */
-  private taskFn: ListrTaskFn<Ctx, Renderer>
+  private taskFn: ListrTaskFn<Ctx, Renderer, FallbackRenderer>
   /** Marks the task as closed. This is different from finalized since this is not really related to task itself. */
   private closed: boolean
 
   constructor (
-    public listr: Listr<Ctx, any, any>,
-    public task: ListrTask<Ctx, any>,
+    public listr: Listr<Ctx, Renderer, FallbackRenderer>,
+    public task: ListrTask<Ctx, Renderer, FallbackRenderer>,
     public options: ListrOptions,
-    public rendererOptions: ListrGetRendererOptions<Renderer>
+    public rendererOptions: ListrGetRendererOptions<Renderer> | ListrGetRendererOptions<FallbackRenderer>,
+    /** Per-task options for the current renderer of the task. */
+    public rendererTaskOptions: ListrGetRendererTaskOptions<Renderer> | ListrGetRendererTaskOptions<FallbackRenderer>
   ) {
     super()
 
@@ -74,9 +78,6 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
 
     this.taskFn = task.task
     this.parent = listr.parentTask
-
-    // task options
-    this.rendererTaskOptions = task.options
   }
 
   /**
@@ -89,7 +90,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
 
     // cancel the subtasks if this has already failed
     if (this.hasSubtasks() && this.hasFailed()) {
-      for (const subtask of this.subtasks as Task<any, any>[]) {
+      for (const subtask of this.subtasks as Task<any, any, any>[]) {
         if (subtask.state === ListrTaskState.STARTED) {
           subtask.state$ = ListrTaskState.FAILED
         }
@@ -125,7 +126,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
   /**
    * Update or extend the current message of the Task and emit the neccassary events.
    */
-  set message$ (data: Task<Ctx, Renderer>['message']) {
+  set message$ (data: Task<Ctx, Renderer, FallbackRenderer>['message']) {
     this.message = { ...this.message, ...data }
 
     this.emit(ListrTaskEventType.MESSAGE, data)
@@ -260,7 +261,7 @@ export class Task<Ctx, Renderer extends ListrRendererFactory> extends ListrTaskE
   }
 
   /** Run the current task. */
-  public async run (context: Ctx, wrapper: TaskWrapper<Ctx, Renderer>): Promise<void> {
+  public async run (context: Ctx, wrapper: TaskWrapper<Ctx, Renderer, FallbackRenderer>): Promise<void> {
     const handleResult = (result: any): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask

@@ -1,10 +1,11 @@
-import { ListrEnvironmentVariables, ListrTaskState } from '@constants'
+import { ListrRendererSelection, ListrEnvironmentVariables, ListrTaskState } from '@constants'
 import type {
   ListrBaseClassOptions,
   ListrContext,
   ListrError,
   ListrGetRendererClassFromValue,
   ListrGetRendererOptions,
+  ListrGetRendererTaskOptions,
   ListrPrimaryRendererValue,
   ListrRenderer,
   ListrRendererFactory,
@@ -25,21 +26,24 @@ export class Listr<
   Renderer extends ListrRendererValue = ListrPrimaryRendererValue,
   FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
 > {
-  public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] = []
+  public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[] = []
   public errors: ListrError<Ctx>[] = []
   public ctx: Ctx
   public events: ListrEventManager
   public path: string[] = []
   public rendererClass: ListrRendererFactory
-  public rendererClassOptions: ListrGetRendererOptions<ListrRendererFactory>
+  public rendererClassOptions: ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer> | ListrGetRendererClassFromValue<FallbackRenderer>>
+  public rendererSelection: ListrRendererSelection
 
   private concurrency: Concurrency
   private renderer: ListrRenderer
 
   constructor (
-    public task: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[],
+    public task:
+    | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>
+    | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<Renderer>>[],
     public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>,
-    public parentTask?: Task<any, any>
+    public parentTask?: Task<any, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>
   ) {
     // assign over default options
     this.options = {
@@ -86,7 +90,8 @@ export class Listr<
     })
 
     this.rendererClass = renderer.renderer
-    this.rendererClassOptions = renderer.options
+    this.rendererClassOptions = renderer.options as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer> | ListrGetRendererClassFromValue<FallbackRenderer>>
+    this.rendererSelection = renderer.selection
 
     // parse and add tasks
     /* istanbul ignore next */
@@ -159,13 +164,31 @@ export class Listr<
 
   private generate (
     tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]
-  ): Task<Ctx, ListrGetRendererClassFromValue<Renderer>>[] {
+  ): Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[] {
     tasks = Array.isArray(tasks) ? tasks : [ tasks ]
 
-    return tasks.map((task) => new Task(this, task, this.options, { ...(this.rendererClassOptions as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer>>) }))
+    return tasks.map((task) => {
+      let rendererTaskOptions:
+      | ListrGetRendererTaskOptions<ListrGetRendererClassFromValue<Renderer>>
+      | ListrGetRendererTaskOptions<ListrGetRendererClassFromValue<FallbackRenderer>>
+
+      if (this.rendererSelection === ListrRendererSelection.PRIMARY) {
+        rendererTaskOptions = task.rendererOptions
+      } else if (this.rendererSelection === ListrRendererSelection.SECONDARY) {
+        rendererTaskOptions = task.fallbackRendererOptions
+      }
+
+      return new Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>(
+        this as Listr<Ctx, any, any>,
+        task,
+        this.options,
+        this.rendererClassOptions,
+        rendererTaskOptions
+      )
+    })
   }
 
-  private async runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>>): Promise<void> {
+  private async runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>): Promise<void> {
     if (!await task.check(this.ctx)) {
       return
     }

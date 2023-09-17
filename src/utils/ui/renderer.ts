@@ -1,3 +1,4 @@
+import { ListrRendererSelection } from '@constants'
 import type { ListrGetRendererOptions, ListrOptions, ListrRenderer, ListrRendererFactory, ListrRendererValue, SupportedRenderer } from '@interfaces'
 import { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
 import { assertFunctionOrSelf } from '@utils'
@@ -31,13 +32,21 @@ export function getRenderer<Renderer extends ListrRendererValue, FallbackRendere
   silentRendererCondition?: ListrOptions['silentRendererCondition']
 }): SupportedRenderer<ListrRendererFactory> {
   if (assertFunctionOrSelf(options?.silentRendererCondition)) {
-    return { renderer: getRendererClass('silent') }
+    return { renderer: getRendererClass('silent'), selection: ListrRendererSelection.SILENT }
   }
 
-  const r: SupportedRenderer<ListrRendererFactory> = { renderer: getRendererClass(options.renderer), options: options.rendererOptions }
+  const r: SupportedRenderer<ListrRendererFactory> = {
+    renderer: getRendererClass(options.renderer),
+    options: options.rendererOptions,
+    selection: ListrRendererSelection.PRIMARY
+  }
 
   if (!isRendererSupported(r.renderer) || assertFunctionOrSelf(options?.fallbackRendererCondition)) {
-    return { renderer: getRendererClass(options.fallbackRenderer), options: options.fallbackRendererOptions }
+    return {
+      renderer: getRendererClass(options.fallbackRenderer),
+      options: options.fallbackRendererOptions,
+      selection: ListrRendererSelection.SECONDARY
+    }
   }
 
   return r
