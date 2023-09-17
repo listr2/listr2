@@ -1,3 +1,15 @@
+# [7.0.0-beta.3](https://github.com/listr2/listr2/compare/v7.0.0-beta.2...v7.0.0-beta.3) (2023-09-17)
+
+
+### Performance Improvements
+
+* **prompts:** implement inquirer support ([313e885](https://github.com/listr2/listr2/commit/313e885ffeb0eab7e7bc91a53e157e0a63973ee9))
+
+
+### BREAKING CHANGES
+
+* **prompts:** This changes the signature for `task.prompt`, please read the `v7` migration guide to learn more about prompt adapters.
+
 # [7.0.0-beta.2](https://github.com/listr2/listr2/compare/v7.0.0-beta.1...v7.0.0-beta.2) (2023-09-09)
 
 
