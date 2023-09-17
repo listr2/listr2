@@ -1,10 +1,10 @@
 import Enquirer from 'enquirer'
 
-import { Listr, PromptError, delay } from '@root'
+import { Listr, ListrEnquirerPromptAdapter, PromptError, delay } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, KEYS, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
 
-describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, rendererOptions) => {
+describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput
 
   process.stdout.isTTY = true
@@ -25,7 +25,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, r
         {
           title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
-            const output = task.prompt({
+            const output = task.prompt(ListrEnquirerPromptAdapter).run({
               type: 'Input',
               message: 'Give me some input.'
             })
@@ -56,7 +56,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, r
         {
           title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
-            const output = task.prompt([
+            const output = task.prompt(ListrEnquirerPromptAdapter).run([
               {
                 name: 'first',
                 type: 'Input',
@@ -101,7 +101,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, r
         {
           title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
-            const output = task.prompt({
+            const output = task.prompt(ListrEnquirerPromptAdapter).run({
               type: 'Input',
               message: 'Give me some input.'
             })
@@ -172,7 +172,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, r
         {
           title: 'This task will execute.',
           task: async (ctx, task): Promise<void> => {
-            const output = task.prompt({
+            const output = task.prompt(ListrEnquirerPromptAdapter).run({
               type: 'Input',
               message: 'Give me some input.'
             })
@@ -208,7 +208,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt', (renderer, r
               .then(() => task.skip())
               .catch(() => {})
 
-            ctx.output = await task.prompt({
+            ctx.output = await task.prompt(ListrEnquirerPromptAdapter).run({
               type: 'Input',
               message: 'Give me some input.'
             })

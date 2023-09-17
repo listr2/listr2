@@ -1,4 +1,4 @@
-import { ListrLogger, ListrLogLevels } from '@utils'
+import { ListrEnquirerPromptAdapter, ListrLogger, ListrLogLevels } from '@utils'
 import { delay, Listr } from 'listr2'
 
 interface Ctx {
@@ -16,7 +16,7 @@ task = new Listr<Ctx>(
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<Record<PropertyKey, boolean>> =>
-        ctx.input = await task.prompt<{ test: boolean, other: boolean }>([
+        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<{ test: boolean, other: boolean }>([
           {
             type: 'Select',
             name: 'first',
@@ -68,7 +68,7 @@ task = new Listr<Ctx>(
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt<boolean>({ type: 'Toggle', message: 'Do you love me?' })
+        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<boolean>({ type: 'Toggle', message: 'Do you love me?' })
 
         // do something
         if (ctx.input === false) {
@@ -94,7 +94,7 @@ task = new Listr<Ctx>(
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt<boolean>({
+        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<boolean>({
           type: 'Select',
           message: 'Do you love me?',
           choices: [ 'test', 'test', 'test', 'test' ]
@@ -119,7 +119,7 @@ task = new Listr<Ctx>(
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt({
+        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run({
           type: 'Survey',
           message: 'Please rate your experience',
           scale: [
@@ -173,10 +173,9 @@ task = new Listr<Ctx>(
     {
       title: 'This task will execute.',
       task: async (ctx, task): Promise<void> => {
-        delay(1000)
-          .then(() => task.skip('Skip this task.'))
-          .catch(() => {})
-        ctx.input = await task.prompt({
+        void delay(1000).then(() => task.skip('Skip this task.'))
+
+        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run({
           type: 'Input',
           message: 'Give me some input.'
         })
@@ -209,18 +208,18 @@ task = new Listr<Ctx>(
     {
       title: 'This task will execute and cancel the prompts.',
       task: async (ctx, task): Promise<void> => {
-        delay(1000)
-          .then(() => task.cancelPrompt())
-          .catch(() => {})
-        ctx.input = await task.prompt({
+        const prompt = task.prompt(ListrEnquirerPromptAdapter)
+
+        void delay(1000).then(() => prompt.cancel())
+
+        ctx.input = await prompt.run({
           type: 'Input',
           message: 'Give me input before it disappears.'
         })
 
-        delay(1000)
-          .then(() => task.cancelPrompt())
-          .catch(() => {})
-        ctx.input = await task.prompt([
+        void delay(1000).then(() => prompt.cancel())
+
+        ctx.input = await prompt.run([
           {
             name: 'hello',
             type: 'Input',
@@ -233,10 +232,9 @@ task = new Listr<Ctx>(
           }
         ])
 
-        delay(1000)
-          .then(() => task.cancelPrompt({ throw: true }))
-          .catch(() => {})
-        ctx.input = await task.prompt({
+        void delay(1000).then(() => prompt.cancel({ throw: true }))
+
+        ctx.input = await prompt.run({
           type: 'Input',
           message: 'This input will throw an error :/.'
         })
@@ -245,10 +243,11 @@ task = new Listr<Ctx>(
     {
       title: 'Another task.',
       task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt({
+        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run({
           type: 'Input',
           message: 'Prompt afterwards.'
         })
+
         await delay(1000)
       }
     }

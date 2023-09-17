@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`default renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
 
-exports[`default renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
 
-exports[`default renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
+exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
   "[?25l",
   "◼ This task will execute.
@@ -46,11 +46,11 @@ exports[`default renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5
 ]
 `;
 
-exports[`default renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
 
-exports[`default renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
 
-exports[`default renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
+exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
   "[?25l",
   "◼ This task will execute.
@@ -102,11 +102,11 @@ exports[`default renderer: prompt should render multiple prompt: ZyUB9J2StmYMasX
 ]
 `;
 
-exports[`default renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `[]`;
 
-exports[`default renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `[]`;
 
-exports[`default renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
+exports[`default renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
 [
   "[?25l",
   "◼ This task will execute.
@@ -121,6 +121,10 @@ exports[`default renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bP
 
 [35m✖[39m [1mGive me some input.[22m [2m·[22m
 ",
+  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+
+[35m✖[39m [1mGive me some input.[22m [2m·[22m
+",
   "[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute.
 ",
   "[2K[1A[2K[G✖ Cancelled prompt.
@@ -132,11 +136,11 @@ exports[`default renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bP
 ]
 `;
 
-exports[`default renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `[]`;
 
-exports[`default renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `[]`;
 
-exports[`default renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
+exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
   "[?25l",
   "◼ This task will execute.
@@ -152,7 +156,7 @@ exports[`default renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbt
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G↓ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
 ◼ Another task.
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
@@ -175,11 +179,11 @@ exports[`default renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbt
 ]
 `;
 
-exports[`default renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
 
-exports[`default renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
 
-exports[`default renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
+exports[`default renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
   "[?25l",
   "◼ This task will execute.
@@ -221,9 +225,9 @@ exports[`default renderer: prompt should use the passed in enquirer: t3VXfqT0crs
 ]
 `;
 
-exports[`simple renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
+exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
 
-exports[`simple renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `
+exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `
 [
   "[?25l",
   "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
@@ -252,7 +256,7 @@ exports[`simple renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct59
 ]
 `;
 
-exports[`simple renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
+exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
   "❯ This task will execute.
 ",
@@ -264,9 +268,9 @@ exports[`simple renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct59
 ]
 `;
 
-exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
+exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
 
-exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `
+exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `
 [
   "[?25l",
   "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
@@ -306,7 +310,7 @@ exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXk
 ]
 `;
 
-exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
+exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
   "❯ This task will execute.
 ",
@@ -318,9 +322,9 @@ exports[`simple renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXk
 ]
 `;
 
-exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `[]`;
+exports[`simple renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `[]`;
 
-exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
+exports[`simple renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
 [
   "[?25l",
   "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
@@ -335,7 +339,7 @@ exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQ
 ]
 `;
 
-exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
+exports[`simple renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
 [
   "❯ This task will execute.
 ",
@@ -344,9 +348,9 @@ exports[`simple renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQ
 ]
 `;
 
-exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `[]`;
+exports[`simple renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `[]`;
 
-exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `
+exports[`simple renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `
 [
   "[?25l",
   "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
@@ -359,7 +363,7 @@ exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbte
 ]
 `;
 
-exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
+exports[`simple renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
   "❯ This task will execute.
 ",
@@ -375,9 +379,9 @@ exports[`simple renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbte
 ]
 `;
 
-exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
+exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
 
-exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `
+exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `
 [
   "[?25l",
   "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
@@ -406,7 +410,7 @@ exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsC
 ]
 `;
 
-exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
+exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
   "❯ This task will execute.
 ",
@@ -418,11 +422,11 @@ exports[`simple renderer: prompt should use the passed in enquirer: t3VXfqT0crsC
 ]
 `;
 
-exports[`test renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
 
-exports[`test renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
 
-exports[`test renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
+exports[`test renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -481,11 +485,11 @@ exports[`test renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973
 ]
 `;
 
-exports[`test renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
 
-exports[`test renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
 
-exports[`test renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
+exports[`test renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -560,16 +564,16 @@ exports[`test renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHs
 ]
 `;
 
-exports[`test renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `[]`;
 
-exports[`test renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
+exports[`test renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
 [
   "{"event":"MESSAGE","data":{"error":"Cancelled prompt."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
 
-exports[`test renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
+exports[`test renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -589,16 +593,18 @@ exports[`test renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRB
 ",
   "{"event":"PROMPT","data":"\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
+  "{"event":"STATE","data":"PROMPT_FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
   "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
 ]
 `;
 
-exports[`test renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `[]`;
 
-exports[`test renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `[]`;
 
-exports[`test renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
+exports[`test renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -612,13 +618,15 @@ exports[`test renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKn
 ",
   "{"event":"STATE","data":"SKIPPED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+  "{"event":"STATE","data":"PROMPT_FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[1G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\n","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+  "{"event":"PROMPT","data":"\\u001b[32m✔\\u001b[39m \\u001b[1mGive me some input.\\u001b[22m \\u001b[2m·\\u001b[22m ","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"PROMPT","data":"\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":true,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+  "{"event":"PROMPT","data":"\\n","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
   "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -631,11 +639,11 @@ exports[`test renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKn
 ]
 `;
 
-exports[`test renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
 
-exports[`test renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
 
-exports[`test renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
+exports[`test renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -694,11 +702,11 @@ exports[`test renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYR
 ]
 `;
 
-exports[`verbose renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
 
-exports[`verbose renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
 
-exports[`verbose renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
+exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
   "[STARTED] This task will execute.
 ",
@@ -719,11 +727,11 @@ exports[`verbose renderer: prompt should render a prompt: WdiO5CUfBLf5hMlp9sPct5
 ]
 `;
 
-exports[`verbose renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
 
-exports[`verbose renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
 
-exports[`verbose renderer: prompt should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
+exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
   "[STARTED] This task will execute.
 ",
@@ -750,16 +758,16 @@ exports[`verbose renderer: prompt should render multiple prompt: ZyUB9J2StmYMasX
 ]
 `;
 
-exports[`verbose renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-exit 1`] = `[]`;
 
-exports[`verbose renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
+exports[`verbose renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stderr 1`] = `
 [
   "[FAILED] Cancelled prompt.
 ",
 ]
 `;
 
-exports[`verbose renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
+exports[`verbose renderer: prompt -> enquirer should run cancel callback: HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w-stdout 1`] = `
 [
   "[STARTED] This task will execute.
 ",
@@ -770,11 +778,11 @@ exports[`verbose renderer: prompt should run cancel callback: HaNF6mQO2FvhOQe4bP
 ]
 `;
 
-exports[`verbose renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-exit 1`] = `[]`;
 
-exports[`verbose renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stderr 1`] = `[]`;
 
-exports[`verbose renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
+exports[`verbose renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
   "[STARTED] This task will execute.
 ",
@@ -791,11 +799,11 @@ exports[`verbose renderer: prompt should use skip enquirer: 8QRF9bQEdSKkH62yUKbt
 ]
 `;
 
-exports[`verbose renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
 
-exports[`verbose renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
 
-exports[`verbose renderer: prompt should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
+exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
   "[STARTED] This task will execute.
 ",

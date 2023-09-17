@@ -1,4 +1,4 @@
-import { Listr } from 'listr2'
+import { Listr, ListrEnquirerPromptAdapter } from 'listr2'
 
 interface Ctx {
   input?: {
@@ -12,7 +12,7 @@ const tasks = new Listr<Ctx>(
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt<{ first: boolean, second: boolean }>([
+        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<{ first: boolean, second: boolean }>([
           {
             type: 'Toggle',
             name: 'first',

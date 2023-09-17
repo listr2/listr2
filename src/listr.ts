@@ -170,6 +170,6 @@ export class Listr<
       return
     }
 
-    return new TaskWrapper(task, this.options).run(this.ctx)
+    return new TaskWrapper(task).run(this.ctx)
   }
 }

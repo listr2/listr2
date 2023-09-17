@@ -197,7 +197,7 @@ task = new Listr<Ctx>(
         new Observable((observer) => {
           observer.next('test')
 
-          delay(500)
+          void delay(500)
             .then(() => {
               observer.next('changed')
 
@@ -206,7 +206,6 @@ task = new Listr<Ctx>(
             .then(() => {
               observer.complete()
             })
-            .catch(() => {})
         })
     }
   ],

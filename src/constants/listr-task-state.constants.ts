@@ -25,5 +25,7 @@ export enum ListrTaskState {
   /** Task is currently trying to process a prompt. */
   PROMPT = 'PROMPT',
   /** Task has successfully processed the prompt. */
-  PROMPT_COMPLETED = 'PROMPT_COMPLETED'
+  PROMPT_COMPLETED = 'PROMPT_COMPLETED',
+  /** Task has failed to process the prompt. */
+  PROMPT_FAILED = 'PROMPT_FAILED'
 }

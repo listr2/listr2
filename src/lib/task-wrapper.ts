@@ -1,11 +1,11 @@
 import type { ListrErrorTypes } from '@constants'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrBaseClassOptions, ListrRendererFactory, ListrSubClassOptions, ListrTask } from '@interfaces'
-import { ListrError, PromptError } from '@interfaces'
+import type { ListrRendererFactory, ListrSubClassOptions, ListrTask } from '@interfaces'
+import { ListrError } from '@interfaces'
 import type { Task } from '@lib'
 import { Listr } from '@root'
-import type { PromptCancelOptions, PromptOptions } from '@utils'
-import { createPrompt, createWritable, splat } from '@utils'
+import type { ListrPromptAdapter } from '@utils'
+import { createWritable, splat } from '@utils'
 
 /**
  * The original Task that is defined by the user is wrapped with the TaskWrapper to provide additional functionality.
@@ -13,10 +13,7 @@ import { createPrompt, createWritable, splat } from '@utils'
  * @see {@link https://listr2.kilic.dev/task/task.html}
  */
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
-  constructor (
-    public task: Task<Ctx, ListrRendererFactory>,
-    private options: ListrBaseClassOptions<Ctx, any, any>
-  ) {}
+  constructor (public task: Task<Ctx, ListrRendererFactory>) {}
 
   get title (): string {
     return this.task.title
@@ -109,33 +106,29 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
   }
 
   /**
-   * Create a new prompt for getting user input through `enquirer`.
+   * Create a new prompt for getting user input through the prompt adapter.
+   * This will create a new prompt through the adapter if the task is not currently rendering a prompt or will return the active instance.
    *
-   * - `enquirer` is a optional peer dependency and has to be already installed separately.
-   *
-   * @see {@link https://listr2.kilic.dev/task/prompt.html}
-   */
-  public async prompt<T = any>(options: PromptOptions | PromptOptions<true>[]): Promise<T> {
-    return createPrompt.bind(this)(options, { ...this.options?.injectWrapper })
-  }
-
-  /* istanbul ignore next */
-  /**
-   * Cancel the current active prompt, if there is any.
+   * This part of the application requires optional peer dependencies, please refer to documentation.
    *
    * @see {@link https://listr2.kilic.dev/task/prompt.html}
    */
-  public cancelPrompt (options?: PromptCancelOptions): void {
-    if (!this.task.prompt || this.task.prompt instanceof PromptError) {
-      // If there's no prompt, can't cancel
-      return
+  public prompt<T extends ListrPromptAdapter = ListrPromptAdapter>(adapter: new (task: Task<Ctx, Renderer>, wrapper: TaskWrapper<Ctx, Renderer>) => T): T {
+    if (this.task.prompt) {
+      return this.task.prompt as T
     }
 
-    if (options?.throw) {
-      this.task.prompt.cancel()
-    } else {
-      this.task.prompt.submit()
-    }
+    const instance = new adapter(this.task, this)
+
+    this.task.prompt = instance
+
+    this.task.on(ListrTaskEventType.STATE, (state) => {
+      if (state === ListrTaskState.PROMPT_COMPLETED || state === ListrTaskState.PROMPT_FAILED) {
+        this.task.prompt = undefined
+      }
+    })
+
+    return instance
   }
 
   /**
@@ -147,12 +140,12 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory> {
     return createWritable((chunk: string): void => {
       switch (type) {
       case ListrTaskEventType.PROMPT:
-        this.promptOutput = chunk.toString()
+        this.promptOutput = chunk
 
         break
 
       default:
-        this.output = chunk.toString()
+        this.output = chunk
       }
     })
   }
