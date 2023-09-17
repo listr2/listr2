@@ -1,4 +1,4 @@
-import { delay, Listr } from 'listr2'
+import { delay, Listr, ListrEnquirerPromptAdapter } from 'listr2'
 
 interface Ctx {
   input: boolean
@@ -9,10 +9,12 @@ const tasks = new Listr<Ctx>(
     {
       title: 'This task will get your input.',
       task: async (ctx, task): Promise<void> => {
-        // Cancel the prompt after 5 seconds
-        void delay(5000).then(() => task.cancelPrompt())
+        const prompt = task.prompt(ListrEnquirerPromptAdapter)
 
-        ctx.input = await task.prompt({
+        // Cancel the prompt after 5 seconds
+        void delay(5000).then(() => prompt.cancel())
+
+        ctx.input = await prompt.run({
           type: 'Input',
           message: 'Give me input before it disappears.'
         })
