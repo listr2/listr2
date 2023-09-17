@@ -52,8 +52,6 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
     if (settings?.enquirer) {
       // injected enquirer
       enquirer = settings.enquirer
-    } else if (this.task.options?.injectWrapper?.enquirer) {
-      enquirer = this.task.options.injectWrapper.enquirer
     } else {
       try {
         enquirer = await import('enquirer').then((imported) => imported.default ? new imported.default() : new (imported as unknown as new () => Enquirer)())

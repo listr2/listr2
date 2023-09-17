@@ -1,5 +1,3 @@
-import type Enquirer from 'enquirer'
-
 import type {
   ListrPrimaryRendererOptions,
   ListrPrimaryRendererSelection,
@@ -97,16 +95,6 @@ export interface ListrOptions<Ctx = ListrContext> {
    * @defaultValue `false`
    */
   forceUnicode?: boolean
-  /**
-   * Inject data directly to TaskWrapper.
-   */
-  injectWrapper?: {
-    /**
-     * Inject an `enquirer` instance for using with prompts.
-     */
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    enquirer?: Enquirer<object>
-  }
 }
 
 /**

@@ -119,18 +119,21 @@ const tasks = new Listr<Ctx>(
     {
       title: 'Custom prompt',
       task: async (ctx, task): Promise<void> => {
-        ctx.testInput = await task.prompt(ListrEnquirerPromptAdapter).run({
-          type: 'editor',
-          message: 'Write something in this enquirer custom prompt.',
-          initial: 'Start writing!',
-          validate: (response): boolean | string => {
-            return true
-          }
-        })
+        ctx.testInput = await task.prompt(ListrEnquirerPromptAdapter).run(
+          {
+            type: 'editor',
+            message: 'Write something in this enquirer custom prompt.',
+            initial: 'Start writing!',
+            validate: (response): boolean | string => {
+              return true
+            }
+          },
+          { enquirer }
+        )
       }
     }
   ],
-  { concurrent: false, injectWrapper: { enquirer } }
+  { concurrent: false }
 )
 
 const ctx = await tasks.run()
