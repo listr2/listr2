@@ -2,11 +2,10 @@ import type { Observable } from 'rxjs'
 import type { Readable } from 'stream'
 
 import type { ListrContext } from './listr.interface'
-import type { PromptError } from './prompt-error.interface'
 import type { ListrGetRendererTaskOptions, ListrRendererFactory, ListrRendererValue } from './renderer.interface'
 import type { Task, TaskWrapper } from '@lib'
 import type { Listr } from '@root'
-import type { PromptInstance } from '@utils'
+import type { ListrPromptAdapter } from '@utils'
 
 /**
  * Defines the task, conditions and options to run a specific task in the Listr.
@@ -91,11 +90,8 @@ export type ListrTaskFn<Ctx, Renderer extends ListrRendererFactory> = (ctx: Ctx,
 
 /**
  * Tasks can have attached prompts to them.
- *
- * - Whenever the prompt is running this should be with full with the instance of current prompt.
- * - Whenever the prompt fails/cancelled it is tracked here as well due to some internal complication with `enquirer`.
  */
-export type ListrTaskPrompt = PromptInstance | PromptError
+export type ListrTaskPrompt = ListrPromptAdapter
 
 /**
  * Tasks can retry themselves when defined.
@@ -127,5 +123,4 @@ export interface ListrTaskMessage {
   paused?: number
 }
 
-export type { Task as ListrTaskObject }
-export type { TaskWrapper as ListrTaskWrapper }
+export type { Task as ListrTaskObject, TaskWrapper as ListrTaskWrapper }
