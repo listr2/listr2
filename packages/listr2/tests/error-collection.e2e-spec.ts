@@ -1,5 +1,5 @@
-import type { ListrOptions } from 'listr2'
-import { ListrErrorTypes, Listr } from 'listr2'
+import type { ListrOptions } from '@root'
+import { ListrErrorTypes, Listr } from '@root'
 
 describe('error collection', () => {
   it('should have the default behavior of minimal', async () => {

@@ -34,7 +34,9 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
-    "@inquirer/type": "^1.1.4",
-    "listr2": "workspace:*"
+    "listr2": "workspace:*",
+    "@listr2/manager": "workspace:*",
+    "@listr2/prompt-adapter-enquirer": "workspace:*",
+    "@listr2/prompt-adapter-inquirer": "workspace:*"
   }
 }

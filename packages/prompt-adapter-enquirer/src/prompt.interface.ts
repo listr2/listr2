@@ -3,7 +3,9 @@ import type Enquirer from 'enquirer'
 import type { WriteStream } from 'fs'
 import type { Writable } from 'stream'
 
-import type { Unionize } from '@interfaces'
+type Unionize<T extends Record<PropertyKey, unknown>> = {
+  [P in keyof T]: T[P]
+}[keyof T]
 
 interface EnquirerBasePromptOptions {
   message: string | (() => string) | (() => Promise<string>)

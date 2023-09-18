@@ -1,4 +1,3 @@
-import { Listr } from './listr'
 import type {
   ListrBaseClassOptions,
   ListrContext,
@@ -9,7 +8,8 @@ import type {
   ListrSecondaryRendererValue,
   ListrSubClassOptions,
   ListrTask
-} from '@interfaces'
+} from 'listr2'
+import { Listr } from 'listr2'
 
 /**
  * Creates a new Listr2 task manager.

@@ -1,7 +1,5 @@
 import type { CancelablePromise, Prompt } from '@inquirer/type'
-
-import { ListrPromptAdapter } from '../adapter'
-import { ListrTaskEventType, ListrTaskState } from '@constants'
+import { ListrPromptAdapter, ListrTaskEventType, ListrTaskState } from 'listr2'
 
 export class ListrInquirerPromptAdapter extends ListrPromptAdapter {
   private prompt: CancelablePromise<any>

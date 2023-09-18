@@ -1,8 +1,7 @@
-import type { ListrTask } from 'listr2'
-import { Listr } from 'listr2'
-
-import type { MockProcessOutput } from './utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from './utils'
+import type { ListrTask } from '@root'
+import { Listr } from '@root'
+import type { MockProcessOutput } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 
 describe('subtask nested handling', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

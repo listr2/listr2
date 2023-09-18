@@ -1,6 +1,6 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: [ '../.eslintrc.cjs' ],
+  extends: ['../.eslintrc.cjs'],
   rules: {
     '@typescript-eslint/no-empty-interface': 'off',
     'import/no-extraneous-dependencies': 'off',

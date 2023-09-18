@@ -21,7 +21,7 @@ export default defineUserConfig({
 
   plugins: [
     typedocPlugin({
-      entryPoints: ['../packages/listr2'],
+      entryPoints: ['../packages/listr2', '../packages/manager', '../packages/prompt-adapter-enquirer', '../packages/prompt-adapter-inquirer'],
       entryPointStrategy: 'packages',
       out: 'api'
     }),

@@ -33,19 +33,19 @@ The input adapter uses the beautiful and not very well-maintained (xD) [`enquire
 @tab npm
 
 ```bash
-npm i enquirer
+npm i @listr2/prompt-adapter-enquirer enquirer
 ```
 
 @tab yarn
 
 ```bash
-yarn add enquirer
+yarn add @listr2/prompt-adapter-enquirer enquirer
 ```
 
 @tab:active pnpm
 
 ```bash
-pnpm i enquirer
+pnpm i @listr2/prompt-adapter-enquirer enquirer
 ```
 
 :::
@@ -90,7 +90,7 @@ I have done a little trick here where, whenever you have just one prompt, then y
 
 :::
 
-@[code{3-} typescript{8,13}](../../examples/docs/task/prompts/enquirer-single.ts)
+@[code typescript{11,16}](../../examples/docs/task/prompts/enquirer-single.ts)
 
 ##### Multiple Prompts
 
@@ -100,7 +100,7 @@ If you want to pass in an array of prompts, be careful that you should name them
 
 :::
 
-@[code{3-} typescript{13-24}](../../examples/docs/task/prompts/enquirer-multiple.ts)
+@[code typescript{16-27}](../../examples/docs/task/prompts/enquirer-multiple.ts)
 
 ##### Use a Custom Prompt
 
@@ -147,7 +147,7 @@ console.log(ctx)
 
 Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel` method, you can cancel a prompt while it is still active.
 
-@[code{3-} typescript{13}](../../examples/docs/task/prompts/enquirer-cancel.ts)
+@[code typescript{14}](../../examples/docs/task/prompts/enquirer-cancel.ts)
 
 ### `inquirer`
 
@@ -159,34 +159,33 @@ Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel
 
 This library utilizes `@inquirer/prompts` instead of the legacy implementation `inquirer`.
 
+Please also add the necessary prompt package for using a prompt from `inquirer`, you can read more about it in their [documentation](https://github.com/SBoudrias/Inquirer.js/blob/master/packages/prompts/README.md).
+
 ::: tabs
 
 @tab npm
 
 ```bash
-npm i @inquirer/prompts
-npm i -D @inquirer/type
+npm i @listr2/prompt-adapter-inquirer @inquirer/prompts
 ```
 
 @tab yarn
 
 ```bash
-yarn add @inquirer/prompts
-yarn add -D @inquirer/type
+yarn add @listr2/prompt-adapter-inquirer @inquirer/prompts
 ```
 
 @tab:active pnpm
 
 ```bash
-pnpm i @inquirer/prompts
-pnpm i -D @inquirer/type
+pnpm i @listr2/prompt-adapter-inquirer @inquirer/prompts
 ```
 
 :::
 
 ##### Single Prompt
 
-@[code{3-} typescript{10}](../../examples/docs/task/prompts/inquirer-single.ts)
+@[code typescript{11}](../../examples/docs/task/prompts/inquirer-single.ts)
 
 #### Cancel a Prompt
 
@@ -198,7 +197,7 @@ Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel
 
 :::
 
-@[code{3-} typescript{15}](../../examples/docs/task/prompts/inquirer-cancel.ts)
+@[code typescript{16}](../../examples/docs/task/prompts/inquirer-cancel.ts)
 
 ## Renderer
 

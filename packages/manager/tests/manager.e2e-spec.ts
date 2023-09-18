@@ -1,7 +1,6 @@
-import { Manager } from 'listr2'
-
-import type { MockProcessOutput } from './utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from './utils'
+import { Manager } from '@root'
+import type { MockProcessOutput } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 
 describe('skip a task', () => {
   let manager: Manager<any, 'test'>

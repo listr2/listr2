@@ -1,6 +1,6 @@
+import { Listr } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
-import { Listr } from 'listr2'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput

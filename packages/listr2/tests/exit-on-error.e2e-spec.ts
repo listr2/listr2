@@ -1,7 +1,6 @@
-import { Listr } from 'listr2'
-
-import type { MockProcessOutput } from './utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from './utils'
+import { Listr } from '@root'
+import type { MockProcessOutput } from '@tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 
 describe('exit on error', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

@@ -133,7 +133,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
       }
     })
 
-    return instance
+    return this.task.prompt as T
   }
 
   /**

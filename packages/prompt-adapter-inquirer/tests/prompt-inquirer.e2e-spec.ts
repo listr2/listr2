@@ -1,7 +1,9 @@
 import { input } from '@inquirer/prompts'
+import { Listr, delay } from 'listr2'
+
+import { ListrInquirerPromptAdapter } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
 import { KEYS, RENDERER_SETUP, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
-import { Listr, ListrInquirerPromptAdapter, delay } from 'listr2'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput

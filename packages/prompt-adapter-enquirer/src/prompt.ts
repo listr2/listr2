@@ -1,9 +1,7 @@
 import type Enquirer from 'enquirer'
+import { ListrPromptAdapter, ListrTaskEventType, ListrTaskState, PromptError } from 'listr2'
 
 import type { EnquirerPromptCancelOptions, EnquirerPromptInstance, EnquirerPromptOptions, EnquirerPromptSettings } from './prompt.interface'
-import { ListrPromptAdapter } from '../adapter'
-import { ListrTaskEventType, ListrTaskState } from '@constants'
-import { PromptError } from '@interfaces'
 
 export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
   public error: PromptError

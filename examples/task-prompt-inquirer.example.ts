@@ -1,5 +1,6 @@
 import { input } from '@inquirer/prompts'
-import { delay, Listr, ListrInquirerPromptAdapter, ListrLogger, ListrLogLevels } from 'listr2'
+import { ListrInquirerPromptAdapter } from '@listr2/prompt-adapter-inquirer'
+import { delay, Listr, ListrLogger, ListrLogLevels } from 'listr2'
 
 interface Ctx {
   input: string

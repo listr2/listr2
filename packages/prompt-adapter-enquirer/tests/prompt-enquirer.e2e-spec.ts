@@ -1,7 +1,9 @@
+import Enquirer from 'enquirer'
+import { Listr, PromptError, delay } from 'listr2'
+
+import { ListrEnquirerPromptAdapter } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, KEYS, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
-import Enquirer from 'enquirer'
-import { Listr, ListrEnquirerPromptAdapter, PromptError, delay } from 'listr2'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput

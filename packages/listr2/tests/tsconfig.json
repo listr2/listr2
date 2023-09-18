@@ -15,10 +15,9 @@
       "@renderer": ["./src/renderer/index"],
       "@utils": ["./src/utils/index"],
       "@tests/utils": ["./tests/utils/index"],
-      "@root": ["./src/index"],
-      "listr2": ["./src/index"]
+      "@root": ["./src/index"]
     }
   },
-  "include": ["../src", "../tests", "../../../jest.config"],
+  "include": ["../src", "../tests"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,4 +1,4 @@
-import { Listr } from 'listr2'
+import { Listr } from '@root'
 
 describe('show inject context', () => {
   it('should return the context', async () => {

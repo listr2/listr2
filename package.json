@@ -20,13 +20,13 @@
     "docs"
   ],
   "scripts": {
-    "dev:start": "turbo dev:start",
-    "build": "turbo build",
-    "docs:build": "turbo docs:build",
-    "clean": "rimraf node_modules pnpm-lock.yaml",
-    "format": "turbo format",
-    "lint": "turbo lint",
-    "test": "turbo test"
+    "dev:start": "pnpm run --parallel -r dev:start",
+    "build": "pnpm run -r build",
+    "docs:build": "pnpm run -r docs:build",
+    "clean": "rimraf node_modules pnpm-lock.yaml packages/*/node_modules examples/node_modules docs/node_modules",
+    "format": "pnpm run --parallel -r format",
+    "lint": "pnpm run --parallel -r lint",
+    "test": "pnpm run --parallel -r test"
   },
   "simple-git-hooks": {
     "pre-commit": "[ -n \"$SKIP_GIT_HOOKS\" ] && true || pnpm exec lint-staged",
@@ -57,7 +57,6 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "tsup": "7.2.0",
-    "turbo": "^1.10.14",
     "typescript": "^5.2.2",
     "ts-jest": "^29.1.1",
     "@jest/globals": "^29.7.0",
