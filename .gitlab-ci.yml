@@ -2,6 +2,7 @@
 stages:
   - install
   - build
+  - test
   - docs
   - publish
 
@@ -32,6 +33,7 @@ include:
     file: /templates/v2/github-status.gitlab-ci.yml
 
 test:
+  stage: test
   parallel:
     matrix:
       - NODE_VERSION: 20-alpine
