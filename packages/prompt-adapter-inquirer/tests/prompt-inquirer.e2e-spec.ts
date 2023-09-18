@@ -3,7 +3,7 @@ import { Listr, delay } from 'listr2'
 
 import { ListrInquirerPromptAdapter } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
-import { KEYS, RENDERER_SETUP, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import { KEYS, RENDERER_SETUP, expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput
@@ -45,6 +45,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
     ).run()
 
     expect(ctx.output).toBe('test')
+    expectProcessOutputToMatchSnapshot(output, 'zTXlHkwllFGUiGXlWztXAeZMvIleiEFF')
   })
 
   it('should be able to cancel a prompt', async () => {
@@ -77,5 +78,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
     }
 
     expect(err).toStrictEqual(new Error('Prompt was canceled'))
+    expectProcessOutputToMatchSnapshot(output, 'AABZsFFYgZITgdWMQdLGmxABwlBaXdiv')
   })
 })

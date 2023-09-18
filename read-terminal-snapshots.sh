@@ -4,7 +4,9 @@ echo "Read terminal ANSI snapshots with cat."
 SEPERATOR="------------------------"
 
 if [ -z "$1" ]; then
-  FILE=tests/__snapshots__/*.snap
+  echo "You should pass an snapshot file."
+
+  exit 127
 else
   FILE=$1
 fi
