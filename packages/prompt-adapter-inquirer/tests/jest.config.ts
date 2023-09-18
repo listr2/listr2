@@ -10,7 +10,6 @@ const config: JestConfigWithTsJest = {
   rootDir: '../',
   setupFiles: [ '<rootDir>/tests/jest.setup.ts' ],
   testRegex: '(/tests/.*|/src/.*).(e2e-)?spec.tsx?$',
-
   extensionsToTreatAsEsm: [ '.ts' ],
   transform: {
     '^.+\\.tsx?$': [

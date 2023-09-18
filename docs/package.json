@@ -19,7 +19,7 @@
     "dev:start": "vuepress dev",
     "dev:start:clean": "vuepress dev --clean-cache",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx"
+    "lint": "eslint --ext .ts,.js,.tsx,.jsx .vuepress"
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [

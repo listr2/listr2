@@ -12,7 +12,8 @@
     "url": "https://cenk.kilic.dev"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
   },
   "workspaces": [
     "packages/*",

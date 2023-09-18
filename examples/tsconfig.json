@@ -5,7 +5,8 @@
     "rootDir": ".",
     "baseUrl": ".",
     "module": "ESNext",
-    "target": "ESNext"
+    "target": "ESNext",
+    "paths": {}
   },
   "include": ["./"],
   "exclude": ["node_modules", "dist"]
