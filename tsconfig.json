@@ -6,18 +6,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
-    "outDir": "./dist",
-    "rootDir": "./src/",
-    "baseUrl": "./src/",
-    "paths": {
-      "@constants": ["./constants/index"],
-      "@interfaces": ["./interfaces/index"],
-      "@lib": ["./lib/index"],
-      "@presets": ["./presets/index"],
-      "@renderer": ["./renderer/index"],
-      "@utils": ["./utils/index"],
-      "@root": ["./index"]
-    }
+    "paths": {}
   },
   "ts-node": {
     "esm": true,
@@ -27,6 +16,6 @@
     },
     "swc": true
   },
-  "exclude": ["node_modules"],
-  "include": ["src/**/*"]
+  "include": ["./src/"],
+  "exclude": ["node_modules"]
 }

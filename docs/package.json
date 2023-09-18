@@ -1,0 +1,45 @@
+{
+  "name": "@listr2/docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Documentation for listr2.",
+  "license": "MIT",
+  "repository": "https://github.com/listr2/listr2",
+  "type": "module",
+  "author": {
+    "name": "Cenk Kilic",
+    "email": "cenk@kilic.dev",
+    "url": "https://cenk.kilic.dev"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "docs:build": "vuepress build && vuepress build",
+    "dev:start": "vuepress dev",
+    "dev:start:clean": "vuepress dev --clean-cache",
+    "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
+    "lint": "eslint --ext .ts,.js,.tsx,.jsx"
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx,jsx,spec.ts}": [
+      "prettier --log-level warn --write",
+      "eslint --fix"
+    ],
+    "*.{json,md}": [
+      "prettier --log-level warn --write"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "listr2": "workspace:*",
+    "typedoc": "^0.25.1",
+    "typedoc-plugin-markdown": "^3.16.0",
+    "@vuepress/client": "2.0.0-beta.67",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.67",
+    "vue": "^3.3.4",
+    "vuepress": "2.0.0-beta.67",
+    "vuepress-plugin-typedoc": "0.13.0",
+    "vuepress-theme-hope": "2.0.0-beta.237"
+  }
+}

@@ -1,5 +1,4 @@
-import { ListrEnquirerPromptAdapter, ListrLogger, ListrLogLevels } from '@utils'
-import { delay, Listr } from 'listr2'
+import { delay, Listr, ListrEnquirerPromptAdapter, ListrLogger, ListrLogLevels } from 'listr2'
 
 interface Ctx {
   input: boolean | Record<PropertyKey, boolean>

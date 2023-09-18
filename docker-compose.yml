@@ -7,10 +7,6 @@ services:
       PROXY_WORKSPACE_ONLY: 'true'
       SERVICE_0_CWD: .
       SERVICE_0_COMMAND: pnpm run dev:start
-      SERVICE_0_NAME: listr
-      SERVICE_1_CWD: .
-      SERVICE_1_COMMAND: pnpm run docs:dev:start
-      SERVICE_1_NAME: docs
     ports:
       - 8080:8080
       - 9229:9229

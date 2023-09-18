@@ -9,7 +9,7 @@ export default defineUserConfig({
   base: '/',
 
   // now any file with `.snippet.md` extension will not be rendered as a page
-  pagePatterns: [ '**/*.md', '!format.md', '!*.snippet.md', '!.vuepress', '!node_modules' ],
+  pagePatterns: ['**/*.md', '!format.md', '!*.snippet.md', '!.vuepress', '!node_modules'],
 
   locales: {
     '/': {
@@ -21,12 +21,9 @@ export default defineUserConfig({
 
   plugins: [
     typedocPlugin({
-      entryPoints: [ './src/index.ts' ],
-      tsconfig: './tsconfig.build.json',
-      hideInPageTOC: true,
-      readme: 'none',
-      categorizeByGroup: false,
-      sort: [ 'source-order' ]
+      entryPoints: ['../packages/listr2'],
+      entryPointStrategy: 'packages',
+      out: 'api'
     }),
     docsearchPlugin({
       appId: '4G64M4W5QP',
