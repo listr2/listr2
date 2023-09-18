@@ -123,17 +123,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
       return this.task.prompt as T
     }
 
-    const instance = new adapter(this.task, this)
-
-    this.task.prompt = instance
-
-    this.task.on(ListrTaskEventType.STATE, (state) => {
-      if (state === ListrTaskState.PROMPT_COMPLETED || state === ListrTaskState.PROMPT_FAILED) {
-        this.task.prompt = undefined
-      }
-    })
-
-    return this.task.prompt as T
+    return new adapter(this.task, this)
   }
 
   /**

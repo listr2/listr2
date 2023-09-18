@@ -16,16 +16,20 @@
 
 ![Demo](https://media.githubusercontent.com/media/listr2/listr2/master/examples/renderer-default.gif)
 
+You can find the documentation source code in [here](https://github.com/listr2/listr2/tree/master/docs).
+
 ## Packages
 
-- [`listr2`](https://github.com/listr2/listr2/tree/master/packages/listr2)
+[`listr2`](https://github.com/listr2/listr2/tree/master/packages/listr2)
+
+### Extensions
+
 - [`@listr2/manager`](https://github.com/listr2/listr2/tree/master/packages/manager)
+
+### Prompt Adapters
+
 - [`@listr2/prompt-adapter-enquirer`](https://github.com/listr2/listr2/tree/master/packages/prompt-adapter-enquirer)
 - [`@listr2/prompt-adapter-inquirer`](https://github.com/listr2/listr2/tree/master/packages/prompt-adapter-inquirer)
-
-## Documentation
-
-You can find the documentation hosted at the [website](https://listr2.kilic.dev) in [here](https://github.com/listr2/listr2/tree/master/docs).
 
 ## Examples
 
