@@ -1,5 +1,4 @@
 import { execaCommand as command } from 'execa'
-
 import { Listr } from 'listr2'
 
 const tasks = new Listr([

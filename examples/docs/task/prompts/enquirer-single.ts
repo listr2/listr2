@@ -1,4 +1,5 @@
-import { Listr, ListrEnquirerPromptAdapter } from 'listr2'
+import { ListrEnquirerPromptAdapter } from '@listr2/prompt-adapter-enquirer'
+import { Listr } from 'listr2'
 
 interface Ctx {
   input: boolean

@@ -9,4 +9,4 @@ order: -10
 
 <!-- more -->
 
-<!-- @include: ../../CHANGELOG.md -->
+<!-- @include: ../../packages/listr2/CHANGELOG.md -->

@@ -1,7 +1,6 @@
 import { spawn } from 'child_process'
-import type { Readable } from 'stream'
-
 import { Listr } from 'listr2'
+import type { Readable } from 'stream'
 
 const tasks = new Listr(
   [

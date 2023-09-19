@@ -1,0 +1,42 @@
+{
+  "name": "@listr2/examples",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Examples for listr2.",
+  "license": "MIT",
+  "repository": "https://github.com/listr2/listr2",
+  "type": "module",
+  "author": {
+    "name": "Cenk Kilic",
+    "email": "cenk@kilic.dev",
+    "url": "https://cenk.kilic.dev"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "start": "NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --loader ./loader.js' node",
+    "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
+    "lint": "eslint --ext .ts,.js,.tsx,.jsx ."
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx,jsx,spec.ts}": [
+      "prettier --log-level warn --write",
+      "eslint --fix"
+    ],
+    "*.{json,md}": [
+      "prettier --log-level warn --write"
+    ]
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^3.1.1",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "listr2": "workspace:*",
+    "@listr2/manager": "workspace:*",
+    "@listr2/prompt-adapter-enquirer": "workspace:*",
+    "@listr2/prompt-adapter-inquirer": "workspace:*"
+  }
+}

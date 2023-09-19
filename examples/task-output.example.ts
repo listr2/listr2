@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs'
-
 import { delay, Listr, ListrLogger, ListrLogLevels } from 'listr2'
+import { Observable } from 'rxjs'
 
 interface Ctx {
   skip: boolean
