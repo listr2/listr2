@@ -1,3 +1,10 @@
+## @listr2/prompt-adapter-inquirer [1.0.1](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@1.0.0...@listr2/prompt-adapter-inquirer@1.0.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* update badges ([fcd0915](https://github.com/listr2/listr2/commit/fcd0915a30952959140c27b7f82a63cb4eb7fdd5))
+
 # @listr2/prompt-adapter-inquirer 1.0.0 (2023-09-19)
 
 
