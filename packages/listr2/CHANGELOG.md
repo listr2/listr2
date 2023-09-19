@@ -1,3 +1,10 @@
+# listr2 [7.0.0-beta.4](https://github.com/listr2/listr2/compare/listr2@v7.0.0-beta.3...listr2@7.0.0-beta.4) (2023-09-19)
+
+
+### Bug Fixes
+
+* force publish with new tagging method ([b4ae099](https://github.com/listr2/listr2/commit/b4ae099dcd7be3256532f2805cb93a047da981e8))
+
 # listr2 1.0.0-beta.1 (2023-09-19)
 
 # [7.0.0-beta.3](https://github.com/listr2/listr2/compare/v7.0.0-beta.2...v7.0.0-beta.3) (2023-09-17)
