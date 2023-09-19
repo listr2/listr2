@@ -26,6 +26,9 @@
     "email": "cenk@kilic.dev",
     "url": "https://cenk.kilic.dev"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=16.0.0"
   },
