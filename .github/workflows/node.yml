@@ -1,14 +1,12 @@
 ---
 name: node-actions
 on:
-  pull_request_target:
+  push:
+    branches:
+      - '*'
+  pull_request:
     branches:
       - master
-      - next
-      - next-major
-      - alpha
-      - beta
-      - rc
 
 jobs:
   lint:
