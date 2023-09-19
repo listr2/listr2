@@ -1,3 +1,18 @@
+# @listr2/manager [1.0.0-beta.2](https://github.com/listr2/listr2/compare/@listr2/manager@1.0.0-beta.1...@listr2/manager@1.0.0-beta.2) (2023-09-19)
+
+
+### Bug Fixes
+
+* **npm:** add publish config public ([a186982](https://github.com/listr2/listr2/commit/a1869821c94a3b73018a07ba7b721e3523575946))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 7.0.0-beta.5
+
 # @listr2/manager 1.0.0-beta.1 (2023-09-19)
 
 
