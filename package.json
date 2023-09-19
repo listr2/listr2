@@ -24,10 +24,10 @@
     "clean": "rimraf node_modules pnpm-lock.yaml packages/*/node_modules examples/node_modules docs/node_modules",
     "dev:start": "pnpm run --parallel -r dev:start",
     "build": "pnpm run -r build",
-    "docs:build": "pnpm run -r docs:build",
+    "docs:build": "pnpm run --filter docs docs:build",
     "format": "pnpm run --parallel -r format",
     "lint": "pnpm run --parallel -r lint",
-    "test": "pnpm run --parallel -r test"
+    "test": "pnpm run --sequential -r test"
   },
   "simple-git-hooks": {
     "pre-commit": "[ -n \"$SKIP_GIT_HOOKS\" ] && true || pnpm exec lint-staged",
