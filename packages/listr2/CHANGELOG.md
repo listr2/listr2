@@ -1,3 +1,27 @@
+# listr2 1.0.0 (2023-09-19)
+
+
+### Bug Fixes
+
+* force publish with new tagging method ([b4ae099](https://github.com/listr2/listr2/commit/b4ae099dcd7be3256532f2805cb93a047da981e8))
+* **npm:** add publish config public ([a186982](https://github.com/listr2/listr2/commit/a1869821c94a3b73018a07ba7b721e3523575946))
+* **prompts:** move prompt initiation to the adapter to lazy initiate ([952ec8c](https://github.com/listr2/listr2/commit/952ec8ca475614c7d4bfcb8bace05494678e4083))
+
+
+### Performance Improvements
+
+* convert to mono repo initially ([6d80072](https://github.com/listr2/listr2/commit/6d80072697c4b24a15280057f9bc1dbdb8dffa84))
+* **repository:** break in to monorepo ([d830c33](https://github.com/listr2/listr2/commit/d830c338ae8f0ee9e65d4102fc067ffb3e5ac820))
+
+
+### BREAKING CHANGES
+
+* **repository:** This commit breaks the repository in to a monorepo.
+
+Projects that use `enquirer` requires to install the complimentary adapter `@listr2/prompt-adapter-enquirer`. Since there was a breaking change with this anyway it should be another hassle to tackle.
+Projects that use _Manager_ requires to install the complimentary package `@listr2/manager`.
+* Converted to Monorepo for modularizing stuff.
+
 # listr2 [7.0.0-beta.5](https://github.com/listr2/listr2/compare/listr2@7.0.0-beta.4...listr2@7.0.0-beta.5) (2023-09-19)
 
 
