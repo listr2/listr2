@@ -1,34 +1,27 @@
 # listr2 1.0.0-beta.1 (2023-09-19)
 
+# [7.0.0-beta.3](https://github.com/listr2/listr2/compare/v7.0.0-beta.2...v7.0.0-beta.3) (2023-09-17)
 
 ### Bug Fixes
 
-* **prompts:** move prompt initiation to the adapter to lazy initiate ([952ec8c](https://github.com/listr2/listr2/commit/952ec8ca475614c7d4bfcb8bace05494678e4083))
-
-
-### Performance Improvements
-
-* convert to mono repo initially ([6d80072](https://github.com/listr2/listr2/commit/6d80072697c4b24a15280057f9bc1dbdb8dffa84))
-* **repository:** break in to monorepo ([d830c33](https://github.com/listr2/listr2/commit/d830c338ae8f0ee9e65d4102fc067ffb3e5ac820))
-
-
-### BREAKING CHANGES
-
-* **repository:** This commit breaks the repository in to a monorepo.
-
-Projects that use `enquirer` requires to install the complimentary adapter `@listr2/prompt-adapter-enquirer`. Since there was a breaking change with this anyway it should be another hassle to tackle.
-Projects that use _Manager_ requires to install the complimentary package `@listr2/manager`.
-* Converted to Monorepo for modularizing stuff.
-
-# [7.0.0-beta.3](https://github.com/listr2/listr2/compare/v7.0.0-beta.2...v7.0.0-beta.3) (2023-09-17)
+- **prompts:** move prompt initiation to the adapter to lazy initiate ([952ec8c](https://github.com/listr2/listr2/commit/952ec8ca475614c7d4bfcb8bace05494678e4083))
 
 ### Performance Improvements
 
 - **prompts:** implement inquirer support ([313e885](https://github.com/listr2/listr2/commit/313e885ffeb0eab7e7bc91a53e157e0a63973ee9))
 
+* convert to mono repo initially ([6d80072](https://github.com/listr2/listr2/commit/6d80072697c4b24a15280057f9bc1dbdb8dffa84))
+* **repository:** break in to monorepo ([d830c33](https://github.com/listr2/listr2/commit/d830c338ae8f0ee9e65d4102fc067ffb3e5ac820))
+
 ### BREAKING CHANGES
 
 - **prompts:** This changes the signature for `task.prompt`, please read the `v7` migration guide to learn more about prompt adapters.
+
+* **repository:** This commit breaks the repository in to a monorepo.
+
+Projects that use `enquirer` requires to install the complimentary adapter `@listr2/prompt-adapter-enquirer`. Since there was a breaking change with this anyway it should be another hassle to tackle. Projects that use _Manager_ requires to install the complimentary package `@listr2/manager`.
+
+- Converted to Monorepo for modularizing stuff.
 
 # [7.0.0-beta.2](https://github.com/listr2/listr2/compare/v7.0.0-beta.1...v7.0.0-beta.2) (2023-09-09)
 
