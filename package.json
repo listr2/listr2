@@ -27,7 +27,7 @@
     "docs:build": "pnpm run --filter docs docs:build",
     "format": "pnpm run --parallel -r format",
     "lint": "pnpm run --parallel -r lint",
-    "test": "pnpm run --sequential -r test"
+    "test": "pnpm run --parallel -r test"
   },
   "simple-git-hooks": {
     "pre-commit": "[ -n \"$SKIP_GIT_HOOKS\" ] && true || pnpm exec lint-staged",
