@@ -73,7 +73,5 @@
   "devDependencies": {
     "listr2": "workspace:*"
   },
-  "peerDependencies": {
-    "listr2": ">= 7"
-  }
+  "peerDependencies": {}
 }

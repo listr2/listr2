@@ -78,7 +78,6 @@
     "listr2": "workspace:*"
   },
   "peerDependencies": {
-    "@inquirer/prompts": ">= 3 < 4",
-    "listr2": ">= 7"
+    "@inquirer/prompts": ">= 3 < 4"
   }
 }

@@ -75,7 +75,6 @@
     "enquirer": "^2.4.1"
   },
   "peerDependencies": {
-    "listr2": ">= 7",
     "enquirer": ">= 2.3.0 < 3"
   }
 }
