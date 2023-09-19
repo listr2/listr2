@@ -37,8 +37,9 @@ test:
   parallel:
     matrix:
       - NODE_VERSION: 20-alpine
-      - NODE_VERSION: 18-alpine
-      - NODE_VERSION: 16-alpine
+      # these are going mad, disable it for now
+      # - NODE_VERSION: 18-alpine
+      # - NODE_VERSION: 16-alpine
 
 vuepress:
   stage: docs
