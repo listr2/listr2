@@ -185,7 +185,7 @@ pnpm i @listr2/prompt-adapter-inquirer @inquirer/prompts
 
 ##### Single Prompt
 
-@[code typescript{11}](../../examples/docs/task/prompts/inquirer-single.ts)
+@[code typescript{12}](../../examples/docs/task/prompts/inquirer-single.ts)
 
 #### Cancel a Prompt
 
@@ -197,7 +197,7 @@ Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel
 
 :::
 
-@[code typescript{16}](../../examples/docs/task/prompts/inquirer-cancel.ts)
+@[code typescript{17}](../../examples/docs/task/prompts/inquirer-cancel.ts)
 
 ## Renderer
 
