@@ -9,7 +9,7 @@ export default defineUserConfig({
   base: '/',
 
   // now any file with `.snippet.md` extension will not be rendered as a page
-  pagePatterns: ['**/*.md', '!format.md', '!*.snippet.md', '!.vuepress', '!node_modules'],
+  pagePatterns: [ '**/*.md', '!format.md', '!*.snippet.md', '!.vuepress', '!node_modules' ],
 
   locales: {
     '/': {
@@ -21,7 +21,7 @@ export default defineUserConfig({
 
   plugins: [
     typedocPlugin({
-      entryPoints: ['../packages/listr2', '../packages/manager', '../packages/prompt-adapter-enquirer', '../packages/prompt-adapter-inquirer'],
+      entryPoints: [ '../packages/listr2', '../packages/manager', '../packages/prompt-adapter-enquirer', '../packages/prompt-adapter-inquirer' ],
       entryPointStrategy: 'packages',
       out: 'api'
     }),
