@@ -50,8 +50,10 @@ vuepress:
       - ./docs/.vuepress/dist
   needs:
     - install
+    - build
   dependencies:
     - install
+    - build
   only:
     refs:
       - master
@@ -71,7 +73,6 @@ docker-build-docs:
     DOCKER_IMAGE_TAGS: latest
   needs:
     - vuepress
-    - build
   dependencies:
     - vuepress
   only:
