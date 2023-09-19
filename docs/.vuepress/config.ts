@@ -23,6 +23,7 @@ export default defineUserConfig({
     typedocPlugin({
       entryPoints: [ '../packages/listr2', '../packages/manager', '../packages/prompt-adapter-enquirer', '../packages/prompt-adapter-inquirer' ],
       entryPointStrategy: 'packages',
+      tsconfig: 'tsconfig.json',
       out: 'api'
     }),
     docsearchPlugin({

@@ -2,8 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": ".",
-    "baseUrl": ".",
+    "rootDir": ".vuepress/",
+    "baseUrl": ".vuepress/",
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "NodeNext",

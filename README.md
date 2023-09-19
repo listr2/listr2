@@ -12,11 +12,11 @@
 
 **[Read the documentation...](https://listr2.kilic.dev)**
 
+You can find the documentation source code in [here](https://github.com/listr2/listr2/tree/master/docs).
+
 ## Demo
 
 ![Demo](https://media.githubusercontent.com/media/listr2/listr2/master/examples/renderer-default.gif)
-
-You can find the documentation source code in [here](https://github.com/listr2/listr2/tree/master/docs).
 
 ## Packages
 
