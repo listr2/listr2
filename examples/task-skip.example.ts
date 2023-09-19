@@ -1,5 +1,4 @@
-import { ListrLogger, ListrLogLevels } from '@utils'
-import { Listr } from 'listr2'
+import { Listr, ListrLogger, ListrLogLevels } from 'listr2'
 
 interface Ctx {
   skip: boolean

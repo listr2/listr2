@@ -1,0 +1,520 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default renderer: output should have persistent output on task fail with bottom bar false: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-exit 1`] = `[]`;
+
+exports[`default renderer: output should have persistent output on task fail with bottom bar false: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-stderr 1`] = `[]`;
+
+exports[`default renderer: output should have persistent output on task fail with bottom bar false: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G✖ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G✖ This task has failed
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✖ This task has failed
+  › I will push an output. [2]
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should have persistent output on task fail with bottom bar true: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-exit 1`] = `[]`;
+
+exports[`default renderer: output should have persistent output on task fail with bottom bar true: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-stderr 1`] = `[]`;
+
+exports[`default renderer: output should have persistent output on task fail with bottom bar true: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute.
+
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✖ This task has failed
+
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "✖ This task has failed
+
+› I will push an output. [2]
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should have persistent output: oYHBlOYGg8juKRkaqigY617eyLbGMuDd-exit 1`] = `[]`;
+
+exports[`default renderer: output should have persistent output: oYHBlOYGg8juKRkaqigY617eyLbGMuDd-stderr 1`] = `[]`;
+
+exports[`default renderer: output should have persistent output: oYHBlOYGg8juKRkaqigY617eyLbGMuDd-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+  › I will push an output. [2]
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should indent long multiline output with persistent output: j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-exit 1`] = `[]`;
+
+exports[`default renderer: output should indent long multiline output with persistent output: j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-stderr 1`] = `[]`;
+
+exports[`default renderer: output should indent long multiline output with persistent output: j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › This is along long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    multi line output.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+  › This is along long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    multi line output.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+  › This is along long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long long long long long long
+    long long long long long long long long long long
+    multi line output.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should limit output to bottom bar persistently: d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-exit 1`] = `[]`;
+
+exports[`default renderer: output should limit output to bottom bar persistently: d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-stderr 1`] = `[]`;
+
+exports[`default renderer: output should limit output to bottom bar persistently: d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+› I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [1]
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to bottom bar 2 times at most and delete the prior tasks output when finished: NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar 2 times at most and delete the prior tasks output when finished: NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar 2 times at most and delete the prior tasks output when finished: NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.
+
+› I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.
+
+› I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ This task will execute.
+
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+
+› I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+
+› I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will execute.
+
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will execute.
+
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+✔ This task will execute.
+
+› I will push an output. [2]
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to bottom bar from task with no title persistently: iI52S3WPytorU9EZKPar2AiBrLAZTVut-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar from task with no title persistently: iI52S3WPytorU9EZKPar2AiBrLAZTVut-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar from task with no title persistently: iI52S3WPytorU9EZKPar2AiBrLAZTVut-stdout 1`] = `
+[
+  "[?25l",
+  "
+",
+  "[2K[1A[2K[G› I will push an output. [0]
+",
+  "[2K[1A[2K[G› I will push an output. [0]
+› I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G› I will push an output. [0]
+› I will push an output. [1]
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "› I will push an output. [0]
+› I will push an output. [1]
+› I will push an output. [2]
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to bottom bar from task with no title: JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar from task with no title: JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar from task with no title: JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP-stdout 1`] = `
+[
+  "[?25l",
+  "
+",
+  "[2K[1A[2K[G› I will push an output. [0]
+",
+  "[2K[1A[2K[G› I will push an output. [0]
+› I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G› I will push an output. [0]
+› I will push an output. [1]
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G
+",
+  "[2K[1A[2K[G",
+  "
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to bottom bar persistently: HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar persistently: HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar persistently: HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+› I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+› I will push an output. [1]
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+
+› I will push an output. [0]
+› I will push an output. [1]
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+  "✔ This task will execute.
+
+› I will push an output. [0]
+› I will push an output. [1]
+› I will push an output. [2]
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to bottom bar: 767BkeBTfR1lrS2ANYYH7CLWPATxqyat-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar: 767BkeBTfR1lrS2ANYYH7CLWPATxqyat-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to bottom bar: 767BkeBTfR1lrS2ANYYH7CLWPATxqyat-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+› I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+› I will push an output. [0]
+› I will push an output. [1]
+› I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to nowhere since outputBar and bottomBar is false: ojurBbWZEPenKVeoFcKksBeMbaYWmbGO-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to nowhere since outputBar and bottomBar is false: ojurBbWZEPenKVeoFcKksBeMbaYWmbGO-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to nowhere since outputBar and bottomBar is false: ojurBbWZEPenKVeoFcKksBeMbaYWmbGO-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to output bar with all output: LGtvNwRVWZWJQuucaYcVDSrjspKwNnVF-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to output bar with all output: LGtvNwRVWZWJQuucaYcVDSrjspKwNnVF-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to output bar with all output: LGtvNwRVWZWJQuucaYcVDSrjspKwNnVF-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+  › I will push an output. [1]
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to output bar with last 2 output: hXDsrvlxponbYraVVuHSWACjDbyUBXkb-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to output bar with last 2 output: hXDsrvlxponbYraVVuHSWACjDbyUBXkb-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to output bar with last 2 output: hXDsrvlxponbYraVVuHSWACjDbyUBXkb-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should output to output bar with last output: qmiOeXTUyStaFeRgDYVlGoPJMVDbRRuC-exit 1`] = `[]`;
+
+exports[`default renderer: output should output to output bar with last output: qmiOeXTUyStaFeRgDYVlGoPJMVDbRRuC-stderr 1`] = `[]`;
+
+exports[`default renderer: output should output to output bar with last output: qmiOeXTUyStaFeRgDYVlGoPJMVDbRRuC-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [0]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [1]
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  › I will push an output. [2]
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;

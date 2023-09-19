@@ -12,11 +12,41 @@ category:
   - task
 ---
 
-The input module uses the beautiful and not very well-maintained (xD) [enquirer](https://www.npmjs.com/package/enquirer).
+Prompts use adapters and optional peer dependencies to provide interactivity with the user. The problem that we have with this application is that we are utilizing a single console updater, therefore we cannot directly write to `process.stdout`. This behavior requires a adapter in between to instead write to `task.stdout` and control the ANSI escape sequences for clearing lines since we do not have a `vt100` compatible interface through the console updater.
+
+<!-- more -->
+
+Since <Badge><FontIcon icon="mdi:tag-text-outline"/>v7.0.0</Badge>, for the ability to support multiple prompt providers, signature of the function `task.prompt` has changed requiring a adapter first.
+
+## Adapters
+
+### `enquirer`
+
+The input adapter uses the beautiful and not very well-maintained (xD) [`enquirer`](https://www.npmjs.com/package/enquirer).
 
 ::: danger
 
 `enquirer` is an optional peer dependency. Please install it first.
+
+::: tabs
+
+@tab npm
+
+```bash
+npm i @listr2/prompt-adapter-enquirer enquirer
+```
+
+@tab yarn
+
+```bash
+yarn add @listr2/prompt-adapter-enquirer enquirer
+```
+
+@tab:active pnpm
+
+```bash
+pnpm i @listr2/prompt-adapter-enquirer enquirer
+```
 
 :::
 
@@ -40,7 +70,7 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 :::
 
-## Usage
+#### Usage
 
 To access the prompts just utilize the `task.prompt` jumper function by passing in your [`enquirer`](https://www.npmjs.com/package/enquirer) prompts as an argument.
 
@@ -52,7 +82,7 @@ So it is highly likely that it has some mistakes in it since I usually do not us
 
 :::
 
-### Single Prompt
+##### Single Prompt
 
 ::: danger
 
@@ -60,9 +90,9 @@ I have done a little trick here where, whenever you have just one prompt, then y
 
 :::
 
-@[code{3-} typescript{8,13}](../../examples/docs/task/prompts/single.ts)
+@[code typescript{11,16}](../../examples/docs/task/prompts/enquirer-single.ts)
 
-### Multiple Prompts
+##### Multiple Prompts
 
 ::: warning
 
@@ -70,16 +100,16 @@ If you want to pass in an array of prompts, be careful that you should name them
 
 :::
 
-@[code{3-} typescript{13-24}](../../examples/docs/task/prompts/multiple.ts)
+@[code typescript{16-27}](../../examples/docs/task/prompts/enquirer-multiple.ts)
 
-### Use a Custom Prompt
+##### Use a Custom Prompt
 
 You can either use a custom prompt out of the npm registry, or a custom-created one as long as it works with the [`enquirer`](https://www.npmjs.com/package/enquirer), it will work as expected. Instead of passing in the prompt name use the not-new-invoked class.
 
 ```typescript
 import Enquirer from 'enquirer'
 import EditorPrompt from 'enquirer-editor'
-import { Listr } from 'listr2'
+import { Listr, ListrEnquirerPromptAdapter } from 'listr2'
 
 const enquirer = new Enquirer()
 enquirer.register('editor', Editor)
@@ -89,18 +119,21 @@ const tasks = new Listr<Ctx>(
     {
       title: 'Custom prompt',
       task: async (ctx, task): Promise<void> => {
-        ctx.testInput = await task.prompt({
-          type: 'editor',
-          message: 'Write something in this enquirer custom prompt.',
-          initial: 'Start writing!',
-          validate: (response): boolean | string => {
-            return true
-          }
-        })
+        ctx.testInput = await task.prompt(ListrEnquirerPromptAdapter).run(
+          {
+            type: 'editor',
+            message: 'Write something in this enquirer custom prompt.',
+            initial: 'Start writing!',
+            validate: (response): boolean | string => {
+              return true
+            }
+          },
+          { enquirer }
+        )
       }
     }
   ],
-  { concurrent: false, injectWrapper: { enquirer } }
+  { concurrent: false }
 )
 
 const ctx = await tasks.run()
@@ -108,13 +141,63 @@ const ctx = await tasks.run()
 console.log(ctx)
 ```
 
-## Cancel a Prompt
+#### Cancel a Prompt
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v3.1.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/173" target="_blank">#173</a></Badge>
+<Badge><FontIcon icon="mdi:tag-text-outline"/>v7.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/173" target="_blank">#173</a></Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/676" target="_blank">#676</a></Badge>
 
-You can cancel a prompt while it is still active through the `cancelPrompt` function.
+Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel` method, you can cancel a prompt while it is still active.
 
-@[code{3-} typescript{12}](../../examples/docs/task/prompts/cancel.ts)
+@[code typescript{14}](../../examples/docs/task/prompts/enquirer-cancel.ts)
+
+### `inquirer`
+
+<Badge><FontIcon icon="mdi:tag-text-outline" />v7.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github" /><a href="https://github.com/listr2/listr2/issues/676" target="_blank">#676</a></Badge>
+
+::: danger
+
+`inquirer` is an optional peer dependency. Please install it first.
+
+This library utilizes `@inquirer/prompts` instead of the legacy implementation `inquirer`.
+
+Please also add the necessary prompt package for using a prompt from `inquirer`, you can read more about it in their [documentation](https://github.com/SBoudrias/Inquirer.js/blob/master/packages/prompts/README.md).
+
+::: tabs
+
+@tab npm
+
+```bash
+npm i @listr2/prompt-adapter-inquirer @inquirer/prompts
+```
+
+@tab yarn
+
+```bash
+yarn add @listr2/prompt-adapter-inquirer @inquirer/prompts
+```
+
+@tab:active pnpm
+
+```bash
+pnpm i @listr2/prompt-adapter-inquirer @inquirer/prompts
+```
+
+:::
+
+##### Single Prompt
+
+@[code typescript{12}](../../examples/docs/task/prompts/inquirer-single.ts)
+
+#### Cancel a Prompt
+
+Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel` method, you can cancel a prompt while it is still active.
+
+::: warning
+
+`inquirer` acts a little bit different while canceling the prompt, since it is a implemented in a `CancellablePromise` kind of way and not exposing submit externally, whenever the promise is cancelled it will throw an error out from the promise.
+
+:::
+
+@[code typescript{17}](../../examples/docs/task/prompts/inquirer-cancel.ts)
 
 ## Renderer
 

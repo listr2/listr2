@@ -1,7 +1,10 @@
 ---
 name: node-actions
 on:
-  pull_request_target:
+  push:
+    branches:
+      - '*'
+  pull_request:
     branches:
       - master
 
@@ -11,7 +14,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 18.x
+          - 20.x
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -32,6 +35,7 @@ jobs:
         node-version:
           - 16.x
           - 18.x
+          - 20.x
         os:
           - ubuntu-latest
     steps:
@@ -45,6 +49,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
       - run: pnpm run test
 
   build:
@@ -52,7 +57,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 18.x
+          - 20.x
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2

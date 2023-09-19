@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src/",
+    "baseUrl": "./src/",
+    "paths": {
+      "@constants": ["./constants/index"],
+      "@interfaces": ["./interfaces/index"],
+      "@lib": ["./lib/index"],
+      "@presets": ["./presets/index"],
+      "@renderer": ["./renderer/index"],
+      "@utils": ["./utils/index"],
+      "@root": ["./index"]
+    }
+  },
+  "include": ["src/**/*"]
+}

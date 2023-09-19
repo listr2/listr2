@@ -24,6 +24,32 @@ You can also find a real-world use case [here](https://github.com/tailoredmedia/
 
 :::
 
+::: danger
+
+`@listr2/manager` is an optional peer dependency. Please install it first.
+
+::: tabs
+
+@tab npm
+
+```bash
+npm i @listr2/manager
+```
+
+@tab yarn
+
+```bash
+yarn add @listr2/manager
+```
+
+@tab:active pnpm
+
+```bash
+pnpm i @listr2/manager
+```
+
+:::
+
 ## Idea
 
 The idea of having an additional task manager is to create a higher-order factory to create _Listr_ on demand with always your options. This allows you to not store your options as variables that you inject every time you create a new _Listr_ but store it in a stateful Manager where you can initiate as many _Listr_ task lists as you want.

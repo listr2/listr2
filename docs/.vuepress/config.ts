@@ -21,13 +21,9 @@ export default defineUserConfig({
 
   plugins: [
     typedocPlugin({
-      entryPoints: [ './src/index.ts' ],
-      tsconfig: './tsconfig.build.json',
-      hideInPageTOC: true,
-      readme: 'none',
-      allReflectionsHaveOwnDocument: true,
-      categorizeByGroup: false,
-      sort: [ 'source-order' ]
+      entryPoints: [ '../packages/listr2', '../packages/manager', '../packages/prompt-adapter-enquirer', '../packages/prompt-adapter-inquirer' ],
+      entryPointStrategy: 'packages',
+      out: 'api'
     }),
     docsearchPlugin({
       appId: '4G64M4W5QP',

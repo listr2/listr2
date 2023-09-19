@@ -27,8 +27,6 @@ export default hopeTheme({
 
   displayFooter: true,
 
-  mobileBreakPoint: 959,
-  pcBreakPoint: 1920,
   print: false,
 
   docsDir: 'docs/',
@@ -50,11 +48,7 @@ export default hopeTheme({
   iconAssets: 'iconify',
 
   plugins: {
-    git: {
-      contributors: true,
-      createdTime: false,
-      updatedTime: true
-    },
+    git: true,
 
     comment: false,
 

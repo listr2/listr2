@@ -18,14 +18,26 @@ A function that returns a boolean , or directly a boolean can be passed to _List
 
 <!-- more -->
 
-## Default Behavior
+## Behavior
 
-- `fallbackRenderer` will be automatically used whenever you are in a `non-TTY` environment.
-- Colors are disabled automatically by underlying the library whenever it is detected as not supported.
-  - You can use the `forceColor` option on _Listr_ or set the environment variable `FORCE_COLOR=1` to force colors.
-  - You can use the `disableColor` option on _Listr_ or set the environment variable `LISTR_DISABLE_COLOR=1` to disable colors completely even though your environment supports it. This is very useful for tests.
-- Unicode characters like icons are not used whenever it is detected that your output does not support them.
-  - You can use the `forceUnicode` option on _Listr_ or set the environment variable `LISTR_FORCE_UNICODE=1` to force the usage of the Unicode characters.
+### TTY or non-TTY Environment
+
+`fallbackRenderer` will be automatically used whenever you are in a `non-TTY` environment.
+
+- You can force to use TTY environment via _Listr_ option `forceTTY` or set the environment variable `LISTR_FORCE_TTY=1`.
+
+### Coloring
+
+[`colorette`](https://www.npmjs.com/package/colorette) is used as the underlying coloring library. Colors are disabled automatically by underlying the library whenever it is detected as not supported.
+
+- You can set the environment variable `FORCE_COLOR=1` to force colors.
+- You can set the environment variable `NO_COLOR=1` to disable colors completely even though your environment supports it. This is very useful for tests.
+
+### Unicode
+
+Unicode characters like icons are not used whenever it is detected that your output does not support them.
+
+- You can use the `forceUnicode` option on _Listr_ or set the environment variable `LISTR_FORCE_UNICODE=1` to force the usage of the Unicode characters.
 
 ::: warning
 

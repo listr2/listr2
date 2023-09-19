@@ -32,7 +32,7 @@ Take a look at _DefaultRenderer_ since it is implemented this way.
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../src/renderer/default/renderer.ts)
+@[code typescript](../../packages/listr2/src/renderer/default/renderer.ts)
 
 :::
 
@@ -44,13 +44,13 @@ Take a look at _SimpleRenderer_ or _VerboseRenderer_ since it is implemented thi
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../src/renderer/simple/renderer.ts)
+@[code typescript](../../packages/listr2/src/renderer/simple/renderer.ts)
 
 :::
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../src/renderer/verbose/renderer.ts)
+@[code typescript](../../packages/listr2/src/renderer/verbose/renderer.ts)
 
 :::
 

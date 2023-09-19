@@ -1,4 +1,1 @@
-etc
-dist
 !docs/.vuepress
-tsup.config.ts

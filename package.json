@@ -1,48 +1,33 @@
 {
-  "name": "listr2",
+  "name": "@listr2/root",
   "version": "1.0.0",
-  "description": "Terminal task list reborn! Create beautiful CLI interfaces via easy and logical to implement task lists that feel alive and interactive.",
+  "private": true,
+  "description": "Monorepository for listr2.",
   "license": "MIT",
   "repository": "https://github.com/listr2/listr2",
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      },
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./package.json": "./package.json"
-  },
   "author": {
     "name": "Cenk Kilic",
     "email": "cenk@kilic.dev",
     "url": "https://cenk.kilic.dev"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
   },
+  "workspaces": [
+    "packages/*",
+    "examples",
+    "docs"
+  ],
   "scripts": {
-    "build": "tsup-node",
-    "dev:start": "tsup-node --watch",
-    "example": "TS_NODE_PROJECT=examples/tsconfig.json NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --loader ./loader.js' node",
-    "clean": "rimraf node_modules pnpm-lock.yaml",
-    "format": "prettier --log-level warn --write src/ tests/ examples/ docs/ && pnpm run lint --fix",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx src/ tests/ examples/ docs/",
-    "test": "TS_NODE_PROJECT=tests/tsconfig.json NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules' jest --config ./tests/jest.config.ts",
-    "test:cov": "pnpm run test --coverage",
-    "test:dev": "NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --inspect=0.0.0.0:9229' pnpm run test --verbose --watchAll",
-    "test:read-snapshot": "./tests/read-terminal-snapshots.sh",
-    "docs:build": "vuepress build docs",
-    "docs:dev:start": "vuepress dev docs",
-    "docs:dev:start:clean": "vuepress dev docs --clean-cache"
+    "clean": "rimraf node_modules pnpm-lock.yaml packages/*/node_modules examples/node_modules docs/node_modules",
+    "dev:start": "pnpm run --parallel -r dev:start",
+    "build": "pnpm run -r build",
+    "docs:build": "pnpm run -r docs:build",
+    "format": "pnpm run --parallel -r format",
+    "lint": "pnpm run --parallel -r lint",
+    "test": "pnpm run --parallel -r test"
   },
   "simple-git-hooks": {
     "pre-commit": "[ -n \"$SKIP_GIT_HOOKS\" ] && true || pnpm exec lint-staged",
@@ -51,79 +36,34 @@
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
-      "prettier --loglevel warn --write",
+      "prettier --log-level warn --write",
       "eslint --fix"
     ],
     "*.{json,md}": [
-      "prettier --loglevel warn --write"
+      "prettier --log-level warn --write"
     ]
-  },
-  "keywords": [
-    "listr",
-    "cli",
-    "task",
-    "list",
-    "tasklist",
-    "terminal",
-    "term",
-    "console",
-    "ascii",
-    "unicode",
-    "loading",
-    "indicator",
-    "progress",
-    "busy",
-    "wait",
-    "idle"
-  ],
-  "dependencies": {
-    "cli-truncate": "^3.1.0",
-    "colorette": "^2.0.20",
-    "eventemitter3": "^5.0.1",
-    "log-update": "^5.0.1",
-    "rfdc": "^1.3.0",
-    "wrap-ansi": "^8.1.0"
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.6.7",
-    "@cenk1cenk2/eslint-config": "^2.7.17",
-    "@jest/globals": "^29.6.4",
-    "@swc/core": "^1.3.82",
+    "@cenk1cenk2/eslint-config": "^2.7.19",
+    "@swc/core": "1.3.82",
     "@tsconfig/node16": "^16.1.1",
-    "@types/jest": "^29.5.4",
-    "@types/node": "^20.5.9",
-    "@types/wrap-ansi": "^8.0.1",
-    "@vuepress/client": "2.0.0-beta.67",
-    "@vuepress/plugin-docsearch": "2.0.0-beta.67",
-    "enquirer": "^2.4.1",
-    "eslint": "^8.48.0",
+    "@types/node": "^20.6.2",
+    "eslint": "^8.49.0",
     "execa": "^8.0.1",
-    "jest": "^29.6.4",
-    "jest-mock-process": "^2.0.0",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.1",
-    "rxjs": "^7.8.1",
     "simple-git-hooks": "^2.9.0",
-    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "tsup": "7.2.0",
-    "typedoc": "^0.25.0",
-    "typedoc-plugin-markdown": "^3.16.0",
     "typescript": "^5.2.2",
-    "vue": "^3.3.4",
-    "vuepress": "2.0.0-beta.67",
-    "vuepress-plugin-typedoc": "0.13.0",
-    "vuepress-theme-hope": "2.0.0-beta.236"
-  },
-  "peerDependencies": {
-    "enquirer": ">= 2.3.0 < 3"
-  },
-  "peerDependenciesMeta": {
-    "enquirer": {
-      "optional": true
-    }
+    "ts-jest": "^29.1.1",
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.5",
+    "jest": "^29.7.0",
+    "jest-mock-process": "^2.0.0"
   },
   "config": {
     "commitizen": {

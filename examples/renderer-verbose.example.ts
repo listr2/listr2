@@ -1,3 +1,4 @@
+import { ListrEnquirerPromptAdapter } from '@listr2/prompt-adapter-enquirer'
 import { delay, Listr } from 'listr2'
 
 try {
@@ -6,7 +7,7 @@ try {
       {
         title: 'Geting you on-board.',
         task: async (ctx, task): Promise<boolean> =>
-          ctx.user = await task.prompt({
+          ctx.user = await task.prompt(ListrEnquirerPromptAdapter).run({
             type: 'Toggle',
             message: 'Do you want to create beautiful CLI interfaces?',
             initial: true

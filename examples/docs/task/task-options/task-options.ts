@@ -24,7 +24,8 @@ const tasks = new Listr<Ctx>(
                 // perform some operations
               },
               exitOnError: false,
-              options: { timer: PRESET_TIMER }
+              rendererOptions: { timer: PRESET_TIMER },
+              fallbackRendererOptions: { timer: PRESET_TIMER }
             }
           ],
           {

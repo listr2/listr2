@@ -1,5 +1,4 @@
 import { execaCommand as command } from 'execa'
-
 import { Listr, createWritable } from 'listr2'
 
 const tasks = new Listr([
@@ -19,7 +18,7 @@ const tasks = new Listr([
 
       await execute
     },
-    options: {
+    rendererOptions: {
       persistentOutput: true
     }
   }

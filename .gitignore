@@ -1,9 +1,10 @@
 # Compiled Output
-/node_modules
-/dist
+node_modules
+dist
+.turbo
 
 # tests
-/coverage
+coverage
 
 # Logs
 logs
