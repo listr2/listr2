@@ -1,3 +1,10 @@
+# listr2 [7.0.0-beta.5](https://github.com/listr2/listr2/compare/listr2@7.0.0-beta.4...listr2@7.0.0-beta.5) (2023-09-19)
+
+
+### Bug Fixes
+
+* **npm:** add publish config public ([a186982](https://github.com/listr2/listr2/commit/a1869821c94a3b73018a07ba7b721e3523575946))
+
 # listr2 [7.0.0-beta.4](https://github.com/listr2/listr2/compare/listr2@v7.0.0-beta.3...listr2@7.0.0-beta.4) (2023-09-19)
 
 
