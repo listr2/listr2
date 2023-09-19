@@ -1,3 +1,10 @@
+# @listr2/manager [1.0.0-beta.3](https://github.com/listr2/listr2/compare/@listr2/manager@1.0.0-beta.2...@listr2/manager@1.0.0-beta.3) (2023-09-19)
+
+
+### Bug Fixes
+
+* dont list self as peer due to fixed version ([18f7841](https://github.com/listr2/listr2/commit/18f78416f6d887871a830f3a6cf21ffff29b630d))
+
 # @listr2/manager [1.0.0-beta.2](https://github.com/listr2/listr2/compare/@listr2/manager@1.0.0-beta.1...@listr2/manager@1.0.0-beta.2) (2023-09-19)
 
 
