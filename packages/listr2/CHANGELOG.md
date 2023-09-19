@@ -1,3 +1,10 @@
+## listr2 [7.0.1](https://github.com/listr2/listr2/compare/listr2@7.0.0...listr2@7.0.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* force publish ([be9b6ee](https://github.com/listr2/listr2/commit/be9b6ee78cab0199ab9c2b47db7d5c05d711fd27))
+
 # listr2 1.0.0 (2023-09-19)
 
 
