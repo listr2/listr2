@@ -40,4 +40,4 @@ A set of `git-hooks` are inplace to ensure consistency.
 
 - `lint-staged` runs with the linting configuration for each commit, to ensure the styling of the code is consistent.
 - `commitizen` runs with `@cenk1cenk2/cz-cc` preset for each commit, to ensure the commits are in conventional-commits format.
-- `yarn run test` run before pushing back to the repository.
+- `pnpm run test` run before pushing back to the repository.

@@ -24,10 +24,10 @@ If you ever choose to clone the repository, you can run all the examples through
 git clone git@github.com:cenk1cenk2/listr2.git
 
 # install the dependencies
-yarn install
+pnpm install
 
 # run any example, by giving the script a relative path in the repository
-yarn run example examples/renderer-default.example.ts
+pnpm run --filter example start renderer-default.example.ts
 ```
 
 ## `jsdoc`

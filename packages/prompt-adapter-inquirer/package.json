@@ -70,11 +70,11 @@
     "idle"
   ],
   "dependencies": {
-    "@inquirer/type": "^1.1.4"
+    "@inquirer/type": "^1.1.5"
   },
   "devDependencies": {
-    "@inquirer/input": "^1.2.11",
-    "@inquirer/prompts": "^3.1.1",
+    "@inquirer/input": "^1.2.13",
+    "@inquirer/prompts": "^3.2.0",
     "listr2": "workspace:*"
   },
   "peerDependencies": {
