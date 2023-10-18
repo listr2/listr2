@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "module": "ESNext",
     "target": "ESNext",
+    "noImplicitAny": false,
     "paths": {}
   },
   "include": ["./"],

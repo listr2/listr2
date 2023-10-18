@@ -5,6 +5,7 @@ services:
     image: cenk1cenk2/node-fnm:latest
     environment:
       PROXY_WORKSPACE_ONLY: 'true'
+      DEFAULTS_LOGS: 'true'
       SERVICE_0_CWD: .
       SERVICE_0_COMMAND: pnpm run dev:start
     ports:
