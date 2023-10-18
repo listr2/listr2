@@ -1,3 +1,10 @@
+## listr2 [7.0.2](https://github.com/listr2/listr2/compare/listr2@7.0.1...listr2@7.0.2) (2023-10-18)
+
+
+### Bug Fixes
+
+* **renderer:** subtask options checking problem for default renderer ([de71a4d](https://github.com/listr2/listr2/commit/de71a4d451aa2e5e8982b2efa05c019af1f7b6ed)), closes [#694](https://github.com/listr2/listr2/issues/694)
+
 ## listr2 [7.0.1](https://github.com/listr2/listr2/compare/listr2@7.0.0...listr2@7.0.1) (2023-09-19)
 
 
