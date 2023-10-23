@@ -12,7 +12,7 @@ category:
   - logger
 ---
 
-[ProcessOutput](/api/classes/ProcessOutput.html), [ProcessOutputHook](/api/classes/ProcessOutputHook.html), [ProcessOutputStream](/api/classes/ProcessOutputStream.html), [ProcessOutputBuffer](/api/classes/ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
+[ProcessOutput](/api/classes/listr2.ProcessOutput.html), [ProcessOutputHook](/api/classes/listr2.ProcessOutputHook.html), [ProcessOutputStream](/api/classes/listr2.ProcessOutputStream.html), [ProcessOutputBuffer](/api/classes/listr2.ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
 
 <!-- more -->
 
@@ -20,7 +20,7 @@ category:
 
 ## Hijack
 
-[ProcessOutput](/api/classes/ProcessOutput.html) for renderers like _DefaultRenderer_ that need updating your `vt100` compatible terminal gives the ability to hijack the current `process.stdout` and `process.stderr`, create a temporary buffer for storing anything that is trying to write to the terminal since it will corrupt the output of _Listr_. If the renderer does not request to hijack the terminal output, `process.stdout` and `process.stderr` will be used directly without any trickery.
+[ProcessOutput](/api/classes/listr2.ProcessOutput.html) for renderers like _DefaultRenderer_ that need updating your `vt100` compatible terminal gives the ability to hijack the current `process.stdout` and `process.stderr`, create a temporary buffer for storing anything that is trying to write to the terminal since it will corrupt the output of _Listr_. If the renderer does not request to hijack the terminal output, `process.stdout` and `process.stderr` will be used directly without any trickery.
 
 ## Release
 

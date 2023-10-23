@@ -48,6 +48,6 @@ The default renderer has options where you can change how the skip messages are 
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md{170-225} -->
+<!-- @include: ../api/interfaces/listr2.ListrDefaultRendererOptions.md{170-225} -->
 
 :::

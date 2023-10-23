@@ -29,7 +29,7 @@ Swapping updating renderer [`log-update`](https://www.npmjs.com/package/log-upda
 
 #### Problems with Current Implementation
 
-- For sufficiently long task lists, the flashing effect happens due to it updating the whole screen whenever [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/enums/ListrEventType.html#should-refresh-render) is triggered by the parent task indicating a new render should be done.
+- For sufficiently long task lists, the flashing effect happens due to it updating the whole screen whenever [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/enums/listr2.ListrEventType.html#should-refresh-render) is triggered by the parent task indicating a new render should be done.
 - Most of the issues are opened about _Listr_ breaking or corrupting the terminal output. This sometimes causes unintended behavior.
 - It brings a lot of overhead of wrapping and truncating the lines again inside the default renderer since the built-in one does not seem to work for our case.
 

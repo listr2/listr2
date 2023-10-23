@@ -21,7 +21,7 @@ While running a `listr2` task list, a self-contained variable is shared across t
 
 A context is an object that is shared across the task list. Even though external variables can be used to do the same operation, context gives a self-contained way to process internal tasks.
 
-Context can be anything that satisfies the type [ListrContext](/api/types/ListrContext.html), which is by default of type `any`, but it is advised to be an object, due to the intention of using it as a mutable structure that goes through the task.
+Context can be anything that satisfies the type [ListrContext](/api/types/listr2.ListrContext.html), which is by default of type `any`, but it is advised to be an object, due to the intention of using it as a mutable structure that goes through the task.
 
 Context type can be injected as a type parameter to Listr class to limit what is being used as the context throughout the task and ensure type safety.
 

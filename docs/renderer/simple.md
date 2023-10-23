@@ -23,7 +23,7 @@ _SimpleRenderer_ still requires `vt100` terminal compatibility if you are using 
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrSimpleRendererOptions.md -->
+<!-- @include: ../api/interfaces/listr2.ListrSimpleRendererOptions.md -->
 
 :::
 
@@ -31,6 +31,6 @@ _SimpleRenderer_ still requires `vt100` terminal compatibility if you are using 
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrSimpleRendererTaskOptions.md -->
+<!-- @include: ../api/interfaces/listr2.ListrSimpleRendererTaskOptions.md -->
 
 :::

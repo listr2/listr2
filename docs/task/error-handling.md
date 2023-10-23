@@ -73,7 +73,7 @@ Default renderer has options where you can change how the errors are displayed.
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md{227-263} -->
+<!-- @include: ../api/interfaces/listr2.ListrDefaultRendererOptions.md{227-263} -->
 
 :::
 
@@ -97,11 +97,11 @@ You can disable the error collection completely by setting it to `false`.
 
 ### ListrError
 
-[`ListrError`](/api/classes/ListrError.html) class extends the default `Error` and has some additional information like the cause of the error and where it is coming from, and the frozen context at the given time to further debug the issue while execution.
+[`ListrError`](/api/classes/listr2.ListrError.html) class extends the default `Error` and has some additional information like the cause of the error and where it is coming from, and the frozen context at the given time to further debug the issue while execution.
 
 ### ListrErrorTypes
 
-A listr error can be caused by multiple reasons, for a better explanation of why that particular error occurred, a type property on the `ListrError` exists in the form of enum [`ListrErrorTypes`](/api/enums/ListrErrorTypes.html).
+A listr error can be caused by multiple reasons, for a better explanation of why that particular error occurred, a type property on the `ListrError` exists in the form of enum [`ListrErrorTypes`](/api/enums/listr2.ListrErrorTypes.html).
 
 ### Methodology
 

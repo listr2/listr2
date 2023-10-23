@@ -12,7 +12,7 @@ category:
   - logger
 ---
 
-[ListrLogger](/api/classes/ListrLogger.html) is a common interface that enables the renderers to have a certain output format.
+[ListrLogger](/api/classes/listr2.ListrLogger.html) is a common interface that enables the renderers to have a certain output format.
 
 <!-- more -->
 
@@ -22,11 +22,11 @@ _ListrLogger_ is used for every renderer to a certain degree. _ListrLogger_ is a
 
 Log levels for the _ListrLogger_ are dynamically injected while creating an instance of _ListrLogger_ and will affect the styling section of the instance.
 
-By default, [ListrLogLevels](/api/enums/ListrLogLevels.html) is used for text-based renderers. For renderers like _DefaultRenderer_ styling require more cases than usual compared to the text-based renderers, therefore custom log levels [ListrDefaultRendererListrLogLevels](/api/enums/ListrDefaultRendererListrLogLevels.html) are injected.
+By default, [ListrLogLevels](/api/enums/listr2.ListrLogLevels.html) is used for text-based renderers. For renderers like _DefaultRenderer_ styling require more cases than usual compared to the text-based renderers, therefore custom log levels [ListrDefaultRendererListrLogLevels](/api/enums/listr2.ListrDefaultRendererListrLogLevels.html) are injected.
 
 ## Style
 
-The _style_ of _ListrLogger_ can be customized through [ListrLoggerOptions](/api/interfaces/ListrLoggerOptions.html). Since every renderer in some form is using _ListrLogger_ this functionality can be used to customize the renderers directly without implementing your renderer.
+The _style_ of _ListrLogger_ can be customized through [ListrLoggerOptions](/api/interfaces/listr2.ListrLoggerOptions.html). Since every renderer in some form is using _ListrLogger_ this functionality can be used to customize the renderers directly without implementing your renderer.
 
 ### Icons and Colors
 
@@ -34,7 +34,7 @@ The _style_ of _ListrLogger_ can be customized through [ListrLoggerOptions](/api
 
 _ListrLogger_ can be customized for any renderer through the exposed fields on your renderer inside the respective renderer options that use the _ListrLogger_.
 
-The `icon` and `color` section of the supported renderer is in the form of [ListrLoggerStyleMap](/api/interfaces/ListrLoggerStyleMap.html). By injecting new style options into the _ListrLogger_ you can change the icons and colors of every possible task.
+The `icon` and `color` section of the supported renderer is in the form of [ListrLoggerStyleMap](/api/interfaces/listr2.ListrLoggerStyleMap.html). By injecting new style options into the _ListrLogger_ you can change the icons and colors of every possible task.
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
@@ -54,7 +54,7 @@ Please refer to the _presets_ section for how to use this with the renderers.
 
 <Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge>
 
-The Preset mechanism is used for displaying additional data like [timestamps](/api/variables/PRESET_TIMESTAMP.html) or [timers](/api/variables/PRESET_TIMER.html). This also gives flexibility to making things dynamic with a conditional display of fields or conditional styling.
+The Preset mechanism is used for displaying additional data like [timestamps](/api/variables/listr2.PRESET_TIMESTAMP.html) or [timers](/api/variables/listr2.PRESET_TIMER.html). This also gives flexibility to making things dynamic with a conditional display of fields or conditional styling.
 
 Different renderers support different presets, depending on whether it fits in the style of the selected renderer. Presets are not directly tied with the _ListrLogger_ itself but it is mostly leveraging the mechanism to have fields in the sense of prefixes and suffixes in the logging entry.
 

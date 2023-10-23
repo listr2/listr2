@@ -14,7 +14,7 @@ category:
 
 _TestRenderer_ is intended to use in tests and provides a per-line JSON format output, that is configurable through the renderer options.
 
-This JSON format specific can be seen [here](/api/interfaces/TestRendererSerializerOutput.html), but needs a better understanding of internal workings of this library.
+This JSON format specific can be seen [here](/api/interfaces/listr2.TestRendererSerializerOutput.html), but needs a better understanding of internal workings of this library.
 
 <!-- more -->
 
@@ -22,6 +22,6 @@ This JSON format specific can be seen [here](/api/interfaces/TestRendererSeriali
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrTestRendererOptions.md -->
+<!-- @include: ../api/interfaces/listr2.ListrTestRendererOptions.md -->
 
 :::

@@ -12,13 +12,13 @@ category:
   - task
 ---
 
-`listr2` is a collection of tasks that are housed in a single instance as we have just created. Therefore the [Task](/api/interfaces/ListrTask.html) is the smallest building block of your task list.
+`listr2` is a collection of tasks that are housed in a single instance as we have just created. Therefore the [Task](/api/interfaces/listr2.ListrTask.html) is the smallest building block of your task list.
 
 <!-- more -->
 
 ## Task
 
-A single task is an object with the [given properties](/api/interfaces/ListrTask.html#properties), where the `task` is the main attraction that the desired function gets executed.
+A single task is an object with the [given properties](/api/interfaces/listr2.ListrTask.html#properties), where the `task` is the main attraction that the desired function gets executed.
 
 A task can be in the form of, which is ensured by the typings:
 

@@ -25,7 +25,7 @@ This renderer uses _ProcessOutput_ to take control of the terminal.
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrDefaultRendererOptions.md -->
+<!-- @include: ../api/interfaces/listr2.ListrDefaultRendererOptions.md -->
 
 :::
 
@@ -33,6 +33,6 @@ This renderer uses _ProcessOutput_ to take control of the terminal.
 
 ::: details
 
-<!-- @include: ../api/interfaces/ListrDefaultRendererTaskOptions.md -->
+<!-- @include: ../api/interfaces/listr2.ListrDefaultRendererTaskOptions.md -->
 
 :::
