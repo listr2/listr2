@@ -46,6 +46,7 @@ vuepress:
   extends: .node-run
   variables:
     NODE_COMMAND_SCRIPT: docs:build
+    NODE_COMMAND_CWD: ./docs
   artifacts:
     paths:
       - ./docs/.vuepress/dist
