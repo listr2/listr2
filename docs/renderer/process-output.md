@@ -12,7 +12,7 @@ category:
   - logger
 ---
 
-[ProcessOutput](/api/classes/listr2.ProcessOutput.html), [ProcessOutputHook](/api/classes/listr2.ProcessOutputHook.html), [ProcessOutputStream](/api/classes/listr2.ProcessOutputStream.html), [ProcessOutputBuffer](/api/classes/listr2.ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
+[ProcessOutput](/api/classes/listr2.ProcessOutput.html), [ProcessOutputStream](/api/classes/listr2.ProcessOutputStream.html), [ProcessOutputBuffer](/api/classes/listr2.ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
 
 <!-- more -->
 
