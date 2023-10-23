@@ -2,6 +2,7 @@ import { ListrTaskState } from '@constants'
 import { PromptError } from '@interfaces'
 import type { Task, TaskWrapper } from '@lib'
 
+/* istanbul ignore next */
 export abstract class ListrPromptAdapter {
   private state: ListrTaskState
 

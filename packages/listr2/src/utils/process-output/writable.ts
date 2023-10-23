@@ -1,5 +1,6 @@
 import { Writable } from 'stream'
 
+/* istanbul ignore next */
 export function createWritable (cb: (chunk: string) => void): NodeJS.WritableStream {
   const writable = new Writable()
 

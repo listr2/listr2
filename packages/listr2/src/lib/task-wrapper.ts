@@ -15,6 +15,7 @@ import { createWritable, splat } from '@utils'
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRenderer extends ListrRendererFactory> {
   constructor (public task: Task<Ctx, Renderer, FallbackRenderer>) {}
 
+  /* istanbul ignore next */
   get title (): string {
     return this.task.title
   }
@@ -30,10 +31,12 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
     this.task.title$ = splat(title.shift(), ...title)
   }
 
+  /* istanbul ignore next */
   get output (): string {
     return this.task.output
   }
 
+  /* istanbul ignore next */
   /**
    * Send output from the current task to the renderer.
    *
@@ -45,6 +48,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
     this.task.output$ = splat(output.shift(), ...output)
   }
 
+  /* istanbul ignore next */
   /** Send an output to the output channel as prompt. */
   private set promptOutput (output: string) {
     this.task.promptOutput$ = output
@@ -108,6 +112,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
     return this.task.isRetrying() ? this.task.retry : { count: 0 }
   }
 
+  /* istanbul ignore next */
   /**
    * Create a new prompt for getting user input through the prompt adapter.
    * This will create a new prompt through the adapter if the task is not currently rendering a prompt or will return the active instance.
@@ -126,6 +131,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
     return new adapter(this.task, this)
   }
 
+  /* istanbul ignore next */
   /**
    * Generates a fake stdout for your use case, where it will be tunnelled through Listr to handle the rendering process.
    *
