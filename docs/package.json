@@ -34,10 +34,10 @@
     "@vuepress/client": "2.0.0-beta.67",
     "@vuepress/plugin-docsearch": "2.0.0-beta.67",
     "typedoc": "^0.25.3",
-    "typedoc-plugin-markdown": "^3.17.0",
+    "typedoc-plugin-markdown": "^3.17.1",
     "vue": "^3.3.6",
     "vuepress": "2.0.0-beta.67",
     "vuepress-plugin-typedoc": "0.13.0",
-    "vuepress-theme-hope": "2.0.0-beta.244"
+    "vuepress-theme-hope": "2.0.0-beta.247"
   }
 }
