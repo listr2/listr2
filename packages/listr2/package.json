@@ -82,7 +82,7 @@
     "@inquirer/prompts": "^3.2.0",
     "@inquirer/type": "^1.1.5",
     "@types/wrap-ansi": "^8.0.2",
-    "eslint": "^8.52.0",
+    "eslint": "^8.54.0",
     "rxjs": "^7.8.1"
   }
 }
