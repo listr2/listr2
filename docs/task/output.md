@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Output
 order: 30
 tag:
@@ -11,6 +7,8 @@ tag:
 category:
   - task
 ---
+
+# {{ $frontmatter.title }}
 
 _Task_ can push output while running for informing the user of what is going on or programmatically for more information about an underlying task.
 
@@ -30,7 +28,7 @@ Depending on the renderer selected, the format of the output will change. For _D
 
 This will show the output in a small bar that can only show the last output from the task.
 
-@[code{3-} typescript{6,9,12}](../../examples/docs/task/output/with-task.ts)
+<<< @../../examples/docs/task/output/with-task.ts{8,11,14}
 
 ### Passing Data Through an Observable or a Stream
 
@@ -38,13 +36,13 @@ Since observables and streams are supported they can also be used to generate ou
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example — Stream
 
-@[code typescript](../../examples/docs/task/output/stream.ts)
+<<< @../../examples/docs/task/output/stream.ts
 
 :::
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example — Observable
 
-@[code typescript](../../examples/docs/task/output/observable.ts)
+<<< @../../examples/docs/task/output/observable.ts
 
 :::
 
@@ -62,7 +60,7 @@ Task output can be piped to the `task.stdout()` directly since it is a `Writable
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/task/output/pass-stdout.ts)
+<<< @../../examples/docs/task/output/pass-stdout.ts
 
 :::
 
@@ -70,7 +68,7 @@ Whenever more control over the stream is required, temporary `WritableStream` ca
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/task/output/pass-stdout-with-control.ts)
+<<< @../../examples/docs/task/output/pass-stdout-with-control.ts
 
 :::
 
@@ -91,7 +89,7 @@ Item count that is desired to be showed in the output bar can be set through the
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/task/output/renderer-default-outputbar.ts)
+<<< @../../examples/docs/task/output/renderer-default-outputbar.ts
 
 :::
 
@@ -110,7 +108,7 @@ Item count that is desired to be showed in the bottom bar can be set through the
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/task/output/renderer-default-bottombar.ts)
+<<< @../../examples/docs/task/output/renderer-default-bottombar.ts
 
 :::
 
@@ -120,6 +118,6 @@ To keep the output after the task has been completed while using the default ren
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/task/output/renderer-default-persistent.ts)
+<<< @../../examples/docs/task/output/renderer-default-persistent.ts
 
 :::

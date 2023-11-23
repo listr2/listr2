@@ -1,5 +1,7 @@
 {
-  "extends": ["../../typedoc.json"],
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPointStrategy": "resolve",
+  "extends": ["../../docs/typedoc.json"],
   "entryPoints": ["src/index.ts"],
   "tsconfig": "tsconfig.build.json"
 }

@@ -1,0 +1,116 @@
+/**
+ * Customize default theme styling by overriding CSS variables:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+
+/**
+ * Colors
+ *
+ * Each colors have exact same color scale system with 3 levels of solid
+ * colors with different brightness, and 1 soft color.
+ *
+ * - `XXX-1`: The most solid color used mainly for colored text. It must
+ *   satisfy the contrast ratio against when used on top of `XXX-soft`.
+ *
+ * - `XXX-2`: The color used mainly for hover state of the button.
+ *
+ * - `XXX-3`: The color for solid background, such as bg color of the button.
+ *   It must satisfy the contrast ratio with pure white (#ffffff) text on
+ *   top of it.
+ *
+ * - `XXX-soft`: The color used for subtle background such as custom container
+ *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
+ *   on top of it.
+ *
+ *   The soft color must be semi transparent alpha channel. This is crucial
+ *   because it allows adding multiple "soft" colors on top of each other
+ *   to create a accent, such as when having inline code block inside
+ *   custom containers.
+ *
+ * - `default`: The color used purely for subtle indication without any
+ *   special meanings attched to it such as bg color for menu hover state.
+ *
+ * - `brand`: Used for primary brand colors, such as link text, button with
+ *   brand theme, etc.
+ *
+ * - `tip`: Used to indicate useful information. The default theme uses the
+ *   brand color for this by default.
+ *
+ * - `warning`: Used to indicate warning to the users. Used in custom
+ *   container, badges, etc.
+ *
+ * - `danger`: Used to show error, or dangerous message to the users. Used
+ *   in custom container, badges, etc.
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-brand-1: #cd0043;
+  --vp-c-brand-2: #e6004b;
+  --vp-c-brand-3: #ff1a65;
+  --vp-c-brand-soft: #cd004350;
+
+  --vp-c-yellow-1: #e5c07b;
+  --vp-c-yellow-2: #ebcd8f;
+  --vp-c-yellow-3: #ebcd8f;
+  --vp-c-yellow-soft: #e5c07b50;
+
+  --vp-c-red-1: #e06c75;
+  --vp-c-red-2: #ff7684;
+  --vp-c-red-3: #ff7684;
+  --vp-c-red-soft: #e06c7550;
+
+  --vp-custom-block-font-size: 16px;
+}
+
+.dark {
+  --vp-c-bg-alt: #1e2127;
+  --vp-c-bg: #17191e;
+  --vp-c-bg-elv: #22282f;
+  --vp-c-bg-soft: #22282f;
+}
+
+.vp-doc a {
+  text-decoration: none;
+}
+
+VPDocFooter a .pager-link {
+  border-radius: 0;
+}
+
+.VPHome {
+  text-align: center;
+}
+
+.VPHero .container .main {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.VPHome img {
+  display: inline-block;
+}
+
+.VPHome .VPHomeHero img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@media (min-width: 960px) {
+  .VPHome .VPHomeHero img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+@media (min-width: 640px) {
+  .VPHome .VPHomeHero img {
+    max-width: 500px;
+    max-height: 100%;
+  }
+}
+
+.VPFooter img {
+  display: inline-block;
+}

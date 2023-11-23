@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Default Renderer
 order: 10
 tag:
@@ -10,6 +6,8 @@ tag:
 category:
   - renderer
 ---
+
+# {{ $frontmatter.title }}
 
 _DefaultRenderer_ is the main renderer of `listr2`.
 
@@ -25,7 +23,7 @@ This renderer uses _ProcessOutput_ to take control of the terminal.
 
 ::: details
 
-<!-- @include: ../api/interfaces/listr2.ListrDefaultRendererOptions.md -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrDefaultRendererOptions.md -->
 
 :::
 
@@ -33,6 +31,6 @@ This renderer uses _ProcessOutput_ to take control of the terminal.
 
 ::: details
 
-<!-- @include: ../api/interfaces/listr2.ListrDefaultRendererTaskOptions.md -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrDefaultRendererTaskOptions.md -->
 
 :::

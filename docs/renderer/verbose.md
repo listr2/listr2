@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Verbose Renderer
 order: 30
 tag:
@@ -10,6 +6,8 @@ tag:
 category:
   - renderer
 ---
+
+# {{ $frontmatter.title }}
 
 _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logger.
 
@@ -21,7 +19,7 @@ _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logg
 
 ::: details
 
-<!-- @include: ../api/interfaces/listr2.ListrVerboseRendererOptions.md -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrVerboseRendererOptions.md -->
 
 :::
 
@@ -29,6 +27,6 @@ _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logg
 
 ::: details
 
-<!-- @include: ../api/interfaces/listr2.ListrVerboseRendererTaskOptions.md -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrVerboseRendererTaskOptions.md -->
 
 :::

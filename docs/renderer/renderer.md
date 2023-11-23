@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Renderer
 order: 1
 tag:
@@ -10,6 +6,8 @@ tag:
 category:
   - renderer
 ---
+
+# {{ $frontmatter.title }}
 
 Renderers are the communication interface with your _Listr_.
 

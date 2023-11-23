@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-COPY ./.vuepress/dist/ /usr/share/nginx/html
+COPY ./dist/ /usr/share/nginx/html
 
 # Install Tini
 RUN apk --no-cache --no-progress add tini

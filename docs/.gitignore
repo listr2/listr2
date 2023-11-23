@@ -1,4 +1,6 @@
 .vuepress/.cache/
 .vuepress/.temp/
 .vuepress/dist/
+.vitepress/cache/
+.vitepress/dist/
 api/

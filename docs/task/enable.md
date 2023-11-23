@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Conditional Enable
 order: 40
 tag:
@@ -11,6 +7,8 @@ tag:
 category:
   - task
 ---
+
+# {{ $frontmatter.title }}
 
 _Task_ can be enabled depending on the variables programmatically. This enables the creation of tasks that are dependent on the context or outside conditions.
 
@@ -32,7 +30,7 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 ## Usage
 
-@[code{3-} typescript{16}](../../examples/docs/task/enable/basic.ts)
+<<< @../../examples/docs/task/enable/basic.ts{18}
 
 ## Renderer
 

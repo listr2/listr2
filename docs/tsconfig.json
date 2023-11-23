@@ -2,14 +2,14 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": ".vuepress/",
-    "baseUrl": ".vuepress/",
+    "rootDir": ".vitepress/",
+    "baseUrl": ".vitepress/",
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "NodeNext",
     "noImplicitAny": false,
     "paths": {}
   },
-  "include": ["./.vuepress/**/*"],
+  "include": ["./.vitepress/**/*"],
   "exclude": ["node_modules", "dist"]
 }

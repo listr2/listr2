@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Fallback Condition
 order: 5
 tag:
@@ -11,6 +7,8 @@ tag:
 category:
   - renderer
 ---
+
+# {{ $frontmatter.title }}
 
 There are times other than `non-TTY` environments when you want to fallback to a fallback/silent renderer than the selected renderer.
 
@@ -57,10 +55,10 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 You can use the `fallbackRendererCondition` condition on _Listr_ to determine changing your renderer to the fallback renderer.
 
-@[code{3-} typescript{13}](../../examples/docs/renderer/fallback-condition/renderer-fallback.ts)
+<<< @../../examples/docs/renderer/fallback-condition/renderer-fallback.ts{15}
 
 ### Silent Renderer Fallback
 
 You can use the `silentRendererCondition` condition on _Listr_ to determine changing your renderer to the fallback renderer.
 
-@[code{3-} typescript{13}](../../examples/docs/renderer/fallback-condition/renderer-silent.ts)
+<<< @../../examples/docs/renderer/fallback-condition/renderer-silent.ts{15}

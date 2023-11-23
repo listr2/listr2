@@ -15,11 +15,11 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "docs:build": "vuepress build && vuepress build",
-    "dev:start": "vuepress dev",
-    "dev:start:clean": "vuepress dev --clean-cache",
+    "docs:typedoc": "typedoc",
+    "docs:build": "pnpm run docs:typedoc && vitepress build",
+    "dev:start": "pnpm run docs:typedoc && vitepress dev --host 0.0.0.0",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx .vuepress"
+    "lint": "eslint --ext .ts,.js,.tsx,.jsx .vitepress"
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
@@ -31,13 +31,12 @@
     ]
   },
   "devDependencies": {
-    "@vuepress/client": "2.0.0-rc.0",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.0",
+    "markdown-it-footnote": "^3.0.3",
+    "markdown-it-task-lists": "^2.1.1",
     "typedoc": "^0.25.3",
-    "typedoc-plugin-markdown": "^3.17.1",
-    "vue": "^3.3.6",
-    "vuepress": "2.0.0-rc.0",
-    "vuepress-plugin-typedoc": "0.13.0",
-    "vuepress-theme-hope": "2.0.0-rc.0"
+    "typedoc-plugin-markdown": "4.0.0-next.19",
+    "typedoc-vitepress-theme": "1.0.0-next.3",
+    "vitepress": "1.0.0-rc.30",
+    "vitepress-sidebar": "^1.18.0"
   }
 }

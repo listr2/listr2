@@ -1,11 +1,9 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Rollback
 order: 80
 ---
+
+# {{ $frontmatter.title }}
 
 Whenever the _Task_ itself failed or its subtasks have failed, `rollback` will revert anything that needs to be reverted by that uncompleted action. Rollback will only execute if the task itself has been marked as failed and can be defined as the `rollback` property of a task.
 
@@ -25,7 +23,7 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 ### For _Subtask_
 
-@[code{3-} typescript{24-34}](../../examples/docs/task/rollback/for-subtasks.ts)
+<<< @../../examples/docs/task/rollback/for-subtasks.ts{26-36}
 
 ## Options
 

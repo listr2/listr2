@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Custom Renderer
 order: 50
 tag:
@@ -18,7 +14,7 @@ You can create a custom renderer that is fit for your application.
 
 ## Implement or Extend the Default _Listr_ Renderer
 
-@[code{-25} typescript](../../examples/docs/renderer/custom/create-renderer.ts)
+<<< @../../examples/docs/renderer/custom/create-renderer.ts#create
 
 ::: info
 
@@ -32,25 +28,25 @@ Take a look at _DefaultRenderer_ since it is implemented this way.
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../packages/listr2/src/renderer/default/renderer.ts)
+<<< @../../packages/listr2/src/renderer/default/renderer.ts
 
 :::
 
 ## Utilizing the Events
 
-_Listr_ and its _Task_ fires many events to indicate the task status. _Task_ depending on what is currently done will fire [ListrTaskState](/api/enums/listr2.ListrTaskState.html) and [ListrTaskEventType](/api/enums/listr2.ListrTaskEventType.html) through [ListrTaskEventManager](/api/classes/listr2.ListrTaskEventManager.html) which you can subscribe.
+_Listr_ and its _Task_ fires many events to indicate the task status. _Task_ depending on what is currently done will fire [ListrTaskState](/api/listr2/enumerations/enumeration.ListrTaskState.html) and [ListrTaskEventType](/api/listr2/enumerations/enumeration.ListrTaskEventType.html) through [ListrTaskEventManager](/api/listr2/classes/class..ListrTaskEventManager.html) which you can subscribe.
 
 Take a look at _SimpleRenderer_ or _VerboseRenderer_ since it is implemented this way.
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../packages/listr2/src/renderer/simple/renderer.ts)
+<<< @../../packages/listr2/src/renderer/simple/renderer.ts
 
 :::
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../packages/listr2/src/renderer/verbose/renderer.ts)
+<<< @../../packages/listr2/src/renderer/verbose/renderer.ts
 
 :::
 
@@ -58,7 +54,7 @@ Take a look at _SimpleRenderer_ or _VerboseRenderer_ since it is implemented thi
 
 <Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge>
 
-Additional to listening to the events, another singleton hook that come from the root _Listr_ is `events`. This provides some generic events like [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/enums/listr2.ListrEventType.html#should-refresh-render) which can be used to trigger an update on an updating renderer.
+Additional to listening to the events, another singleton hook that come from the root _Listr_ is `events`. This provides some generic events like [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/listr2/enumerations/enumeration.ListrEventType.html#should-refresh-render) which can be used to trigger an update on an updating renderer.
 
 These `events` can be the third optional variable of a given renderer while using it is always optional.
 
@@ -84,4 +80,4 @@ this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
 
 You can tell Listr to use your custom renderer by setting the `renderer` option in _Listr_ to your custom renderer.
 
-@[code{26-} typescript](../../examples/docs/renderer/custom/create-renderer.ts)
+<<< @../../examples/docs/renderer/custom/create-renderer.ts#run

@@ -1,3 +1,4 @@
+// #region create
 import type { ListrRenderer, ListrTaskObject } from 'listr2'
 import { Listr } from 'listr2'
 
@@ -25,7 +26,9 @@ class MyAmazingRenderer implements ListrRenderer {
   // implement custom logic for end functionality
   public end (err: Error): void {}
 }
+// #endregion create
 
+// #region run
 const tasks = new Listr(
   [
     /* Array of task objects */
@@ -34,3 +37,4 @@ const tasks = new Listr(
 )
 
 await tasks.run()
+// #endregion run

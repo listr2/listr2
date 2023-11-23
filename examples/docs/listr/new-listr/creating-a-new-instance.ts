@@ -1,3 +1,4 @@
+// #region create
 import { Listr } from 'listr2'
 
 interface Ctx {
@@ -12,9 +13,12 @@ const tasks = new Listr<Ctx>(
     /* options */
   }
 )
+// #endregion create
 
+// #region run
 try {
   await tasks.run()
 } catch (e) {
   console.error(e)
 }
+// #endregion run

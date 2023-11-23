@@ -1,11 +1,9 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Examples
 order: 15
 ---
+
+# {{ $frontmatter.title }}
 
 `listr2` boasts many examples in the repository where you can dive deeper into the usage of the application, whenever the documentation is insufficient for advanced cases.
 

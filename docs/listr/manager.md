@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Manager
 order: 100
 tag:
@@ -12,7 +8,9 @@ category:
   - manager
 ---
 
-[Manager](/api/classes/listr2_manager.Manager.html) is a great way to create a custom-tailored _Listr_ class once and then utilize it more than once.
+# {{ $frontmatter.title }}
+
+[Manager](/api/listr2/classes/class._manager.Manager.html) is a great way to create a custom-tailored _Listr_ class once and then utilize it more than once.
 
 <!-- more -->
 
@@ -28,23 +26,17 @@ You can also find a real-world use case [here](https://github.com/tailoredmedia/
 
 `@listr2/manager` is an optional peer dependency. Please install it first.
 
-::: tabs
+::: code-group
 
-@tab npm
-
-```bash
+```bash [npm]
 npm i @listr2/manager
 ```
 
-@tab yarn
-
-```bash
+```bash [yarn]
 yarn add @listr2/manager
 ```
 
-@tab:active pnpm
-
-```bash
+```bash [pnpm]
 pnpm i @listr2/manager
 ```
 

@@ -1,11 +1,10 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Foreword
+prev: false
 order: 1
 ---
+
+# {{ $frontmatter.title }}
 
 Contributions are very welcome in this repository, there is no need to be toxic about anything, and everything is open to discussion. This includes but is not limited to **features, requests, bugs, and even help requests**! Nothing will mostly go stale unless there are some technical limitations/blockers, but it might take time due to **life**.
 
@@ -25,8 +24,4 @@ You can always propose a new feature or a bug request and improve documentation,
 
 Even though I know nobody even cares, and this library is mostly hidden in tools that you use on a day-to-day basis, **this is mostly a one man show, and donations are always welcome through the provided sponsor links**.
 
-::: center
-
 [![github sponsors](https://img.shields.io/github/sponsors/cenk1cenk2?label=github%20sponsors&style=flat-square&logo=github)](https://github.com/sponsors/cenk1cenk2) [![opencollective](https://img.shields.io/opencollective/sponsors/listr2?label=open%20collective&logo=opencollective)](https://opencollective.com/listr2)
-
-:::

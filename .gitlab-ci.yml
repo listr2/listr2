@@ -41,7 +41,7 @@ test:
       # - NODE_VERSION: 18-alpine
       # - NODE_VERSION: 16-alpine
 
-vuepress:
+build-docs:
   stage: docs
   extends: .node-run
   variables:
@@ -49,7 +49,7 @@ vuepress:
     NODE_COMMAND_CWD: ./docs
   artifacts:
     paths:
-      - ./docs/.vuepress/dist
+      - ./docs/dist
   needs:
     - install
     - build
@@ -74,9 +74,9 @@ docker-build-docs:
     DOCKER_IMAGE_INTERNAL_NAME: docs-listr2
     DOCKER_IMAGE_TAGS: latest
   needs:
-    - vuepress
+    - build-docs
   dependencies:
-    - vuepress
+    - build-docs
   only:
     refs:
       - master

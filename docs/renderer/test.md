@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Test Renderer
 order: 40
 tag:
@@ -12,9 +8,11 @@ category:
   - renderer
 ---
 
+# {{ $frontmatter.title }}
+
 _TestRenderer_ is intended to use in tests and provides a per-line JSON format output, that is configurable through the renderer options.
 
-This JSON format specific can be seen [here](/api/interfaces/listr2.TestRendererSerializerOutput.html), but needs a better understanding of internal workings of this library.
+This JSON format specific can be seen [here](/api/listr2/interfaces/interface.TestRendererSerializerOutput.html), but needs a better understanding of internal workings of this library.
 
 <!-- more -->
 
@@ -22,6 +20,6 @@ This JSON format specific can be seen [here](/api/interfaces/listr2.TestRenderer
 
 ::: details
 
-<!-- @include: ../api/interfaces/listr2.ListrTestRendererOptions.md -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrTestRendererOptions.md -->
 
 :::

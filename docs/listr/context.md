@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Concept of Context
 shortTitle: Context
 order: 40
@@ -12,6 +8,8 @@ tag:
 category:
   - context
 ---
+
+# {{ $frontmatter.title }}
 
 While running a `listr2` task list, a self-contained variable is shared across the running tasks called the `ctx`. This has the same basic idea as shared contexts in other programming languages.
 
@@ -43,7 +41,7 @@ If all tasks are in the same task list, the context will be automatically inject
 
 Context can be injected as an option to the _Listr_.
 
-@[code{3-} typescript{9}](../../examples/docs/listr/context/as-option.ts)
+<<< @../../examples/docs/listr/context/as-option.ts{9}
 
 #### Multiple Contexts <Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/612" target="_blank">#612</a></Badge>
 
@@ -51,13 +49,13 @@ This can also be used to inject a different context into subtasks. Imagine that 
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/listr/context/multiple-contexts.ts)
+<<< @../../examples/docs/listr/context/multiple-contexts.ts
 
 :::
 
 ### Injecting Context at Runtime
 
-@[code{3-} typescript{9}](../../examples/docs/listr/context/at-runtime.ts)
+<<< @../../examples/docs/listr/context/at-runtime.ts{8}
 
 ## Retrieving Context
 
@@ -65,10 +63,10 @@ This can also be used to inject a different context into subtasks. Imagine that 
 
 A successful task will always return the context at the end of the task.
 
-@[code{3-} typescript{9,11}](../../examples/docs/listr/context/retrieve-return.ts)
+<<< @../../examples/docs/listr/context/retrieve-return.ts{11,13}
 
 ### As Property of Task List
 
 The root _Listr_ class itself holds the context value as a public property.
 
-@[code{3-} typescript{1,11}](../../examples/docs/listr/context/retrieve-property.ts)
+<<< @../../examples/docs/listr/context/retrieve-property.ts{6,13}

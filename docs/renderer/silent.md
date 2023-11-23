@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Silent Renderer
 order: 35
 tag:
@@ -10,6 +6,8 @@ tag:
 category:
   - renderer
 ---
+
+# {{ $frontmatter.title }}
 
 _SilentRenderer_ outputs nothing.
 

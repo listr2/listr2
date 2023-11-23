@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Simple Renderer
 order: 20
 tag:
@@ -10,6 +6,8 @@ tag:
 category:
   - renderer
 ---
+
+# {{ $frontmatter.title }}
 
 _SimpleRenderer_ is an alternative to _DefaultRenderer_, which does not directly update the terminal but works more in a logger-like manner.
 
@@ -23,7 +21,7 @@ _SimpleRenderer_ still requires `vt100` terminal compatibility if you are using 
 
 ::: details
 
-<!-- @include: ../api/interfaces/listr2.ListrSimpleRendererOptions.md -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrSimpleRendererOptions.md -->
 
 :::
 
@@ -31,6 +29,6 @@ _SimpleRenderer_ still requires `vt100` terminal compatibility if you are using 
 
 ::: details
 
-<!-- @include: ../api/interfaces/listr2.ListrSimpleRendererTaskOptions.md -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrSimpleRendererTaskOptions.md -->
 
 :::

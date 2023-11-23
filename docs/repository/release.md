@@ -1,11 +1,10 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Release
 order: 20
+next: false
 ---
+
+# {{ $frontmatter.title }}
 
 This library uses [semantic-release](https://github.com/semantic-release/semantic-release) for automated versioning and [renovate](https://github.com/renovatebot/renovate) for dependency updates.
 

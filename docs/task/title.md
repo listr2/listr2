@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Title
 order: 20
 tag:
@@ -11,6 +7,8 @@ tag:
 category:
   - task
 ---
+
+# {{ $frontmatter.title }}
 
 _Task_ can have a title to stand out from the crowd and give the user visual queues of what is actually running.
 
@@ -22,7 +20,7 @@ The title of the _Task_ can be initiated while creating the task itself and, can
 
 This allows the user to change the title depending on the progress that has been made throughout the task or just inform the user that the task is finished, so looking from a grammar perspective it will all look right.
 
-@[code{3-} typescript{3,7,11}](../../examples/docs/task/title/task-title.ts)
+<<< @../../examples/docs/task/title/task-title.ts{5,9,13}
 
 ## Tasks without a Title
 
@@ -34,6 +32,6 @@ You can always use `task.title` programmatically to add titles, and visually pop
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code{3-} typescript{6,10,17,21}](../../examples/docs/task/title/task-title-pop.ts)
+<<< @../../examples/docs/task/title/task-title-pop.ts{8,12,19,23}
 
 :::

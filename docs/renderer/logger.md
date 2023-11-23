@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Logger
 order: 100
 tag:
@@ -12,7 +8,9 @@ category:
   - logger
 ---
 
-[ListrLogger](/api/classes/listr2.ListrLogger.html) is a common interface that enables the renderers to have a certain output format.
+# {{ $frontmatter.title }}
+
+[ListrLogger](/api/listr2/classes/class..ListrLogger.html) is a common interface that enables the renderers to have a certain output format.
 
 <!-- more -->
 
@@ -22,11 +20,11 @@ _ListrLogger_ is used for every renderer to a certain degree. _ListrLogger_ is a
 
 Log levels for the _ListrLogger_ are dynamically injected while creating an instance of _ListrLogger_ and will affect the styling section of the instance.
 
-By default, [ListrLogLevels](/api/enums/listr2.ListrLogLevels.html) is used for text-based renderers. For renderers like _DefaultRenderer_ styling require more cases than usual compared to the text-based renderers, therefore custom log levels [ListrDefaultRendererListrLogLevels](/api/enums/listr2.ListrDefaultRendererListrLogLevels.html) are injected.
+By default, [ListrLogLevels](/api/listr2/enumerations/enumeration.ListrLogLevels.html) is used for text-based renderers. For renderers like _DefaultRenderer_ styling require more cases than usual compared to the text-based renderers, therefore custom log levels [ListrDefaultRendererListrLogLevels](/api/listr2/enumerations/enumeration.ListrDefaultRendererListrLogLevels.html) are injected.
 
 ## Style
 
-The _style_ of _ListrLogger_ can be customized through [ListrLoggerOptions](/api/interfaces/listr2.ListrLoggerOptions.html). Since every renderer in some form is using _ListrLogger_ this functionality can be used to customize the renderers directly without implementing your renderer.
+The _style_ of _ListrLogger_ can be customized through [ListrLoggerOptions](/api/listr2/interfaces/interface.ListrLoggerOptions.html). Since every renderer in some form is using _ListrLogger_ this functionality can be used to customize the renderers directly without implementing your renderer.
 
 ### Icons and Colors
 
@@ -34,11 +32,11 @@ The _style_ of _ListrLogger_ can be customized through [ListrLoggerOptions](/api
 
 _ListrLogger_ can be customized for any renderer through the exposed fields on your renderer inside the respective renderer options that use the _ListrLogger_.
 
-The `icon` and `color` section of the supported renderer is in the form of [ListrLoggerStyleMap](/api/interfaces/listr2.ListrLoggerStyleMap.html). By injecting new style options into the _ListrLogger_ you can change the icons and colors of every possible task.
+The `icon` and `color` section of the supported renderer is in the form of [ListrLoggerStyleMap](/api/listr2/interfaces/interface.ListrLoggerStyleMap.html). By injecting new style options into the _ListrLogger_ you can change the icons and colors of every possible task.
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/renderer/style/icon-and-color.ts)
+<<< @../../examples/docs/renderer/style/icon-and-color.ts
 
 :::
 
@@ -70,7 +68,7 @@ This preset is available for the _DefaultRenderer_, _VerboseRenderer_, and _Simp
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/renderer/logger/preset-timer.ts)
+<<< @../../examples/docs/renderer/logger/preset-timer.ts
 
 :::
 
@@ -82,7 +80,7 @@ This preset is available for the _VerboseRenderer_, _SimpleRenderer_ on _Listr_ 
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/renderer/logger/preset-timestamp.ts)
+<<< @../../examples/docs/renderer/logger/preset-timestamp.ts
 
 :::
 
@@ -94,7 +92,7 @@ To do this you must expand the original _ListrLogger_ implementation since it is
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/renderer/logger/custom-implementation.ts)
+<<< @../../examples/docs/renderer/logger/custom-implementation.ts
 
 :::
 

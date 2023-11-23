@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Retry
 order: 70
 tag:
@@ -11,6 +7,8 @@ tag:
 category:
   - task
 ---
+
+# {{ $frontmatter.title }}
 
 If you want to retry a task that had failed a couple of times more, you can use the `retry` property in the `Task`.
 
@@ -26,7 +24,7 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 ## Usage
 
-@[code{3-} typescript{16}](../../examples/docs/task/retry/basic.ts)
+<<< @../../examples/docs/task/retry/basic.ts{18}
 
 ## Retry Delay
 
@@ -34,19 +32,19 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 Retry action can have a delay between the tries. For enabling this behavior, you can pass the retry to the given task as an object.
 
-@[code{3-} typescript{16-19}](../../examples/docs/task/retry/retry-delay.ts)
+<<< @../../examples/docs/task/retry/retry-delay.ts{18-21}
 
 ## Retry Event
 
-Retrying is self-aware, and you can access the task if it is retrying via `task.isRetrying()`. It will either return an object [with the given interface](/api/interfaces/listr2.ListrTaskRetry.html) where the `count` will be `0` for not repeating tasks, and `withError` is the last encountered error if retrying.
+Retrying is self-aware, and you can access the task if it is retrying via `task.isRetrying()`. It will either return an object [with the given interface](/api/listr2/interfaces/interface.ListrTaskRetry.html) where the `count` will be `0` for not repeating tasks, and `withError` is the last encountered error if retrying.
 
 ### Retry Count
 
-@[code{3-} typescript{6,8-11}](../../examples/docs/task/retry/retry-count.ts)
+<<< @../../examples/docs/task/retry/retry-count.ts{8,10-13}
 
 ### Last Error
 
-@[code{3-} typescript{6,8-11}](../../examples/docs/task/retry/last-error.ts)
+<<< @../../examples/docs/task/retry/last-error.ts{8,10-13}
 
 ## Renderer
 
@@ -56,6 +54,6 @@ Retrying is self-aware, and you can access the task if it is retrying via `task.
 
 ::: details
 
-<!-- @include: ../api/interfaces/listr2.ListrDefaultRendererOptions.md{265-282} -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrDefaultRendererOptions.md{263,294} -->
 
 :::

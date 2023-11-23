@@ -1,33 +1,25 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Installation
 order: 5
 ---
+
+# {{ $frontmatter.title }}
 
 Add `listr2` dependency to your project through your preferred package manager.
 
 <!-- more -->
 
-::: tabs
+::: code-group
 
-@tab npm
-
-```bash
+```bash [npm]
 npm i listr2
 ```
 
-@tab yarn
-
-```bash
+```bash [yarn]
 yarn add listr2
 ```
 
-@tab:active pnpm
-
-```bash
+```bash [pnpm]
 pnpm i listr2
 ```
 

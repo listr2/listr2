@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Process Output
 order: 110
 tag:
@@ -12,7 +8,9 @@ category:
   - logger
 ---
 
-[ProcessOutput](/api/classes/listr2.ProcessOutput.html), [ProcessOutputStream](/api/classes/listr2.ProcessOutputStream.html), [ProcessOutputBuffer](/api/classes/listr2.ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
+# {{ $frontmatter.title }}
+
+[ProcessOutput](/api/listr2/classes/class..ProcessOutput.html), [ProcessOutputStream](/api/listr2/classes/class..ProcessOutputStream.html), [ProcessOutputBuffer](/api/listr2/classes/class..ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
 
 <!-- more -->
 
@@ -20,7 +18,7 @@ category:
 
 ## Hijack
 
-[ProcessOutput](/api/classes/listr2.ProcessOutput.html) for renderers like _DefaultRenderer_ that need updating your `vt100` compatible terminal gives the ability to hijack the current `process.stdout` and `process.stderr`, create a temporary buffer for storing anything that is trying to write to the terminal since it will corrupt the output of _Listr_. If the renderer does not request to hijack the terminal output, `process.stdout` and `process.stderr` will be used directly without any trickery.
+[ProcessOutput](/api/listr2/classes/class..ProcessOutput.html) for renderers like _DefaultRenderer_ that need updating your `vt100` compatible terminal gives the ability to hijack the current `process.stdout` and `process.stderr`, create a temporary buffer for storing anything that is trying to write to the terminal since it will corrupt the output of _Listr_. If the renderer does not request to hijack the terminal output, `process.stdout` and `process.stderr` will be used directly without any trickery.
 
 ## Release
 
@@ -40,6 +38,6 @@ If you do not like the behavior of the _ProcessOutput_, you can always implement
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code typescript](../../examples/docs/renderer/process-output/change-behavior.ts)
+<<< @../../examples/docs/renderer/process-output/change-behavior.ts
 
 :::

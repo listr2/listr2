@@ -4,12 +4,10 @@ services:
   node:
     image: cenk1cenk2/node-fnm:latest
     environment:
-      PROXY_WORKSPACE_ONLY: 'true'
-      DEFAULTS_LOGS: 'true'
       SERVICE_0_CWD: .
       SERVICE_0_COMMAND: pnpm run dev:start
     ports:
-      - 8080:8080
+      - 5173:5173
       - 9229:9229
     volumes:
       - .:/data

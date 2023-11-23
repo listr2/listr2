@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Error Handling
 order: 5
 tag:
@@ -12,6 +8,8 @@ category:
   - task
   - listr
 ---
+
+# {{ $frontmatter.title }}
 
 Exceptions that occur while running the _Task_ will be handled internally through _Listr_. You can throw errors out of the tasks to show they are unsuccessful or stop execution. This can further be customized at _Listr_, _Subtask_ or _Task_ level.
 
@@ -49,21 +47,21 @@ Be aware that the execution will only stop after the error is thrown out. This c
 
 :::
 
-@[code{4-} typescript{6}](../../examples/docs/task/error-handling/basic-error.ts)
+<<< @../../examples/docs/task/error-handling/basic-error.ts{9}
 
 ## Changing the Behavior
 
 ### Per _Listr_
 
-@[code{4-} typescript{6,16}](../../examples/docs/task/error-handling/change-behavior-exitonerror-listr.ts)
+<<< @../../examples/docs/task/error-handling/change-behavior-exitonerror-listr.ts{9,19}
 
 ### Per _Subtask_
 
-@[code{4-} typescript{10,20,26,30}](../../examples/docs/task/error-handling/change-behavior-exitonerror-subtask.ts)
+<<< @../../examples/docs/task/error-handling/change-behavior-exitonerror-subtask.ts{13,23,29,33}
 
 ### Per _Task_
 
-@[code{4-} typescript{6,8,19}](../../examples/docs/task/error-handling/change-behavior-exitonerror-task.ts)
+<<< @../../examples/docs/task/error-handling/change-behavior-exitonerror-task.ts{9,11,22}
 
 ## Renderer
 
@@ -71,9 +69,9 @@ Be aware that the execution will only stop after the error is thrown out. This c
 
 Default renderer has options where you can change how the errors are displayed.
 
-::: details
+::: details Interface
 
-<!-- @include: ../api/interfaces/listr2.ListrDefaultRendererOptions.md{227-263} -->
+<!-- @include: ../api/listr2/interfaces/interface.ListrDefaultRendererOptions.md{225,259} -->
 
 :::
 
@@ -97,11 +95,11 @@ You can disable the error collection completely by setting it to `false`.
 
 ### ListrError
 
-[`ListrError`](/api/classes/listr2.ListrError.html) class extends the default `Error` and has some additional information like the cause of the error and where it is coming from, and the frozen context at the given time to further debug the issue while execution.
+[`ListrError`](/api/listr2/classes/class..ListrError.html) class extends the default `Error` and has some additional information like the cause of the error and where it is coming from, and the frozen context at the given time to further debug the issue while execution.
 
 ### ListrErrorTypes
 
-A listr error can be caused by multiple reasons, for a better explanation of why that particular error occurred, a type property on the `ListrError` exists in the form of enum [`ListrErrorTypes`](/api/enums/listr2.ListrErrorTypes.html).
+A listr error can be caused by multiple reasons, for a better explanation of why that particular error occurred, a type property on the `ListrError` exists in the form of enum [`ListrErrorTypes`](/api/listr2/enumerations/enumeration.ListrErrorTypes.html).
 
 ### Methodology
 
@@ -111,17 +109,20 @@ To keep the error collection mechanism simple and predictable, it might also pro
 
 For example, the following example will clear some things up about the given mindset.
 
-@[code{3-} typescript](../../examples/docs/task/error-handling/collection.ts)
+::: details Code
+
+<<< @../../examples/docs/task/error-handling/collection.ts
+
+:::
 
 ::: details <FontIcon icon="ph:terminal-window-duotone" /> Output
 
-@[code bash](../../examples/docs/task/error-handling/collection.output.txt)
+<<< @../../examples/docs/task/error-handling/collection.output.txt{bash}
 
 :::
 
 ::: details <FontIcon icon="fluent:text-description-24-filled" /> Flow
 
-- Tasks are concurrent, so we expect them to run in a synchronous fashion.
 - First error will be thrown from the first task. Since exitOnError is `false` on that context, `ListrError` will get collected by `tasks.errors`], and the value will be `{ message: '1', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR }`.
 - Then it will recurse into the second task, which has two subtasks.
 - The first task from the subtasks will fail and since the `exitOnError` is set to `true` in that context, that subtasks will fail and throw. The `ListrError` appended to the `tasks.errors` will be `{ message: '3', type: ListrErrorTypes.HAS_FAILED }`

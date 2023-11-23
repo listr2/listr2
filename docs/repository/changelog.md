@@ -3,9 +3,11 @@ title: Changelog
 description: The changelog of the library.
 headerDepth: 1
 order: -10
+prev: false
+next: false
 ---
 
-# Changelog
+# {{ $frontmatter.title }}
 
 <!-- more -->
 

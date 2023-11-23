@@ -73,8 +73,8 @@
     "@inquirer/type": "^1.1.5"
   },
   "devDependencies": {
-    "@inquirer/input": "^1.2.13",
-    "@inquirer/prompts": "^3.2.0",
+    "@inquirer/input": "^1.2.14",
+    "@inquirer/prompts": "^3.3.0",
     "listr2": "workspace:*"
   },
   "peerDependencies": {

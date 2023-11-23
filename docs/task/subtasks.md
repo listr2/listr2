@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Subtasks
 order: 10
 tag:
@@ -11,6 +7,8 @@ tag:
 category:
   - task
 ---
+
+# {{ $frontmatter.title }}
 
 `listr2` can be infinitely nested by utilizing subtasks, which is the core part of the design.
 
@@ -24,7 +22,7 @@ Subtasks give the advantage of grouping similar tasks, changing the behavior of 
 
 ## Usage
 
-@[code{4-} typescript{5}](../../examples/docs/task/subtasks/usage.ts)
+<<< @../../examples/docs/task/subtasks/usage.ts{8}
 
 ::: info Example
 
@@ -42,7 +40,7 @@ Due to design limitations of making renderers a bit simpler, some of the options
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code{3-} typescript{6,21,28,43}](../../examples/docs/task/subtasks/overwriting-options.ts)
+<<< @../../examples/docs/task/subtasks/overwriting-options.ts{8,23,30,45}
 
 :::
 
@@ -54,6 +52,6 @@ You can access the parent task class from subtasks by passing the function signa
 
 ::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
 
-@[code{3-} typescript{7,13}](../../examples/docs/task/subtasks/access-parent-task.ts)
+<<< @../../examples/docs/task/subtasks/access-parent-task.ts{9,15}
 
 :::

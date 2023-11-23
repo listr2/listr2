@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["../packages/listr2", "../packages/manager", "../packages/prompt-adapter-enquirer", "../packages/prompt-adapter-inquirer"],
+  "entryPointStrategy": "packages",
+  "out": "api",
+  "plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
+  "hideInPageTOC": true,
+  "readme": "none",
+  "categorizeByGroup": false,
+  "sort": ["source-order"]
+}

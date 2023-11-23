@@ -1,11 +1,9 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: Environment
 order: 10
 ---
+
+# {{ $frontmatter.title }}
 
 `listr2` supports only modern `node.js` environments, since it is mostly intended for CLI applications, but can be used as a task list in any application.
 
