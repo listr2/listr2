@@ -1,3 +1,21 @@
+# listr2 [8.0.0](https://github.com/listr2/listr2/compare/listr2@7.0.2...listr2@8.0.0) (2023-11-24)
+
+
+### Bug Fixes
+
+* update deps ([da9e1e6](https://github.com/listr2/listr2/commit/da9e1e69289e94eb94a0f7397a85a79a5c2cdceb))
+
+
+### Performance Improvements
+
+* drop node 16 support ([6f4f9f8](https://github.com/listr2/listr2/commit/6f4f9f84564195a8485c44d4862b22fe2323283a))
+
+
+### BREAKING CHANGES
+
+* node16 is EOL therefore the support is dropped with the minimum
+supported version being >= 18.
+
 ## listr2 [7.0.2](https://github.com/listr2/listr2/compare/listr2@7.0.1...listr2@7.0.2) (2023-10-18)
 
 
