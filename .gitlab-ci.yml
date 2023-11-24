@@ -47,6 +47,8 @@ build-docs:
   # this is buged out gitlab-ci with symlink fails
   before_script:
     - pnpm i
+    - apk update
+    - apk add git
   variables:
     NODE_COMMAND_SCRIPT: docs:build
     NODE_COMMAND_CWD: ./docs
