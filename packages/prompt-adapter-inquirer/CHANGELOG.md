@@ -1,3 +1,24 @@
+# @listr2/prompt-adapter-inquirer [2.0.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@1.0.2...@listr2/prompt-adapter-inquirer@2.0.0) (2023-11-24)
+
+
+### Performance Improvements
+
+* drop node 16 support ([6f4f9f8](https://github.com/listr2/listr2/commit/6f4f9f84564195a8485c44d4862b22fe2323283a))
+
+
+### BREAKING CHANGES
+
+* node16 is EOL therefore the support is dropped with the minimum
+supported version being >= 18.
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 8.0.0
+
 ## @listr2/prompt-adapter-inquirer [1.0.2](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@1.0.1...@listr2/prompt-adapter-inquirer@1.0.2) (2023-10-18)
 
 
