@@ -52,10 +52,8 @@ build-docs:
       - ./docs/dist
   needs:
     - install
-    - build
   dependencies:
     - install
-    - build
   only:
     refs:
       - master
