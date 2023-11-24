@@ -1,8 +1,4 @@
 ---
-author:
-  name: Cenk Kılıç
-  url: https://cenk.kilic.dev
-  email: cenk@kilic.dev
 title: format
 order: 0
 ---
@@ -11,11 +7,11 @@ order: 0
 
 <!-- included code snippet -->
 
-@[code{4-} typescript{9,24,31,46,50}](../../examples/docs/task/subtasks/overwriting-options.ts)
+<<< @../../examples/docs/task/subtasks/overwriting-options.ts{9,24}
 
 <!-- collapsed code snippet-->
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 @[code{4-} typescript{9,24,31,46,50}](../../examples/docs/task/subtasks/overwriting-options.ts)
 
@@ -31,11 +27,11 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 <!-- github issue -->
 
-<Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/257" target="_blank">#257</a></Badge>
+<GithubIssue :issue="257" />
 
 <!-- version released -->
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge>
+<Version version="v3.0.0+" />
 
 <!-- include details -->
 

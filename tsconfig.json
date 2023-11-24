@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@tsconfig/node16/tsconfig.json",
+  "extends": "./node_modules/@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -16,6 +16,6 @@
     },
     "swc": true
   },
-  "include": ["./src/"],
+  "include": ["."],
   "exclude": ["node_modules"]
 }

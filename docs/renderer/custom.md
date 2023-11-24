@@ -26,7 +26,7 @@ For Javascript, since you cannot implement `ListrRenderer`, you can extend eithe
 
 Take a look at _DefaultRenderer_ since it is implemented this way.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../packages/listr2/src/renderer/default/renderer.ts
 
@@ -38,13 +38,13 @@ _Listr_ and its _Task_ fires many events to indicate the task status. _Task_ dep
 
 Take a look at _SimpleRenderer_ or _VerboseRenderer_ since it is implemented this way.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../packages/listr2/src/renderer/simple/renderer.ts
 
 :::
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../packages/listr2/src/renderer/verbose/renderer.ts
 
@@ -52,7 +52,7 @@ Take a look at _SimpleRenderer_ or _VerboseRenderer_ since it is implemented thi
 
 ## Using Render Hooks
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v2.1.0</Badge>
+<Version version="v2.1.0" />
 
 Additional to listening to the events, another singleton hook that come from the root _Listr_ is `events`. This provides some generic events like [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/listr2/enumerations/enumeration.ListrEventType.html#should-refresh-render) which can be used to trigger an update on an updating renderer.
 

@@ -83,9 +83,9 @@ Since there are options to ignore some errors on cases like `exitOnError`, or th
 
 ### Modes
 
-<Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/615" target="_blank">#615</a></Badge>
+<GithubIssue :issue="615" />
 
-Error collection now has three modes to choose from which are, `false`, `minimal` and `full`. This can be set through per _Task_ in the _Listr_ options with the key `collectErrors`. The default mode is `false` since I decided that this is the most-underused functionality, and it should be at least opt-in for saving some memory.
+Error collection has three modes to choose from which are, `false`, `minimal` and `full`. This can be set through per _Task_ in the _Listr_ options with the key `collectErrors`. The default mode is `false` since I decided that this is the most-underused functionality, and it should be at least opt-in for saving some memory.
 
 Due to potential memory leaks from cloning the context and task to the `ListrError`, advised mode is `minimal`, which will only collect where the error has occurred, when it has been encountered and what the `error.message` is.
 
@@ -115,13 +115,13 @@ For example, the following example will clear some things up about the given min
 
 :::
 
-::: details <FontIcon icon="ph:terminal-window-duotone" /> Output
+::: details Output
 
 <<< @../../examples/docs/task/error-handling/collection.output.txt{bash}
 
 :::
 
-::: details <FontIcon icon="fluent:text-description-24-filled" /> Flow
+::: details Flow
 
 - First error will be thrown from the first task. Since exitOnError is `false` on that context, `ListrError` will get collected by `tasks.errors`], and the value will be `{ message: '1', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR }`.
 - Then it will recurse into the second task, which has two subtasks.

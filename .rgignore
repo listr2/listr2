@@ -10,4 +10,4 @@ tests/**/__snapshots__/
 
 tests/
 examples/
-# docs/
+docs/
