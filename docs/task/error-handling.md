@@ -85,9 +85,13 @@ Since there are options to ignore some errors on cases like `exitOnError`, or th
 
 <GithubIssue :issue="615" />
 
-Error accepts a boolean from <Version version="v8.0.0+" /> due to using the `structuredClone` function directly. This can be set through per _Task_ in the _Listr_ options with the key `collectErrors`. The default mode is `false` since I decided that this is the most-underused functionality, and it should be at least opt-in for saving some memory.
+Error collection has three modes to choose from which are, `false`, `minimal` and `full`. This can be set through per _Task_ in the _Listr_ options with the key `collectErrors`. The default mode is `false` since I decided that this is the most-underused functionality, and it should be at least opt-in for saving some memory.
 
-You can enable error collection by setting `true` and this will collect errors as mentioned below.
+Due to potential memory leaks from cloning the context and task to the `ListrError`, advised mode is `minimal`, which will only collect where the error has occurred, when it has been encountered and what the `error.message` is.
+
+If you want to fetch the full information for debugging you can set the mode to `full`. This will also clone the current context and task to the `ListrError`.
+
+You can disable the error collection completely by setting it to `false`.
 
 ### ListrError
 

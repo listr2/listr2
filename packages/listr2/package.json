@@ -78,10 +78,6 @@
     "wrap-ansi": "^9.0.0"
   },
   "devDependencies": {
-    "@inquirer/input": "^1.2.14",
-    "@inquirer/prompts": "^3.3.0",
-    "@inquirer/type": "^1.1.5",
-    "@types/wrap-ansi": "^8.1.0",
     "eslint": "^8.54.0",
     "rxjs": "^7.8.1"
   }
