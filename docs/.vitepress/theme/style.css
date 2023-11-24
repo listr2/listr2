@@ -60,6 +60,7 @@
   --vp-c-red-soft: #e06c7550;
 
   --vp-custom-block-font-size: 16px;
+  --vp-code-color: var(--vp-c-text-1);
 }
 
 .dark {
