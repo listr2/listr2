@@ -14,7 +14,7 @@ Prompts use adapters and optional peer dependencies to provide interactivity wit
 
 <!-- more -->
 
-Since <Badge><FontIcon icon="mdi:tag-text-outline"/>v7.0.0</Badge>, for the ability to support multiple prompt providers, signature of the function `task.prompt` has changed requiring a adapter first.
+Since <Version version="v7.0.0" />, for the ability to support multiple prompt providers, signature of the function `task.prompt` has changed requiring a adapter first.
 
 ## Adapters
 
@@ -70,7 +70,7 @@ To access the prompts just utilize the `task.prompt` jumper function by passing 
 
 Please note that I rewrote the types for the `enquirer` and bundle them with this application.
 
-So it is highly likely that it has some mistakes in it since I usually do not use all of them. I will merge the original types when the `enquirer` fixes them with the pending merge request <Badge type="warning"><FontIcon icon="mdi:github" /><a href="https://github.com/listr2/listr2/issues/235" target="_blank">#235</a></Badge>, which can be tracked in issue , which will probably never happen!
+So it is highly likely that it has some mistakes in it since I usually do not use all of them. I will merge the original types when the `enquirer` fixes them with the pending merge request <GithubIssue :issue="235" /> , which can be tracked in issue , which will probably never happen!
 
 :::
 
@@ -135,7 +135,7 @@ console.log(ctx)
 
 #### Cancel a Prompt
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v7.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/173" target="_blank">#173</a></Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/676" target="_blank">#676</a></Badge>
+<Version version="v7.0.0" /><GithubIssue :issue="173" /><GithubIssue :issue="676" />
 
 Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel` method, you can cancel a prompt while it is still active.
 
@@ -143,7 +143,7 @@ Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel
 
 ### `inquirer`
 
-<Badge><FontIcon icon="mdi:tag-text-outline" />v7.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github" /><a href="https://github.com/listr2/listr2/issues/676" target="_blank">#676</a></Badge>
+<Version version="v7.0.0" /><GithubIssue :issue="676" />
 
 ::: danger
 

@@ -9,7 +9,7 @@ Whenever the _Task_ itself failed or its subtasks have failed, `rollback` will r
 
 > Since when you return a new _Listr_ as a subtask list, it is not the easiest, and most convenient to do something on failure, and each subtask should be handled separately. But this can still be used for singular tasks where some action needs to be reverted if the task does not complete.
 
-<Badge><FontIcon icon="mdi:tag-text-outline" />v3.3.0</Badge><Badge type="warning"><FontIcon icon="mdi:github" /><a href="https://github.com/listr2/listr2/issues/257" target="_blank">#257</a></Badge>
+<Version version="v3.3.0" /><GithubIssue :issue="257" />
 
 <!-- more -->
 

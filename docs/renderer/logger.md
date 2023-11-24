@@ -28,13 +28,13 @@ The _style_ of _ListrLogger_ can be customized through [ListrLoggerOptions](/api
 
 ### Icons and Colors
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/613" target="_blank">#613</a></Badge>
+<Version version="v6.0.0" /><GithubIssue :issue="613" />
 
 _ListrLogger_ can be customized for any renderer through the exposed fields on your renderer inside the respective renderer options that use the _ListrLogger_.
 
 The `icon` and `color` section of the supported renderer is in the form of [ListrLoggerStyleMap](/api/listr2/interfaces/interface.ListrLoggerStyleMap.html). By injecting new style options into the _ListrLogger_ you can change the icons and colors of every possible task.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../examples/docs/renderer/style/icon-and-color.ts
 
@@ -42,7 +42,7 @@ The `icon` and `color` section of the supported renderer is in the form of [List
 
 ## Fields
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge>
+<Version version="v6.0.0" />
 
 _ListrLogger_ can have fields for each entry in the form of prefixes and suffixes.
 
@@ -50,7 +50,7 @@ Please refer to the _presets_ section for how to use this with the renderers.
 
 ## Presets
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge>
+<Version version="v6.0.0" />
 
 The Preset mechanism is used for displaying additional data like [timestamps](/api/variables/listr2.PRESET_TIMESTAMP.html) or [timers](/api/variables/listr2.PRESET_TIMER.html). This also gives flexibility to making things dynamic with a conditional display of fields or conditional styling.
 
@@ -60,13 +60,13 @@ You can either pass the predefined preset to a given field or override a preset'
 
 ### Preset Timer
 
-<Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/646" target="_blank">#646</a></Badge>
+<GithubIssue :issue="646" />
 
 This preset can be used to show how much time has elapsed for a given thing to happen.
 
 This preset is available for the _DefaultRenderer_, _VerboseRenderer_, and _SimpleRenderer_ on both _Listr_ and _Task_ level options.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../examples/docs/renderer/logger/preset-timer.ts
 
@@ -78,7 +78,7 @@ This preset can be used to stamp log entries with the current timestamp.
 
 This preset is available for the _VerboseRenderer_, _SimpleRenderer_ on _Listr_ level options.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../examples/docs/renderer/logger/preset-timestamp.ts
 
@@ -90,13 +90,13 @@ You can use your custom _ListrLogger_ whenever the underlying renderer is using 
 
 To do this you must expand the original _ListrLogger_ implementation since it is again a stateful class.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../examples/docs/renderer/logger/custom-implementation.ts
 
 :::
 
-> After a couple of attempts with <Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge>, this turned out to be the most flexible solution for modifying the logger, where it is shared with multiple different implementations of renderers, and they do not use it the same way.
+> After a couple of attempts with <Version version="v6.0.0" />, this turned out to be the most flexible solution for modifying the logger, where it is shared with multiple different implementations of renderers, and they do not use it the same way.
 
 ::: warning
 

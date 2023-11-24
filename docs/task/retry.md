@@ -12,7 +12,7 @@ category:
 
 If you want to retry a task that had failed a couple of times more, you can use the `retry` property in the `Task`.
 
-<Badge><FontIcon icon="mdi:tag-text-outline" />v3.4.0</Badge><Badge type="warning"><FontIcon icon="mdi:github" /><a href="https://github.com/listr2/listr2/issues/303" target="_blank">#303</a></Badge>
+<Version version="v3.4.0" /><GithubIssue :issue="303" />
 
 <!-- more -->
 
@@ -28,7 +28,7 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 ## Retry Delay
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/668" target="_blank">#668</a></Badge>
+<Version version="v6.0.0" /><GithubIssue :issue="668" />
 
 Retry action can have a delay between the tries. For enabling this behavior, you can pass the retry to the given task as an object.
 

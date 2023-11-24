@@ -30,7 +30,7 @@ For most of the renderers, except for _TestRenderer_, the tasks that do not have
 
 You can always use `task.title` programmatically to add titles, and visually pop tasks to existence.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../examples/docs/task/title/task-title-pop.ts{8,12,19,23}
 

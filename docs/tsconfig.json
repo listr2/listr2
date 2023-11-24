@@ -10,6 +10,6 @@
     "noImplicitAny": false,
     "paths": {}
   },
-  "include": ["./.vitepress/**/*"],
+  "include": ["./.vitepress/**/*", "./.vitepress/**/*.vue"],
   "exclude": ["node_modules", "dist"]
 }

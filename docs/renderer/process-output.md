@@ -14,7 +14,7 @@ category:
 
 <!-- more -->
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/651" target="_blank">#651</a></Badge>
+<Version version="v6.0.0" /><GithubIssue :issue="651" />
 
 ## Hijack
 
@@ -30,13 +30,13 @@ You can override the default _ProcessOutput_ by extending the class with your ex
 
 ### Changing the Behavior
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v6.1.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/670" target="_blank">#670</a></Badge>
+<Version version="v6.1.0" /><GithubIssue :issue="670" />
 
 You can change the behavior of the _ProcessOutput_ through injecting it to the logger. Since every renderer at some level uses the underlying logger, this can effectively be used to change the behavior of the ProcessOutput as well.
 
 If you do not like the behavior of the _ProcessOutput_, you can always implement and bring your own through this interface as well.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../examples/docs/renderer/process-output/change-behavior.ts
 

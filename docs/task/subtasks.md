@@ -38,7 +38,7 @@ This includes selected renderer options as well as **Listr** options like `exitO
 
 Due to design limitations of making renderers a bit simpler, some of the options that cannot be changed from the renderer are marked as `@global` in the hover documentation. This is not disabled through typings due to keeping the renderer instances fully self-contained.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../examples/docs/task/subtasks/overwriting-options.ts{8,23,30,45}
 
@@ -46,11 +46,11 @@ Due to design limitations of making renderers a bit simpler, some of the options
 
 ## Access Parent Task from Subtasks
 
-<Badge><FontIcon icon="mdi:tag-text-outline"/>v2.6.0</Badge><Badge type="warning"><FontIcon icon="mdi:github"/><a href="https://github.com/listr2/listr2/issues/141" target="_blank">#141</a></Badge>
+<Version version="v2.6.0" /><GithubIssue :issue="141" />
 
 You can access the parent task class from subtasks by passing the function signature `(parent) => Listr` to `task.newListr`. This way you can change the title of the parent task or access its functionality.
 
-::: details <FontIcon icon="material-symbols:code-blocks-outline" /> Code Example
+::: details <CodeExampleIcon /> Code Example
 
 <<< @../../examples/docs/task/subtasks/access-parent-task.ts{9,15}
 

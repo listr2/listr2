@@ -24,6 +24,10 @@ export const LINK: { content: string, href: string }[] = [
     href: '/renderer/verbose.html'
   },
   {
+    content: 'SilentRenderer',
+    href: '/renderer/silent.html'
+  },
+  {
     content: 'TestRenderer',
     href: '/renderer/test.html'
   },
@@ -41,6 +45,6 @@ export const LINK: { content: string, href: string }[] = [
   },
   {
     content: 'style',
-    href: '/renderer/logger.styl'
+    href: '/renderer/logger.html#style'
   }
 ]

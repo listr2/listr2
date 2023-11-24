@@ -19,9 +19,9 @@ _DefaultRenderer_ is the default choice.
 
 If the environment advertises itself as non-TTY it will fall back to the fallback renderer automatically.
 
-_SimpleRenderer_ is an alternative to _DefaultRenderer_, which has all its capabilities but does not try to update your `vt100` compatible terminal if you are not using prompts. From <Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge> it is designated as the default choice for the fallback renderer.
+_SimpleRenderer_ is an alternative to _DefaultRenderer_, which has all its capabilities but does not try to update your `vt100` compatible terminal if you are not using prompts. From <Version version="v6.0.0" /> it is designated as the default choice for the fallback renderer.
 
-_VerboseRenderer_ was the default choice for the fallback renderer prior to <Badge><FontIcon icon="mdi:tag-text-outline"/>v6.0.0</Badge>. It is a fully text-based renderer.
+_VerboseRenderer_ was the default choice for the fallback renderer prior to <Version version="v6.0.0" />. It is a fully text-based renderer.
 
 _SilentRenderer_ is used for the _Subtask_ of _Task_ since the parent already started a renderer. This renderer can also be used for using `listr2` as only a task list without any output to the terminal directly, so you could use your method of communication, or a logger however you like it.
 

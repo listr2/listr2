@@ -11,38 +11,7 @@
     "allow_different_nesting": true
   },
   "MD033": {
-    "allowed_elements": [
-      "br",
-      "template",
-      "script",
-      "style",
-      "ArtPlayer",
-      "AudioPlayer",
-      "AutoCatalog",
-      "Badge",
-      "BiliBili",
-      "Catalog",
-      "CodePen",
-      "DemoProject",
-      "FontIcon",
-      "ProjectLink",
-      "PDF",
-      "Replit",
-      "Share",
-      "SiteInfo",
-      "StackBlitz",
-      "XiGua",
-      "VideoPlayer",
-      "YouTube",
-      "AppearanceSwitch",
-      "IconDisplay",
-      "KatexPlayground",
-      "NetlifyBadge",
-      "PrintButton",
-      "ThemeColorPicker",
-      "ToggleFullScreenButton",
-      "ToggleRTLButton"
-    ]
+    "allowed_elements": ["br", "template", "script", "style", "Badge", "GithubIssue", "Version"]
   },
   "MD035": {
     "style": "---"
