@@ -1,5 +1,3 @@
 **
-!./.vuepress
-./.vuepress/**
-!./.vuepress/dist
+!./dist
 
