@@ -8,7 +8,7 @@ import { LINK } from './link.js'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'listr2',
-  mpa: true,
+  mpa: false,
   description: 'Documentation website for npm package of listr2.',
   lastUpdated: true,
   // included files go crazy with the links inside of them
