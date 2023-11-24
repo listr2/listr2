@@ -32,6 +32,13 @@ include:
   - project: devops/pipes
     file: /templates/v2/github-status.gitlab-ci.yml
 
+install:
+  artifacts:
+    paths:
+      - ./packages/*/node_modules
+      - ./examples/node_modules
+      - ./docs/node_modules
+
 test:
   stage: test
   parallel:
@@ -52,8 +59,10 @@ build-docs:
       - ./docs/dist
   needs:
     - install
+    - build
   dependencies:
     - install
+    - build
   only:
     refs:
       - master
