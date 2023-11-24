@@ -44,6 +44,9 @@ test:
 build-docs:
   stage: docs
   extends: .node-run
+  # this is buged out gitlab-ci with symlink fails
+  before_script:
+    - pnpm i
   variables:
     NODE_COMMAND_SCRIPT: docs:build
     NODE_COMMAND_CWD: ./docs
@@ -51,10 +54,8 @@ build-docs:
     paths:
       - ./docs/dist
   needs:
-    - install
     - build
   dependencies:
-    - install
     - build
   only:
     refs:
