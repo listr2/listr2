@@ -35,9 +35,10 @@ include:
 install:
   artifacts:
     paths:
-      - ./packages/*/node_modules
-      - ./examples/node_modules
-      - ./docs/node_modules
+      - ./packages/*/node_modules/
+      - ./examples/node_modules/
+      - ./docs/node_modules/
+      - ./node_modules/
 
 test:
   stage: test
