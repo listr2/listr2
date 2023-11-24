@@ -37,9 +37,7 @@ test:
   parallel:
     matrix:
       - NODE_VERSION: 20-alpine
-      # these are going mad, disable it for now
-      # - NODE_VERSION: 18-alpine
-      # - NODE_VERSION: 16-alpine
+      - NODE_VERSION: 18-alpine
 
 build-docs:
   stage: docs
