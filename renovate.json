@@ -1,9 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "@cenk1cenk2"
-  ],
+  "extends": [ "local>renovate/renovate-config:default/default" ],
   "ignorePresets": [
-    "@cenk1cenk2:noTests"
+    "local>renovate/renovate-config:default/no-tests"
   ]
 }
