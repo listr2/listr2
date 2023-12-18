@@ -7,7 +7,7 @@ const tasks = new Listr(
       task: async (ctx, task): Promise<void> => {
         task.output = 'I will push an output. [0]'
       },
-      rendererOptions: { persistentOutput: true }
+      options: { persistentOutput: true }
     }
   ],
   { concurrent: false }
