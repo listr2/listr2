@@ -223,7 +223,6 @@ exports[`simple renderer: show subtasks should be able to change concurrency set
 ",
   "✔ This task will execute.
 ",
-  "[?25h",
 ]
 `;
 
@@ -256,7 +255,6 @@ exports[`simple renderer: show subtasks should be able to change exit on error: 
 ",
   "❯ This task will execute.
 ",
-  "[?25h",
 ]
 `;
 
@@ -278,7 +276,6 @@ exports[`simple renderer: show subtasks should create a set of subtasks: JQYWVb3
 ",
   "✔ This task will execute.
 ",
-  "[?25h",
 ]
 `;
 
