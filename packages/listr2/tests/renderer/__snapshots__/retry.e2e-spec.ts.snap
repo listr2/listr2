@@ -120,7 +120,6 @@ exports[`simple renderer: retry should retry the main task if any of the subtask
 ",
   "› I am self aware that I am retrying for the 3th time.
 ",
-  "[?25h",
 ]
 `;
 
@@ -149,7 +148,6 @@ exports[`simple renderer: retry should stop retrying if the task succeeds afterw
 ",
   "✔ Successed at 3th try.
 ",
-  "[?25h",
 ]
 `;
 

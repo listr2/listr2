@@ -48,9 +48,8 @@ export class SimpleRenderer implements ListrRenderer {
     }
   }
 
-  public end (): void {
-    this.logger.process.release()
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  public end (): void {}
 
   public render (): void {
     this.renderer(this.tasks)
