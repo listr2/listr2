@@ -1,3 +1,10 @@
+## listr2 [8.0.1](https://github.com/listr2/listr2/compare/listr2@8.0.0...listr2@8.0.1) (2023-12-20)
+
+
+### Bug Fixes
+
+* remove the unnecassary release ([6fce8c1](https://github.com/listr2/listr2/commit/6fce8c1a5a3e3fbb970b7cccefdbf242076b436d)), closes [#700](https://github.com/listr2/listr2/issues/700)
+
 # listr2 [8.0.0](https://github.com/listr2/listr2/compare/listr2@7.0.2...listr2@8.0.0) (2023-11-24)
 
 
