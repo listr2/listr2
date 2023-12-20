@@ -264,7 +264,6 @@ exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf
   "[?25h",
   "✔ This task will execute.
 ",
-  "[?25h",
 ]
 `;
 
@@ -318,7 +317,6 @@ exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB
   "[?25h",
   "✔ This task will execute.
 ",
-  "[?25h",
 ]
 `;
 
@@ -344,7 +342,6 @@ exports[`simple renderer: prompt -> enquirer should run cancel callback: HaNF6mQ
   "❯ This task will execute.
 ",
   "[?25l",
-  "[?25h",
 ]
 `;
 
@@ -375,7 +372,6 @@ exports[`simple renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEd
 ",
   "✔ Another task.
 ",
-  "[?25h",
 ]
 `;
 
@@ -418,7 +414,6 @@ exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: 
   "[?25h",
   "✔ This task will execute.
 ",
-  "[?25h",
 ]
 `;
 
