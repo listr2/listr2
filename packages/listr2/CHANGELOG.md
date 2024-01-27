@@ -1,3 +1,10 @@
+## listr2 [8.0.2](https://github.com/listr2/listr2/compare/listr2@8.0.1...listr2@8.0.2) (2024-01-27)
+
+
+### Bug Fixes
+
+* **deps:** update all minor dependency updates ([6662e0b](https://github.com/listr2/listr2/commit/6662e0bda139742578505da4ceeddffc83234611))
+
 ## listr2 [8.0.1](https://github.com/listr2/listr2/compare/listr2@8.0.0...listr2@8.0.1) (2023-12-20)
 
 
