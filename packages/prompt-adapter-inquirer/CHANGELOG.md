@@ -1,3 +1,10 @@
+## @listr2/prompt-adapter-inquirer [2.0.3](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.2...@listr2/prompt-adapter-inquirer@2.0.3) (2024-02-03)
+
+
+### Bug Fixes
+
+* update dependencies and documentation ([bfa507b](https://github.com/listr2/listr2/commit/bfa507b39a0578a60ef3de65aaa315cda076bfb0)), closes [#705](https://github.com/listr2/listr2/issues/705)
+
 ## @listr2/prompt-adapter-inquirer [2.0.2](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.1...@listr2/prompt-adapter-inquirer@2.0.2) (2024-01-27)
 
 
