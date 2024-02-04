@@ -179,8 +179,8 @@ importers:
   packages/prompt-adapter-inquirer:
     dependencies:
       '@inquirer/type':
-        specifier: ^1.1.6
-        version: 1.1.6
+        specifier: ^1.2.0
+        version: 1.2.0
     devDependencies:
       '@inquirer/input':
         specifier: ^1.2.16
@@ -1374,7 +1374,7 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       '@inquirer/core': 6.0.0
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       figures: 3.2.0
@@ -1384,14 +1384,14 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       '@inquirer/core': 6.0.0
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       chalk: 4.1.2
 
   /@inquirer/core@6.0.0:
     resolution: {integrity: sha512-fKi63Khkisgda3ohnskNf5uZJj+zXOaBvOllHsOkdsXRA/ubQLJQrZchFFi57NKbZzkTunXiBMdvWOv71alonw==}
     engines: {node: '>=14.18.0'}
     dependencies:
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       '@types/mute-stream': 0.0.4
       '@types/node': 20.11.16
       '@types/wrap-ansi': 3.0.0
@@ -1411,7 +1411,7 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       '@inquirer/core': 6.0.0
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       chalk: 4.1.2
       external-editor: 3.1.0
 
@@ -1420,7 +1420,7 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       '@inquirer/core': 6.0.0
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       chalk: 4.1.2
       figures: 3.2.0
 
@@ -1429,7 +1429,7 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       '@inquirer/core': 6.0.0
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       chalk: 4.1.2
 
   /@inquirer/password@1.1.16:
@@ -1437,7 +1437,7 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       '@inquirer/core': 6.0.0
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
 
@@ -1460,7 +1460,7 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       '@inquirer/core': 6.0.0
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       chalk: 4.1.2
 
   /@inquirer/select@1.3.3:
@@ -1468,14 +1468,14 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       '@inquirer/core': 6.0.0
-      '@inquirer/type': 1.1.6
+      '@inquirer/type': 1.2.0
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       figures: 3.2.0
 
-  /@inquirer/type@1.1.6:
-    resolution: {integrity: sha512-OCKOpn0CrFDslR8s3who7hlr823zXTb1iShGCaaWgEJFfkIV0T9aLZV2QGnOuU78IrsPYLkr3oKx9dZwwCH3Rw==}
-    engines: {node: '>=14.18.0'}
+  /@inquirer/type@1.2.0:
+    resolution: {integrity: sha512-/vvkUkYhrjbm+RolU7V1aUFDydZVKNKqKHR5TsE+j5DXgXFwrsOPcoGUJ02K0O7q7O53CU2DOTMYCHeGZ25WHA==}
+    engines: {node: '>=18'}
 
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
