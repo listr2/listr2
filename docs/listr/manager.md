@@ -10,7 +10,7 @@ category:
 
 # {{ $frontmatter.title }}
 
-[Manager](/api/listr2/classes/class._manager.Manager.html) is a great way to create a custom-tailored _Listr_ class once and then utilize it more than once.
+[Manager](/api/@listr2/manager/classes/Manager.html) is a great way to create a custom-tailored _Listr_ class once and then utilize it more than once.
 
 <!-- more -->
 

@@ -34,7 +34,7 @@ Take a look at _DefaultRenderer_ since it is implemented this way.
 
 ## Utilizing the Events
 
-_Listr_ and its _Task_ fires many events to indicate the task status. _Task_ depending on what is currently done will fire [ListrTaskState](/api/listr2/enumerations/enumeration.ListrTaskState.html) and [ListrTaskEventType](/api/listr2/enumerations/enumeration.ListrTaskEventType.html) through [ListrTaskEventManager](/api/listr2/classes/class..ListrTaskEventManager.html) which you can subscribe.
+_Listr_ and its _Task_ fires many events to indicate the task status. _Task_ depending on what is currently done will fire [ListrTaskState](/api/listr2/enumerations/ListrTaskState.html) and [ListrTaskEventType](/api/listr2/enumerations/ListrTaskEventType.html) through [ListrTaskEventManager](/api/listr2/classes/ListrTaskEventManager.html) which you can subscribe.
 
 Take a look at _SimpleRenderer_ or _VerboseRenderer_ since it is implemented this way.
 
@@ -54,7 +54,7 @@ Take a look at _SimpleRenderer_ or _VerboseRenderer_ since it is implemented thi
 
 <Version version="v2.1.0" />
 
-Additional to listening to the events, another singleton hook that come from the root _Listr_ is `events`. This provides some generic events like [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/listr2/enumerations/enumeration.ListrEventType.html#should-refresh-render) which can be used to trigger an update on an updating renderer.
+Additional to listening to the events, another singleton hook that come from the root _Listr_ is `events`. This provides some generic events like [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/listr2/enumerations/ListrEventType.html#should-refresh-render) which can be used to trigger an update on an updating renderer.
 
 These `events` can be the third optional variable of a given renderer while using it is always optional.
 

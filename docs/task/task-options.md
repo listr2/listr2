@@ -16,11 +16,11 @@ category:
 
 ## Per _Listr_
 
-_Listr_ task list can be configured how to behave globally by using the second argument of the prototype with [given properties](/api/listr2/interfaces/interface.ListrOptions.html#properties).
+_Listr_ task list can be configured how to behave globally by using the second argument of the prototype with [given properties](/api/listr2/interfaces/ListrOptions.html#properties).
 
 ## Per _Subtask_
 
-This behavior can be further expanded, if the subtask requires a different approach, in this case, these options are generated depending on the current renderer with the [given properties](/api/listr2/interfaces/interface.ListrSubClassOptions.html#properties).
+This behavior can be further expanded, if the subtask requires a different approach, in this case, these options are generated depending on the current renderer with the [given properties](/api/listr2/interfaces/ListrSubClassOptions.html#properties).
 
 Naturally, subtasks options are a subset of the general options, since some options are needed to be set only one time, and do not make sense to change per task.
 

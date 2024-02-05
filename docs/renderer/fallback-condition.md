@@ -47,7 +47,7 @@ These checks are primal at best but do not forget that in many cases, your termi
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/renderer-fallback-condition.example.ts).
+You can find the related examples [here](../../examples/renderer-fallback-condition.example.ts).
 
 :::
 
