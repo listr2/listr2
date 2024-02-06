@@ -19,7 +19,7 @@ _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logg
 
 ::: details
 
-<!-- @include: ../api/listr2/interfaces/interface.ListrVerboseRendererOptions.md -->
+<!-- @include: ../api/listr2/interfaces/ListrVerboseRendererOptions.md -->
 
 :::
 
@@ -27,6 +27,6 @@ _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logg
 
 ::: details
 
-<!-- @include: ../api/listr2/interfaces/interface.ListrVerboseRendererTaskOptions.md -->
+<!-- @include: ../api/listr2/interfaces/ListrVerboseRendererTaskOptions.md -->
 
 :::

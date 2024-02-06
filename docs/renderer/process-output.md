@@ -10,7 +10,7 @@ category:
 
 # {{ $frontmatter.title }}
 
-[ProcessOutput](/api/listr2/classes/class..ProcessOutput.html), [ProcessOutputStream](/api/listr2/classes/class..ProcessOutputStream.html), [ProcessOutputBuffer](/api/listr2/classes/class..ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
+[ProcessOutput](/api/listr2/classes/ProcessOutput.html), [ProcessOutputStream](/api/listr2/classes/ProcessOutputStream.html), [ProcessOutputBuffer](/api/listr2/classes/ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
 
 <!-- more -->
 
@@ -18,7 +18,7 @@ category:
 
 ## Hijack
 
-[ProcessOutput](/api/listr2/classes/class..ProcessOutput.html) for renderers like _DefaultRenderer_ that need updating your `vt100` compatible terminal gives the ability to hijack the current `process.stdout` and `process.stderr`, create a temporary buffer for storing anything that is trying to write to the terminal since it will corrupt the output of _Listr_. If the renderer does not request to hijack the terminal output, `process.stdout` and `process.stderr` will be used directly without any trickery.
+[ProcessOutput](/api/listr2/classes/ProcessOutput.html) for renderers like _DefaultRenderer_ that need updating your `vt100` compatible terminal gives the ability to hijack the current `process.stdout` and `process.stderr`, create a temporary buffer for storing anything that is trying to write to the terminal since it will corrupt the output of _Listr_. If the renderer does not request to hijack the terminal output, `process.stdout` and `process.stderr` will be used directly without any trickery.
 
 ## Release
 
