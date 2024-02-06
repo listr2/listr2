@@ -96,14 +96,14 @@ importers:
         specifier: ^0.25.7
         version: 0.25.7(typescript@5.3.3)
       typedoc-plugin-markdown:
-        specifier: 4.0.0-next.40
-        version: 4.0.0-next.40(typedoc@0.25.7)
+        specifier: 4.0.0-next.50
+        version: 4.0.0-next.50(typedoc@0.25.7)
       typedoc-vitepress-theme:
         specifier: 1.0.0-next.8
-        version: 1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.40)
+        version: 1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.50)
       vitepress:
-        specifier: 1.0.0-rc.41
-        version: 1.0.0-rc.41(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.3.3)
+        specifier: 1.0.0-rc.42
+        version: 1.0.0-rc.42(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.3.3)
       vitepress-sidebar:
         specifier: ^1.18.6
         version: 1.18.6
@@ -2000,14 +2000,14 @@ packages:
     dev: true
     optional: true
 
-  /@shikijs/core@1.0.0-beta.5:
-    resolution: {integrity: sha512-C/MxtvK3FFCQZSsDq6OfjDHHOmyP1Jc9wO66cnE8VLEyWXzWch7Zpoc2MWuVJTSC0Pz9QxyUlsBCnroplFqoSg==}
+  /@shikijs/core@1.0.0-rc.0:
+    resolution: {integrity: sha512-j/7te+hvEYlQTvk/wPoA+1rOklZTz8QuyqVvV81KcEN/g1WXKVnqp9WZ7jFuv0ZVLqBtDx/V8viRDROJniyMLA==}
     dev: true
 
-  /@shikijs/transformers@1.0.0-beta.5:
-    resolution: {integrity: sha512-Kd3312yH6sh8Jw0xjBFfGpXTU3Qts1bwuB19wDDoKRvJqjrkffftdSuKzhHPa+DP/L0ZFhq96xMPngzQ15rQmQ==}
+  /@shikijs/transformers@1.0.0-rc.0:
+    resolution: {integrity: sha512-1W4QpLKDM+hnlO6vqGre7orZxW4CrnO4F1zftj1KE6MdaEvy1awZKYUXPswvDIARvuetbzTvgc/ZE2yYVT/6GA==}
     dependencies:
-      shiki: 1.0.0-beta.5
+      shiki: 1.0.0-rc.0
     dev: true
 
   /@sinclair/typebox@0.27.8:
@@ -6044,10 +6044,10 @@ packages:
       vscode-textmate: 8.0.0
     dev: true
 
-  /shiki@1.0.0-beta.5:
-    resolution: {integrity: sha512-S5FV55ZH8zLicVyqlJZj8LYqh/VuUICDDNG/L9eDM9I4d69EX+FbgSnKRIuJIwLrmJfTiPoGVnH1HsHX5whP/g==}
+  /shiki@1.0.0-rc.0:
+    resolution: {integrity: sha512-aeEjERF5qeK+YChgEv94LOjcEcjZBLd0acPaHginz0N8FvyTn2iSLhO0AtoqfvlZ8cWGCJRKLWtDApnQVQB6/Q==}
     dependencies:
-      '@shikijs/core': 1.0.0-beta.5
+      '@shikijs/core': 1.0.0-rc.0
     dev: true
 
   /side-channel@1.0.4:
@@ -6556,20 +6556,20 @@ packages:
       is-typed-array: 1.1.13
     dev: true
 
-  /typedoc-plugin-markdown@4.0.0-next.40(typedoc@0.25.7):
-    resolution: {integrity: sha512-hGzsZnB+B5ngemwA5T5c7OY3mrDdK0Qfu9SfjadFH8rgpaW4utnlavnAgtwSJwJtdOp4HL2FfucLahUktU0KiA==}
+  /typedoc-plugin-markdown@4.0.0-next.50(typedoc@0.25.7):
+    resolution: {integrity: sha512-iHrO2HnN+jY6SE3U4Yti1Uhl+75wz2i8NY+9steqzZsvvD1liC/4DkAk7DP/4doqPeiX0BM4PW0fkzs9jH/V1Q==}
     peerDependencies:
       typedoc: 0.25.x
     dependencies:
       typedoc: 0.25.7(typescript@5.3.3)
     dev: true
 
-  /typedoc-vitepress-theme@1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.40):
+  /typedoc-vitepress-theme@1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.50):
     resolution: {integrity: sha512-t7U+1rDEOCDbv1l2id2I94ylCvbo2jJayRJ1sq4Dbnt0vzxT7LAzTFdXhT5+/2WiAGnsHnVndb3ywRgEVKa8BQ==}
     peerDependencies:
       typedoc-plugin-markdown: '>=4.0.0-next.44'
     dependencies:
-      typedoc-plugin-markdown: 4.0.0-next.40(typedoc@0.25.7)
+      typedoc-plugin-markdown: 4.0.0-next.50(typedoc@0.25.7)
     dev: true
 
   /typedoc@0.25.7(typescript@5.3.3):
@@ -6686,12 +6686,12 @@ packages:
       gray-matter: 4.0.3
     dev: true
 
-  /vitepress@1.0.0-rc.41(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-PAEoIIc9J//k/Wg39C6k86hZpXPmLZjRiTBwieDNeYGdevD7xr5Ve8o1W/w+e9dtyQMkuvzgianEamXDX3aj7g==}
+  /vitepress@1.0.0-rc.42(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-VeiVVXFblt/sjruFSJBNChMWwlztMrRMe8UXdNpf4e05mKtTYEY38MF5qoP90KxPTCfMQiKqwEGwXAGuOTK8HQ==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4.3.2
-      postcss: ^8.4.33
+      postcss: ^8.4.34
     peerDependenciesMeta:
       markdown-it-mathjax3:
         optional: true
@@ -6700,8 +6700,8 @@ packages:
     dependencies:
       '@docsearch/css': 3.5.2
       '@docsearch/js': 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
-      '@shikijs/core': 1.0.0-beta.5
-      '@shikijs/transformers': 1.0.0-beta.5
+      '@shikijs/core': 1.0.0-rc.0
+      '@shikijs/transformers': 1.0.0-rc.0
       '@types/markdown-it': 13.0.7
       '@vitejs/plugin-vue': 5.0.3(vite@5.0.12)(vue@3.4.15)
       '@vue/devtools-api': 7.0.14
@@ -6710,7 +6710,7 @@ packages:
       focus-trap: 7.5.4
       mark.js: 8.11.1
       minisearch: 6.3.0
-      shiki: 1.0.0-beta.5
+      shiki: 1.0.0-rc.0
       vite: 5.0.12(@types/node@20.11.16)
       vue: 3.4.15(typescript@5.3.3)
     transitivePeerDependencies:
