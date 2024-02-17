@@ -38,10 +38,10 @@
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "typedoc": "^0.25.7",
+    "typedoc": "^0.25.8",
     "typedoc-plugin-markdown": "4.0.0-next.53",
     "typedoc-vitepress-theme": "1.0.0-next.8",
-    "vitepress": "1.0.0-rc.42",
+    "vitepress": "1.0.0-rc.43",
     "vitepress-sidebar": "^1.18.6",
     "vue": "^3.4.15"
   }
