@@ -93,17 +93,17 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       typedoc:
-        specifier: ^0.25.8
-        version: 0.25.8(typescript@5.3.3)
+        specifier: ^0.25.11
+        version: 0.25.11(typescript@5.3.3)
       typedoc-plugin-markdown:
         specifier: 4.0.0-next.53
-        version: 4.0.0-next.53(typedoc@0.25.8)
+        version: 4.0.0-next.53(typedoc@0.25.11)
       typedoc-vitepress-theme:
         specifier: 1.0.0-next.8
         version: 1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.53)
       vitepress:
-        specifier: 1.0.0-rc.44
-        version: 1.0.0-rc.44(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.3.3)
+        specifier: 1.0.0-rc.45
+        version: 1.0.0-rc.45(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.3.3)
       vitepress-sidebar:
         specifier: ^1.19.0
         version: 1.19.0
@@ -6286,12 +6286,12 @@ packages:
       is-typed-array: 1.1.13
     dev: true
 
-  /typedoc-plugin-markdown@4.0.0-next.53(typedoc@0.25.8):
+  /typedoc-plugin-markdown@4.0.0-next.53(typedoc@0.25.11):
     resolution: {integrity: sha512-vESy94SQV77EaDALA7WvLYPGtPKAuDtqhtShZA6sNs+OxkW8Uh+DoZ5Q6gpgu0MnIkLijHnv038kNP87Gl2vpw==}
     peerDependencies:
       typedoc: 0.25.x
     dependencies:
-      typedoc: 0.25.8(typescript@5.3.3)
+      typedoc: 0.25.11(typescript@5.3.3)
     dev: true
 
   /typedoc-vitepress-theme@1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.53):
@@ -6299,11 +6299,11 @@ packages:
     peerDependencies:
       typedoc-plugin-markdown: '>=4.0.0-next.44'
     dependencies:
-      typedoc-plugin-markdown: 4.0.0-next.53(typedoc@0.25.8)
+      typedoc-plugin-markdown: 4.0.0-next.53(typedoc@0.25.11)
     dev: true
 
-  /typedoc@0.25.8(typescript@5.3.3):
-    resolution: {integrity: sha512-mh8oLW66nwmeB9uTa0Bdcjfis+48bAjSH3uqdzSuSawfduROQLlXw//WSNZLYDdhmMVB7YcYZicq6e8T0d271A==}
+  /typedoc@0.25.11(typescript@5.3.3):
+    resolution: {integrity: sha512-5MbI1W/FOG6oXsd8bdssQidSTeKh8Kt3xA5uKVzI+K99uzP8EGN45uPnPvQesyaWdD+89s4wCQdtWEd8QUbiRg==}
     engines: {node: '>= 16'}
     hasBin: true
     peerDependencies:
@@ -6416,8 +6416,8 @@ packages:
       gray-matter: 4.0.3
     dev: true
 
-  /vitepress@1.0.0-rc.44(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-tO5taxGI7fSpBK1D8zrZTyJJERlyU9nnt0jHSt3fywfq3VKn977Hg0wUuTkEmwXlFYwuW26+6+3xorf4nD3XvA==}
+  /vitepress@1.0.0-rc.45(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-/OiYsu5UKpQKA2c0BAZkfyywjfauDjvXyv6Mo4Ra57m5n4Bxg1HgUGoth1CLH2vwUbR/BHvDA9zOM0RDvgeSVQ==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4.3.2
