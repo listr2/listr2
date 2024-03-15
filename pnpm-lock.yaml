@@ -105,8 +105,8 @@ importers:
         specifier: 1.0.0-rc.45
         version: 1.0.0-rc.45(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.4.2)
       vitepress-sidebar:
-        specifier: ^1.20.0
-        version: 1.20.0
+        specifier: ^1.21.0
+        version: 1.21.0
       vue:
         specifier: ^3.4.15
         version: 3.4.15(typescript@5.4.2)
@@ -6398,8 +6398,8 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitepress-sidebar@1.20.0:
-    resolution: {integrity: sha512-Qpb+AxDcD8tUty8cYvV6G9kLNom3TjWkXuQBUytEdQUo9mo5lrOnLU/YXjXSDHfiwy9rdnN6lwRn44MXm/IOUA==}
+  /vitepress-sidebar@1.21.0:
+    resolution: {integrity: sha512-2UMgCpcRo0QI7+gvthOKf49nv+HPevtDJO0Ub1YKq6oMiRYhn18A3VTTRvU7HXYM3IbWNZtyukvvRXizO0hK4A==}
     engines: {node: '>=18.0.0'}
     dependencies:
       gray-matter: 4.0.3
