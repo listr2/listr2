@@ -96,11 +96,11 @@ importers:
         specifier: ^0.25.12
         version: 0.25.12(typescript@5.4.2)
       typedoc-plugin-markdown:
-        specifier: 4.0.0-next.53
-        version: 4.0.0-next.53(typedoc@0.25.12)
+        specifier: 4.0.0-next.54
+        version: 4.0.0-next.54(typedoc@0.25.12)
       typedoc-vitepress-theme:
         specifier: 1.0.0-next.8
-        version: 1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.53)
+        version: 1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.54)
       vitepress:
         specifier: 1.0.0-rc.45
         version: 1.0.0-rc.45(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.4.2)
@@ -6275,20 +6275,20 @@ packages:
       is-typed-array: 1.1.13
     dev: true
 
-  /typedoc-plugin-markdown@4.0.0-next.53(typedoc@0.25.12):
-    resolution: {integrity: sha512-vESy94SQV77EaDALA7WvLYPGtPKAuDtqhtShZA6sNs+OxkW8Uh+DoZ5Q6gpgu0MnIkLijHnv038kNP87Gl2vpw==}
+  /typedoc-plugin-markdown@4.0.0-next.54(typedoc@0.25.12):
+    resolution: {integrity: sha512-Irb0AxXqRZCpXAcZpGGb3pqG4SP0DzT3Q88rI3ak4K37rJ4jgfNOf/jCTHhD/B2iFty9DKNlssia2ytXDdCOSA==}
     peerDependencies:
       typedoc: 0.25.x
     dependencies:
       typedoc: 0.25.12(typescript@5.4.2)
     dev: true
 
-  /typedoc-vitepress-theme@1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.53):
+  /typedoc-vitepress-theme@1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.54):
     resolution: {integrity: sha512-t7U+1rDEOCDbv1l2id2I94ylCvbo2jJayRJ1sq4Dbnt0vzxT7LAzTFdXhT5+/2WiAGnsHnVndb3ywRgEVKa8BQ==}
     peerDependencies:
       typedoc-plugin-markdown: '>=4.0.0-next.44'
     dependencies:
-      typedoc-plugin-markdown: 4.0.0-next.53(typedoc@0.25.12)
+      typedoc-plugin-markdown: 4.0.0-next.54(typedoc@0.25.12)
     dev: true
 
   /typedoc@0.25.12(typescript@5.4.2):
