@@ -100,19 +100,7 @@ export class Listr<
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */
     if (this.options.registerSignalListeners) {
-      process
-        .once('SIGINT', () => {
-          this.tasks.forEach(async (task) => {
-            if (task.isPending()) {
-              task.state$ = ListrTaskState.FAILED
-            }
-          })
-
-          this.renderer.end(new Error('Interrupted.'))
-
-          process.exit(127)
-        })
-        .setMaxListeners(0)
+      process.once('SIGINT', this.signalHandler.bind(this)).setMaxListeners(0)
     }
 
     /* istanbul ignore if */
@@ -150,9 +138,13 @@ export class Listr<
       await Promise.all(this.tasks.map((task) => this.concurrency.add(() => this.runTask(task))))
 
       this.renderer.end()
+
+      process.removeAllListeners('SIGINT')
     } catch (err: any) {
       if (this.options.exitOnError !== false) {
         this.renderer.end(err)
+
+        process.removeAllListeners('SIGINT')
 
         // Do not exit when explicitly set to `false`
         throw err
@@ -194,5 +186,21 @@ export class Listr<
     }
 
     return new TaskWrapper(task).run(this.ctx)
+  }
+
+  private signalHandler (): void {
+    this.tasks?.forEach(async (task) => {
+      if (task.isPending()) {
+        task.state$ = ListrTaskState.FAILED
+      }
+    })
+
+    // only the parent task shall exit
+    if (!this.parentTask) {
+      this.renderer.end(new Error('Interrupted.'))
+
+      process.removeAllListeners('SIGINT')
+      process.exit(127)
+    }
   }
 }

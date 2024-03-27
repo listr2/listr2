@@ -26,6 +26,6 @@ export function expectProcessOutputToMatchSnapshot (output: MockProcessOutput, n
   }
 }
 
-export function expectProcessOutputToHaveBeenCalledWith (output: MockProcessOutput, branch: keyof MockProcessOutput, match: string): void {
+export function expectProcessOutputToHaveBeenCalledWith<T = any> (output: MockProcessOutput, branch: keyof MockProcessOutput, match: T): void {
   expect(output[branch]).toHaveBeenCalledWith(match)
 }
