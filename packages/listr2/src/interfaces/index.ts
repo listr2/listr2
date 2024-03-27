@@ -1,3 +1,4 @@
+export * from './data.interface'
 export * from './event.interface'
 export * from './listr-error.interface'
 export * from './listr-event-map.interface'

@@ -1,5 +1,4 @@
 import { randomUUID } from 'crypto'
-import { Readable } from 'stream'
 
 import { ListrTaskEventManager } from './listr-task-event-manager'
 import type { TaskWrapper } from './task-wrapper'
@@ -17,7 +16,7 @@ import type {
 } from '@interfaces'
 import { PromptError } from '@interfaces'
 import { Listr } from '@root'
-import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable, splat } from '@utils'
+import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable, isReadable, splat } from '@utils'
 
 /**
  * Creates and handles a runnable instance of the Task.
@@ -116,7 +115,7 @@ export class Task<
   set promptOutput$ (data: string) {
     this.emit(ListrTaskEventType.PROMPT, data)
 
-    // this acts wierd without cleansing the output!, have no idea why
+    // this acts weird without cleansing the output!, have no idea why
     // it produces double output when a prompt is canceled
     if (cleanseAnsi(data)) {
       this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
@@ -282,7 +281,7 @@ export class Task<
       } else if (result instanceof Promise) {
         // Detect promise
         result = result.then(handleResult)
-      } else if (result instanceof Readable) {
+      } else if (isReadable(result)) {
         // Detect stream
         result = new Promise((resolve, reject) => {
           result.on('data', (data: Buffer) => {
