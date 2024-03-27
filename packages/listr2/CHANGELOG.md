@@ -1,3 +1,10 @@
+## listr2 [8.1.1](https://github.com/listr2/listr2/compare/listr2@8.1.0...listr2@8.1.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* update signal handler to remove itself ([7597099](https://github.com/listr2/listr2/commit/759709921cea1a1816ec50a7f1576fcb361fc294)), closes [#709](https://github.com/listr2/listr2/issues/709)
+
 # listr2 [8.1.0](https://github.com/listr2/listr2/compare/listr2@8.0.2...listr2@8.1.0) (2024-03-27)
 
 
