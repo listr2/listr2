@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`signal handlers should try to cancel running tasks: ACxcRBILlHsqiSxYArjASFdofVqLaUyE-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`signal handlers should try to cancel running tasks: ACxcRBILlHsqiSxYArjASFdofVqLaUyE-stderr 1`] = `[]`;
+
+exports[`signal handlers should try to cancel running tasks: ACxcRBILlHsqiSxYArjASFdofVqLaUyE-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+]
+`;
+
+exports[`signal handlers should try to cancel running tasks: LFRhPFJHChAJcQIEadkDdOlPezdltcfe-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`signal handlers should try to cancel running tasks: LFRhPFJHChAJcQIEadkDdOlPezdltcfe-stderr 1`] = `[]`;
+
+exports[`signal handlers should try to cancel running tasks: LFRhPFJHChAJcQIEadkDdOlPezdltcfe-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+]
+`;
