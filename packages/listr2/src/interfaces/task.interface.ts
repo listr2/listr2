@@ -1,6 +1,4 @@
-import type { Observable } from 'rxjs'
-import type { Readable } from 'stream'
-
+import type { ObservableLike, ReadableLike } from './data.interface'
 import type { ListrContext } from './listr.interface'
 import type { ListrPrimaryRendererTaskOptions, ListrRendererFactory, ListrRendererValue, ListrSecondaryRendererTaskOptions } from './renderer.interface'
 import type { Task, TaskWrapper } from '@lib'
@@ -73,7 +71,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
 /**
  * Result of the processed task can be any of the supported types.
  */
-export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRendererValue, ListrRendererValue> | Readable | NodeJS.ReadableStream | Observable<any>
+export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRendererValue, ListrRendererValue> | ReadableLike | ObservableLike<any>
 
 /**
  * The callback function from the user that defines the task.
