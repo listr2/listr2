@@ -1,3 +1,10 @@
+# listr2 [8.1.0](https://github.com/listr2/listr2/compare/listr2@8.0.2...listr2@8.1.0) (2024-03-27)
+
+
+### Features
+
+* make observable and stream independent of node and external deps ([4eab16a](https://github.com/listr2/listr2/commit/4eab16a21ae84fd114216931394af86ceda1576e)), closes [#707](https://github.com/listr2/listr2/issues/707)
+
 ## listr2 [8.0.2](https://github.com/listr2/listr2/compare/listr2@8.0.1...listr2@8.0.2) (2024-01-27)
 
 
