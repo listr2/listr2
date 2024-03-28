@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.7.5",
-    "@cenk1cenk2/eslint-config": "^2.7.40",
+    "@cenk1cenk2/eslint-config": "^2.7.41",
     "@jest/globals": "^29.7.0",
     "@swc/core": "^1.4.11",
     "@tsconfig/node18": "^18.2.2",

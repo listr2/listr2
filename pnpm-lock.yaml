@@ -12,8 +12,8 @@ importers:
         specifier: ^1.7.5
         version: 1.7.5(@types/node@20.11.16)(typescript@5.4.3)
       '@cenk1cenk2/eslint-config':
-        specifier: ^2.7.40
-        version: 2.7.40(eslint@8.57.0)(typescript@5.4.3)
+        specifier: ^2.7.41
+        version: 2.7.41(eslint@8.57.0)(typescript@5.4.3)
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
@@ -703,8 +703,8 @@ packages:
       - typescript
     dev: true
 
-  /@cenk1cenk2/eslint-config@2.7.40(eslint@8.57.0)(typescript@5.4.3):
-    resolution: {integrity: sha512-pciKUZ83rrgAf7cZJHQSNPP6WTY/0NG6u3dlnSLKke4Llhvp8d4AWtV7wYTzDCfQELrU9w+sc1cRzcyM0deG9w==}
+  /@cenk1cenk2/eslint-config@2.7.41(eslint@8.57.0)(typescript@5.4.3):
+    resolution: {integrity: sha512-JIPMFY+udxWQG2X8rXX28Y1199P9NbiPIer1bKETtLc4oTgJu/CTbXD0AA4KGy9b8x/vIwB3n8Cy74Bbuo6atw==}
     peerDependencies:
       '@nuxtjs/eslint-config': '>= 7'
       '@nuxtjs/eslint-config-typescript': '>= 7'
