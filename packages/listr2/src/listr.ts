@@ -34,6 +34,7 @@ export class Listr<
   public rendererClass: ListrRendererFactory
   public rendererClassOptions: ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer> | ListrGetRendererClassFromValue<FallbackRenderer>>
   public rendererSelection: ListrRendererSelection
+  public boundSignalHandler: () => void
 
   private concurrency: Concurrency
   private renderer: ListrRenderer
@@ -100,7 +101,8 @@ export class Listr<
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */
     if (this.options.registerSignalListeners) {
-      process.once('SIGINT', this.signalHandler.bind(this)).setMaxListeners(0)
+      this.boundSignalHandler = this.signalHandler.bind(this)
+      process.once('SIGINT', this.boundSignalHandler).setMaxListeners(0)
     }
 
     /* istanbul ignore if */
@@ -139,12 +141,12 @@ export class Listr<
 
       this.renderer.end()
 
-      process.removeAllListeners('SIGINT')
+      process.removeListener('SIGINT', this.boundSignalHandler)
     } catch (err: any) {
       if (this.options.exitOnError !== false) {
         this.renderer.end(err)
 
-        process.removeAllListeners('SIGINT')
+        process.removeListener('SIGINT', this.boundSignalHandler)
 
         // Do not exit when explicitly set to `false`
         throw err

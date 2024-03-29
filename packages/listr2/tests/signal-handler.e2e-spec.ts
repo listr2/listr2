@@ -80,4 +80,25 @@ describe('signal handlers', () => {
 
     expectProcessOutputToMatchSnapshot(output, 'ACxcRBILlHsqiSxYArjASFdofVqLaUyE')
   })
+
+  it('should not clear other SIGINT listeners', async () => {
+    process.addListener('SIGINT', function doNotRemove () {})
+    expect(process.listeners('SIGINT').map((listener) => listener.name)).toContain('doNotRemove')
+
+    await new Listr(
+      [
+        {
+          title: 'a task',
+          task: async (): Promise<void> => {}
+        }
+      ],
+      {
+        concurrent: false,
+        renderer: 'test',
+        registerSignalListeners: true
+      }
+    ).run()
+
+    expect(process.listeners('SIGINT').map((listener) => listener.name)).toContain('doNotRemove')
+  })
 })
