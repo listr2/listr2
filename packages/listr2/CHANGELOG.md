@@ -1,3 +1,10 @@
+## listr2 [8.1.2](https://github.com/listr2/listr2/compare/listr2@8.1.1...listr2@8.1.2) (2024-03-29)
+
+
+### Bug Fixes
+
+* issues with adding/removing SIGINT listeners ([0d30480](https://github.com/listr2/listr2/commit/0d3048006117fa4502d106433883783b0b2ce083))
+
 ## listr2 [8.1.1](https://github.com/listr2/listr2/compare/listr2@8.1.0...listr2@8.1.1) (2024-03-27)
 
 
