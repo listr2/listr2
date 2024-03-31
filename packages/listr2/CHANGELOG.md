@@ -1,3 +1,10 @@
+## listr2 [8.1.3](https://github.com/listr2/listr2/compare/listr2@8.1.2...listr2@8.1.3) (2024-03-31)
+
+
+### Bug Fixes
+
+* remove all listeners call ([763ada8](https://github.com/listr2/listr2/commit/763ada8402b542139a98aa57a97e80ccb7e3e78f))
+
 ## listr2 [8.1.2](https://github.com/listr2/listr2/compare/listr2@8.1.1...listr2@8.1.2) (2024-03-29)
 
 
