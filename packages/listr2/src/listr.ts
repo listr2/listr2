@@ -201,7 +201,6 @@ export class Listr<
     if (!this.parentTask) {
       this.renderer.end(new Error('Interrupted.'))
 
-      process.removeAllListeners('SIGINT')
       process.exit(127)
     }
   }
