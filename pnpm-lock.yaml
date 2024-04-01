@@ -102,8 +102,8 @@ importers:
         specifier: 1.0.0-next.8
         version: 1.0.0-next.8(typedoc-plugin-markdown@4.0.0-next.54)
       vitepress:
-        specifier: 1.0.1
-        version: 1.0.1(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.4.3)
+        specifier: 1.0.2
+        version: 1.0.2(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.4.3)
       vitepress-sidebar:
         specifier: ^1.22.0
         version: 1.22.0
@@ -6782,8 +6782,8 @@ packages:
       gray-matter: 4.0.3
     dev: true
 
-  /vitepress@1.0.1(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.4.3):
-    resolution: {integrity: sha512-eNr5pOBppYUUjEhv8S0S2t9Tv95LQ6mMeHj6ivaGwfHxpov70Vduuwl/QQMDRznKDSaP0WKV7a82Pb4JVOaqEw==}
+  /vitepress@1.0.2(@algolia/client-search@4.22.1)(@types/node@20.11.16)(search-insights@2.13.0)(typescript@5.4.3):
+    resolution: {integrity: sha512-bEj9yTEdWyewJFOhEREZF+mXuAgOq27etuJZT6DZSp+J3XpQstXMJc5piSVwhZBtuj8OfA0iXy+jdP1c71KMYQ==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
