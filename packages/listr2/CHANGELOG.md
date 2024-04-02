@@ -1,3 +1,10 @@
+# listr2 [8.2.0](https://github.com/listr2/listr2/compare/listr2@8.1.3...listr2@8.2.0) (2024-04-02)
+
+
+### Features
+
+* expose root/subtask through listr and use it directly ([c5f8cab](https://github.com/listr2/listr2/commit/c5f8cab2d91877e825f8cf51080b926a3a2dcafc))
+
 ## listr2 [8.1.3](https://github.com/listr2/listr2/compare/listr2@8.1.2...listr2@8.1.3) (2024-03-31)
 
 
