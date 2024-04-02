@@ -42,7 +42,7 @@ export class Listr<
   constructor (
     public task:
     | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>
-    | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<Renderer>>[],
+    | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[],
     public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>,
     public parentTask?: Task<any, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>
   ) {
@@ -117,10 +117,34 @@ export class Listr<
     }
   }
 
+  /**
+   * Whether this is the root task.
+   */
+  public isRoot (): boolean {
+    return !this.parentTask
+  }
+
+  /**
+   * Whether this is a subtask of another task list.
+   */
+  public isSubtask (): boolean {
+    return !!this.parentTask
+  }
+
+  /**
+   * Add tasks to current task list.
+   *
+   * @see {@link https://listr2.kilic.dev/task/task.html}
+   */
   public add (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
     this.tasks.push(...this.generate(tasks))
   }
 
+  /**
+   * Run the task list.
+   *
+   * @see {@link https://listr2.kilic.dev/listr/listr.html#run-the-generated-task-list}
+   */
   public async run (context?: Ctx): Promise<Ctx> {
     // start the renderer
     if (!this.renderer) {
@@ -198,7 +222,7 @@ export class Listr<
     })
 
     // only the parent task shall exit
-    if (!this.parentTask) {
+    if (this.isRoot()) {
       this.renderer.end(new Error('Interrupted.'))
 
       process.exit(127)
