@@ -165,12 +165,12 @@ export class Listr<
 
       this.renderer.end()
 
-      process.removeListener('SIGINT', this.boundSignalHandler)
+      this.removeSignalHandler()
     } catch (err: any) {
       if (this.options.exitOnError !== false) {
         this.renderer.end(err)
 
-        process.removeListener('SIGINT', this.boundSignalHandler)
+        this.removeSignalHandler()
 
         // Do not exit when explicitly set to `false`
         throw err
@@ -226,6 +226,12 @@ export class Listr<
       this.renderer.end(new Error('Interrupted.'))
 
       process.exit(127)
+    }
+  }
+
+  private removeSignalHandler (): void {
+    if (this.boundSignalHandler) {
+      process.removeListener('SIGINT', this.boundSignalHandler)
     }
   }
 }
