@@ -1,3 +1,10 @@
+## listr2 [8.2.1](https://github.com/listr2/listr2/compare/listr2@8.2.0...listr2@8.2.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* remove trying to remove non existing signal handler ([1178601](https://github.com/listr2/listr2/commit/1178601bd5b7c4d4c93669b5208e6588c618b884)), closes [#712](https://github.com/listr2/listr2/issues/712)
+
 # listr2 [8.2.0](https://github.com/listr2/listr2/compare/listr2@8.1.3...listr2@8.2.0) (2024-04-02)
 
 
