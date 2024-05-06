@@ -96,11 +96,11 @@ importers:
         specifier: ^0.25.13
         version: 0.25.13(typescript@5.4.5)
       typedoc-plugin-markdown:
-        specifier: 4.0.0
-        version: 4.0.0(typedoc@0.25.13(typescript@5.4.5))
+        specifier: 4.0.1
+        version: 4.0.1(typedoc@0.25.13(typescript@5.4.5))
       typedoc-vitepress-theme:
         specifier: 1.0.0-next.8
-        version: 1.0.0-next.8(typedoc-plugin-markdown@4.0.0(typedoc@0.25.13(typescript@5.4.5)))
+        version: 1.0.0-next.8(typedoc-plugin-markdown@4.0.1(typedoc@0.25.13(typescript@5.4.5)))
       vitepress:
         specifier: 1.1.4
         version: 1.1.4(@algolia/client-search@4.23.2)(@types/node@20.12.2)(postcss@8.4.38)(search-insights@2.13.0)(typescript@5.4.5)
@@ -3541,8 +3541,8 @@ packages:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
 
-  typedoc-plugin-markdown@4.0.0:
-    resolution: {integrity: sha512-7cNKIGxGq1w9IvwWbm6jAASUCvlJeaANJXCOH+Fcvz2JrNIIMVbRu4j2Nq2zpDDaBHsrUmKVaz+F5vroMU8u4A==}
+  typedoc-plugin-markdown@4.0.1:
+    resolution: {integrity: sha512-AfuIILU7aQbLMFyhX/qPT1yLrsQE9TiIxtmDKHRoQosDuHRS9CqA3aMOJyqmfE4Gn43vEQGb7vxEDwlrl3Sw8A==}
     peerDependencies:
       typedoc: 0.25.x
 
@@ -7596,13 +7596,13 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typedoc-plugin-markdown@4.0.0(typedoc@0.25.13(typescript@5.4.5)):
+  typedoc-plugin-markdown@4.0.1(typedoc@0.25.13(typescript@5.4.5)):
     dependencies:
       typedoc: 0.25.13(typescript@5.4.5)
 
-  typedoc-vitepress-theme@1.0.0-next.8(typedoc-plugin-markdown@4.0.0(typedoc@0.25.13(typescript@5.4.5))):
+  typedoc-vitepress-theme@1.0.0-next.8(typedoc-plugin-markdown@4.0.1(typedoc@0.25.13(typescript@5.4.5))):
     dependencies:
-      typedoc-plugin-markdown: 4.0.0(typedoc@0.25.13(typescript@5.4.5))
+      typedoc-plugin-markdown: 4.0.1(typedoc@0.25.13(typescript@5.4.5))
 
   typedoc@0.25.13(typescript@5.4.5):
     dependencies:
