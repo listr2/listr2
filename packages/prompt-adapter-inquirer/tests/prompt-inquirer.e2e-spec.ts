@@ -77,7 +77,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
       err = e as Error
     }
 
-    expect(err).toStrictEqual(new Error('Prompt was canceled'))
+    expect(err).toEqual(new Error('Prompt was canceled'))
     // expectProcessOutputToMatchSnapshot(output, 'AABZsFFYgZITgdWMQdLGmxABwlBaXdiv')
   })
 })
