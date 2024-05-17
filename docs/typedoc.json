@@ -4,7 +4,6 @@
   "entryPointStrategy": "packages",
   "out": "api",
   "plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
-  "hideInPageTOC": true,
   "readme": "none",
   "categorizeByGroup": false,
   "sort": ["source-order"]
