@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.7.5",
-    "@cenk1cenk2/eslint-config": "^2.7.48",
+    "@cenk1cenk2/eslint-config": "^2.7.49",
     "@jest/globals": "^29.7.0",
     "@swc/core": "^1.5.24",
     "@tsconfig/node18": "^18.2.2",
@@ -56,13 +56,13 @@
     "jest": "^29.7.0",
     "jest-mock-process": "^2.0.0",
     "lint-staged": "^15.2.1",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.0",
     "rimraf": "^5.0.7",
     "simple-git-hooks": "^2.9.0",
     "ts-jest": "^29.1.4",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsup": "^8.0.2",
+    "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   },
   "config": {
