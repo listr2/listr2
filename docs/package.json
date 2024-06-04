@@ -41,7 +41,7 @@
     "typedoc": "^0.25.13",
     "typedoc-plugin-markdown": "4.0.3",
     "typedoc-vitepress-theme": "1.0.0",
-    "vitepress": "1.2.2",
+    "vitepress": "1.2.3",
     "vitepress-sidebar": "^1.23.2",
     "vue": "^3.4.27"
   }
