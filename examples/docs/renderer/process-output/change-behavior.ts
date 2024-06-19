@@ -1,5 +1,6 @@
-import { Listr, ListrLogger, ProcessOutput, delay } from 'listr2'
 import { EOL } from 'os'
+
+import { Listr, ListrLogger, ProcessOutput, delay } from 'listr2'
 
 const tasks = new Listr(
   [

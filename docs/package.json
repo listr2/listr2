@@ -35,14 +35,14 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@fortawesome/vue-fontawesome": "^3.0.6",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
     "typedoc": "^0.25.13",
     "typedoc-plugin-markdown": "4.0.3",
     "typedoc-vitepress-theme": "1.0.0",
-    "vitepress": "1.2.2",
+    "vitepress": "1.2.3",
     "vitepress-sidebar": "^1.23.2",
-    "vue": "^3.4.27"
+    "vue": "^3.4.29"
   }
 }
