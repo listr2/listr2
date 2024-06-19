@@ -2,12 +2,21 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": ".",
+    "rootDir": "..",
     "baseUrl": ".",
     "module": "ESNext",
     "target": "ESNext",
     "noImplicitAny": false,
-    "paths": {}
+    "paths": {
+      "listr2": ["../packages/listr2/src/index"],
+      "@constants": ["../packages/listr2/src/constants/index"],
+      "@interfaces": ["../packages/listr2/src/interfaces/index"],
+      "@lib": ["../packages/listr2/src/lib/index"],
+      "@presets": ["../packages/listr2/src/presets/index"],
+      "@renderer": ["../packages/listr2/src/renderer/index"],
+      "@utils": ["../packages/listr2/src/utils/index"],
+      "@root": ["../packages/listr2/src/index"]
+    }
   },
   "include": ["./"],
   "exclude": ["node_modules", "dist"]
