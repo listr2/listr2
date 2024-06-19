@@ -1,3 +1,18 @@
+## @listr2/prompt-adapter-inquirer [2.0.12](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.11...@listr2/prompt-adapter-inquirer@2.0.12) (2024-06-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([642d3f7](https://github.com/listr2/listr2/commit/642d3f7c326a53f702968b75c1ca39f2a183dbd9))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 8.2.2
+
 ## @listr2/prompt-adapter-inquirer [2.0.11](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.10...@listr2/prompt-adapter-inquirer@2.0.11) (2024-06-04)
 
 
