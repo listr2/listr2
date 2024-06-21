@@ -1,3 +1,10 @@
+## listr2 [8.2.3](https://github.com/listr2/listr2/compare/listr2@8.2.2...listr2@8.2.3) (2024-06-21)
+
+
+### Bug Fixes
+
+* **process-output:** trick inquirer and such to not wrap on their own ([78b9a90](https://github.com/listr2/listr2/commit/78b9a90af37827a060e806cc2b1c6fd031343361))
+
 ## listr2 [8.2.2](https://github.com/listr2/listr2/compare/listr2@8.2.1...listr2@8.2.2) (2024-06-19)
 
 
