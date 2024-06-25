@@ -74,10 +74,10 @@
   },
   "devDependencies": {
     "@inquirer/input": "^2.1.9",
-    "@inquirer/prompts": "^5.0.5",
-    "listr2": "workspace:*"
+    "@inquirer/prompts": "^5.0.5"
   },
   "peerDependencies": {
-    "@inquirer/prompts": ">= 3 < 6"
+    "@inquirer/prompts": ">= 3 < 6",
+    "listr2": "workspace:*"
   }
 }
