@@ -65,7 +65,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
     | ListrTask<NewCtx, Renderer, FallbackRenderer>[]
     | ((parent: Omit<this, 'skip' | 'enabled'>) => ListrTask<NewCtx, Renderer, FallbackRenderer> | ListrTask<NewCtx, Renderer, FallbackRenderer>[]),
     options?: ListrSubClassOptions<NewCtx, Renderer, FallbackRenderer>
-  ): Listr<NewCtx, any, any> {
+  ): Listr<NewCtx> {
     let tasks: ListrTask<NewCtx, Renderer, FallbackRenderer> | ListrTask<NewCtx, Renderer, FallbackRenderer>[]
 
     if (typeof task === 'function') {
@@ -74,7 +74,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
       tasks = task
     }
 
-    return new Listr<NewCtx, any, any>(tasks, options, this.task)
+    return new Listr<NewCtx>(tasks, options, this.task)
   }
 
   /**
