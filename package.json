@@ -45,9 +45,9 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.7.7",
-    "@cenk1cenk2/eslint-config": "^2.7.55",
+    "@cenk1cenk2/eslint-config": "^2.7.56",
     "@jest/globals": "^29.7.0",
-    "@swc/core": "^1.7.0",
+    "@swc/core": "^1.7.2",
     "@tsconfig/node18": "^18.2.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.6",
@@ -62,8 +62,8 @@
     "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsup": "^8.2.0",
-    "typescript": "^5.5.3"
+    "tsup": "^8.2.3",
+    "typescript": "^5.5.4"
   },
   "config": {
     "commitizen": {
