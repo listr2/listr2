@@ -1,3 +1,10 @@
+## listr2 [8.2.4](https://github.com/listr2/listr2/compare/listr2@8.2.3...listr2@8.2.4) (2024-07-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency log-update to ^6.1.0 ([df1407f](https://github.com/listr2/listr2/commit/df1407f8e7971e408289cc490de7975120f528e7))
+
 ## listr2 [8.2.3](https://github.com/listr2/listr2/compare/listr2@8.2.2...listr2@8.2.3) (2024-06-21)
 
 
