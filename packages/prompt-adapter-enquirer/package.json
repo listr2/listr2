@@ -71,10 +71,10 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "listr2": "workspace:*",
     "enquirer": "^2.4.1"
   },
   "peerDependencies": {
-    "enquirer": ">= 2.3.0 < 3"
+    "enquirer": ">= 2.3.0 < 3",
+    "listr2": "workspace:*"
   }
 }
