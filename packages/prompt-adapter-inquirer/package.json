@@ -70,7 +70,7 @@
     "idle"
   ],
   "dependencies": {
-    "@inquirer/type": "^1.5.1"
+    "@inquirer/type": "^1.5.2"
   },
   "devDependencies": {
     "@inquirer/input": "^2.1.9",
