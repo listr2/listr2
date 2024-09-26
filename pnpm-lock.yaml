@@ -96,17 +96,17 @@ importers:
         specifier: ^0.26.7
         version: 0.26.7(typescript@5.6.2)
       typedoc-plugin-markdown:
-        specifier: 4.2.7
-        version: 4.2.7(typedoc@0.26.7(typescript@5.6.2))
+        specifier: 4.2.8
+        version: 4.2.8(typedoc@0.26.7(typescript@5.6.2))
       typedoc-vitepress-theme:
         specifier: 1.0.0
-        version: 1.0.0(typedoc-plugin-markdown@4.2.7(typedoc@0.26.7(typescript@5.6.2)))
+        version: 1.0.0(typedoc-plugin-markdown@4.2.8(typedoc@0.26.7(typescript@5.6.2)))
       vitepress:
         specifier: 1.3.4
         version: 1.3.4(@algolia/client-search@4.23.3)(@types/node@20.14.6)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.2)
       vitepress-sidebar:
-        specifier: ^1.25.4
-        version: 1.25.4
+        specifier: ^1.27.1
+        version: 1.27.1
       vue:
         specifier: ^3.4.29
         version: 3.4.29(typescript@5.6.2)
@@ -2349,6 +2349,10 @@ packages:
     engines: {node: '>=16 || 14 >=14.18'}
     hasBin: true
 
+  glob@10.4.5:
+    resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+    hasBin: true
+
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Glob versions prior to v9 are no longer supported
@@ -2680,6 +2684,9 @@ packages:
   jackspeak@2.3.6:
     resolution: {integrity: sha512-N3yCS/NegsOBokc8GAdM8UcmfsKiSS8cipheD/nivzr700H+nsMOxJjQnvwOcRYVuFkdH0wGUvW2WbXGmrZGbQ==}
     engines: {node: '>=14'}
+
+  jackspeak@3.4.3:
+    resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
   jake@10.9.1:
     resolution: {integrity: sha512-61btcOHNnLnsOdtLgA5efqQWjnSi/vow5HbI7HMdKKWqvrKR1bLK3BPlJn9gcSaP2ewuamUSMB5XEy76KUIS2w==}
@@ -3068,6 +3075,10 @@ packages:
     resolution: {integrity: sha512-UZ7eQ+h8ywIRAW1hIEl2AqdwzJucU/Kp59+8kkZeSvafXhZjul247BvIJjEVFVeON6d7lM46XX1HXCduKAS8VA==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  minipass@7.1.2:
+    resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
+    engines: {node: '>=16 || 14 >=14.17'}
+
   minisearch@7.1.0:
     resolution: {integrity: sha512-tv7c/uefWdEhcu6hvrfTihflgeEi2tN6VV7HJnCjK6VxM75QQJh4t9FwJCsA2EsRS8LCnu3W87CuGPWMocOLCA==}
 
@@ -3192,6 +3203,9 @@ packages:
   p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
+
+  package-json-from-dist@1.0.0:
+    resolution: {integrity: sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==}
 
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -3799,8 +3813,8 @@ packages:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
 
-  typedoc-plugin-markdown@4.2.7:
-    resolution: {integrity: sha512-bLsQdweSm48P9j6kGqQ3/4GCH5zu2EnURSkkxqirNc+uVFE9YK825ogDw+WbNkRHIV6eZK/1U43gT7YfglyYOg==}
+  typedoc-plugin-markdown@4.2.8:
+    resolution: {integrity: sha512-1EDsc66jaCjZtxdYy+Rl0KDU1WY/iyuCOOPaeFzcYFZ81FNXV8CmgUDOHri20WGmYnkEM5nQ+ooxj1vyuQo0Lg==}
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.26.x
@@ -3906,8 +3920,8 @@ packages:
       terser:
         optional: true
 
-  vitepress-sidebar@1.25.4:
-    resolution: {integrity: sha512-N3JLBZwJar2Mi5LkBWkodBsOS34X4jrIFfmijiYGvBBF44rlDgAphuU/mJAmTAn9lGeAsO/SB5KZk/rNO7ULwA==}
+  vitepress-sidebar@1.27.1:
+    resolution: {integrity: sha512-MdqDp5urRfSzvRqck6SMJAWXt71L4ZRepe9myBSy5jI779t4/ZXnl09yew/xGvBvgUPupCaZyNCk+XLYj7Rciw==}
     engines: {node: '>=18.0.0'}
 
   vitepress@1.3.4:
@@ -6508,6 +6522,15 @@ snapshots:
       minipass: 7.1.1
       path-scurry: 1.11.1
 
+  glob@10.4.5:
+    dependencies:
+      foreground-child: 3.1.1
+      jackspeak: 3.4.3
+      minimatch: 9.0.5
+      minipass: 7.1.2
+      package-json-from-dist: 1.0.0
+      path-scurry: 1.11.1
+
   glob@7.2.3:
     dependencies:
       fs.realpath: 1.0.0
@@ -6843,6 +6866,12 @@ snapshots:
       istanbul-lib-report: 3.0.1
 
   jackspeak@2.3.6:
+    dependencies:
+      '@isaacs/cliui': 8.0.2
+    optionalDependencies:
+      '@pkgjs/parseargs': 0.11.0
+
+  jackspeak@3.4.3:
     dependencies:
       '@isaacs/cliui': 8.0.2
     optionalDependencies:
@@ -7412,6 +7441,8 @@ snapshots:
 
   minipass@7.1.1: {}
 
+  minipass@7.1.2: {}
+
   minisearch@7.1.0: {}
 
   mitt@3.0.1: {}
@@ -7541,6 +7572,8 @@ snapshots:
 
   p-try@2.2.0: {}
 
+  package-json-from-dist@1.0.0: {}
+
   parent-module@1.0.1:
     dependencies:
       callsites: 3.1.0
@@ -7569,7 +7602,7 @@ snapshots:
   path-scurry@1.11.1:
     dependencies:
       lru-cache: 10.2.2
-      minipass: 7.1.1
+      minipass: 7.1.2
 
   path-type@4.0.0: {}
 
@@ -8137,13 +8170,13 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typedoc-plugin-markdown@4.2.7(typedoc@0.26.7(typescript@5.6.2)):
+  typedoc-plugin-markdown@4.2.8(typedoc@0.26.7(typescript@5.6.2)):
     dependencies:
       typedoc: 0.26.7(typescript@5.6.2)
 
-  typedoc-vitepress-theme@1.0.0(typedoc-plugin-markdown@4.2.7(typedoc@0.26.7(typescript@5.6.2))):
+  typedoc-vitepress-theme@1.0.0(typedoc-plugin-markdown@4.2.8(typedoc@0.26.7(typescript@5.6.2))):
     dependencies:
-      typedoc-plugin-markdown: 4.2.7(typedoc@0.26.7(typescript@5.6.2))
+      typedoc-plugin-markdown: 4.2.8(typedoc@0.26.7(typescript@5.6.2))
 
   typedoc@0.26.7(typescript@5.6.2):
     dependencies:
@@ -8231,8 +8264,9 @@ snapshots:
       '@types/node': 20.14.6
       fsevents: 2.3.3
 
-  vitepress-sidebar@1.25.4:
+  vitepress-sidebar@1.27.1:
     dependencies:
+      glob: 10.4.5
       gray-matter: 4.0.3
 
   vitepress@1.3.4(@algolia/client-search@4.23.3)(@types/node@20.14.6)(postcss@8.4.47)(search-insights@2.14.0)(typescript@5.6.2):
