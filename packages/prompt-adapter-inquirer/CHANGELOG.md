@@ -1,3 +1,12 @@
+## @listr2/prompt-adapter-inquirer [2.0.16](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.15...@listr2/prompt-adapter-inquirer@2.0.16) (2024-09-27)
+
+
+### Bug Fixes
+
+* bump dependencies ([c3fe16f](https://github.com/listr2/listr2/commit/c3fe16f9d5bad47acc47522e3ac43a78ef5968f7))
+* **deps:** update dependency @inquirer/type to ^1.5.2 ([b7ace29](https://github.com/listr2/listr2/commit/b7ace290065e8cbb24247bac9a8ad92af960ecc8))
+* **deps:** update dependency @inquirer/type to ^1.5.5 ([4c86513](https://github.com/listr2/listr2/commit/4c86513bd96a63be536bf10432162eb91065ce79))
+
 ## @listr2/prompt-adapter-inquirer [2.0.15](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.14...@listr2/prompt-adapter-inquirer@2.0.15) (2024-07-27)
 
 
