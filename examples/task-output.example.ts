@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs'
+import ZenObservable from 'zen-observable'
 
 import { delay, Listr, ListrLogger, ListrLogLevels } from 'listr2'
 
@@ -195,6 +196,38 @@ task = new Listr<Ctx>(
       title: 'Observable test.',
       task: (): Observable<string> =>
         new Observable((observer) => {
+          observer.next('test')
+
+          void delay(500)
+            .then(() => {
+              observer.next('changed')
+
+              return delay(500)
+            })
+            .then(() => {
+              observer.complete()
+            })
+        })
+    }
+  ],
+  { concurrent: false }
+)
+
+try {
+  const context = await task.run()
+
+  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+} catch (e: any) {
+  logger.log(ListrLogLevels.FAILED, e)
+}
+
+task = new Listr<Ctx>(
+  [
+    {
+      // Task can also handle and observable
+      title: 'zen-observable test.',
+      task: (): ZenObservable<string> =>
+        new ZenObservable((observer) => {
           observer.next('test')
 
           void delay(500)
