@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs'
+import ZenObservable from 'zen-observable'
 
 import { Listr } from '@root'
 import type { MockProcessOutput } from '@tests/utils'
@@ -38,5 +39,29 @@ describe('observable as task', () => {
     ).run()
 
     expectProcessOutputToMatchSnapshot(output, 'H2L4DnyiqkFuyBKwvsX6ytONqKmaxUBm')
+  })
+
+  // SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF
+  it('should work with returning a zen-observable from task', async () => {
+    await new Listr(
+      [
+        {
+          title: 'Observable test.',
+          task: (): ZenObservable<string> =>
+            new ZenObservable((observer) => {
+              observer.next('test')
+
+              observer.next('changed')
+
+              observer.complete()
+            })
+        }
+      ],
+      {
+        renderer: 'test'
+      }
+    ).run()
+
+    expectProcessOutputToMatchSnapshot(output, 'SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF')
   })
 })

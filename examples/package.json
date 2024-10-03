@@ -31,12 +31,14 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^6.0.1",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "zen-observable": "^0.10.0"
   },
   "devDependencies": {
     "@listr2/manager": "workspace:*",
     "@listr2/prompt-adapter-enquirer": "workspace:*",
     "@listr2/prompt-adapter-inquirer": "workspace:*",
+    "@types/zen-observable": "^0.8.7",
     "listr2": "workspace:*"
   }
 }

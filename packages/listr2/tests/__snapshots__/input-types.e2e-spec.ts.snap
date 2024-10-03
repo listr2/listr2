@@ -16,3 +16,20 @@ exports[`observable as task should work with returning a observable from task: H
 ",
 ]
 `;
+
+exports[`observable as task should work with returning a zen-observable from task: SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF-exit 1`] = `[]`;
+
+exports[`observable as task should work with returning a zen-observable from task: SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF-stderr 1`] = `[]`;
+
+exports[`observable as task should work with returning a zen-observable from task: SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Observable test.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Observable test."]}}
+",
+  "{"event":"OUTPUT","data":"test","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Observable test.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Observable test."]}}
+",
+  "{"event":"OUTPUT","data":"changed","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Observable test.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Observable test."]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"Observable test.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Observable test."]}}
+",
+]
+`;
