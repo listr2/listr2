@@ -42,8 +42,6 @@ export class Manager<
     | ((ctx?: InjectCtx) => ListrTask<InjectCtx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[]),
     options?: ListrSubClassOptions<InjectCtx, Renderer, FallbackRenderer>
   ): void {
-    options = { ...this.options, ...options } as ListrSubClassOptions<InjectCtx, Renderer, FallbackRenderer>
-
     this.tasks = [ ...this.tasks, this.indent<InjectCtx>(tasks, options) ]
   }
 
@@ -80,7 +78,7 @@ export class Manager<
     if (typeof tasks === 'function') {
       return {
         ...taskOptions,
-        task: (ctx): Listr<InjectCtx, Renderer, FallbackRenderer> => this.newListr<InjectCtx, Renderer, FallbackRenderer>(tasks(ctx), options)
+        task: (ctx: InjectCtx): Listr<InjectCtx, Renderer, FallbackRenderer> => this.newListr<InjectCtx, Renderer, FallbackRenderer>(tasks(ctx), options)
       }
     }
 
