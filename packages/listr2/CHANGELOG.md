@@ -1,3 +1,10 @@
+## listr2 [8.2.5](https://github.com/listr2/listr2/compare/listr2@8.2.4...listr2@8.2.5) (2024-10-03)
+
+
+### Bug Fixes
+
+* ability to use zen-observable ([bae701b](https://github.com/listr2/listr2/commit/bae701bab5569521cdc00b2a6ce6a1969e9eafaf)), closes [#724](https://github.com/listr2/listr2/issues/724)
+
 ## listr2 [8.2.4](https://github.com/listr2/listr2/compare/listr2@8.2.3...listr2@8.2.4) (2024-07-27)
 
 
