@@ -1,3 +1,10 @@
+## @listr2/manager [2.0.12](https://github.com/listr2/listr2/compare/@listr2/manager@2.0.11...@listr2/manager@2.0.12) (2024-10-03)
+
+
+### Bug Fixes
+
+* dont inject options while adding ([778b831](https://github.com/listr2/listr2/commit/778b8319054844f7908d8b64c53694fb94e33ec9)), closes [#727](https://github.com/listr2/listr2/issues/727)
+
 ## @listr2/manager [2.0.11](https://github.com/listr2/listr2/compare/@listr2/manager@2.0.10...@listr2/manager@2.0.11) (2024-07-27)
 
 
