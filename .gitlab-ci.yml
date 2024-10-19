@@ -7,7 +7,7 @@ stages:
   - publish
 
 variables:
-  NODE_VERSION: 20-alpine
+  NODE_VERSION: 22-alpine
   NODE_PACKAGE_MANAGER: pnpm
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
@@ -36,15 +36,14 @@ test:
   stage: test
   parallel:
     matrix:
+      - NODE_VERSION: 22-alpine
       - NODE_VERSION: 20-alpine
-      # - NODE_VERSION: 18-alpine
 
 build-docs:
   stage: docs
   extends: .node-run
   # this is buged out gitlab-ci with symlink fails
   before_script:
-    - pnpm i
     - apk update
     - apk add git
   variables:
@@ -55,8 +54,10 @@ build-docs:
       - ./docs/dist
   needs:
     - build
+    - semantic-release
   dependencies:
     - build
+    - semantic-release
   only:
     refs:
       - master
