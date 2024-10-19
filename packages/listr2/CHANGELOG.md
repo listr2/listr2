@@ -1,3 +1,17 @@
+# listr2 [9.0.0-beta.1](https://github.com/listr2/listr2/compare/listr2@8.2.5...listr2@9.0.0-beta.1) (2024-10-19)
+
+
+### Performance Improvements
+
+* update core dependencies and styling ([56f4d64](https://github.com/listr2/listr2/commit/56f4d647f6020c4227dce8322ec38d030f4897f2))
+
+
+### BREAKING CHANGES
+
+* This includes breaking changes in the inqurer setup.
+
+The styling is completely changed.
+
 ## listr2 [8.2.5](https://github.com/listr2/listr2/compare/listr2@8.2.4...listr2@8.2.5) (2024-10-03)
 
 
