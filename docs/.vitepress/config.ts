@@ -84,7 +84,7 @@ export default defineConfig({
       excludeFolders: ['node_modules'],
       excludeFiles: ['format.md'],
       manualSortFileNameByPriority: ['repository', 'listr', 'task', 'renderer', 'migration', 'api']
-    }) as any,
+    }),
     socialLinks: [ { icon: 'github', link: 'https://github.com/listr2/listr2' } ]
   },
 

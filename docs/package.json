@@ -36,6 +36,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@vue/eslint-config-typescript": "^14.1.1",
+    "eslint-plugin-vue": "^9.29.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
     "typedoc": "^0.26.10",
