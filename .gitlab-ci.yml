@@ -3,8 +3,8 @@ stages:
   - install
   - build
   - test
-  - docs
   - publish
+  - docs
 
 variables:
   NODE_VERSION: 22-alpine
