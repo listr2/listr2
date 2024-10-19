@@ -21,7 +21,7 @@ export class VerboseRenderer implements ListrRenderer {
     rendererTaskOptions: new Map()
   }
 
-  constructor (
+  constructor(
     private readonly tasks: ListrVerboseRendererTask[],
     private readonly options: ListrVerboseRendererOptions
   ) {
@@ -30,11 +30,11 @@ export class VerboseRenderer implements ListrRenderer {
       ...this.options,
       icon: {
         ...LISTR_LOGGER_STYLE.icon,
-        ...options?.icon ?? {}
+        ...(options?.icon ?? {})
       },
       color: {
         ...LISTR_LOGGER_STYLE.color,
-        ...options?.color ?? {}
+        ...(options?.color ?? {})
       }
     }
 
@@ -48,14 +48,13 @@ export class VerboseRenderer implements ListrRenderer {
     }
   }
 
-  public render (): void {
+  public render(): void {
     this.renderer(this.tasks)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public end (): void {}
+  public end(): void {}
 
-  private renderer (tasks: ListrVerboseRendererTask[]): void {
+  private renderer(tasks: ListrVerboseRendererTask[]): void {
     tasks.forEach((task) => {
       this.calculate(task)
 
@@ -87,7 +86,7 @@ export class VerboseRenderer implements ListrRenderer {
               suffix: {
                 ...timer,
                 condition: !!task.message?.duration && timer.condition,
-                args: [ task.message.duration ]
+                args: [task.message.duration]
               }
             }
           )
@@ -134,7 +133,7 @@ export class VerboseRenderer implements ListrRenderer {
               suffix: {
                 ...timer,
                 condition: !!message?.paused && timer.condition,
-                args: [ message.paused - Date.now() ]
+                args: [message.paused - Date.now()]
               }
             }
           )
@@ -143,7 +142,7 @@ export class VerboseRenderer implements ListrRenderer {
     })
   }
 
-  private calculate (task: ListrVerboseRendererTask): void {
+  private calculate(task: ListrVerboseRendererTask): void {
     if (this.cache.rendererOptions.has(task.id) && this.cache.rendererTaskOptions.has(task.id)) {
       return
     }
@@ -162,7 +161,7 @@ export class VerboseRenderer implements ListrRenderer {
     })
   }
 
-  private reset (task: ListrVerboseRendererTask): void {
+  private reset(task: ListrVerboseRendererTask): void {
     this.cache.rendererOptions.delete(task.id)
     this.cache.rendererTaskOptions.delete(task.id)
   }

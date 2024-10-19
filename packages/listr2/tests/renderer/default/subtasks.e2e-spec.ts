@@ -7,17 +7,17 @@ describe('default renderer: show subtasks', () => {
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
-  it('should be able to change collapse settings', async () => {
+  it('should be able to change collapse settings', async() => {
     await new Listr(
       [
         {
@@ -26,12 +26,12 @@ describe('default renderer: show subtasks', () => {
             task.newListr([
               {
                 title: 'This is a subtask.',
-                task: async (): Promise<void> => {}
+                task: async(): Promise<void> => {}
               },
 
               {
                 title: 'This is an another subtask.',
-                task: async (): Promise<void> => {}
+                task: async(): Promise<void> => {}
               }
             ])
         },
@@ -43,12 +43,12 @@ describe('default renderer: show subtasks', () => {
               [
                 {
                   title: 'This is a subtask.',
-                  task: async (): Promise<void> => {}
+                  task: async(): Promise<void> => {}
                 },
 
                 {
                   title: 'This is an another subtask.',
-                  task: async (): Promise<void> => {}
+                  task: async(): Promise<void> => {}
                 }
               ],
               { rendererOptions: { collapseSubtasks: false } }

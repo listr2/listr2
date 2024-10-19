@@ -6,7 +6,7 @@ const tasks = new Listr(
   [
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(500)
 
         console.log('i am logging some stuff out')
@@ -15,7 +15,7 @@ const tasks = new Listr(
 
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(500)
 
         console.log('i am logging some more stuff out')
@@ -24,7 +24,7 @@ const tasks = new Listr(
 
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(500)
 
         process.stdout.write('writing something here' + EOL)

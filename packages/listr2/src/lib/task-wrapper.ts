@@ -13,10 +13,10 @@ import { createWritable, splat } from '@utils'
  * @see {@link https://listr2.kilic.dev/task/task.html}
  */
 export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRenderer extends ListrRendererFactory> {
-  constructor (public task: Task<Ctx, Renderer, FallbackRenderer>) {}
+  constructor(public task: Task<Ctx, Renderer, FallbackRenderer>) {}
 
   /* istanbul ignore next */
-  get title (): string {
+  get title(): string {
     return this.task.title
   }
 
@@ -25,14 +25,14 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/task/title.html}
    */
-  set title (title: string | any[]) {
-    title = Array.isArray(title) ? title : [ title ]
+  set title(title: string | any[]) {
+    title = Array.isArray(title) ? title : [title]
 
     this.task.title$ = splat(title.shift(), ...title)
   }
 
   /* istanbul ignore next */
-  get output (): string {
+  get output(): string {
     return this.task.output
   }
 
@@ -42,15 +42,15 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/task/output.html}
    */
-  set output (output: string | any[]) {
-    output = Array.isArray(output) ? output : [ output ]
+  set output(output: string | any[]) {
+    output = Array.isArray(output) ? output : [output]
 
     this.task.output$ = splat(output.shift(), ...output)
   }
 
   /* istanbul ignore next */
   /** Send an output to the output channel as prompt. */
-  private set promptOutput (output: string) {
+  private set promptOutput(output: string) {
     this.task.promptOutput$ = output
   }
 
@@ -61,9 +61,9 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    */
   public newListr<NewCtx = Ctx>(
     task:
-    | ListrTask<NewCtx, Renderer, FallbackRenderer>
-    | ListrTask<NewCtx, Renderer, FallbackRenderer>[]
-    | ((parent: Omit<this, 'skip' | 'enabled'>) => ListrTask<NewCtx, Renderer, FallbackRenderer> | ListrTask<NewCtx, Renderer, FallbackRenderer>[]),
+      | ListrTask<NewCtx, Renderer, FallbackRenderer>
+      | ListrTask<NewCtx, Renderer, FallbackRenderer>[]
+      | ((parent: Omit<this, 'skip' | 'enabled'>) => ListrTask<NewCtx, Renderer, FallbackRenderer> | ListrTask<NewCtx, Renderer, FallbackRenderer>[]),
     options?: ListrSubClassOptions<NewCtx, Renderer, FallbackRenderer>
   ): Listr<NewCtx, any, any> {
     let tasks: ListrTask<NewCtx, Renderer, FallbackRenderer> | ListrTask<NewCtx, Renderer, FallbackRenderer>[]
@@ -82,7 +82,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/task/error-handling.html}
    */
-  public report (error: Error, type: ListrErrorTypes): void {
+  public report(error: Error, type: ListrErrorTypes): void {
     if (this.task.options.collectErrors !== false) {
       this.task.listr.errors.push(new ListrError<Ctx>(error, type, this.task))
     }
@@ -95,7 +95,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/task/skip.html}
    */
-  public skip (message?: string, ...metadata: any[]): void {
+  public skip(message?: string, ...metadata: any[]): void {
     this.task.state$ = ListrTaskState.SKIPPED
 
     if (message) {
@@ -108,7 +108,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/task/retry.html}
    */
-  public isRetrying (): Task<Ctx, Renderer, FallbackRenderer>['retry'] {
+  public isRetrying(): Task<Ctx, Renderer, FallbackRenderer>['retry'] {
     return this.task.isRetrying() ? this.task.retry : { count: 0 }
   }
 
@@ -137,22 +137,22 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/renderer/process-output.html}
    */
-  public stdout (type?: ListrTaskEventType.OUTPUT | ListrTaskEventType.PROMPT): NodeJS.WritableStream {
+  public stdout(type?: ListrTaskEventType.OUTPUT | ListrTaskEventType.PROMPT): NodeJS.WritableStream {
     return createWritable((chunk: string): void => {
       switch (type) {
-      case ListrTaskEventType.PROMPT:
-        this.promptOutput = chunk
+        case ListrTaskEventType.PROMPT:
+          this.promptOutput = chunk
 
-        break
+          break
 
-      default:
-        this.output = chunk
+        default:
+          this.output = chunk
       }
     })
   }
 
   /** Run this task. */
-  public run (ctx: Ctx): Promise<void> {
+  public run(ctx: Ctx): Promise<void> {
     return this.task.run(ctx, this)
   }
 }

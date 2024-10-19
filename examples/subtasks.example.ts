@@ -19,7 +19,7 @@ task = new Listr<Ctx>(
         task.newListr([
           {
             title: 'This is a subtask.',
-            task: async (): Promise<void> => {
+            task: async(): Promise<void> => {
               await delay(3000)
             }
           }
@@ -32,7 +32,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -50,13 +50,13 @@ task = new Listr<Ctx>(
           [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(3000)
               }
             },
             {
               title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
               }
             }
@@ -72,13 +72,13 @@ task = new Listr<Ctx>(
           [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(3000)
               }
             },
             {
               title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
               }
             }
@@ -93,7 +93,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -109,13 +109,13 @@ task = new Listr<Ctx>(
           [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(3000)
               }
             },
             {
               title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
               }
             }
@@ -130,7 +130,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -147,19 +147,19 @@ task = new Listr<Ctx>(
           [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 throw new Error('I have failed [0]')
               }
             },
             {
               title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 throw new Error('I have failed [1]')
               }
             },
             {
               title: 'This is yet an another subtask.',
-              task: async (_, task): Promise<void> => {
+              task: async(_, task): Promise<void> => {
                 task.title = 'I have succeeded.'
               }
             }
@@ -180,10 +180,10 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
 
 logger.log(ListrLogLevels.OUTPUT, 'You can also access all the errors spew out by the tasks by `task.err` which will return an array of errors.')
-logger.log(ListrLogLevels.FAILED, [ '%o', task.errors ])
+logger.log(ListrLogLevels.FAILED, ['%o', task.errors])

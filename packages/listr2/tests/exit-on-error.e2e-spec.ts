@@ -5,16 +5,16 @@ import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOut
 describe('exit on error', () => {
   const output: MockProcessOutput = {} as MockProcessOutput
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
-  it('should throw out an error when exit on error is disabled', async () => {
+  it('should throw out an error when exit on error is disabled', async() => {
     const task = new Listr(
       [
         {
@@ -45,7 +45,7 @@ describe('exit on error', () => {
     expectProcessOutputToMatchSnapshot(output, 'LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM')
   })
 
-  it('should contunie execution while exit on error is disabled', async () => {
+  it('should contunie execution while exit on error is disabled', async() => {
     const task = new Listr(
       [
         {
@@ -68,7 +68,7 @@ describe('exit on error', () => {
     expectProcessOutputToMatchSnapshot(output, 'EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH')
   })
 
-  it('should contunie execution while exit on error is disabled in subtask', async () => {
+  it('should contunie execution while exit on error is disabled in subtask', async() => {
     const task = new Listr(
       [
         {
@@ -94,7 +94,7 @@ describe('exit on error', () => {
     expectProcessOutputToMatchSnapshot(output, 'MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3')
   })
 
-  it('should contunie execution while exit on error is disabled in parenttask', async () => {
+  it('should contunie execution while exit on error is disabled in parenttask', async() => {
     const task = new Listr(
       [
         {
@@ -119,7 +119,7 @@ describe('exit on error', () => {
     expect(result).toBeTruthy()
   })
 
-  it('should throw out an error if subtask fails while exit on error is disabled', async () => {
+  it('should throw out an error if subtask fails while exit on error is disabled', async() => {
     const task = new Listr(
       [
         {
@@ -153,7 +153,7 @@ describe('exit on error', () => {
     expectProcessOutputToMatchSnapshot(output, '4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8')
   })
 
-  it('should throw out an error if subtask in subtask fails while exit on error is disabled', async () => {
+  it('should throw out an error if subtask in subtask fails while exit on error is disabled', async() => {
     const task = new Listr(
       [
         {

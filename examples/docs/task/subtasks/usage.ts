@@ -8,7 +8,7 @@ const tasks = new Listr(
         task.newListr([
           {
             title: 'This is a subtask.',
-            task: async (): Promise<void> => {
+            task: async(): Promise<void> => {
               await delay(3000)
             }
           }

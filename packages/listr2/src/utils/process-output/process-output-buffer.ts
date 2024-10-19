@@ -6,21 +6,21 @@ export class ProcessOutputBuffer {
   private buffer: ProcessOutputBufferEntry[] = []
   private readonly decoder = new StringDecoder()
 
-  constructor (private readonly options?: ProcessOutputBufferOptions) {}
+  constructor(private readonly options?: ProcessOutputBufferOptions) {}
 
-  get all (): ProcessOutputBufferEntry[] {
+  get all(): ProcessOutputBufferEntry[] {
     return this.buffer
   }
 
-  get last (): ProcessOutputBufferEntry {
+  get last(): ProcessOutputBufferEntry {
     return this.buffer.at(-1)
   }
 
-  get length (): number {
+  get length(): number {
     return this.buffer.length
   }
 
-  public write (data: Uint8Array | string, ...args: [(string | undefined)?, ((err?: Error) => void)?] | [((err?: Error) => void)?]): ReturnType<NodeJS.WriteStream['write']> {
+  public write(data: Uint8Array | string, ...args: [(string | undefined)?, ((err?: Error) => void)?] | [((err?: Error) => void)?]): ReturnType<NodeJS.WriteStream['write']> {
     const callback = args[args.length - 1]
 
     this.buffer.push({
@@ -40,7 +40,7 @@ export class ProcessOutputBuffer {
     return true
   }
 
-  public reset (): void {
+  public reset(): void {
     this.buffer = []
   }
 }

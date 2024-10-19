@@ -1,4 +1,4 @@
-export const LINK: { content: string, href: string }[] = [
+export const LINK: { content: string; href: string }[] = [
   {
     content: 'Listr',
     href: '/listr/listr.html'

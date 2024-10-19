@@ -39,10 +39,10 @@ export class Listr<
   private concurrency: Concurrency
   private renderer: ListrRenderer
 
-  constructor (
+  constructor(
     public task:
-    | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>
-    | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[],
+      | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>
+      | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[],
     public options?: ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>,
     public parentTask?: Task<any, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>
   ) {
@@ -55,7 +55,7 @@ export class Listr<
       exitAfterRollback: true,
       collectErrors: false,
       registerSignalListeners: true,
-      ...this.parentTask?.options ?? {},
+      ...(this.parentTask?.options ?? {}),
       ...options
     } as ListrBaseClassOptions<Ctx, Renderer, FallbackRenderer>
 
@@ -70,7 +70,7 @@ export class Listr<
 
     // Update currentPath
     if (parentTask) {
-      this.path = [ ...parentTask.listr.path, parentTask.title ]
+      this.path = [...parentTask.listr.path, parentTask.title]
       this.errors = parentTask.listr.errors
     }
 
@@ -120,14 +120,14 @@ export class Listr<
   /**
    * Whether this is the root task.
    */
-  public isRoot (): boolean {
+  public isRoot(): boolean {
     return !this.parentTask
   }
 
   /**
    * Whether this is a subtask of another task list.
    */
-  public isSubtask (): boolean {
+  public isSubtask(): boolean {
     return !!this.parentTask
   }
 
@@ -136,7 +136,7 @@ export class Listr<
    *
    * @see {@link https://listr2.kilic.dev/task/task.html}
    */
-  public add (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
+  public add(tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
     this.tasks.push(...this.generate(tasks))
   }
 
@@ -145,7 +145,7 @@ export class Listr<
    *
    * @see {@link https://listr2.kilic.dev/listr/listr.html#run-the-generated-task-list}
    */
-  public async run (context?: Ctx): Promise<Ctx> {
+  public async run(context?: Ctx): Promise<Ctx> {
     // start the renderer
     if (!this.renderer) {
       this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
@@ -180,15 +180,15 @@ export class Listr<
     return this.ctx
   }
 
-  private generate (
+  private generate(
     tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]
   ): Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[] {
-    tasks = Array.isArray(tasks) ? tasks : [ tasks ]
+    tasks = Array.isArray(tasks) ? tasks : [tasks]
 
     return tasks.map((task) => {
       let rendererTaskOptions:
-      | ListrGetRendererTaskOptions<ListrGetRendererClassFromValue<Renderer>>
-      | ListrGetRendererTaskOptions<ListrGetRendererClassFromValue<FallbackRenderer>>
+        | ListrGetRendererTaskOptions<ListrGetRendererClassFromValue<Renderer>>
+        | ListrGetRendererTaskOptions<ListrGetRendererClassFromValue<FallbackRenderer>>
 
       if (this.rendererSelection === ListrRendererSelection.PRIMARY) {
         rendererTaskOptions = task.rendererOptions
@@ -206,16 +206,16 @@ export class Listr<
     })
   }
 
-  private async runTask (task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>): Promise<void> {
-    if (!await task.check(this.ctx)) {
+  private async runTask(task: Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>): Promise<void> {
+    if (!(await task.check(this.ctx))) {
       return
     }
 
     return new TaskWrapper(task).run(this.ctx)
   }
 
-  private signalHandler (): void {
-    this.tasks?.forEach(async (task) => {
+  private signalHandler(): void {
+    this.tasks?.forEach(async(task) => {
       if (task.isPending()) {
         task.state$ = ListrTaskState.FAILED
       }
@@ -229,7 +229,7 @@ export class Listr<
     }
   }
 
-  private removeSignalHandler (): void {
+  private removeSignalHandler(): void {
     if (this.boundSignalHandler) {
       process.removeListener('SIGINT', this.boundSignalHandler)
     }

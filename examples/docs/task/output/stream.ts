@@ -7,7 +7,7 @@ const tasks = new Listr(
   [
     {
       title: 'This task will execute.',
-      task: async (): Promise<Readable> => {
+      task: async(): Promise<Readable> => {
         return spawn('ls').stdout
       },
       rendererOptions: {

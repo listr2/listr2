@@ -15,7 +15,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (ctx): Promise<void> => {
+      task: async(ctx): Promise<void> => {
         ctx.skip = true
         await delay(2000)
       }
@@ -24,7 +24,7 @@ task = new Listr<Ctx>(
     {
       title: 'This task will never execute.',
       enabled: (ctx): boolean => !ctx.skip,
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(2000)
       }
     }
@@ -35,7 +35,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -77,7 +77,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }

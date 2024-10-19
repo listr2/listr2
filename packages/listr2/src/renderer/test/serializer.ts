@@ -4,7 +4,7 @@ import type { ListrTaskEventType } from '@constants'
 import type { ListrTaskEventMap } from '@interfaces'
 
 export class TestRendererSerializer {
-  constructor (public options?: ListrTestRendererOptions) {}
+  constructor(public options?: ListrTestRendererOptions) {}
 
   public serialize<T extends ListrTaskEventType>(event: T, data: ListrTaskEventMap[T], task?: ListrTestRendererTask): string {
     return JSON.stringify(this.generate(event, data, task))
@@ -22,10 +22,10 @@ export class TestRendererSerializer {
           const property = task[entity]
 
           if (typeof property === 'function') {
-            return [ entity, property.call(task) ]
+            return [entity, property.call(task)]
           }
 
-          return [ entity, property ]
+          return [entity, property]
         })
       )
 

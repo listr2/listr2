@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   branches: [
     'main',
     'master',
@@ -24,7 +24,7 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        assets: [ 'CHANGELOG.md', 'README.md' ]
+        assets: ['CHANGELOG.md', 'README.md']
       }
     ],
     '@semantic-release/npm',

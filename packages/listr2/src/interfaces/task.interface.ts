@@ -54,7 +54,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    *
    * @see {@link https://listr2.kilic.dev/task/retry.html}
    */
-  retry?: number | { tries: number, delay?: number }
+  retry?: number | { tries: number; delay?: number }
   /**
    * The callback function that you provide will run whenever the attached task fails and
    * give you the ability to revert your changes, before failing.

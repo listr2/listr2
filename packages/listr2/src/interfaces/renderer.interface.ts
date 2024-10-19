@@ -122,7 +122,7 @@ export interface ListrSecondaryRendererTaskOptions<T extends ListrRendererValue>
 
 /** Renderer options for the parent Listr class, including setup for selecting default and fallback renderers.  */
 export type ListrRendererOptions<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> = ListrPrimaryRendererSelection<Renderer> &
-ListrSecondaryRendererSelection<FallbackRenderer>
+  ListrSecondaryRendererSelection<FallbackRenderer>
 
 /**
  * The definition of a ListrRenderer.
@@ -141,7 +141,7 @@ export declare class ListrRenderer {
   /** A function to what to do on end of the render */
   public end: (err?: Error) => void
   /** create a new renderer */
-  constructor (tasks: Task<any, ListrRendererFactory, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, events?: ListrEventManager)
+  constructor(tasks: Task<any, ListrRendererFactory, ListrRendererFactory>[], options: typeof ListrRenderer.rendererOptions, events?: ListrEventManager)
 }
 
 /** Factory of compatible Listr renderers. */

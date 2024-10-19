@@ -8,7 +8,7 @@ const tasks = new Listr<Ctx>(
   [
     {
       title: 'Some type errors',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         await delay(1000)
         task.output = 'test'
 

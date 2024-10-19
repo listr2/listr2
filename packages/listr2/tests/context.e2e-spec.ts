@@ -1,7 +1,7 @@
 import { Listr } from '@root'
 
 describe('show inject context', () => {
-  it('should return the context', async () => {
+  it('should return the context', async() => {
     const ctx = await new Listr(
       [
         {
@@ -10,7 +10,7 @@ describe('show inject context', () => {
             task.newListr([
               {
                 title: 'This is a subtask.',
-                task: async (): Promise<void> => {}
+                task: async(): Promise<void> => {}
               }
             ])
         }
@@ -29,7 +29,7 @@ describe('show inject context', () => {
     `)
   })
 
-  it('should inject ctx to subtask', async () => {
+  it('should inject ctx to subtask', async() => {
     const ctx = await new Listr(
       [
         {
@@ -39,7 +39,7 @@ describe('show inject context', () => {
               {
                 title: 'This is a subtask.',
                 skip: (ctx): boolean => ctx.skip,
-                task: async (): Promise<void> => {}
+                task: async(): Promise<void> => {}
               }
             ])
         }

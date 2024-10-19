@@ -10,8 +10,8 @@ import type {
 export type RendererSetup = [ListrRendererValue, ListrGetRendererOptions<ListrRendererValue>]
 
 export const RENDERER_SETUP: RendererSetup[] = [
-  [ 'default', { lazy: true } satisfies ListrGetRendererOptions<ListrDefaultRendererValue> ],
-  [ 'simple', {} satisfies ListrGetRendererOptions<ListrSimpleRendererValue> ],
-  [ 'verbose', { logTitleChange: true } satisfies ListrGetRendererOptions<ListrVerboseRendererValue> ],
-  [ 'test', {} satisfies ListrGetRendererOptions<ListrTestRendererValue> ]
+  ['default', { lazy: true } satisfies ListrGetRendererOptions<ListrDefaultRendererValue>],
+  ['simple', {} satisfies ListrGetRendererOptions<ListrSimpleRendererValue>],
+  ['verbose', { logTitleChange: true } satisfies ListrGetRendererOptions<ListrVerboseRendererValue>],
+  ['test', {} satisfies ListrGetRendererOptions<ListrTestRendererValue>]
 ]

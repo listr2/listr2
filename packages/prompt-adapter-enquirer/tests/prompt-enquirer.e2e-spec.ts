@@ -2,30 +2,30 @@ import Enquirer from 'enquirer'
 import { Listr, PromptError, delay } from 'listr2'
 
 import { ListrEnquirerPromptAdapter } from '@root'
-import type { MockProcessOutput, RendererSetup } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, KEYS, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
+import type { MockProcessOutput, RendererSetup } from '@tests/utils'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // WdiO5CUfBLf5hMlp9sPct5973YhRlnLz
-  it('should render a prompt', async () => {
+  it('should render a prompt', async() => {
     const ctx = await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async(ctx, task): Promise<void> => {
             const output = task.prompt(ListrEnquirerPromptAdapter).run({
               type: 'Input',
               message: 'Give me some input.'
@@ -51,12 +51,12 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
   })
 
   // ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9
-  it('should render multiple prompt', async () => {
+  it('should render multiple prompt', async() => {
     const ctx = await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async(ctx, task): Promise<void> => {
             const output = task.prompt(ListrEnquirerPromptAdapter).run([
               {
                 name: 'first',
@@ -68,7 +68,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
                 name: 'second',
                 type: 'Select',
                 message: 'Give me more input.',
-                choices: [ 'test1', 'test2' ]
+                choices: ['test1', 'test2']
               }
             ])
 
@@ -96,12 +96,12 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
   })
 
   // HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w
-  it('should run cancel callback', async () => {
+  it('should run cancel callback', async() => {
     const ctx = new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async(ctx, task): Promise<void> => {
             const output = task.prompt(ListrEnquirerPromptAdapter).run({
               type: 'Input',
               message: 'Give me some input.'
@@ -167,12 +167,12 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
   // })
 
   // t3VXfqT0crsCYRzqYYWZGllN6oNARZcn
-  it('should use the passed in enquirer', async () => {
+  it('should use the passed in enquirer', async() => {
     const ctx = await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async(ctx, task): Promise<void> => {
             const output = task.prompt(ListrEnquirerPromptAdapter).run(
               {
                 type: 'Input',
@@ -201,12 +201,12 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
   })
 
   // 8QRF9bQEdSKkH62yUKbteKnrpevTbGan
-  it('should use skip enquirer', async () => {
+  it('should use skip enquirer', async() => {
     const ctx = await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async(ctx, task): Promise<void> => {
             delay(10)
               .then(() => task.skip())
               .catch(() => {})
@@ -220,7 +220,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
 
         {
           title: 'Another task.',
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             await delay(10)
           }
         }

@@ -7,32 +7,32 @@ export class ProcessOutputStream {
   private readonly method: NodeJS.WriteStream['write']
   private readonly buffer: ProcessOutputBuffer
 
-  constructor (private stream: NodeJS.WriteStream) {
+  constructor(private stream: NodeJS.WriteStream) {
     this.method = stream.write
     this.buffer = new ProcessOutputBuffer({ stream })
   }
 
-  get out (): NodeJS.WriteStream {
+  get out(): NodeJS.WriteStream {
     return Object.assign({}, this.stream, {
       write: this.write.bind(this)
     })
   }
 
-  public hijack (): void {
+  public hijack(): void {
     this.stream.write = this.buffer.write.bind(this.buffer)
   }
 
-  public release (): ProcessOutputBufferEntry[] {
+  public release(): ProcessOutputBufferEntry[] {
     this.stream.write = this.method
 
-    const buffer = [ ...this.buffer.all ]
+    const buffer = [...this.buffer.all]
 
     this.buffer.reset()
 
     return buffer
   }
 
-  public write (...args: Parameters<NodeJS.WriteStream['write']>): ReturnType<NodeJS.WriteStream['write']> {
+  public write(...args: Parameters<NodeJS.WriteStream['write']>): ReturnType<NodeJS.WriteStream['write']> {
     return this.method.apply(this.stream, args)
   }
 }

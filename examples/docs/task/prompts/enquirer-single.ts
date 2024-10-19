@@ -9,11 +9,11 @@ interface Ctx {
 const tasks = new Listr<Ctx>(
   [
     {
-      task: async (ctx, task): Promise<boolean> => ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<boolean>({ type: 'Toggle', message: 'Do you love me?' })
+      task: async(ctx, task): Promise<boolean> => (ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<boolean>({ type: 'Toggle', message: 'Do you love me?' }))
     },
     {
       title: 'This task will get your input.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<boolean>({ type: 'Toggle', message: 'Do you love me?' })
 
         // do something

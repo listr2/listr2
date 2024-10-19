@@ -14,7 +14,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(500)
       },
       rendererOptions: { persistentOutput: true }
@@ -26,7 +26,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -37,7 +37,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(500)
       },
       rendererOptions: { persistentOutput: true }
@@ -49,7 +49,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -60,7 +60,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(500)
       },
       rendererOptions: { persistentOutput: true }
@@ -72,12 +72,12 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
 
-function someTestFunction (): boolean {
+function someTestFunction(): boolean {
   let sum = 0
   const total = 2
 

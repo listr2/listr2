@@ -5,12 +5,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-  defineProps({
-    issue: {
-      type: Number,
-      required: true
-    }
-  })
+defineProps({
+  issue: {
+    type: Number,
+    required: true
+  }
+})
 </script>

@@ -1,22 +1,24 @@
-import type { CancelablePromise, Prompt } from '@inquirer/type'
+import type { Prompt } from '@inquirer/type'
 import { ListrPromptAdapter, ListrTaskEventType, ListrTaskState } from 'listr2'
 
 export class ListrInquirerPromptAdapter extends ListrPromptAdapter {
-  private prompt: CancelablePromise<any>
+  private prompt: Promise<any>
+  private signal = new AbortController()
 
   /**
    * Get the current running instance of `inquirer`.
    */
-  get instance (): CancelablePromise<any> {
+  get instance(): Promise<any> {
     return this.prompt
   }
 
   /**
    * Create a new prompt with `inquirer`.
    */
-  public async run<T extends Prompt<any, any> = Prompt<any, any>>(prompt: T, ...[ config, context ]: Parameters<T>): Promise<ReturnType<T>> {
+  public async run<T extends Prompt<any, any> = Prompt<any, any>>(prompt: T, ...[config, context]: Parameters<T>): Promise<ReturnType<T>> {
     context ??= {}
     context.output ??= this.wrapper.stdout(ListrTaskEventType.PROMPT)
+    context.signal ??= this.signal.signal
 
     this.reportStarted()
 
@@ -46,7 +48,7 @@ export class ListrInquirerPromptAdapter extends ListrPromptAdapter {
   /**
    * Cancel the ongoing prompt.
    */
-  public cancel (): void {
+  public cancel(): void {
     // there's no prompt, can't cancel
     if (!this.prompt) {
       return
@@ -54,6 +56,6 @@ export class ListrInquirerPromptAdapter extends ListrPromptAdapter {
 
     this.reportFailed()
 
-    this.prompt.cancel()
+    this.signal.abort('Prompt was cancelled')
   }
 }

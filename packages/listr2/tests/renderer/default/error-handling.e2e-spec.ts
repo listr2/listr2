@@ -7,17 +7,17 @@ describe('default renderer: error handling', () => {
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H
-  it('should throw out an error in the data field with collapse errors false', async () => {
+  it('should throw out an error in the data field with collapse errors false', async() => {
     let err: Error
 
     try {
@@ -25,7 +25,7 @@ describe('default renderer: error handling', () => {
         [
           {
             title: 'This task will fail.',
-            task: async (): Promise<void> => {
+            task: async(): Promise<void> => {
               throw new Error('This task failed after 2 seconds.')
             }
           },
@@ -51,7 +51,7 @@ describe('default renderer: error handling', () => {
   })
 
   // lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH
-  it('should show the default task title when failed with showErrorMessage of', async () => {
+  it('should show the default task title when failed with showErrorMessage of', async() => {
     let err: Error
 
     try {
@@ -59,7 +59,7 @@ describe('default renderer: error handling', () => {
         [
           {
             title: 'This task will fail.',
-            task: async (): Promise<void> => {
+            task: async(): Promise<void> => {
               throw new Error('This task failed after 2 seconds.')
             }
           },

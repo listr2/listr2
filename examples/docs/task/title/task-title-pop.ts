@@ -2,7 +2,7 @@ import { delay, Listr } from 'listr2'
 
 const tasks = new Listr([
   {
-    task: async (ctx, task): Promise<void> => {
+    task: async(ctx, task): Promise<void> => {
       await delay(1000)
 
       task.title = 'I have done stuff, but should do some more.'
@@ -13,7 +13,7 @@ const tasks = new Listr([
     }
   },
   {
-    task: async (ctx, task): Promise<void> => {
+    task: async(ctx, task): Promise<void> => {
       await delay(1000)
 
       task.title = 'I am popping in to existence.'

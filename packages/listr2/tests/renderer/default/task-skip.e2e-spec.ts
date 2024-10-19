@@ -7,17 +7,17 @@ describe('default renderer: task-skip', () => {
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N
-  it('should not collapse skip message', async () => {
+  it('should not collapse skip message', async() => {
     await new Listr(
       [
         {
@@ -43,7 +43,7 @@ describe('default renderer: task-skip', () => {
   })
 
   // omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB
-  it('should skip without a suffix', async () => {
+  it('should skip without a suffix', async() => {
     await new Listr(
       [
         {
@@ -63,7 +63,7 @@ describe('default renderer: task-skip', () => {
   })
 
   // c4Q9Hk2x725caX6F6qXGMgyUQh36HQls
-  it('should show the original title of the task', async () => {
+  it('should show the original title of the task', async() => {
     await new Listr(
       [
         {
@@ -83,7 +83,7 @@ describe('default renderer: task-skip', () => {
   })
 
   // 3n2w67J8KnAihH5KaGDGnHe2O9xawvnx
-  it('should show the original title of the task when skipped with empty message', async () => {
+  it('should show the original title of the task when skipped with empty message', async() => {
     await new Listr(
       [
         {

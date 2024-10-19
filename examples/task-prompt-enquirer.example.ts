@@ -16,13 +16,13 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will get your input.',
-      task: async (ctx, task): Promise<Record<PropertyKey, boolean>> =>
-        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<{ test: boolean, other: boolean }>([
+      task: async(ctx, task): Promise<Record<PropertyKey, boolean>> =>
+        (ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<{ test: boolean; other: boolean }>([
           {
             type: 'Select',
             name: 'first',
             message: 'Please select something',
-            choices: [ 'A', 'B', 'C' ],
+            choices: ['A', 'B', 'C'],
             validate: (response): boolean | string => {
               //  i do declare you valid!
               if (response === 'A') {
@@ -40,12 +40,12 @@ task = new Listr<Ctx>(
             name: 'third',
             message: 'I need a number badly'
           }
-        ])
+        ]))
     },
     {
       title: 'Now I will show the input value.',
       task: (ctx, task): void => {
-        task.output = [ '%o', ctx.input ]
+        task.output = ['%o', ctx.input]
       },
       rendererOptions: {
         persistentOutput: true
@@ -58,7 +58,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -68,7 +68,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will get your input.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<boolean>({ type: 'Toggle', message: 'Do you love me?' })
 
         // do something
@@ -84,7 +84,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -94,11 +94,11 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will get your input.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<boolean>({
           type: 'Select',
           message: 'Do you love me?',
-          choices: [ 'test', 'test', 'test', 'test' ]
+          choices: ['test', 'test', 'test', 'test']
         })
       }
     }
@@ -109,7 +109,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -119,7 +119,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will get your input.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run({
           type: 'Survey',
           message: 'Please rate your experience',
@@ -130,7 +130,7 @@ task = new Listr<Ctx>(
             { name: '4', message: 'Agree' },
             { name: '5', message: 'Strongly Agree' }
           ],
-          margin: [ 0, 0, 2, 1 ],
+          margin: [0, 0, 2, 1],
           choices: [
             {
               name: 'interface',
@@ -163,7 +163,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -173,7 +173,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         void delay(1000).then(() => task.skip('Skip this task.'))
 
         ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run({
@@ -185,7 +185,7 @@ task = new Listr<Ctx>(
 
     {
       title: 'Another task.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(1000)
       }
     }
@@ -198,7 +198,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -208,7 +208,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute and cancel the prompts.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         const prompt = task.prompt(ListrEnquirerPromptAdapter)
 
         void delay(1000).then(() => prompt.cancel())
@@ -243,7 +243,7 @@ task = new Listr<Ctx>(
     },
     {
       title: 'Another task.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run({
           type: 'Input',
           message: 'Prompt afterwards.'
@@ -261,7 +261,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }

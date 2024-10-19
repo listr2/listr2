@@ -3,7 +3,7 @@
  * Useful for renderers to show the task time.
  */
 /* istanbul ignore next */
-export function parseTimer (duration: number): string {
+export function parseTimer(duration: number): string {
   const seconds = Math.floor(duration / 1000)
   const minutes = Math.floor(seconds / 60)
 

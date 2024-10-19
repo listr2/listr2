@@ -5,17 +5,17 @@ import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOut
 describe('enable with context', () => {
   const output: MockProcessOutput = {} as MockProcessOutput
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   describe('should be disabled', () => {
-    it('with a function returning boolean', async () => {
+    it('with a function returning boolean', async() => {
       await new Listr(
         [
           {
@@ -30,12 +30,12 @@ describe('enable with context', () => {
       expectProcessOutputToMatchSnapshot(output, 'aJWDY40NUyBBGenLqPWsXO6NOncHTUSU')
     })
 
-    it('with async function returning boolean', async () => {
+    it('with async function returning boolean', async() => {
       await new Listr(
         [
           {
             title: 'disabled',
-            enabled: async (): Promise<boolean> => Promise.resolve(false),
+            enabled: async(): Promise<boolean> => Promise.resolve(false),
             task: (): Promise<void> => Promise.resolve()
           }
         ],
@@ -47,7 +47,7 @@ describe('enable with context', () => {
   })
 
   describe('should be enabled', () => {
-    it('with a function returning boolean', async () => {
+    it('with a function returning boolean', async() => {
       await new Listr(
         [
           {
@@ -62,12 +62,12 @@ describe('enable with context', () => {
       expectProcessOutputToMatchSnapshot(output, 'AebhVo1EK6MRCWEubovgNXHDo093g8YV')
     })
 
-    it('with async function returning boolean', async () => {
+    it('with async function returning boolean', async() => {
       await new Listr(
         [
           {
             title: 'enabled',
-            enabled: async (): Promise<boolean> => Promise.resolve(true),
+            enabled: async(): Promise<boolean> => Promise.resolve(true),
             task: (): Promise<void> => Promise.resolve()
           }
         ],
@@ -79,7 +79,7 @@ describe('enable with context', () => {
   })
 
   describe('should be disabled depending on the context', () => {
-    it('with an context variable', async () => {
+    it('with an context variable', async() => {
       await new Listr(
         [
           {
@@ -100,7 +100,7 @@ describe('enable with context', () => {
       expectProcessOutputToMatchSnapshot(output, 'jbyappoYDm16wG6ARf5qOnS8CgSjhd7S')
     })
 
-    it('with an injected context', async () => {
+    it('with an injected context', async() => {
       const ctx = { enable: false }
 
       await new Listr(

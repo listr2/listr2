@@ -58,7 +58,7 @@ export class Task<
   /** Marks the task as closed. This is different from finalized since this is not really related to task itself. */
   private closed: boolean
 
-  constructor (
+  constructor(
     public listr: Listr<Ctx, Renderer, FallbackRenderer>,
     public task: ListrTask<Ctx, Renderer, FallbackRenderer>,
     public options: ListrOptions,
@@ -69,7 +69,7 @@ export class Task<
     super()
 
     if (task.title) {
-      const title = Array.isArray(task?.title) ? task.title : [ task.title ]
+      const title = Array.isArray(task?.title) ? task.title : [task.title]
 
       this.title = splat(title.shift(), ...title)
       this.initialTitle = this.title
@@ -82,7 +82,7 @@ export class Task<
   /**
    * Update the current state of the Task and emit the neccassary events.
    */
-  set state$ (state: ListrTaskState) {
+  set state$(state: ListrTaskState) {
     this.state = state
 
     this.emit(ListrTaskEventType.STATE, state)
@@ -102,7 +102,7 @@ export class Task<
   /**
    * Update the current output of the Task and emit the neccassary events.
    */
-  set output$ (data: string) {
+  set output$(data: string) {
     this.output = data
 
     this.emit(ListrTaskEventType.OUTPUT, data)
@@ -112,7 +112,7 @@ export class Task<
   /**
    * Update the current prompt output of the Task and emit the neccassary events.
    */
-  set promptOutput$ (data: string) {
+  set promptOutput$(data: string) {
     this.emit(ListrTaskEventType.PROMPT, data)
 
     // this acts weird without cleansing the output!, have no idea why
@@ -125,7 +125,7 @@ export class Task<
   /**
    * Update or extend the current message of the Task and emit the neccassary events.
    */
-  set message$ (data: Task<Ctx, Renderer, FallbackRenderer>['message']) {
+  set message$(data: Task<Ctx, Renderer, FallbackRenderer>['message']) {
     this.message = { ...this.message, ...data }
 
     this.emit(ListrTaskEventType.MESSAGE, data)
@@ -135,7 +135,7 @@ export class Task<
   /**
    * Update the current title of the Task and emit the neccassary events.
    */
-  set title$ (title: string) {
+  set title$(title: string) {
     this.title = title
 
     this.emit(ListrTaskEventType.TITLE, title)
@@ -145,14 +145,14 @@ export class Task<
   /**
    * Current task path in the hierarchy.
    */
-  get path (): string[] {
-    return [ ...this.listr.path, this.initialTitle ]
+  get path(): string[] {
+    return [...this.listr.path, this.initialTitle]
   }
 
   /**
    * Checks whether the current task with the given context should be set as enabled.
    */
-  public async check (ctx: Ctx): Promise<boolean> {
+  public async check(ctx: Ctx): Promise<boolean> {
     // Check if a task is enabled or disabled
     if (this.state === ListrTaskState.WAITING) {
       this.enabled = await assertFunctionOrSelf(this.task?.enabled ?? true, ctx)
@@ -165,87 +165,87 @@ export class Task<
   }
 
   /** Returns whether this task has subtasks. */
-  public hasSubtasks (): boolean {
+  public hasSubtasks(): boolean {
     return this.subtasks?.length > 0
   }
 
   /** Returns whether this task is finalized in someform. */
-  public hasFinalized (): boolean {
+  public hasFinalized(): boolean {
     return this.isCompleted() || this.hasFailed() || this.isSkipped() || this.hasRolledBack()
   }
 
   /** Returns whether this task is in progress. */
-  public isPending (): boolean {
+  public isPending(): boolean {
     return this.isStarted() || this.isPrompt() || this.hasReset()
   }
 
   /** Returns whether this task has started. */
-  public isStarted (): boolean {
+  public isStarted(): boolean {
     return this.state === ListrTaskState.STARTED
   }
 
   /** Returns whether this task is skipped. */
-  public isSkipped (): boolean {
+  public isSkipped(): boolean {
     return this.state === ListrTaskState.SKIPPED
   }
 
   /** Returns whether this task has been completed. */
-  public isCompleted (): boolean {
+  public isCompleted(): boolean {
     return this.state === ListrTaskState.COMPLETED
   }
 
   /** Returns whether this task has been failed. */
-  public hasFailed (): boolean {
+  public hasFailed(): boolean {
     return this.state === ListrTaskState.FAILED
   }
 
   /** Returns whether this task has an active rollback task going on. */
-  public isRollingBack (): boolean {
+  public isRollingBack(): boolean {
     return this.state === ListrTaskState.ROLLING_BACK
   }
 
   /** Returns whether the rollback action was successful. */
-  public hasRolledBack (): boolean {
+  public hasRolledBack(): boolean {
     return this.state === ListrTaskState.ROLLED_BACK
   }
 
   /** Returns whether this task has an actively retrying task going on. */
-  public isRetrying (): boolean {
+  public isRetrying(): boolean {
     return this.state === ListrTaskState.RETRY
   }
 
   /** Returns whether this task has some kind of reset like retry and rollback going on. */
-  public hasReset (): boolean {
+  public hasReset(): boolean {
     return this.state === ListrTaskState.RETRY || this.state === ListrTaskState.ROLLING_BACK
   }
 
   /** Returns whether enabled function resolves to true. */
-  public isEnabled (): boolean {
+  public isEnabled(): boolean {
     return this.enabled
   }
 
   /** Returns whether this task actually has a title. */
-  public hasTitle (): boolean {
+  public hasTitle(): boolean {
     return typeof this?.title === 'string'
   }
 
   /** Returns whether this task has a prompt inside. */
-  public isPrompt (): boolean {
+  public isPrompt(): boolean {
     return this.state === ListrTaskState.PROMPT || this.state === ListrTaskState.PROMPT_COMPLETED
   }
 
   /** Returns whether this task is currently paused. */
-  public isPaused (): boolean {
+  public isPaused(): boolean {
     return this.state === ListrTaskState.PAUSED
   }
 
   /** Returns whether this task is closed. */
-  public isClosed (): boolean {
+  public isClosed(): boolean {
     return this.closed
   }
 
   /** Pause the given task for certain time. */
-  public async pause (time: number): Promise<void> {
+  public async pause(time: number): Promise<void> {
     const state = this.state
 
     this.state$ = ListrTaskState.PAUSED
@@ -260,7 +260,8 @@ export class Task<
   }
 
   /** Run the current task. */
-  public async run (context: Ctx, wrapper: TaskWrapper<Ctx, Renderer, FallbackRenderer>): Promise<void> {
+  // eslint-disable-next-line complexity
+  public async run(context: Ctx, wrapper: TaskWrapper<Ctx, Renderer, FallbackRenderer>): Promise<void> {
     const handleResult = (result: any): Promise<any> => {
       if (result instanceof Listr) {
         // Detect the subtask
@@ -405,7 +406,7 @@ export class Task<
         // mark task as failed
         this.state$ = ListrTaskState.FAILED
 
-        if (this.listr.options.exitOnError !== false && await assertFunctionOrSelf(this.task?.exitOnError, context) !== false) {
+        if (this.listr.options.exitOnError !== false && (await assertFunctionOrSelf(this.task?.exitOnError, context)) !== false) {
           // Do not exit when explicitly set to `false`
           // report error
           wrapper.report(error, ListrErrorTypes.HAS_FAILED)
@@ -422,7 +423,7 @@ export class Task<
     }
   }
 
-  private close (): void {
+  private close(): void {
     this.emit(ListrTaskEventType.CLOSED)
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
     this.complete()

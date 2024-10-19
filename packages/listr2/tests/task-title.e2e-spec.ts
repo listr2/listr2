@@ -7,16 +7,16 @@ describe('task: title', () => {
 
   process.stdout.isTTY = false
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
-  it('should change title on function', async () => {
+  it('should change title on function', async() => {
     await new Listr(
       [
         {
@@ -32,12 +32,12 @@ describe('task: title', () => {
     expectProcessOutputToMatchSnapshot(output)
   })
 
-  it('should change title on async function', async () => {
+  it('should change title on async function', async() => {
     await new Listr(
       [
         {
           title: 'test',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.title = 'changed'
           }
         }

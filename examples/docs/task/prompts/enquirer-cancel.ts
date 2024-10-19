@@ -10,7 +10,7 @@ const tasks = new Listr<Ctx>(
   [
     {
       title: 'This task will get your input.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         const prompt = task.prompt(ListrEnquirerPromptAdapter)
 
         // Cancel the prompt after 5 seconds

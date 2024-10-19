@@ -18,19 +18,19 @@
     "build": "tsc --noEmit",
     "start": "NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --loader ./loader.js' node",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx ."
+    "lint": "eslint --flag unstable_config_lookup_from_file"
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
       "prettier --log-level warn --write",
-      "eslint --fix"
+      "eslint --flag unstable_config_lookup_from_file --fix"
     ],
     "*.{json,md}": [
       "prettier --log-level warn --write"
     ]
   },
   "dependencies": {
-    "@inquirer/prompts": "^6.0.1",
+    "@inquirer/prompts": "^7.0.0",
     "rxjs": "^7.8.1",
     "zen-observable": "^0.10.0"
   },

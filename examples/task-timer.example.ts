@@ -10,7 +10,7 @@ task = new Listr<any>(
   [
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(1000)
       },
       rendererOptions: {
@@ -20,7 +20,7 @@ task = new Listr<any>(
 
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(1000)
       },
       rendererOptions: {
@@ -34,7 +34,7 @@ task = new Listr<any>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -45,14 +45,14 @@ task = new Listr<any>(
   [
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(500)
       }
     },
 
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.title = 'Changing task title.'
         await delay(200)
       }
@@ -64,7 +64,7 @@ task = new Listr<any>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -75,14 +75,14 @@ task = new Listr<any>(
   [
     {
       title: 'This task will execute.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(500)
       }
     },
 
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.title = 'Changing task title.'
         await delay(200)
       }
@@ -99,7 +99,7 @@ task = new Listr<any>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }

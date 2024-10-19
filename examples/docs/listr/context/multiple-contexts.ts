@@ -18,7 +18,7 @@ const tasks = new Listr<Ctx>(
           [
             {
               title: 'This is a subtask.',
-              task: async (subCtx, task): Promise<void> => {
+              task: async(subCtx, task): Promise<void> => {
                 subCtx.operation = true
               }
             },
@@ -26,7 +26,7 @@ const tasks = new Listr<Ctx>(
             {
               title: 'This is a subtask.',
               skip: (subCtx) => !subCtx.operation,
-              task: async (subCtx, task): Promise<void> => {
+              task: async(subCtx, task): Promise<void> => {
                 ctx.subtask = true
               }
             }

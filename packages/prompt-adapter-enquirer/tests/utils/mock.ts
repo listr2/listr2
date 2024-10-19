@@ -2,19 +2,19 @@ import { mockProcessExit, mockProcessStderr, mockProcessStdout } from 'jest-mock
 
 import type { MockProcessOutput } from './mock.interface'
 
-export function mockProcessOutput (output: MockProcessOutput): void {
+export function mockProcessOutput(output: MockProcessOutput): void {
   output.exit = mockProcessExit()
   output.stdout = mockProcessStdout()
   output.stderr = mockProcessStderr()
 }
 
-export function unmockProcessOutput (output: MockProcessOutput): void {
+export function unmockProcessOutput(output: MockProcessOutput): void {
   output.exit.mockRestore()
   output.stdout.mockRestore()
   output.stderr.mockRestore()
 }
 
-export function expectProcessOutputToMatchSnapshot (output: MockProcessOutput, name?: string): void {
+export function expectProcessOutputToMatchSnapshot(output: MockProcessOutput, name?: string): void {
   if (name) {
     expect(output.exit.mock.calls?.map((calls) => calls.shift())).toMatchSnapshot(name + '-exit')
     expect(output.stdout.mock.calls?.map((calls) => calls.shift())).toMatchSnapshot(name + '-stdout')
@@ -26,6 +26,6 @@ export function expectProcessOutputToMatchSnapshot (output: MockProcessOutput, n
   }
 }
 
-export function expectProcessOutputToHaveBeenCalledWith (output: MockProcessOutput, branch: keyof MockProcessOutput, match: string): void {
+export function expectProcessOutputToHaveBeenCalledWith(output: MockProcessOutput, branch: keyof MockProcessOutput, match: string): void {
   expect(output[branch]).toHaveBeenCalledWith(match)
 }

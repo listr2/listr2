@@ -13,8 +13,8 @@ const tasks = new Listr<Ctx>(
   [
     {
       title: 'This task will get your input.',
-      task: async (ctx, task): Promise<void> => {
-        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<{ first: boolean, second: boolean }>([
+      task: async(ctx, task): Promise<void> => {
+        ctx.input = await task.prompt(ListrEnquirerPromptAdapter).run<{ first: boolean; second: boolean }>([
           {
             type: 'Toggle',
             name: 'first',

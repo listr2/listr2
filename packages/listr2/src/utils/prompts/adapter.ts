@@ -6,12 +6,12 @@ import type { Task, TaskWrapper } from '@lib'
 export abstract class ListrPromptAdapter {
   private state: ListrTaskState
 
-  constructor (
+  constructor(
     protected task: Task<any, any, any>,
     protected wrapper: TaskWrapper<any, any, any>
   ) {}
 
-  protected reportStarted (): void {
+  protected reportStarted(): void {
     this.state = this.task.state
 
     if (this.task.prompt) {
@@ -22,17 +22,17 @@ export abstract class ListrPromptAdapter {
     this.task.state$ = ListrTaskState.PROMPT
   }
 
-  protected reportFailed (): void {
+  protected reportFailed(): void {
     this.task.state$ = ListrTaskState.PROMPT_FAILED
     this.restoreState()
   }
 
-  protected reportCompleted (): void {
+  protected reportCompleted(): void {
     this.task.state$ = ListrTaskState.PROMPT_COMPLETED
     this.restoreState()
   }
 
-  protected restoreState (): void {
+  protected restoreState(): void {
     this.task.prompt = undefined
 
     if (this.state) {

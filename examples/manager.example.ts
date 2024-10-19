@@ -3,7 +3,7 @@ import { Manager } from '@listr2/manager'
 import type { ListrBaseClassOptions } from 'listr2'
 import { delay, ListrLogger, ListrLogLevels } from 'listr2'
 
-function TaskManagerFactory<T = any> (override?: ListrBaseClassOptions): Manager<T> {
+function TaskManagerFactory<T = any>(override?: ListrBaseClassOptions): Manager<T> {
   return new Manager({
     concurrent: false,
     exitOnError: false,
@@ -24,18 +24,18 @@ class MyMainClass {
   private tasks = TaskManagerFactory<Ctx>()
   private logger = new ListrLogger({ useIcons: false })
 
-  public async run (): Promise<void> {
+  public async run(): Promise<void> {
     this.tasks.add(
       [
         {
           title: 'A task running manager [0]',
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             throw new Error('Do not dare to run the second task.')
           }
         },
         {
           title: 'This will never run first one failed.',
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             await delay(2000)
           }
         }
@@ -47,13 +47,13 @@ class MyMainClass {
       [
         {
           title: 'Some task that will run in sequential execution mode. [0]',
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             await delay(2000)
           }
         },
         {
           title: 'Some task that will run in sequential execution mode. [1]',
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             await delay(2000)
           }
         },
@@ -61,13 +61,13 @@ class MyMainClass {
           [
             {
               title: 'This will run in parallel. [0]',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
               }
             },
             {
               title: 'This will run in parallel. [1]',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
               }
             }
@@ -133,14 +133,14 @@ class MyMainClass {
     await this.tasks.run(
       [
         {
-          task: async (ctx): Promise<void> => {
+          task: async(ctx): Promise<void> => {
             // start the clock
             ctx.runTime = Date.now()
           }
         },
         {
           title: 'Running',
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             await delay(1000)
           }
         }

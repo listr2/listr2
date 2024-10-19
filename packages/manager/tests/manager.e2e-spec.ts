@@ -7,18 +7,18 @@ describe('skip a task', () => {
 
   const output: MockProcessOutput = {} as MockProcessOutput
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     manager = new Manager<any, 'test'>({ renderer: 'test' })
 
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
-  it('should add tasks to the manager', async () => {
+  it('should add tasks to the manager', async() => {
     manager.add([
       {
         task: (): Promise<void> => Promise.resolve()
@@ -30,7 +30,7 @@ describe('skip a task', () => {
     expectProcessOutputToMatchSnapshot(output, 'GFB8X86ruFomKEgjsONBJpAyKOAF3NXP')
   })
 
-  it('should indent the task in manager', async () => {
+  it('should indent the task in manager', async() => {
     manager.add([
       {
         ...manager.indent([
@@ -46,7 +46,7 @@ describe('skip a task', () => {
     expectProcessOutputToMatchSnapshot(output, 'iKVBsenKiZgkkgSQSW6OEluZqkppF7j8')
   })
 
-  it('should change the context in manager', async () => {
+  it('should change the context in manager', async() => {
     manager.ctx = {
       test: true
     }

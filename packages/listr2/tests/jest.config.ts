@@ -3,15 +3,16 @@ import { join } from 'path'
 import type { JestConfigWithTsJest } from 'ts-jest'
 import { pathsToModuleNameMapper } from 'ts-jest'
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const tsconfig = require(join(process.cwd(), 'tests', './tsconfig.json'))
 
 const config: JestConfigWithTsJest = {
   testEnvironment: 'node',
   rootDir: '../',
-  setupFiles: [ '<rootDir>/tests/jest.setup.ts' ],
+  setupFiles: ['<rootDir>/tests/jest.setup.ts'],
   testRegex: '(/tests/.*|/src/.*).(e2e-)?spec.tsx?$',
 
-  extensionsToTreatAsEsm: [ '.ts' ],
+  extensionsToTreatAsEsm: ['.ts'],
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',
@@ -21,8 +22,8 @@ const config: JestConfigWithTsJest = {
       }
     ]
   },
-  collectCoverageFrom: [ 'src/**/*' ],
-  moduleFileExtensions: [ 'ts', 'js' ],
+  collectCoverageFrom: ['src/**/*'],
+  moduleFileExtensions: ['ts', 'js'],
   moduleNameMapper: {
     ...pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
       prefix: '<rootDir>/'

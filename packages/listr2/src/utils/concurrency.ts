@@ -6,7 +6,7 @@ export class Concurrency {
   private count: number
   private queue: Set<() => void>
 
-  constructor (options: { concurrency: number }) {
+  constructor(options: { concurrency: number }) {
     this.concurrency = options.concurrency
     this.count = 0
     this.queue = new Set()
@@ -24,7 +24,7 @@ export class Concurrency {
     })
   }
 
-  private flush (): void {
+  private flush(): void {
     for (const callback of this.queue) {
       if (this.count >= this.concurrency) {
         break

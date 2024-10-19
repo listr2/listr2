@@ -11,11 +11,11 @@ const RENDERERS: Record<'default' | 'simple' | 'verbose' | 'test' | 'silent', ty
   silent: SilentRenderer
 }
 
-function isRendererSupported (renderer: ListrRendererFactory): boolean {
+function isRendererSupported(renderer: ListrRendererFactory): boolean {
   return process.stdout.isTTY === true || renderer.nonTTY === true
 }
 
-export function getRendererClass (renderer: ListrRendererValue): ListrRendererFactory {
+export function getRendererClass(renderer: ListrRendererValue): ListrRendererFactory {
   if (typeof renderer === 'string') {
     return RENDERERS[renderer] ?? RENDERERS.default
   }
@@ -23,7 +23,7 @@ export function getRendererClass (renderer: ListrRendererValue): ListrRendererFa
   return typeof renderer === 'function' ? renderer : RENDERERS.default
 }
 
-export function getRenderer<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue> (options: {
+export function getRenderer<Renderer extends ListrRendererValue, FallbackRenderer extends ListrRendererValue>(options: {
   renderer: Renderer
   rendererOptions: ListrGetRendererOptions<Renderer>
   fallbackRenderer: FallbackRenderer

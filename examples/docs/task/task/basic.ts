@@ -8,7 +8,7 @@ const tasks = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (ctx): Promise<void> => {
+      task: async(ctx): Promise<void> => {
         // perform some operations
       }
     }

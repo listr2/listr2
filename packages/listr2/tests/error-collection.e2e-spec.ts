@@ -2,13 +2,13 @@ import type { ListrOptions } from '@root'
 import { ListrErrorTypes, Listr } from '@root'
 
 describe('error collection', () => {
-  it('should have the default behavior of minimal', async () => {
+  it('should have the default behavior of minimal', async() => {
     const task = new Listr([])
 
     expect(task.options.collectErrors).toBe(false)
   })
 
-  it('should collect only the first error while exiting on error', async () => {
+  it('should collect only the first error while exiting on error', async() => {
     const task = new Listr(
       [
         {
@@ -44,7 +44,7 @@ describe('error collection', () => {
     expect(task.errors[0]).toMatchObject({ message: '1', type: ListrErrorTypes.HAS_FAILED })
   })
 
-  it('should collect error path', async () => {
+  it('should collect error path', async() => {
     const task = new Listr(
       [
         {
@@ -81,11 +81,11 @@ describe('error collection', () => {
     expect(task.errors[0]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
-      path: [ 'test' ]
+      path: ['test']
     })
   })
 
-  it('should collect error path from subtasks', async () => {
+  it('should collect error path from subtasks', async() => {
     const task = new Listr(
       [
         {
@@ -128,16 +128,16 @@ describe('error collection', () => {
     expect(task.errors[0]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
-      path: [ 'test', 'subtask' ]
+      path: ['test', 'subtask']
     })
     expect(task.errors[1]).toMatchObject({
       message: '1',
       type: ListrErrorTypes.HAS_FAILED,
-      path: [ 'test' ]
+      path: ['test']
     })
   })
 
-  it('should collect all the errors while not exiting on error', async () => {
+  it('should collect all the errors while not exiting on error', async() => {
     const task = new Listr(
       [
         {
@@ -182,7 +182,7 @@ describe('error collection', () => {
     expect(task.errors[1].task).toBeDefined()
   })
 
-  it('should save the context on error', async () => {
+  it('should save the context on error', async() => {
     const message = '1'
     const task = new Listr(
       [
@@ -219,7 +219,7 @@ describe('error collection', () => {
     expect(task.errors[0]).toMatchObject({ message, ctx })
   })
 
-  it('should save the context on error while having circular dependencies', async () => {
+  it('should save the context on error while having circular dependencies', async() => {
     const message = '1'
     const task = new Listr(
       [
@@ -255,7 +255,7 @@ describe('error collection', () => {
     expect(task.errors[0].ctx).toMatchObject({ test: true, myself: { test: true } })
   })
 
-  it('should collect all the errors from subtasks and fail with subtask.errorsor while subtask has exit on error', async () => {
+  it('should collect all the errors from subtasks and fail with subtask.errorsor while subtask has exit on error', async() => {
     const task = new Listr(
       [
         {
@@ -312,7 +312,7 @@ describe('error collection', () => {
     expect(task.errors[2]).toMatchObject({ message: '2', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR })
   })
 
-  it('should collect all the errors from subtasks while not exiting on error', async () => {
+  it('should collect all the errors from subtasks while not exiting on error', async() => {
     const task = new Listr(
       [
         {
@@ -370,7 +370,7 @@ describe('error collection', () => {
     expect(task.errors[3]).toMatchObject({ message: '2' })
   })
 
-  it.each<ListrOptions['collectErrors']>([ 'minimal', 'full' ])('should properly record the context in the given error with collect errors: %s', async (collectErrors) => {
+  it.each<ListrOptions['collectErrors']>(['minimal', 'full'])('should properly record the context in the given error with collect errors: %s', async(collectErrors) => {
     const task = new Listr(
       [
         {
@@ -427,7 +427,7 @@ describe('error collection', () => {
     }
   })
 
-  it.each([ true, false ])('should collect errors from rollback while rollback fails is %s', async (failRollback) => {
+  it.each([true, false])('should collect errors from rollback while rollback fails is %s', async(failRollback) => {
     const task = new Listr(
       [
         {
@@ -436,14 +436,14 @@ describe('error collection', () => {
             task.newListr(
               [
                 {
-                  task: async (): Promise<void> => {
+                  task: async(): Promise<void> => {
                     throw new Error('subtask failed.')
                   }
                 }
               ],
               { exitOnError: true }
             ),
-          rollback: async (): Promise<void> => {
+          rollback: async(): Promise<void> => {
             if (failRollback) {
               throw new Error('rollback fails.')
             }
@@ -480,11 +480,11 @@ describe('error collection', () => {
     }
   })
 
-  it('should collect errors from retries', async () => {
+  it('should collect errors from retries', async() => {
     const task = new Listr(
       [
         {
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             throw new Error('retry error')
           },
           retry: 3
@@ -517,7 +517,7 @@ describe('error collection', () => {
     expect(task.errors[3]).toMatchObject({ message: 'retry error', type: ListrErrorTypes.HAS_FAILED })
   })
 
-  it('should not collect any errors if disabled', async () => {
+  it('should not collect any errors if disabled', async() => {
     const task = new Listr(
       [
         {

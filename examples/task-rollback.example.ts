@@ -20,7 +20,7 @@ task = new Listr<Ctx>(
           [
             {
               title: 'This task will fail.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
                 throw new Error('This task failed after 2 seconds.')
               }
@@ -34,7 +34,7 @@ task = new Listr<Ctx>(
           ],
           { exitOnError: true }
         ),
-      rollback: async (_, task): Promise<void> => {
+      rollback: async(_, task): Promise<void> => {
         task.title = 'I am trying to rollback stuff, previous action failed.'
 
         await delay(1000)
@@ -56,7 +56,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -73,18 +73,18 @@ task = new Listr<Ctx>(
           [
             {
               title: 'This task will execute.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(1000)
               }
             },
             {
               title: 'This task will fail.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
 
                 throw new Error('This task failed after 2 seconds.')
               },
-              rollback: async (_, task): Promise<void> => {
+              rollback: async(_, task): Promise<void> => {
                 task.title = 'I am trying to rollback stuff, previous action failed.'
 
                 await delay(1000)
@@ -110,7 +110,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }

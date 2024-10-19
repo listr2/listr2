@@ -8,17 +8,17 @@ import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOut
 describe('observable as task', () => {
   const output: MockProcessOutput = {} as MockProcessOutput
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
-  it('should work with returning a observable from task', async () => {
+  it('should work with returning a observable from task', async() => {
     await new Listr(
       [
         {
@@ -42,7 +42,7 @@ describe('observable as task', () => {
   })
 
   // SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF
-  it('should work with returning a zen-observable from task', async () => {
+  it('should work with returning a zen-observable from task', async() => {
     await new Listr(
       [
         {

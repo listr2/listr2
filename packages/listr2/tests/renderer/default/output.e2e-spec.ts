@@ -7,22 +7,22 @@ describe('default renderer: output', () => {
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
-  it('should have persistent output', async () => {
+  it('should have persistent output', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -42,12 +42,12 @@ describe('default renderer: output', () => {
   })
 
   // LGtvNwRVWZWJQuucaYcVDSrjspKwNnVF
-  it('should output to output bar with all output', async () => {
+  it('should output to output bar with all output', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -67,12 +67,12 @@ describe('default renderer: output', () => {
   })
 
   // hXDsrvlxponbYraVVuHSWACjDbyUBXkb
-  it('should output to output bar with last 2 output', async () => {
+  it('should output to output bar with last 2 output', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -92,12 +92,12 @@ describe('default renderer: output', () => {
   })
 
   // qmiOeXTUyStaFeRgDYVlGoPJMVDbRRuC
-  it('should output to output bar with last output', async () => {
+  it('should output to output bar with last output', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -117,12 +117,12 @@ describe('default renderer: output', () => {
   })
 
   // ojurBbWZEPenKVeoFcKksBeMbaYWmbGO
-  it('should output to nowhere since outputBar and bottomBar is false', async () => {
+  it('should output to nowhere since outputBar and bottomBar is false', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -142,12 +142,12 @@ describe('default renderer: output', () => {
   })
 
   // 767BkeBTfR1lrS2ANYYH7CLWPATxqyat
-  it('should output to bottom bar', async () => {
+  it('should output to bottom bar', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -167,11 +167,11 @@ describe('default renderer: output', () => {
   })
 
   // JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP
-  it('should output to bottom bar from task with no title', async () => {
+  it('should output to bottom bar from task with no title', async() => {
     await new Listr(
       [
         {
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -191,11 +191,11 @@ describe('default renderer: output', () => {
   })
 
   // iI52S3WPytorU9EZKPar2AiBrLAZTVut
-  it('should output to bottom bar from task with no title persistently', async () => {
+  it('should output to bottom bar from task with no title persistently', async() => {
     await new Listr(
       [
         {
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -215,12 +215,12 @@ describe('default renderer: output', () => {
   })
 
   // HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA
-  it('should output to bottom bar persistently', async () => {
+  it('should output to bottom bar persistently', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -240,12 +240,12 @@ describe('default renderer: output', () => {
   })
 
   // d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5
-  it('should limit output to bottom bar persistently', async () => {
+  it('should limit output to bottom bar persistently', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -265,12 +265,12 @@ describe('default renderer: output', () => {
   })
 
   // NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus
-  it('should output to bottom bar 2 times at most and delete the prior tasks output when finished', async () => {
+  it('should output to bottom bar 2 times at most and delete the prior tasks output when finished', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -282,7 +282,7 @@ describe('default renderer: output', () => {
 
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'
@@ -302,12 +302,12 @@ describe('default renderer: output', () => {
   })
 
   // j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
-  it('should indent long multiline output with persistent output', async () => {
+  it('should indent long multiline output with persistent output', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             const start = 'This is a'
             const mid = 'long '
             const end = 'multi line output.'
@@ -327,12 +327,12 @@ describe('default renderer: output', () => {
   })
 
   // MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv
-  it.each([ true, false ])('should have persistent output on task fail with bottom bar %s', async (input) => {
+  it.each([true, false])('should have persistent output on task fail with bottom bar %s', async(input) => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'

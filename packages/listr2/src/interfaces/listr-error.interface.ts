@@ -13,7 +13,7 @@ export class ListrError<Ctx extends ListrContext = ListrContext> extends Error {
   public path: string[]
   public ctx: Ctx
 
-  constructor (
+  constructor(
     public error: Error,
     public type: ListrErrorTypes,
     public task: Task<Ctx, ListrRendererFactory, ListrRendererFactory>

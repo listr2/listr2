@@ -7,12 +7,12 @@ try {
     [
       {
         title: 'Getting you on-board.',
-        task: async (ctx, task): Promise<boolean> =>
-          ctx.user = await task.prompt(ListrEnquirerPromptAdapter).run({
+        task: async(ctx, task): Promise<boolean> =>
+          (ctx.user = await task.prompt(ListrEnquirerPromptAdapter).run({
             type: 'Toggle',
             message: 'Do you want to create beautiful CLI interfaces?',
             initial: true
-          })
+          }))
       },
 
       {
@@ -23,7 +23,7 @@ try {
             [
               {
                 title: 'Spinning up a new project...',
-                task: async (_, task): Promise<void> => {
+                task: async(_, task): Promise<void> => {
                   await delay(2000)
                   task.output = 'Created a new project.'
                 }
@@ -31,7 +31,7 @@ try {
 
               {
                 title: 'Install Listr2...',
-                task: async (_, task): Promise<void> => {
+                task: async(_, task): Promise<void> => {
                   task.output = 'Creating a new repository...'
                   await delay(2000)
                   task.output = 'Installing Listr2...'
@@ -42,7 +42,7 @@ try {
 
               {
                 title: 'Reading the documentation and the examples...',
-                task: async (_, task): Promise<void> => {
+                task: async(_, task): Promise<void> => {
                   task.output = 'Documentation can be found in https://listr2.kilic.dev'
                   await delay(500)
                   task.output = 'Created a new instance of Listr!'
@@ -73,21 +73,21 @@ try {
             [
               {
                 title: 'Show some output!',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   await delay(2000)
                 }
               },
 
               {
                 title: 'Enable tasks conditionally!',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   await delay(1000)
                 }
               },
 
               {
                 title: 'Throw and handle some errors!',
-                task: async (_, task): Promise<void> => {
+                task: async(_, task): Promise<void> => {
                   await delay(2500)
                   task.skip('No errors at all!')
                 }
@@ -105,28 +105,28 @@ try {
             [
               {
                 title: 'More code...',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   await delay(2000)
                 }
               },
 
               {
                 title: 'Oh no the types!',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   await delay(1000)
                 }
               },
 
               {
                 title: 'Some tests are needed too!',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   await delay(2500)
                 }
               },
 
               {
                 title: 'CI/CD configuration is a must!',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   await delay(2500)
                 }
               }
@@ -142,7 +142,7 @@ try {
             [
               {
                 title: 'Fixing bugs...',
-                task: async (_, task): Promise<void> => {
+                task: async(_, task): Promise<void> => {
                   await delay(1000)
                   task.skip('Can not find any bugs!')
                 }
@@ -150,7 +150,7 @@ try {
 
               {
                 title: 'Fixing type errors...',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   await delay(1000)
                   throw new Error('This type can not be assigned to that type, oh noes!')
                 }
@@ -158,7 +158,7 @@ try {
 
               {
                 title: 'Getting some help from Google.',
-                task: async (_, task): Promise<void> => {
+                task: async(_, task): Promise<void> => {
                   await delay(500)
                   task.title = 'I have found the answers to the universe!'
                 }
@@ -173,7 +173,7 @@ try {
 
       {
         title: 'In the end it will all be worth it!',
-        task: async (_, task): Promise<void> => {
+        task: async(_, task): Promise<void> => {
           await delay(1000)
           task.title = 'Created a beautiful CLI interface!'
         }
@@ -182,6 +182,5 @@ try {
     { renderer: 'simple' }
   ).run()
 } catch (e: any) {
-  // eslint-disable-next-line no-console
   console.error(e)
 }

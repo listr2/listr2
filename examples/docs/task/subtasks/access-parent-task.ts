@@ -9,7 +9,7 @@ const tasks = new Listr(
           (parent) => [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(3000)
 
                 parent.title = 'I am changing the title from subtask.'

@@ -10,7 +10,7 @@ interface Ctx {
 const tasks = new Listr<Ctx>(
   [
     {
-      task: async (ctx, task): Promise<string> => ctx.input = await task.prompt(ListrInquirerPromptAdapter).run(input, { message: 'Please tell me about yourself' })
+      task: async(ctx, task): Promise<string> => (ctx.input = await task.prompt(ListrInquirerPromptAdapter).run(input, { message: 'Please tell me about yourself' }))
     }
   ],
   { concurrent: false }
