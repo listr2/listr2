@@ -21,7 +21,7 @@ export class SimpleRenderer implements ListrRenderer {
     rendererTaskOptions: new Map()
   }
 
-  constructor (
+  constructor(
     private readonly tasks: ListrSimpleRendererTask[],
     private options: ListrSimpleRendererOptions
   ) {
@@ -30,11 +30,11 @@ export class SimpleRenderer implements ListrRenderer {
       ...options,
       icon: {
         ...LISTR_LOGGER_STYLE.icon,
-        ...options?.icon ?? {}
+        ...(options?.icon ?? {})
       },
       color: {
         ...LISTR_LOGGER_STYLE.color,
-        ...options?.color ?? {}
+        ...(options?.color ?? {})
       }
     }
 
@@ -48,14 +48,13 @@ export class SimpleRenderer implements ListrRenderer {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public end (): void {}
+  public end(): void {}
 
-  public render (): void {
+  public render(): void {
     this.renderer(this.tasks)
   }
 
-  private renderer (tasks: ListrSimpleRendererTask[]): void {
+  private renderer(tasks: ListrSimpleRendererTask[]): void {
     tasks.forEach((task) => {
       this.calculate(task)
 
@@ -87,7 +86,7 @@ export class SimpleRenderer implements ListrRenderer {
               suffix: {
                 ...timer,
                 condition: !!task.message?.duration && timer.condition,
-                args: [ task.message.duration ]
+                args: [task.message.duration]
               }
             }
           )
@@ -148,7 +147,7 @@ export class SimpleRenderer implements ListrRenderer {
               suffix: {
                 ...timer,
                 condition: !!message?.paused && timer.condition,
-                args: [ message.paused - Date.now() ]
+                args: [message.paused - Date.now()]
               }
             }
           )
@@ -157,7 +156,7 @@ export class SimpleRenderer implements ListrRenderer {
     })
   }
 
-  private calculate (task: ListrSimpleRendererTask): void {
+  private calculate(task: ListrSimpleRendererTask): void {
     if (this.cache.rendererOptions.has(task.id) && this.cache.rendererTaskOptions.has(task.id)) {
       return
     }
@@ -176,7 +175,7 @@ export class SimpleRenderer implements ListrRenderer {
     })
   }
 
-  private reset (task: ListrSimpleRendererTask): void {
+  private reset(task: ListrSimpleRendererTask): void {
     this.cache.rendererOptions.delete(task.id)
     this.cache.rendererTaskOptions.delete(task.id)
   }

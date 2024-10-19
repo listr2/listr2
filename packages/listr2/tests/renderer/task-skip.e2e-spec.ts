@@ -7,17 +7,17 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: task-skip', (renderer
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F
-  it('should skip from internal function', async () => {
+  it('should skip from internal function', async() => {
     await new Listr(
       [
         {
@@ -38,7 +38,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: task-skip', (renderer
   })
 
   // 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e
-  it('should skip from context', async () => {
+  it('should skip from context', async() => {
     await new Listr(
       [
         {
@@ -65,7 +65,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: task-skip', (renderer
   })
 
   // BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK
-  it('skip from function', async () => {
+  it('skip from function', async() => {
     await new Listr(
       [
         {
@@ -77,7 +77,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: task-skip', (renderer
 
         {
           title: 'This task will never execute.',
-          skip: (ctx): string | boolean => ctx.skip ? 'I will be skipped!' : false,
+          skip: (ctx): string | boolean => (ctx.skip ? 'I will be skipped!' : false),
           task: (): void => {}
         }
       ],

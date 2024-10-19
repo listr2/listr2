@@ -7,22 +7,22 @@ describe('signal handlers', () => {
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // LFRhPFJHChAJcQIEadkDdOlPezdltcfe
-  it('should try to cancel running tasks', async () => {
+  it('should try to cancel running tasks', async() => {
     await new Listr(
       [
         {
           title: 'a task',
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             await delay(10)
 
             process.emit('SIGINT')
@@ -43,12 +43,12 @@ describe('signal handlers', () => {
 
   // https://github.com/listr2/listr2/issues/709 running this double seems to mess it somehow?
   // ACxcRBILlHsqiSxYArjASFdofVqLaUyE
-  it('should try to cancel running tasks', async () => {
+  it('should try to cancel running tasks', async() => {
     await new Listr(
       [
         {
           title: 'a task',
-          task: async (): Promise<void> => {}
+          task: async(): Promise<void> => {}
         }
       ],
       {
@@ -62,7 +62,7 @@ describe('signal handlers', () => {
       [
         {
           title: 'a task',
-          task: async (): Promise<void> => {
+          task: async(): Promise<void> => {
             await delay(10)
 
             process.emit('SIGINT')
@@ -81,15 +81,15 @@ describe('signal handlers', () => {
     expectProcessOutputToMatchSnapshot(output, 'ACxcRBILlHsqiSxYArjASFdofVqLaUyE')
   })
 
-  it('should not clear other SIGINT listeners', async () => {
-    process.addListener('SIGINT', function doNotRemove () {})
+  it('should not clear other SIGINT listeners', async() => {
+    process.addListener('SIGINT', function doNotRemove() {})
     expect(process.listeners('SIGINT').map((listener) => listener.name)).toContain('doNotRemove')
 
     await new Listr(
       [
         {
           title: 'a task',
-          task: async (): Promise<void> => {}
+          task: async(): Promise<void> => {}
         }
       ],
       {

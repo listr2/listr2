@@ -13,11 +13,11 @@ import { ProcessOutput, splat } from '@utils'
 export class ListrLogger<Levels extends string = string> {
   public readonly process: ProcessOutput
 
-  constructor (public options?: ListrLoggerOptions<Levels>) {
+  constructor(public options?: ListrLoggerOptions<Levels>) {
     this.options = {
       useIcons: true,
       toStderr: [],
-      ...options ?? {}
+      ...(options ?? {})
     }
 
     this.options.fields ??= {}
@@ -27,7 +27,7 @@ export class ListrLogger<Levels extends string = string> {
     this.process = this.options.processOutput ?? new ProcessOutput()
   }
 
-  public log (level: Levels, message: string | any[], options?: LoggerFieldOptions): void {
+  public log(level: Levels, message: string | any[], options?: LoggerFieldOptions): void {
     const output = this.format(level, message, options)
 
     if (this.options.toStderr.includes(level)) {
@@ -39,15 +39,15 @@ export class ListrLogger<Levels extends string = string> {
     this.process.toStdout(output)
   }
 
-  public toStdout (message: string | any[], options?: LoggerFieldOptions, eol = true): void {
+  public toStdout(message: string | any[], options?: LoggerFieldOptions, eol = true): void {
     this.process.toStdout(this.format(null, message, options), eol)
   }
 
-  public toStderr (message: string | any[], options?: LoggerFieldOptions, eol = true): void {
+  public toStderr(message: string | any[], options?: LoggerFieldOptions, eol = true): void {
     this.process.toStderr(this.format(null, message, options), eol)
   }
 
-  public wrap (message: string, options?: LoggerFormatOptions): string {
+  public wrap(message: string, options?: LoggerFormatOptions): string {
     if (!message) {
       return message
     }
@@ -55,13 +55,13 @@ export class ListrLogger<Levels extends string = string> {
     return this.applyFormat(`[${message}]`, options)
   }
 
-  public splat (...args: Parameters<typeof splat>): ReturnType<typeof splat> {
+  public splat(...args: Parameters<typeof splat>): ReturnType<typeof splat> {
     const message: string = args.shift() ?? ''
 
     return args.length === 0 ? message : splat(message, args)
   }
 
-  public suffix (message: string, ...suffixes: LoggerField[]): string {
+  public suffix(message: string, ...suffixes: LoggerField[]): string {
     suffixes.filter(Boolean).forEach((suffix) => {
       message += this.spacing(message)
 
@@ -83,7 +83,7 @@ export class ListrLogger<Levels extends string = string> {
     return message
   }
 
-  public prefix (message: string, ...prefixes: LoggerField[]): string {
+  public prefix(message: string, ...prefixes: LoggerField[]): string {
     prefixes.filter(Boolean).forEach((prefix) => {
       message = this.spacing(message) + message
 
@@ -106,7 +106,7 @@ export class ListrLogger<Levels extends string = string> {
     return message
   }
 
-  public fields (message: string, options?: LoggerFieldOptions<true>): string {
+  public fields(message: string, options?: LoggerFieldOptions<true>): string {
     if (this.options?.fields?.prefix) {
       message = this.prefix(message, ...this.options.fields.prefix)
     }
@@ -126,7 +126,7 @@ export class ListrLogger<Levels extends string = string> {
     return message
   }
 
-  public icon (level: Levels, icon?: string | false): string {
+  public icon(level: Levels, icon?: string | false): string {
     if (!level) {
       return null
     }
@@ -143,9 +143,9 @@ export class ListrLogger<Levels extends string = string> {
     return icon
   }
 
-  protected format (level: Levels, message: string | any[], options?: LoggerFieldOptions): string {
+  protected format(level: Levels, message: string | any[], options?: LoggerFieldOptions): string {
     if (!Array.isArray(message)) {
-      message = [ message ]
+      message = [message]
     }
 
     message = this.splat(message.shift(), ...message)
@@ -157,8 +157,8 @@ export class ListrLogger<Levels extends string = string> {
         return this.style(
           level,
           this.fields(m, {
-            prefix: Array.isArray(options?.prefix) ? options.prefix : [ options?.prefix ],
-            suffix: Array.isArray(options?.suffix) ? options.suffix : [ options?.suffix ]
+            prefix: Array.isArray(options?.prefix) ? options.prefix : [options?.prefix],
+            suffix: Array.isArray(options?.suffix) ? options.suffix : [options?.suffix]
           })
         )
       })
@@ -167,7 +167,7 @@ export class ListrLogger<Levels extends string = string> {
     return message
   }
 
-  protected style (level: Levels, message: string): string {
+  protected style(level: Levels, message: string): string {
     if (!level || !message) {
       return message
     }
@@ -181,7 +181,7 @@ export class ListrLogger<Levels extends string = string> {
     return message
   }
 
-  protected applyFormat (message: string, options?: LoggerFormatOptions): string {
+  protected applyFormat(message: string, options?: LoggerFormatOptions): string {
     if (options?.format) {
       return options.format(message)
     }
@@ -189,7 +189,7 @@ export class ListrLogger<Levels extends string = string> {
     return message
   }
 
-  protected spacing (message: string | undefined): string {
+  protected spacing(message: string | undefined): string {
     return typeof message === 'undefined' || message.trim() === '' ? '' : ' '
   }
 }

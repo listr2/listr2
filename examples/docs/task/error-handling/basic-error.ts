@@ -4,7 +4,7 @@ const tasks = new Listr(
   [
     {
       title: 'This task will fail.',
-      task: async (): Promise<void> => {
+      task: async(): Promise<void> => {
         await delay(2000)
         throw new Error('This task failed after 2 seconds.')
       }

@@ -11,7 +11,7 @@ const tasks = new Listr<Ctx>([], {
 tasks.add([
   {
     title: 'This task will execute.',
-    task: async (ctx): Promise<void> => {
+    task: async(ctx): Promise<void> => {
       // perform some operations
     }
   }

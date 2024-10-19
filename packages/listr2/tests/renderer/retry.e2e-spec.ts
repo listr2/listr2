@@ -7,17 +7,17 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // R34CKurUXSpq65S8ebD6jpUrwmIiYrKa
-  it('should retry the main task if any of the subtasks fail', async () => {
+  it('should retry the main task if any of the subtasks fail', async() => {
     let err: Error
 
     try {
@@ -25,7 +25,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
         [
           {
             title: 'Some type errors',
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               task.output = 'test'
 
               const retry = task.isRetrying()
@@ -54,7 +54,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
     expectProcessOutputToMatchSnapshot(output, 'R34CKurUXSpq65S8ebD6jpUrwmIiYrKa')
   })
 
-  it('should stop retrying if the task succeeds afterwards', async () => {
+  it('should stop retrying if the task succeeds afterwards', async() => {
     let err: Error
 
     try {
@@ -62,7 +62,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
         [
           {
             title: 'Some type errors',
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               const retry = task.isRetrying()
 
               if (retry?.count === 3) {

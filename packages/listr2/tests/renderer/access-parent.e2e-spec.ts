@@ -7,17 +7,17 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: parent task access', 
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // nvFwliir81dQSzoa7xPXaq0E1lauH674
-  it('should be able to change the title of parent from subtask', async () => {
+  it('should be able to change the title of parent from subtask', async() => {
     await new Listr(
       [
         {
@@ -26,14 +26,14 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: parent task access', 
             task.newListr((parent) => [
               {
                 title: 'This is a subtask.',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   parent.title = 'Title changed from subtask.'
                 }
               },
 
               {
                 title: 'This is a subtask.',
-                task: async (): Promise<void> => Promise.resolve()
+                task: async(): Promise<void> => Promise.resolve()
               }
             ])
         }

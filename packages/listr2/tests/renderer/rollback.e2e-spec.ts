@@ -7,17 +7,17 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // 4SIhMkI14b8s2hW1esiORoa1UINGHwAr
-  it('should rollback the main task if any of the subtasks fail', async () => {
+  it('should rollback the main task if any of the subtasks fail', async() => {
     let err: Error
 
     try {
@@ -30,7 +30,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
                 [
                   {
                     title: 'This task will fail.',
-                    task: async (): Promise<void> => {
+                    task: async(): Promise<void> => {
                       throw new Error('This task failed after 2 seconds.')
                     }
                   },
@@ -43,7 +43,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
                 ],
                 { exitOnError: true }
               ),
-            rollback: async (_, task): Promise<void> => {
+            rollback: async(_, task): Promise<void> => {
               task.title = 'I am trying to rollback stuff, previous action failed.'
 
               task.title = 'Some actions required rollback stuff.'
@@ -52,7 +52,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
 
           {
             title: 'This task will never execute.',
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               task.title = 'This task executed unlike expected.'
             }
           }
@@ -73,7 +73,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
   })
 
   // vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx
-  it('should rollback the subtask if the subtask itself fails', async () => {
+  it('should rollback the subtask if the subtask itself fails', async() => {
     let err: Error
 
     try {
@@ -86,10 +86,10 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
                 [
                   {
                     title: 'This task will fail.',
-                    task: async (): Promise<void> => {
+                    task: async(): Promise<void> => {
                       throw new Error('This task failed after 2 seconds.')
                     },
-                    rollback: async (_, task): Promise<void> => {
+                    rollback: async(_, task): Promise<void> => {
                       task.title = 'I am trying to rollback stuff, previous action failed.'
 
                       task.title = 'Some actions required rollback stuff.'
@@ -107,7 +107,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
           },
           {
             title: 'This task will never execute.',
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               task.title = 'This task executed unlike expected.'
             }
           }
@@ -128,7 +128,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
   })
 
   // 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A
-  it.each([ true, false ])('should both stop the execution with exitOnError %s since exitAfterRollback is independent', async (cases) => {
+  it.each([true, false])('should both stop the execution with exitOnError %s since exitAfterRollback is independent', async(cases) => {
     let err: Error
 
     try {
@@ -141,7 +141,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
                 [
                   {
                     title: 'This task will fail.',
-                    task: async (): Promise<void> => {
+                    task: async(): Promise<void> => {
                       throw new Error('This task failed after 2 seconds.')
                     }
                   },
@@ -154,7 +154,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
                 ],
                 { exitOnError: true, concurrent: false }
               ),
-            rollback: async (_, task): Promise<void> => {
+            rollback: async(_, task): Promise<void> => {
               task.title = 'I am trying to rollback stuff, previous action failed.'
 
               task.title = 'Some actions required rollback stuff.'
@@ -162,7 +162,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
           },
           {
             title: 'This task will maybe execute.',
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               task.title = 'This task is executed unlike expected.'
             }
           }
@@ -188,7 +188,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
   })
 
   // 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8
-  it.each([ true, false ])('should contunie execution or stop there with exitAfterRollback: %s', async (cases) => {
+  it.each([true, false])('should contunie execution or stop there with exitAfterRollback: %s', async(cases) => {
     let err: Error
 
     try {
@@ -201,7 +201,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
                 [
                   {
                     title: 'This task will fail.',
-                    task: async (): Promise<void> => {
+                    task: async(): Promise<void> => {
                       throw new Error('This task failed after 2 seconds.')
                     }
                   },
@@ -214,7 +214,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
                 ],
                 { exitOnError: true }
               ),
-            rollback: async (_, task): Promise<void> => {
+            rollback: async(_, task): Promise<void> => {
               task.title = 'I am trying to rollback stuff, previous action failed.'
 
               task.title = 'Some actions required rollback stuff.'
@@ -222,7 +222,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
           },
           {
             title: 'This task will maybe execute.',
-            task: async (): Promise<void> => {}
+            task: async(): Promise<void> => {}
           }
         ],
         {

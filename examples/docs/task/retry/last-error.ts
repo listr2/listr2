@@ -4,10 +4,11 @@ const tasks = new Listr(
   [
     {
       title: 'Some thing with errors',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         const retry = task.isRetrying()
 
         if (retry.count > 0) {
+          // eslint-disable-next-line no-constant-binary-expression
           if (retry.error === new Error('Something')) {
             task.title = 'I will process the task further.'
           }

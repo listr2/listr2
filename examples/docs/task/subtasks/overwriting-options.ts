@@ -9,13 +9,13 @@ const tasks = new Listr(
           [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(3000)
               }
             },
             {
               title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
               }
             }
@@ -31,13 +31,13 @@ const tasks = new Listr(
           [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(3000)
               }
             },
             {
               title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
               }
             }

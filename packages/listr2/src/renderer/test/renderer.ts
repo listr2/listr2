@@ -12,8 +12,8 @@ export class TestRenderer implements ListrRenderer {
     output: true,
     prompt: true,
     title: true,
-    messages: [ 'skip', 'error', 'retry', 'rollback', 'paused' ],
-    messagesToStderr: [ 'error', 'rollback', 'retry' ],
+    messages: ['skip', 'error', 'retry', 'rollback', 'paused'],
+    messagesToStderr: ['error', 'rollback', 'retry'],
     task: [
       'hasRolledBack',
       'isRollingBack',
@@ -40,7 +40,7 @@ export class TestRenderer implements ListrRenderer {
   private readonly logger: ListrLogger
   private serializer: TestRendererSerializer
 
-  constructor (
+  constructor(
     private readonly tasks: ListrTestRendererTask[],
     private readonly options: ListrTestRendererOptions
   ) {
@@ -51,15 +51,14 @@ export class TestRenderer implements ListrRenderer {
     this.serializer = new TestRendererSerializer(this.options)
   }
 
-  public render (): void {
+  public render(): void {
     this.renderer(this.tasks)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public end (): void {}
+  public end(): void {}
 
   // verbose renderer multi-level
-  private renderer (tasks: ListrTestRendererTask[]): void {
+  private renderer(tasks: ListrTestRendererTask[]): void {
     tasks.forEach((task) => {
       if (this.options.subtasks) {
         task.on(ListrTaskEventType.SUBTASK, (subtasks) => {
@@ -94,9 +93,9 @@ export class TestRenderer implements ListrRenderer {
       task.on(ListrTaskEventType.MESSAGE, (message) => {
         const parsed: ListrTaskMessage = Object.fromEntries(
           Object.entries(message)
-            .map(([ key, value ]) => {
+            .map(([key, value]) => {
               if (this.options.messages.includes(key as keyof ListrTaskMessage)) {
-                return [ key, value ]
+                return [key, value]
               }
             })
             .filter(Boolean)
