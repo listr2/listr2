@@ -1,3 +1,20 @@
+# listr2 [9.0.0-beta.2](https://github.com/listr2/listr2/compare/listr2@9.0.0-beta.1...listr2@9.0.0-beta.2) (2024-10-19)
+
+
+### Bug Fixes
+
+* reference issue ([b84ca5d](https://github.com/listr2/listr2/commit/b84ca5df574661cee225eee3852f17d93cbff1b3)), closes [#723](https://github.com/listr2/listr2/issues/723) [yt-#LISTR2-273](https://github.com/yt-/issues/LISTR2-273)
+
+
+### Performance Improvements
+
+* **utils:** return actual writable type from the createWritable utility ([a5cdba3](https://github.com/listr2/listr2/commit/a5cdba3175d673cc1751bc5455567305e8073951))
+
+
+### BREAKING CHANGES
+
+* **utils:** - The return type of the `createWritable` function has changed from `NodeJS.WritableStream` to `Writable`. This is a more right type for the object that is returned from the function.
+
 # listr2 [9.0.0-beta.1](https://github.com/listr2/listr2/compare/listr2@8.2.5...listr2@9.0.0-beta.1) (2024-10-19)
 
 
