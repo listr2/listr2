@@ -1,3 +1,25 @@
+# @listr2/prompt-adapter-inquirer [3.0.0-beta.1](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.17...@listr2/prompt-adapter-inquirer@3.0.0-beta.1) (2024-10-19)
+
+
+### Performance Improvements
+
+* update core dependencies and styling ([56f4d64](https://github.com/listr2/listr2/commit/56f4d647f6020c4227dce8322ec38d030f4897f2))
+
+
+### BREAKING CHANGES
+
+* This includes breaking changes in the inqurer setup.
+
+The styling is completely changed.
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 9.0.0-beta.1
+
 ## @listr2/prompt-adapter-inquirer [2.0.17](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.16...@listr2/prompt-adapter-inquirer@2.0.17) (2024-10-03)
 
 
