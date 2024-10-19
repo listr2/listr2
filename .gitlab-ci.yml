@@ -64,9 +64,11 @@ build-docs:
     paths:
       - ./docs/dist
   needs:
+    - install
     - build
     - semantic-release
   dependencies:
+    - install
     - build
     - semantic-release
   only:
