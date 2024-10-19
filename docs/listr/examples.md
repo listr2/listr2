@@ -24,8 +24,8 @@ git clone git@github.com:cenk1cenk2/listr2.git
 # install the dependencies
 pnpm install
 
-# run any example, by giving the script a relative path in the repository
-pnpm run --filter example start renderer-default.example.ts
+# run any example, by giving the script a relative path in the repository from the root
+pnpm run --filter example start examples/renderer-default.example.ts
 ```
 
 ## `jsdoc`

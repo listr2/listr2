@@ -2,7 +2,7 @@ import { Writable } from 'stream'
 import type { WriteStream } from 'tty'
 
 /* istanbul ignore next */
-export function createWritable(cb: (chunk: string) => void): NodeJS.WritableStream {
+export function createWritable(cb: (chunk: string) => void): Writable {
   const writable = new Writable()
 
   ;(writable as WriteStream).rows = Infinity

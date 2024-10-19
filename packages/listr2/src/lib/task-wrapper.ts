@@ -1,3 +1,5 @@
+import type { Writable } from 'stream'
+
 import type { ListrErrorTypes } from '@constants'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRendererFactory, ListrSubClassOptions, ListrTask } from '@interfaces'
@@ -137,7 +139,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/renderer/process-output.html}
    */
-  public stdout(type?: ListrTaskEventType.OUTPUT | ListrTaskEventType.PROMPT): NodeJS.WritableStream {
+  public stdout(type?: ListrTaskEventType.OUTPUT | ListrTaskEventType.PROMPT): Writable {
     return createWritable((chunk: string): void => {
       switch (type) {
         case ListrTaskEventType.PROMPT:
