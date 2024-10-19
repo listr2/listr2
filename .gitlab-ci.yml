@@ -57,6 +57,7 @@ build-docs:
   before_script:
     - apk update
     - apk add git
+    - pnpm i
   variables:
     NODE_COMMAND_SCRIPT: docs:build
     NODE_COMMAND_CWD: ./docs
@@ -64,11 +65,11 @@ build-docs:
     paths:
       - ./docs/dist
   needs:
-    - install
+    # - install
     - build
     - semantic-release
   dependencies:
-    - install
+    # - install
     - build
     - semantic-release
   only:

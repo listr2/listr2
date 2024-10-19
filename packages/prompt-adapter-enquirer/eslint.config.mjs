@@ -10,7 +10,6 @@ export default [
       parserOptions: {
         project: ['tsconfig.json', './tests/tsconfig.json']
       }
-    },
-    ignores: ['eslint.config.mjs']
+    }
   }
 ]

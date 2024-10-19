@@ -1,5 +1,6 @@
 import root from '../eslint.config.mjs'
-import { configs, utils } from '@cenk1cenk2/eslint-config'
+import { utils } from '@cenk1cenk2/eslint-config'
+import { configs } from '@cenk1cenk2/eslint-config/vue'
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
@@ -12,6 +13,6 @@ export default [
     }
   },
   {
-    ignores: ['.vitepress/cache/**', '.vitepress/dist/**', 'dist/**', 'eslint.config.mjs']
+    ignores: ['.vitepress/cache/**', '.vitepress/dist/**', 'dist/**']
   }
 ]
