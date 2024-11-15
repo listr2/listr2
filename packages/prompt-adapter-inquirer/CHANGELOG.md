@@ -1,7 +1,7 @@
 ## @listr2/prompt-adapter-inquirer [2.0.17](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.16...@listr2/prompt-adapter-inquirer@2.0.17) (2024-10-03)
 
 
-
+republish as new version
 
 
 ### Dependencies
