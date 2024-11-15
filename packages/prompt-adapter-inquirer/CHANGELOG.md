@@ -1,3 +1,10 @@
+## @listr2/prompt-adapter-inquirer [2.0.18](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.17...@listr2/prompt-adapter-inquirer@2.0.18) (2024-11-15)
+
+
+### Bug Fixes
+
+* release ([9f05aaa](https://github.com/listr2/listr2/commit/9f05aaa1ac1d8d069b4264f17b70f26548e7bb3d))
+
 ## @listr2/prompt-adapter-inquirer [2.0.17](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.16...@listr2/prompt-adapter-inquirer@2.0.17) (2024-10-03)
 
 
