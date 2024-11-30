@@ -93,14 +93,14 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       typedoc:
-        specifier: ^0.27.0
-        version: 0.27.0(typescript@5.6.3)
+        specifier: ^0.27.2
+        version: 0.27.2(typescript@5.6.3)
       typedoc-plugin-markdown:
-        specifier: 4.2.10
-        version: 4.2.10(typedoc@0.27.0(typescript@5.6.3))
+        specifier: 4.3.0
+        version: 4.3.0(typedoc@0.27.2(typescript@5.6.3))
       typedoc-vitepress-theme:
         specifier: 1.0.2
-        version: 1.0.2(typedoc-plugin-markdown@4.2.10(typedoc@0.27.0(typescript@5.6.3)))
+        version: 1.0.2(typedoc-plugin-markdown@4.3.0(typedoc@0.27.2(typescript@5.6.3)))
       vitepress:
         specifier: 1.5.0
         version: 1.5.0(@algolia/client-search@5.7.0)(@types/node@22.7.4)(postcss@8.4.47)(search-insights@2.17.2)(typescript@5.6.3)
@@ -893,8 +893,8 @@ packages:
       '@fortawesome/fontawesome-svg-core': ~1 || ~6
       vue: '>= 3.0.0 < 4'
 
-  '@gerrit0/mini-shiki@1.23.2':
-    resolution: {integrity: sha512-6e/41ZAilc2iE4n0bxxMSvzrt1dy2MSa9lSdd2M5lcTDlrzcau+FucIEDrG+xF1dPou/a093tm1t4HPTSI4g1w==}
+  '@gerrit0/mini-shiki@1.24.1':
+    resolution: {integrity: sha512-PNP/Gjv3VqU7z7DjRgO3F9Ok5frTKqtpV+LJW1RzMcr2zpRk0ulhEWnbcNGXzPC7BZyWMIHrkfQX2GZRfxrn6Q==}
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -1204,8 +1204,8 @@ packages:
   '@shikijs/engine-oniguruma@1.22.2':
     resolution: {integrity: sha512-GIZPAGzQOy56mGvWMoZRPggn0dTlBf1gutV5TdceLCZlFNqWmuc7u+CzD0Gd9vQUTgLbrt0KLzz6FNprqYAxlA==}
 
-  '@shikijs/engine-oniguruma@1.23.1':
-    resolution: {integrity: sha512-KQ+lgeJJ5m2ISbUZudLR1qHeH3MnSs2mjFg7bnencgs5jDVPeJ2NVDJ3N5ZHbcTsOIh0qIueyAJnwg7lg7kwXQ==}
+  '@shikijs/engine-oniguruma@1.24.0':
+    resolution: {integrity: sha512-Eua0qNOL73Y82lGA4GF5P+G2+VXX9XnuUxkiUuwcxQPH4wom+tE39kZpBFXfUuwNYxHSkrSxpB1p4kyRW0moSg==}
 
   '@shikijs/transformers@1.22.2':
     resolution: {integrity: sha512-8f78OiBa6pZDoZ53lYTmuvpFPlWtevn23bzG+azpPVvZg7ITax57o/K3TC91eYL3OMJOO0onPbgnQyZjRos8XQ==}
@@ -1213,8 +1213,8 @@ packages:
   '@shikijs/types@1.22.2':
     resolution: {integrity: sha512-NCWDa6LGZqTuzjsGfXOBWfjS/fDIbDdmVDug+7ykVe1IKT4c1gakrvlfFYp5NhAXH/lyqLM8wsAPo5wNy73Feg==}
 
-  '@shikijs/types@1.23.1':
-    resolution: {integrity: sha512-98A5hGyEhzzAgQh2dAeHKrWW4HfCMeoFER2z16p5eJ+vmPeF6lZ/elEne6/UCU551F/WqkopqRsr1l2Yu6+A0g==}
+  '@shikijs/types@1.24.0':
+    resolution: {integrity: sha512-aptbEuq1Pk88DMlCe+FzXNnBZ17LCiLIGWAeCWhoFDzia5Q5Krx3DgnULLiouSdd6+LUM39XwXGppqYE0Ghtug==}
 
   '@shikijs/vscode-textmate@9.3.0':
     resolution: {integrity: sha512-jn7/7ky30idSkd/O5yDBfAnVt+JJpepofP/POZ1iMOxK59cOfqIgg/Dj0eFsjOTMw+4ycJN0uhZH/Eb0bs/EUA==}
@@ -3898,19 +3898,19 @@ packages:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
 
-  typedoc-plugin-markdown@4.2.10:
-    resolution: {integrity: sha512-PLX3pc1/7z13UJm4TDE9vo9jWGcClFUErXXtd5LdnoLjV6mynPpqZLU992DwMGFSRqJFZeKbVyqlNNeNHnk2tQ==}
+  typedoc-plugin-markdown@4.3.0:
+    resolution: {integrity: sha512-yAR7+JGSwHWNzQhS8AFlGX6GmbWnK7/Q2Y8hHy5pkL/WB9ooJqhsI6B1abldhM3lOQCWqCdkzu9yFMPuvl2HUw==}
     engines: {node: '>= 18'}
     peerDependencies:
-      typedoc: 0.26.x
+      typedoc: 0.27.x
 
   typedoc-vitepress-theme@1.0.2:
     resolution: {integrity: sha512-6RUW4FBsGolOU3M92F7qz9ILKjL0oq8aHyQ5Q39tIpzapimJ2qX+ChLqzcBP7/aAtEoPYezIivjjZN9oZ4Ghvg==}
     peerDependencies:
       typedoc-plugin-markdown: '>=4.1.0'
 
-  typedoc@0.27.0:
-    resolution: {integrity: sha512-7AkTJhFdhsihthaBFHNpj5iFdLyR7FpQqXM+IABJmE1/qTjWypirCLrheToUP3fjpWHN1Drn3K7PWH1t37KvNQ==}
+  typedoc@0.27.2:
+    resolution: {integrity: sha512-C2ima5TZJHU3ecnRIz50lKd1BsYck5LhYQIy7MRPmjuSEJreUEAt+uAVcZgY7wZsSORzEI7xW8miZIdxv/cbmw==}
     engines: {node: '>= 18'}
     hasBin: true
     peerDependencies:
@@ -4800,10 +4800,10 @@ snapshots:
       '@fortawesome/fontawesome-svg-core': 6.6.0
       vue: 3.5.11(typescript@5.6.3)
 
-  '@gerrit0/mini-shiki@1.23.2':
+  '@gerrit0/mini-shiki@1.24.1':
     dependencies:
-      '@shikijs/engine-oniguruma': 1.23.1
-      '@shikijs/types': 1.23.1
+      '@shikijs/engine-oniguruma': 1.24.0
+      '@shikijs/types': 1.24.0
       '@shikijs/vscode-textmate': 9.3.0
 
   '@humanwhocodes/config-array@0.13.0':
@@ -5226,9 +5226,9 @@ snapshots:
       '@shikijs/types': 1.22.2
       '@shikijs/vscode-textmate': 9.3.0
 
-  '@shikijs/engine-oniguruma@1.23.1':
+  '@shikijs/engine-oniguruma@1.24.0':
     dependencies:
-      '@shikijs/types': 1.23.1
+      '@shikijs/types': 1.24.0
       '@shikijs/vscode-textmate': 9.3.0
 
   '@shikijs/transformers@1.22.2':
@@ -5240,7 +5240,7 @@ snapshots:
       '@shikijs/vscode-textmate': 9.3.0
       '@types/hast': 3.0.4
 
-  '@shikijs/types@1.23.1':
+  '@shikijs/types@1.24.0':
     dependencies:
       '@shikijs/vscode-textmate': 9.3.0
       '@types/hast': 3.0.4
@@ -8348,17 +8348,17 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typedoc-plugin-markdown@4.2.10(typedoc@0.27.0(typescript@5.6.3)):
+  typedoc-plugin-markdown@4.3.0(typedoc@0.27.2(typescript@5.6.3)):
     dependencies:
-      typedoc: 0.27.0(typescript@5.6.3)
+      typedoc: 0.27.2(typescript@5.6.3)
 
-  typedoc-vitepress-theme@1.0.2(typedoc-plugin-markdown@4.2.10(typedoc@0.27.0(typescript@5.6.3))):
+  typedoc-vitepress-theme@1.0.2(typedoc-plugin-markdown@4.3.0(typedoc@0.27.2(typescript@5.6.3))):
     dependencies:
-      typedoc-plugin-markdown: 4.2.10(typedoc@0.27.0(typescript@5.6.3))
+      typedoc-plugin-markdown: 4.3.0(typedoc@0.27.2(typescript@5.6.3))
 
-  typedoc@0.27.0(typescript@5.6.3):
+  typedoc@0.27.2(typescript@5.6.3):
     dependencies:
-      '@gerrit0/mini-shiki': 1.23.2
+      '@gerrit0/mini-shiki': 1.24.1
       lunr: 2.3.9
       markdown-it: 14.1.0
       minimatch: 9.0.5
