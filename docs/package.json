@@ -38,7 +38,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "typedoc": "^0.27.2",
+    "typedoc": "^0.27.3",
     "typedoc-plugin-markdown": "4.3.1",
     "typedoc-vitepress-theme": "1.0.2",
     "vitepress": "1.5.0",
