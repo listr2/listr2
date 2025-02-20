@@ -93,20 +93,20 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       typedoc:
-        specifier: ^0.27.6
-        version: 0.27.6(typescript@5.6.3)
+        specifier: ^0.27.7
+        version: 0.27.7(typescript@5.6.3)
       typedoc-plugin-markdown:
-        specifier: 4.4.1
-        version: 4.4.1(typedoc@0.27.6(typescript@5.6.3))
+        specifier: 4.4.2
+        version: 4.4.2(typedoc@0.27.7(typescript@5.6.3))
       typedoc-vitepress-theme:
         specifier: 1.1.2
-        version: 1.1.2(typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.6.3)))
+        version: 1.1.2(typedoc-plugin-markdown@4.4.2(typedoc@0.27.7(typescript@5.6.3)))
       vitepress:
         specifier: 1.6.3
         version: 1.6.3(@algolia/client-search@5.19.0)(@types/node@22.7.4)(postcss@8.5.1)(search-insights@2.17.2)(typescript@5.6.3)
       vitepress-sidebar:
-        specifier: ^1.30.2
-        version: 1.30.2
+        specifier: ^1.31.0
+        version: 1.31.0
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.6.3)
@@ -3387,6 +3387,10 @@ packages:
   pure-rand@6.1.0:
     resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
 
+  qsu@1.6.4:
+    resolution: {integrity: sha512-4PRyFDQhfvz/Np+W2dRJ96bna3Zfby/XOxum9R6hdkA3k8WLHwzcrpJ2lL/zeUYbJJu6ODpKxefJavHk0oCVIw==}
+    engines: {node: '>=18.0.0'}
+
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
@@ -3857,8 +3861,8 @@ packages:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
 
-  typedoc-plugin-markdown@4.4.1:
-    resolution: {integrity: sha512-fx23nSCvewI9IR8lzIYtzDphETcgTDuxKcmHKGD4lo36oexC+B1k4NaCOY58Snqb4OlE8OXDAGVcQXYYuLRCNw==}
+  typedoc-plugin-markdown@4.4.2:
+    resolution: {integrity: sha512-kJVkU2Wd+AXQpyL6DlYXXRrfNrHrEIUgiABWH8Z+2Lz5Sq6an4dQ/hfvP75bbokjNDUskOdFlEEm/0fSVyC7eg==}
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.27.x
@@ -3868,8 +3872,8 @@ packages:
     peerDependencies:
       typedoc-plugin-markdown: '>=4.4.0'
 
-  typedoc@0.27.6:
-    resolution: {integrity: sha512-oBFRoh2Px6jFx366db0lLlihcalq/JzyCVp7Vaq1yphL/tbgx2e+bkpkCgJPunaPvPwoTOXSwasfklWHm7GfAw==}
+  typedoc@0.27.7:
+    resolution: {integrity: sha512-K/JaUPX18+61W3VXek1cWC5gwmuLvYTOXJzBvD9W7jFvbPnefRnCHQCEPw7MSNrP/Hj7JJrhZtDDLKdcYm6ucg==}
     engines: {node: '>= 18'}
     hasBin: true
     peerDependencies:
@@ -3968,8 +3972,8 @@ packages:
       terser:
         optional: true
 
-  vitepress-sidebar@1.30.2:
-    resolution: {integrity: sha512-5NWULe+lMGcair5z23Oapp4+sOSVwpUEj7s2JwZzb9T4pUbY6EumbSPZlY7q+h3vApnaYn4psVAzsalSKBJ/Xg==}
+  vitepress-sidebar@1.31.0:
+    resolution: {integrity: sha512-ctdALc8ptXsD0HuOYMM8xjUu3lSBfHGJJZYtKYuixvjhL+q/AipLeSvsvwfUEhDIwRyi46HQlSa/7XsevVA/Mg==}
     engines: {node: '>=18.0.0'}
 
   vitepress@1.6.3:
@@ -4053,11 +4057,6 @@ packages:
 
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
-
-  yaml@2.6.1:
-    resolution: {integrity: sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==}
-    engines: {node: '>= 14'}
-    hasBin: true
 
   yaml@2.7.0:
     resolution: {integrity: sha512-+hSoy/QHluxmC9kCIJyL/uyFmLmc+e5CFR5Wa+bpIhIj85LVb9ZH2nVnqrHoSvKogwODv0ClqZkmiSSaIH5LTA==}
@@ -7698,6 +7697,8 @@ snapshots:
 
   pure-rand@6.1.0: {}
 
+  qsu@1.6.4: {}
+
   queue-microtask@1.2.3: {}
 
   react-is@18.2.0: {}
@@ -8205,22 +8206,22 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.6.3)):
+  typedoc-plugin-markdown@4.4.2(typedoc@0.27.7(typescript@5.6.3)):
     dependencies:
-      typedoc: 0.27.6(typescript@5.6.3)
+      typedoc: 0.27.7(typescript@5.6.3)
 
-  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.6.3))):
+  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.4.2(typedoc@0.27.7(typescript@5.6.3))):
     dependencies:
-      typedoc-plugin-markdown: 4.4.1(typedoc@0.27.6(typescript@5.6.3))
+      typedoc-plugin-markdown: 4.4.2(typedoc@0.27.7(typescript@5.6.3))
 
-  typedoc@0.27.6(typescript@5.6.3):
+  typedoc@0.27.7(typescript@5.6.3):
     dependencies:
       '@gerrit0/mini-shiki': 1.24.1
       lunr: 2.3.9
       markdown-it: 14.1.0
       minimatch: 9.0.5
       typescript: 5.6.3
-      yaml: 2.6.1
+      yaml: 2.7.0
 
   typescript@5.6.3: {}
 
@@ -8301,10 +8302,11 @@ snapshots:
       '@types/node': 22.7.4
       fsevents: 2.3.3
 
-  vitepress-sidebar@1.30.2:
+  vitepress-sidebar@1.31.0:
     dependencies:
       glob: 10.4.5
       gray-matter: 4.0.3
+      qsu: 1.6.4
 
   vitepress@1.6.3(@algolia/client-search@5.19.0)(@types/node@22.7.4)(postcss@8.5.1)(search-insights@2.17.2)(typescript@5.6.3):
     dependencies:
@@ -8441,8 +8443,6 @@ snapshots:
   y18n@5.0.8: {}
 
   yallist@3.1.1: {}
-
-  yaml@2.6.1: {}
 
   yaml@2.7.0: {}
 
