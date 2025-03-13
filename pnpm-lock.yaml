@@ -93,20 +93,20 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       typedoc:
-        specifier: ^0.27.8
-        version: 0.27.8(typescript@5.6.3)
+        specifier: ^0.27.9
+        version: 0.27.9(typescript@5.6.3)
       typedoc-plugin-markdown:
         specifier: 4.4.2
-        version: 4.4.2(typedoc@0.27.8(typescript@5.6.3))
+        version: 4.4.2(typedoc@0.27.9(typescript@5.6.3))
       typedoc-vitepress-theme:
         specifier: 1.1.2
-        version: 1.1.2(typedoc-plugin-markdown@4.4.2(typedoc@0.27.8(typescript@5.6.3)))
+        version: 1.1.2(typedoc-plugin-markdown@4.4.2(typedoc@0.27.9(typescript@5.6.3)))
       vitepress:
         specifier: 1.6.3
         version: 1.6.3(@algolia/client-search@5.19.0)(@types/node@22.7.4)(postcss@8.5.1)(search-insights@2.17.2)(typescript@5.6.3)
       vitepress-sidebar:
-        specifier: ^1.31.0
-        version: 1.31.0
+        specifier: ^1.31.1
+        version: 1.31.1
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.6.3)
@@ -3387,8 +3387,8 @@ packages:
   pure-rand@6.1.0:
     resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
 
-  qsu@1.6.4:
-    resolution: {integrity: sha512-4PRyFDQhfvz/Np+W2dRJ96bna3Zfby/XOxum9R6hdkA3k8WLHwzcrpJ2lL/zeUYbJJu6ODpKxefJavHk0oCVIw==}
+  qsu@1.10.0:
+    resolution: {integrity: sha512-60UGE7IEYXX/xy/n1w7vDm+is43pmePajAdXAnFOczvVDJKbVqZ5/RvRy+yobjA4iQitr4H/4zojVFtAkNWW9g==}
     engines: {node: '>=18.0.0'}
 
   queue-microtask@1.2.3:
@@ -3875,12 +3875,12 @@ packages:
     peerDependencies:
       typedoc-plugin-markdown: '>=4.4.0'
 
-  typedoc@0.27.8:
-    resolution: {integrity: sha512-q0/2TUunNEDmWkn23ULKGXieK8cgGuAmBUXC/HcZ/rgzMI9Yr4Nq3in1K1vT1NZ9zx6M78yTk3kmIPbwJgK5KA==}
+  typedoc@0.27.9:
+    resolution: {integrity: sha512-/z585740YHURLl9DN2jCWe6OW7zKYm6VoQ93H0sxZ1cwHQEQrUn5BJrEnkWhfzUdyO+BLGjnKUZ9iz9hKloFDw==}
     engines: {node: '>= 18'}
     hasBin: true
     peerDependencies:
-      typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x
+      typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x
 
   typescript@5.6.3:
     resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
@@ -3975,8 +3975,8 @@ packages:
       terser:
         optional: true
 
-  vitepress-sidebar@1.31.0:
-    resolution: {integrity: sha512-ctdALc8ptXsD0HuOYMM8xjUu3lSBfHGJJZYtKYuixvjhL+q/AipLeSvsvwfUEhDIwRyi46HQlSa/7XsevVA/Mg==}
+  vitepress-sidebar@1.31.1:
+    resolution: {integrity: sha512-Hx10z5le87jIIXVfKq4AtRrVqVJJ/1cQsZhmwT+ghVR/j4Yor9FjNMszyigJ54ktrEtoxSLO6C9tvuLauT4lZA==}
     engines: {node: '>=18.0.0'}
 
   vitepress@1.6.3:
@@ -7700,7 +7700,7 @@ snapshots:
 
   pure-rand@6.1.0: {}
 
-  qsu@1.6.4: {}
+  qsu@1.10.0: {}
 
   queue-microtask@1.2.3: {}
 
@@ -8213,15 +8213,15 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typedoc-plugin-markdown@4.4.2(typedoc@0.27.8(typescript@5.6.3)):
+  typedoc-plugin-markdown@4.4.2(typedoc@0.27.9(typescript@5.6.3)):
     dependencies:
-      typedoc: 0.27.8(typescript@5.6.3)
+      typedoc: 0.27.9(typescript@5.6.3)
 
-  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.4.2(typedoc@0.27.8(typescript@5.6.3))):
+  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.4.2(typedoc@0.27.9(typescript@5.6.3))):
     dependencies:
-      typedoc-plugin-markdown: 4.4.2(typedoc@0.27.8(typescript@5.6.3))
+      typedoc-plugin-markdown: 4.4.2(typedoc@0.27.9(typescript@5.6.3))
 
-  typedoc@0.27.8(typescript@5.6.3):
+  typedoc@0.27.9(typescript@5.6.3):
     dependencies:
       '@gerrit0/mini-shiki': 1.24.1
       lunr: 2.3.9
@@ -8309,11 +8309,11 @@ snapshots:
       '@types/node': 22.7.4
       fsevents: 2.3.3
 
-  vitepress-sidebar@1.31.0:
+  vitepress-sidebar@1.31.1:
     dependencies:
       glob: 10.4.5
       gray-matter: 4.0.3
-      qsu: 1.6.4
+      qsu: 1.10.0
 
   vitepress@1.6.3(@algolia/client-search@5.19.0)(@types/node@22.7.4)(postcss@8.5.1)(search-insights@2.17.2)(typescript@5.6.3):
     dependencies:
