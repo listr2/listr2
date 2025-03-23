@@ -93,14 +93,14 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       typedoc:
-        specifier: ^0.28.0
-        version: 0.28.0(typescript@5.6.3)
+        specifier: ^0.28.1
+        version: 0.28.1(typescript@5.6.3)
       typedoc-plugin-markdown:
-        specifier: 4.5.0
-        version: 4.5.0(typedoc@0.28.0(typescript@5.6.3))
+        specifier: 4.6.0
+        version: 4.6.0(typedoc@0.28.1(typescript@5.6.3))
       typedoc-vitepress-theme:
         specifier: 1.1.2
-        version: 1.1.2(typedoc-plugin-markdown@4.5.0(typedoc@0.28.0(typescript@5.6.3)))
+        version: 1.1.2(typedoc-plugin-markdown@4.6.0(typedoc@0.28.1(typescript@5.6.3)))
       vitepress:
         specifier: 1.6.3
         version: 1.6.3(@algolia/client-search@5.19.0)(@types/node@22.7.4)(postcss@8.5.1)(search-insights@2.17.2)(typescript@5.6.3)
@@ -3864,8 +3864,8 @@ packages:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
 
-  typedoc-plugin-markdown@4.5.0:
-    resolution: {integrity: sha512-SZ3Nhkl8WE46W2/9OrjHIkXeSi4ZuceQeGxw2kGHyaaooRHYiiHlOWJx6SM0WKjqRUTfhz9T7wSwm3zwPEZndA==}
+  typedoc-plugin-markdown@4.6.0:
+    resolution: {integrity: sha512-RG90uC1QqGN9kPBjzEckEf0v9yIYlLoNYKm4OqjwEGFJJGOLUDs5pIEQQDR2tAv1RD7D8GUSakRlcHMTipyaOA==}
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.28.x
@@ -3875,8 +3875,8 @@ packages:
     peerDependencies:
       typedoc-plugin-markdown: '>=4.4.0'
 
-  typedoc@0.28.0:
-    resolution: {integrity: sha512-UU+xxZXrpnUhEulBYRwY2afoYFC24J2fTFovOs3llj2foGShCoKVQL6cQCfQ+sBAOdiFn2dETpZ9xhah+CL3RQ==}
+  typedoc@0.28.1:
+    resolution: {integrity: sha512-Mn2VPNMaxoe/hlBiLriG4U55oyAa3Xo+8HbtEwV7F5WEOPXqtxzGuMZhJYHaqFJpajeQ6ZDUC2c990NAtTbdgw==}
     engines: {node: '>= 18', pnpm: '>= 10'}
     hasBin: true
     peerDependencies:
@@ -5121,13 +5121,13 @@ snapshots:
   '@shikijs/engine-javascript@2.1.0':
     dependencies:
       '@shikijs/types': 2.1.0
-      '@shikijs/vscode-textmate': 10.0.1
+      '@shikijs/vscode-textmate': 10.0.2
       oniguruma-to-es: 2.3.0
 
   '@shikijs/engine-oniguruma@2.1.0':
     dependencies:
       '@shikijs/types': 2.1.0
-      '@shikijs/vscode-textmate': 10.0.1
+      '@shikijs/vscode-textmate': 10.0.2
 
   '@shikijs/engine-oniguruma@3.2.1':
     dependencies:
@@ -8213,15 +8213,15 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typedoc-plugin-markdown@4.5.0(typedoc@0.28.0(typescript@5.6.3)):
+  typedoc-plugin-markdown@4.6.0(typedoc@0.28.1(typescript@5.6.3)):
     dependencies:
-      typedoc: 0.28.0(typescript@5.6.3)
+      typedoc: 0.28.1(typescript@5.6.3)
 
-  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.5.0(typedoc@0.28.0(typescript@5.6.3))):
+  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.6.0(typedoc@0.28.1(typescript@5.6.3))):
     dependencies:
-      typedoc-plugin-markdown: 4.5.0(typedoc@0.28.0(typescript@5.6.3))
+      typedoc-plugin-markdown: 4.6.0(typedoc@0.28.1(typescript@5.6.3))
 
-  typedoc@0.28.0(typescript@5.6.3):
+  typedoc@0.28.1(typescript@5.6.3):
     dependencies:
       '@gerrit0/mini-shiki': 3.2.1
       lunr: 2.3.9
