@@ -36,7 +36,7 @@ export interface ListrLoggerStyleMap<Levels extends string> {
    *
    * @see {@link https://listr2.kilic.dev/renderer/logger.html#style}
    */
-  icon?: Partial<Record<Levels, string>>
+  icon?: Partial<Record<Levels, string | (() => string)>>
 }
 
 export interface LoggerFieldOptions<MultipleOnly extends boolean = false> {
