@@ -1,3 +1,13 @@
+## @listr2/manager [2.0.14](https://github.com/listr2/listr2/compare/@listr2/manager@2.0.13...@listr2/manager@2.0.14) (2025-04-09)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 8.3.0
+
 ## @listr2/manager [2.0.13](https://github.com/listr2/listr2/compare/@listr2/manager@2.0.12...@listr2/manager@2.0.13) (2024-10-03)
 
 
