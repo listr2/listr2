@@ -310,34 +310,6 @@ try {
   logger.log(ListrLogLevels.FAILED, e)
 }
 
-logger.log(ListrLogLevels.STARTED, 'Example long multiline output with task with persistent output and word wrap.')
-
-task = new Listr<Ctx>(
-  [
-    {
-      title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
-        const start = 'This is a'
-        const mid = 'long '
-        const end = 'multi line output.'
-
-        task.output = start + mid.repeat(100) + '\n' + mid.repeat(100) + end
-        await delay(500)
-      },
-      rendererOptions: { persistentOutput: true }
-    }
-  ],
-  { concurrent: false, rendererOptions: { formatOutput: 'wrap' } }
-)
-
-try {
-  const context = await task.run()
-
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
-} catch (e: any) {
-  logger.log(ListrLogLevels.FAILED, e)
-}
-
 logger.log(ListrLogLevels.STARTED, 'Example long multiline output with task with persistent output and with skipping empty lines.')
 
 task = new Listr<Ctx>(
