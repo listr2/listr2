@@ -1,3 +1,10 @@
+## listr2 [8.3.2](https://github.com/listr2/listr2/compare/listr2@8.3.1...listr2@8.3.2) (2025-04-10)
+
+
+### Bug Fixes
+
+* renderer maybe undefined ([a8e94f5](https://github.com/listr2/listr2/commit/a8e94f5f534b85c6a375ed44a4e5e75bae89d309))
+
 ## listr2 [8.3.1](https://github.com/listr2/listr2/compare/listr2@8.3.0...listr2@8.3.1) (2025-04-09)
 
 
