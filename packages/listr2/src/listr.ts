@@ -1,4 +1,4 @@
-import { ListrRendererSelection, ListrEnvironmentVariables, ListrTaskState } from '@constants'
+import { ListrRendererSelection, ListrEnvironmentVariables, ListrTaskState, ListrTaskEventType } from '@constants'
 import type {
   ListrBaseClassOptions,
   ListrContext,
@@ -38,6 +38,8 @@ export class Listr<
 
   private concurrency: Concurrency
   private renderer: ListrRenderer
+
+  private running = false
 
   constructor (
     public task:
@@ -96,7 +98,7 @@ export class Listr<
 
     // parse and add tasks
     /* istanbul ignore next */
-    this.add(task ?? [])
+    this.addTasks(task ?? [])
 
     // Graceful interrupt for render cleanup
     /* istanbul ignore if */
@@ -132,12 +134,24 @@ export class Listr<
   }
 
   /**
-   * Add tasks to current task list.
+   * Add tasks to current task list. It will run the tasks if the listr instance is running.
    *
    * @see {@link https://listr2.kilic.dev/task/task.html}
    */
-  public add (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void {
-    this.tasks.push(...this.generate(tasks))
+  public add (tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]): void | Promise<unknown> {
+    const newTasks = this.addTasks(tasks)
+
+    if (!this.running) {
+      return
+    }
+
+    if (this.isSubtask()) {
+      this.parentTask.emit(ListrTaskEventType.SUBTASK, newTasks)
+    }
+
+    return Promise.all(newTasks.map((task) => task.check(this.ctx))).then(() => {
+      return newTasks.map((task) => this.concurrency.add(() => this.runTask(task)))
+    })
   }
 
   /**
@@ -146,38 +160,56 @@ export class Listr<
    * @see {@link https://listr2.kilic.dev/listr/listr.html#run-the-generated-task-list}
    */
   public async run (context?: Ctx): Promise<Ctx> {
-    // start the renderer
-    if (!this.renderer) {
-      this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
-    }
-
-    await this.renderer.render()
-
-    // create a new context
-    this.ctx = this.options?.ctx ?? context ?? ({} as Ctx)
-
-    // check if the items are enabled
-    await Promise.all(this.tasks.map((task) => task.check(this.ctx)))
-
-    // run tasks
     try {
-      await Promise.all(this.tasks.map((task) => this.concurrency.add(() => this.runTask(task))))
+      this.running = true
+      const tasks = [ ...this.tasks ]
 
-      this.renderer.end()
+      // start the renderer
+      if (!this.renderer) {
+        this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
+      }
 
-      this.removeSignalHandler()
-    } catch (err: any) {
-      if (this.options.exitOnError !== false) {
-        this.renderer.end(err)
+      await this.renderer.render()
+
+      // create a new context
+      this.ctx = this.options?.ctx ?? context ?? ({} as Ctx)
+
+      // check if the items are enabled
+      await Promise.all(tasks.map((task) => task.check(this.ctx)))
+
+      // run tasks
+      try {
+        tasks.forEach((task) => this.concurrency.add(() => this.runTask(task)).catch(() => {}))
+        await this.concurrency.promise
+
+        this.renderer.end()
 
         this.removeSignalHandler()
+      } catch (err: any) {
+        if (this.options.exitOnError !== false) {
+          this.renderer.end(err)
 
-        // Do not exit when explicitly set to `false`
-        throw err
+          this.removeSignalHandler()
+
+          // Do not exit when explicitly set to `false`
+          throw err
+        }
       }
-    }
 
-    return this.ctx
+      return this.ctx
+    } finally {
+      this.running = false
+    }
+  }
+
+  private addTasks (
+    tasks: ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>> | ListrTask<Ctx, ListrGetRendererClassFromValue<Renderer>>[]
+  ): Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[] {
+    const newTasks = this.generate(tasks)
+
+    this.tasks.push(...newTasks)
+
+    return newTasks
   }
 
   private generate (
