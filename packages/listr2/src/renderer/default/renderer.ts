@@ -109,7 +109,13 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   public update (): void {
-    this.updater(this.create())
+    const [ tasks, output ] = this.create()
+
+    if (output) {
+      this.updater.clear()
+      this.logger.process.toStdout(output)
+    }
+    this.updater(tasks)
   }
 
   public end (): void {
@@ -119,15 +125,21 @@ export class DefaultRenderer implements ListrRenderer {
     this.updater.clear()
     this.updater.done()
 
+    const [ tasks, output ] = this.create({ prompt: false })
+
+    if (output) {
+      this.logger.process.toStdout(output)
+    }
+
     // directly write to process.stdout, since logupdate only can update the seen height of terminal
     if (!this.options.clearOutput) {
-      this.logger.process.toStdout(this.create({ prompt: false }))
+      this.logger.process.toStdout(tasks)
     }
 
     this.logger.process.release()
   }
 
-  public create (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
+  public create (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): [string, string | undefined] {
     options = {
       tasks: true,
       bottomBar: true,
@@ -145,12 +157,14 @@ export class DefaultRenderer implements ListrRenderer {
       render.push(...renderTasks)
     }
 
-    if (options.bottomBar && renderBottomBar.length > 0) {
-      if (render.length > 0) {
-        render.push('')
-      }
+    if (!this.options.writeBottomBarDirectly) {
+      if (options.bottomBar && renderBottomBar.length > 0) {
+        if (render.length > 0) {
+          render.push('')
+        }
 
-      render.push(...renderBottomBar)
+        render.push(...renderBottomBar)
+      }
     }
 
     if (options.prompt && renderPrompt.length > 0) {
@@ -161,7 +175,7 @@ export class DefaultRenderer implements ListrRenderer {
       render.push(...renderPrompt)
     }
 
-    return render.join(EOL)
+    return [ render.join(EOL), this.options.writeBottomBarDirectly ? renderBottomBar.join(EOL) : undefined ]
   }
 
   // eslint-disable-next-line complexity
@@ -455,7 +469,15 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     return Array.from(this.buffer.bottom.values())
-      .flatMap((output) => output.all)
+      .flatMap((output) => {
+        const o = output.all.slice(0)
+
+        if (this.options.writeBottomBarDirectly) {
+          output.reset()
+        }
+
+        return o
+      })
       .sort((a, b) => a.time - b.time)
       .map((output) => output.entry)
   }
