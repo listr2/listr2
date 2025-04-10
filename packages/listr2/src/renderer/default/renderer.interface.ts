@@ -146,6 +146,14 @@ export interface ListrDefaultRendererOptions
    * @defaultValue `PRESET_TIMER`
    */
   pausedTimer?: PresetTimer
+
+  /**
+   * Directly write the output to the stdout stream (just like a normal console.log) instead of the bottom bar.
+   * It needs to enable `bottomBar` option to work.
+   *
+   * @defaultValue `false`
+   */
+  writeBottomBarDirectly?: boolean
 }
 
 export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
