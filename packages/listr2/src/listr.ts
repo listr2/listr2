@@ -223,7 +223,7 @@ export class Listr<
 
     // only the parent task shall exit
     if (this.isRoot()) {
-      this.renderer.end(new Error('Interrupted.'))
+      this.renderer?.end(new Error('Interrupted.'))
 
       process.exit(127)
     }
