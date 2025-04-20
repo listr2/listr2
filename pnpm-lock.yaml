@@ -93,14 +93,14 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       typedoc:
-        specifier: ^0.28.2
-        version: 0.28.2(typescript@5.6.3)
+        specifier: ^0.28.3
+        version: 0.28.3(typescript@5.6.3)
       typedoc-plugin-markdown:
         specifier: 4.6.2
-        version: 4.6.2(typedoc@0.28.2(typescript@5.6.3))
+        version: 4.6.2(typedoc@0.28.3(typescript@5.6.3))
       typedoc-vitepress-theme:
         specifier: 1.1.2
-        version: 1.1.2(typedoc-plugin-markdown@4.6.2(typedoc@0.28.2(typescript@5.6.3)))
+        version: 1.1.2(typedoc-plugin-markdown@4.6.2(typedoc@0.28.3(typescript@5.6.3)))
       vitepress:
         specifier: 1.6.3
         version: 1.6.3(@algolia/client-search@5.19.0)(@types/node@22.7.4)(postcss@8.5.1)(search-insights@2.17.2)(typescript@5.6.3)
@@ -3881,8 +3881,8 @@ packages:
     peerDependencies:
       typedoc-plugin-markdown: '>=4.4.0'
 
-  typedoc@0.28.2:
-    resolution: {integrity: sha512-9Giuv+eppFKnJ0oi+vxqLM817b/IrIsEMYgy3jj6zdvppAfDqV3d6DXL2vXUg2TnlL62V48th25Zf/tcQKAJdg==}
+  typedoc@0.28.3:
+    resolution: {integrity: sha512-5svOCTfXvVSh6zbZKSQluZhR8yN2tKpTeHZxlmWpE6N5vc3R8k/jhg9nnD6n5tN9/ObuQTojkONrOxFdUFUG9w==}
     engines: {node: '>= 18', pnpm: '>= 10'}
     hasBin: true
     peerDependencies:
@@ -8234,15 +8234,15 @@ snapshots:
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
 
-  typedoc-plugin-markdown@4.6.2(typedoc@0.28.2(typescript@5.6.3)):
+  typedoc-plugin-markdown@4.6.2(typedoc@0.28.3(typescript@5.6.3)):
     dependencies:
-      typedoc: 0.28.2(typescript@5.6.3)
+      typedoc: 0.28.3(typescript@5.6.3)
 
-  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.6.2(typedoc@0.28.2(typescript@5.6.3))):
+  typedoc-vitepress-theme@1.1.2(typedoc-plugin-markdown@4.6.2(typedoc@0.28.3(typescript@5.6.3))):
     dependencies:
-      typedoc-plugin-markdown: 4.6.2(typedoc@0.28.2(typescript@5.6.3))
+      typedoc-plugin-markdown: 4.6.2(typedoc@0.28.3(typescript@5.6.3))
 
-  typedoc@0.28.2(typescript@5.6.3):
+  typedoc@0.28.3(typescript@5.6.3):
     dependencies:
       '@gerrit0/mini-shiki': 3.2.2
       lunr: 2.3.9
