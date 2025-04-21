@@ -162,6 +162,8 @@ export class Listr<
   public async run (context?: Ctx): Promise<Ctx> {
     try {
       this.running = true
+      this.concurrency = new Concurrency({ concurrency: this.options.concurrent as number })
+
       const tasks = [ ...this.tasks ]
 
       // start the renderer

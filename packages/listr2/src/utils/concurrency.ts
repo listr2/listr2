@@ -32,7 +32,7 @@ export class Concurrency {
   private initPromise (): void {
     const { promise, resolve, reject } = this.withResolvers<void>()
 
-    this.promise = promise.finally(() => this.initPromise())
+    this.promise = promise
     this.resolve = resolve
     this.reject = reject
   }
