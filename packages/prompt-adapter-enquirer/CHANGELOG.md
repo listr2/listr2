@@ -1,3 +1,13 @@
+## @listr2/prompt-adapter-enquirer [2.0.16](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@2.0.15...@listr2/prompt-adapter-enquirer@2.0.16) (2025-05-06)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 8.3.3
+
 ## @listr2/prompt-adapter-enquirer [2.0.15](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@2.0.14...@listr2/prompt-adapter-enquirer@2.0.15) (2025-04-10)
 
 
