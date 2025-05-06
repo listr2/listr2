@@ -1,3 +1,10 @@
+## listr2 [8.3.3](https://github.com/listr2/listr2/compare/listr2@8.3.2...listr2@8.3.3) (2025-05-06)
+
+
+### Bug Fixes
+
+* set TTY env before getRenderer ([3f1b2e2](https://github.com/listr2/listr2/commit/3f1b2e20520a29c391a86f170276c43a48dac219))
+
 ## listr2 [8.3.2](https://github.com/listr2/listr2/compare/listr2@8.3.1...listr2@8.3.2) (2025-04-10)
 
 
