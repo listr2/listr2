@@ -1,3 +1,10 @@
+## @listr2/prompt-adapter-enquirer [2.0.17](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@2.0.16...@listr2/prompt-adapter-enquirer@2.0.17) (2025-06-02)
+
+
+### Bug Fixes
+
+* list `listr2` as a peer dependency ([af4a5cc](https://github.com/listr2/listr2/commit/af4a5ccd7e2e1ab548ff3f1ae2d135ea5451ce89))
+
 ## @listr2/prompt-adapter-enquirer [2.0.16](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@2.0.15...@listr2/prompt-adapter-enquirer@2.0.16) (2025-05-06)
 
 
