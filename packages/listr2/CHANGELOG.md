@@ -1,3 +1,27 @@
+# listr2 [9.0.0-beta.3](https://github.com/listr2/listr2/compare/listr2@9.0.0-beta.2...listr2@9.0.0-beta.3) (2025-07-07)
+
+
+### Bug Fixes
+
+* keep whitespace of output for default renderer ([2efe4d0](https://github.com/listr2/listr2/commit/2efe4d0cf37762f1e259268c696455fd82ea3bdb))
+* renderer maybe undefined ([a8e94f5](https://github.com/listr2/listr2/commit/a8e94f5f534b85c6a375ed44a4e5e75bae89d309))
+* set TTY env before getRenderer ([3f1b2e2](https://github.com/listr2/listr2/commit/3f1b2e20520a29c391a86f170276c43a48dac219))
+
+
+### Features
+
+* add dynamic icon support for logger ([4d3d022](https://github.com/listr2/listr2/commit/4d3d022f80397bd80de2b18b8139b8da6213e664))
+
+
+### Performance Improvements
+
+* drop node 18 support ([12f02e7](https://github.com/listr2/listr2/commit/12f02e7b3600d36a0f4762c7e865557d4c2c8b32))
+
+
+### BREAKING CHANGES
+
+* This commit drops support for Node.js 18, which is no longer LTS.
+
 ## listr2 [8.3.3](https://github.com/listr2/listr2/compare/listr2@8.3.2...listr2@8.3.3) (2025-05-06)
 
 ### Bug Fixes
