@@ -28,7 +28,7 @@ pnpm install
 pnpm build
 
 # run any example, by giving the script a relative path in the repository
-pnpm run --filter examples start renderer-default.example.ts
+pnpm run --filter examples start examples/renderer-default.example.ts
 ```
 
 ## `jsdoc`
