@@ -31,20 +31,20 @@
     ]
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
-    "@fortawesome/free-brands-svg-icons": "^6.6.0",
-    "@fortawesome/free-regular-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
-    "@vue/eslint-config-typescript": "^14.1.1",
-    "eslint-plugin-vue": "^9.29.0",
+    "@vue/eslint-config-typescript": "^14.6.0",
+    "eslint-plugin-vue": "^10.3.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "typedoc": "^0.26.10",
-    "typedoc-plugin-markdown": "4.2.9",
-    "typedoc-vitepress-theme": "1.0.2",
-    "vitepress": "1.4.1",
-    "vitepress-sidebar": "^1.27.1",
-    "vue": "^3.5.12"
+    "typedoc": "^0.28.7",
+    "typedoc-plugin-markdown": "4.7.0",
+    "typedoc-vitepress-theme": "1.1.2",
+    "vitepress": "1.6.3",
+    "vitepress-sidebar": "^1.32.1",
+    "vue": "^3.5.17"
   }
 }

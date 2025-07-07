@@ -1,36 +1,28 @@
-# listr2 [9.0.0-beta.2](https://github.com/listr2/listr2/compare/listr2@9.0.0-beta.1...listr2@9.0.0-beta.2) (2024-10-19)
-
+## listr2 [8.3.3](https://github.com/listr2/listr2/compare/listr2@8.3.2...listr2@8.3.3) (2025-05-06)
 
 ### Bug Fixes
 
-* reference issue ([b84ca5d](https://github.com/listr2/listr2/commit/b84ca5df574661cee225eee3852f17d93cbff1b3)), closes [#723](https://github.com/listr2/listr2/issues/723) [yt-#LISTR2-273](https://github.com/yt-/issues/LISTR2-273)
+* set TTY env before getRenderer ([3f1b2e2](https://github.com/listr2/listr2/commit/3f1b2e20520a29c391a86f170276c43a48dac219))
 
+## listr2 [8.3.2](https://github.com/listr2/listr2/compare/listr2@8.3.1...listr2@8.3.2) (2025-04-10)
 
-### Performance Improvements
+### Bug Fixes
 
-* **utils:** return actual writable type from the createWritable utility ([a5cdba3](https://github.com/listr2/listr2/commit/a5cdba3175d673cc1751bc5455567305e8073951))
+* renderer maybe undefined ([a8e94f5](https://github.com/listr2/listr2/commit/a8e94f5f534b85c6a375ed44a4e5e75bae89d309))
 
+## listr2 [8.3.1](https://github.com/listr2/listr2/compare/listr2@8.3.0...listr2@8.3.1) (2025-04-09)
 
-### BREAKING CHANGES
+### Bug Fixes
 
-* **utils:** - The return type of the `createWritable` function has changed from `NodeJS.WritableStream` to `Writable`. This is a more right type for the object that is returned from the function.
+* keep whitespace of output for default renderer ([2efe4d0](https://github.com/listr2/listr2/commit/2efe4d0cf37762f1e259268c696455fd82ea3bdb))
 
-# listr2 [9.0.0-beta.1](https://github.com/listr2/listr2/compare/listr2@8.2.5...listr2@9.0.0-beta.1) (2024-10-19)
+# listr2 [8.3.0](https://github.com/listr2/listr2/compare/listr2@8.2.5...listr2@8.3.0) (2025-04-09)
 
+### Features
 
-### Performance Improvements
-
-* update core dependencies and styling ([56f4d64](https://github.com/listr2/listr2/commit/56f4d647f6020c4227dce8322ec38d030f4897f2))
-
-
-### BREAKING CHANGES
-
-* This includes breaking changes in the inqurer setup.
-
-The styling is completely changed.
+* add dynamic icon support for logger ([4d3d022](https://github.com/listr2/listr2/commit/4d3d022f80397bd80de2b18b8139b8da6213e664))
 
 ## listr2 [8.2.5](https://github.com/listr2/listr2/compare/listr2@8.2.4...listr2@8.2.5) (2024-10-03)
-
 
 ### Bug Fixes
 
@@ -38,13 +30,11 @@ The styling is completely changed.
 
 ## listr2 [8.2.4](https://github.com/listr2/listr2/compare/listr2@8.2.3...listr2@8.2.4) (2024-07-27)
 
-
 ### Bug Fixes
 
 * **deps:** update dependency log-update to ^6.1.0 ([df1407f](https://github.com/listr2/listr2/commit/df1407f8e7971e408289cc490de7975120f528e7))
 
 ## listr2 [8.2.3](https://github.com/listr2/listr2/compare/listr2@8.2.2...listr2@8.2.3) (2024-06-21)
-
 
 ### Bug Fixes
 
@@ -52,13 +42,11 @@ The styling is completely changed.
 
 ## listr2 [8.2.2](https://github.com/listr2/listr2/compare/listr2@8.2.1...listr2@8.2.2) (2024-06-19)
 
-
 ### Bug Fixes
 
 * **deps:** update dependencies ([642d3f7](https://github.com/listr2/listr2/commit/642d3f7c326a53f702968b75c1ca39f2a183dbd9))
 
 ## listr2 [8.2.1](https://github.com/listr2/listr2/compare/listr2@8.2.0...listr2@8.2.1) (2024-04-03)
-
 
 ### Bug Fixes
 
@@ -66,13 +54,11 @@ The styling is completely changed.
 
 # listr2 [8.2.0](https://github.com/listr2/listr2/compare/listr2@8.1.3...listr2@8.2.0) (2024-04-02)
 
-
 ### Features
 
 * expose root/subtask through listr and use it directly ([c5f8cab](https://github.com/listr2/listr2/commit/c5f8cab2d91877e825f8cf51080b926a3a2dcafc))
 
 ## listr2 [8.1.3](https://github.com/listr2/listr2/compare/listr2@8.1.2...listr2@8.1.3) (2024-03-31)
-
 
 ### Bug Fixes
 
@@ -80,13 +66,11 @@ The styling is completely changed.
 
 ## listr2 [8.1.2](https://github.com/listr2/listr2/compare/listr2@8.1.1...listr2@8.1.2) (2024-03-29)
 
-
 ### Bug Fixes
 
 * issues with adding/removing SIGINT listeners ([0d30480](https://github.com/listr2/listr2/commit/0d3048006117fa4502d106433883783b0b2ce083))
 
 ## listr2 [8.1.1](https://github.com/listr2/listr2/compare/listr2@8.1.0...listr2@8.1.1) (2024-03-27)
-
 
 ### Bug Fixes
 
@@ -94,13 +78,11 @@ The styling is completely changed.
 
 # listr2 [8.1.0](https://github.com/listr2/listr2/compare/listr2@8.0.2...listr2@8.1.0) (2024-03-27)
 
-
 ### Features
 
 * make observable and stream independent of node and external deps ([4eab16a](https://github.com/listr2/listr2/commit/4eab16a21ae84fd114216931394af86ceda1576e)), closes [#707](https://github.com/listr2/listr2/issues/707)
 
 ## listr2 [8.0.2](https://github.com/listr2/listr2/compare/listr2@8.0.1...listr2@8.0.2) (2024-01-27)
-
 
 ### Bug Fixes
 
@@ -108,23 +90,19 @@ The styling is completely changed.
 
 ## listr2 [8.0.1](https://github.com/listr2/listr2/compare/listr2@8.0.0...listr2@8.0.1) (2023-12-20)
 
-
 ### Bug Fixes
 
 * remove the unnecassary release ([6fce8c1](https://github.com/listr2/listr2/commit/6fce8c1a5a3e3fbb970b7cccefdbf242076b436d)), closes [#700](https://github.com/listr2/listr2/issues/700)
 
 # listr2 [8.0.0](https://github.com/listr2/listr2/compare/listr2@7.0.2...listr2@8.0.0) (2023-11-24)
 
-
 ### Bug Fixes
 
 * update deps ([da9e1e6](https://github.com/listr2/listr2/commit/da9e1e69289e94eb94a0f7397a85a79a5c2cdceb))
 
-
 ### Performance Improvements
 
 * drop node 16 support ([6f4f9f8](https://github.com/listr2/listr2/commit/6f4f9f84564195a8485c44d4862b22fe2323283a))
-
 
 ### BREAKING CHANGES
 
@@ -133,13 +111,11 @@ supported version being >= 18.
 
 ## listr2 [7.0.2](https://github.com/listr2/listr2/compare/listr2@7.0.1...listr2@7.0.2) (2023-10-18)
 
-
 ### Bug Fixes
 
 * **renderer:** subtask options checking problem for default renderer ([de71a4d](https://github.com/listr2/listr2/commit/de71a4d451aa2e5e8982b2efa05c019af1f7b6ed)), closes [#694](https://github.com/listr2/listr2/issues/694)
 
 ## listr2 [7.0.1](https://github.com/listr2/listr2/compare/listr2@7.0.0...listr2@7.0.1) (2023-09-19)
-
 
 ### Bug Fixes
 
@@ -147,19 +123,16 @@ supported version being >= 18.
 
 # listr2 1.0.0 (2023-09-19)
 
-
 ### Bug Fixes
 
 * force publish with new tagging method ([b4ae099](https://github.com/listr2/listr2/commit/b4ae099dcd7be3256532f2805cb93a047da981e8))
 * **npm:** add publish config public ([a186982](https://github.com/listr2/listr2/commit/a1869821c94a3b73018a07ba7b721e3523575946))
 * **prompts:** move prompt initiation to the adapter to lazy initiate ([952ec8c](https://github.com/listr2/listr2/commit/952ec8ca475614c7d4bfcb8bace05494678e4083))
 
-
 ### Performance Improvements
 
 * convert to mono repo initially ([6d80072](https://github.com/listr2/listr2/commit/6d80072697c4b24a15280057f9bc1dbdb8dffa84))
 * **repository:** break in to monorepo ([d830c33](https://github.com/listr2/listr2/commit/d830c338ae8f0ee9e65d4102fc067ffb3e5ac820))
-
 
 ### BREAKING CHANGES
 
@@ -171,13 +144,11 @@ Projects that use _Manager_ requires to install the complimentary package `@list
 
 # listr2 [7.0.0-beta.5](https://github.com/listr2/listr2/compare/listr2@7.0.0-beta.4...listr2@7.0.0-beta.5) (2023-09-19)
 
-
 ### Bug Fixes
 
 * **npm:** add publish config public ([a186982](https://github.com/listr2/listr2/commit/a1869821c94a3b73018a07ba7b721e3523575946))
 
 # listr2 [7.0.0-beta.4](https://github.com/listr2/listr2/compare/listr2@v7.0.0-beta.3...listr2@7.0.0-beta.4) (2023-09-19)
-
 
 ### Bug Fixes
 

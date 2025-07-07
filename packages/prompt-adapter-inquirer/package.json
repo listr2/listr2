@@ -70,15 +70,16 @@
     "idle"
   ],
   "dependencies": {
-    "@inquirer/type": "^3.0.0"
+    "@inquirer/type": "^3.0.7"
   },
   "devDependencies": {
-    "@inquirer/core": "^10.0.0",
-    "@inquirer/input": "^4.0.0",
-    "@inquirer/prompts": "^7.0.0",
+    "@inquirer/core": "^10.1.14",
+    "@inquirer/input": "^4.2.0",
+    "@inquirer/prompts": "^7.6.0",
     "listr2": "workspace:*"
   },
   "peerDependencies": {
-    "@inquirer/prompts": ">= 3 < 8"
+    "@inquirer/prompts": ">= 3 < 8",
+    "listr2": "^8.0.0"
   }
 }

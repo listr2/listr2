@@ -35,7 +35,7 @@ const tasks = new Listr(
   {
     concurrent: true,
     rendererOptions: {
-      logger: new ListrLogger({ processOutput: new ProcessOutput(null, null, { dump: [] }) })
+      logger: new ListrLogger({ processOutput: new ProcessOutput(undefined, undefined, { dump: [] }) })
     }
   }
 )

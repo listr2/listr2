@@ -131,7 +131,11 @@ export class ListrLogger<Levels extends string = string> {
       return null
     }
 
-    icon ||= this.options.icon?.[level]
+    if (!icon) {
+      const i = this.options.icon?.[level]
+
+      icon = typeof i === 'function' ? i() : i
+    }
 
     // do the coloring
     const coloring: LoggerFormat = this.options.color?.[level]

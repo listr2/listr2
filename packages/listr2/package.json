@@ -79,7 +79,7 @@
   },
   "devDependencies": {
     "@types/zen-observable": "^0.8.7",
-    "rxjs": "^7.8.1",
+    "rxjs": "^7.8.2",
     "zen-observable": "^0.10.0"
   }
 }
