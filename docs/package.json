@@ -19,12 +19,12 @@
     "docs:build": "pnpm run docs:typedoc && vitepress build",
     "dev:start": "pnpm run docs:typedoc && vitepress dev --host 0.0.0.0",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx .vitepress"
+    "lint": "eslint --flag v10_config_lookup_from_file"
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
       "prettier --log-level warn --write",
-      "eslint --fix"
+      "eslint --flag v10_config_lookup_from_file --fix"
     ],
     "*.{json,md}": [
       "prettier --log-level warn --write"
@@ -36,13 +36,15 @@
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@vue/eslint-config-typescript": "^14.6.0",
+    "eslint-plugin-vue": "^10.3.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "typedoc": "^0.28.6",
+    "typedoc": "^0.28.7",
     "typedoc-plugin-markdown": "4.7.0",
     "typedoc-vitepress-theme": "1.1.2",
     "vitepress": "1.6.3",
-    "vitepress-sidebar": "^1.31.1",
+    "vitepress-sidebar": "^1.32.1",
     "vue": "^3.5.17"
   }
 }

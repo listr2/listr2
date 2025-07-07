@@ -1,4 +1,4 @@
-export * from './renderer.interface'
+export type * from './renderer.interface'
 export * from './renderer'
-export * from './serializer.interface'
+export type * from './serializer.interface'
 export * from './serializer'

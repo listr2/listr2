@@ -7,17 +7,17 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
-  it('should create a set of subtasks', async () => {
+  it('should create a set of subtasks', async() => {
     await new Listr(
       [
         {
@@ -26,12 +26,12 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
             task.newListr([
               {
                 title: 'This is a subtask.',
-                task: async (): Promise<void> => {}
+                task: async(): Promise<void> => {}
               },
 
               {
                 title: 'This is a subtask.',
-                task: async (): Promise<void> => {}
+                task: async(): Promise<void> => {}
               }
             ])
         }
@@ -47,7 +47,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
   })
 
   // 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k
-  it('should be able to change concurrency setting in subtask, second subtask should finish first', async () => {
+  it('should be able to change concurrency setting in subtask, second subtask should finish first', async() => {
     await new Listr(
       [
         {
@@ -57,14 +57,14 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
               [
                 {
                   title: 'This is a subtask.',
-                  task: async (): Promise<void> => {
+                  task: async(): Promise<void> => {
                     await delay(10)
                   }
                 },
 
                 {
                   title: 'This is an another subtask.',
-                  task: async (): Promise<void> => {}
+                  task: async(): Promise<void> => {}
                 }
               ],
               { concurrent: true }
@@ -82,7 +82,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
   })
 
   // 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY
-  it('should be able to change exit on error', async () => {
+  it('should be able to change exit on error', async() => {
     try {
       await new Listr(
         [
@@ -93,19 +93,19 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
                 [
                   {
                     title: 'This is a subtask.',
-                    task: async (): Promise<void> => {
+                    task: async(): Promise<void> => {
                       throw new Error('I have failed [0]')
                     }
                   },
                   {
                     title: 'This is an another subtask.',
-                    task: async (): Promise<void> => {
+                    task: async(): Promise<void> => {
                       throw new Error('I have failed [1]')
                     }
                   },
                   {
                     title: 'This is yet an another subtask.',
-                    task: async (_, task): Promise<void> => {
+                    task: async(_, task): Promise<void> => {
                       task.title = 'I have succeeded.'
                     }
                   }

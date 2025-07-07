@@ -1,7 +1,7 @@
 import { Listr } from '@root'
 
 describe('show output from task', () => {
-  it('should add a single task', async () => {
+  it('should add a single task', async() => {
     const ctx = await new Listr(
       {
         title: 'This task will execute.',
@@ -9,7 +9,7 @@ describe('show output from task', () => {
           task.newListr([
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {}
+              task: async(): Promise<void> => {}
             }
           ])
       },
@@ -19,7 +19,7 @@ describe('show output from task', () => {
     expect(ctx).toBeTruthy()
   })
 
-  it('should be able to return the context on task', async () => {
+  it('should be able to return the context on task', async() => {
     const tasks = new Listr(
       [
         {
@@ -28,7 +28,7 @@ describe('show output from task', () => {
             task.newListr([
               {
                 title: 'This is a subtask.',
-                task: async (ctx): Promise<void> => {
+                task: async(ctx): Promise<void> => {
                   ctx.test = true
                 }
               }
@@ -50,7 +50,7 @@ describe('show output from task', () => {
     expect(ctx.test2).toBe(true)
   })
 
-  it('should be able to inject a different context to subtask', async () => {
+  it('should be able to inject a different context to subtask', async() => {
     const tasks = new Listr(
       [
         {
@@ -60,14 +60,14 @@ describe('show output from task', () => {
               [
                 {
                   title: 'This is a subtask.',
-                  task: async (ctx): Promise<void> => {
+                  task: async(ctx): Promise<void> => {
                     ctx.test = true
                   }
                 },
 
                 {
                   title: 'This is another subtask.',
-                  task: async (ctx): Promise<void> => {
+                  task: async(ctx): Promise<void> => {
                     expect(ctx.test).toBe(true)
                   }
                 }
@@ -93,7 +93,7 @@ describe('show output from task', () => {
 
   // Jest timeout does not work here as cloneObject(ctx) is eating up all cpu
   // cycles, i.e. the stack frame take a long time to complete.
-  it('should not take an unreasonable amount of time to clone a large ctx object during error collection', async () => {
+  it('should not take an unreasonable amount of time to clone a large ctx object during error collection', async() => {
     const ctx = createLargeNestedObject(6, 8) // About 20Mb
     const start = Date.now()
 
@@ -112,7 +112,8 @@ describe('show output from task', () => {
           renderer: 'silent'
         }
       ).run(ctx)
-    } catch (e: any) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_: any) {
       // Ignore
     }
     const end = Date.now()
@@ -121,7 +122,7 @@ describe('show output from task', () => {
   })
 })
 
-function createLargeNestedObject (depth: number, branches: number): Record<PropertyKey, any> {
+function createLargeNestedObject(depth: number, branches: number): Record<PropertyKey, any> {
   const obj: Record<PropertyKey, any> = {}
 
   for (let i = 0; i < branches; ++i) {

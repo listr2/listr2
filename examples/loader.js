@@ -12,7 +12,7 @@ import * as tsConfigPaths from 'tsconfig-paths'
 const { absoluteBaseUrl, paths } = tsConfigPaths.loadConfig()
 const matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths)
 
-export function resolve (specifier, context, defaultResolver) {
+export function resolve(specifier, context, defaultResolver) {
   const mappedSpecifier = matchPath(specifier)
 
   if (mappedSpecifier) {

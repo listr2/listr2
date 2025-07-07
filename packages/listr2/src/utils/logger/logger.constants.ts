@@ -38,4 +38,4 @@ export const LISTR_LOGGER_STYLE: ListrLoggerStyleMap<ListrLogLevels> = {
   }
 }
 
-export const LISTR_LOGGER_STDERR_LEVELS: ListrLogLevels[] = [ ListrLogLevels.RETRY, ListrLogLevels.ROLLBACK, ListrLogLevels.FAILED ]
+export const LISTR_LOGGER_STDERR_LEVELS: ListrLogLevels[] = [ListrLogLevels.RETRY, ListrLogLevels.ROLLBACK, ListrLogLevels.FAILED]

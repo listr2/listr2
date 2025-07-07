@@ -5,21 +5,21 @@ import { mockProcessOutput, unmockProcessOutput } from '@tests/utils'
 describe('fallback renderer', () => {
   const output: MockProcessOutput = {} as MockProcessOutput
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
-  it('should fallback renderer with function', async () => {
+  it('should fallback renderer with function', async() => {
     const task = new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (): Promise<void> => {},
+          task: async(): Promise<void> => {},
           rendererOptions: { persistentOutput: true }
         }
       ],
@@ -35,12 +35,12 @@ describe('fallback renderer', () => {
     expect(task.rendererClass.name).toMatchInlineSnapshot('"VerboseRenderer"')
   })
 
-  it('should fallback renderer with boolean', async () => {
+  it('should fallback renderer with boolean', async() => {
     const task = new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (): Promise<void> => {},
+          task: async(): Promise<void> => {},
           rendererOptions: { persistentOutput: true }
         }
       ],
@@ -56,12 +56,12 @@ describe('fallback renderer', () => {
     expect(task.rendererClass.name).toMatchInlineSnapshot('"VerboseRenderer"')
   })
 
-  it('should be silent renderer with function', async () => {
+  it('should be silent renderer with function', async() => {
     const task = new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (): Promise<void> => {},
+          task: async(): Promise<void> => {},
           rendererOptions: { persistentOutput: true }
         }
       ],
@@ -77,12 +77,12 @@ describe('fallback renderer', () => {
     expect(task.rendererClass.name).toMatchInlineSnapshot('"SilentRenderer"')
   })
 
-  it('should be silent renderer with boolean', async () => {
+  it('should be silent renderer with boolean', async() => {
     const task = new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (): Promise<void> => {},
+          task: async(): Promise<void> => {},
           rendererOptions: { persistentOutput: true }
         }
       ],

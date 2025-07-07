@@ -7,22 +7,22 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: output', (renderer, r
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // rMG224TBrLk3ocYtKidc1D4AyZtEHm11
-  it('should yield example output', async () => {
+  it('should yield example output', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             task.output = 'I will push an output. [0]'
 
             task.output = 'I will push an output. [1]'

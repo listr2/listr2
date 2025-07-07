@@ -9,13 +9,13 @@ const tasks = new Listr(
           [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 throw new Error('I have failed [0]')
               }
             },
             {
               title: 'This is yet an another subtask and it will run.',
-              task: async (ctx, task): Promise<void> => {
+              task: async(ctx, task): Promise<void> => {
                 task.title = 'I have succeeded.'
               }
             }

@@ -4,15 +4,12 @@ import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOut
 
 describe('default renderer: option: line wrap', () => {
   const message =
-    // eslint-disable-next-line max-len
     'THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE'
 
   const messageWithNewLines =
-    // eslint-disable-next-line max-len
     'THIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE'
 
   const messageWithEmptyLines =
-    // eslint-disable-next-line max-len
     'THIS IS A LONG LONG MESSAGE\n\n\nAGE\nTHIS ISESSAGE\nTHIS IG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE\nTHIS IS A LONG LONG MESSAGE'
 
   process.stdout.isTTY = true
@@ -22,21 +19,21 @@ describe('default renderer: option: line wrap', () => {
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   it.each([
-    [ 'truncate', message ],
-    [ 'wrap', message ],
-    [ 'truncate', messageWithNewLines ],
-    [ 'wrap', messageWithNewLines ]
-  ])('should %s long strings', async (format, m) => {
+    ['truncate', message],
+    ['wrap', message],
+    ['truncate', messageWithNewLines],
+    ['wrap', messageWithNewLines]
+  ])('should %s long strings', async(format, m) => {
     let err: Error
 
     try {
@@ -44,7 +41,7 @@ describe('default renderer: option: line wrap', () => {
         [
           {
             title: `This task will with formating the output with ${format} output.`,
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               task.output = m
             }
           }
@@ -64,11 +61,11 @@ describe('default renderer: option: line wrap', () => {
   })
 
   it.each([
-    [ 'truncate', message ],
-    [ 'wrap', message ],
-    [ 'truncate', messageWithNewLines ],
-    [ 'wrap', messageWithNewLines ]
-  ])('should %s long titles', async (format, m) => {
+    ['truncate', message],
+    ['wrap', message],
+    ['truncate', messageWithNewLines],
+    ['wrap', messageWithNewLines]
+  ])('should %s long titles', async(format, m) => {
     let err: Error
 
     try {
@@ -76,7 +73,7 @@ describe('default renderer: option: line wrap', () => {
         [
           {
             title: m,
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               task.output = `This task will with formating the title with ${format} output.`
             }
           }
@@ -96,9 +93,9 @@ describe('default renderer: option: line wrap', () => {
   })
 
   it.each([
-    [ true, 'truncate', messageWithEmptyLines ],
-    [ false, 'truncate', messageWithEmptyLines ]
-  ])('should skip empty lines %s', async (rel, format, m) => {
+    [true, 'truncate', messageWithEmptyLines],
+    [false, 'truncate', messageWithEmptyLines]
+  ])('should skip empty lines %s', async(rel, format, m) => {
     let err: Error
 
     try {
@@ -106,7 +103,7 @@ describe('default renderer: option: line wrap', () => {
         [
           {
             title: `This will skip empty lines on output: ${rel}`,
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               task.output = m
             }
           }

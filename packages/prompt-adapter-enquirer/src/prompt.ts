@@ -10,7 +10,7 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
   /**
    * Get the current running instance of `enquirer`.
    */
-  get instance (): EnquirerPromptInstance {
+  get instance(): EnquirerPromptInstance {
     return this.prompt
   }
 
@@ -23,7 +23,7 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
     // assign default if there is single prompt
     /* istanbul ignore next */
     if (!Array.isArray(options)) {
-      options = [ { ...options, name: 'default' } ]
+      options = [{ ...options, name: 'default' }]
     } else if (options.length === 1) {
       options = options.map((option) => {
         return { ...option, name: 'default' }
@@ -52,7 +52,7 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
       enquirer = settings.enquirer
     } else {
       try {
-        enquirer = await import('enquirer').then((imported) => imported.default ? new imported.default() : new (imported as unknown as new () => Enquirer)())
+        enquirer = await import('enquirer').then((imported) => (imported.default ? new imported.default() : new (imported as unknown as new () => Enquirer)()))
       } catch {
         this.reportFailed()
 
@@ -71,7 +71,7 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
     let response: Record<PropertyKey, any>
 
     try {
-      response = (await enquirer.once('prompt', (prompt: EnquirerPromptInstance) => this.prompt = prompt).prompt(options as any)) as Record<PropertyKey, any>
+      response = (await enquirer.once('prompt', (prompt: EnquirerPromptInstance) => (this.prompt = prompt)).prompt(options as any)) as Record<PropertyKey, any>
     } catch (e) {
       this.reportFailed()
 
@@ -95,7 +95,7 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
   /**
    * Cancel the ongoing prompt.
    */
-  public cancel (options?: EnquirerPromptCancelOptions): void {
+  public cancel(options?: EnquirerPromptCancelOptions): void {
     // there's no prompt, can't cancel
     if (!this.prompt || this.error) {
       return

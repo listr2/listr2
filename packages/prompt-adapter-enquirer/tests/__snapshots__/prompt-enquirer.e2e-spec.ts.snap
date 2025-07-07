@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
 

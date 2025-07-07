@@ -9,7 +9,7 @@ const tasks = new Listr(
           [
             {
               title: 'This task will fail.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
                 throw new Error('This task failed after 2 seconds.')
               }
@@ -23,7 +23,7 @@ const tasks = new Listr(
           ],
           { exitOnError: true }
         ),
-      rollback: async (_, task): Promise<void> => {
+      rollback: async(_, task): Promise<void> => {
         task.title = 'I am trying to rollback stuff, previous action failed.'
 
         await delay(1000)

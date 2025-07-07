@@ -2,3 +2,9 @@ packages:
   - docs
   - examples
   - packages/*
+
+ignoredBuiltDependencies:
+  - unrs-resolver
+
+onlyBuiltDependencies:
+  - '@swc/core'

@@ -7,6 +7,7 @@
     "sourceMap": true,
     "module": "ESNext",
     "target": "ESNext",
+    "resolveJsonModule": true,
     "paths": {
       "@constants": ["./src/constants/index"],
       "@interfaces": ["./src/interfaces/index"],

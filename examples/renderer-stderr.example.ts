@@ -5,7 +5,7 @@ try {
     [
       {
         title: 'This task will execute.',
-        task: async (_, task): Promise<void> => {
+        task: async(_, task): Promise<void> => {
           task.output = 'I will push an output. [0]'
           await delay(500)
 
@@ -20,6 +20,5 @@ try {
     { renderer: 'default', rendererOptions: { logger: new ListrLogger({ processOutput: new ProcessOutput(process.stderr, process.stderr) }) } }
   ).run()
 } catch (e: any) {
-  // eslint-disable-next-line no-console
   console.error(e)
 }

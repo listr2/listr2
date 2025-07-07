@@ -14,7 +14,7 @@ export default defineConfig({
   // included files go crazy with the links inside of them
   ignoreDeadLinks: true,
   outDir: 'dist/',
-  head: [ [ 'link', { rel: 'icon', href: 'https://main.s3.kilic.dev/html/favicon.ico' } ] ],
+  head: [['link', { rel: 'icon', href: 'https://main.s3.kilic.dev/html/favicon.ico' }]],
   lang: 'en-US',
   locales: {
     root: {
@@ -81,10 +81,10 @@ export default defineConfig({
       sortMenusByFrontmatterOrder: true,
       capitalizeFirst: true,
       collapsed: true,
-      excludePattern: [ 'format.md', 'node_modules/**' ],
-      manualSortFileNameByPriority: [ 'repository', 'listr', 'task', 'renderer', 'migration', 'api' ]
+      excludePattern: ['format.md', 'node_modules/**'],
+      manualSortFileNameByPriority: ['repository', 'listr', 'task', 'renderer', 'migration', 'api']
     }) as any,
-    socialLinks: [ { icon: 'github', link: 'https://github.com/listr2/listr2' } ]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/listr2/listr2' }]
   },
 
   markdown: {
@@ -102,7 +102,7 @@ export default defineConfig({
         if (match) {
           open.tag = 'a'
           close.tag = 'a'
-          open.attrs = [ [ 'href', match.href ] ]
+          open.attrs = [['href', match.href]]
         }
 
         return self.renderToken(tokens, i, options)

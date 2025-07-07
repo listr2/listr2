@@ -4,7 +4,7 @@ const tasks = new Listr(
   [
     {
       title: 'This task will execute.',
-      task: async (ctx, task): Promise<void> => {
+      task: async(ctx, task): Promise<void> => {
         task.output = 'test'
 
         await delay(500)

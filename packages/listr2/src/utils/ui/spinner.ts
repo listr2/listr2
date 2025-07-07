@@ -2,24 +2,24 @@ import { isUnicodeSupported } from '@utils'
 
 /* istanbul ignore next */
 export class Spinner {
-  protected readonly spinner: string[] = !isUnicodeSupported() ? [ '-', '\\', '|', '/' ] : [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ]
+  protected readonly spinner: string[] = !isUnicodeSupported() ? ['-', '\\', '|', '/'] : ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
   private id?: NodeJS.Timeout
 
   private spinnerPosition = 0
 
-  public spin (): void {
+  public spin(): void {
     this.spinnerPosition = ++this.spinnerPosition % this.spinner.length
   }
 
-  public fetch (): string {
+  public fetch(): string {
     return this.spinner[this.spinnerPosition]
   }
 
-  public isRunning (): boolean {
+  public isRunning(): boolean {
     return !!this.id
   }
 
-  public start (cb?: () => void, interval = 100): void {
+  public start(cb?: () => void, interval = 100): void {
     this.id = setInterval(() => {
       this.spin()
 
@@ -29,7 +29,7 @@ export class Spinner {
     }, interval)
   }
 
-  public stop (): void {
+  public stop(): void {
     clearInterval(this.id)
   }
 }

@@ -17,14 +17,14 @@ const task: Listr<Ctx> = new Listr<Ctx>(
           (parent) => [
             {
               title: 'This is a subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(3000)
                 parent.title = 'I am changing title from subtask.'
               }
             },
             {
               title: 'This is an another subtask.',
-              task: async (): Promise<void> => {
+              task: async(): Promise<void> => {
                 await delay(2000)
               }
             }
@@ -39,7 +39,7 @@ const task: Listr<Ctx> = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }

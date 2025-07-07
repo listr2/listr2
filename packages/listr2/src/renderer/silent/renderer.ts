@@ -6,16 +6,16 @@ export class SilentRenderer implements ListrRenderer {
   public static rendererOptions: ListrSilentRendererOptions
   public static rendererTaskOptions: ListrSilentRendererTaskOptions
 
-  constructor (
+  constructor(
     public tasks: ListrSilentRendererTask[],
     public options: ListrSilentRendererOptions
   ) {}
 
-  public render (): void {
+  public render(): void {
     return
   }
 
-  public end (): void {
+  public end(): void {
     return
   }
 }

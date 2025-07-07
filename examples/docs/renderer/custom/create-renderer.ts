@@ -15,16 +15,16 @@ class MyAmazingRenderer implements ListrRenderer {
   public static rendererTaskOptions: never
 
   // get tasks to be rendered and options of the renderer from the parent
-  constructor (
+  constructor(
     public tasks: MyAmazingRendererTasks,
     public options: MyAmazingRendererOptions
   ) {}
 
   // implement custom logic for render functionality
-  public render (): void {}
+  public render(): void {}
 
   // implement custom logic for end functionality
-  public end (err: Error): void {}
+  public end(err: Error): void {}
 }
 // #endregion create
 

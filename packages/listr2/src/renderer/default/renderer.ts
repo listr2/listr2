@@ -60,7 +60,7 @@ export class DefaultRenderer implements ListrRenderer {
     rendererTaskOptions: new Map()
   }
 
-  constructor (
+  constructor(
     private readonly tasks: ListrDefaultRendererTask[],
     private readonly options: ListrDefaultRendererOptions,
     private readonly events: ListrEventManager
@@ -70,11 +70,11 @@ export class DefaultRenderer implements ListrRenderer {
       ...this.options,
       icon: {
         ...LISTR_DEFAULT_RENDERER_STYLE.icon,
-        ...options?.icon ?? {}
+        ...(options?.icon ?? {})
       },
       color: {
         ...LISTR_DEFAULT_RENDERER_STYLE.color,
-        ...options?.color ?? {}
+        ...(options?.color ?? {})
       }
     }
 
@@ -85,7 +85,7 @@ export class DefaultRenderer implements ListrRenderer {
     this.logger.options.color = this.options.color
   }
 
-  public async render (): Promise<void> {
+  public async render(): Promise<void> {
     const { createLogUpdate } = await import('log-update')
     const { default: truncate } = await import('cli-truncate')
     const { default: wrap } = await import('wrap-ansi')
@@ -108,11 +108,11 @@ export class DefaultRenderer implements ListrRenderer {
     })
   }
 
-  public update (): void {
+  public update(): void {
     this.updater(this.create())
   }
 
-  public end (): void {
+  public end(): void {
     this.spinner.stop()
 
     // clear log updater
@@ -127,7 +127,7 @@ export class DefaultRenderer implements ListrRenderer {
     this.logger.process.release()
   }
 
-  public create (options?: { tasks?: boolean, bottomBar?: boolean, prompt?: boolean }): string {
+  public create(options?: { tasks?: boolean; bottomBar?: boolean; prompt?: boolean }): string {
     options = {
       tasks: true,
       bottomBar: true,
@@ -165,7 +165,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   // eslint-disable-next-line complexity
-  protected style (task: ListrDefaultRendererTask, output = false): string {
+  protected style(task: ListrDefaultRendererTask, output = false): string {
     const rendererOptions = this.cache.rendererOptions.get(task.id)
 
     if (task.isSkipped()) {
@@ -185,7 +185,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     if (task.hasSubtasks()) {
-      if (task.isStarted() || task.isPrompt() && rendererOptions.showSubtasks !== false && !task.subtasks.every((subtask) => !subtask.hasTitle())) {
+      if (task.isStarted() || (task.isPrompt() && rendererOptions.showSubtasks !== false && !task.subtasks.every((subtask) => !subtask.hasTitle()))) {
         return this.logger.icon(ListrDefaultRendererLogLevels.PENDING)
       } else if (task.isCompleted() && task.subtasks.some((subtask) => subtask.hasFailed())) {
         return this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SUBTASKS)
@@ -213,7 +213,7 @@ export class DefaultRenderer implements ListrRenderer {
     return this.logger.icon(ListrDefaultRendererLogLevels.WAITING)
   }
 
-  protected format (message: string, icon: string, level: number): string[] {
+  protected format(message: string, icon: string, level: number): string[] {
     // we dont like empty data around here
     if (message.trim() === '') {
       return []
@@ -228,22 +228,22 @@ export class DefaultRenderer implements ListrRenderer {
     const columns = (process.stdout.columns ?? 80) - level * this.options.indentation - 2
 
     switch (this.options.formatOutput) {
-    case 'truncate':
-      parsed = message.split(EOL).map((s, i) => {
-        return this.truncate(this.indent(s, i), columns)
-      })
+      case 'truncate':
+        parsed = message.split(EOL).map((s, i) => {
+          return this.truncate(this.indent(s, i), columns)
+        })
 
-      break
+        break
 
-    case 'wrap':
-      parsed = this.wrap(message, columns, { hard: true, trim: false })
-        .split(EOL)
-        .map((s, i) => this.indent(s, i))
+      case 'wrap':
+        parsed = this.wrap(message, columns, { hard: true, trim: false })
+          .split(EOL)
+          .map((s, i) => this.indent(s, i))
 
-      break
+        break
 
-    default:
-      throw new ListrRendererError('Format option for the renderer is wrong.')
+      default:
+        throw new ListrRendererError('Format option for the renderer is wrong.')
     }
 
     // this removes the empty lines
@@ -254,19 +254,19 @@ export class DefaultRenderer implements ListrRenderer {
     return parsed.map((str) => indent(str, level * this.options.indentation))
   }
 
-  protected shouldOutputToOutputBar (task: ListrDefaultRendererTask): boolean {
+  protected shouldOutputToOutputBar(task: ListrDefaultRendererTask): boolean {
     const outputBar = this.cache.rendererTaskOptions.get(task.id).outputBar
 
-    return typeof outputBar === 'number' && outputBar !== 0 || typeof outputBar === 'boolean' && outputBar !== false
+    return (typeof outputBar === 'number' && outputBar !== 0) || (typeof outputBar === 'boolean' && outputBar !== false)
   }
 
-  protected shouldOutputToBottomBar (task: ListrDefaultRendererTask): boolean {
+  protected shouldOutputToBottomBar(task: ListrDefaultRendererTask): boolean {
     const bottomBar = this.cache.rendererTaskOptions.get(task.id).bottomBar
 
-    return typeof bottomBar === 'number' && bottomBar !== 0 || typeof bottomBar === 'boolean' && bottomBar !== false || !task.hasTitle()
+    return (typeof bottomBar === 'number' && bottomBar !== 0) || (typeof bottomBar === 'boolean' && bottomBar !== false) || !task.hasTitle()
   }
 
-  private renderer (tasks: ListrDefaultRendererTask[], level = 0): string[] {
+  private renderer(tasks: ListrDefaultRendererTask[], level = 0): string[] {
     // eslint-disable-next-line complexity
     return tasks.flatMap((task) => {
       if (!task.isEnabled()) {
@@ -348,7 +348,7 @@ export class DefaultRenderer implements ListrRenderer {
               ...this.format(
                 this.logger.suffix(task?.title, {
                   ...rendererTaskOptions.timer,
-                  args: [ task.message.duration ]
+                  args: [task.message.duration]
                 }),
                 this.style(task),
                 level
@@ -359,7 +359,7 @@ export class DefaultRenderer implements ListrRenderer {
               ...this.format(
                 this.logger.suffix(task.title, {
                   ...rendererOptions.pausedTimer,
-                  args: [ task.message.paused - Date.now() ]
+                  args: [task.message.paused - Date.now()]
                 }),
                 this.style(task),
                 level
@@ -399,11 +399,11 @@ export class DefaultRenderer implements ListrRenderer {
         // if it doesnt have subtasks no need to check
         task.hasSubtasks() &&
         (task.isPending() ||
-          task.hasFinalized() && !task.hasTitle() ||
+          (task.hasFinalized() && !task.hasTitle()) ||
           // have to be completed and have subtasks
-          task.isCompleted() &&
+          (task.isCompleted() &&
             rendererOptions.collapseSubtasks === false &&
-            !task.subtasks.some((subtask) => this.cache.rendererOptions.get(subtask.id)?.collapseSubtasks === true) ||
+            !task.subtasks.some((subtask) => this.cache.rendererOptions.get(subtask.id)?.collapseSubtasks === true)) ||
           // if any of the subtasks have the collapse option of
           task.subtasks.some((subtask) => this.cache.rendererOptions.get(subtask.id)?.collapseSubtasks === false) ||
           // if any of the subtasks has failed
@@ -438,7 +438,7 @@ export class DefaultRenderer implements ListrRenderer {
     })
   }
 
-  private renderOutputBar (task: ListrDefaultRendererTask, level: number): string[] {
+  private renderOutputBar(task: ListrDefaultRendererTask, level: number): string[] {
     const output = this.buffer.output.get(task.id)
 
     if (!output) {
@@ -448,7 +448,7 @@ export class DefaultRenderer implements ListrRenderer {
     return output.all.flatMap((o) => this.dump(task, level, ListrLogLevels.OUTPUT, o.entry))
   }
 
-  private renderBottomBar (): string[] {
+  private renderBottomBar(): string[] {
     // parse through all objects return only the last mentioned items
     if (this.buffer.bottom.size === 0) {
       return []
@@ -460,15 +460,15 @@ export class DefaultRenderer implements ListrRenderer {
       .map((output) => output.entry)
   }
 
-  private renderPrompt (): string[] {
+  private renderPrompt(): string[] {
     if (!this.prompt) {
       return []
     }
 
-    return [ this.prompt ]
+    return [this.prompt]
   }
 
-  private calculate (task: ListrDefaultRendererTask): void {
+  private calculate(task: ListrDefaultRendererTask): void {
     if (this.cache.rendererOptions.has(task.id) && this.cache.rendererTaskOptions.has(task.id)) {
       return
     }
@@ -487,7 +487,7 @@ export class DefaultRenderer implements ListrRenderer {
     })
   }
 
-  private setupBuffer (task: ListrDefaultRendererTask): void {
+  private setupBuffer(task: ListrDefaultRendererTask): void {
     if (this.buffer.bottom.has(task.id) || this.buffer.output.has(task.id)) {
       return
     }
@@ -507,10 +507,10 @@ export class DefaultRenderer implements ListrRenderer {
 
       task.on(ListrTaskEventType.STATE, (state) => {
         switch (state) {
-        case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
-          this.buffer.bottom.delete(task.id)
+          case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
+            this.buffer.bottom.delete(task.id)
 
-          break
+            break
         }
       })
     } else if (this.shouldOutputToOutputBar(task) && !this.buffer.output.has(task.id)) {
@@ -522,16 +522,16 @@ export class DefaultRenderer implements ListrRenderer {
 
       task.on(ListrTaskEventType.STATE, (state) => {
         switch (state) {
-        case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
-          this.buffer.output.delete(task.id)
+          case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
+            this.buffer.output.delete(task.id)
 
-          break
+            break
         }
       })
     }
   }
 
-  private reset (task: ListrDefaultRendererTask): void {
+  private reset(task: ListrDefaultRendererTask): void {
     this.cache.rendererOptions.delete(task.id)
     this.cache.rendererTaskOptions.delete(task.id)
 
@@ -539,7 +539,7 @@ export class DefaultRenderer implements ListrRenderer {
     this.buffer.output.delete(task.id)
   }
 
-  private dump (
+  private dump(
     task: ListrDefaultRendererTask,
     level: number,
     source: ListrLogLevels.OUTPUT | ListrLogLevels.SKIPPED | ListrLogLevels.FAILED = ListrLogLevels.OUTPUT,
@@ -547,25 +547,25 @@ export class DefaultRenderer implements ListrRenderer {
   ): string[] {
     if (!data) {
       switch (source) {
-      case ListrLogLevels.OUTPUT:
-        data = task.output
+        case ListrLogLevels.OUTPUT:
+          data = task.output
 
-        break
+          break
 
-      case ListrLogLevels.SKIPPED:
-        data = task.message.skip
+        case ListrLogLevels.SKIPPED:
+          data = task.message.skip
 
-        break
+          break
 
-      case ListrLogLevels.FAILED:
-        data = task.message.error
+        case ListrLogLevels.FAILED:
+          data = task.message.error
 
-        break
+          break
       }
     }
 
     // dont return anything on some occasions
-    if (task.hasTitle() && source === ListrLogLevels.FAILED && data === task.title || typeof data !== 'string') {
+    if ((task.hasTitle() && source === ListrLogLevels.FAILED && data === task.title) || typeof data !== 'string') {
       return []
     }
 
@@ -576,7 +576,7 @@ export class DefaultRenderer implements ListrRenderer {
     return this.format(data, this.style(task, true), level + 1)
   }
 
-  private indent (str: string, i: number): string {
+  private indent(str: string, i: number): string {
     return i > 0 ? indent(str.trimEnd(), this.options.indentation) : str.trimEnd()
   }
 }

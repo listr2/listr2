@@ -21,7 +21,7 @@ export class EventManager<Event extends string = string, Map extends Partial<Rec
     this.emitter.off(dispatch, handler)
   }
 
-  public complete (): void {
+  public complete(): void {
     this.emitter.removeAllListeners()
   }
 }

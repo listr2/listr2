@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { faCodePullRequest } from '@fortawesome/free-solid-svg-icons'
+import { faCodePullRequest } from '@fortawesome/free-solid-svg-icons'
 
-  defineProps({
-    version: {
-      type: String,
-      required: true
-    }
-  })
+defineProps({
+  version: {
+    type: String,
+    required: true
+  }
+})
 </script>

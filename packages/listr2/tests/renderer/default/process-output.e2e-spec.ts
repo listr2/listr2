@@ -7,22 +7,22 @@ describe('default renderer: process output', () => {
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
   // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
-  it('should hook in to stdout/stderr and log everything after', async () => {
+  it('should hook in to stdout/stderr and log everything after', async() => {
     await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (_, task): Promise<void> => {
+          task: async(_, task): Promise<void> => {
             process.stdout.write('this should be logged after [0]')
             task.output = 'I will push an output. [0]'
 
@@ -42,13 +42,13 @@ describe('default renderer: process output', () => {
     expectProcessOutputToMatchSnapshot(output, 'qI0M3xvUnGRj5hNg9NhHYq5lezkNGlRK')
   })
 
-  it('should hook in to stdout/stderr and log everything after even though there is an error', async () => {
+  it('should hook in to stdout/stderr and log everything after even though there is an error', async() => {
     try {
       await new Listr(
         [
           {
             title: 'This task will execute.',
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               process.stdout.write('this should be logged after [0]')
               task.output = 'I will push an output. [0]'
 

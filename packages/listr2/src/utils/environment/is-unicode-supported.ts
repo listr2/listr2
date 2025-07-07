@@ -1,6 +1,6 @@
 import { ListrEnvironmentVariables } from '@constants'
 
-export function isUnicodeSupported (): boolean {
+export function isUnicodeSupported(): boolean {
   /* istanbul ignore next */
   return (
     !!process.env[ListrEnvironmentVariables.FORCE_UNICODE] ||

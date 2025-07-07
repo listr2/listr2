@@ -6,7 +6,7 @@ interface Ctx {
 
 const logger = new ListrLogger({ useIcons: false })
 
-async function main (): Promise<void> {
+async function main(): Promise<void> {
   let task: Listr<Ctx>
 
   logger.log(ListrLogLevels.STARTED, 'Example for throwing out an error.')
@@ -15,7 +15,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will fail.',
-        task: async (): Promise<void> => {
+        task: async(): Promise<void> => {
           await delay(2000)
           throw new Error('This task failed after 2 seconds.')
         }
@@ -33,7 +33,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+    logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
   } catch (e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
@@ -44,7 +44,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will fail.',
-        task: async (): Promise<void> => {
+        task: async(): Promise<void> => {
           await delay(2000)
           throw new Error('This task failed after 2 seconds.')
         }
@@ -62,7 +62,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+    logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
   } catch (e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
@@ -73,7 +73,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will fail.',
-        task: async (): Promise<void> => {
+        task: async(): Promise<void> => {
           await delay(2000)
           throw new Error('This task failed after 2 seconds.')
         }
@@ -91,7 +91,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+    logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
   } catch (e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
@@ -107,19 +107,19 @@ async function main (): Promise<void> {
             [
               {
                 title: 'This is a subtask.',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   throw new Error('I have failed [0]')
                 }
               },
               {
                 title: 'This is an another subtask.',
-                task: async (): Promise<void> => {
+                task: async(): Promise<void> => {
                   throw new Error('I have failed [1]')
                 }
               },
               {
                 title: 'This is yet an another subtask.',
-                task: async (_, task): Promise<void> => {
+                task: async(_, task): Promise<void> => {
                   task.title = 'I have succeeded.'
                 }
               }
@@ -140,7 +140,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+    logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
   } catch (e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
@@ -155,7 +155,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will fail.',
-        task: async (): Promise<void> => {
+        task: async(): Promise<void> => {
           await delay(2000)
           throw new Error('This task failed after 2 seconds.')
         }
@@ -177,7 +177,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+    logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
   } catch (e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
@@ -188,7 +188,7 @@ async function main (): Promise<void> {
     [
       {
         title: 'This task will fail.',
-        task: async (): Promise<void> => {
+        task: async(): Promise<void> => {
           await delay(2000)
           throw new Error('This task failed after 2 seconds.')
         },
@@ -210,7 +210,7 @@ async function main (): Promise<void> {
   try {
     const context = await task.run()
 
-    logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+    logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
   } catch (e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }

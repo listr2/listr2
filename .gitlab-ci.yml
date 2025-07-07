@@ -3,11 +3,12 @@ stages:
   - install
   - build
   - test
-  - docs
   - publish
+  - docs
+  - postpublish
 
 variables:
-  NODE_VERSION: 20-alpine
+  NODE_VERSION: 24-alpine
   NODE_PACKAGE_MANAGER: pnpm
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
@@ -36,17 +37,29 @@ test:
   stage: test
   parallel:
     matrix:
+      # TODO: tests are not reliable with node24 for now, check again with LTS
+      # - NODE_VERSION: 24-alpine
+      - NODE_VERSION: 22-alpine
       - NODE_VERSION: 20-alpine
-      # - NODE_VERSION: 18-alpine
+
+semantic-release:
+  stage: publish
+  extends: .semantic-release
+  needs:
+    - build
+    - lint
+    - test
+  dependencies:
+    - build
 
 build-docs:
   stage: docs
   extends: .node-run
   # this is buged out gitlab-ci with symlink fails
   before_script:
-    - pnpm i
     - apk update
     - apk add git
+    - pnpm i
   variables:
     NODE_COMMAND_SCRIPT: docs:build
     NODE_COMMAND_CWD: ./docs
@@ -54,9 +67,13 @@ build-docs:
     paths:
       - ./docs/dist
   needs:
+    # - install
     - build
+    - semantic-release
   dependencies:
+    # - install
     - build
+    - semantic-release
   only:
     refs:
       - master
@@ -67,7 +84,7 @@ build-docs:
       - rc
 
 docker-build-docs:
-  stage: publish
+  stage: postpublish
   extends: .docker-build-internal
   variables:
     DOCKERFILE_NAME: Dockerfile
@@ -86,13 +103,3 @@ docker-build-docs:
       - alpha
       - beta
       - rc
-
-semantic-release:
-  stage: publish
-  extends: .semantic-release
-  needs:
-    - build
-    - lint
-    - test
-  dependencies:
-    - build

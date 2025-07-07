@@ -18,7 +18,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.output = 'I will push an output. [0]'
         await delay(500)
 
@@ -36,7 +36,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -48,7 +48,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.output = 'I will push an output. [0]'
         await delay(500)
 
@@ -67,7 +67,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -79,7 +79,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.output = 'I will push an output. [0]'
         await delay(500)
 
@@ -100,7 +100,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -111,7 +111,7 @@ logger.log(ListrLogLevels.STARTED, 'Example output from a task with no title.')
 task = new Listr<Ctx>(
   [
     {
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.output = 'I will push an output. [0]'
         await delay(500)
 
@@ -129,7 +129,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -141,7 +141,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'Some task task with no persistent output to bottom bar.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.output = 'I will push an output. [0]'
         await delay(500)
 
@@ -159,7 +159,7 @@ task = new Listr<Ctx>(
 
     {
       title: 'Another task with persistent output to bottom bar.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.output = 'I will push an persistent output. [0]'
         await delay(500)
 
@@ -181,7 +181,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -216,7 +216,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -248,7 +248,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -260,7 +260,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         const start = 'This is a'
         const mid = 'long '
         const end = 'multi line output.'
@@ -277,7 +277,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -288,7 +288,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         const start = 'This is a'
         const mid = 'long '
         const end = 'multi line output.'
@@ -305,7 +305,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -316,7 +316,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         const start = 'This is a'
         const mid = 'long '
         const end = 'multi line output.'
@@ -333,7 +333,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -344,7 +344,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         const start = 'This is a'
         const mid = 'long '
         const end = 'multi line output.'
@@ -361,7 +361,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -372,7 +372,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         const start = 'This is a'
         const mid = 'long '
         const end = 'multi line output.'
@@ -389,7 +389,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
@@ -400,7 +400,7 @@ task = new Listr<Ctx>(
   [
     {
       title: 'This task will execute.',
-      task: async (_, task): Promise<void> => {
+      task: async(_, task): Promise<void> => {
         task.output = 'I will push an output. [0]'
         await delay(500)
 
@@ -419,7 +419,7 @@ task = new Listr<Ctx>(
 try {
   const context = await task.run()
 
-  logger.log(ListrLogLevels.COMPLETED, [ 'ctx: %o', context ])
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
 } catch (e: any) {
   logger.log(ListrLogLevels.FAILED, e)
 }
