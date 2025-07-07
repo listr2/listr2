@@ -7,6 +7,7 @@
     "sourceMap": true,
     "module": "ESNext",
     "target": "ESNext",
+    "resolveJsonModule": true,
     "paths": {
       "@tests/utils": ["./tests/utils/index"],
       "@root": ["./src/index"]

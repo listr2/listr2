@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { join } from 'path'
 import type { JestConfigWithTsJest } from 'ts-jest'
 import { pathsToModuleNameMapper } from 'ts-jest'
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const tsconfig = require(join(process.cwd(), 'tests', './tsconfig.json'))
+import tsconfig from './tsconfig.json' with { type: 'json' }
 
 const config: JestConfigWithTsJest = {
   testEnvironment: 'node',
@@ -13,7 +10,7 @@ const config: JestConfigWithTsJest = {
   testRegex: '(/tests/.*|/src/.*).(e2e-)?spec.tsx?$',
   extensionsToTreatAsEsm: ['.ts'],
   transform: {
-    '^.+\\.tsx?$': [
+    ['^.+\\.tsx?$']: [
       'ts-jest',
       {
         tsconfig: '<rootDir>/tests/tsconfig.json',
@@ -27,7 +24,7 @@ const config: JestConfigWithTsJest = {
     ...pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
       prefix: '<rootDir>/'
     }),
-    '^(\\.{1,2}/.*)\\.js$': '$1'
+    ['^(\\.{1,2}/.*)\\.js$']: '$1'
   }
 }
 

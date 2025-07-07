@@ -8,7 +8,7 @@ stages:
   - postpublish
 
 variables:
-  NODE_VERSION: 22-alpine
+  NODE_VERSION: 24-alpine
   NODE_PACKAGE_MANAGER: pnpm
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
@@ -37,6 +37,8 @@ test:
   stage: test
   parallel:
     matrix:
+      # TODO: tests are not reliable with node24 for now, check again with LTS
+      # - NODE_VERSION: 24-alpine
       - NODE_VERSION: 22-alpine
       - NODE_VERSION: 20-alpine
 

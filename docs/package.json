@@ -19,12 +19,12 @@
     "docs:build": "pnpm run docs:typedoc && vitepress build",
     "dev:start": "pnpm run docs:typedoc && vitepress dev --host 0.0.0.0",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
-    "lint": "eslint --flag unstable_config_lookup_from_file"
+    "lint": "eslint --flag v10_config_lookup_from_file"
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
       "prettier --log-level warn --write",
-      "eslint --flag unstable_config_lookup_from_file --fix"
+      "eslint --flag v10_config_lookup_from_file --fix"
     ],
     "*.{json,md}": [
       "prettier --log-level warn --write"

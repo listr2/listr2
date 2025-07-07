@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 22.x
+          - 24.x
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -33,9 +33,10 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 18.x
           - 20.x
           - 22.x
+        # TODO: tests are not reliable with node24 for now, check again with LTS
+        # - 24.x
         os:
           - ubuntu-latest
     steps:
@@ -57,7 +58,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 22.x
+          - 24.x
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2

@@ -8,7 +8,7 @@ export default [
   {
     languageOptions: {
       parserOptions: {
-        project: ['tsconfig.json', './tests/tsconfig.json']
+        project: ['./tsconfig.json', './tests/tsconfig.json']
       }
     }
   }

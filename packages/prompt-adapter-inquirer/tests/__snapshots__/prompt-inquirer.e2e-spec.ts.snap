@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`default renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-exit 1`] = `[]`;
+
+exports[`default renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stderr 1`] = `[]`;
+
+exports[`default renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+
+? Give me some input.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+
+? Give me some input.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute.
+",
+  "[2K[1A[2K[G✖ Prompt was aborted
+",
+  "[2K[1A[2K[G",
+  "✖ Prompt was aborted
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-exit 1`] = `[]`;
+
+exports[`default renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stderr 1`] = `[]`;
+
+exports[`default renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stdout 1`] = `
+[
+  "[?25l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+
+? Give me some input.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+Give me some input. t
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+Give me some input. te
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+Give me some input. tes
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+Give me some input. test
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+
+✔ Give me some input. test
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
+  "✔ This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-exit 1`] = `[]`;
+
+exports[`simple renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stderr 1`] = `
+[
+  "? Give me some input.[23G",
+  "
+[?25h",
+  "✖ This task will execute. [FAILED: Prompt was aborted]
+",
+]
+`;
+
+exports[`simple renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stdout 1`] = `
+[
+  "❯ This task will execute.
+",
+  "[?25l",
+]
+`;
+
+exports[`simple renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-exit 1`] = `[]`;
+
+exports[`simple renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stderr 1`] = `
+[
+  "? Give me some input.[23G",
+  "[24G",
+  "[2K[G? Give me some input. t[24G",
+  "[25G",
+  "[2K[G? Give me some input. te[25G",
+  "[26G",
+  "[2K[G? Give me some input. tes[26G",
+  "[27G",
+  "[2K[G? Give me some input. test[27G",
+  "[23G",
+  "[2K[G? Give me some input. test[27G",
+  "[2K[G✔ Give me some input. test[27G",
+  "
+[?25h",
+]
+`;
+
+exports[`simple renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stdout 1`] = `
+[
+  "❯ This task will execute.
+",
+  "[?25l",
+  "[?25h",
+  "✔ This task will execute.
+",
+]
+`;
+
+exports[`test renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-exit 1`] = `[]`;
+
+exports[`test renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"Prompt was aborted"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+]
+`;
+
+exports[`test renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"STATE","data":"PROMPT","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"? Give me some input.\\u001b[23G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"STATE","data":"PROMPT_FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\n\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"STATE","data":"PROMPT_FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+]
+`;
+
+exports[`test renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-exit 1`] = `[]`;
+
+exports[`test renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stderr 1`] = `[]`;
+
+exports[`test renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"STATE","data":"PROMPT","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"? Give me some input.\\u001b[23G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[24G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[G? Give me some input. t\\u001b[24G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[25G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[G? Give me some input. te\\u001b[25G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[26G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[G? Give me some input. tes\\u001b[26G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[27G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[G? Give me some input. test\\u001b[27G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[23G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[G? Give me some input. test\\u001b[27G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\u001b[2K\\u001b[G✔ Give me some input. test\\u001b[27G","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"PROMPT","data":"\\n\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+  "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+",
+]
+`;
+
+exports[`verbose renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-exit 1`] = `[]`;
+
+exports[`verbose renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stderr 1`] = `
+[
+  "[FAILED] Prompt was aborted
+",
+]
+`;
+
+exports[`verbose renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stdout 1`] = `
+[
+  "[STARTED] This task will execute.
+",
+  "[PROMPT] ? Give me some input.
+",
+]
+`;
+
+exports[`verbose renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-exit 1`] = `[]`;
+
+exports[`verbose renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stderr 1`] = `[]`;
+
+exports[`verbose renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stdout 1`] = `
+[
+  "[STARTED] This task will execute.
+",
+  "[PROMPT] ? Give me some input.
+",
+  "[PROMPT] Give me some input. t
+",
+  "[PROMPT] Give me some input. te
+",
+  "[PROMPT] Give me some input. tes
+",
+  "[PROMPT] Give me some input. test
+",
+  "[PROMPT] Give me some input. test
+",
+  "[PROMPT] ✔ Give me some input. test
+",
+  "[COMPLETED] This task will execute.
+",
+]
+`;

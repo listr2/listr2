@@ -14,7 +14,9 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 20.x
+          # TODO: tests are not reliable with node24 for now, check again with LTS
+          # - 24.x
+          - 22.x
     steps:
       - uses: actions/checkout@v2
       - uses: pnpm/action-setup@v2

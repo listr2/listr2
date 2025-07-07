@@ -39,6 +39,7 @@ This is the expanded and re-written Typescript version of the beautiful plugin b
 <script setup>
 
 let showcases = [
+  "@angular/cli",
   "lint-staged",
   "cypress",
   "@electron-forge/shared-types",

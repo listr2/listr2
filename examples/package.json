@@ -12,18 +12,18 @@
     "url": "https://cenk.kilic.dev"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "build": "tsc --noEmit",
     "start": "cd .. && NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --loader ./examples/loader.js' node",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
-    "lint": "eslint --flag unstable_config_lookup_from_file"
+    "lint": "eslint --flag v10_config_lookup_from_file"
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
       "prettier --log-level warn --write",
-      "eslint --flag unstable_config_lookup_from_file --fix"
+      "eslint --flag v10_config_lookup_from_file --fix"
     ],
     "*.{json,md}": [
       "prettier --log-level warn --write"

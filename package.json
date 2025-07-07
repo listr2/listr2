@@ -12,8 +12,8 @@
     "url": "https://cenk.kilic.dev"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=8.0.0"
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
   },
   "workspaces": [
     "packages/*",
@@ -37,7 +37,7 @@
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
       "prettier --log-level warn --write",
-      "eslint --flag unstable_config_lookup_from_file --fix"
+      "eslint --flag v10_config_lookup_from_file --fix"
     ],
     "*.{json,md}": [
       "prettier --log-level warn --write"
@@ -48,7 +48,6 @@
     "@cenk1cenk2/eslint-config": "^3.1.49",
     "@jest/globals": "^30.0.4",
     "@swc/core": "^1.12.9",
-    "@tsconfig/node18": "^18.2.4",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.10",
     "eslint": "^9.30.1",
@@ -69,5 +68,8 @@
     "commitizen": {
       "path": "./node_modules/@cenk1cenk2/cz-cc"
     }
+  },
+  "dependencies": {
+    "@tsconfig/node20": "^20.1.6"
   }
 }
