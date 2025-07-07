@@ -11,21 +11,21 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
 
   process.stdout.isTTY = true
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     mockProcessOutput(output)
   })
 
-  afterEach(async () => {
+  afterEach(async() => {
     unmockProcessOutput(output)
     jest.clearAllMocks()
   })
 
-  it('should render a prompt', async () => {
+  it('should render a prompt', async() => {
     const ctx = await new Listr(
       [
         {
           title: 'This task will execute.',
-          task: async (ctx, task): Promise<void> => {
+          task: async(ctx, task): Promise<void> => {
             const output = task.prompt(ListrInquirerPromptAdapter).run(input, {
               message: 'Give me some input.'
             })
@@ -49,7 +49,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
     expectProcessOutputToMatchSnapshot(output, 'zTXlHkwllFGUiGXlWztXAeZMvIleiEFF')
   })
 
-  it('should be able to cancel a prompt', async () => {
+  it('should be able to cancel a prompt', async() => {
     let err: Error
 
     try {
@@ -57,7 +57,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
         [
           {
             title: 'This task will execute.',
-            task: async (_, task): Promise<void> => {
+            task: async(_, task): Promise<void> => {
               const prompt = task.prompt(ListrInquirerPromptAdapter)
 
               void delay(50).then(() => prompt.cancel())
