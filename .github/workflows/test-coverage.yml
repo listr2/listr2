@@ -29,8 +29,7 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test:cov
-        working-directory: ./packages/listr2
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./packages/listr2/coverage/lcov.info
+          files: ./packages/listr2/coverage/lcov.info,./packages/manager/coverage/lcov.info,./packages/prompt-adapter-enquirer/coverage/lcov.info,./packages/prompt-adapter-inquirer/coverage/lcov.info

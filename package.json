@@ -27,7 +27,8 @@
     "docs:build": "pnpm run --filter @listr2/docs docs:build",
     "format": "pnpm run --parallel -r format",
     "lint": "pnpm run --parallel -r lint",
-    "test": "pnpm run --parallel -r test"
+    "test": "pnpm run --parallel -r test",
+    "test:cov": "pnpm run --parallel -r test:cov"
   },
   "simple-git-hooks": {
     "pre-commit": "[ -n \"$SKIP_GIT_HOOKS\" ] && true || pnpm exec lint-staged",
