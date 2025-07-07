@@ -23,7 +23,7 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
     // assign default if there is single prompt
     /* istanbul ignore next */
     if (!Array.isArray(options)) {
-      options = [ { ...options, name: 'default' } ]
+      options = [{ ...options, name: 'default' }]
     } else if (options.length === 1) {
       options = options.map((option) => {
         return { ...option, name: 'default' }

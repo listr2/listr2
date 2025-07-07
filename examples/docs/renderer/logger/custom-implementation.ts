@@ -3,7 +3,7 @@ import { Listr, ListrLogger, PRESET_TIMESTAMP, color } from 'listr2'
 
 class MyLogger extends ListrLogger<ListrLogLevels> {
   constructor(useIcons: boolean) {
-    super({ useIcons, fields: { suffix: [ { field: 'task', format: (): LoggerFormat => color.magenta } ] } })
+    super({ useIcons, fields: { suffix: [{ field: 'task', format: (): LoggerFormat => color.magenta }] } })
   }
 
   public wrap(message: string, options?: { format?: LoggerFormat }): string {

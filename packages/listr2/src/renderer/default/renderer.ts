@@ -235,10 +235,10 @@ export class DefaultRenderer implements ListrRenderer {
 
         break
 
-    case 'wrap':
-      parsed = this.wrap(message, columns, { hard: true, trim: false })
-        .split(EOL)
-        .map((s, i) => this.indent(s, i))
+      case 'wrap':
+        parsed = this.wrap(message, columns, { hard: true, trim: false })
+          .split(EOL)
+          .map((s, i) => this.indent(s, i))
 
         break
 
@@ -576,7 +576,7 @@ export class DefaultRenderer implements ListrRenderer {
     return this.format(data, this.style(task, true), level + 1)
   }
 
-  private indent (str: string, i: number): string {
+  private indent(str: string, i: number): string {
     return i > 0 ? indent(str.trimEnd(), this.options.indentation) : str.trimEnd()
   }
 }

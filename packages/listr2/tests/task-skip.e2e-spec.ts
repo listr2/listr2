@@ -89,7 +89,7 @@ describe('skip a task', () => {
     expectProcessOutputToMatchSnapshot(output, 'WKhUc2IR0U5Hc7hKFuvFUq36ovxjyPy6')
   })
 
-  it.each<[boolean | string, string]>([ [true, 'Skipped task without a title.'] ])(
+  it.each<[boolean | string, string]>([[true, 'Skipped task without a title.']])(
     'should skip the task from async skip method returning either boolean or string',
     async(skip) => {
       await new Listr(
