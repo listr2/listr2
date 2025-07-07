@@ -1,3 +1,26 @@
+# listr2 [9.0.0](https://github.com/listr2/listr2/compare/listr2@8.3.3...listr2@9.0.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* reference issue ([b84ca5d](https://github.com/listr2/listr2/commit/b84ca5df574661cee225eee3852f17d93cbff1b3)), closes [#723](https://github.com/listr2/listr2/issues/723) [yt-#LISTR2-273](https://github.com/yt-/issues/LISTR2-273)
+
+
+### Performance Improvements
+
+* drop node 18 support ([12f02e7](https://github.com/listr2/listr2/commit/12f02e7b3600d36a0f4762c7e865557d4c2c8b32))
+* update core dependencies and styling ([56f4d64](https://github.com/listr2/listr2/commit/56f4d647f6020c4227dce8322ec38d030f4897f2))
+* **utils:** return actual writable type from the createWritable utility ([a5cdba3](https://github.com/listr2/listr2/commit/a5cdba3175d673cc1751bc5455567305e8073951))
+
+
+### BREAKING CHANGES
+
+* This commit drops support for Node.js 18, which is no longer LTS.
+* **utils:** - The return type of the `createWritable` function has changed from `NodeJS.WritableStream` to `Writable`. This is a more right type for the object that is returned from the function.
+* This includes breaking changes in the inqurer setup.
+
+The styling is completely changed.
+
 # listr2 [9.0.0-beta.3](https://github.com/listr2/listr2/compare/listr2@9.0.0-beta.2...listr2@9.0.0-beta.3) (2025-07-07)
 
 
