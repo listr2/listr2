@@ -1,3 +1,32 @@
+# @listr2/prompt-adapter-enquirer [3.0.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@2.0.16...@listr2/prompt-adapter-enquirer@3.0.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* list `listr2` as a peer dependency ([af4a5cc](https://github.com/listr2/listr2/commit/af4a5ccd7e2e1ab548ff3f1ae2d135ea5451ce89))
+
+
+### Performance Improvements
+
+* drop node 18 support ([12f02e7](https://github.com/listr2/listr2/commit/12f02e7b3600d36a0f4762c7e865557d4c2c8b32))
+* update core dependencies and styling ([56f4d64](https://github.com/listr2/listr2/commit/56f4d647f6020c4227dce8322ec38d030f4897f2))
+
+
+### BREAKING CHANGES
+
+* This commit drops support for Node.js 18, which is no longer LTS.
+* This includes breaking changes in the inqurer setup.
+
+The styling is completely changed.
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 9.0.0
+
 # @listr2/prompt-adapter-enquirer [3.0.0-beta.3](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@3.0.0-beta.2...@listr2/prompt-adapter-enquirer@3.0.0-beta.3) (2025-07-07)
 
 
