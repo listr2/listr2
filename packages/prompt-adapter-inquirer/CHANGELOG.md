@@ -1,3 +1,18 @@
+## @listr2/prompt-adapter-inquirer [3.0.1](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@3.0.0...@listr2/prompt-adapter-inquirer@3.0.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* migrate build system from tsup to tsdown ([2f71695](https://github.com/listr2/listr2/commit/2f716955ab64a270cab9a2db464b77d5191bb8ba))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 9.0.1
+
 # @listr2/prompt-adapter-inquirer [3.0.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@2.0.22...@listr2/prompt-adapter-inquirer@3.0.0) (2025-07-07)
 
 
