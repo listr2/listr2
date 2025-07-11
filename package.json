@@ -62,15 +62,13 @@
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsup": "^8.5.0",
-    "typescript": "^5.8.3"
+    "tsdown": "^0.12.9",
+    "typescript": "^5.8.3",
+    "@tsconfig/node20": "^20.1.6"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/@cenk1cenk2/cz-cc"
     }
-  },
-  "dependencies": {
-    "@tsconfig/node20": "^20.1.6"
   }
 }
