@@ -33,8 +33,8 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "tsup-node",
-    "dev:start": "tsup-node --watch",
+    "build": "tsdown",
+    "dev:start": "tsdown --watch",
     "format": "prettier --log-level warn --write src/ tests/ && pnpm run lint --fix",
     "lint": "eslint --flag v10_config_lookup_from_file src/ tests/",
     "test": "NO_COLOR=1 TS_NODE_PROJECT=tests/tsconfig.json NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules' jest --config tests/jest.config.ts",
