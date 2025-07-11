@@ -16,5 +16,5 @@ export default defineConfig((options) => ({
   clean: true,
   minify: false,
   keepNames: true,
-  unbundle: true
+  unbundle: false
 }))
