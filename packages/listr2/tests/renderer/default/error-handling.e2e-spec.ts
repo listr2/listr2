@@ -42,7 +42,7 @@ describe('default renderer: error handling', () => {
           rendererOptions: { lazy: true, collapseErrors: false }
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 
@@ -76,7 +76,7 @@ describe('default renderer: error handling', () => {
           rendererOptions: { lazy: true, showErrorMessage: false }
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 

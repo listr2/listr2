@@ -93,7 +93,7 @@ class MyMainClass {
           }
         }
       ])
-    } catch (e: any) {
+    } catch(e: any) {
       this.logger.log(ListrLogLevels.FAILED, e)
     }
 
@@ -114,7 +114,7 @@ class MyMainClass {
           }
         ])
         .run()
-    } catch (e: any) {
+    } catch(e: any) {
       this.logger.log(ListrLogLevels.FAILED, e)
     }
 

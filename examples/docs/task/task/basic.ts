@@ -20,6 +20,6 @@ const tasks = new Listr<Ctx>(
 
 try {
   await tasks.run()
-} catch (e) {
+} catch(e) {
   console.error(e)
 }

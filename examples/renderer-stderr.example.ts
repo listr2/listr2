@@ -19,6 +19,6 @@ try {
     ],
     { renderer: 'default', rendererOptions: { logger: new ListrLogger({ processOutput: new ProcessOutput(process.stderr, process.stderr) }) } }
   ).run()
-} catch (e: any) {
+} catch(e: any) {
   console.error(e)
 }

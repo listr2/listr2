@@ -181,6 +181,6 @@ try {
     ],
     { renderer: 'verbose' }
   ).run()
-} catch (e: any) {
+} catch(e: any) {
   console.error(e)
 }

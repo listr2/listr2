@@ -127,7 +127,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
           rendererOptions
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       expect(e).toBeTruthy()
     }
 

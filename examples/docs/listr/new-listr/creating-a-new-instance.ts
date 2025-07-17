@@ -18,7 +18,7 @@ const tasks = new Listr<Ctx>(
 // #region run
 try {
   await tasks.run()
-} catch (e) {
+} catch(e) {
   console.error(e)
 }
 // #endregion run

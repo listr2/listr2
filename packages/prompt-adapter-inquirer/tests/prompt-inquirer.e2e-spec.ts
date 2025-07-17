@@ -74,7 +74,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
           rendererOptions
         }
       ).run()
-    } catch (e) {
+    } catch(e) {
       err = e as Error
     }
 

@@ -34,7 +34,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -71,7 +71,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -118,7 +118,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -163,7 +163,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -206,7 +206,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -244,7 +244,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -300,7 +300,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -357,7 +357,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -404,7 +404,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -464,7 +464,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -503,7 +503,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 
@@ -543,7 +543,7 @@ describe('error collection', () => {
 
     try {
       result = await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       crash = e
     }
 

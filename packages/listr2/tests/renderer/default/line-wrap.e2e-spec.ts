@@ -52,7 +52,7 @@ describe('default renderer: option: line wrap', () => {
           rendererOptions: { lazy: true, formatOutput: format as any }
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 
@@ -84,7 +84,7 @@ describe('default renderer: option: line wrap', () => {
           rendererOptions: { lazy: true, formatOutput: format as any }
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 
@@ -118,7 +118,7 @@ describe('default renderer: option: line wrap', () => {
           }
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 

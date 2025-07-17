@@ -19,6 +19,6 @@ tasks.add([
 
 try {
   await tasks.run()
-} catch (e) {
+} catch(e) {
   console.error(e)
 }

@@ -345,7 +345,7 @@ export class Task<
           await handleResult(this.taskFn(context, wrapper))
 
           break
-        } catch (err: any) {
+        } catch(err: any) {
           if (retries !== retryCount) {
             this.retry = { count: retries, error: err }
             this.message$ = { retry: this.retry }
@@ -369,7 +369,7 @@ export class Task<
         this.message$ = { duration: Date.now() - startTime }
         this.state$ = ListrTaskState.COMPLETED
       }
-    } catch (error: any) {
+    } catch(error: any) {
       // catch prompt error, this was the best i could do without going crazy
       if (this.prompt instanceof PromptError) {
         // eslint-disable-next-line no-ex-assign
@@ -388,7 +388,7 @@ export class Task<
           this.message$ = { rollback: this.title }
 
           this.state$ = ListrTaskState.ROLLED_BACK
-        } catch (err: any) {
+        } catch(err: any) {
           this.state$ = ListrTaskState.FAILED
 
           wrapper.report(err, ListrErrorTypes.HAS_FAILED_TO_ROLLBACK)

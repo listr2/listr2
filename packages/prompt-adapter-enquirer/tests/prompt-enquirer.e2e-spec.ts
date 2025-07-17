@@ -126,7 +126,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
 
     try {
       await ctx.run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 

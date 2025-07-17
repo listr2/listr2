@@ -36,7 +36,7 @@ export class ListrInquirerPromptAdapter extends ListrPromptAdapter {
       result = await this.prompt
 
       this.reportCompleted()
-    } catch (e) {
+    } catch(e) {
       this.reportFailed()
 
       throw e

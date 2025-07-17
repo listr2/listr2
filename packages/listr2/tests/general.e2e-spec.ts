@@ -113,7 +113,7 @@ describe('show output from task', () => {
         }
       ).run(ctx)
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (_: any) {
+    } catch(_: any) {
       // Ignore
     }
     const end = Date.now()

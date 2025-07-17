@@ -43,7 +43,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
           rendererOptions
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 
@@ -78,7 +78,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
           rendererOptions
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 
@@ -134,7 +134,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
           rendererOptions
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 
@@ -192,7 +192,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
 
     try {
       await task.run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 
@@ -227,7 +227,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
           rendererOptions
         }
       ).run()
-    } catch (e: any) {
+    } catch(e: any) {
       err = e
     }
 

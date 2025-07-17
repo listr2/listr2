@@ -72,7 +72,7 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
 
     try {
       response = (await enquirer.once('prompt', (prompt: EnquirerPromptInstance) => (this.prompt = prompt)).prompt(options as any)) as Record<PropertyKey, any>
-    } catch (e) {
+    } catch(e) {
       this.reportFailed()
 
       if (this.error) {

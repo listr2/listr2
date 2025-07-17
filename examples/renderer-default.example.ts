@@ -184,6 +184,6 @@ try {
     ],
     { renderer: 'default' }
   ).run()
-} catch (e: any) {
+} catch(e: any) {
   console.error(e)
 }

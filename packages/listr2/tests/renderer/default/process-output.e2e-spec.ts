@@ -66,7 +66,7 @@ describe('default renderer: process output', () => {
           rendererOptions: { lazy: true }
         }
       ).run()
-    } catch (e) {
+    } catch(e) {
       expect(e).toBeTruthy()
     }
 

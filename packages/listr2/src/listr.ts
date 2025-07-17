@@ -166,7 +166,7 @@ export class Listr<
       this.renderer.end()
 
       this.removeSignalHandler()
-    } catch (err: any) {
+    } catch(err: any) {
       if (this.options.exitOnError !== false) {
         this.renderer.end(err)
 

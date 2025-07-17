@@ -34,7 +34,7 @@ async function main(): Promise<void> {
     const context = await task.run()
 
     logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
-  } catch (e: any) {
+  } catch(e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
 
@@ -63,7 +63,7 @@ async function main(): Promise<void> {
     const context = await task.run()
 
     logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
-  } catch (e: any) {
+  } catch(e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
 
@@ -92,7 +92,7 @@ async function main(): Promise<void> {
     const context = await task.run()
 
     logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
-  } catch (e: any) {
+  } catch(e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
 
@@ -141,7 +141,7 @@ async function main(): Promise<void> {
     const context = await task.run()
 
     logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
-  } catch (e: any) {
+  } catch(e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
 
@@ -178,7 +178,7 @@ async function main(): Promise<void> {
     const context = await task.run()
 
     logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
-  } catch (e: any) {
+  } catch(e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
 
@@ -211,7 +211,7 @@ async function main(): Promise<void> {
     const context = await task.run()
 
     logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
-  } catch (e: any) {
+  } catch(e: any) {
     logger.log(ListrLogLevels.FAILED, e)
   }
 }
