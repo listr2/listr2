@@ -1,4 +1,7 @@
 ---
+default:
+  interruptable: true
+
 stages:
   - install
   - build

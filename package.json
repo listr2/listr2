@@ -46,11 +46,12 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^2.0.2",
-    "@cenk1cenk2/eslint-config": "^3.1.51",
+    "@cenk1cenk2/eslint-config": "^3.1.56",
     "@jest/globals": "^30.0.4",
-    "@swc/core": "^1.12.11",
+    "@swc/core": "^1.12.14",
+    "@tsconfig/node20": "^20.1.6",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.0.10",
+    "@types/node": "^24.0.14",
     "execa": "^9.6.0",
     "jest": "^30.0.4",
     "jest-mock-process": "^2.0.0",
@@ -62,8 +63,7 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "tsdown": "^0.12.9",
-    "typescript": "^5.8.3",
-    "@tsconfig/node20": "^20.1.6"
+    "typescript": "^5.8.3"
   },
   "config": {
     "commitizen": {
