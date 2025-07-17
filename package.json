@@ -51,7 +51,6 @@
     "@swc/core": "^1.12.11",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.10",
-    "eslint": "^9.31.0",
     "execa": "^9.6.0",
     "jest": "^30.0.4",
     "jest-mock-process": "^2.0.0",

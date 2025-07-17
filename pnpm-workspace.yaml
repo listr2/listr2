@@ -4,7 +4,9 @@ packages:
   - packages/*
 
 ignoredBuiltDependencies:
+  - esbuild
   - unrs-resolver
 
 onlyBuiltDependencies:
   - '@swc/core'
+  - simple-git-hooks
