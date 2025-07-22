@@ -18,7 +18,7 @@ variables:
   NODE_INSTALL_ARGS: --ignore-scripts
   SEMANTIC_RELEASE_WORKSPACE: 'true'
   GITHUB_STATUS_PROJECT: listr2/listr2
-  SKIP_GIT_HOOKS: '1'
+  SKIP_SIMPLE_GIT_HOOKS: '1'
 
 include:
   - project: devops/pipes
