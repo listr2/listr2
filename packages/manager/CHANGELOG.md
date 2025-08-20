@@ -1,3 +1,18 @@
+## @listr2/manager [3.0.2](https://github.com/listr2/listr2/compare/@listr2/manager@3.0.1...@listr2/manager@3.0.2) (2025-08-20)
+
+
+### Bug Fixes
+
+* manager build ([c774cc8](https://github.com/listr2/listr2/commit/c774cc8555c2b00ec1a55d07a344dadfc59227a4))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 9.0.2
+
 ## @listr2/manager [3.0.1](https://github.com/listr2/listr2/compare/@listr2/manager@3.0.0...@listr2/manager@3.0.1) (2025-07-11)
 
 
