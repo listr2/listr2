@@ -1,3 +1,10 @@
+## listr2 [9.0.2](https://github.com/listr2/listr2/compare/listr2@9.0.1...listr2@9.0.2) (2025-08-20)
+
+
+### Bug Fixes
+
+* export listrtask and listrtaskwrapper as concrete ([3524a19](https://github.com/listr2/listr2/commit/3524a190fca4aac60542d6701d4b53e70d277bcd)), closes [#745](https://github.com/listr2/listr2/issues/745)
+
 ## listr2 [9.0.1](https://github.com/listr2/listr2/compare/listr2@9.0.0...listr2@9.0.1) (2025-07-11)
 
 
