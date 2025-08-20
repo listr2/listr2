@@ -37,11 +37,11 @@
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
-      "pnpm exec prettier --log-level warn --write",
-      "pnpm exec eslint --flag v10_config_lookup_from_file --fix"
+      "prettier --log-level warn --write",
+      "eslint --flag v10_config_lookup_from_file --fix"
     ],
     "*.{json,md}": [
-      "pnpm exec prettier --log-level warn --write"
+      "prettier --log-level warn --write"
     ]
   },
   "devDependencies": {
@@ -52,6 +52,7 @@
     "@tsconfig/node20": "^20.1.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.3.0",
+    "eslint": "^9.33.0",
     "execa": "^9.6.0",
     "jest": "^30.0.5",
     "jest-mock-process": "^2.0.0",

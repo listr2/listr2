@@ -120,5 +120,3 @@ export interface ListrTaskMessage {
  * Listr Task after the renderer has been selected and renderer related options removed.
  */
 export type ListrRendererTask<SelectedRenderer extends ListrRendererFactory> = Task<any, SelectedRenderer, SelectedRenderer>
-
-export type { Task as ListrTaskObject, TaskWrapper as ListrTaskWrapper }
