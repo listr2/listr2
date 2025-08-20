@@ -30,8 +30,8 @@
     ]
   },
   "dependencies": {
-    "@inquirer/prompts": "^7.6.0",
-    "rxjs": "^7.8.1",
+    "@inquirer/prompts": "^7.8.3",
+    "rxjs": "^7.8.2",
     "zen-observable": "^0.10.0"
   },
   "devDependencies": {
