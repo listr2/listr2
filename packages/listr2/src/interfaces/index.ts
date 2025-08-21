@@ -8,5 +8,3 @@ export type * from './listr.interface'
 export * from './prompt-error.interface'
 export * from './renderer.interface'
 export type * from './task.interface'
-
-export type { Task as ListrTaskObject, TaskWrapper as ListrTaskWrapper } from '@lib'
