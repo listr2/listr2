@@ -1,5 +1,3 @@
-import type { Task, TaskWrapper } from '@lib'
-
 export type * from './data.interface'
 export * from './event.interface'
 export * from './listr-error.interface'
@@ -11,4 +9,4 @@ export * from './prompt-error.interface'
 export * from './renderer.interface'
 export type * from './task.interface'
 
-export { Task as ListrTaskObject, TaskWrapper as ListrTaskWrapper }
+export type { Task as ListrTaskObject, TaskWrapper as ListrTaskWrapper } from '@lib'
