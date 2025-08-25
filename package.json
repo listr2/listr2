@@ -48,11 +48,11 @@
     "@cenk1cenk2/cz-cc": "^2.1.3",
     "@cenk1cenk2/eslint-config": "^3.1.64",
     "@jest/globals": "^30.0.5",
-    "@swc/core": "^1.13.4",
+    "@swc/core": "^1.13.5",
     "@tsconfig/node20": "^20.1.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.3.0",
-    "eslint": "^9.33.0",
+    "eslint": "^9.34.0",
     "execa": "^9.6.0",
     "jest": "^30.0.5",
     "jest-mock-process": "^2.0.0",
@@ -63,7 +63,7 @@
     "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsdown": "^0.14.1",
+    "tsdown": "^0.14.2",
     "typescript": "^5.9.2"
   },
   "config": {
