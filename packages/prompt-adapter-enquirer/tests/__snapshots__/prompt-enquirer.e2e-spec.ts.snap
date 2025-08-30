@@ -35,7 +35,9 @@ exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBL
 
 [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
 ",
   "[2K[1A[2K[G✔ This task will execute.
 ",
@@ -91,7 +93,9 @@ exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyU
 
 [32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
 ",
   "[2K[1A[2K[G✔ This task will execute.
 ",
@@ -162,6 +166,12 @@ exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQE
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ Another task.
 ",
+  "[2K[1A[2K[1A[2K[G◼ This task will execute.
+◼ Another task.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+◼ Another task.
+",
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ Another task.
 ",
@@ -214,7 +224,9 @@ exports[`default renderer: prompt -> enquirer should use the passed in enquirer:
 
 [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
 ",
   "[2K[1A[2K[G✔ This task will execute.
 ",
@@ -459,7 +471,7 @@ exports[`test renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5h
 ",
   "{"event":"PROMPT","data":"\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
   "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -534,7 +546,7 @@ exports[`test renderer: prompt -> enquirer should render multiple prompt: ZyUB9J
 ",
   "{"event":"PROMPT","data":"\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
   "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -601,7 +613,7 @@ exports[`test renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSK
 ",
   "{"event":"PROMPT","data":"\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
   "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -666,7 +678,7 @@ exports[`test renderer: prompt -> enquirer should use the passed in enquirer: t3
 ",
   "{"event":"PROMPT","data":"\\u001b[?25h","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
-  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":true,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
+  "{"event":"STATE","data":"PROMPT_COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
   "{"event":"STATE","data":"COMPLETED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":true,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
