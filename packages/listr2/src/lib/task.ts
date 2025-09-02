@@ -231,7 +231,7 @@ export class Task<
 
   /** Returns whether this task has a prompt inside. */
   public isPrompt(): boolean {
-    return this.state === ListrTaskState.PROMPT || this.state === ListrTaskState.PROMPT_COMPLETED
+    return this.state === ListrTaskState.PROMPT
   }
 
   /** Returns whether this task is currently paused. */

@@ -1,3 +1,10 @@
+## listr2 [9.0.3](https://github.com/listr2/listr2/compare/listr2@9.0.2...listr2@9.0.3) (2025-08-30)
+
+
+### Bug Fixes
+
+* narrow down the isprompt to only running prompts ([983acec](https://github.com/listr2/listr2/commit/983acec341f243d001d4d98fe0a54f41696bb2ce)), closes [gh#749](https://github.com/gh/issues/749)
+
 ## listr2 [9.0.2](https://github.com/listr2/listr2/compare/listr2@9.0.1...listr2@9.0.2) (2025-08-20)
 
 
