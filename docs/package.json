@@ -31,11 +31,11 @@
     ]
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^7.0.0",
-    "@fortawesome/free-brands-svg-icons": "^7.0.0",
-    "@fortawesome/free-regular-svg-icons": "^7.0.0",
-    "@fortawesome/free-solid-svg-icons": "^7.0.0",
-    "@fortawesome/vue-fontawesome": "^3.1.1",
+    "@fortawesome/fontawesome-svg-core": "^7.0.1",
+    "@fortawesome/free-brands-svg-icons": "^7.0.1",
+    "@fortawesome/free-regular-svg-icons": "^7.0.1",
+    "@fortawesome/free-solid-svg-icons": "^7.0.1",
+    "@fortawesome/vue-fontawesome": "^3.1.2",
     "@vue/eslint-config-typescript": "^14.6.0",
     "eslint-plugin-vue": "^10.4.0",
     "markdown-it-footnote": "^4.0.0",
@@ -45,6 +45,6 @@
     "typedoc-vitepress-theme": "1.1.2",
     "vitepress": "1.6.4",
     "vitepress-sidebar": "^1.33.0",
-    "vue": "^3.5.18"
+    "vue": "^3.5.21"
   }
 }
