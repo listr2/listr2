@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-exit 1`] = `[]`;
 

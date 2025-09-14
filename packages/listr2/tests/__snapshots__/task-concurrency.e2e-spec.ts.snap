@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`concurrency should run tasks in parallel: WKPv1yKZBa2LY7IStPAL9emHNpaTSsQQ-exit 1`] = `[]`;
 

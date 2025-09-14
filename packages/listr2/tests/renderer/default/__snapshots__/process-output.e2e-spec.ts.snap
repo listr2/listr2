@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: process output should hook in to stdout/stderr and log everything after even though there is an error: 77ddpC6bJ1Tj5Mz0JNjCqjq9pkwN7Gxh-exit 1`] = `[]`;
 

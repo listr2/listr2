@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-exit 1`] = `[]`;
 

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-exit 1`] = `[]`;
 

@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`signal handlers should try to cancel running tasks: ACxcRBILlHsqiSxYArjASFdofVqLaUyE-exit 1`] = `
 [

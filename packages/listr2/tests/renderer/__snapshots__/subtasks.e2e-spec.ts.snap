@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-exit 1`] = `[]`;
 

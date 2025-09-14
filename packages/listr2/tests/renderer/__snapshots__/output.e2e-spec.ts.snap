@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-exit 1`] = `[]`;
 

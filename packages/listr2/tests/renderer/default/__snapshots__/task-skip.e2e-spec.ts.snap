@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: task-skip should not collapse skip message: 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N-exit 1`] = `[]`;
 

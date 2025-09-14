@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`enable with context should be disabled depending on the context with an context variable: jbyappoYDm16wG6ARf5qOnS8CgSjhd7S-exit 1`] = `[]`;
 

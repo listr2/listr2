@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-exit 1`] = `[]`;
 

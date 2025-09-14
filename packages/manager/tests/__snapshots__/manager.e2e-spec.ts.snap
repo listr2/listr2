@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`skip a task should add tasks to the manager: GFB8X86ruFomKEgjsONBJpAyKOAF3NXP-exit 1`] = `[]`;
 

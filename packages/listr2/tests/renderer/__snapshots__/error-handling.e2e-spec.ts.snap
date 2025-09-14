@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
 

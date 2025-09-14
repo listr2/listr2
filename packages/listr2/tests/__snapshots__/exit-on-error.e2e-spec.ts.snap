@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`exit on error should contunie execution while exit on error is disabled in subtask: MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3-exit 1`] = `[]`;
 

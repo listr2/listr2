@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-exit 1`] = `[]`;
 

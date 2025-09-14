@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: option: line wrap should skip empty lines false: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-exit 1`] = `[]`;
 

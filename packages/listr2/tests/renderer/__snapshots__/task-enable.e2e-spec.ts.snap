@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-exit 1`] = `[]`;
 

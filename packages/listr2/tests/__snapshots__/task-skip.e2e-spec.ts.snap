@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`skip a task should skip the task from async skip method returning either boolean or string: dKEmraxPfJH3cEj4bHeTsieEALbqcFIR-exit 1`] = `[]`;
 
