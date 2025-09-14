@@ -1,3 +1,10 @@
+## listr2 [9.0.4](https://github.com/listr2/listr2/compare/listr2@9.0.3...listr2@9.0.4) (2025-09-14)
+
+
+### Bug Fixes
+
+* update dependencies and their requirements ([5bc7f4a](https://github.com/listr2/listr2/commit/5bc7f4a8c9fd48f6fec036d7036200c80e0d0f9c))
+
 ## listr2 [9.0.3](https://github.com/listr2/listr2/compare/listr2@9.0.2...listr2@9.0.3) (2025-08-30)
 
 
