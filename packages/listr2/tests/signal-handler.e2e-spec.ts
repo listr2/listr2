@@ -101,4 +101,22 @@ describe('signal handlers', () => {
 
     expect(process.listeners('SIGINT').map((listener) => listener.name)).toContain('doNotRemove')
   })
+
+  it('should remove the signal handler if checking the task fails', async() => {
+    const listeners = process.listeners('SIGINT')
+
+    await new Listr([
+      {
+        title: 'a task',
+        task: async(): Promise<void> => {},
+        enabled: (): boolean => {
+          throw new Error('failed')
+        }
+      }
+    ])
+      .run()
+      .catch(() => {})
+
+    expect(process.listeners('SIGINT')).toEqual(listeners)
+  })
 })

@@ -156,11 +156,10 @@ export class Listr<
     // create a new context
     this.ctx = this.options?.ctx ?? context ?? ({} as Ctx)
 
-    // check if the items are enabled
-    await Promise.all(this.tasks.map((task) => task.check(this.ctx)))
-
-    // run tasks
     try {
+      // check if the items are enabled
+      await Promise.all(this.tasks.map((task) => task.check(this.ctx)))
+      // run tasks
       await Promise.all(this.tasks.map((task) => this.concurrency.add(() => this.runTask(task))))
 
       this.renderer.end()
