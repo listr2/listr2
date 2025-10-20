@@ -1,3 +1,10 @@
+## listr2 [9.0.5](https://github.com/listr2/listr2/compare/listr2@9.0.4...listr2@9.0.5) (2025-10-20)
+
+
+### Bug Fixes
+
+* wrap enabled checks in try block ([#753](https://github.com/listr2/listr2/issues/753)) ([d4d4086](https://github.com/listr2/listr2/commit/d4d4086d55a42f732a811915b5a3a1b323f8d2fd))
+
 ## listr2 [9.0.4](https://github.com/listr2/listr2/compare/listr2@9.0.3...listr2@9.0.4) (2025-09-14)
 
 
