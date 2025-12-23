@@ -40,10 +40,8 @@ test:
   stage: test
   parallel:
     matrix:
-      # TODO: tests are not reliable with node24 for now, check again with LTS
-      # - NODE_VERSION: 24-alpine
+      - NODE_VERSION: 24-alpine
       - NODE_VERSION: 22-alpine
-      - NODE_VERSION: 20-alpine
 
 semantic-release:
   stage: publish
