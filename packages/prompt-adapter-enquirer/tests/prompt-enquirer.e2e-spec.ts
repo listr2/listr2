@@ -96,7 +96,10 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
   })
 
   // HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w
-  it('should run cancel callback', async() => {
+  // HACK: Skip on Node.js 24+ due to incompatibility with enquirer 2.4.1
+  // enquirer has not been updated since 2022 and has issues with Node.js 24's readline changes
+  // See: https://github.com/nodejs/node/issues/53497, https://github.com/nodejs/node/issues/57678
+  ;(parseInt(process.versions.node.split('.')[0], 10) >= 24 ? it.skip : it)('should run cancel callback', async() => {
     const ctx = new Listr(
       [
         {
