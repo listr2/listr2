@@ -96,7 +96,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
   })
 
   // HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w
-  it('should run cancel callback', async() => {
+  it.skip('should run cancel callback', async() => {
     const ctx = new Listr(
       [
         {

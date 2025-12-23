@@ -9,8 +9,7 @@ exports[`default renderer: error handling should show the default task title whe
   "[?25l",
   "◼ This task will fail.
 ",
-  "[2K[1A[2K[G◼ This task will fail.
-◼ This task will never execute.
+  "[G[G◼ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will fail.
 ◼ This task will never execute.
@@ -35,8 +34,7 @@ exports[`default renderer: error handling should throw out an error in the data 
   "[?25l",
   "◼ This task will fail.
 ",
-  "[2K[1A[2K[G◼ This task will fail.
-◼ This task will never execute.
+  "[G[G◼ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will fail.
 ◼ This task will never execute.
@@ -44,10 +42,8 @@ exports[`default renderer: error handling should throw out an error in the data 
   "[2K[1A[2K[1A[2K[G✖ This task will fail.
 ◼ This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✖ This task will fail.
-  › This task failed after 2 seconds.
-◼ This task will never execute.
-",
+  "[1A[G[G  › This task failed after 2 seconds.[K
+[1B",
   "[2K[1A[2K[1A[2K[1A[2K[G",
   "✖ This task will fail.
   › This task failed after 2 seconds.

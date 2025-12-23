@@ -9,8 +9,7 @@ exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4H
   "[?25l",
   "◼ This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
+  "[G[G◼ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will never execute.
@@ -18,11 +17,9 @@ exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4H
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will never execute.
+  "[1A[G[2K[G❯ This task will never execute.[K
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-↓ This task will never execute.
+  "[1A[G[2K[G↓ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
@@ -63,8 +60,7 @@ exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuO
   "[?25l",
   "◼ This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
+  "[G[G◼ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will never execute.
@@ -72,11 +68,9 @@ exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuO
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will never execute.
+  "[1A[G[2K[G❯ This task will never execute.[K
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-↓ I will be skipped!
+  "[1A[G[2K[G↓ I will be skipped![K
 ",
   "[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.

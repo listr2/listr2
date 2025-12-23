@@ -9,8 +9,7 @@ exports[`default renderer: task-skip should not collapse skip message: 7IvF8C3Re
   "[?25l",
   "◼ This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
+  "[G[G◼ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will never execute.
@@ -18,12 +17,10 @@ exports[`default renderer: task-skip should not collapse skip message: 7IvF8C3Re
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will never execute.
+  "[1A[G[2K[G❯ This task will never execute.[K
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-⚠ This task will never execute.
-  ↓ This task will never execute.
+  "[1A[G[2K[G⚠ This task will never execute.
+  ↓ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
