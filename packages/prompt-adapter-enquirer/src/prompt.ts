@@ -17,7 +17,7 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
   /**
    * Create a new prompt with `enquirer`.
    *
-   * `enquirer` is a peer dependency that must be installed seperately.
+   * `enquirer` is a peer dependency that must be installed separately.
    */
   public async run<T = any>(options: EnquirerPromptOptions | EnquirerPromptOptions<true>[], settings?: EnquirerPromptSettings): Promise<T> {
     // assign default if there is single prompt
@@ -72,8 +72,14 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
 
     try {
       response = (await enquirer.once('prompt', (prompt: EnquirerPromptInstance) => (this.prompt = prompt)).prompt(options as any)) as Record<PropertyKey, any>
-    } catch(e) {
+    } catch(e: any) {
       this.reportFailed()
+
+      // suppress "readline was closed" errors from enquirer in node.js 22+
+      // this happens when the prompt is cancelled and readline is closed during cleanup
+      if (e?.message?.includes('readline was closed') && this.error) {
+        throw this.error
+      }
 
       if (this.error) {
         throw this.error
@@ -101,10 +107,18 @@ export class ListrEnquirerPromptAdapter extends ListrPromptAdapter {
       return
     }
 
-    if (options?.throw) {
-      this.prompt.cancel()
-    } else {
-      this.prompt.submit()
+    try {
+      if (options?.throw) {
+        this.prompt.cancel()
+      } else {
+        this.prompt.submit()
+      }
+    } catch(error: any) {
+      // Suppress "readline was closed" errors from enquirer in Node.js 22+
+      // This is a known issue with enquirer and newer Node.js versions
+      if (!error?.message?.includes('readline was closed')) {
+        throw error
+      }
     }
 
     this.reportFailed()
