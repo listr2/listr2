@@ -6,8 +6,8 @@
   "repository": "https://github.com/listr2/listr2",
   "type": "module",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
   "exports": {
     ".": {
       "require": {
@@ -15,8 +15,8 @@
         "default": "./dist/index.cjs"
       },
       "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
       }
     },
     "./package.json": "./package.json"
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "build": "tsdown",
@@ -70,16 +70,16 @@
     "idle"
   ],
   "dependencies": {
-    "@inquirer/type": "^3.0.8"
+    "@inquirer/type": "^4.0.2"
   },
   "devDependencies": {
-    "@inquirer/core": "^10.2.0",
-    "@inquirer/input": "^4.2.2",
-    "@inquirer/prompts": "^7.8.4",
+    "@inquirer/core": "^11.1.0",
+    "@inquirer/input": "^5.0.3",
+    "@inquirer/prompts": "^8.1.0",
     "listr2": "workspace:*"
   },
   "peerDependencies": {
-    "@inquirer/prompts": ">= 3 < 8",
-    "listr2": "^8.0.0"
+    "@inquirer/prompts": ">= 3 < 9",
+    "listr2": "^10.0.0"
   }
 }

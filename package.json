@@ -12,7 +12,7 @@
     "url": "https://cenk.kilic.dev"
   },
   "engines": {
-    "node": ">=20.0.0",
+    "node": ">=22.0.0",
     "pnpm": ">=10.0.0"
   },
   "workspaces": [
@@ -47,24 +47,24 @@
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^2.1.5",
     "@cenk1cenk2/eslint-config": "^3.1.69",
-    "@jest/globals": "^30.1.2",
-    "@swc/core": "^1.13.5",
-    "@tsconfig/node20": "^20.1.6",
+    "@jest/globals": "^30.2.0",
+    "@swc/core": "^1.15.7",
+    "@tsconfig/node22": "^22.0.5",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.3.1",
-    "eslint": "^9.35.0",
-    "execa": "^9.6.0",
-    "jest": "^30.1.3",
+    "eslint": "^9.39.2",
+    "execa": "^9.6.1",
+    "jest": "^30.2.0",
     "jest-mock-process": "^2.0.0",
-    "lint-staged": "^16.1.6",
-    "prettier": "^3.6.2",
-    "rimraf": "^6.0.1",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "rimraf": "^6.1.2",
     "simple-git-hooks": "^2.13.1",
-    "ts-jest": "^29.4.1",
+    "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsdown": "^0.15.1",
-    "typescript": "^5.9.2"
+    "tsdown": "^0.18.2",
+    "typescript": "^5.9.3"
   },
   "config": {
     "commitizen": {

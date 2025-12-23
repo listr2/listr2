@@ -6,8 +6,8 @@
   "repository": "https://github.com/listr2/listr2",
   "type": "module",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
   "exports": {
     ".": {
       "require": {
@@ -15,8 +15,8 @@
         "default": "./dist/index.cjs"
       },
       "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
       }
     },
     "./package.json": "./package.json"
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "build": "tsdown",
@@ -73,7 +73,7 @@
     "cli-truncate": "^5.0.0",
     "colorette": "^2.0.20",
     "eventemitter3": "^5.0.1",
-    "log-update": "^6.1.0",
+    "log-update": "^7.0.2",
     "rfdc": "^1.4.1",
     "wrap-ansi": "^9.0.0"
   },

@@ -9,81 +9,42 @@ exports[`default renderer: show subtasks should be able to change collapse setti
   "[?25l",
   "◼ This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will execute.
+  "[G[G◼ This task will execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ◼ This is a subtask.
-◼ This task will execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ◼ This is a subtask.
-  ◼ This is an another subtask.
-◼ This task will execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ❯ This is a subtask.
-  ◼ This is an another subtask.
-◼ This task will execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ✔ This is a subtask.
-  ◼ This is an another subtask.
-◼ This task will execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ✔ This is a subtask.
-  ❯ This is an another subtask.
-◼ This task will execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ✔ This is a subtask.
-  ✔ This is an another subtask.
-◼ This task will execute.
-",
+  "[1A[G[G  ◼ This is a subtask.[K
+[1B",
+  "[1A[G[G  ◼ This is an another subtask.[K
+[1B",
+  "[3A[G[2K[G  ❯ This is a subtask.[K
+[2B",
+  "[3A[G[2K[G  ✔ This is a subtask.[K
+[2B",
+  "[2A[G[2K[G  ❯ This is an another subtask.[K
+[1B",
+  "[2A[G[2K[G  ✔ This is an another subtask.[K
+[1B",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ This task will execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will execute.
+  "[1A[G[2K[G❯ This task will execute.[K
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will execute.
-  ◼ This is a subtask.
+  "[G[G  ◼ This is a subtask.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will execute.
-  ◼ This is a subtask.
-  ◼ This is an another subtask.
+  "[G[G  ◼ This is an another subtask.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will execute.
-  ❯ This is a subtask.
-  ◼ This is an another subtask.
+  "[2A[G[2K[G  ❯ This is a subtask.[K
+[1B",
+  "[2A[G[2K[G  ✔ This is a subtask.[K
+[1B",
+  "[1A[G[2K[G  ❯ This is an another subtask.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will execute.
-  ✔ This is a subtask.
-  ◼ This is an another subtask.
+  "[1A[G[2K[G  ✔ This is an another subtask.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will execute.
-  ✔ This is a subtask.
-  ❯ This is an another subtask.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will execute.
-  ✔ This is a subtask.
-  ✔ This is an another subtask.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-✔ This task will execute.
-  ✔ This is a subtask.
-  ✔ This is an another subtask.
-",
+  "[3A[G[2K[G✔ This task will execute.[K
+[2B",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
 ✔ This task will execute.

@@ -9,36 +9,21 @@ exports[`default renderer: rollback should both stop the execution with exitOnEr
   "[?25l",
   "◼ Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
+  "[G[G◼ This task will maybe execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
+  "[1A[G[G  ◼ This task will fail.[K
+[1B",
+  "[1A[G[G  ◼ This task will execute.[K
+[1B",
+  "[3A[G[2K[G  ❯ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -71,36 +56,21 @@ exports[`default renderer: rollback should both stop the execution with exitOnEr
   "[?25l",
   "◼ Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
+  "[G[G◼ This task will maybe execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
+  "[1A[G[G  ◼ This task will fail.[K
+[1B",
+  "[1A[G[G  ◼ This task will execute.[K
+[1B",
+  "[3A[G[2K[G  ❯ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -140,36 +110,21 @@ exports[`default renderer: rollback should contunie execution or stop there with
   "[?25l",
   "◼ Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
+  "[G[G◼ This task will maybe execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
+  "[1A[G[G  ◼ This task will fail.[K
+[1B",
+  "[1A[G[G  ◼ This task will execute.[K
+[1B",
+  "[3A[G[2K[G  ❯ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -190,15 +145,9 @@ exports[`default renderer: rollback should contunie execution or stop there with
   ◼ This task will execute.
 ◼ This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-❯ This task will maybe execute.
+  "[1A[G[2K[G❯ This task will maybe execute.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-✔ This task will maybe execute.
+  "[1A[G[2K[G✔ This task will maybe execute.[K
 ",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
   "← Some actions required rollback stuff.
@@ -219,36 +168,21 @@ exports[`default renderer: rollback should contunie execution or stop there with
   "[?25l",
   "◼ Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
+  "[G[G◼ This task will maybe execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
-",
+  "[1A[G[G  ◼ This task will fail.[K
+[1B",
+  "[1A[G[G  ◼ This task will execute.[K
+[1B",
+  "[3A[G[2K[G  ❯ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -288,36 +222,21 @@ exports[`default renderer: rollback should rollback the main task if any of the 
   "[?25l",
   "◼ Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will never execute.
+  "[G[G◼ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
+  "[1A[G[G  ◼ This task will fail.[K
+[1B",
+  "[1A[G[G  ◼ This task will execute.[K
+[1B",
+  "[3A[G[2K[G  ❯ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -357,46 +276,25 @@ exports[`default renderer: rollback should rollback the subtask if the subtask i
   "[?25l",
   "◼ Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will never execute.
+  "[G[G◼ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ I am trying to rollback stuff, previous action failed.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ Some actions required rollback stuff.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ← Some actions required rollback stuff.
-  ◼ This task will execute.
-◼ This task will never execute.
-",
+  "[1A[G[G  ◼ This task will fail.[K
+[1B",
+  "[1A[G[G  ◼ This task will execute.[K
+[1B",
+  "[3A[G[2K[G  ❯ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ⚠ This task will fail.[K
+[2B",
+  "[3A[G[2K[G  ⚠ I am trying to rollback stuff, previous action failed.[K
+[2B",
+  "[3A[G[2K[G  ⚠ Some actions required rollback stuff.[K
+[2B",
+  "[3A[G[2K[G  ← Some actions required rollback stuff.[K
+[2B",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
   "❯ Something with rollback.
   ← Some actions required rollback stuff.

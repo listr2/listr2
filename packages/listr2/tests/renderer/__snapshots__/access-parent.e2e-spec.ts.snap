@@ -11,32 +11,21 @@ exports[`default renderer: parent task access should be able to change the title
 ",
   "[2K[1A[2K[G❯ This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
-  ◼ This is a subtask.
+  "[G[G  ◼ This is a subtask.[K
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ◼ This is a subtask.
-  ◼ This is a subtask.
+  "[G[G  ◼ This is a subtask.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ❯ This is a subtask.
-  ◼ This is a subtask.
-",
+  "[2A[G[2K[G  ❯ This is a subtask.[K
+[1B",
   "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
   ❯ This is a subtask.
   ◼ This is a subtask.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
-  ✔ This is a subtask.
-  ◼ This is a subtask.
+  "[2A[G[2K[G  ✔ This is a subtask.[K
+[1B",
+  "[1A[G[2K[G  ❯ This is a subtask.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
-  ✔ This is a subtask.
-  ❯ This is a subtask.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
-  ✔ This is a subtask.
-  ✔ This is a subtask.
+  "[1A[G[2K[G  ✔ This is a subtask.[K
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G✔ Title changed from subtask.
 ",

@@ -11,38 +11,29 @@ exports[`default renderer: retry should retry the main task if any of the subtas
 ",
   "[2K[1A[2K[G❯ Some type errors
 ",
-  "[2K[1A[2K[G❯ Some type errors
-  › test
+  "[G[G  › test[K
 ",
   "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
-  › test
+  "[G[G  › test[K
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
-  › I am self aware that I am retrying for the 1th time.
+  "[1A[G[2K[G  › I am self aware that I am retrying for the 1th time.[K
 ",
   "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
   › I am self aware that I am retrying for the 1th time.
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  "[1A[G[2K[G",
+  "[G[G  › test[K
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:2]
-  › test
-",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
-  › I am self aware that I am retrying for the 2th time.
+  "[1A[G[2K[G  › I am self aware that I am retrying for the 2th time.[K
 ",
   "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
   › I am self aware that I am retrying for the 2th time.
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  "[1A[G[2K[G",
+  "[G[G  › test[K
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:3]
-  › test
-",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
-  › I am self aware that I am retrying for the 3th time.
+  "[1A[G[2K[G  › I am self aware that I am retrying for the 3th time.[K
 ",
   "[2K[1A[2K[1A[2K[G✖ This type can not be assigned to type with, oh noes
 ",
