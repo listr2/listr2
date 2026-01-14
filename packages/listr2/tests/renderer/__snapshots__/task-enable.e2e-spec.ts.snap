@@ -9,8 +9,7 @@ exports[`default renderer: task-enable should enable task with general context i
   "[?25l",
   "◼ This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will show subtasks.
+  "[G[G◼ This task will show subtasks.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will show subtasks.
@@ -18,23 +17,15 @@ exports[`default renderer: task-enable should enable task with general context i
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ This task will show subtasks.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
+  "[1A[G[2K[G❯ This task will show subtasks.[K
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ◼ This task will execute.
+  "[G[G  ◼ This task will execute.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ❯ This task will execute.
+  "[1A[G[2K[G  ❯ This task will execute.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ✔ This task will execute.
+  "[1A[G[2K[G  ✔ This task will execute.[K
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-✔ This task will show subtasks.
+  "[2A[G[2K[1B[2K[1A[G✔ This task will show subtasks.[K
 ",
   "[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
@@ -53,8 +44,7 @@ exports[`default renderer: task-enable should enable task with general context: 
   "[?25l",
   "◼ This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
+  "[G[G◼ This task will never execute.[K
 ",
   "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will never execute.
@@ -62,8 +52,7 @@ exports[`default renderer: task-enable should enable task with general context: 
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-",
+  "[1A[G[2K[G",
   "[2K[1A[2K[G",
   "✔ This task will execute.
 ",

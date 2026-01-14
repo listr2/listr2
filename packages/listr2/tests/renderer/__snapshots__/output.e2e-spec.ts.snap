@@ -11,14 +11,11 @@ exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtK
 ",
   "[2K[1A[2K[G❯ This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
-  › I will push an output. [0]
+  "[G[G  › I will push an output. [0][K
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-  › I will push an output. [1]
+  "[1A[G[2K[G  › I will push an output. [1][K
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-  › I will push an output. [2]
+  "[1A[G[2K[G  › I will push an output. [2][K
 ",
   "[2K[1A[2K[1A[2K[G✔ This task will execute.
 ",

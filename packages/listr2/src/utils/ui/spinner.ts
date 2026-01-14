@@ -31,5 +31,6 @@ export class Spinner {
 
   public stop(): void {
     clearInterval(this.id)
+    this.id = undefined
   }
 }

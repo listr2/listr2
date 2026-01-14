@@ -8,46 +8,75 @@ stages:
   - test
   - publish
   - docs
-  - postpublish
+  - post
 
 variables:
   NODE_VERSION: 22-alpine
   NODE_PACKAGE_MANAGER: pnpm
+  NODE_INSTALL_ARGS: --ignore-scripts
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
-  NODE_INSTALL_ARGS: --ignore-scripts
-  SEMANTIC_RELEASE_WORKSPACE: 'true'
   GITHUB_STATUS_PROJECT: listr2/listr2
   SKIP_SIMPLE_GIT_HOOKS: '1'
 
 include:
-  - project: devops/pipes
-    file: /templates/node.gitlab-ci.yml
+  - project: devops/pipelines
+    ref: node@1.2.0
+    file:
+      - /node/install.gitlab-ci.yml
+      - /node/build.gitlab-ci.yml
+      - /node/lint.gitlab-ci.yml
+      - /node/test.gitlab-ci.yml
+      - /node/run.gitlab-ci.yml
+    inputs:
+      rules:
+        - when: always
 
-  - project: devops/pipes
-    file: /templates/v2/node-run.gitlab-ci.yml
+  - project: devops/pipelines
+    ref: semantic-release@1.6.0
+    file:
+      - /semantic-release/publish.gitlab-ci.yml
 
-  - project: devops/pipes
-    file: /templates/v2/semantic-release.gitlab-ci.yml
+  - project: devops/pipelines
+    ref: buildah@1.2.0
+    file:
+      - /buildah/build.gitlab-ci.yml
+      - /buildah/registry-gitlab.gitlab-ci.yml
 
-  - project: devops/pipes
-    file: /templates/v2/docker-build-internal.gitlab-ci.yml
+  - project: devops/pipelines
+    ref: references@1.2.2
+    file:
+      - /references/gh-status.gitlab-ci.yml
 
-  - project: devops/pipes
-    file: /templates/v2/github-status.gitlab-ci.yml
+install:
+  stage: install
+  extends: .node-install
+
+lint:
+  stage: build
+  extends: .node-lint
+
+build:
+  stage: build
+  extends: .node-build
+  needs:
+    - install
+  dependencies:
+    - install
 
 test:
   stage: test
+  extends: .node-test
   parallel:
     matrix:
-      # TODO: tests are not reliable with node24 for now, check again with LTS
-      # - NODE_VERSION: 24-alpine
+      - NODE_VERSION: 24-alpine
       - NODE_VERSION: 22-alpine
-      - NODE_VERSION: 20-alpine
 
 semantic-release:
   stage: publish
   extends: .semantic-release
+  variables:
+    SEMANTIC_RELEASE_WORKSPACE: 'true'
   needs:
     - build
     - lint
@@ -58,11 +87,9 @@ semantic-release:
 build-docs:
   stage: docs
   extends: .node-run
-  # this is buged out gitlab-ci with symlink fails
   before_script:
     - apk update
     - apk add git
-    - pnpm i
   variables:
     NODE_COMMAND_SCRIPT: docs:build
     NODE_COMMAND_CWD: ./docs
@@ -70,39 +97,31 @@ build-docs:
     paths:
       - ./docs/dist
   needs:
-    # - install
+    - install
     - build
     - semantic-release
   dependencies:
-    # - install
+    - install
     - build
     - semantic-release
-  only:
-    refs:
-      - master
-      - next
-      - next-major
-      - alpha
-      - beta
-      - rc
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^($CI_DEFAULT_BRANCH|next|next-major|alpha|beta|rc)$/'
+      when: always
+    - when: never
 
-docker-build-docs:
-  stage: postpublish
-  extends: .docker-build-internal
+container-docs:
+  stage: post
+  extends: .container-build
   variables:
-    DOCKERFILE_NAME: Dockerfile
-    DOCKERFILE_CONTEXT: ./docs
-    DOCKER_IMAGE_INTERNAL_NAME: docs-listr2
-    DOCKER_IMAGE_TAGS: latest
+    CONTAINER_FILE_NAME: Dockerfile
+    CONTAINER_FILE_CONTEXT: ./docs
+    CONTAINER_IMAGE_NAME: docs-listr2
+    CONTAINER_IMAGE_TAGS: latest
   needs:
     - build-docs
   dependencies:
     - build-docs
-  only:
-    refs:
-      - master
-      - next
-      - next-major
-      - alpha
-      - beta
-      - rc
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^($CI_DEFAULT_BRANCH|next|next-major|alpha|beta|rc)$/'
+      when: always
+    - when: never
