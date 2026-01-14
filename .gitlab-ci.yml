@@ -105,7 +105,9 @@ build-docs:
     - build
     - semantic-release
   rules:
-    - if: '$CI_COMMIT_REF_NAME =~ /^($CI_DEFAULT_BRANCH|next|next-major|alpha|beta|rc)$/'
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_COMMIT_REF_NAME =~ /^(next|next-major|alpha|beta|rc)$/'
       when: always
     - when: never
 
@@ -122,6 +124,8 @@ container-docs:
   dependencies:
     - build-docs
   rules:
-    - if: '$CI_COMMIT_REF_NAME =~ /^($CI_DEFAULT_BRANCH|next|next-major|alpha|beta|rc)$/'
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_COMMIT_REF_NAME =~ /^(next|next-major|alpha|beta|rc)$/'
       when: always
     - when: never
