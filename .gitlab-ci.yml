@@ -92,14 +92,10 @@ build-docs:
     - install
     - build
     - semantic-release
-  only:
-    refs:
-      - master
-      - next
-      - next-major
-      - alpha
-      - beta
-      - rc
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^($CI_DEFAULT_BRANCH|next|next-major|alpha|beta|rc)$/'
+      when: always
+    - when: never
 
 container-docs:
   stage: post
@@ -113,11 +109,7 @@ container-docs:
     - build-docs
   dependencies:
     - build-docs
-  only:
-    refs:
-      - master
-      - next
-      - next-major
-      - alpha
-      - beta
-      - rc
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /^($CI_DEFAULT_BRANCH|next|next-major|alpha|beta|rc)$/'
+      when: always
+    - when: never
