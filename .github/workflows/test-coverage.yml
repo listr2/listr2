@@ -17,19 +17,19 @@ jobs:
           - 22.x
           - 24.x
     steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
         with:
           version: latest
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
       - run: pnpm run test:cov
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./packages/listr2/coverage/lcov.info,./packages/manager/coverage/lcov.info,./packages/prompt-adapter-enquirer/coverage/lcov.info,./packages/prompt-adapter-inquirer/coverage/lcov.info
