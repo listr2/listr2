@@ -24,6 +24,7 @@ include:
     ref: node@1.2.0
     file:
       - /node/install.gitlab-ci.yml
+      - /node/build.gitlab-ci.yml
       - /node/lint.gitlab-ci.yml
       - /node/test.gitlab-ci.yml
       - /node/run.gitlab-ci.yml
