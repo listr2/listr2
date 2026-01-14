@@ -38,7 +38,12 @@ jobs:
         with:
           dry_run: true
           ci: false
-          branches: ${{ github.ref }}
+          branches: |
+            [
+              'master',
+              'main',
+              '${{ github.ref }}'
+            ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
