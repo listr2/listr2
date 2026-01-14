@@ -44,12 +44,7 @@ jobs:
         with:
           dry_run: true
           ci: false
-          branches: |
-            [
-              'master',
-              'main',
-              'refs/pull/${{ github.event.pull_request.number }}/merge'
-            ]
+          branch: refs/pull/${{ github.event.pull_request.number }}/merge
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
