@@ -13,10 +13,9 @@ stages:
 variables:
   NODE_VERSION: 22-alpine
   NODE_PACKAGE_MANAGER: pnpm
+  NODE_INSTALL_ARGS: --ignore-scripts
   NODE_LINT_COMMAND: lint
   NODE_TEST_COMMAND: test
-  NODE_INSTALL_ARGS: --ignore-scripts
-  SEMANTIC_RELEASE_WORKSPACE: 'true'
   GITHUB_STATUS_PROJECT: listr2/listr2
   SKIP_SIMPLE_GIT_HOOKS: '1'
 
@@ -32,7 +31,7 @@ include:
   - project: devops/pipelines
     ref: semantic-release@1.6.0
     file:
-      - /semantic-release/semantic-release.gitlab-ci.yml
+      - /semantic-release/publish.gitlab-ci.yml
 
   - project: devops/pipelines
     ref: buildah@1.2.0
@@ -64,6 +63,8 @@ test:
 semantic-release:
   stage: publish
   extends: .semantic-release
+  variables:
+    SEMANTIC_RELEASE_WORKSPACE: 'true'
   needs:
     - build
     - lint
