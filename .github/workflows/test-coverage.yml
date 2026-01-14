@@ -1,4 +1,5 @@
-name: test-coverage
+---
+name: coverage
 
 on:
   push:
