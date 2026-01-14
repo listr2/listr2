@@ -41,19 +41,20 @@ jobs:
           branches: |
             [
               'master',
-              {'name': 'refs/pull/+([0-9])/merge', 'prerelease': true}
+              'main',
+              {'name': '(refs/pull/**)', 'prerelease': true}
             ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment PR with version
-        if: github.event_name == 'pull_request' && steps.semantic.outputs.new-release-published == 'true'
+        if: github.event_name == 'pull_request' && steps.semantic.outputs.new_release_published == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const newVersion = '${{ steps.semantic.outputs.new-release-version }}';
-            const releaseNotes = `${{ steps.semantic.outputs.new-release-notes }}`;
+            const newVersion = '${{ steps.semantic.outputs.new_release_version }}';
+            const releaseNotes = `${{ steps.semantic.outputs.new_release_notes }}`;
 
             const comment = `## 🎉 Semantic Release Preview
 
