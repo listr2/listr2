@@ -32,18 +32,21 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Get branch name
+        id: branch
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "name=${{ github.head_ref }}" >> $GITHUB_OUTPUT
+          else
+            echo "name=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Semantic Release Dry Run
         id: semantic
         uses: cycjimmy/semantic-release-action@v4
         with:
           dry_run: true
-          ci: false
-          branches: |
-            [
-              'master',
-              'main',
-              {'name': '(refs/pull/**)', 'prerelease': true}
-            ]
+          branches: ${{ steps.branch.outputs.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
