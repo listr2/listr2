@@ -32,19 +32,18 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Debug context
-        run: |
-          echo "github.ref: ${{ github.ref }}"
-          echo "PR number: ${{ github.event.pull_request.number }}"
-          echo "Constructed ref: refs/pull/${{ github.event.pull_request.number }}/merge"
-
       - name: Semantic Release Dry Run
         id: semantic
         uses: cycjimmy/semantic-release-action@v4
         with:
           dry_run: true
           ci: false
-          branch: refs/pull/${{ github.event.pull_request.number }}/merge
+          branches: |
+            [
+              {name: 'master'},
+              {name: 'main'},
+              {name: 'refs/pull/${{ github.event.pull_request.number }}/merge'}
+            ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
