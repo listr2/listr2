@@ -52,6 +52,14 @@ lint:
   stage: build
   extends: .node-lint
 
+build:
+  stage: build
+  extends: .node-build
+  needs:
+    - install
+  dependencies:
+    - install
+
 test:
   stage: test
   extends: .node-test
