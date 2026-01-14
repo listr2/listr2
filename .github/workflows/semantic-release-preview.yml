@@ -37,6 +37,9 @@ jobs:
         with:
           dry_run: true
           ci: false
-          branch: ${{ github.head_ref || github.ref_name }}
+          branches: |
+            [
+              '${{ github.head_ref || github.ref_name }}'
+            ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
