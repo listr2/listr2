@@ -1,3 +1,45 @@
+# @listr2/prompt-adapter-enquirer [4.0.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@3.0.5...@listr2/prompt-adapter-enquirer@4.0.0) (2026-01-14)
+
+
+### Performance Improvements
+
+* **deps:** update major dependencies ([#754](https://github.com/listr2/listr2/issues/754)) ([0e4003f](https://github.com/listr2/listr2/commit/0e4003fb8e8765e845ea7ef8a2ee2e1260a5a57c)), closes [nodejs/node#53497](https://github.com/nodejs/node/issues/53497) [nodejs/node#57678](https://github.com/nodejs/node/issues/57678) [nodejs/node#53497](https://github.com/nodejs/node/issues/53497) [nodejs/node#57678](https://github.com/nodejs/node/issues/57678)
+
+
+### BREAKING CHANGES
+
+* **deps:** This change drops node 20 support since it is reaching end of life.
+
+* fix: tiny bug with spinner
+
+* chore: update auxilary dependency versions
+
+* ci: update ci configuration for new node versions
+
+WIP:
+
+Signed-off-by: Cenk Kılıç <cenk@kilic.dev>
+
+* fix: suppress readline close errors in enquirer adapter for Node.js 22+
+
+Node.js 22 and 24 introduced breaking changes to readline behavior that
+cause "readline was closed" errors when enquirer attempts to clean up
+after cancellation. This is a race condition in enquirer 2.4.1 that
+hasn't been fixed upstream (package hasn't been updated in 2 years).
+
+This commit adds error handling to suppress these specific errors while
+still allowing the prompt to be properly cancelled and cleaned up.
+
+References:
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 10.0.0
+
 ## @listr2/prompt-adapter-enquirer [3.0.5](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@3.0.4...@listr2/prompt-adapter-enquirer@3.0.5) (2025-10-20)
 
 
