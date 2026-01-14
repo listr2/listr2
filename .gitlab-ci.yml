@@ -28,6 +28,9 @@ include:
       - /node/lint.gitlab-ci.yml
       - /node/test.gitlab-ci.yml
       - /node/run.gitlab-ci.yml
+    inputs:
+      rules:
+        - when: always
 
   - project: devops/pipelines
     ref: semantic-release@1.6.0
