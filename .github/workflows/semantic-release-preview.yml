@@ -39,9 +39,9 @@ jobs:
           ci: false
           branches: |
             [
-              '${{ github.head_ref || github.ref_name }}'
+              'master',
+              'main',
+              {'name': 'refs/pull/+([0-9])/merge', 'prerelease': true}
             ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REF: refs/heads/${{ github.head_ref || github.ref_name }}
-          GITHUB_EVENT_NAME: push
