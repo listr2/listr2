@@ -8,7 +8,7 @@ stages:
   - test
   - publish
   - docs
-  - postpublish
+  - post
 
 variables:
   NODE_VERSION: 22-alpine
@@ -21,23 +21,41 @@ variables:
   SKIP_SIMPLE_GIT_HOOKS: '1'
 
 include:
-  - project: devops/pipes
-    file: /templates/node.gitlab-ci.yml
+  - project: devops/pipelines
+    ref: node@1.2.0
+    file:
+      - /node/install.gitlab-ci.yml
+      - /node/lint.gitlab-ci.yml
+      - /node/test.gitlab-ci.yml
+      - /node/run.gitlab-ci.yml
 
-  - project: devops/pipes
-    file: /templates/v2/node-run.gitlab-ci.yml
+  - project: devops/pipelines
+    ref: semantic-release@1.6.0
+    file:
+      - /semantic-release/semantic-release.gitlab-ci.yml
 
-  - project: devops/pipes
-    file: /templates/v2/semantic-release.gitlab-ci.yml
+  - project: devops/pipelines
+    ref: buildah@1.2.0
+    file:
+      - /buildah/build.gitlab-ci.yml
+      - /buildah/registry-gitlab.gitlab-ci.yml
 
-  - project: devops/pipes
-    file: /templates/v2/docker-build-internal.gitlab-ci.yml
+  - project: devops/pipelines
+    ref: references@1.2.2
+    file:
+      - /references/gh-status.gitlab-ci.yml
 
-  - project: devops/pipes
-    file: /templates/v2/github-status.gitlab-ci.yml
+install:
+  stage: install
+  extends: .node-install
+
+lint:
+  stage: build
+  extends: .node-lint
 
 test:
   stage: test
+  extends: .node-test
   parallel:
     matrix:
       - NODE_VERSION: 24-alpine
@@ -56,11 +74,9 @@ semantic-release:
 build-docs:
   stage: docs
   extends: .node-run
-  # this is buged out gitlab-ci with symlink fails
   before_script:
     - apk update
     - apk add git
-    - pnpm i
   variables:
     NODE_COMMAND_SCRIPT: docs:build
     NODE_COMMAND_CWD: ./docs
@@ -68,11 +84,11 @@ build-docs:
     paths:
       - ./docs/dist
   needs:
-    # - install
+    - install
     - build
     - semantic-release
   dependencies:
-    # - install
+    - install
     - build
     - semantic-release
   only:
@@ -84,14 +100,14 @@ build-docs:
       - beta
       - rc
 
-docker-build-docs:
-  stage: postpublish
-  extends: .docker-build-internal
+container-docs:
+  stage: post
+  extends: .container-build
   variables:
-    DOCKERFILE_NAME: Dockerfile
-    DOCKERFILE_CONTEXT: ./docs
-    DOCKER_IMAGE_INTERNAL_NAME: docs-listr2
-    DOCKER_IMAGE_TAGS: latest
+    CONTAINER_FILE_NAME: Dockerfile
+    CONTAINER_FILE_CONTEXT: ./docs
+    CONTAINER_IMAGE_NAME: docs-listr2
+    CONTAINER_IMAGE_TAGS: latest
   needs:
     - build-docs
   dependencies:
