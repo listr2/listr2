@@ -42,7 +42,7 @@ jobs:
             [
               'master',
               'main',
-              '${{ github.ref }}'
+              'refs/pull/${{ github.event.pull_request.number }}/merge'
             ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
