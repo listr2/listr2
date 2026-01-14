@@ -39,8 +39,6 @@ jobs:
           ci: false
           branches: |
             [
-              'master',
-              'main',
               {'name': 'refs/pull/+([0-9])/merge', 'prerelease': true}
             ]
         env:
