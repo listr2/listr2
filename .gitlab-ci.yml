@@ -112,9 +112,9 @@ build-docs:
     - semantic-release
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-      when: always
+      when: on_success
     - if: '$CI_COMMIT_REF_NAME =~ /^(next|next-major|alpha|beta|rc)$/'
-      when: always
+      when: on_success
     - when: never
 
 container-docs:
@@ -131,7 +131,7 @@ container-docs:
     - build-docs
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-      when: always
+      when: on_success
     - if: '$CI_COMMIT_REF_NAME =~ /^(next|next-major|alpha|beta|rc)$/'
-      when: always
+      when: on_success
     - when: never
