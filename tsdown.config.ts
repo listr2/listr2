@@ -9,7 +9,7 @@ export default defineConfig((options) => ({
   dts: true,
 
   platform: 'node',
-  format: ['cjs', 'esm'],
+  format: ['esm'],
 
   sourcemap: options.watch ? true : undefined,
 

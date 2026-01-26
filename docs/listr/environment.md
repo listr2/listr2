@@ -9,16 +9,16 @@ order: 10
 
 <!-- more -->
 
-- `listr2` supports both `esm` and `cjs` modules **for now**.
+- `listr2` supports both `esm` and `cjs` modules **for now**. But is only bundled for `esm` modules going forward.
 - You need a supported `node.js` version, end-of-life versions are deprecated and not supported.
 
-## Supporting Multiple Node Module Structures
+## Supporting Multiple Node Module Structures <Version version="v10.1.0" /><GithubIssue :issue="755" />
 
-At some point, the support for `cjs` will be dropped in favor of keeping up with the `node.js` ecosystem. This will of course be done through a major release.
+`listr2` supports both `esm` and `cjs` module structures however with the recent changes on [node](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require), we only bundle `esm` modules going forward. This will still support `cjs` module structure.
 
-But now also taking into hand my current situation of depending on mostly `cjs` only libraries, I do want to keep the `cjs` version as everything slowly migrates to `esm`.
+Thanks to [@hyperz111](https://github.com/hyperz111) for making me aware of this change, which cut our bundle distribution size in half.
 
-Given the latest changes on `ts-node`, `jest`, and `ts-jest` allowed us to move everything in the repository to `esm`. This enabled the repository starting from version `>= 6` to use dynamic imports for anything that is using an `esm` module. So from that version and upward, everything should be up to date with the upstream of the dependencies. So keeping the `cjs` version does not hinder us from updating the given packages.
+Given the latest changes on `ts-node`, `jest`, and `ts-jest` allowed us to move everything in the repository to `esm`. This enabled the repository starting from version <Version version="v6" /> to use dynamic imports for anything that is using an `esm` module. So from that version and upward, everything should be up to date with the upstream of the dependencies. So keeping the `cjs` version does not hinder us from updating the given packages.
 
 ### Disadvantages
 
