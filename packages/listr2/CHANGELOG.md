@@ -1,3 +1,10 @@
+# listr2 [10.1.0](https://github.com/listr2/listr2/compare/listr2@10.0.0...listr2@10.1.0) (2026-01-26)
+
+
+### Features
+
+* **build:** update bundle mechanism ([28b5f48](https://github.com/listr2/listr2/commit/28b5f4843eafafa0e705604a42a55ed81f86e688))
+
 # listr2 [10.0.0](https://github.com/listr2/listr2/compare/listr2@9.0.5...listr2@10.0.0) (2026-01-14)
 
 
