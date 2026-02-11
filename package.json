@@ -45,13 +45,13 @@
     ]
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^2.2.0",
+    "@cenk1cenk2/cz-cc": "^2.2.3",
     "@cenk1cenk2/eslint-config": "^3.1.74",
     "@jest/globals": "^30.2.0",
     "@swc/core": "^1.15.11",
     "@tsconfig/node22": "^22.0.5",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.0.8",
+    "@types/node": "^25.2.3",
     "eslint": "^9.39.2",
     "execa": "^9.6.1",
     "jest": "^30.2.0",
