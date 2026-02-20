@@ -159,9 +159,6 @@ importers:
       log-update:
         specifier: ^7.0.2
         version: 7.0.2
-      rfdc:
-        specifier: ^1.4.1
-        version: 1.4.1
       wrap-ansi:
         specifier: ^9.0.0
         version: 9.0.2
