@@ -7,17 +7,17 @@ exports[`default renderer: error handling should show the default task title whe
 exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will fail.
-",
-  "[G[G◼ This task will never execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+  "[?2026h◼ This task will fail.
+[?2026l",
+  "[?2026h[G[G◼ This task will never execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will fail.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task will fail.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
   "✖ This task will fail.
 ◼ This task will never execute.
 ",
@@ -32,19 +32,19 @@ exports[`default renderer: error handling should throw out an error in the data 
 exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will fail.
-",
-  "[G[G◼ This task will never execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+  "[?2026h◼ This task will fail.
+[?2026l",
+  "[?2026h[G[G◼ This task will never execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will fail.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task will fail.
 ◼ This task will never execute.
-",
-  "[1A[G[G  › This task failed after 2 seconds.[K
-[1B",
-  "[2K[1A[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[G  › This task failed after 2 seconds.[K
+[1B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "✖ This task will fail.
   › This task failed after 2 seconds.
 ◼ This task will never execute.

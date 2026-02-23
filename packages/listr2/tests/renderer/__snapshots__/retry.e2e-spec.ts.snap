@@ -7,37 +7,37 @@ exports[`default renderer: retry should retry the main task if any of the subtas
 exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
 [
   "[?25l",
-  "◼ Some type errors
-",
-  "[2K[1A[2K[G❯ Some type errors
-",
-  "[G[G  › test[K
-",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
-",
-  "[G[G  › test[K
-",
-  "[1A[G[2K[G  › I am self aware that I am retrying for the 1th time.[K
-",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  "[?2026h◼ Some type errors
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ Some type errors
+[?2026l",
+  "[?2026h[G[G  › test[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+[?2026l",
+  "[?2026h[G[G  › test[K
+[?2026l",
+  "[?2026h[1A[G[2K[G  › I am self aware that I am retrying for the 1th time.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
   › I am self aware that I am retrying for the 1th time.
-",
-  "[1A[G[2K[G",
-  "[G[G  › test[K
-",
-  "[1A[G[2K[G  › I am self aware that I am retrying for the 2th time.[K
-",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+[?2026l",
+  "[?2026h[1A[G[2K[G[?2026l",
+  "[?2026h[G[G  › test[K
+[?2026l",
+  "[?2026h[1A[G[2K[G  › I am self aware that I am retrying for the 2th time.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
   › I am self aware that I am retrying for the 2th time.
-",
-  "[1A[G[2K[G",
-  "[G[G  › test[K
-",
-  "[1A[G[2K[G  › I am self aware that I am retrying for the 3th time.[K
-",
-  "[2K[1A[2K[1A[2K[G✖ This type can not be assigned to type with, oh noes
-",
-  "[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[2K[G[?2026l",
+  "[?2026h[G[G  › test[K
+[?2026l",
+  "[?2026h[1A[G[2K[G  › I am self aware that I am retrying for the 3th time.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This type can not be assigned to type with, oh noes
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "✖ This type can not be assigned to type with, oh noes
 ",
   "[?25h",
@@ -51,21 +51,21 @@ exports[`default renderer: retry should stop retrying if the task succeeds after
 exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
 [
   "[?25l",
-  "◼ Some type errors
-",
-  "[2K[1A[2K[G❯ Some type errors
-",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
-",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:2]
-",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:3]
-",
-  "[2K[1A[2K[G⚠ Successed at 3th try. [RETRY:3]
-",
-  "[2K[1A[2K[G✔ Successed at 3th try.
-",
-  "[2K[1A[2K[G",
+  "[?2026h◼ Some type errors
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ Some type errors
+[?2026l",
+  "[?2026h[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+[?2026l",
+  "[?2026h[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+[?2026l",
+  "[?2026h[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+[?2026l",
+  "[?2026h[2K[1A[2K[G⚠ Successed at 3th try. [RETRY:3]
+[?2026l",
+  "[?2026h[2K[1A[2K[G✔ Successed at 3th try.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "✔ Successed at 3th try.
 ",
   "[?25h",

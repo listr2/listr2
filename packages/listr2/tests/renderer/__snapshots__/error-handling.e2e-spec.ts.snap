@@ -7,50 +7,50 @@ exports[`default renderer: error handling should change exit on error per subtas
 exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute and not quit on errors.
-",
-  "[G[G◼ This task will execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  "[?2026h◼ This task will execute and not quit on errors.
+[?2026l",
+  "[?2026h[G[G◼ This task will execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
 ◼ This task will execute.
-",
-  "[1A[G[G  ◼ This is a subtask.[K
-[1B",
-  "[1A[G[G  ◼ This is an another subtask.[K
-[1B",
-  "[1A[G[G  ◼ This is yet an another subtask.[K
-[1B",
-  "[4A[G[2K[G  ❯ This is a subtask.[K
-[3B",
-  "[4A[G[2K[G  ✖ This is a subtask.[K
-[3B",
-  "[4A[G[2K[G  ✖ I have failed [0][K
-[3B",
-  "[3A[G[2K[G  ❯ This is an another subtask.[K
-[2B",
-  "[3A[G[2K[G  ✖ This is an another subtask.[K
-[2B",
-  "[3A[G[2K[G  ✖ I have failed [1][K
-[2B",
-  "[2A[G[2K[G  ❯ This is yet an another subtask.[K
-[1B",
-  "[2A[G[2K[G  ❯ I have succeeded.[K
-[1B",
-  "[2A[G[2K[G  ✔ I have succeeded.[K
-[1B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+[?2026l",
+  "[?2026h[1A[G[G  ◼ This is a subtask.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This is an another subtask.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This is yet an another subtask.[K
+[1B[?2026l",
+  "[?2026h[4A[G[2K[G  ❯ This is a subtask.[K
+[3B[?2026l",
+  "[?2026h[4A[G[2K[G  ✖ This is a subtask.[K
+[3B[?2026l",
+  "[?2026h[4A[G[2K[G  ✖ I have failed [0][K
+[3B[?2026l",
+  "[?2026h[3A[G[2K[G  ❯ This is an another subtask.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This is an another subtask.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ I have failed [1][K
+[2B[?2026l",
+  "[?2026h[2A[G[2K[G  ❯ This is yet an another subtask.[K
+[1B[?2026l",
+  "[?2026h[2A[G[2K[G  ❯ I have succeeded.[K
+[1B[?2026l",
+  "[?2026h[2A[G[2K[G  ✔ I have succeeded.[K
+[1B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
   ✖ I have failed [0]
   ✖ I have failed [1]
   ✔ I have succeeded.
 ◼ This task will execute.
-",
-  "[1A[G[2K[G❯ This task will execute.[K
-",
-  "[1A[G[2K[G✖ This task will execute.[K
-",
-  "[1A[G[2K[G✖ I will exit on error since I am a direct child of parent task.[K
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[2K[G❯ This task will execute.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G✖ This task will execute.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G✖ I will exit on error since I am a direct child of parent task.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "⚠ This task will execute and not quit on errors.
   ✖ I have failed [0]
   ✖ I have failed [1]
@@ -76,24 +76,24 @@ exports[`default renderer: error handling should disable exitOnError from task l
 exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will fail.
-",
-  "[G[G◼ This task will maybe execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+  "[?2026h◼ This task will fail.
+[?2026l",
+  "[?2026h[G[G◼ This task will maybe execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will fail.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task will fail.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
 ◼ This task will maybe execute.
-",
-  "[1A[G[2K[G◼ I will change my title if this executes.[K
-",
-  "[1A[G[2K[G✔ I will change my title if this executes.[K
-",
-  "[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[2K[G◼ I will change my title if this executes.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G✔ I will change my title if this executes.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
   "✖ This task failed after 2 seconds.
 ✔ I will change my title if this executes.
 ",
@@ -108,20 +108,20 @@ exports[`default renderer: error handling should disable exitOnError from task l
 exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will fail.
-",
-  "[G[G◼ This task will maybe execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+  "[?2026h◼ This task will fail.
+[?2026l",
+  "[?2026h[G[G◼ This task will maybe execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will fail.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task will fail.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
   "✖ This task failed after 2 seconds.
 ◼ This task will maybe execute.
 ",
@@ -136,26 +136,26 @@ exports[`default renderer: error handling should not throw out an error when exi
 exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will fail.
-",
-  "[G[G◼ This task will execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+  "[?2026h◼ This task will fail.
+[?2026l",
+  "[?2026h[G[G◼ This task will execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will fail.
 ◼ This task will execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task will fail.
 ◼ This task will execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
 ◼ This task will execute.
-",
-  "[1A[G[2K[G❯ This task will execute.[K
-",
-  "[1A[G[2K[G❯ I will change my title if this executes.[K
-",
-  "[1A[G[2K[G✔ I will change my title if this executes.[K
-",
-  "[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[2K[G❯ This task will execute.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G❯ I will change my title if this executes.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G✔ I will change my title if this executes.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
   "✖ This task failed after 2 seconds.
 ✔ I will change my title if this executes.
 ",
@@ -170,20 +170,20 @@ exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO
 exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will fail.
-",
-  "[G[G◼ This task will never execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will fail.
+  "[?2026h◼ This task will fail.
+[?2026l",
+  "[?2026h[G[G◼ This task will never execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will fail.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task will fail.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task will fail.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✖ This task failed after 2 seconds.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
   "✖ This task failed after 2 seconds.
 ◼ This task will never execute.
 ",

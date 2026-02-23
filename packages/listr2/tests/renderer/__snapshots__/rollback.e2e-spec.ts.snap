@@ -7,43 +7,43 @@ exports[`default renderer: rollback should both stop the execution with exitOnEr
 exports[`default renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
-",
-  "[G[G◼ This task will maybe execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  "[?2026h◼ Something with rollback.
+[?2026l",
+  "[?2026h[G[G◼ This task will maybe execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will maybe execute.
-",
-  "[1A[G[G  ◼ This task will fail.[K
-[1B",
-  "[1A[G[G  ◼ This task will execute.[K
-[1B",
-  "[3A[G[2K[G  ❯ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
-[2B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will fail.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will execute.[K
+[1B[?2026l",
+  "[?2026h[3A[G[2K[G  ❯ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
+[?2026l",
 ]
 `;
 
@@ -54,44 +54,44 @@ exports[`default renderer: rollback should both stop the execution with exitOnEr
 exports[`default renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
-",
-  "[G[G◼ This task will maybe execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  "[?2026h◼ Something with rollback.
+[?2026l",
+  "[?2026h[G[G◼ This task will maybe execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will maybe execute.
-",
-  "[1A[G[G  ◼ This task will fail.[K
-[1B",
-  "[1A[G[G  ◼ This task will execute.[K
-[1B",
-  "[3A[G[2K[G  ❯ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
-[2B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will fail.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will execute.[K
+[1B[?2026l",
+  "[?2026h[3A[G[2K[G  ❯ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -108,48 +108,48 @@ exports[`default renderer: rollback should contunie execution or stop there with
 exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
-",
-  "[G[G◼ This task will maybe execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  "[?2026h◼ Something with rollback.
+[?2026l",
+  "[?2026h[G[G◼ This task will maybe execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will maybe execute.
-",
-  "[1A[G[G  ◼ This task will fail.[K
-[1B",
-  "[1A[G[G  ◼ This task will execute.[K
-[1B",
-  "[3A[G[2K[G  ❯ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
-[2B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will fail.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will execute.[K
+[1B[?2026l",
+  "[?2026h[3A[G[2K[G  ❯ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[1A[G[2K[G❯ This task will maybe execute.[K
-",
-  "[1A[G[2K[G✔ This task will maybe execute.[K
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[2K[G❯ This task will maybe execute.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G✔ This task will maybe execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -166,44 +166,44 @@ exports[`default renderer: rollback should contunie execution or stop there with
 exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
-",
-  "[G[G◼ This task will maybe execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  "[?2026h◼ Something with rollback.
+[?2026l",
+  "[?2026h[G[G◼ This task will maybe execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will maybe execute.
-",
-  "[1A[G[G  ◼ This task will fail.[K
-[1B",
-  "[1A[G[G  ◼ This task will execute.[K
-[1B",
-  "[3A[G[2K[G  ❯ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
-[2B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will fail.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will execute.[K
+[1B[?2026l",
+  "[?2026h[3A[G[2K[G  ❯ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will maybe execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -220,44 +220,44 @@ exports[`default renderer: rollback should rollback the main task if any of the 
 exports[`default renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
-",
-  "[G[G◼ This task will never execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  "[?2026h◼ Something with rollback.
+[?2026l",
+  "[?2026h[G[G◼ This task will never execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will never execute.
-",
-  "[1A[G[G  ◼ This task will fail.[K
-[1B",
-  "[1A[G[G  ◼ This task will execute.[K
-[1B",
-  "[3A[G[2K[G  ❯ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
-[2B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
+[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will fail.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will execute.[K
+[1B[?2026l",
+  "[?2026h[3A[G[2K[G  ❯ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✖ This task failed after 2 seconds.[K
+[2B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
 ◼ This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "← Some actions required rollback stuff.
   ✖ This task failed after 2 seconds.
   ◼ This task will execute.
@@ -274,28 +274,28 @@ exports[`default renderer: rollback should rollback the subtask if the subtask i
 exports[`default renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
-",
-  "[G[G◼ This task will never execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
+  "[?2026h◼ Something with rollback.
+[?2026l",
+  "[?2026h[G[G◼ This task will never execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ Something with rollback.
 ◼ This task will never execute.
-",
-  "[1A[G[G  ◼ This task will fail.[K
-[1B",
-  "[1A[G[G  ◼ This task will execute.[K
-[1B",
-  "[3A[G[2K[G  ❯ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ⚠ This task will fail.[K
-[2B",
-  "[3A[G[2K[G  ⚠ I am trying to rollback stuff, previous action failed.[K
-[2B",
-  "[3A[G[2K[G  ⚠ Some actions required rollback stuff.[K
-[2B",
-  "[3A[G[2K[G  ← Some actions required rollback stuff.[K
-[2B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will fail.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This task will execute.[K
+[1B[?2026l",
+  "[?2026h[3A[G[2K[G  ❯ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ⚠ This task will fail.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ⚠ I am trying to rollback stuff, previous action failed.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ⚠ Some actions required rollback stuff.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ← Some actions required rollback stuff.[K
+[2B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "❯ Something with rollback.
   ← Some actions required rollback stuff.
   ◼ This task will execute.

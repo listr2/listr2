@@ -7,45 +7,45 @@ exports[`default renderer: show subtasks should be able to change collapse setti
 exports[`default renderer: show subtasks should be able to change collapse settings: 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
-",
-  "[G[G◼ This task will execute.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[?2026h◼ This task will execute.
+[?2026l",
+  "[?2026h[G[G◼ This task will execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will execute.
-",
-  "[1A[G[G  ◼ This is a subtask.[K
-[1B",
-  "[1A[G[G  ◼ This is an another subtask.[K
-[1B",
-  "[3A[G[2K[G  ❯ This is a subtask.[K
-[2B",
-  "[3A[G[2K[G  ✔ This is a subtask.[K
-[2B",
-  "[2A[G[2K[G  ❯ This is an another subtask.[K
-[1B",
-  "[2A[G[2K[G  ✔ This is an another subtask.[K
-[1B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+[?2026l",
+  "[?2026h[1A[G[G  ◼ This is a subtask.[K
+[1B[?2026l",
+  "[?2026h[1A[G[G  ◼ This is an another subtask.[K
+[1B[?2026l",
+  "[?2026h[3A[G[2K[G  ❯ This is a subtask.[K
+[2B[?2026l",
+  "[?2026h[3A[G[2K[G  ✔ This is a subtask.[K
+[2B[?2026l",
+  "[?2026h[2A[G[2K[G  ❯ This is an another subtask.[K
+[1B[?2026l",
+  "[?2026h[2A[G[2K[G  ✔ This is an another subtask.[K
+[1B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ This task will execute.
-",
-  "[1A[G[2K[G❯ This task will execute.[K
-",
-  "[G[G  ◼ This is a subtask.[K
-",
-  "[G[G  ◼ This is an another subtask.[K
-",
-  "[2A[G[2K[G  ❯ This is a subtask.[K
-[1B",
-  "[2A[G[2K[G  ✔ This is a subtask.[K
-[1B",
-  "[1A[G[2K[G  ❯ This is an another subtask.[K
-",
-  "[1A[G[2K[G  ✔ This is an another subtask.[K
-",
-  "[3A[G[2K[G✔ This task will execute.[K
-[2B",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[2K[G❯ This task will execute.[K
+[?2026l",
+  "[?2026h[G[G  ◼ This is a subtask.[K
+[?2026l",
+  "[?2026h[G[G  ◼ This is an another subtask.[K
+[?2026l",
+  "[?2026h[2A[G[2K[G  ❯ This is a subtask.[K
+[1B[?2026l",
+  "[?2026h[2A[G[2K[G  ✔ This is a subtask.[K
+[1B[?2026l",
+  "[?2026h[1A[G[2K[G  ❯ This is an another subtask.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G  ✔ This is an another subtask.[K
+[?2026l",
+  "[?2026h[3A[G[2K[G✔ This task will execute.[K
+[2B[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "✔ This task will execute.
 ✔ This task will execute.
   ✔ This is a subtask.
