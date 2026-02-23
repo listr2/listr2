@@ -1,3 +1,18 @@
+## @listr2/prompt-adapter-enquirer [4.1.1](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@4.1.0...@listr2/prompt-adapter-enquirer@4.1.1) (2026-02-23)
+
+
+### Bug Fixes
+
+* update packages manually ([306d331](https://github.com/listr2/listr2/commit/306d3319c239107284c8efff7afbb400c2e1dc89))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 10.1.1
+
 # @listr2/prompt-adapter-enquirer [4.1.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@4.0.0...@listr2/prompt-adapter-enquirer@4.1.0) (2026-01-26)
 
 
