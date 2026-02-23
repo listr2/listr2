@@ -7,29 +7,29 @@ exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBL
 exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[G[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-[K",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m[K
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[2K[1A[2K[G✔ This task will execute.
-",
-  "[2K[1A[2K[G",
+  "[?2026h◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[G[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+[K[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G✔ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "✔ This task will execute.
 ",
   "[?25h",
@@ -43,35 +43,35 @@ exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyU
 exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[G[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-[K",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me more input.[22m [2m…[22m 
+  "[?2026h◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[G[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+[K[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me more input.[22m [2m…[22m 
 [36m▸[39m [36m[4mtest1[24m[39m
   test2[K
-",
-  "[3A[G[2K[1B[2K[1B[2K[2A[G[32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m[K
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[2K[1A[2K[G✔ This task will execute.
-",
-  "[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[3A[G[2K[1B[2K[1B[2K[2A[G[32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G✔ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "✔ This task will execute.
 ",
   "[?25h",
@@ -85,35 +85,35 @@ exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQE
 exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
-",
-  "[G[G◼ Another task.[K
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[?2026h◼ This task will execute.
+[?2026l",
+  "[?2026h[G[G◼ Another task.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ Another task.
-",
-  "[G[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-[K",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+[?2026l",
+  "[?2026h[G[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
 ◼ Another task.
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ Another task.
-",
-  "[2K[1A[2K[1A[2K[G◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G◼ This task will execute.
 ◼ Another task.
-",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ Another task.
-",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G✔ This task will execute.
 ◼ Another task.
-",
-  "[1A[G[2K[G❯ Another task.[K
-",
-  "[1A[G[2K[G✔ Another task.[K
-",
-  "[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[2K[G❯ Another task.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G✔ Another task.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
   "✔ This task will execute.
 ✔ Another task.
 ",
@@ -128,29 +128,29 @@ exports[`default renderer: prompt -> enquirer should use the passed in enquirer:
 exports[`default renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[G[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
-[K",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m[K
-",
-  "[1A[G[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m[K
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[2K[1A[2K[G✔ This task will execute.
-",
-  "[2K[1A[2K[G",
+  "[?2026h◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[G[G[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
+[K[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G✔ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "✔ This task will execute.
 ",
   "[?25h",

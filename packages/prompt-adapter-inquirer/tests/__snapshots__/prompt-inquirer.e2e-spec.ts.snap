@@ -7,21 +7,21 @@ exports[`default renderer: prompt -> inquirer should be able to cancel a prompt:
 exports[`default renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[G[G? [1mGive me some input.[22m
-[K",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+  "[?2026h◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[G[G? [1mGive me some input.[22m
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
 
 ? [1mGive me some input.[22m
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute.
-",
-  "[2K[1A[2K[G✖ Prompt was aborted
-",
-  "[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G✖ Prompt was aborted
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "✖ Prompt was aborted
 ",
   "[?25h",
@@ -35,29 +35,29 @@ exports[`default renderer: prompt -> inquirer should render a prompt: zTXlHkwllF
 exports[`default renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[G[G? [1mGive me some input.[22m
-[K",
-  "[1A[G[2K[G[1mGive me some input.[22m t[K
-",
-  "[1A[G[2K[G[1mGive me some input.[22m te[K
-",
-  "[1A[G[2K[G[1mGive me some input.[22m tes[K
-",
-  "[1A[G[2K[G[1mGive me some input.[22m test[K
-",
-  "[1A[G[2K[G✔ [1mGive me some input.[22m [36mtest[39m[K
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
-",
-  "[2K[1A[2K[G❯ This task will execute.
-",
-  "[2K[1A[2K[G✔ This task will execute.
-",
-  "[2K[1A[2K[G",
+  "[?2026h◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[G[G? [1mGive me some input.[22m
+[K[?2026l",
+  "[?2026h[1A[G[2K[G[1mGive me some input.[22m t[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[1mGive me some input.[22m te[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[1mGive me some input.[22m tes[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[1mGive me some input.[22m test[K
+[?2026l",
+  "[?2026h[1A[G[2K[G✔ [1mGive me some input.[22m [36mtest[39m[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G❯ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G✔ This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "✔ This task will execute.
 ",
   "[?25h",
