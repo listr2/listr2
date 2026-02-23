@@ -38,27 +38,27 @@
   "lint-staged": {
     "*.{ts,js,tsx,jsx,spec.ts}": [
       "prettier --log-level warn --write",
-      "eslint --flag v10_config_lookup_from_file --fix"
+      "eslint --fix"
     ],
     "*.{json,md}": [
       "prettier --log-level warn --write"
     ]
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^2.2.3",
-    "@cenk1cenk2/eslint-config": "^3.1.75",
+    "@cenk1cenk2/cz-cc": "^2.2.5",
+    "@cenk1cenk2/eslint-config": "^3.2.0",
     "@jest/globals": "^30.2.0",
     "@swc/core": "^1.15.13",
     "@tsconfig/node22": "^22.0.5",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.2.3",
+    "@types/node": "^25.3.0",
     "eslint": "^10.0.1",
     "execa": "^9.6.1",
     "jest": "^30.2.0",
     "jest-mock-process": "^2.0.0",
     "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
-    "rimraf": "^6.1.2",
+    "rimraf": "^6.1.3",
     "simple-git-hooks": "^2.13.1",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
