@@ -71,7 +71,6 @@
   ],
   "dependencies": {
     "cli-truncate": "^5.0.0",
-    "colorette": "^2.0.20",
     "eventemitter3": "^5.0.1",
     "log-update": "^7.1.0",
     "rfdc": "^1.4.1",
