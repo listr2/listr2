@@ -1,8 +1,9 @@
-import { createColors } from 'colorette'
+import { inspect, styleText } from 'node:util'
+import type { InspectColor } from 'node:util'
 
 /**
- * Creates color palette through underlying dependency of `colorette`.
- *
- * @see {@link https://www.npmjs.com/package/colorette}
+ * Color palette.
  */
-export const color = createColors()
+export const color = Object.fromEntries(Object.keys(inspect.colors).map((color) => [color, (text) => styleText(color as InspectColor, String(text))])) as {
+  [K in InspectColor]: (text: string | number) => string
+}
