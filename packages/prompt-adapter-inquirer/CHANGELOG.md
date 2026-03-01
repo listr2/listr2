@@ -1,3 +1,18 @@
+## @listr2/prompt-adapter-inquirer [4.1.2](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.1.1...@listr2/prompt-adapter-inquirer@4.1.2) (2026-03-01)
+
+
+### Bug Fixes
+
+* revert logupdate to older version ([96bad10](https://github.com/listr2/listr2/commit/96bad105272f94be811f805346c974a7ea482a28))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 10.1.2
+
 ## @listr2/prompt-adapter-inquirer [4.1.1](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.1.0...@listr2/prompt-adapter-inquirer@4.1.1) (2026-02-23)
 
 
