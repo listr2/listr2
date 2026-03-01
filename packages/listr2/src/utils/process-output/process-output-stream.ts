@@ -13,8 +13,17 @@ export class ProcessOutputStream {
   }
 
   get out(): NodeJS.WriteStream {
-    return Object.assign({}, this.stream, {
-      write: this.write.bind(this)
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const self = this
+
+    return new Proxy(this.stream, {
+      get(target, prop, receiver): any {
+        if (prop === 'write') {
+          return self.write.bind(self)
+        }
+
+        return Reflect.get(target, prop, receiver)
+      }
     })
   }
 
