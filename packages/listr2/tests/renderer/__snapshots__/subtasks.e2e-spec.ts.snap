@@ -7,25 +7,36 @@ exports[`default renderer: show subtasks should be able to change concurrency se
 exports[`default renderer: show subtasks should be able to change concurrency setting in subtask, second subtask should finish first: 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k-stdout 1`] = `
 [
   "[?25l",
-  "[?2026h◼ This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G❯ This task will execute.
-[?2026l",
-  "[?2026h[G[G  ◼ This is a subtask.[K
-[?2026l",
-  "[?2026h[G[G  ◼ This is an another subtask.[K
-[?2026l",
-  "[?2026h[2A[G[2K[G  ❯ This is a subtask.[K
-[1B[?2026l",
-  "[?2026h[1A[G[2K[G  ❯ This is an another subtask.[K
-[?2026l",
-  "[?2026h[1A[G[2K[G  ✔ This is an another subtask.[K
-[?2026l",
-  "[?2026h[2A[G[2K[G  ✔ This is a subtask.[K
-[1B[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ❯ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is an another subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
   "✔ This task will execute.
 ",
   "[?25h",
@@ -39,50 +50,108 @@ exports[`default renderer: show subtasks should be able to change exit on error:
 exports[`default renderer: show subtasks should be able to change exit on error: 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY-stdout 1`] = `
 [
   "[?25l",
-  "[?2026h◼ This task will execute and not quit on errors.
-[?2026l",
-  "[?2026h[G[G◼ This task will execute.[K
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  "◼ This task will execute and not quit on errors.
+",
+  "[2K[1A[2K[G◼ This task will execute and not quit on errors.
 ◼ This task will execute.
-[?2026l",
-  "[?2026h[1A[G[G  ◼ This is a subtask.[K
-[1B[?2026l",
-  "[?2026h[1A[G[G  ◼ This is an another subtask.[K
-[1B[?2026l",
-  "[?2026h[1A[G[G  ◼ This is yet an another subtask.[K
-[1B[?2026l",
-  "[?2026h[4A[G[2K[G  ❯ This is a subtask.[K
-[3B[?2026l",
-  "[?2026h[4A[G[2K[G  ✖ This is a subtask.[K
-[3B[?2026l",
-  "[?2026h[4A[G[2K[G  ✖ I have failed [0][K
-[3B[?2026l",
-  "[?2026h[3A[G[2K[G  ❯ This is an another subtask.[K
-[2B[?2026l",
-  "[?2026h[3A[G[2K[G  ✖ This is an another subtask.[K
-[2B[?2026l",
-  "[?2026h[3A[G[2K[G  ✖ I have failed [1][K
-[2B[?2026l",
-  "[?2026h[2A[G[2K[G  ❯ This is yet an another subtask.[K
-[1B[?2026l",
-  "[?2026h[2A[G[2K[G  ❯ I have succeeded.[K
-[1B[?2026l",
-  "[?2026h[2A[G[2K[G  ✔ I have succeeded.[K
-[1B[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ❯ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ◼ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ This is yet an another subtask.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute and not quit on errors.
   ✖ I have failed [0]
   ✖ I have failed [1]
   ✔ I have succeeded.
 ◼ This task will execute.
-[?2026l",
-  "[?2026h[1A[G[2K[G❯ This task will execute.[K
-[?2026l",
-  "[?2026h[1A[G[2K[G✖ This task will execute.[K
-[?2026l",
-  "[?2026h[1A[G[2K[G✖ exit[K
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ exit
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
   "⚠ This task will execute and not quit on errors.
   ✖ I have failed [0]
   ✖ I have failed [1]
@@ -100,25 +169,36 @@ exports[`default renderer: show subtasks should create a set of subtasks: JQYWVb
 exports[`default renderer: show subtasks should create a set of subtasks: JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR-stdout 1`] = `
 [
   "[?25l",
-  "[?2026h◼ This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G❯ This task will execute.
-[?2026l",
-  "[?2026h[G[G  ◼ This is a subtask.[K
-[?2026l",
-  "[?2026h[G[G  ◼ This is a subtask.[K
-[?2026l",
-  "[?2026h[2A[G[2K[G  ❯ This is a subtask.[K
-[1B[?2026l",
-  "[?2026h[2A[G[2K[G  ✔ This is a subtask.[K
-[1B[?2026l",
-  "[?2026h[1A[G[2K[G  ❯ This is a subtask.[K
-[?2026l",
-  "[?2026h[1A[G[2K[G  ✔ This is a subtask.[K
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+",
+  "[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ◼ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ❯ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ◼ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ❯ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  ✔ This is a subtask.
+  ✔ This is a subtask.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
   "✔ This task will execute.
 ",
   "[?25h",
