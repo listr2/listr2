@@ -70,10 +70,10 @@
     "idle"
   ],
   "dependencies": {
-    "cli-truncate": "^5.1.1",
+    "cli-truncate": "^5.2.0",
     "colorette": "^2.0.20",
     "eventemitter3": "^5.0.4",
-    "log-update": "^7.1.0",
+    "log-update": "^7.2.0",
     "rfdc": "^1.4.1",
     "wrap-ansi": "^10.0.0"
   },
