@@ -151,10 +151,10 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0
       eventemitter3:
-        specifier: ^5.0.1
+        specifier: ^5.0.4
         version: 5.0.4
       log-update:
-        specifier: ^6
+        specifier: ^6.1.0
         version: 6.1.0
       rfdc:
         specifier: ^1.4.1
