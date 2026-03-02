@@ -132,7 +132,12 @@ exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQE
   "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 [2m◼[22m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m Another task.
+
+[32m✔[39m [1mGive me some input.[22m [2m·[22m
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
 [2m◼[22m Another task.
 ",
   "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
