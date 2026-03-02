@@ -7,27 +7,36 @@ exports[`default renderer: task-enable should enable task with general context i
 exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-stdout 1`] = `
 [
   "[?25l",
-  "[?2026h◼ This task will execute.
-[?2026l",
-  "[?2026h[G[G◼ This task will show subtasks.[K
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
 ◼ This task will show subtasks.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will show subtasks.
-[?2026l",
-  "[?2026h[1A[G[2K[G❯ This task will show subtasks.[K
-[?2026l",
-  "[?2026h[G[G  ◼ This task will execute.[K
-[?2026l",
-  "[?2026h[1A[G[2K[G  ❯ This task will execute.[K
-[?2026l",
-  "[?2026h[1A[G[2K[G  ✔ This task will execute.[K
-[?2026l",
-  "[?2026h[2A[G[2K[1B[2K[1A[G✔ This task will show subtasks.[K
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will show subtasks.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will show subtasks.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will show subtasks.
+  ◼ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will show subtasks.
+  ❯ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+❯ This task will show subtasks.
+  ✔ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
+✔ This task will show subtasks.
+",
+  "[2K[1A[2K[1A[2K[G",
   "✔ This task will execute.
 ✔ This task will show subtasks.
 ",
@@ -42,18 +51,20 @@ exports[`default renderer: task-enable should enable task with general context: 
 exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-stdout 1`] = `
 [
   "[?25l",
-  "[?2026h◼ This task will execute.
-[?2026l",
-  "[?2026h[G[G◼ This task will never execute.[K
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "◼ This task will execute.
+",
+  "[2K[1A[2K[G◼ This task will execute.
 ◼ This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[1A[2K[G❯ This task will execute.
 ◼ This task will never execute.
-[?2026l",
-  "[?2026h[1A[G[2K[G[?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+◼ This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+",
+  "[2K[1A[2K[G",
   "✔ This task will execute.
 ",
   "[?25h",

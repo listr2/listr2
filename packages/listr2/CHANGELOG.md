@@ -1,3 +1,11 @@
+## listr2 [10.1.2](https://github.com/listr2/listr2/compare/listr2@10.1.1...listr2@10.1.2) (2026-03-01)
+
+
+### Bug Fixes
+
+* revert logupdate to older version ([96bad10](https://github.com/listr2/listr2/commit/96bad105272f94be811f805346c974a7ea482a28))
+* update staticly passed value problem ([39d184c](https://github.com/listr2/listr2/commit/39d184cecd765d9fda6493da68b6e5f2d8dab476))
+
 ## listr2 [10.1.1](https://github.com/listr2/listr2/compare/listr2@10.1.0...listr2@10.1.1) (2026-02-23)
 
 
