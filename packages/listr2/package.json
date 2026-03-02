@@ -71,7 +71,6 @@
   ],
   "dependencies": {
     "cli-truncate": "^5.2.0",
-    "eventemitter3": "^5.0.1",
     "log-update": "^6",
     "rfdc": "^1.4.1",
     "wrap-ansi": "^10.0.0"
