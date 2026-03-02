@@ -1,3 +1,18 @@
+# @listr2/prompt-adapter-inquirer [4.2.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.1.2...@listr2/prompt-adapter-inquirer@4.2.0) (2026-03-02)
+
+
+### Features
+
+* **utils:** replace colorette with util.styleText ([#758](https://github.com/listr2/listr2/issues/758)) ([6d71d38](https://github.com/listr2/listr2/commit/6d71d38b0c0b73c3dcbe08b692643c86ee9c4bd2))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 10.2.0
+
 ## @listr2/prompt-adapter-inquirer [4.1.2](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.1.1...@listr2/prompt-adapter-inquirer@4.1.2) (2026-03-01)
 
 
