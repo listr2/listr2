@@ -7,26 +7,26 @@ exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4H
 exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-↓ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m↓[39m This task will never execute.
 ",
   "[2K[1A[2K[1A[2K[G",
-  "✔ This task will execute.
-↓ This task will never execute.
+  "[32m✔[39m This task will execute.
+[33m↓[39m This task will never execute.
 ",
   "[?25h",
 ]
@@ -39,16 +39,16 @@ exports[`default renderer: task-skip should skip from internal function: ws7S3nD
 exports[`default renderer: task-skip should skip from internal function: ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G↓ This task will execute.
+  "[2K[1A[2K[G[33m↓[39m This task will execute.
 ",
-  "[2K[1A[2K[G↓ I am skipping this tasks for reasons.
+  "[2K[1A[2K[G[33m↓[39m I am skipping this tasks for reasons.
 ",
   "[2K[1A[2K[G",
-  "↓ I am skipping this tasks for reasons.
+  "[33m↓[39m I am skipping this tasks for reasons.
 ",
   "[?25h",
 ]
@@ -61,26 +61,26 @@ exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuO
 exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-↓ I will be skipped!
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m↓[39m I will be skipped!
 ",
   "[2K[1A[2K[1A[2K[G",
-  "✔ This task will execute.
-↓ I will be skipped!
+  "[32m✔[39m This task will execute.
+[33m↓[39m I will be skipped!
 ",
   "[?25h",
 ]
@@ -92,13 +92,13 @@ exports[`simple renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4Hz
 
 exports[`simple renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
-  "❯ This task will never execute.
+  "[33m❯[39m This task will never execute.
 ",
-  "↓ This task will never execute. [SKIPPED: This task will never execute.]
+  "[33m↓[39m This task will never execute. [33m[SKIPPED: This task will never execute.][39m
 ",
 ]
 `;
@@ -109,9 +109,9 @@ exports[`simple renderer: task-skip should skip from internal function: ws7S3nDQ
 
 exports[`simple renderer: task-skip should skip from internal function: ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
-  "↓ This task will execute. [SKIPPED: I am skipping this tasks for reasons.]
+  "[33m↓[39m This task will execute. [33m[SKIPPED: I am skipping this tasks for reasons.][39m
 ",
 ]
 `;
@@ -122,13 +122,13 @@ exports[`simple renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz
 
 exports[`simple renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
-  "❯ This task will never execute.
+  "[33m❯[39m This task will never execute.
 ",
-  "↓ This task will never execute. [SKIPPED: I will be skipped!]
+  "[33m↓[39m This task will never execute. [33m[SKIPPED: I will be skipped!][39m
 ",
 ]
 `;
@@ -192,13 +192,13 @@ exports[`verbose renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4H
 
 exports[`verbose renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
-  "[COMPLETED] This task will execute.
+  "[32m[COMPLETED][39m This task will execute.
 ",
-  "[STARTED] This task will never execute.
+  "[33m[STARTED][39m This task will never execute.
 ",
-  "[SKIPPED] This task will never execute.
+  "[33m[SKIPPED][39m This task will never execute.
 ",
 ]
 `;
@@ -209,9 +209,9 @@ exports[`verbose renderer: task-skip should skip from internal function: ws7S3nD
 
 exports[`verbose renderer: task-skip should skip from internal function: ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
-  "[SKIPPED] I am skipping this tasks for reasons.
+  "[33m[SKIPPED][39m I am skipping this tasks for reasons.
 ",
 ]
 `;
@@ -222,13 +222,13 @@ exports[`verbose renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuO
 
 exports[`verbose renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
-  "[COMPLETED] This task will execute.
+  "[32m[COMPLETED][39m This task will execute.
 ",
-  "[STARTED] This task will never execute.
+  "[33m[STARTED][39m This task will never execute.
 ",
-  "[SKIPPED] I will be skipped!
+  "[33m[SKIPPED][39m I will be skipped!
 ",
 ]
 `;

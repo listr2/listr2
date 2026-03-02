@@ -7,28 +7,28 @@ exports[`default renderer: task-skip should not collapse skip message: 7IvF8C3Re
 exports[`default renderer: task-skip should not collapse skip message: 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-⚠ This task will never execute.
-  ↓ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m⚠[39m This task will never execute.
+  [33m↓[39m This task will never execute.
 ",
   "[2K[1A[2K[1A[2K[1A[2K[G",
-  "✔ This task will execute.
-⚠ This task will never execute.
-  ↓ This task will never execute.
+  "[32m✔[39m This task will execute.
+[33m⚠[39m This task will never execute.
+  [33m↓[39m This task will never execute.
 ",
   "[?25h",
 ]
@@ -41,14 +41,14 @@ exports[`default renderer: task-skip should show the original title of the task 
 exports[`default renderer: task-skip should show the original title of the task when skipped with empty message: 3n2w67J8KnAihH5KaGDGnHe2O9xawvnx-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G↓ This task will execute.
+  "[2K[1A[2K[G[33m↓[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "↓ This task will execute.
+  "[33m↓[39m This task will execute.
 ",
   "[?25h",
 ]
@@ -61,14 +61,14 @@ exports[`default renderer: task-skip should show the original title of the task:
 exports[`default renderer: task-skip should show the original title of the task: c4Q9Hk2x725caX6F6qXGMgyUQh36HQls-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G↓ This task will execute.
+  "[2K[1A[2K[G[33m↓[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "↓ This task will execute.
+  "[33m↓[39m This task will execute.
 ",
   "[?25h",
 ]
@@ -81,16 +81,16 @@ exports[`default renderer: task-skip should skip without a suffix: omE6UjDQWFXPC
 exports[`default renderer: task-skip should skip without a suffix: omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G↓ This task will execute.
+  "[2K[1A[2K[G[33m↓[39m This task will execute.
 ",
-  "[2K[1A[2K[G↓ I am skipping this tasks for reasons.
+  "[2K[1A[2K[G[33m↓[39m I am skipping this tasks for reasons.
 ",
   "[2K[1A[2K[G",
-  "↓ I am skipping this tasks for reasons.
+  "[33m↓[39m I am skipping this tasks for reasons.
 ",
   "[?25h",
 ]

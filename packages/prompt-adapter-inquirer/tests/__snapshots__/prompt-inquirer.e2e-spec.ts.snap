@@ -7,24 +7,24 @@ exports[`default renderer: prompt -> inquirer should be able to cancel a prompt:
 exports[`default renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 
 ? [1mGive me some input.[22m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
 
 ? [1mGive me some input.[22m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✖ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[31m✖[39m This task will execute.
 ",
-  "[2K[1A[2K[G✖ Prompt was aborted
+  "[2K[1A[2K[G[31m✖[39m Prompt was aborted
 ",
   "[2K[1A[2K[G",
-  "✖ Prompt was aborted
+  "[31m✖[39m Prompt was aborted
 ",
   "[?25h",
 ]
@@ -37,42 +37,42 @@ exports[`default renderer: prompt -> inquirer should render a prompt: zTXlHkwllF
 exports[`default renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 
 ? [1mGive me some input.[22m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [1mGive me some input.[22m t
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [1mGive me some input.[22m te
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [1mGive me some input.[22m tes
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [1mGive me some input.[22m test
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 ✔ [1mGive me some input.[22m [36mtest[39m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[G[32m✔[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
   "[?25h",
 ]
@@ -85,14 +85,14 @@ exports[`simple renderer: prompt -> inquirer should be able to cancel a prompt: 
   "? [1mGive me some input.[22m[23G",
   "
 [?25h",
-  "✖ This task will execute. [FAILED: Prompt was aborted]
+  "[31m✖[39m This task will execute. [31m[FAILED: Prompt was aborted][39m
 ",
 ]
 `;
 
 exports[`simple renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
   "[?25l",
 ]
@@ -121,11 +121,11 @@ exports[`simple renderer: prompt -> inquirer should render a prompt: zTXlHkwllFG
 
 exports[`simple renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
   "[?25l",
   "[?25h",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
 ]
 `;
@@ -205,14 +205,14 @@ exports[`verbose renderer: prompt -> inquirer should be able to cancel a prompt:
 
 exports[`verbose renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stderr 1`] = `
 [
-  "[FAILED] Prompt was aborted
+  "[31m[FAILED][39m Prompt was aborted
 ",
 ]
 `;
 
 exports[`verbose renderer: prompt -> inquirer should be able to cancel a prompt: AABZsFFYgZITgdWMQdLGmxABwlBaXdiv-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
   "[PROMPT] ? [1mGive me some input.[22m
 ",
@@ -225,7 +225,7 @@ exports[`verbose renderer: prompt -> inquirer should render a prompt: zTXlHkwllF
 
 exports[`verbose renderer: prompt -> inquirer should render a prompt: zTXlHkwllFGUiGXlWztXAeZMvIleiEFF-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
   "[PROMPT] ? [1mGive me some input.[22m
 ",
@@ -241,7 +241,7 @@ exports[`verbose renderer: prompt -> inquirer should render a prompt: zTXlHkwllF
 ",
   "[PROMPT] ✔ [1mGive me some input.[22m [36mtest[39m
 ",
-  "[COMPLETED] This task will execute.
+  "[32m[COMPLETED][39m This task will execute.
 ",
 ]
 `;

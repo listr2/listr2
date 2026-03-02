@@ -7,42 +7,42 @@ exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBL
 exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[G[32m✔[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
   "[?25h",
 ]
@@ -55,52 +55,52 @@ exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyU
 exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me more input.[22m [2m…[22m 
 [36m▸[39m [36m[4mtest1[24m[39m
   test2
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[G[32m✔[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
   "[?25h",
 ]
@@ -113,43 +113,43 @@ exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQE
 exports[`default renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ Another task.
+  "[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ Another task.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ Another task.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m Another task.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
-◼ Another task.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ Another task.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G◼ This task will execute.
-◼ Another task.
+  "[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ Another task.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-◼ Another task.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[2m◼[22m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ Another task.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m Another task.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-✔ Another task.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[32m✔[39m Another task.
 ",
   "[2K[1A[2K[1A[2K[G",
-  "✔ This task will execute.
-✔ Another task.
+  "[32m✔[39m This task will execute.
+[32m✔[39m Another task.
 ",
   "[?25h",
 ]
@@ -162,42 +162,42 @@ exports[`default renderer: prompt -> enquirer should use the passed in enquirer:
 exports[`default renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m t[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m te[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m tes[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [36m?[39m [1mGive me some input.[22m [2m‣[22m test[46m[30m[30m [39m[30m[39m[49m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
 
 [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G◼ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[G[32m✔[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
   "[?25h",
 ]
@@ -234,11 +234,11 @@ exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf
 
 exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
   "[?25l",
   "[?25h",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
 ]
 `;
@@ -283,11 +283,11 @@ exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB
 
 exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
   "[?25l",
   "[?25h",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
 ]
 `;
@@ -307,15 +307,15 @@ exports[`simple renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEd
 
 exports[`simple renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
   "[?25l",
   "[?25h",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
-  "❯ Another task.
+  "[33m❯[39m Another task.
 ",
-  "✔ Another task.
+  "[32m✔[39m Another task.
 ",
 ]
 `;
@@ -351,11 +351,11 @@ exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: 
 
 exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
   "[?25l",
   "[?25h",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
 ]
 `;
@@ -600,7 +600,7 @@ exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBL
 
 exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
   "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
@@ -614,7 +614,7 @@ exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBL
 ",
   "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[COMPLETED] This task will execute.
+  "[32m[COMPLETED][39m This task will execute.
 ",
 ]
 `;
@@ -625,7 +625,7 @@ exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyU
 
 exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
   "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
@@ -645,7 +645,7 @@ exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyU
 ",
   "[PROMPT] [32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m
 ",
-  "[COMPLETED] This task will execute.
+  "[32m[COMPLETED][39m This task will execute.
 ",
 ]
 `;
@@ -656,17 +656,17 @@ exports[`verbose renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQE
 
 exports[`verbose renderer: prompt -> enquirer should use skip enquirer: 8QRF9bQEdSKkH62yUKbteKnrpevTbGan-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
   "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
   "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m
 ",
-  "[COMPLETED] This task will execute.
+  "[32m[COMPLETED][39m This task will execute.
 ",
-  "[STARTED] Another task.
+  "[33m[STARTED][39m Another task.
 ",
-  "[COMPLETED] Another task.
+  "[32m[COMPLETED][39m Another task.
 ",
 ]
 `;
@@ -677,7 +677,7 @@ exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer:
 
 exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
   "[PROMPT] [36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m
 ",
@@ -691,7 +691,7 @@ exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer:
 ",
   "[PROMPT] [32m✔[39m [1mGive me some input.[22m [2m·[22m [32mtest[39m
 ",
-  "[COMPLETED] This task will execute.
+  "[32m[COMPLETED][39m This task will execute.
 ",
 ]
 `;

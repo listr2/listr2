@@ -7,41 +7,41 @@ exports[`default renderer: parent task access should be able to change the title
 exports[`default renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
-  ◼ This is a subtask.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
+  [2m◼[22m This is a subtask.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ◼ This is a subtask.
-  ◼ This is a subtask.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+  [2m◼[22m This is a subtask.
+  [2m◼[22m This is a subtask.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ This task will execute.
-  ❯ This is a subtask.
-  ◼ This is a subtask.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+  [33m❯[39m This is a subtask.
+  [2m◼[22m This is a subtask.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
-  ❯ This is a subtask.
-  ◼ This is a subtask.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Title changed from subtask.
+  [33m❯[39m This is a subtask.
+  [2m◼[22m This is a subtask.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
-  ✔ This is a subtask.
-  ◼ This is a subtask.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Title changed from subtask.
+  [32m✔[39m This is a subtask.
+  [2m◼[22m This is a subtask.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
-  ✔ This is a subtask.
-  ❯ This is a subtask.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Title changed from subtask.
+  [32m✔[39m This is a subtask.
+  [33m❯[39m This is a subtask.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Title changed from subtask.
-  ✔ This is a subtask.
-  ✔ This is a subtask.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Title changed from subtask.
+  [32m✔[39m This is a subtask.
+  [32m✔[39m This is a subtask.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✔ Title changed from subtask.
+  "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m Title changed from subtask.
 ",
   "[2K[1A[2K[G",
-  "✔ Title changed from subtask.
+  "[32m✔[39m Title changed from subtask.
 ",
   "[?25h",
 ]
@@ -53,17 +53,17 @@ exports[`simple renderer: parent task access should be able to change the title 
 
 exports[`simple renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
-  "❯ This is a subtask.
+  "[33m❯[39m This is a subtask.
 ",
-  "✔ This is a subtask.
+  "[32m✔[39m This is a subtask.
 ",
-  "❯ This is a subtask.
+  "[33m❯[39m This is a subtask.
 ",
-  "✔ This is a subtask.
+  "[32m✔[39m This is a subtask.
 ",
-  "✔ Title changed from subtask.
+  "[32m✔[39m Title changed from subtask.
 ",
 ]
 `;
@@ -97,19 +97,19 @@ exports[`verbose renderer: parent task access should be able to change the title
 
 exports[`verbose renderer: parent task access should be able to change the title of parent from subtask: nvFwliir81dQSzoa7xPXaq0E1lauH674-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
-  "[STARTED] This is a subtask.
+  "[33m[STARTED][39m This is a subtask.
 ",
   "[TITLE] Title changed from subtask.
 ",
-  "[COMPLETED] This is a subtask.
+  "[32m[COMPLETED][39m This is a subtask.
 ",
-  "[STARTED] This is a subtask.
+  "[33m[STARTED][39m This is a subtask.
 ",
-  "[COMPLETED] This is a subtask.
+  "[32m[COMPLETED][39m This is a subtask.
 ",
-  "[COMPLETED] Title changed from subtask.
+  "[32m[COMPLETED][39m Title changed from subtask.
 ",
 ]
 `;

@@ -7,57 +7,57 @@ exports[`default renderer: rollback should both stop the execution with exitOnEr
 exports[`default renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
+  "[2m◼[22m Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
+  "[2K[1A[2K[G[2m◼[22m Something with rollback.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [33m❯[39m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task will fail.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m I am trying to rollback stuff, previous action failed.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
 ]
 `;
@@ -69,63 +69,63 @@ exports[`default renderer: rollback should both stop the execution with exitOnEr
 exports[`default renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
+  "[2m◼[22m Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
+  "[2K[1A[2K[G[2m◼[22m Something with rollback.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [33m❯[39m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task will fail.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m I am trying to rollback stuff, previous action failed.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  "← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
   "[?25h",
 ]
@@ -138,73 +138,73 @@ exports[`default renderer: rollback should contunie execution or stop there with
 exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
+  "[2m◼[22m Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
+  "[2K[1A[2K[G[2m◼[22m Something with rollback.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [33m❯[39m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task will fail.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m I am trying to rollback stuff, previous action failed.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-❯ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[33m❯[39m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-✔ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[32m✔[39m This task will maybe execute.
 ",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  "← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-✔ This task will maybe execute.
+  "[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[32m✔[39m This task will maybe execute.
 ",
   "[?25h",
 ]
@@ -217,63 +217,63 @@ exports[`default renderer: rollback should contunie execution or stop there with
 exports[`default renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
+  "[2m◼[22m Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will maybe execute.
+  "[2K[1A[2K[G[2m◼[22m Something with rollback.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [33m❯[39m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task will fail.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m I am trying to rollback stuff, previous action failed.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  "← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will maybe execute.
+  "[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will maybe execute.
 ",
   "[?25h",
 ]
@@ -286,63 +286,63 @@ exports[`default renderer: rollback should rollback the main task if any of the 
 exports[`default renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
+  "[2m◼[22m Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will never execute.
+  "[2K[1A[2K[G[2m◼[22m Something with rollback.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [33m❯[39m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task will fail.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Something with rollback.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Something with rollback.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ I am trying to rollback stuff, previous action failed.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m I am trying to rollback stuff, previous action failed.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G⚠ Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m⚠[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  "← Some actions required rollback stuff.
-  ✖ This task failed after 2 seconds.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
   "[?25h",
 ]
@@ -355,53 +355,58 @@ exports[`default renderer: rollback should rollback the subtask if the subtask i
 exports[`default renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stdout 1`] = `
 [
   "[?25l",
-  "◼ Something with rollback.
+  "[2m◼[22m Something with rollback.
 ",
-  "[2K[1A[2K[G◼ Something with rollback.
-◼ This task will never execute.
+  "[2K[1A[2K[G[2m◼[22m Something with rollback.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ◼ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [2m◼[22m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ❯ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [33m❯[39m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ This task will fail.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [91m⚠[39m This task will fail.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ I am trying to rollback stuff, previous action failed.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [91m⚠[39m I am trying to rollback stuff, previous action failed.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ⚠ Some actions required rollback stuff.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [91m⚠[39m Some actions required rollback stuff.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G❯ Something with rollback.
-  ← Some actions required rollback stuff.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m Something with rollback.
+  [91m←[39m Some actions required rollback stuff.
+  [2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[31m❯[39m Something with rollback.
+  [91m←[39m Some actions required rollback stuff.
+  [2m◼[22m This task will execute.
+[31m◼[39m This task will never execute.
 ",
   "[2K[1A[2K[1A[2K[1A[2K[1A[2K[G",
-  "❯ Something with rollback.
-  ← Some actions required rollback stuff.
-  ◼ This task will execute.
-◼ This task will never execute.
+  "[31m❯[39m Something with rollback.
+  [91m←[39m Some actions required rollback stuff.
+  [2m◼[22m This task will execute.
+[31m◼[39m This task will never execute.
 ",
   "[?25h",
 ]
@@ -411,20 +416,20 @@ exports[`simple renderer: rollback should both stop the execution with exitOnErr
 
 exports[`simple renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
 [
-  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m Something with rollback. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+  "[91m←[39m Some actions required rollback stuff. [31m[ROLLBACK: Some actions required rollback stuff.][39m
 ",
 ]
 `;
 
 exports[`simple renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
 [
-  "❯ Something with rollback.
+  "[33m❯[39m Something with rollback.
 ",
-  "❯ This task will fail.
+  "[33m❯[39m This task will fail.
 ",
 ]
 `;
@@ -433,20 +438,20 @@ exports[`simple renderer: rollback should both stop the execution with exitOnErr
 
 exports[`simple renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
 [
-  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m Something with rollback. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+  "[91m←[39m Some actions required rollback stuff. [31m[ROLLBACK: Some actions required rollback stuff.][39m
 ",
 ]
 `;
 
 exports[`simple renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
 [
-  "❯ Something with rollback.
+  "[33m❯[39m Something with rollback.
 ",
-  "❯ This task will fail.
+  "[33m❯[39m This task will fail.
 ",
 ]
 `;
@@ -455,24 +460,24 @@ exports[`simple renderer: rollback should contunie execution or stop there with 
 
 exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
 [
-  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m Something with rollback. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+  "[91m←[39m Some actions required rollback stuff. [31m[ROLLBACK: Some actions required rollback stuff.][39m
 ",
 ]
 `;
 
 exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
-  "❯ Something with rollback.
+  "[33m❯[39m Something with rollback.
 ",
-  "❯ This task will fail.
+  "[33m❯[39m This task will fail.
 ",
-  "❯ This task will maybe execute.
+  "[33m❯[39m This task will maybe execute.
 ",
-  "✔ This task will maybe execute.
+  "[32m✔[39m This task will maybe execute.
 ",
 ]
 `;
@@ -481,20 +486,20 @@ exports[`simple renderer: rollback should contunie execution or stop there with 
 
 exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
 [
-  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m Something with rollback. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+  "[91m←[39m Some actions required rollback stuff. [31m[ROLLBACK: Some actions required rollback stuff.][39m
 ",
 ]
 `;
 
 exports[`simple renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
-  "❯ Something with rollback.
+  "[33m❯[39m Something with rollback.
 ",
-  "❯ This task will fail.
+  "[33m❯[39m This task will fail.
 ",
 ]
 `;
@@ -503,20 +508,20 @@ exports[`simple renderer: rollback should rollback the main task if any of the s
 
 exports[`simple renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stderr 1`] = `
 [
-  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m Something with rollback. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+  "[91m←[39m Some actions required rollback stuff. [31m[ROLLBACK: Some actions required rollback stuff.][39m
 ",
 ]
 `;
 
 exports[`simple renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stdout 1`] = `
 [
-  "❯ Something with rollback.
+  "[33m❯[39m Something with rollback.
 ",
-  "❯ This task will fail.
+  "[33m❯[39m This task will fail.
 ",
 ]
 `;
@@ -525,20 +530,20 @@ exports[`simple renderer: rollback should rollback the subtask if the subtask it
 
 exports[`simple renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stderr 1`] = `
 [
-  "✖ This task will fail. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
-  "← Some actions required rollback stuff. [ROLLBACK: Some actions required rollback stuff.]
+  "[91m←[39m Some actions required rollback stuff. [31m[ROLLBACK: Some actions required rollback stuff.][39m
 ",
-  "✖ Something with rollback. [FAILED: This task failed after 2 seconds.]
+  "[31m✖[39m Something with rollback. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
 ]
 `;
 
 exports[`simple renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stdout 1`] = `
 [
-  "❯ Something with rollback.
+  "[33m❯[39m Something with rollback.
 ",
-  "❯ This task will fail.
+  "[33m❯[39m This task will fail.
 ",
 ]
 `;
@@ -743,20 +748,20 @@ exports[`verbose renderer: rollback should both stop the execution with exitOnEr
 
 exports[`verbose renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
 [
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[ROLLBACK] Some actions required rollback stuff.
+  "[91m[ROLLBACK][39m Some actions required rollback stuff.
 ",
 ]
 `;
 
 exports[`verbose renderer: rollback should both stop the execution with exitOnError false since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
 [
-  "[STARTED] Something with rollback.
+  "[33m[STARTED][39m Something with rollback.
 ",
-  "[STARTED] This task will fail.
+  "[33m[STARTED][39m This task will fail.
 ",
   "[TITLE] I am trying to rollback stuff, previous action failed.
 ",
@@ -769,20 +774,20 @@ exports[`verbose renderer: rollback should both stop the execution with exitOnEr
 
 exports[`verbose renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stderr 1`] = `
 [
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[ROLLBACK] Some actions required rollback stuff.
+  "[91m[ROLLBACK][39m Some actions required rollback stuff.
 ",
 ]
 `;
 
 exports[`verbose renderer: rollback should both stop the execution with exitOnError true since exitAfterRollback is independent: 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A-stdout 1`] = `
 [
-  "[STARTED] Something with rollback.
+  "[33m[STARTED][39m Something with rollback.
 ",
-  "[STARTED] This task will fail.
+  "[33m[STARTED][39m This task will fail.
 ",
   "[TITLE] I am trying to rollback stuff, previous action failed.
 ",
@@ -795,28 +800,28 @@ exports[`verbose renderer: rollback should contunie execution or stop there with
 
 exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
 [
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[ROLLBACK] Some actions required rollback stuff.
+  "[91m[ROLLBACK][39m Some actions required rollback stuff.
 ",
 ]
 `;
 
 exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: false: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
-  "[STARTED] Something with rollback.
+  "[33m[STARTED][39m Something with rollback.
 ",
-  "[STARTED] This task will fail.
+  "[33m[STARTED][39m This task will fail.
 ",
   "[TITLE] I am trying to rollback stuff, previous action failed.
 ",
   "[TITLE] Some actions required rollback stuff.
 ",
-  "[STARTED] This task will maybe execute.
+  "[33m[STARTED][39m This task will maybe execute.
 ",
-  "[COMPLETED] This task will maybe execute.
+  "[32m[COMPLETED][39m This task will maybe execute.
 ",
 ]
 `;
@@ -825,20 +830,20 @@ exports[`verbose renderer: rollback should contunie execution or stop there with
 
 exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stderr 1`] = `
 [
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[ROLLBACK] Some actions required rollback stuff.
+  "[91m[ROLLBACK][39m Some actions required rollback stuff.
 ",
 ]
 `;
 
 exports[`verbose renderer: rollback should contunie execution or stop there with exitAfterRollback: true: 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8-stdout 1`] = `
 [
-  "[STARTED] Something with rollback.
+  "[33m[STARTED][39m Something with rollback.
 ",
-  "[STARTED] This task will fail.
+  "[33m[STARTED][39m This task will fail.
 ",
   "[TITLE] I am trying to rollback stuff, previous action failed.
 ",
@@ -851,20 +856,20 @@ exports[`verbose renderer: rollback should rollback the main task if any of the 
 
 exports[`verbose renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stderr 1`] = `
 [
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[ROLLBACK] Some actions required rollback stuff.
+  "[91m[ROLLBACK][39m Some actions required rollback stuff.
 ",
 ]
 `;
 
 exports[`verbose renderer: rollback should rollback the main task if any of the subtasks fail: 4SIhMkI14b8s2hW1esiORoa1UINGHwAr-stdout 1`] = `
 [
-  "[STARTED] Something with rollback.
+  "[33m[STARTED][39m Something with rollback.
 ",
-  "[STARTED] This task will fail.
+  "[33m[STARTED][39m This task will fail.
 ",
   "[TITLE] I am trying to rollback stuff, previous action failed.
 ",
@@ -877,20 +882,20 @@ exports[`verbose renderer: rollback should rollback the subtask if the subtask i
 
 exports[`verbose renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stderr 1`] = `
 [
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
-  "[ROLLBACK] Some actions required rollback stuff.
+  "[91m[ROLLBACK][39m Some actions required rollback stuff.
 ",
-  "[FAILED] This task failed after 2 seconds.
+  "[31m[FAILED][39m This task failed after 2 seconds.
 ",
 ]
 `;
 
 exports[`verbose renderer: rollback should rollback the subtask if the subtask itself fails: vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx-stdout 1`] = `
 [
-  "[STARTED] Something with rollback.
+  "[33m[STARTED][39m Something with rollback.
 ",
-  "[STARTED] This task will fail.
+  "[33m[STARTED][39m This task will fail.
 ",
   "[TITLE] I am trying to rollback stuff, previous action failed.
 ",
