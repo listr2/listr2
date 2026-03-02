@@ -7,38 +7,38 @@ exports[`default renderer: task-enable should enable task with general context i
 exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will show subtasks.
+  "[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m This task will show subtasks.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ This task will show subtasks.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will show subtasks.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-◼ This task will show subtasks.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[2m◼[22m This task will show subtasks.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will show subtasks.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ◼ This task will execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will show subtasks.
+  [2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ❯ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will show subtasks.
+  [33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-❯ This task will show subtasks.
-  ✔ This task will execute.
+  "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[33m❯[39m This task will show subtasks.
+  [32m✔[39m This task will execute.
 ",
-  "[2K[1A[2K[1A[2K[1A[2K[G✔ This task will execute.
-✔ This task will show subtasks.
+  "[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[32m✔[39m This task will show subtasks.
 ",
   "[2K[1A[2K[1A[2K[G",
-  "✔ This task will execute.
-✔ This task will show subtasks.
+  "[32m✔[39m This task will execute.
+[32m✔[39m This task will show subtasks.
 ",
   "[?25h",
 ]
@@ -51,21 +51,21 @@ exports[`default renderer: task-enable should enable task with general context: 
 exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G◼ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[G[2m◼[22m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
-◼ This task will never execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[2m◼[22m This task will never execute.
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
   "[?25h",
 ]

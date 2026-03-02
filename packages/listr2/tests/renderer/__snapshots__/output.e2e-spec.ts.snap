@@ -7,23 +7,23 @@ exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtK
 exports[`default renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [0]
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [1]
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [2]
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
   "[?25h",
 ]
@@ -35,7 +35,7 @@ exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKi
 
 exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
 [
-  "❯ This task will execute.
+  "[33m❯[39m This task will execute.
 ",
   "› I will push an output. [0]
 ",
@@ -43,7 +43,7 @@ exports[`simple renderer: output should yield example output: rMG224TBrLk3ocYtKi
 ",
   "› I will push an output. [2]
 ",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
 ]
 `;
@@ -73,7 +73,7 @@ exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtK
 
 exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtKidc1D4AyZtEHm11-stdout 1`] = `
 [
-  "[STARTED] This task will execute.
+  "[33m[STARTED][39m This task will execute.
 ",
   "[OUTPUT] I will push an output. [0]
 ",
@@ -81,7 +81,7 @@ exports[`verbose renderer: output should yield example output: rMG224TBrLk3ocYtK
 ",
   "[OUTPUT] I will push an output. [2]
 ",
-  "[COMPLETED] This task will execute.
+  "[32m[COMPLETED][39m This task will execute.
 ",
 ]
 `;

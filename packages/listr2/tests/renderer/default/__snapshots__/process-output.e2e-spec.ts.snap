@@ -7,25 +7,25 @@ exports[`default renderer: process output should hook in to stdout/stderr and lo
 exports[`default renderer: process output should hook in to stdout/stderr and log everything after even though there is an error: 77ddpC6bJ1Tj5Mz0JNjCqjq9pkwN7Gxh-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [0]
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [1]
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [2]
 ",
-  "[2K[1A[2K[1A[2K[G✖ This task will execute.
+  "[2K[1A[2K[1A[2K[G[31m✖[39m This task will execute.
 ",
-  "[2K[1A[2K[G✖ yattara
+  "[2K[1A[2K[G[31m✖[39m yattara
 ",
   "[2K[1A[2K[G",
-  "✖ yattara
+  "[31m✖[39m yattara
 ",
   "
 ",
@@ -46,23 +46,23 @@ exports[`default renderer: process output should hook in to stdout/stderr and lo
 exports[`default renderer: process output should hook in to stdout/stderr and log everything after: qI0M3xvUnGRj5hNg9NhHYq5lezkNGlRK-stdout 1`] = `
 [
   "[?25l",
-  "◼ This task will execute.
+  "[2m◼[22m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
 ",
-  "[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [0]
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [1]
 ",
-  "[2K[1A[2K[1A[2K[G❯ This task will execute.
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
   › I will push an output. [2]
 ",
-  "[2K[1A[2K[1A[2K[G✔ This task will execute.
+  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 ",
   "[2K[1A[2K[G",
-  "✔ This task will execute.
+  "[32m✔[39m This task will execute.
 ",
   "
 ",

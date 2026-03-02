@@ -7,47 +7,47 @@ exports[`default renderer: retry should retry the main task if any of the subtas
 exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
 [
   "[?25l",
-  "◼ Some type errors
+  "[2m◼[22m Some type errors
 ",
-  "[2K[1A[2K[G❯ Some type errors
+  "[2K[1A[2K[G[33m❯[39m Some type errors
 ",
-  "[2K[1A[2K[G❯ Some type errors
+  "[2K[1A[2K[G[33m❯[39m Some type errors
   › test
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
   › test
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
   › I am self aware that I am retrying for the 1th time.
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
   › I am self aware that I am retrying for the 1th time.
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
   › test
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
   › I am self aware that I am retrying for the 2th time.
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
   › I am self aware that I am retrying for the 2th time.
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
   › test
 ",
-  "[2K[1A[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
   › I am self aware that I am retrying for the 3th time.
 ",
-  "[2K[1A[2K[1A[2K[G✖ This type can not be assigned to type with, oh noes
+  "[2K[1A[2K[1A[2K[G[31m✖[39m This type can not be assigned to type with, oh noes
 ",
   "[2K[1A[2K[G",
-  "✖ This type can not be assigned to type with, oh noes
+  "[31m✖[39m This type can not be assigned to type with, oh noes
 ",
   "[?25h",
 ]
@@ -60,22 +60,22 @@ exports[`default renderer: retry should stop retrying if the task succeeds after
 exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
 [
   "[?25l",
-  "◼ Some type errors
+  "[2m◼[22m Some type errors
 ",
-  "[2K[1A[2K[G❯ Some type errors
+  "[2K[1A[2K[G[33m❯[39m Some type errors
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:1]
+  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:2]
+  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
 ",
-  "[2K[1A[2K[G⚠ Some type errors [RETRY:3]
+  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
 ",
-  "[2K[1A[2K[G⚠ Successed at 3th try. [RETRY:3]
+  "[2K[1A[2K[G[93m⚠[39m Successed at 3th try. [33m[RETRY:3][39m
 ",
-  "[2K[1A[2K[G✔ Successed at 3th try.
+  "[2K[1A[2K[G[32m✔[39m Successed at 3th try.
 ",
   "[2K[1A[2K[G",
-  "✔ Successed at 3th try.
+  "[32m✔[39m Successed at 3th try.
 ",
   "[?25h",
 ]
@@ -85,26 +85,26 @@ exports[`simple renderer: retry should retry the main task if any of the subtask
 
 exports[`simple renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stderr 1`] = `
 [
-  "⚠ Some type errors [RETRY:1]
+  "[93m⚠[39m Some type errors [31m[RETRY:1][39m
 ",
-  "✖ Some type errors [FAILED: This type can not be assigned to type with, oh noes]
+  "[31m✖[39m Some type errors [31m[FAILED: This type can not be assigned to type with, oh noes][39m
 ",
-  "⚠ Some type errors [RETRY:2]
+  "[93m⚠[39m Some type errors [31m[RETRY:2][39m
 ",
-  "✖ Some type errors [FAILED: This type can not be assigned to type with, oh noes]
+  "[31m✖[39m Some type errors [31m[FAILED: This type can not be assigned to type with, oh noes][39m
 ",
-  "⚠ Some type errors [RETRY:3]
+  "[93m⚠[39m Some type errors [31m[RETRY:3][39m
 ",
-  "✖ Some type errors [FAILED: This type can not be assigned to type with, oh noes]
+  "[31m✖[39m Some type errors [31m[FAILED: This type can not be assigned to type with, oh noes][39m
 ",
-  "✖ Some type errors [FAILED: This type can not be assigned to type with, oh noes]
+  "[31m✖[39m Some type errors [31m[FAILED: This type can not be assigned to type with, oh noes][39m
 ",
 ]
 `;
 
 exports[`simple renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
 [
-  "❯ Some type errors
+  "[33m❯[39m Some type errors
 ",
   "› test
 ",
@@ -127,26 +127,26 @@ exports[`simple renderer: retry should stop retrying if the task succeeds afterw
 
 exports[`simple renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stderr 1`] = `
 [
-  "⚠ Some type errors [RETRY:1]
+  "[93m⚠[39m Some type errors [31m[RETRY:1][39m
 ",
-  "✖ Some type errors [FAILED: not enough]
+  "[31m✖[39m Some type errors [31m[FAILED: not enough][39m
 ",
-  "⚠ Some type errors [RETRY:2]
+  "[93m⚠[39m Some type errors [31m[RETRY:2][39m
 ",
-  "✖ Some type errors [FAILED: not enough]
+  "[31m✖[39m Some type errors [31m[FAILED: not enough][39m
 ",
-  "⚠ Some type errors [RETRY:3]
+  "[93m⚠[39m Some type errors [31m[RETRY:3][39m
 ",
-  "✖ Some type errors [FAILED: not enough]
+  "[31m✖[39m Some type errors [31m[FAILED: not enough][39m
 ",
 ]
 `;
 
 exports[`simple renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
 [
-  "❯ Some type errors
+  "[33m❯[39m Some type errors
 ",
-  "✔ Successed at 3th try.
+  "[32m✔[39m Successed at 3th try.
 ",
 ]
 `;
@@ -253,26 +253,26 @@ exports[`verbose renderer: retry should retry the main task if any of the subtas
 
 exports[`verbose renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stderr 1`] = `
 [
-  "[RETRY] Some type errors [1]
+  "[93m[RETRY][39m Some type errors [1]
 ",
-  "[FAILED] This type can not be assigned to type with, oh noes
+  "[31m[FAILED][39m This type can not be assigned to type with, oh noes
 ",
-  "[RETRY] Some type errors [2]
+  "[93m[RETRY][39m Some type errors [2]
 ",
-  "[FAILED] This type can not be assigned to type with, oh noes
+  "[31m[FAILED][39m This type can not be assigned to type with, oh noes
 ",
-  "[RETRY] Some type errors [3]
+  "[93m[RETRY][39m Some type errors [3]
 ",
-  "[FAILED] This type can not be assigned to type with, oh noes
+  "[31m[FAILED][39m This type can not be assigned to type with, oh noes
 ",
-  "[FAILED] This type can not be assigned to type with, oh noes
+  "[31m[FAILED][39m This type can not be assigned to type with, oh noes
 ",
 ]
 `;
 
 exports[`verbose renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
 [
-  "[STARTED] Some type errors
+  "[33m[STARTED][39m Some type errors
 ",
   "[OUTPUT] test
 ",
@@ -301,24 +301,24 @@ exports[`verbose renderer: retry should stop retrying if the task succeeds after
 
 exports[`verbose renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stderr 1`] = `
 [
-  "[RETRY] Some type errors [1]
+  "[93m[RETRY][39m Some type errors [1]
 ",
-  "[FAILED] not enough
+  "[31m[FAILED][39m not enough
 ",
-  "[RETRY] Some type errors [2]
+  "[93m[RETRY][39m Some type errors [2]
 ",
-  "[FAILED] not enough
+  "[31m[FAILED][39m not enough
 ",
-  "[RETRY] Some type errors [3]
+  "[93m[RETRY][39m Some type errors [3]
 ",
-  "[FAILED] not enough
+  "[31m[FAILED][39m not enough
 ",
 ]
 `;
 
 exports[`verbose renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
 [
-  "[STARTED] Some type errors
+  "[33m[STARTED][39m Some type errors
 ",
   "[TITLE] Some type errors
 ",
@@ -328,7 +328,7 @@ exports[`verbose renderer: retry should stop retrying if the task succeeds after
 ",
   "[TITLE] Successed at 3th try.
 ",
-  "[COMPLETED] Successed at 3th try.
+  "[32m[COMPLETED][39m Successed at 3th try.
 ",
 ]
 `;
