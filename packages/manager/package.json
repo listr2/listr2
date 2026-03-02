@@ -30,14 +30,14 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.13.0"
   },
   "scripts": {
     "build": "tsdown",
     "dev:start": "tsdown --watch",
     "format": "prettier --log-level warn --write src/ tests/ && pnpm run lint --fix",
     "lint": "eslint src/ tests/",
-    "test": "NO_COLOR=1 TS_NODE_PROJECT=tests/tsconfig.json NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules' jest --config tests/jest.config.ts",
+    "test": "TS_NODE_PROJECT=tests/tsconfig.json NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules' jest --config tests/jest.config.ts",
     "test:cov": "pnpm run test --coverage",
     "test:dev": "NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --inspect=0.0.0.0:9229' pnpm run test --verbose --watchAll"
   },
