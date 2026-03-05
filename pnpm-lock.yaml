@@ -63,8 +63,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0
       tsdown:
-        specifier: 0.21.0-beta.4
-        version: 0.21.0-beta.4(synckit@0.11.12)(typescript@5.9.3)
+        specifier: 0.21.0-beta.5
+        version: 0.21.0-beta.5(synckit@0.11.12)(typescript@5.9.3)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -4190,14 +4190,14 @@ packages:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
 
-  tsdown@0.21.0-beta.4:
-    resolution: {integrity: sha512-ziDGs4VUzCSXAJ/4CucV+We9bt4ApShTdwoV7jg7W1OQkyBQgdSYMbEK/tDOql4x3qX/Oc2H3rxcKHsvmywf5g==}
+  tsdown@0.21.0-beta.5:
+    resolution: {integrity: sha512-C9HaZdQUjL+ALVOjOnG1cEzZAbnLaUOFEYr/6/jHlzPz7lZtLbhjIlnCH1Y6coopHy1HqaLNewni/Rm1nddCcg==}
     engines: {node: '>=20.19.0'}
     hasBin: true
     peerDependencies:
       '@arethetypeswrong/core': ^0.18.1
-      '@tsdown/css': 0.21.0-beta.4
-      '@tsdown/exe': 0.21.0-beta.4
+      '@tsdown/css': 0.21.0-beta.5
+      '@tsdown/exe': 0.21.0-beta.5
       '@vitejs/devtools': '*'
       publint: ^0.3.0
       typescript: ^5.0.0
@@ -9099,7 +9099,7 @@ snapshots:
       minimist: 1.2.8
       strip-bom: 3.0.0
 
-  tsdown@0.21.0-beta.4(synckit@0.11.12)(typescript@5.9.3):
+  tsdown@0.21.0-beta.5(synckit@0.11.12)(typescript@5.9.3):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
