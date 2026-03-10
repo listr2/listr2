@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^2.2.5",
-    "@cenk1cenk2/eslint-config": "^3.2.1",
+    "@cenk1cenk2/eslint-config": "^3.2.2",
     "@jest/globals": "^30.2.0",
     "@swc/core": "^1.15.18",
     "@tsconfig/node22": "^22.0.5",
@@ -54,7 +54,7 @@
     "@types/node": "^25.3.3",
     "eslint": "^10.0.3",
     "execa": "^9.6.1",
-    "jest": "^30.2.0",
+    "jest": "^30.3.0",
     "jest-mock-process": "^2.0.0",
     "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
@@ -63,7 +63,7 @@
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsdown": "0.21.0",
+    "tsdown": "0.21.1",
     "typescript": "^5.9.3"
   },
   "config": {
