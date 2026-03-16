@@ -1,4 +1,4 @@
-import EventEmitter from 'eventemitter3'
+import EventEmitter from 'node:events'
 
 import type { EventData } from '@interfaces'
 
@@ -18,7 +18,11 @@ export class EventManager<Event extends string = string, Map extends Partial<Rec
   }
 
   public off<E extends Event = Event>(dispatch: E, handler?: (data: EventData<E, Map>) => void): void {
-    this.emitter.off(dispatch, handler)
+    if (typeof handler === 'function') {
+      this.emitter.off(dispatch, handler)
+    } else {
+      this.emitter.removeAllListeners(dispatch)
+    }
   }
 
   public complete(): void {
