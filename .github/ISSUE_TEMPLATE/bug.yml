@@ -51,7 +51,7 @@ body:
       options:
         - label: Read/Search existing issues and the provided [documentation](https://listr2.kilic.dev).
           required: true
-        - label: Be sure to not open an issue in the [looking for contributions section](/repository/contributions.html#looking-for-contributions).
+        - label: Be sure to not open an issue in the [looking for contributions section](https://listr2.kilic.dev/repository/contributions.html#looking-for-contributions).
           required: true
         - label: Checking the latest version of the software to confirm it has not been fixed already.
           required: true
