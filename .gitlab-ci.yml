@@ -39,7 +39,7 @@ include:
         - when: always
 
   - project: devops/pipelines
-    ref: semantic-release@1.6.0
+    ref: semantic-release@1.6.1
     file:
       - /semantic-release/publish.gitlab-ci.yml
 
