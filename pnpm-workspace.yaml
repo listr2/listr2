@@ -3,10 +3,13 @@ packages:
   - examples
   - packages/*
 
-ignoredBuiltDependencies:
-  - esbuild
-  - unrs-resolver
+minimumReleaseAge: 1440
 
-onlyBuiltDependencies:
-  - '@swc/core'
-  - simple-git-hooks
+minimumReleaseAgeExclude:
+  - '@cenk1cenk2/*'
+
+allowBuilds:
+  '@swc/core': true
+  esbuild: false
+  simple-git-hooks: true
+  unrs-resolver: false
