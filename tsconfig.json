@@ -2,11 +2,11 @@
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
-    "paths": {}
+    "types": ["node"]
   },
   "ts-node": {
     "esm": true,

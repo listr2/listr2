@@ -3,12 +3,10 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": ".vitepress/",
-    "baseUrl": ".vitepress/",
     "module": "ESNext",
     "target": "ESNext",
-    "moduleResolution": "NodeNext",
-    "noImplicitAny": false,
-    "paths": {}
+    "moduleResolution": "Bundler",
+    "noImplicitAny": false
   },
   "include": ["./.vitepress/**/*", "./.vitepress/**/*.vue"],
   "exclude": ["node_modules", "dist"]
