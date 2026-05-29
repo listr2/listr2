@@ -23,7 +23,7 @@ const config: JestConfigWithTsJest = {
   moduleFileExtensions: ['ts', 'js'],
   moduleNameMapper: {
     ...pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
-      prefix: '<rootDir>/'
+      prefix: '<rootDir>/tests/'
     }),
     ['^(\\.{1,2}/.*)\\.js$']: '$1'
   }
