@@ -111,7 +111,7 @@ importers:
         specifier: 1.6.4
         version: 1.6.4(@algolia/client-search@5.35.0)(@types/node@25.3.3)(postcss@8.5.6)(search-insights@2.17.3)(typescript@5.9.3)
       vitepress-sidebar:
-        specifier: ^1.36.0
+        specifier: ^1.36.1
         version: 1.36.1
       vue:
         specifier: ^3.5.29
