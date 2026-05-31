@@ -12,4 +12,4 @@ allowBuilds:
   '@swc/core': true
   esbuild: false
   simple-git-hooks: true
-  unrs-resolver: false
+  unrs-resolver: true
