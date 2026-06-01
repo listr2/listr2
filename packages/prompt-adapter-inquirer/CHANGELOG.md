@@ -1,3 +1,10 @@
+## @listr2/prompt-adapter-inquirer [4.2.4](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.3...@listr2/prompt-adapter-inquirer@4.2.4) (2026-06-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @inquirer/type to ^4.0.6 ([eab2b22](https://github.com/listr2/listr2/commit/eab2b229746a7302ab20480a8144ccb359d9b9ef))
+
 ## @listr2/prompt-adapter-inquirer [4.2.3](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.2...@listr2/prompt-adapter-inquirer@4.2.3) (2026-04-06)
 
 
