@@ -191,8 +191,8 @@ importers:
   packages/prompt-adapter-inquirer:
     dependencies:
       '@inquirer/type':
-        specifier: ^4.0.5
-        version: 4.0.5(@types/node@25.3.3)
+        specifier: ^4.0.6
+        version: 4.0.7(@types/node@25.3.3)
     devDependencies:
       '@inquirer/core':
         specifier: ^11.1.5
@@ -913,9 +913,9 @@ packages:
       '@types/node':
         optional: true
 
-  '@inquirer/type@4.0.5':
-    resolution: {integrity: sha512-aetVUNeKNc/VriqXlw1NRSW0zhMBB0W4bNbWRJgzRl/3d0QNDQFfk0GO5SDdtjMZVg6o8ZKEiadd7SCCzoOn5Q==}
-    engines: {node: '>=23.5.0 || ^22.13.0 || ^21.7.0 || ^20.12.0'}
+  '@inquirer/type@4.0.7':
+    resolution: {integrity: sha512-t28inv14nMQ1PhKpsJPY+kEs/c00qzeCOS2gTNRyTjG5d6qsVA2fItxW4hkvGZ5lvanGLdtCzVIx5dwdRpN1+g==}
+    engines: {node: '>=23.5.0 || ^22.13.0 || ^20.17.0'}
     peerDependencies:
       '@types/node': '>=18'
     peerDependenciesMeta:
@@ -4840,14 +4840,14 @@ snapshots:
       '@inquirer/ansi': 2.0.3
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
       '@inquirer/figures': 2.0.3
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
   '@inquirer/confirm@6.0.8(@types/node@25.3.3)':
     dependencies:
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
@@ -4855,7 +4855,7 @@ snapshots:
     dependencies:
       '@inquirer/ansi': 2.0.3
       '@inquirer/figures': 2.0.3
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
       cli-width: 4.1.0
       fast-wrap-ansi: 0.2.0
       mute-stream: 3.0.0
@@ -4867,14 +4867,14 @@ snapshots:
     dependencies:
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
       '@inquirer/external-editor': 2.0.3(@types/node@25.3.3)
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
   '@inquirer/expand@5.0.8(@types/node@25.3.3)':
     dependencies:
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
@@ -4890,14 +4890,14 @@ snapshots:
   '@inquirer/input@5.0.8(@types/node@25.3.3)':
     dependencies:
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
   '@inquirer/number@4.0.8(@types/node@25.3.3)':
     dependencies:
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
@@ -4905,7 +4905,7 @@ snapshots:
     dependencies:
       '@inquirer/ansi': 2.0.3
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
@@ -4927,7 +4927,7 @@ snapshots:
   '@inquirer/rawlist@5.2.4(@types/node@25.3.3)':
     dependencies:
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
@@ -4935,7 +4935,7 @@ snapshots:
     dependencies:
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
       '@inquirer/figures': 2.0.3
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
@@ -4944,11 +4944,11 @@ snapshots:
       '@inquirer/ansi': 2.0.3
       '@inquirer/core': 11.1.5(@types/node@25.3.3)
       '@inquirer/figures': 2.0.3
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
     optionalDependencies:
       '@types/node': 25.3.3
 
-  '@inquirer/type@4.0.5(@types/node@25.3.3)':
+  '@inquirer/type@4.0.7(@types/node@25.3.3)':
     optionalDependencies:
       '@types/node': 25.3.3
 
@@ -5278,7 +5278,7 @@ snapshots:
   '@listr2/prompt-adapter-inquirer@4.1.1(@inquirer/prompts@8.3.0(@types/node@25.3.3))(@types/node@25.3.3)(listr2@10.1.1)':
     dependencies:
       '@inquirer/prompts': 8.3.0(@types/node@25.3.3)
-      '@inquirer/type': 4.0.5(@types/node@25.3.3)
+      '@inquirer/type': 4.0.7(@types/node@25.3.3)
       listr2: 10.1.1
     transitivePeerDependencies:
       - '@types/node'
