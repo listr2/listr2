@@ -1,3 +1,18 @@
+## @listr2/manager [4.2.2](https://github.com/listr2/listr2/compare/@listr2/manager@4.2.1...@listr2/manager@4.2.2) (2026-06-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([#770](https://github.com/listr2/listr2/issues/770)) ([f14584e](https://github.com/listr2/listr2/commit/f14584e0a92bbd2776d8a2ccc42f7c1f40c94ded))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 10.2.2
+
 ## @listr2/manager [4.2.1](https://github.com/listr2/listr2/compare/@listr2/manager@4.2.0...@listr2/manager@4.2.1) (2026-03-02)
 
 
