@@ -517,6 +517,12 @@ export class DefaultRenderer implements ListrRenderer {
       this.buffer.output.set(task.id, new ProcessOutputBuffer({ limit: typeof rendererTaskOptions.outputBar === 'number' ? rendererTaskOptions.outputBar : 1 }))
 
       task.on(ListrTaskEventType.OUTPUT, (output) => {
+        if (output === '') {
+          this.buffer.output.get(task.id).reset()
+
+          return
+        }
+
         this.buffer.output.get(task.id).write(output)
       })
 

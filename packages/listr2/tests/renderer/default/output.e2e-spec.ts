@@ -116,6 +116,32 @@ describe('default renderer: output', () => {
     expectProcessOutputToMatchSnapshot(output, 'qmiOeXTUyStaFeRgDYVlGoPJMVDbRRuC')
   })
 
+  // it('should clear output from output bar', async () => {
+  //   await new Listr(
+  //     [
+  //       {
+  //         title: 'This task will execute.',
+  //         task: async (_, task): Promise<void> => {
+  //           task.output = 'I will push an output. [0]'
+
+  //           task.output = 'I will push an output. [1]'
+
+  //           task.output = 'I will push an output. [2]'
+
+  //           task.output = ''
+  //         },
+  //         rendererOptions: { outputBar: Infinity, persistentOutput: true }
+  //       }
+  //     ],
+  //     {
+  //       concurrent: false,
+  //       rendererOptions: { lazy: true }
+  //     }
+  //   ).run()
+
+  //   expectProcessOutputToMatchSnapshot(output)
+  // })
+
   // ojurBbWZEPenKVeoFcKksBeMbaYWmbGO
   it('should output to nowhere since outputBar and bottomBar is false', async() => {
     await new Listr(
