@@ -36,7 +36,7 @@ include:
       - /node/run.gitlab-ci.yml
     inputs:
       rules:
-        - when: always
+        - when: on_success
 
   - project: devops/pipelines
     ref: semantic-release@1.6.1
