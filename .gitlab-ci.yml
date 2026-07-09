@@ -27,24 +27,21 @@ variables:
 
 include:
   - project: devops/pipelines
-    ref: node@1.2.0
+    ref: node@2.0.0
     file:
       - /node/install.gitlab-ci.yml
       - /node/build.gitlab-ci.yml
       - /node/lint.gitlab-ci.yml
       - /node/test.gitlab-ci.yml
       - /node/run.gitlab-ci.yml
-    inputs:
-      rules:
-        - when: on_success
 
   - project: devops/pipelines
-    ref: semantic-release@1.6.1
+    ref: semantic-release@2.0.0
     file:
       - /semantic-release/publish.gitlab-ci.yml
 
   - project: devops/pipelines
-    ref: buildah@1.2.2
+    ref: buildah@2.0.0
     file:
       - /buildah/build.gitlab-ci.yml
       - /buildah/registry-gitlab.gitlab-ci.yml
@@ -57,10 +54,14 @@ include:
 install:
   stage: install
   extends: .node-install
+  rules:
+    - when: on_success
 
 lint:
   stage: build
   extends: .node-lint
+  rules:
+    - when: on_success
 
 build:
   stage: build
@@ -69,6 +70,8 @@ build:
     - install
   dependencies:
     - install
+  rules:
+    - when: on_success
 
 test:
   stage: test
@@ -77,6 +80,8 @@ test:
     matrix:
       - NODE_VERSION: 24-alpine
       - NODE_VERSION: 22-alpine
+  rules:
+    - when: on_success
 
 semantic-release:
   stage: publish
