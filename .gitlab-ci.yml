@@ -54,9 +54,21 @@ include:
 install:
   stage: install
   extends: .node-install
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      interruptible: true
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: '$CI_COMMIT_BRANCH =~ /^(next|next-major|alpha|beta|rc)$/'
+    - if: $CI_COMMIT_TAG
 lint:
   stage: build
   extends: .node-lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      interruptible: true
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: '$CI_COMMIT_BRANCH =~ /^(next|next-major|alpha|beta|rc)$/'
+    - if: $CI_COMMIT_TAG
 build:
   stage: build
   extends: .node-build
@@ -64,6 +76,12 @@ build:
     - install
   dependencies:
     - install
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      interruptible: true
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: '$CI_COMMIT_BRANCH =~ /^(next|next-major|alpha|beta|rc)$/'
+    - if: $CI_COMMIT_TAG
 test:
   stage: test
   extends: .node-test
@@ -71,6 +89,12 @@ test:
     matrix:
       - NODE_VERSION: 24-alpine
       - NODE_VERSION: 22-alpine
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      interruptible: true
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: '$CI_COMMIT_BRANCH =~ /^(next|next-major|alpha|beta|rc)$/'
+    - if: $CI_COMMIT_TAG
 semantic-release:
   stage: publish
   extends: .semantic-release
@@ -82,6 +106,9 @@ semantic-release:
     - test
   dependencies:
     - build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: '$CI_COMMIT_BRANCH =~ /^(next|next-major|alpha|beta|rc)$/'
 
 build-docs:
   stage: docs
