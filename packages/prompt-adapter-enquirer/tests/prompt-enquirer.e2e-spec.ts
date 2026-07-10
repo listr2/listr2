@@ -207,14 +207,22 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
         {
           title: 'This task will execute.',
           task: async(ctx, task): Promise<void> => {
-            delay(10)
-              .then(() => task.skip())
-              .catch(() => {})
+            const prompt = task.prompt(ListrEnquirerPromptAdapter)
 
-            ctx.output = await task.prompt(ListrEnquirerPromptAdapter).run({
+            const result = prompt.run({
               type: 'Input',
               message: 'Give me some input.'
             })
+
+            await delay(100)
+
+            task.skip()
+
+            try {
+              ctx.output = await result
+            } catch {
+              ctx.output = ''
+            }
           }
         },
 
