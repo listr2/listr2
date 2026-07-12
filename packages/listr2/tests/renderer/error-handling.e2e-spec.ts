@@ -186,7 +186,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
         exitOnError: true,
         renderer,
         rendererOptions,
-        collectErrors: 'minimal'
+        collectErrors: true
       }
     )
 

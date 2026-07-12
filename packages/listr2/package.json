@@ -72,7 +72,6 @@
   "dependencies": {
     "cli-truncate": "^5.2.0",
     "log-update": "^6.1.0",
-    "rfdc": "^1.4.1",
     "wrap-ansi": "^10.0.0"
   },
   "devDependencies": {
