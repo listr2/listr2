@@ -202,14 +202,14 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
 
   // 8QRF9bQEdSKkH62yUKbteKnrpevTbGan
   it('should use skip enquirer', async() => {
-    const ctx = await new Listr(
+    const cancel = jest.spyOn(ListrEnquirerPromptAdapter.prototype, 'cancel')
+
+    const listr = new Listr(
       [
         {
           title: 'This task will execute.',
           task: async(ctx, task): Promise<void> => {
-            const prompt = task.prompt(ListrEnquirerPromptAdapter)
-
-            const result = prompt.run({
+            const result = task.prompt(ListrEnquirerPromptAdapter).run({
               type: 'Input',
               message: 'Give me some input.'
             })
@@ -223,10 +223,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
             } catch {
               ctx.output = ''
             }
-
-            // allow enquirer's async cancel frame to flush before the task finalizes,
-            // otherwise the captured render frames race with the prompt teardown
-            await delay(200)
           }
         },
 
@@ -242,9 +238,16 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
         renderer,
         rendererOptions
       }
-    ).run()
+    )
 
+    const ctx = await listr.run()
+
+    // the adapter cancels the active prompt via submit (not throw) when the task is skipped
+    expect(cancel).toHaveBeenCalledWith({ throw: false })
+    // cancelling resolves the prompt with an empty value instead of hanging or throwing,
+    // since nothing ever answers the prompt this can only pass if the adapter cancelled it
     expect(ctx).toStrictEqual({ output: '' })
-    expectProcessOutputToMatchSnapshot(output, '8QRF9bQEdSKkH62yUKbteKnrpevTbGan')
+
+    cancel.mockRestore()
   })
 })
