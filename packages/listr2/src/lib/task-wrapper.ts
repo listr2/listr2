@@ -85,7 +85,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    * @see {@link https://listr2.kilic.dev/task/error-handling.html}
    */
   public report(error: Error, type: ListrErrorTypes): void {
-    if (this.task.options.collectErrors !== false) {
+    if (this.task.options.collectErrors) {
       this.task.listr.errors.push(new ListrError<Ctx>(error, type, this.task))
     }
 
