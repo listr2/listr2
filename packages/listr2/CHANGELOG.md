@@ -1,3 +1,18 @@
+# listr2 [11.0.0-beta.1](https://github.com/listr2/listr2/compare/listr2@10.3.0-beta.1...listr2@11.0.0-beta.1) (2026-07-12)
+
+
+### Performance Improvements
+
+* **lib:** drop rfdc and simplify collectErrors to a boolean ([#774](https://github.com/listr2/listr2/issues/774)) ([d4c9cee](https://github.com/listr2/listr2/commit/d4c9cee30819916076ee9c309da64a452d8249b5))
+
+
+### BREAKING CHANGES
+
+* **lib:** collectErrors no longer accepts 'minimal' or 'full', use
+true for the previous 'minimal' behavior. ListrError.ctx is removed and the
+context is no longer cloned into collected errors. The cloneObject utility
+export and the rfdc dependency are removed.
+
 # listr2 [10.3.0-beta.1](https://github.com/listr2/listr2/compare/listr2@10.2.2...listr2@10.3.0-beta.1) (2026-07-12)
 
 
