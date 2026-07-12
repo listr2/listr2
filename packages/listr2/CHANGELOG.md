@@ -1,3 +1,10 @@
+# listr2 [10.3.0-beta.1](https://github.com/listr2/listr2/compare/listr2@10.2.2...listr2@10.3.0-beta.1) (2026-07-12)
+
+
+### Features
+
+* **lib:** replace eventemitter3 with Node built-in EventEmitter ([#760](https://github.com/listr2/listr2/issues/760)) ([3154aaa](https://github.com/listr2/listr2/commit/3154aaa566edd168882ecb043696a028dc3811e6))
+
 ## listr2 [10.2.2](https://github.com/listr2/listr2/compare/listr2@10.2.1...listr2@10.2.2) (2026-06-24)
 
 
