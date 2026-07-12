@@ -223,6 +223,10 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
             } catch {
               ctx.output = ''
             }
+
+            // allow enquirer's async cancel frame to flush before the task finalizes,
+            // otherwise the captured render frames race with the prompt teardown
+            await delay(200)
           }
         },
 
