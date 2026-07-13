@@ -1,3 +1,10 @@
+# listr2 [11.0.0-beta.2](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.1...listr2@11.0.0-beta.2) (2026-07-13)
+
+
+### Bug Fixes
+
+* **lib:** preserve OSC-8 hyperlinks in cleanseAnsi ([#776](https://github.com/listr2/listr2/issues/776)) ([4f6fc87](https://github.com/listr2/listr2/commit/4f6fc8703a92a004312c802eac311429eaad7584)), closes [#768](https://github.com/listr2/listr2/issues/768)
+
 # listr2 [11.0.0-beta.1](https://github.com/listr2/listr2/compare/listr2@10.3.0-beta.1...listr2@11.0.0-beta.1) (2026-07-12)
 
 
