@@ -90,11 +90,12 @@ export class DefaultRenderer implements ListrRenderer {
     const { default: truncate } = await import('cli-truncate')
     const { default: wrap } = await import('wrap-ansi')
 
-    this.updater = createLogUpdate(this.logger.process.stdout)
+    this.updater = createLogUpdate(this.logger.process.stdout, { showCursor: true })
     this.truncate = truncate
     this.wrap = wrap
 
     this.logger.process.hijack()
+    this.logger.process.hideCursor()
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
@@ -303,10 +304,14 @@ export class DefaultRenderer implements ListrRenderer {
               this.prompt = null
               this.activePrompt = null
               task.off(ListrTaskEventType.PROMPT)
+
+              this.logger.process.hideCursor()
             }
           })
 
           this.activePrompt = task.id
+
+          this.logger.process.showCursor()
         }
       }
 

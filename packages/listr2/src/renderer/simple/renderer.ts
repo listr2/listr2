@@ -48,7 +48,9 @@ export class SimpleRenderer implements ListrRenderer {
     }
   }
 
-  public end(): void {}
+  public end(): void {
+    this.logger.process.release()
+  }
 
   public render(): void {
     this.renderer(this.tasks)

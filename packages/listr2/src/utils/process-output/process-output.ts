@@ -41,17 +41,28 @@ export class ProcessOutput {
     return this.stream.stderr.out
   }
 
+  public hideCursor(): void {
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
+  }
+
+  public showCursor(): void {
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+  }
+
   public hijack(): void {
     if (this.active) {
       throw new Error('ProcessOutput has been already hijacked!')
     }
 
-    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
     Object.values(this.stream).forEach((stream) => stream.hijack())
     this.active = true
   }
 
   public release(): void {
+    if (!this.active) {
+      return
+    }
+
     // not the most performant of functions, since creating a lots of memory
     // maybe refactor this sometime, but shouldnt be concern since we do not expect
     // huge number of outputs being buffered
@@ -80,7 +91,7 @@ export class ProcessOutput {
       })
     }
 
-    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+    this.showCursor()
 
     this.active = false
   }
