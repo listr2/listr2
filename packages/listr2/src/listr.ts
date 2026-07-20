@@ -29,7 +29,7 @@ export class Listr<
   FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
 > {
   public tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[] = []
-  public errors: ListrError<Ctx>[] = []
+  public errors: ListrError<Ctx>[] | null
   public ctx: Ctx
   public events: ListrEventManager
   public path: string[] = []
@@ -80,6 +80,9 @@ export class Listr<
     if (parentTask) {
       this.path = [...parentTask.listr.path, parentTask.title]
       this.errors = parentTask.listr.errors
+    } else {
+      // null when disabled keeps "collected, none failed" ([]) distinct from "not collected"
+      this.errors = this.options.collectErrors ? [] : null
     }
 
     if (this.parentTask?.listr.events instanceof ListrEventManager) {

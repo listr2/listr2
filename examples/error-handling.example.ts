@@ -134,7 +134,9 @@ async function main(): Promise<void> {
         }
       }
     ],
-    { concurrent: false, exitOnError: true }
+    {
+      concurrent: false, exitOnError: true, collectErrors: true
+    }
   )
 
   try {

@@ -37,7 +37,7 @@ Throwing an error will stop any further action from the current _Task_ and will 
 
 ::: info
 
-You don't have to catch and collect errors explicitly since they will always be collected by _Listr_.
+You don't have to catch errors explicitly since they will always be handled and surfaced by _Listr_. Collecting them into `Listr.errors` for later inspection is a separate, opt-in behavior covered below.
 
 :::
 
@@ -88,6 +88,8 @@ Since there are options to ignore some errors on cases like `exitOnError`, or th
 Error collection is toggled per _Task_ through the _Listr_ options with the key `collectErrors`, which is a `boolean`. The default is `false` since this is the most-underused functionality, and it should be at least opt-in for saving some memory.
 
 Setting it to `true` will collect where the error has occurred, when it has been encountered and what the `error.message` is. The context is no longer cloned in to the `ListrError` to avoid potential memory leaks and issues with cloning non-serializable values.
+
+While collection is disabled, `Listr.errors` is `null` instead of an empty array. This way an empty array always means that collection is enabled and no errors have been encountered yet, while `null` means the errors were never collected. Guard reads with `listr.errors?.length` or an explicit `null` check.
 
 ### ListrError
 
