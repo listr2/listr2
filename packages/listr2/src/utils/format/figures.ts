@@ -10,7 +10,8 @@ const FIGURES_MAIN = {
   checkboxOn: '☒',
   arrowLeft: '←',
   squareSmallFilled: '◼',
-  pointerSmall: '›'
+  pointerSmall: '›',
+  circleSlash: '⊘'
 }
 
 const FIGURES_FALLBACK = {
@@ -20,7 +21,8 @@ const FIGURES_FALLBACK = {
   tick: '√',
   pointer: '>',
   checkboxOn: '[×]',
-  squareSmallFilled: '■'
+  squareSmallFilled: '■',
+  circleSlash: 'ø'
 }
 
 export type Figures = typeof FIGURES_MAIN

@@ -57,6 +57,24 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
   }
 
   /**
+   * The `AbortSignal` for the current run, aborted when the run is interrupted (e.g. `SIGINT`).
+   * Wire it into your own async work (`fetch`, child processes, timers) to cancel cooperatively.
+   *
+   * @see {@link https://listr2.kilic.dev/task/rollback.html}
+   */
+  get signal(): AbortSignal {
+    return this.task.listr.signal
+  }
+
+  /**
+   * Interrupt the whole run programmatically, as if it received a `SIGINT`.
+   * The other in-flight tasks roll back or are marked as cancelled, then the process exits with `127`.
+   */
+  public cancel(): void {
+    this.task.listr.cancel()
+  }
+
+  /**
    * Creates a new set of Listr subtasks.
    *
    * @see {@link https://listr2.kilic.dev/task/subtasks.html}

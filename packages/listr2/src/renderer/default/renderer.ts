@@ -206,6 +206,8 @@ export class DefaultRenderer implements ListrRenderer {
       return this.logger.icon(ListrDefaultRendererLogLevels.ROLLED_BACK)
     } else if (task.hasFailed()) {
       return this.logger.icon(ListrDefaultRendererLogLevels.FAILED)
+    } else if (task.isCancelled()) {
+      return this.logger.icon(ListrDefaultRendererLogLevels.CANCELLED)
     } else if (task.isPaused()) {
       return this.logger.icon(ListrDefaultRendererLogLevels.PAUSED)
     }
@@ -312,7 +314,12 @@ export class DefaultRenderer implements ListrRenderer {
 
       // Current Task Title
       if (task.hasTitle()) {
-        if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
+        if (!(
+          tasks.some((task) => task.hasFailed()) &&
+          !task.hasFailed() &&
+          task.options.exitOnError !== false &&
+          !(task.isCompleted() || task.isSkipped() || task.isCancelled())
+        )) {
           // if task is skipped
           if (task.hasFailed() && rendererOptions.collapseErrors) {
             // current task title and skip change the title
@@ -409,7 +416,9 @@ export class DefaultRenderer implements ListrRenderer {
           // if any of the subtasks has failed
           task.subtasks.some((subtask) => subtask.hasFailed()) ||
           // if any of the subtasks rolled back
-          task.subtasks.some((subtask) => subtask.hasRolledBack()))
+          task.subtasks.some((subtask) => subtask.hasRolledBack()) ||
+          // if any of the subtasks was cancelled
+          task.subtasks.some((subtask) => subtask.isCancelled()))
       ) {
         // set level
         const subtaskLevel = !task.hasTitle() ? level : level + 1
