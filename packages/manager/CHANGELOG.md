@@ -1,3 +1,18 @@
+## @listr2/manager [4.2.3-beta.5](https://github.com/listr2/listr2/compare/@listr2/manager@4.2.3-beta.4...@listr2/manager@4.2.3-beta.5) (2026-07-20)
+
+
+### Bug Fixes
+
+* **manager:** guard against null Listr.errors when aggregating ([5463614](https://github.com/listr2/listr2/commit/54636143dc351f2389346abd06184d9ee9d6073f))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0-beta.4
+
 ## @listr2/manager [4.2.3-beta.4](https://github.com/listr2/listr2/compare/@listr2/manager@4.2.3-beta.3...@listr2/manager@4.2.3-beta.4) (2026-07-20)
 
 
