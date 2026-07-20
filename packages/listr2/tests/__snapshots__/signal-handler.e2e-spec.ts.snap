@@ -1,5 +1,95 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
+exports[`signal handlers should mark still-pending tasks as cancelled on interrupt: Fn4Ld6WpQr8YtX2mB0KsJ5ZcV7hG3aEu-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`signal handlers should mark still-pending tasks as cancelled on interrupt: Fn4Ld6WpQr8YtX2mB0KsJ5ZcV7hG3aEu-stderr 1`] = `[]`;
+
+exports[`signal handlers should mark still-pending tasks as cancelled on interrupt: Fn4Ld6WpQr8YtX2mB0KsJ5ZcV7hG3aEu-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"running","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["running"]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"running","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["running"]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"queued one","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["queued one"]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"queued two","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["queued two"]}}
+",
+]
+`;
+
+exports[`signal handlers should run the rollback of a task when interrupted, not cancel it: aQ9mZ2kR7wT4xB1nC6vL0pF3sD8gH5jU-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`signal handlers should run the rollback of a task when interrupted, not cancel it: aQ9mZ2kR7wT4xB1nC6vL0pF3sD8gH5jU-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"Interrupted."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"a task"},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+]
+`;
+
+exports[`signal handlers should run the rollback of a task when interrupted, not cancel it: aQ9mZ2kR7wT4xB1nC6vL0pF3sD8gH5jU-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+]
+`;
+
+exports[`signal handlers should still exit and rollback when exitAfterRollback is false: Vw2NpT6RcX9KdL4mB1QsJ7ZfG0hY5aEi-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`signal handlers should still exit and rollback when exitAfterRollback is false: Vw2NpT6RcX9KdL4mB1QsJ7ZfG0hY5aEi-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"Interrupted."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"a task"},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+]
+`;
+
+exports[`signal handlers should still exit and rollback when exitAfterRollback is false: Vw2NpT6RcX9KdL4mB1QsJ7ZfG0hY5aEi-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+]
+`;
+
+exports[`signal handlers should still exit when the interrupted failure is swallowed by exitOnError false: Bq7Kd2XpRn4YtM8LwZ0FsC6VjH3gA9Eu-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`signal handlers should still exit when the interrupted failure is swallowed by exitOnError false: Bq7Kd2XpRn4YtM8LwZ0FsC6VjH3gA9Eu-stderr 1`] = `[]`;
+
+exports[`signal handlers should still exit when the interrupted failure is swallowed by exitOnError false: Bq7Kd2XpRn4YtM8LwZ0FsC6VjH3gA9Eu-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+",
+]
+`;
+
 exports[`signal handlers should try to cancel running tasks: ACxcRBILlHsqiSxYArjASFdofVqLaUyE-exit 1`] = `
 [
   127,
@@ -16,7 +106,7 @@ exports[`signal handlers should try to cancel running tasks: ACxcRBILlHsqiSxYArj
 ",
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
 ",
-  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
 ",
 ]
 `;
@@ -33,7 +123,7 @@ exports[`signal handlers should try to cancel running tasks: LFRhPFJHChAJcQIEadk
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
 ",
-  "{"event":"STATE","data":"FAILED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"a task","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["a task"]}}
 ",
 ]
 `;
