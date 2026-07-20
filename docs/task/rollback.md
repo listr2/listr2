@@ -29,6 +29,10 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 Rollback, when it fails by default, throws an exception and stops the execution of the upcoming tasks. But this can be overwritten by `{ exitAfterRollback: false }` option. This is the main Listr option that acts independently of `exitOnError` since failing the rollback might have worse consequences.
 
+## Interruption
+
+Besides task failures, `rollback` also runs when a run is interrupted with `Ctrl+C`. See [Interruption](/listr/interruption.html) for how interruption behaves and how to cancel your own work cooperatively through `task.signal`. <GithubIssue :issue="769" />
+
 ## Renderer
 
 ### _DefaultRenderer_

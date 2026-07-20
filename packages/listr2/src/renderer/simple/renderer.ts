@@ -100,6 +100,8 @@ export class SimpleRenderer implements ListrRenderer {
           task.off(ListrTaskEventType.PROMPT)
 
           this.logger.process.release()
+        } else if (state === ListrTaskState.CANCELLED) {
+          this.logger.log(ListrLogLevels.CANCELLED, task.title)
         }
       })
 

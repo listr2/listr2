@@ -1,0 +1,286 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`default renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`default renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-stderr 1`] = `[]`;
+
+exports[`default renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-stdout 1`] = `
+[
+  "[?25l",
+  "[2m◼[22m This parent will be cancelled.
+",
+  "[2K[1A[2K[G[33m❯[39m This parent will be cancelled.
+",
+  "[2K[1A[2K[G[33m❯[39m This parent will be cancelled.
+  [2m◼[22m This subtask will trigger the interruption.
+",
+  "[2K[1A[2K[1A[2K[G[33m❯[39m This parent will be cancelled.
+  [2m◼[22m This subtask will trigger the interruption.
+  [2m◼[22m This subtask will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This parent will be cancelled.
+  [33m❯[39m This subtask will trigger the interruption.
+  [2m◼[22m This subtask will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This parent will be cancelled.
+  [33m❯[39m This subtask will trigger the interruption.
+  [33m❯[39m This subtask will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This parent will be cancelled.
+  [31m⊘[39m This subtask will trigger the interruption.
+  [33m❯[39m This subtask will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This parent will be cancelled.
+  [31m⊘[39m This subtask will trigger the interruption.
+  [31m⊘[39m This subtask will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[31m⊘[39m This parent will be cancelled.
+  [31m⊘[39m This subtask will trigger the interruption.
+  [31m⊘[39m This subtask will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "[31m⊘[39m This parent will be cancelled.
+  [31m⊘[39m This subtask will trigger the interruption.
+  [31m⊘[39m This subtask will be cancelled.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`default renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-stderr 1`] = `[]`;
+
+exports[`default renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-stdout 1`] = `
+[
+  "[?25l",
+  "[2m◼[22m This task will trigger the interruption.
+",
+  "[2K[1A[2K[G[2m◼[22m This task will trigger the interruption.
+[2m◼[22m This task will roll back.
+",
+  "[2K[1A[2K[1A[2K[G[2m◼[22m This task will trigger the interruption.
+[2m◼[22m This task will roll back.
+[2m◼[22m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will trigger the interruption.
+[2m◼[22m This task will roll back.
+[2m◼[22m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will trigger the interruption.
+[33m❯[39m This task will roll back.
+[2m◼[22m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m This task will trigger the interruption.
+[33m❯[39m This task will roll back.
+[33m❯[39m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[31m⊘[39m This task will trigger the interruption.
+[33m❯[39m This task will roll back.
+[33m❯[39m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[31m⊘[39m This task will trigger the interruption.
+[91m⚠[39m This task will roll back.
+[33m❯[39m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[31m⊘[39m This task will trigger the interruption.
+[91m⚠[39m This task has rolled back.
+[33m❯[39m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[31m⊘[39m This task will trigger the interruption.
+[91m⚠[39m This task has rolled back.
+[31m⊘[39m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G[31m⊘[39m This task will trigger the interruption.
+[91m←[39m This task has rolled back.
+[31m⊘[39m This task will be cancelled.
+",
+  "[2K[1A[2K[1A[2K[1A[2K[G",
+  "[31m⊘[39m This task will trigger the interruption.
+[91m←[39m This task has rolled back.
+[31m⊘[39m This task will be cancelled.
+",
+  "[?25h",
+]
+`;
+
+exports[`simple renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`simple renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-stderr 1`] = `[]`;
+
+exports[`simple renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-stdout 1`] = `
+[
+  "[33m❯[39m This parent will be cancelled.
+",
+  "[33m❯[39m This subtask will trigger the interruption.
+",
+  "[33m❯[39m This subtask will be cancelled.
+",
+  "[31m⊘[39m This subtask will trigger the interruption.
+",
+  "[31m⊘[39m This subtask will be cancelled.
+",
+  "[31m⊘[39m This parent will be cancelled.
+",
+]
+`;
+
+exports[`simple renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`simple renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-stderr 1`] = `
+[
+  "[31m✖[39m This task will roll back. [31m[FAILED: Interrupted.][39m
+",
+  "[91m←[39m This task has rolled back. [31m[ROLLBACK: This task has rolled back.][39m
+",
+]
+`;
+
+exports[`simple renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-stdout 1`] = `
+[
+  "[33m❯[39m This task will trigger the interruption.
+",
+  "[33m❯[39m This task will roll back.
+",
+  "[33m❯[39m This task will be cancelled.
+",
+  "[31m⊘[39m This task will trigger the interruption.
+",
+  "[31m⊘[39m This task will be cancelled.
+",
+]
+`;
+
+exports[`test renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`test renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-stderr 1`] = `[]`;
+
+exports[`test renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This parent will be cancelled.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This parent will be cancelled."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This subtask will trigger the interruption.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This parent will be cancelled.","This subtask will trigger the interruption."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This subtask will be cancelled.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This parent will be cancelled.","This subtask will be cancelled."]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This subtask will trigger the interruption.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This parent will be cancelled.","This subtask will trigger the interruption."]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This subtask will be cancelled.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This parent will be cancelled.","This subtask will be cancelled."]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":true,"title":"This parent will be cancelled.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This parent will be cancelled."]}}
+",
+]
+`;
+
+exports[`test renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`test renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-stderr 1`] = `
+[
+  "{"event":"MESSAGE","data":{"error":"Interrupted."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will roll back.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will roll back."]}}
+",
+  "{"event":"MESSAGE","data":{"rollback":"This task has rolled back."},"task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task has rolled back.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will roll back."]}}
+",
+]
+`;
+
+exports[`test renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-stdout 1`] = `
+[
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will trigger the interruption.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will trigger the interruption."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will roll back.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will roll back."]}}
+",
+  "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will be cancelled.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will be cancelled."]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will trigger the interruption.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will trigger the interruption."]}}
+",
+  "{"event":"STATE","data":"ROLLING_BACK","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will roll back.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will roll back."]}}
+",
+  "{"event":"TITLE","data":"This task has rolled back.","task":{"hasRolledBack":false,"isRollingBack":true,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task has rolled back.","hasReset":true,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will roll back."]}}
+",
+  "{"event":"STATE","data":"CANCELLED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will be cancelled.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will be cancelled."]}}
+",
+  "{"event":"STATE","data":"ROLLED_BACK","task":{"hasRolledBack":true,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task has rolled back.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isStarted":false,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will roll back."]}}
+",
+]
+`;
+
+exports[`verbose renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`verbose renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-stderr 1`] = `[]`;
+
+exports[`verbose renderer: cancel should render a cancelled subtask tree on interruption: Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz-stdout 1`] = `
+[
+  "[33m[STARTED][39m This parent will be cancelled.
+",
+  "[33m[STARTED][39m This subtask will trigger the interruption.
+",
+  "[33m[STARTED][39m This subtask will be cancelled.
+",
+  "[31m[CANCELLED][39m This subtask will trigger the interruption.
+",
+  "[31m[CANCELLED][39m This subtask will be cancelled.
+",
+  "[31m[CANCELLED][39m This parent will be cancelled.
+",
+]
+`;
+
+exports[`verbose renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-exit 1`] = `
+[
+  127,
+]
+`;
+
+exports[`verbose renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-stderr 1`] = `
+[
+  "[31m[FAILED][39m Interrupted.
+",
+  "[91m[ROLLBACK][39m This task has rolled back.
+",
+]
+`;
+
+exports[`verbose renderer: cancel should render cancelled and rolled back tasks on interruption: Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE-stdout 1`] = `
+[
+  "[33m[STARTED][39m This task will trigger the interruption.
+",
+  "[33m[STARTED][39m This task will roll back.
+",
+  "[33m[STARTED][39m This task will be cancelled.
+",
+  "[31m[CANCELLED][39m This task will trigger the interruption.
+",
+  "[TITLE] This task has rolled back.
+",
+  "[31m[CANCELLED][39m This task will be cancelled.
+",
+]
+`;
