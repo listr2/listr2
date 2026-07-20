@@ -174,7 +174,9 @@ task = new Listr<Ctx>(
       }
     }
   ],
-  { concurrent: false, exitOnError: true }
+  {
+    concurrent: false, exitOnError: true, collectErrors: true
+  }
 )
 
 try {
