@@ -1,3 +1,19 @@
+# listr2 [11.0.0-beta.4](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.3...listr2@11.0.0-beta.4) (2026-07-20)
+
+
+### Bug Fixes
+
+* **lib:** return null from Listr.errors when collection is disabled ([4246ac7](https://github.com/listr2/listr2/commit/4246ac7d29ad76319e9485c95f91c8f1bb9b481a))
+
+
+### BREAKING CHANGES
+
+* **lib:** Listr.errors is now `ListrError[] | null`. With the
+default `collectErrors: [secure]` it is `null` instead of an empty array;
+guard reads with `listr.errors?.length` or an explicit null check.
+
+refs K-715
+
 # listr2 [11.0.0-beta.3](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.2...listr2@11.0.0-beta.3) (2026-07-20)
 
 
