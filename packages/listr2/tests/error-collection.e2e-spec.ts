@@ -5,6 +5,7 @@ describe('error collection', () => {
     const task = new Listr([])
 
     expect(task.options.collectErrors).toBe(false)
+    expect(task.errors).toBeNull()
   })
 
   it('should collect only the first error while exiting on error', async() => {
@@ -464,6 +465,82 @@ describe('error collection', () => {
 
     expect(result).toBeTruthy()
     expect(crash).toBeFalsy()
-    expect(task.errors).toHaveLength(0)
+    expect(task.errors).toBeNull()
+  })
+
+  it('should keep errors null through a run with failing subtasks when collection is disabled', async() => {
+    const task = new Listr(
+      [
+        {
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                {
+                  task: (): void => {
+                    throw new Error('subtask failed.')
+                  }
+                }
+              ],
+              { exitOnError: false }
+            )
+        }
+      ],
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors: false
+      }
+    )
+
+    await task.run()
+
+    expect(task.errors).toBeNull()
+  })
+
+  it('should stay null when only a subtask enables collection under a disabled root', async() => {
+    const task = new Listr(
+      [
+        {
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                {
+                  task: (): void => {
+                    throw new Error('subtask failed.')
+                  }
+                }
+              ],
+              { exitOnError: false, collectErrors: true }
+            )
+        }
+      ],
+      {
+        renderer: 'silent',
+        exitOnError: false,
+        collectErrors: false
+      }
+    )
+
+    await task.run()
+
+    expect(task.errors).toBeNull()
+  })
+
+  it('should expose an empty array when collection is enabled but nothing fails', async() => {
+    const task = new Listr(
+      [
+        {
+          task: (): void => {}
+        }
+      ],
+      {
+        renderer: 'silent',
+        collectErrors: true
+      }
+    )
+
+    await task.run()
+
+    expect(task.errors).toStrictEqual([])
   })
 })
