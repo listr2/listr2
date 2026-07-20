@@ -17,7 +17,7 @@ stages:
   - post
 
 variables:
-  NODE_VERSION: 22-alpine
+  NODE_VERSION: 26-alpine
   NODE_PACKAGE_MANAGER: pnpm
   NODE_INSTALL_ARGS: --ignore-scripts
   NODE_LINT_COMMAND: lint
@@ -87,6 +87,7 @@ test:
   extends: .node-test
   parallel:
     matrix:
+      - NODE_VERSION: 26-alpine
       - NODE_VERSION: 24-alpine
       - NODE_VERSION: 22-alpine
   rules:
