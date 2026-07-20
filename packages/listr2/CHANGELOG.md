@@ -1,3 +1,20 @@
+# listr2 [11.0.0-beta.3](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.2...listr2@11.0.0-beta.3) (2026-07-20)
+
+
+### Features
+
+* **lib:** run rollback on interruption and add a cancelled task state ([5bcf69a](https://github.com/listr2/listr2/commit/5bcf69af2eca486521ece17fa30c20f22e670e27))
+
+
+### BREAKING CHANGES
+
+* **lib:** on interruption, tasks without a rollback are now marked as
+CANCELLED instead of FAILED, and the process exits only after in-flight
+rollbacks have settled. Custom renderers that switch on the task state must
+handle ListrTaskState.CANCELLED.
+
+refs K-703
+
 # listr2 [11.0.0-beta.2](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.1...listr2@11.0.0-beta.2) (2026-07-13)
 
 
