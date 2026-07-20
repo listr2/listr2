@@ -56,7 +56,7 @@ export interface ListrOptions<Ctx = ListrContext> {
   /**
    * Collects errors inside the `Listr.errors`.
    *
-   * - `false` will collect no errors.
+   * - `false` will collect no errors, leaving `Listr.errors` as `null`.
    * - `true` will collect the error message, the type and the location of the failed task.
    *
    * @defaultValue `false`

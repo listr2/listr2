@@ -104,7 +104,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    */
   public report(error: Error, type: ListrErrorTypes): void {
     if (this.task.options.collectErrors) {
-      this.task.listr.errors.push(new ListrError<Ctx>(error, type, this.task))
+      this.task.listr.errors?.push(new ListrError<Ctx>(error, type, this.task))
     }
 
     this.task.message$ = { error: error.message ?? this.task?.title }
