@@ -1,3 +1,23 @@
+# @listr2/prompt-adapter-enquirer [4.3.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@4.2.2...@listr2/prompt-adapter-enquirer@4.3.0) (2026-07-21)
+
+
+### Bug Fixes
+
+* **renderer:** serialize the cancelled state in the test renderer ([f703f09](https://github.com/listr2/listr2/commit/f703f09d8838760b2b8f2bb66a40ff840bd6d349))
+
+
+### Features
+
+* **lib:** replace eventemitter3 with Node built-in EventEmitter ([#760](https://github.com/listr2/listr2/issues/760)) ([3154aaa](https://github.com/listr2/listr2/commit/3154aaa566edd168882ecb043696a028dc3811e6))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0
+
 # @listr2/prompt-adapter-enquirer [4.3.0-beta.8](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@4.3.0-beta.7...@listr2/prompt-adapter-enquirer@4.3.0-beta.8) (2026-07-21)
 
 
