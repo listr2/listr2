@@ -44,7 +44,13 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/task/output.html}
    */
-  set output(output: string | any[]) {
+  set output(output: string | any[] | null) {
+    if (output === null) {
+      this.task.outputReset$ = null
+
+      return
+    }
+
     output = Array.isArray(output) ? output : [output]
 
     this.task.output$ = splat(output.shift(), ...output)

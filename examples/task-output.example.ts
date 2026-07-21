@@ -186,6 +186,39 @@ try {
   logger.log(ListrLogLevels.FAILED, e)
 }
 
+logger.log(ListrLogLevels.STARTED, 'Example resetting the streamed output of a task.')
+
+task = new Listr<Ctx>(
+  [
+    {
+      title: 'This task will execute.',
+      task: async(_, task): Promise<void> => {
+        task.output = 'I will push an output. [0]'
+        await delay(500)
+
+        task.output = 'I will push an output. [1]'
+        await delay(500)
+
+        task.output = null
+        await delay(500)
+
+        task.output = 'I will push an output. [2]'
+        await delay(500)
+      },
+      rendererOptions: { outputBar: Infinity, persistentOutput: true }
+    }
+  ],
+  { concurrent: false }
+)
+
+try {
+  const context = await task.run()
+
+  logger.log(ListrLogLevels.COMPLETED, ['ctx: %o', context])
+} catch(e: any) {
+  logger.log(ListrLogLevels.FAILED, e)
+}
+
 // SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
 logger.log(ListrLogLevels.STARTED, 'Example output from a observable.')
 
