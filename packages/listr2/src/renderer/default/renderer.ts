@@ -505,6 +505,12 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
+    // finalized tasks have their non-persistent buffers torn down every render pass below; re-creating them here would
+    // re-attach the output and state listeners each pass and leak them, so leave them until the task runs again
+    if (task.hasFinalized()) {
+      return
+    }
+
     const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
 
     // lazily create the process output buffer for the current task output
