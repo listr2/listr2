@@ -7,18 +7,17 @@ exports[`default renderer: error handling should show the default task title whe
 exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-stdout 1`] = `
 [
   "[?25l",
-  "[2m◼[22m This task will fail.
-",
-  "[2K[1A[2K[G[2m◼[22m This task will fail.
+  "[?2026h[2m◼[22m This task will fail.
+[?2026l",
+  "[?2026h[G[2K[G[2m◼[22m This task will never execute.
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
 [2m◼[22m This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
-[2m◼[22m This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
 [31m◼[39m This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
   "[31m✖[39m This task will fail.
 [31m◼[39m This task will never execute.
 ",
@@ -33,22 +32,20 @@ exports[`default renderer: error handling should throw out an error in the data 
 exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-stdout 1`] = `
 [
   "[?25l",
-  "[2m◼[22m This task will fail.
-",
-  "[2K[1A[2K[G[2m◼[22m This task will fail.
+  "[?2026h[2m◼[22m This task will fail.
+[?2026l",
+  "[?2026h[G[2K[G[2m◼[22m This task will never execute.
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
 [2m◼[22m This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
-[2m◼[22m This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
 [31m◼[39m This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
-  › This task failed after 2 seconds.
+[?2026l",
+  "[?2026h[1A[G[2K[1B[2K[1A[G  › This task failed after 2 seconds.
 [31m◼[39m This task will never execute.
-",
-  "[2K[1A[2K[1A[2K[1A[2K[G",
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
   "[31m✖[39m This task will fail.
   › This task failed after 2 seconds.
 [31m◼[39m This task will never execute.

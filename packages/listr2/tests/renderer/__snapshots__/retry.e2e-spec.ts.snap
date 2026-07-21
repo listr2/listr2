@@ -7,46 +7,37 @@ exports[`default renderer: retry should retry the main task if any of the subtas
 exports[`default renderer: retry should retry the main task if any of the subtasks fail: R34CKurUXSpq65S8ebD6jpUrwmIiYrKa-stdout 1`] = `
 [
   "[?25l",
-  "[2m◼[22m Some type errors
-",
-  "[2K[1A[2K[G[33m❯[39m Some type errors
-",
-  "[2K[1A[2K[G[33m❯[39m Some type errors
-  › test
-",
-  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
-",
-  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
-  › test
-",
-  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
+  "[?2026h[2m◼[22m Some type errors
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m Some type errors
+[?2026l",
+  "[?2026h[G[2K[G  › test
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
+[?2026l",
+  "[?2026h[G[2K[G  › test
+[K[?2026l",
+  "[?2026h[1A[G[2K[G  › I am self aware that I am retrying for the 1th time.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
   › I am self aware that I am retrying for the 1th time.
-",
-  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
-  › I am self aware that I am retrying for the 1th time.
-",
-  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
-",
-  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
-  › test
-",
-  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
+[?2026l",
+  "[?2026h[1A[G[2K[1B[2K[1A[G[K[?2026l",
+  "[?2026h[G[2K[G  › test
+[K[?2026l",
+  "[?2026h[1A[G[2K[G  › I am self aware that I am retrying for the 2th time.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
   › I am self aware that I am retrying for the 2th time.
-",
-  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
-  › I am self aware that I am retrying for the 2th time.
-",
-  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
-",
-  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
-  › test
-",
-  "[2K[1A[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
-  › I am self aware that I am retrying for the 3th time.
-",
-  "[2K[1A[2K[1A[2K[G[31m✖[39m This type can not be assigned to type with, oh noes
-",
-  "[2K[1A[2K[G",
+[?2026l",
+  "[?2026h[1A[G[2K[1B[2K[1A[G[K[?2026l",
+  "[?2026h[G[2K[G  › test
+[K[?2026l",
+  "[?2026h[1A[G[2K[G  › I am self aware that I am retrying for the 3th time.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This type can not be assigned to type with, oh noes
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "[31m✖[39m This type can not be assigned to type with, oh noes
 ",
   "[?25h",
@@ -60,21 +51,21 @@ exports[`default renderer: retry should stop retrying if the task succeeds after
 exports[`default renderer: retry should stop retrying if the task succeeds afterwards: oZPNYsORzcG758b1BLdR91GcErmLlQsw-stdout 1`] = `
 [
   "[?25l",
-  "[2m◼[22m Some type errors
-",
-  "[2K[1A[2K[G[33m❯[39m Some type errors
-",
-  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
-",
-  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
-",
-  "[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
-",
-  "[2K[1A[2K[G[93m⚠[39m Successed at 3th try. [33m[RETRY:3][39m
-",
-  "[2K[1A[2K[G[32m✔[39m Successed at 3th try.
-",
-  "[2K[1A[2K[G",
+  "[?2026h[2m◼[22m Some type errors
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m Some type errors
+[?2026l",
+  "[?2026h[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:1][39m
+[?2026l",
+  "[?2026h[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:2][39m
+[?2026l",
+  "[?2026h[2K[1A[2K[G[93m⚠[39m Some type errors [33m[RETRY:3][39m
+[?2026l",
+  "[?2026h[2K[1A[2K[G[93m⚠[39m Successed at 3th try. [33m[RETRY:3][39m
+[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m Successed at 3th try.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "[32m✔[39m Successed at 3th try.
 ",
   "[?25h",

@@ -7,16 +7,15 @@ exports[`default renderer: osc-8 should preserve a bell-terminated osc-8 hyperli
 exports[`default renderer: osc-8 should preserve a bell-terminated osc-8 hyperlink: GuVrX0HJ82h7aCSBxfdRJm3LbCJ1scU4-stdout 1`] = `
 [
   "[?25l",
-  "[2m◼[22m This task will output a hyperlink.
-",
-  "[2K[1A[2K[G[33m❯[39m This task will output a hyperlink.
-",
-  "[2K[1A[2K[G[33m❯[39m This task will output a hyperlink.
-  › ]8;;https://listr2.kilic.devlistr2]8;;
-",
-  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a hyperlink.
-",
-  "[2K[1A[2K[G",
+  "[?2026h[2m◼[22m This task will output a hyperlink.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will output a hyperlink.
+[?2026l",
+  "[?2026h[G[2K[G  › ]8;;https://listr2.kilic.devlistr2]8;;
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a hyperlink.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "[32m✔[39m This task will output a hyperlink.
 ",
   "[?25h",
@@ -30,16 +29,15 @@ exports[`default renderer: osc-8 should preserve a hyperlink wrapped in sgr colo
 exports[`default renderer: osc-8 should preserve a hyperlink wrapped in sgr colors: k9Fj0ZFCmcutR9qKoIYBHDNGAzhDAjWP-stdout 1`] = `
 [
   "[?25l",
-  "[2m◼[22m This task will output a colored hyperlink.
-",
-  "[2K[1A[2K[G[33m❯[39m This task will output a colored hyperlink.
-",
-  "[2K[1A[2K[G[33m❯[39m This task will output a colored hyperlink.
-  › [32m]8;;https://listr2.kilic.devlistr2]8;;[39m
-",
-  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a colored hyperlink.
-",
-  "[2K[1A[2K[G",
+  "[?2026h[2m◼[22m This task will output a colored hyperlink.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will output a colored hyperlink.
+[?2026l",
+  "[?2026h[G[2K[G  › [32m]8;;https://listr2.kilic.devlistr2]8;;[39m
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a colored hyperlink.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "[32m✔[39m This task will output a colored hyperlink.
 ",
   "[?25h",
@@ -53,16 +51,15 @@ exports[`default renderer: osc-8 should strip an injected cursor code next to a 
 exports[`default renderer: osc-8 should strip an injected cursor code next to a hyperlink: GIuPLb3vSEkIj8naBxgBbLow2xt0ZGky-stdout 1`] = `
 [
   "[?25l",
-  "[2m◼[22m This task will output a hyperlink next to a cursor code.
-",
-  "[2K[1A[2K[G[33m❯[39m This task will output a hyperlink next to a cursor code.
-",
-  "[2K[1A[2K[G[33m❯[39m This task will output a hyperlink next to a cursor code.
-  › ]8;;https://listr2.kilic.devlistr2]8;;
-",
-  "[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a hyperlink next to a cursor code.
-",
-  "[2K[1A[2K[G",
+  "[?2026h[2m◼[22m This task will output a hyperlink next to a cursor code.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will output a hyperlink next to a cursor code.
+[?2026l",
+  "[?2026h[G[2K[G  › ]8;;https://listr2.kilic.devlistr2]8;;
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a hyperlink next to a cursor code.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
   "[32m✔[39m This task will output a hyperlink next to a cursor code.
 ",
   "[?25h",

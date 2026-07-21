@@ -50,6 +50,9 @@ export class DefaultRenderer implements ListrRenderer {
   private updater: ReturnType<typeof createLogUpdate>
   private truncate: typeof truncate
   private wrap: typeof wrap
+  private readonly refresh = (): void => {
+    this.update()
+  }
   private readonly buffer: ListrDefaultRendererOutputBuffer = {
     output: new Map(),
     bottom: new Map()
@@ -103,9 +106,7 @@ export class DefaultRenderer implements ListrRenderer {
       })
     }
 
-    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
-      this.update()
-    })
+    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, this.refresh)
   }
 
   public update(): void {
@@ -114,6 +115,9 @@ export class DefaultRenderer implements ListrRenderer {
 
   public end(): void {
     this.spinner.stop()
+
+    // unsubscribe before teardown, otherwise a late refresh repaints a duplicate frame below the persisted output
+    this.events.off(ListrEventType.SHOULD_REFRESH_RENDER, this.refresh)
 
     // clear log updater
     this.updater.clear()
