@@ -1,3 +1,46 @@
+# listr2 [11.0.0](https://github.com/listr2/listr2/compare/listr2@10.2.2...listr2@11.0.0) (2026-07-21)
+
+
+### Bug Fixes
+
+* **lib:** preserve OSC-8 hyperlinks in cleanseAnsi ([#776](https://github.com/listr2/listr2/issues/776)) ([4f6fc87](https://github.com/listr2/listr2/commit/4f6fc8703a92a004312c802eac311429eaad7584)), closes [#768](https://github.com/listr2/listr2/issues/768)
+* **lib:** return null from Listr.errors when collection is disabled ([4246ac7](https://github.com/listr2/listr2/commit/4246ac7d29ad76319e9485c95f91c8f1bb9b481a))
+* **renderer:** derive wrap width from configured output stream ([c7e3d4f](https://github.com/listr2/listr2/commit/c7e3d4f85975f6edeef26ba27e986384aa4e7359))
+* **renderer:** serialize the cancelled state in the test renderer ([f703f09](https://github.com/listr2/listr2/commit/f703f09d8838760b2b8f2bb66a40ff840bd6d349))
+* **renderer:** stop leaking output listeners on finalized tasks ([1278eb5](https://github.com/listr2/listr2/commit/1278eb59c9f189bcd515ce84e4af9b00b01b9784)), closes [#772](https://github.com/listr2/listr2/issues/772)
+
+
+### Features
+
+* **lib:** replace eventemitter3 with Node built-in EventEmitter ([#760](https://github.com/listr2/listr2/issues/760)) ([3154aaa](https://github.com/listr2/listr2/commit/3154aaa566edd168882ecb043696a028dc3811e6))
+* **lib:** reset a task's streamed output when set to null ([e06f9f0](https://github.com/listr2/listr2/commit/e06f9f0ae93670b8d101888017c5031a2795af86))
+* **lib:** run rollback on interruption and add a cancelled task state ([5bcf69a](https://github.com/listr2/listr2/commit/5bcf69af2eca486521ece17fa30c20f22e670e27))
+
+
+### Performance Improvements
+
+* **lib:** drop rfdc and simplify collectErrors to a boolean ([#774](https://github.com/listr2/listr2/issues/774)) ([d4c9cee](https://github.com/listr2/listr2/commit/d4c9cee30819916076ee9c309da64a452d8249b5))
+* **renderer:** render task list with partial updates via log-update v8 ([2820749](https://github.com/listr2/listr2/commit/2820749387526397197edbfd3242efb8c4ee6b8f))
+
+
+### BREAKING CHANGES
+
+* **lib:** Listr.errors is now `ListrError[] | null`. With the
+default `collectErrors: [secure]` it is `null` instead of an empty array;
+guard reads with `listr.errors?.length` or an explicit null check.
+
+refs K-715
+* **lib:** on interruption, tasks without a rollback are now marked as
+CANCELLED instead of FAILED, and the process exits only after in-flight
+rollbacks have settled. Custom renderers that switch on the task state must
+handle ListrTaskState.CANCELLED.
+
+refs K-703
+* **lib:** collectErrors no longer accepts 'minimal' or 'full', use
+true for the previous 'minimal' behavior. ListrError.ctx is removed and the
+context is no longer cloned into collected errors. The cloneObject utility
+export and the rfdc dependency are removed.
+
 # listr2 [11.0.0-beta.7](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.6...listr2@11.0.0-beta.7) (2026-07-21)
 
 
