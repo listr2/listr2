@@ -9,4 +9,5 @@ export interface MockProcessOutput {
   stdout: MockProcessOut
   stderr: MockProcessOut
   console: MockProcessConsole
+  restoreStdin: () => void
 }
