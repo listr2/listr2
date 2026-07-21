@@ -100,6 +100,6 @@ To do this you must expand the original _ListrLogger_ implementation since it is
 
 ::: warning
 
-Some options for the _ListrLogger_ are forcefully injected through the selected renderer. These are the options like global field options like `timestamp` or `icon` and `style` options, due to me wanting to expose these options without creating a custom logger since this falls into the more advanced use cases.
+Some options for the _ListrLogger_ are forcefully injected through the selected renderer. These are the options like global field options like `timestamp` or `icon` and `style` options, to expose them without requiring a custom logger since this falls into the more advanced use cases.
 
 :::

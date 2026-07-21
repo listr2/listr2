@@ -74,7 +74,7 @@ A `readline` change introduced in Node.js 24+ (`ERR_USE_AFTER_CLOSE`) breaks `en
 
 :::
 
-The input adapter uses the beautiful and not very well-maintained (xD) [`enquirer`](https://www.npmjs.com/package/enquirer).
+The input adapter uses [`enquirer`](https://www.npmjs.com/package/enquirer).
 
 ::: danger
 
@@ -112,7 +112,7 @@ This has been disabled to do in some renderers, but you are still able to do it 
 
 ::: info Example
 
-You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/task-prompt.example.ts).
+You can find the related examples [here](https://github.com/listr2/listr2/tree/master/examples/task-prompt-enquirer.example.ts).
 
 :::
 
@@ -122,9 +122,7 @@ To access the prompts just utilize the `task.prompt` jumper function by passing 
 
 ::: info
 
-Please note that I rewrote the types for the `enquirer` and bundle them with this application.
-
-So it is highly likely that it has some mistakes in it since I usually do not use all of them. I will merge the original types when the `enquirer` fixes them with the pending merge request <GithubIssue :issue="235" /> , which can be tracked in issue , which will probably never happen!
+The types for `enquirer` are re-written and bundled with this adapter, so they may have some inaccuracies. They will be reconciled with the upstream types once `enquirer` merges its pending typings work (<GithubIssue :issue="235" />).
 
 :::
 
@@ -132,7 +130,7 @@ So it is highly likely that it has some mistakes in it since I usually do not us
 
 ::: danger
 
-I have done a little trick here where, whenever you have just one prompt, then you do not have to name your prompt as in `enquirer`, it will be automatically named and then returned.
+As a convenience, whenever you have just one prompt, you do not have to name your prompt as in `enquirer`; it will be automatically named and then returned.
 
 :::
 

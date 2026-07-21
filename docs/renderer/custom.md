@@ -8,6 +8,8 @@ category:
   - renderer
 ---
 
+# {{ $frontmatter.title }}
+
 You can create a custom renderer that is fit for your application.
 
 <!-- more -->
