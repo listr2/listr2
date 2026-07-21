@@ -231,7 +231,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     let parsed: string[]
 
-    const columns = (process.stdout.columns ?? 80) - level * this.options.indentation - 2
+    const columns = (this.logger.process.stdout.columns ?? 80) - level * this.options.indentation - 2
 
     switch (this.options.formatOutput) {
       case 'truncate':
