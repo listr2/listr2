@@ -1,3 +1,19 @@
+## @listr2/manager [4.2.3](https://github.com/listr2/listr2/compare/@listr2/manager@4.2.2...@listr2/manager@4.2.3) (2026-07-21)
+
+
+### Bug Fixes
+
+* **manager:** guard against null Listr.errors when aggregating ([5463614](https://github.com/listr2/listr2/commit/54636143dc351f2389346abd06184d9ee9d6073f))
+* **renderer:** serialize the cancelled state in the test renderer ([f703f09](https://github.com/listr2/listr2/commit/f703f09d8838760b2b8f2bb66a40ff840bd6d349))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0
+
 ## @listr2/manager [4.2.3-beta.8](https://github.com/listr2/listr2/compare/@listr2/manager@4.2.3-beta.7...@listr2/manager@4.2.3-beta.8) (2026-07-21)
 
 
