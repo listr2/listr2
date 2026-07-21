@@ -27,6 +27,7 @@
     "docs:build": "pnpm run --filter @listr2/docs docs:build",
     "format": "pnpm run --parallel -r format",
     "lint": "pnpm run --parallel -r lint",
+    "lint:ci": "pnpm run -r --workspace-concurrency=1 lint",
     "test": "pnpm run --parallel -r test",
     "test:cov": "pnpm run --parallel -r test:cov"
   },
