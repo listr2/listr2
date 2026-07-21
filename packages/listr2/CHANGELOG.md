@@ -1,3 +1,15 @@
+# listr2 [11.0.0-beta.5](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.4...listr2@11.0.0-beta.5) (2026-07-21)
+
+
+### Bug Fixes
+
+* **renderer:** stop leaking output listeners on finalized tasks ([1278eb5](https://github.com/listr2/listr2/commit/1278eb59c9f189bcd515ce84e4af9b00b01b9784)), closes [#772](https://github.com/listr2/listr2/issues/772)
+
+
+### Performance Improvements
+
+* **renderer:** render task list with partial updates via log-update v8 ([2820749](https://github.com/listr2/listr2/commit/2820749387526397197edbfd3242efb8c4ee6b8f))
+
 # listr2 [11.0.0-beta.4](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.3...listr2@11.0.0-beta.4) (2026-07-20)
 
 
