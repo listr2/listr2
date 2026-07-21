@@ -59,6 +59,6 @@ You can use the `fallbackRendererCondition` condition on _Listr_ to determine ch
 
 ### Silent Renderer Fallback
 
-You can use the `silentRendererCondition` condition on _Listr_ to determine changing your renderer to the fallback renderer.
+You can use the `silentRendererCondition` condition on _Listr_ to determine changing your renderer to _SilentRenderer_.
 
 <<< @../../examples/docs/renderer/fallback-condition/renderer-silent.ts{15}

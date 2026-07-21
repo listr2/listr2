@@ -135,7 +135,9 @@ async function main(): Promise<void> {
       }
     ],
     {
-      concurrent: false, exitOnError: true, collectErrors: true
+      concurrent: false,
+      exitOnError: true,
+      collectErrors: true
     }
   )
 
@@ -149,6 +151,7 @@ async function main(): Promise<void> {
 
   // H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM
   logger.log(ListrLogLevels.OUTPUT, 'You can also access all the errors spew out by the tasks by `task.errors` which will return an array of errors.')
+  // task.errors is an array here only because this list sets collectErrors: true; with the v11 default it is null
   logger.log(ListrLogLevels.FAILED, task.errors.toString())
 
   logger.log(ListrLogLevels.STARTED, 'Example for not collapsing errors and show them as output.')

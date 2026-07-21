@@ -77,7 +77,7 @@ Default renderer has options where you can change how the errors are displayed.
 
 ## Collected Errors
 
-Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.error` where `tasks` is the _Listr_ class. **This option is opt-in since <Badge>v6.0.0</Badge>.**
+Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.error` where `tasks` is the _Listr_ class. **This option is opt-in since <Version version="v6.0.0" />.**
 
 Since there are options to ignore some errors on cases like `exitOnError`, or the ability to retry the given task through `task.retry`, encountered errors can be swallowed while the execution. To deal with those swallowed errors, all the errors that are encountered even though it does not stops the execution gets collected through this property.
 

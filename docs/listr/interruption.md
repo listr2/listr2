@@ -62,10 +62,18 @@ The run can be interrupted from your own code, which is useful when a task needs
 
 `cancel()` follows the exact same path as pressing `Ctrl+C` — the other in-flight tasks roll back or are marked as `cancelled`, and the process exits with `127` once every rollback has settled — but without going through an operating-system signal, so it works regardless of the `registerSignalListeners` option. Sending `SIGINT` yourself with `process.kill(process.pid, 'SIGINT')` has the same effect.
 
-::: warning An interruption always terminates the process with `127`, whether it comes from `Ctrl+C` or `cancel()`. :::
+::: warning
+
+An interruption always terminates the process with `127`, whether it comes from `Ctrl+C` or `cancel()`.
+
+:::
 
 ## Disabling the signal handlers
 
 The `SIGINT` handling, and therefore the rollback-on-interruption behavior, can be turned off through the `registerSignalListeners` _Listr_ option.
 
-::: warning When `registerSignalListeners` is set to `false`, `Ctrl+C` terminates the process immediately without running any rollback or cleanup. :::
+::: warning
+
+When `registerSignalListeners` is set to `false`, `Ctrl+C` terminates the process immediately without running any rollback or cleanup.
+
+:::

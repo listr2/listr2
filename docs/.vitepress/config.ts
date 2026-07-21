@@ -1,6 +1,7 @@
 import footnote from 'markdown-it-footnote'
 import taskLists from 'markdown-it-task-lists'
 import { defineConfig } from 'vitepress'
+import llmstxt from 'vitepress-plugin-llms'
 import { generateSidebar } from 'vitepress-sidebar'
 
 import { LINK } from './link.js'
@@ -110,6 +111,13 @@ export default defineConfig({
     }
   },
   vite: {
-    clearScreen: false
+    clearScreen: false,
+    plugins: [
+      // generate llms.txt / llms-full.txt + per-page markdown for LLM consumption; skip the generated typedoc api dump
+      llmstxt({
+        domain: 'https://listr2.kilic.dev',
+        ignoreFiles: ['api/**']
+      })
+    ]
   }
 })
