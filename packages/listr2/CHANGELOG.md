@@ -1,3 +1,15 @@
+# listr2 [11.0.0-beta.6](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.5...listr2@11.0.0-beta.6) (2026-07-21)
+
+
+### Bug Fixes
+
+* **renderer:** derive wrap width from configured output stream ([c7e3d4f](https://github.com/listr2/listr2/commit/c7e3d4f85975f6edeef26ba27e986384aa4e7359))
+
+
+### Features
+
+* **lib:** reset a task's streamed output when set to null ([e06f9f0](https://github.com/listr2/listr2/commit/e06f9f0ae93670b8d101888017c5031a2795af86))
+
 # listr2 [11.0.0-beta.5](https://github.com/listr2/listr2/compare/listr2@11.0.0-beta.4...listr2@11.0.0-beta.5) (2026-07-21)
 
 
