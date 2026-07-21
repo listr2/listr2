@@ -50,9 +50,6 @@ export class DefaultRenderer implements ListrRenderer {
   private updater: ReturnType<typeof createLogUpdate>
   private truncate: typeof truncate
   private wrap: typeof wrap
-  private readonly refresh = (): void => {
-    this.update()
-  }
   private readonly buffer: ListrDefaultRendererOutputBuffer = {
     output: new Map(),
     bottom: new Map()
@@ -270,6 +267,10 @@ export class DefaultRenderer implements ListrRenderer {
     const bottomBar = this.cache.rendererTaskOptions.get(task.id).bottomBar
 
     return (typeof bottomBar === 'number' && bottomBar !== 0) || (typeof bottomBar === 'boolean' && bottomBar !== false) || !task.hasTitle()
+  }
+
+  private readonly refresh = (): void => {
+    this.update()
   }
 
   private renderer(tasks: ListrDefaultRendererTask[], level = 0): string[] {
