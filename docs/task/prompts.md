@@ -18,7 +18,61 @@ Since <Version version="v7.0.0" />, for the ability to support multiple prompt p
 
 ## Adapters
 
+### `inquirer`
+
+<Version version="v7.0.0" /><GithubIssue :issue="676" />
+
+The recommended input adapter uses [`@inquirer/prompts`](https://github.com/SBoudrias/Inquirer.js), the actively maintained modern _Inquirer_ implementation. Prefer this adapter for new code.
+
+::: danger
+
+`inquirer` is an optional peer dependency. Please install it first.
+
+This library utilizes `@inquirer/prompts` instead of the legacy implementation `inquirer`.
+
+Please also add the necessary prompt package for using a prompt from `inquirer`, you can read more about it in their [documentation](https://github.com/SBoudrias/Inquirer.js/blob/master/packages/prompts/README.md).
+
+::: code-group
+
+```bash [npm]
+npm i @listr2/prompt-adapter-inquirer @inquirer/prompts
+```
+
+```bash [yarn]
+yarn add @listr2/prompt-adapter-inquirer @inquirer/prompts
+```
+
+```bash [pnpm]
+pnpm i @listr2/prompt-adapter-inquirer @inquirer/prompts
+```
+
+:::
+
+##### Single Prompt
+
+<<< @../../examples/docs/task/prompts/inquirer-single.ts{12}
+
+#### Cancel a Prompt
+
+Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel` method, you can cancel a prompt while it is still active.
+
+::: warning
+
+`inquirer` acts a little bit different while canceling the prompt, since it is a implemented in a `CancellablePromise` kind of way and not exposing submit externally, whenever the promise is cancelled it will throw an error out from the promise.
+
+:::
+
+<<< @../../examples/docs/task/prompts/inquirer-cancel.ts{17}
+
 ### `enquirer`
+
+::: warning Deprecated — lifeline support only
+
+[`enquirer`](https://www.npmjs.com/package/enquirer) is effectively unmaintained, with its last release in 2021, and is kept on **lifeline support only**. Prefer the [`inquirer`](#inquirer) adapter above for new code.
+
+A `readline` change introduced in Node.js 24+ (`ERR_USE_AFTER_CLOSE`) breaks `enquirer`'s internal teardown in non-interactive / piped-`stdin` scenarios. Since <Version version="v11.0.0" />, where Node.js 26 was added to the test and build matrix and this issue first surfaced, **the `enquirer` adapter is no longer guaranteed on Node.js 26 and above**. It is expected to keep working on Node.js 22 and 24.
+
+:::
 
 The input adapter uses the beautiful and not very well-maintained (xD) [`enquirer`](https://www.npmjs.com/package/enquirer).
 
@@ -140,50 +194,6 @@ console.log(ctx)
 Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel` method, you can cancel a prompt while it is still active.
 
 <<< @../../examples/docs/task/prompts/enquirer-cancel.ts{16}
-
-### `inquirer`
-
-<Version version="v7.0.0" /><GithubIssue :issue="676" />
-
-::: danger
-
-`inquirer` is an optional peer dependency. Please install it first.
-
-This library utilizes `@inquirer/prompts` instead of the legacy implementation `inquirer`.
-
-Please also add the necessary prompt package for using a prompt from `inquirer`, you can read more about it in their [documentation](https://github.com/SBoudrias/Inquirer.js/blob/master/packages/prompts/README.md).
-
-::: code-group
-
-```bash [npm]
-npm i @listr2/prompt-adapter-inquirer @inquirer/prompts
-```
-
-```bash [yarn]
-yarn add @listr2/prompt-adapter-inquirer @inquirer/prompts
-```
-
-```bash [pnpm]
-pnpm i @listr2/prompt-adapter-inquirer @inquirer/prompts
-```
-
-:::
-
-##### Single Prompt
-
-<<< @../../examples/docs/task/prompts/inquirer-single.ts{12}
-
-#### Cancel a Prompt
-
-Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel` method, you can cancel a prompt while it is still active.
-
-::: warning
-
-`inquirer` acts a little bit different while canceling the prompt, since it is a implemented in a `CancellablePromise` kind of way and not exposing submit externally, whenever the promise is cancelled it will throw an error out from the promise.
-
-:::
-
-<<< @../../examples/docs/task/prompts/inquirer-cancel.ts{17}
 
 ## Renderer
 
