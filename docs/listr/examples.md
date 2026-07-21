@@ -19,7 +19,7 @@ If you ever choose to clone the repository, you can run all the examples through
 
 ```bash
 # clone the repository
-git clone git@github.com:cenk1cenk2/listr2.git
+git clone git@github.com:listr2/listr2.git
 
 # install the dependencies
 pnpm install

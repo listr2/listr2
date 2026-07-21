@@ -353,4 +353,188 @@ describe('default renderer: output', () => {
 
     expectProcessOutputToMatchSnapshot(output, 'MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv')
   })
+
+  // NduelZU7RnrfhxPfeXiFeQhYBm9bIRKW
+  it('should clear the output bar when output is set to null', async() => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async(_, task): Promise<void> => {
+            task.output = 'I will push an output. [0]'
+
+            task.output = 'I will push an output. [1]'
+
+            task.output = null
+          },
+          rendererOptions: { outputBar: true, persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true }
+      }
+    ).run()
+
+    expectProcessOutputToMatchSnapshot(output, 'NduelZU7RnrfhxPfeXiFeQhYBm9bIRKW')
+  })
+
+  // 9Ol7Y5L4326KO4NFEpMpNHZuIEGJwR1N
+  it('should clear all lines from the output bar with outputBar as Infinity when output is set to null', async() => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async(_, task): Promise<void> => {
+            task.output = 'I will push an output. [0]'
+
+            task.output = 'I will push an output. [1]'
+
+            task.output = 'I will push an output. [2]'
+
+            task.output = null
+          },
+          rendererOptions: { outputBar: Infinity, persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true }
+      }
+    ).run()
+
+    expectProcessOutputToMatchSnapshot(output, '9Ol7Y5L4326KO4NFEpMpNHZuIEGJwR1N')
+  })
+
+  // PWHBuAjpZIwJ9XlrlYQTri847NT0RuKY
+  it('should clear all lines from the output bar with outputBar as a number when output is set to null', async() => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async(_, task): Promise<void> => {
+            task.output = 'I will push an output. [0]'
+
+            task.output = 'I will push an output. [1]'
+
+            task.output = 'I will push an output. [2]'
+
+            task.output = null
+          },
+          rendererOptions: { outputBar: 3, persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true }
+      }
+    ).run()
+
+    expectProcessOutputToMatchSnapshot(output, 'PWHBuAjpZIwJ9XlrlYQTri847NT0RuKY')
+  })
+
+  // X9WByECJDy84XWuHMs8djxYdkWQEZpIa
+  it('should clear the bottom bar when output is set to null', async() => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async(_, task): Promise<void> => {
+            task.output = 'I will push an output. [0]'
+
+            task.output = 'I will push an output. [1]'
+
+            task.output = 'I will push an output. [2]'
+
+            task.output = null
+          },
+          rendererOptions: { bottomBar: Infinity, persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true }
+      }
+    ).run()
+
+    expectProcessOutputToMatchSnapshot(output, 'X9WByECJDy84XWuHMs8djxYdkWQEZpIa')
+  })
+
+  // W8PPqm0hMrdkqJZ46wdFJdFbHnpQIV71
+  it('should stream new output again after being cleared with null', async() => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async(_, task): Promise<void> => {
+            task.output = 'I will push an output. [0]'
+
+            task.output = null
+
+            task.output = 'I will push an output. [1]'
+          },
+          rendererOptions: { outputBar: Infinity, persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true }
+      }
+    ).run()
+
+    expectProcessOutputToMatchSnapshot(output, 'W8PPqm0hMrdkqJZ46wdFJdFbHnpQIV71')
+  })
+
+  // J6xy27g81kBDTGYxfgOx6pwkGPmeNYHL
+  it('should be a no-op when output is cleared before any output is streamed', async() => {
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async(_, task): Promise<void> => {
+            task.output = null
+          },
+          rendererOptions: { outputBar: Infinity, persistentOutput: true }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true }
+      }
+    ).run()
+
+    expectProcessOutputToMatchSnapshot(output, 'J6xy27g81kBDTGYxfgOx6pwkGPmeNYHL')
+  })
+
+  // cthX0yZwrfeOdOxrvWGTZnCQrarUIuG3
+  it('should be a no-op when output is cleared after the task has finalized', async() => {
+    let finalized: any
+
+    await new Listr(
+      [
+        {
+          title: 'This task will execute.',
+          task: async(_, task): Promise<void> => {
+            task.output = 'I will push an output. [0]'
+
+            finalized = task
+          },
+          rendererOptions: { outputBar: Infinity, persistentOutput: true }
+        },
+
+        {
+          title: 'This task will execute.',
+          task: async(): Promise<void> => {
+            finalized.output = null
+          }
+        }
+      ],
+      {
+        concurrent: false,
+        rendererOptions: { lazy: true }
+      }
+    ).run()
+
+    expectProcessOutputToMatchSnapshot(output, 'cthX0yZwrfeOdOxrvWGTZnCQrarUIuG3')
+  })
 })

@@ -20,6 +20,8 @@ export enum ListrTaskEventType {
   PROMPT = 'PROMPT',
   /** The current Task is now dumping output. */
   OUTPUT = 'OUTPUT',
+  /** The current Task has reset its streamed output. */
+  OUTPUT_RESET = 'OUTPUT_RESET',
   /**
    * The current Task is now dumping a message.
    *

@@ -1,3 +1,88 @@
+## @listr2/prompt-adapter-inquirer [4.2.5-beta.8](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.5-beta.7...@listr2/prompt-adapter-inquirer@4.2.5-beta.8) (2026-07-21)
+
+
+### Bug Fixes
+
+* **renderer:** serialize the cancelled state in the test renderer ([f703f09](https://github.com/listr2/listr2/commit/f703f09d8838760b2b8f2bb66a40ff840bd6d349))
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0-beta.7
+
+## @listr2/prompt-adapter-inquirer [4.2.5-beta.7](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.5-beta.6...@listr2/prompt-adapter-inquirer@4.2.5-beta.7) (2026-07-21)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0-beta.6
+
+## @listr2/prompt-adapter-inquirer [4.2.5-beta.6](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.5-beta.5...@listr2/prompt-adapter-inquirer@4.2.5-beta.6) (2026-07-21)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0-beta.5
+
+## @listr2/prompt-adapter-inquirer [4.2.5-beta.5](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.5-beta.4...@listr2/prompt-adapter-inquirer@4.2.5-beta.5) (2026-07-20)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0-beta.4
+
+## @listr2/prompt-adapter-inquirer [4.2.5-beta.4](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.5-beta.3...@listr2/prompt-adapter-inquirer@4.2.5-beta.4) (2026-07-20)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0-beta.3
+
+## @listr2/prompt-adapter-inquirer [4.2.5-beta.3](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.5-beta.2...@listr2/prompt-adapter-inquirer@4.2.5-beta.3) (2026-07-13)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0-beta.2
+
+## @listr2/prompt-adapter-inquirer [4.2.5-beta.2](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.5-beta.1...@listr2/prompt-adapter-inquirer@4.2.5-beta.2) (2026-07-12)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.0.0-beta.1
+
+## @listr2/prompt-adapter-inquirer [4.2.5-beta.1](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.4...@listr2/prompt-adapter-inquirer@4.2.5-beta.1) (2026-07-12)
+
+
+
+
+
+### Dependencies
+
+* **listr2:** upgraded to 10.3.0-beta.1
+
 ## @listr2/prompt-adapter-inquirer [4.2.4](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.3...@listr2/prompt-adapter-inquirer@4.2.4) (2026-06-24)
 
 

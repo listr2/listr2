@@ -37,7 +37,7 @@ Throwing an error will stop any further action from the current _Task_ and will 
 
 ::: info
 
-You don't have to catch and collect errors explicitly since they will always be collected by _Listr_.
+You don't have to catch errors explicitly since they will always be handled and surfaced by _Listr_. Collecting them into `Listr.errors` for later inspection is a separate, opt-in behavior covered below.
 
 :::
 
@@ -77,25 +77,23 @@ Default renderer has options where you can change how the errors are displayed.
 
 ## Collected Errors
 
-Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.error` where `tasks` is the _Listr_ class. **This option is opt-in since <Badge>v6.0.0</Badge>.**
+Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.error` where `tasks` is the _Listr_ class. **This option is opt-in since <Version version="v6.0.0" />.**
 
 Since there are options to ignore some errors on cases like `exitOnError`, or the ability to retry the given task through `task.retry`, encountered errors can be swallowed while the execution. To deal with those swallowed errors, all the errors that are encountered even though it does not stops the execution gets collected through this property.
 
-### Modes
+### Enabling
 
 <GithubIssue :issue="615" />
 
-Error collection has three modes to choose from which are, `false`, `minimal` and `full`. This can be set through per _Task_ in the _Listr_ options with the key `collectErrors`. The default mode is `false` since I decided that this is the most-underused functionality, and it should be at least opt-in for saving some memory.
+Error collection is toggled per _Task_ through the _Listr_ options with the key `collectErrors`, which is a `boolean`. The default is `false` since this is the most-underused functionality, and it should be at least opt-in for saving some memory.
 
-Due to potential memory leaks from cloning the context and task to the `ListrError`, advised mode is `minimal`, which will only collect where the error has occurred, when it has been encountered and what the `error.message` is.
+Setting it to `true` will collect where the error has occurred, when it has been encountered and what the `error.message` is. The context is no longer cloned in to the `ListrError` to avoid potential memory leaks and issues with cloning non-serializable values.
 
-If you want to fetch the full information for debugging you can set the mode to `full`. This will also clone the current context and task to the `ListrError`.
-
-You can disable the error collection completely by setting it to `false`.
+While collection is disabled, `Listr.errors` is `null` instead of an empty array. This way an empty array always means that collection is enabled and no errors have been encountered yet, while `null` means the errors were never collected. Guard reads with `listr.errors?.length` or an explicit `null` check.
 
 ### ListrError
 
-[`ListrError`](/api/listr2/classes/ListrError.html) class extends the default `Error` and has some additional information like the cause of the error and where it is coming from, and the frozen context at the given time to further debug the issue while execution.
+[`ListrError`](/api/listr2/classes/ListrError.html) class extends the default `Error` and has some additional information like the cause of the error and where it is coming from to further debug the issue while execution.
 
 ### ListrErrorTypes
 

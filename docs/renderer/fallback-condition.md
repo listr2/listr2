@@ -26,7 +26,7 @@ A function that returns a boolean , or directly a boolean can be passed to _List
 
 ### Coloring
 
-[`colorette`](https://www.npmjs.com/package/colorette) is used as the underlying coloring library. Colors are disabled automatically by underlying the library whenever it is detected as not supported.
+Node's built-in [`styleText`](https://nodejs.org/api/util.html#utilstyletextformat-text-options) from `node:util` is used as the underlying coloring mechanism. Colors are disabled automatically whenever it is detected as not supported.
 
 - You can set the environment variable `FORCE_COLOR=1` to force colors.
 - You can set the environment variable `NO_COLOR=1` to disable colors completely even though your environment supports it. This is very useful for tests.
@@ -59,6 +59,6 @@ You can use the `fallbackRendererCondition` condition on _Listr_ to determine ch
 
 ### Silent Renderer Fallback
 
-You can use the `silentRendererCondition` condition on _Listr_ to determine changing your renderer to the fallback renderer.
+You can use the `silentRendererCondition` condition on _Listr_ to determine changing your renderer to _SilentRenderer_.
 
 <<< @../../examples/docs/renderer/fallback-condition/renderer-silent.ts{15}

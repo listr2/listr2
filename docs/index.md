@@ -13,7 +13,7 @@ hero:
       theme: brand
     - text: Github
       icon: simple-icons:github
-      link: https://github.com/cenk1cenk2/listr2
+      link: https://github.com/listr2/listr2
       theme: alt
     - text: NPM
       icon: simple-icons:npm

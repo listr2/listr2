@@ -100,7 +100,7 @@ export class Manager<
     const ctx = await task.run()
 
     // reset error queue
-    this.errors.push(...task.errors)
+    this.errors.push(...(task.errors ?? []))
 
     return ctx
   }

@@ -1,4 +1,4 @@
-import { execaCommand as command } from 'execa'
+import { execa } from 'execa'
 
 import { Listr, createWritable } from 'listr2'
 
@@ -12,7 +12,7 @@ const tasks = new Listr([
         }
       })
 
-      const execute = command('curl -v http://google.com')
+      const execute = execa('curl', ['-v', 'http://google.com'])
 
       execute.stdout.pipe(output)
       execute.stderr.pipe(output)

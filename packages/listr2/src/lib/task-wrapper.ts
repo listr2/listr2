@@ -44,7 +44,13 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/task/output.html}
    */
-  set output(output: string | any[]) {
+  set output(output: string | any[] | null) {
+    if (output === null) {
+      this.task.outputReset$ = null
+
+      return
+    }
+
     output = Array.isArray(output) ? output : [output]
 
     this.task.output$ = splat(output.shift(), ...output)
@@ -54,6 +60,24 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
   /** Send an output to the output channel as prompt. */
   private set promptOutput(output: string) {
     this.task.promptOutput$ = output
+  }
+
+  /**
+   * The `AbortSignal` for the current run, aborted when the run is interrupted (e.g. `SIGINT`).
+   * Wire it into your own async work (`fetch`, child processes, timers) to cancel cooperatively.
+   *
+   * @see {@link https://listr2.kilic.dev/task/rollback.html}
+   */
+  get signal(): AbortSignal {
+    return this.task.listr.signal
+  }
+
+  /**
+   * Interrupt the whole run programmatically, as if it received a `SIGINT`.
+   * The other in-flight tasks roll back or are marked as cancelled, then the process exits with `127`.
+   */
+  public cancel(): void {
+    this.task.listr.cancel()
   }
 
   /**
@@ -85,8 +109,8 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    * @see {@link https://listr2.kilic.dev/task/error-handling.html}
    */
   public report(error: Error, type: ListrErrorTypes): void {
-    if (this.task.options.collectErrors !== false) {
-      this.task.listr.errors.push(new ListrError<Ctx>(error, type, this.task))
+    if (this.task.options.collectErrors) {
+      this.task.listr.errors?.push(new ListrError<Ctx>(error, type, this.task))
     }
 
     this.task.message$ = { error: error.message ?? this.task?.title }

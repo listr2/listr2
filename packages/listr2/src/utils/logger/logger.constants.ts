@@ -12,7 +12,8 @@ export enum ListrLogLevels {
   ROLLBACK = 'ROLLBACK',
   RETRY = 'RETRY',
   PROMPT = 'PROMPT',
-  PAUSED = 'PAUSED'
+  PAUSED = 'PAUSED',
+  CANCELLED = 'CANCELLED'
 }
 
 export const LISTR_LOGGER_STYLE: ListrLoggerStyleMap<ListrLogLevels> = {
@@ -25,7 +26,8 @@ export const LISTR_LOGGER_STYLE: ListrLoggerStyleMap<ListrLogLevels> = {
     [ListrLogLevels.TITLE]: figures.arrowRight,
     [ListrLogLevels.RETRY]: figures.warning,
     [ListrLogLevels.ROLLBACK]: figures.arrowLeft,
-    [ListrLogLevels.PAUSED]: figures.squareSmallFilled
+    [ListrLogLevels.PAUSED]: figures.squareSmallFilled,
+    [ListrLogLevels.CANCELLED]: figures.circleSlash
   },
   color: {
     [ListrLogLevels.STARTED]: color.yellow,
@@ -34,7 +36,8 @@ export const LISTR_LOGGER_STYLE: ListrLoggerStyleMap<ListrLogLevels> = {
     [ListrLogLevels.COMPLETED]: color.green,
     [ListrLogLevels.RETRY]: color.yellowBright,
     [ListrLogLevels.ROLLBACK]: color.redBright,
-    [ListrLogLevels.PAUSED]: color.yellowBright
+    [ListrLogLevels.PAUSED]: color.yellowBright,
+    [ListrLogLevels.CANCELLED]: color.red
   }
 }
 

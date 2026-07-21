@@ -56,14 +56,13 @@ export interface ListrOptions<Ctx = ListrContext> {
   /**
    * Collects errors inside the `Listr.errors`.
    *
-   * - `false` will collect no errors.
-   * - `minimal` will only collect the error message and the location.
-   * - `full` will clone the current context and task in to the error instance.
+   * - `false` will collect no errors, leaving `Listr.errors` as `null`.
+   * - `true` will collect the error message, the type and the location of the failed task.
    *
    * @defaultValue `false`
    * @see {@link https://listr2.kilic.dev/task/error-handling.html#collected-errors}
    */
-  collectErrors?: false | 'minimal' | 'full'
+  collectErrors?: boolean
   /**
    * Listr will track SIGINIT signal to update the renderer one last time before failing, therefore it needs to
    * register exit listeners.
@@ -106,9 +105,8 @@ export interface ListrBaseClassOptions<
   Ctx = ListrContext,
   Renderer extends ListrRendererValue = ListrPrimaryRendererValue,
   FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
-> extends ListrOptions<Ctx>,
-  ListrPrimaryRendererSelection<Renderer>,
-  ListrSecondaryRendererSelection<FallbackRenderer> {}
+>
+  extends ListrOptions<Ctx>, ListrPrimaryRendererSelection<Renderer>, ListrSecondaryRendererSelection<FallbackRenderer> {}
 
 /**
  * Subtasks has reduced set options where the missing ones are explicitly set by the base class.
@@ -117,6 +115,8 @@ export interface ListrSubClassOptions<
   Ctx = ListrContext,
   Renderer extends ListrRendererValue = ListrPrimaryRendererValue,
   FallbackRenderer extends ListrRendererValue = ListrSecondaryRendererValue
-> extends Omit<ListrOptions<Ctx>, 'registerSignalListeners' | 'fallbackRendererCondition' | 'silentRendererCondition' | 'forceTTY' | 'forceUnicode'>,
+>
+  extends
+  Omit<ListrOptions<Ctx>, 'registerSignalListeners' | 'fallbackRendererCondition' | 'silentRendererCondition' | 'forceTTY' | 'forceUnicode'>,
   ListrPrimaryRendererOptions<Renderer>,
   ListrSecondaryRendererOptions<FallbackRenderer> {}

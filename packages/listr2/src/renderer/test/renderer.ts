@@ -27,7 +27,7 @@ export class TestRenderer implements ListrRenderer {
       'isPrompt',
       'isPaused',
       'isPending',
-      'isSkipped',
+      'isCancelled',
       'isStarted',
       'hasFailed',
       'isEnabled',

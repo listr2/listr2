@@ -110,6 +110,16 @@ export class Task<
   }
 
   /**
+   * Reset the current output of the Task and emit the neccassary events.
+   */
+  set outputReset$(data: null) {
+    this.output = data
+
+    this.emit(ListrTaskEventType.OUTPUT_RESET)
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
+  }
+
+  /**
    * Update the current prompt output of the Task and emit the neccassary events.
    */
   set promptOutput$(data: string) {
@@ -171,7 +181,7 @@ export class Task<
 
   /** Returns whether this task is finalized in someform. */
   public hasFinalized(): boolean {
-    return this.isCompleted() || this.hasFailed() || this.isSkipped() || this.hasRolledBack()
+    return this.isCompleted() || this.hasFailed() || this.isSkipped() || this.hasRolledBack() || this.isCancelled()
   }
 
   /** Returns whether this task is in progress. */
@@ -197,6 +207,11 @@ export class Task<
   /** Returns whether this task has been failed. */
   public hasFailed(): boolean {
     return this.state === ListrTaskState.FAILED
+  }
+
+  /** Returns whether this task has been cancelled by an interruption. */
+  public isCancelled(): boolean {
+    return this.state === ListrTaskState.CANCELLED
   }
 
   /** Returns whether this task has an active rollback task going on. */
@@ -341,11 +356,17 @@ export class Task<
 
       for (let retries = 1; retries <= retryCount; retries++) {
         try {
-          // handle the results
-          await handleResult(this.taskFn(context, wrapper))
+          // race the task against interruption so SIGINT rejects into the rollback path below; whenInterrupted() only
+          // rejects leaf tasks, so a task that has spawned subtasks unwinds through its children (child before parent)
+          await Promise.race([handleResult(this.taskFn(context, wrapper)), this.whenInterrupted()])
 
           break
         } catch(err: any) {
+          // never retry an interrupted task
+          if (this.listr.signal.aborted) {
+            throw err
+          }
+
           if (retries !== retryCount) {
             this.retry = { count: retries, error: err }
             this.message$ = { retry: this.retry }
@@ -403,6 +424,13 @@ export class Task<
           throw error
         }
       } else {
+        // interrupted: mark as cancelled and bail quietly, without surfacing a per-task "Interrupted." message
+        if (this.listr.signal.aborted) {
+          this.state$ = ListrTaskState.CANCELLED
+
+          throw error
+        }
+
         // mark task as failed
         this.state$ = ListrTaskState.FAILED
 
@@ -427,5 +455,24 @@ export class Task<
     this.emit(ListrTaskEventType.CLOSED)
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
     this.complete()
+  }
+
+  private whenInterrupted(): Promise<never> {
+    return new Promise((_, reject) => {
+      const onAbort = (): void => {
+        // only leaf tasks reject on abort; a task that has spawned subtasks rejects naturally once a child rejects
+        if (!this.hasSubtasks()) {
+          reject(new Error('Interrupted.'))
+        }
+      }
+
+      if (this.listr.signal.aborted) {
+        onAbort()
+
+        return
+      }
+
+      this.listr.signal.addEventListener('abort', onAbort, { once: true })
+    })
   }
 }

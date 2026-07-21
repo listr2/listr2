@@ -17,6 +17,7 @@ export type TestRendererSerializerTaskKeys = Extract<
   | 'isSkipped'
   | 'isCompleted'
   | 'hasFailed'
+  | 'isCancelled'
   | 'isRollingBack'
   | 'hasRolledBack'
   | 'isRetrying'

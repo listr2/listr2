@@ -90,6 +90,8 @@ export class VerboseRenderer implements ListrRenderer {
               }
             }
           )
+        } else if (state === ListrTaskState.CANCELLED) {
+          this.logger.log(ListrLogLevels.CANCELLED, task.title)
         }
       })
 

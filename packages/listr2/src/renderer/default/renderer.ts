@@ -103,9 +103,7 @@ export class DefaultRenderer implements ListrRenderer {
       })
     }
 
-    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
-      this.update()
-    })
+    this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, this.refresh)
   }
 
   public update(): void {
@@ -114,6 +112,9 @@ export class DefaultRenderer implements ListrRenderer {
 
   public end(): void {
     this.spinner.stop()
+
+    // unsubscribe before teardown, otherwise a late refresh repaints a duplicate frame below the persisted output
+    this.events.off(ListrEventType.SHOULD_REFRESH_RENDER, this.refresh)
 
     // clear log updater
     this.updater.clear()
@@ -206,6 +207,8 @@ export class DefaultRenderer implements ListrRenderer {
       return this.logger.icon(ListrDefaultRendererLogLevels.ROLLED_BACK)
     } else if (task.hasFailed()) {
       return this.logger.icon(ListrDefaultRendererLogLevels.FAILED)
+    } else if (task.isCancelled()) {
+      return this.logger.icon(ListrDefaultRendererLogLevels.CANCELLED)
     } else if (task.isPaused()) {
       return this.logger.icon(ListrDefaultRendererLogLevels.PAUSED)
     }
@@ -225,7 +228,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     let parsed: string[]
 
-    const columns = (process.stdout.columns ?? 80) - level * this.options.indentation - 2
+    const columns = (this.logger.process.stdout.columns ?? 80) - level * this.options.indentation - 2
 
     switch (this.options.formatOutput) {
       case 'truncate':
@@ -264,6 +267,10 @@ export class DefaultRenderer implements ListrRenderer {
     const bottomBar = this.cache.rendererTaskOptions.get(task.id).bottomBar
 
     return (typeof bottomBar === 'number' && bottomBar !== 0) || (typeof bottomBar === 'boolean' && bottomBar !== false) || !task.hasTitle()
+  }
+
+  private readonly refresh = (): void => {
+    this.update()
   }
 
   private renderer(tasks: ListrDefaultRendererTask[], level = 0): string[] {
@@ -312,7 +319,12 @@ export class DefaultRenderer implements ListrRenderer {
 
       // Current Task Title
       if (task.hasTitle()) {
-        if (!(tasks.some((task) => task.hasFailed()) && !task.hasFailed() && task.options.exitOnError !== false && !(task.isCompleted() || task.isSkipped()))) {
+        if (!(
+          tasks.some((task) => task.hasFailed()) &&
+          !task.hasFailed() &&
+          task.options.exitOnError !== false &&
+          !(task.isCompleted() || task.isSkipped() || task.isCancelled())
+        )) {
           // if task is skipped
           if (task.hasFailed() && rendererOptions.collapseErrors) {
             // current task title and skip change the title
@@ -409,7 +421,9 @@ export class DefaultRenderer implements ListrRenderer {
           // if any of the subtasks has failed
           task.subtasks.some((subtask) => subtask.hasFailed()) ||
           // if any of the subtasks rolled back
-          task.subtasks.some((subtask) => subtask.hasRolledBack()))
+          task.subtasks.some((subtask) => subtask.hasRolledBack()) ||
+          // if any of the subtasks was cancelled
+          task.subtasks.some((subtask) => subtask.isCancelled()))
       ) {
         // set level
         const subtaskLevel = !task.hasTitle() ? level : level + 1
@@ -492,6 +506,12 @@ export class DefaultRenderer implements ListrRenderer {
       return
     }
 
+    // finalized tasks have their non-persistent buffers torn down every render pass below; re-creating them here would
+    // re-attach the output and state listeners each pass and leak them, so leave them until the task runs again
+    if (task.hasFinalized()) {
+      return
+    }
+
     const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
 
     // lazily create the process output buffer for the current task output
@@ -505,12 +525,13 @@ export class DefaultRenderer implements ListrRenderer {
         this.buffer.bottom.get(task.id).write(data.join(EOL))
       })
 
-      task.on(ListrTaskEventType.STATE, (state) => {
-        switch (state) {
-          case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
-            this.buffer.bottom.delete(task.id)
+      task.on(ListrTaskEventType.OUTPUT_RESET, () => {
+        this.buffer.bottom.get(task.id)?.reset()
+      })
 
-            break
+      task.on(ListrTaskEventType.STATE, (state) => {
+        if (state === ListrTaskState.RETRY || state === ListrTaskState.ROLLING_BACK) {
+          this.buffer.bottom.delete(task.id)
         }
       })
     } else if (this.shouldOutputToOutputBar(task) && !this.buffer.output.has(task.id)) {
@@ -520,12 +541,13 @@ export class DefaultRenderer implements ListrRenderer {
         this.buffer.output.get(task.id).write(output)
       })
 
-      task.on(ListrTaskEventType.STATE, (state) => {
-        switch (state) {
-          case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
-            this.buffer.output.delete(task.id)
+      task.on(ListrTaskEventType.OUTPUT_RESET, () => {
+        this.buffer.output.get(task.id)?.reset()
+      })
 
-            break
+      task.on(ListrTaskEventType.STATE, (state) => {
+        if (state === ListrTaskState.RETRY || state === ListrTaskState.ROLLING_BACK) {
+          this.buffer.output.delete(task.id)
         }
       })
     }
