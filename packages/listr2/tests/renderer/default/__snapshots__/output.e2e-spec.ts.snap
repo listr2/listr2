@@ -1,5 +1,165 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
+exports[`default renderer: output should be a no-op when output is cleared after the task has finalized: cthX0yZwrfeOdOxrvWGTZnCQrarUIuG3-exit 1`] = `[]`;
+
+exports[`default renderer: output should be a no-op when output is cleared after the task has finalized: cthX0yZwrfeOdOxrvWGTZnCQrarUIuG3-stderr 1`] = `[]`;
+
+exports[`default renderer: output should be a no-op when output is cleared after the task has finalized: cthX0yZwrfeOdOxrvWGTZnCQrarUIuG3-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[G[2K[G[2m◼[22m This task will execute.
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[1A[G[2K[1B[2K[1A[G  › I will push an output. [0]
+[2m◼[22m This task will execute.
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+  › I will push an output. [0]
+[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[1A[G[2K[G[33m❯[39m This task will execute.[K
+[?2026l",
+  "[?2026h[1A[G[2K[G[32m✔[39m This task will execute.[K
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This task will execute.
+  › I will push an output. [0]
+[32m✔[39m This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should be a no-op when output is cleared before any output is streamed: J6xy27g81kBDTGYxfgOx6pwkGPmeNYHL-exit 1`] = `[]`;
+
+exports[`default renderer: output should be a no-op when output is cleared before any output is streamed: J6xy27g81kBDTGYxfgOx6pwkGPmeNYHL-stderr 1`] = `[]`;
+
+exports[`default renderer: output should be a no-op when output is cleared before any output is streamed: J6xy27g81kBDTGYxfgOx6pwkGPmeNYHL-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should clear all lines from the output bar with outputBar as Infinity when output is set to null: 9Ol7Y5L4326KO4NFEpMpNHZuIEGJwR1N-exit 1`] = `[]`;
+
+exports[`default renderer: output should clear all lines from the output bar with outputBar as Infinity when output is set to null: 9Ol7Y5L4326KO4NFEpMpNHZuIEGJwR1N-stderr 1`] = `[]`;
+
+exports[`default renderer: output should clear all lines from the output bar with outputBar as Infinity when output is set to null: 9Ol7Y5L4326KO4NFEpMpNHZuIEGJwR1N-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
+[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [0]
+[K[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [1]
+[K[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [2]
+[K[?2026l",
+  "[?2026h[3A[G[2K[1B[2K[1B[2K[1B[2K[3A[G[K[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should clear all lines from the output bar with outputBar as a number when output is set to null: PWHBuAjpZIwJ9XlrlYQTri847NT0RuKY-exit 1`] = `[]`;
+
+exports[`default renderer: output should clear all lines from the output bar with outputBar as a number when output is set to null: PWHBuAjpZIwJ9XlrlYQTri847NT0RuKY-stderr 1`] = `[]`;
+
+exports[`default renderer: output should clear all lines from the output bar with outputBar as a number when output is set to null: PWHBuAjpZIwJ9XlrlYQTri847NT0RuKY-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
+[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [0]
+[K[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [1]
+[K[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [2]
+[K[?2026l",
+  "[?2026h[3A[G[2K[1B[2K[1B[2K[1B[2K[3A[G[K[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should clear the bottom bar when output is set to null: X9WByECJDy84XWuHMs8djxYdkWQEZpIa-exit 1`] = `[]`;
+
+exports[`default renderer: output should clear the bottom bar when output is set to null: X9WByECJDy84XWuHMs8djxYdkWQEZpIa-stderr 1`] = `[]`;
+
+exports[`default renderer: output should clear the bottom bar when output is set to null: X9WByECJDy84XWuHMs8djxYdkWQEZpIa-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
+[?2026l",
+  "[?2026h[1B[G[G› I will push an output. [0]
+[K[?2026l",
+  "[?2026h[G[2K[G› I will push an output. [1]
+[K[?2026l",
+  "[?2026h[G[2K[G› I will push an output. [2]
+[K[?2026l",
+  "[?2026h[3A[G[2K[1B[2K[1B[2K[1B[2K[3A[G[1A[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should clear the output bar when output is set to null: NduelZU7RnrfhxPfeXiFeQhYBm9bIRKW-exit 1`] = `[]`;
+
+exports[`default renderer: output should clear the output bar when output is set to null: NduelZU7RnrfhxPfeXiFeQhYBm9bIRKW-stderr 1`] = `[]`;
+
+exports[`default renderer: output should clear the output bar when output is set to null: NduelZU7RnrfhxPfeXiFeQhYBm9bIRKW-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
+[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [0]
+[K[?2026l",
+  "[?2026h[1A[G[2K[G  › I will push an output. [1][K
+[?2026l",
+  "[?2026h[1A[G[2K[1B[2K[1A[G[K[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This task will execute.
+",
+  "[?25h",
+]
+`;
+
 exports[`default renderer: output should have persistent output on task fail with bottom bar false: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-exit 1`] = `[]`;
 
 exports[`default renderer: output should have persistent output on task fail with bottom bar false: MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv-stderr 1`] = `[]`;
@@ -434,6 +594,33 @@ exports[`default renderer: output should output to output bar with last output: 
 [?2026l",
   "[?2026h[2K[1A[2K[G[?2026l",
   "[32m✔[39m This task will execute.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: output should stream new output again after being cleared with null: W8PPqm0hMrdkqJZ46wdFJdFbHnpQIV71-exit 1`] = `[]`;
+
+exports[`default renderer: output should stream new output again after being cleared with null: W8PPqm0hMrdkqJZ46wdFJdFbHnpQIV71-stderr 1`] = `[]`;
+
+exports[`default renderer: output should stream new output again after being cleared with null: W8PPqm0hMrdkqJZ46wdFJdFbHnpQIV71-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
+[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [0]
+[K[?2026l",
+  "[?2026h[1A[G[2K[1B[2K[1A[G[K[?2026l",
+  "[?2026h[G[2K[G  › I will push an output. [1]
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+  › I will push an output. [1]
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This task will execute.
+  › I will push an output. [1]
 ",
   "[?25h",
 ]

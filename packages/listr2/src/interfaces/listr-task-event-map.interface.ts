@@ -17,6 +17,7 @@ export declare class ListrTaskEventMap extends BaseEventMap implements EventMap<
   [ListrTaskEventType.SUBTASK]: Task<any, any, any>[];
   [ListrTaskEventType.TITLE]: string;
   [ListrTaskEventType.OUTPUT]: string;
+  [ListrTaskEventType.OUTPUT_RESET]: never;
   [ListrTaskEventType.MESSAGE]: ListrTaskMessage;
   [ListrTaskEventType.PROMPT]: string;
   [ListrTaskEventType.CLOSED]: never

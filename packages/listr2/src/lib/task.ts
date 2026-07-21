@@ -110,6 +110,16 @@ export class Task<
   }
 
   /**
+   * Reset the current output of the Task and emit the neccassary events.
+   */
+  set outputReset$(data: null) {
+    this.output = data
+
+    this.emit(ListrTaskEventType.OUTPUT_RESET)
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
+  }
+
+  /**
    * Update the current prompt output of the Task and emit the neccassary events.
    */
   set promptOutput$(data: string) {

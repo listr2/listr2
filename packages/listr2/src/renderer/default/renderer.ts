@@ -524,12 +524,13 @@ export class DefaultRenderer implements ListrRenderer {
         this.buffer.bottom.get(task.id).write(data.join(EOL))
       })
 
-      task.on(ListrTaskEventType.STATE, (state) => {
-        switch (state) {
-          case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
-            this.buffer.bottom.delete(task.id)
+      task.on(ListrTaskEventType.OUTPUT_RESET, () => {
+        this.buffer.bottom.get(task.id)?.reset()
+      })
 
-            break
+      task.on(ListrTaskEventType.STATE, (state) => {
+        if (state === ListrTaskState.RETRY || state === ListrTaskState.ROLLING_BACK) {
+          this.buffer.bottom.delete(task.id)
         }
       })
     } else if (this.shouldOutputToOutputBar(task) && !this.buffer.output.has(task.id)) {
@@ -539,12 +540,13 @@ export class DefaultRenderer implements ListrRenderer {
         this.buffer.output.get(task.id).write(output)
       })
 
-      task.on(ListrTaskEventType.STATE, (state) => {
-        switch (state) {
-          case ListrTaskState.RETRY || ListrTaskState.ROLLING_BACK:
-            this.buffer.output.delete(task.id)
+      task.on(ListrTaskEventType.OUTPUT_RESET, () => {
+        this.buffer.output.get(task.id)?.reset()
+      })
 
-            break
+      task.on(ListrTaskEventType.STATE, (state) => {
+        if (state === ListrTaskState.RETRY || state === ListrTaskState.ROLLING_BACK) {
+          this.buffer.output.delete(task.id)
         }
       })
     }

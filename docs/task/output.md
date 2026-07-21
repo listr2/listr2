@@ -46,6 +46,24 @@ Since observables and streams are supported they can also be used to generate ou
 
 :::
 
+### Reset the Output <Version version="v11.0.0" /><GithubIssue :issue="703" />
+
+Setting the output to `null` clears whatever the _Task_ has already streamed instead of rendering anything new.
+
+```typescript
+task.output = 'I will push an output.'
+
+task.output = null
+```
+
+For _DefaultRenderer_ this empties the output bar and the bottom bar for that _Task_, so a following `{ persistentOutput: true }` finalize keeps nothing. The append-only loggers, _SimpleRenderer_, _VerboseRenderer_, and _TestRenderer_, ignore it since their history can not be cleared.
+
+::: warning
+
+Prior to this, `task.output = null` used to render the literal string `"null"`.
+
+:::
+
 ## Render a WritableStream Directly
 
 <Version version="v2.1.0" /><GithubIssue :issue="31" />
