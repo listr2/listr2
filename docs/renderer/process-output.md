@@ -41,3 +41,19 @@ If you do not like the behavior of the _ProcessOutput_, you can always implement
 <<< @../../examples/docs/renderer/process-output/change-behavior.ts
 
 :::
+
+## Routing All Output to `stderr`
+
+<GithubIssue :issue="716" />
+
+Since every renderer writes through the _ProcessOutput_ on the _ListrLogger_, you can keep `stdout` clean and pipeable (e.g. emitting `JSON` to pipe into `jq`) while the live UI and the final output still show up in the terminal by routing everything to `stderr`.
+
+Pass `process.stderr` for both the `stdout` and `stderr` slots of the _ProcessOutput_, then inject the logger into the renderer.
+
+There is one caveat: piping `stdout` makes it non-`TTY`, which normally steps _Listr_ down to the fallback renderer with a default logger. To keep the _DefaultRenderer_ and route the fallback through the same logger, set `forceTTY` and provide the logger on both `rendererOptions` and `fallbackRendererOptions`.
+
+::: details <CodeExampleIcon /> Code Example
+
+<<< @../../examples/docs/renderer/process-output/route-to-stderr.ts
+
+:::
