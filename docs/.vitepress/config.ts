@@ -82,7 +82,7 @@ export default defineConfig({
       sortMenusByFrontmatterOrder: true,
       capitalizeFirst: true,
       collapsed: true,
-      excludePattern: ['format.md', 'node_modules/**'],
+      excludePattern: ['format.md', 'node_modules/**', 'dist/**'],
       manualSortFileNameByPriority: ['repository', 'listr', 'task', 'renderer', 'migration', 'api']
     }) as any,
     socialLinks: [{ icon: 'github', link: 'https://github.com/listr2/listr2' }]
