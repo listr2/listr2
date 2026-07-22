@@ -19,25 +19,7 @@ You can always open up a new issue for reporting the bugs and requesting feature
 
 ## Looking for Contributions
 
-This section implies the following features or bug fixes are blocked for some reason or other and would be more than happy for any contributiors.
-
-### Updating Renderer
-
-Swapping updating renderer [`log-update`](https://www.npmjs.com/package/log-update) for another library where it can do partial updates.
-
-#### Problems with Current Implementation
-
-- For sufficiently long task lists, the flashing effect happens due to it updating the whole screen whenever [`ListrEventType.SHOULD_REFRESH_RENDER`](/api/listr2/enumerations/ListrEventType.html#should-refresh-render) is triggered by the parent task indicating a new render should be done.
-- Most of the issues are opened about _Listr_ breaking or corrupting the terminal output. This sometimes causes unintended behavior.
-- It brings a lot of overhead of wrapping and truncating the lines again inside the default renderer since the built-in one does not seem to work for our case.
-
-#### What has been done?
-
-There are a couple of tries have been made to migrate using the library [`stdout-update`](https://www.npmjs.com/package/stdout-update).
-
-This has been mostly failed tries due to it behaving strangely on some tests.
-
-Naturally, we do not expect it to be a one-to-one replacement, but some tests failed to generate any kind of output at all.
+This section implies the following features or bug fixes are blocked for some reason or other and would be more than happy for any contributors.
 
 ### Progress Bar
 
