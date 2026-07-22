@@ -53,3 +53,7 @@ The default renderer has options where you can change how the skip messages are 
 :::
 
 </llm-exclude>
+
+### _SimpleRenderer_ & _VerboseRenderer_
+
+The non-TTY renderers log a `SKIPPED` entry with the skip reason when a task is skipped; the display options above are specific to the _DefaultRenderer_.

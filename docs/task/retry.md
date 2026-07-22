@@ -63,3 +63,7 @@ Retrying is self-aware, and you can access the task if it is retrying via `task.
 :::
 
 </llm-exclude>
+
+### _SimpleRenderer_ & _VerboseRenderer_
+
+The non-TTY renderers log a `RETRY` entry with the current attempt count on each retry, rather than resetting an in-place title.

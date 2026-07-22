@@ -79,6 +79,10 @@ Default renderer has options where you can change how the errors are displayed.
 
 </llm-exclude>
 
+### _SimpleRenderer_ & _VerboseRenderer_
+
+The non-TTY renderers log a `FAILED` entry carrying the error message.
+
 ## Collected Errors
 
 Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.errors` where `tasks` is the _Listr_ class. **This option is opt-in since <Version version="v6.0.0" />.**

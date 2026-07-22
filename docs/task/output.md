@@ -139,3 +139,7 @@ To keep the output after the task has been completed while using the default ren
 <<< @../../examples/docs/task/output/renderer-default-persistent.ts
 
 :::
+
+### _SimpleRenderer_ & _VerboseRenderer_
+
+The non-TTY renderers have no bars. Every line written to `task.output` is logged as an `OUTPUT` entry as it arrives, interleaved with the rest of the log, so the output is inherently persistent — the `outputBar`, `bottomBar` and `persistentOutput` options do not apply.
