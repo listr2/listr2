@@ -68,7 +68,7 @@ Prior to this, `task.output = null` used to render the literal string `"null"`.
 
 <Version version="v2.1.0" /><GithubIssue :issue="31" />
 
-`process.stdout` and `process.stderr` might get hooked depending on the usage of _ProcessOutput_ on the selected renderer. So anything that requires a `WritableStream` while the task running to dump the output, should go through the _Listr_ itself by creating a temporary `WritableStream` with `task.stdout()`.
+`process.stdout` and `process.stderr` might get hooked depending on the usage of _ProcessOutput_ on the selected renderer. So anything that requires a `WritableStream` while the task is running to dump the output should go through `task.stdout()`, which creates a temporary `WritableStream` for the task, instead of writing to the stream directly.
 
 ## Render Output of a Command
 

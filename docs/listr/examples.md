@@ -15,7 +15,7 @@ Examples live in the folder [`./examples/`](https://github.com/listr2/listr2/tre
 
 The documentation also includes many examples, these examples are also working examples that can be run/inspected in the folder [`./examples/docs/`](https://github.com/listr2/listr2/tree/master/examples/docs).
 
-If you ever choose to clone the repository, you can run all the examples through `ts-node` in your local environment, to learn about or test new things out.
+If you ever choose to clone the repository, you can run all the examples locally with the `pnpm run --filter @listr2/examples start` script, to learn about or test new things out.
 
 ```bash
 # clone the repository
@@ -28,7 +28,7 @@ pnpm install
 pnpm build
 
 # run any example, by giving the script a relative path in the repository
-pnpm run --filter examples start examples/renderer-default.example.ts
+pnpm run --filter @listr2/examples start examples/renderer-default.example.ts
 ```
 
 ## `jsdoc`

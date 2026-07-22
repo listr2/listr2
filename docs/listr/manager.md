@@ -46,4 +46,4 @@ pnpm i @listr2/manager
 
 The idea of having an additional task manager is to create a higher-order factory to create _Listr_ on demand with always your options. This allows you to not store your options as variables that you inject every time you create a new _Listr_ but store it in a stateful Manager where you can initiate as many _Listr_ task lists as you want.
 
-It can alternatively be used as a single-task list for ongoing actions where you can add more tasks as you like. This is also possible through _Listr_ but not as convenient to do.
+It can alternatively be used as a running task list for ongoing actions, where you add more tasks over time through `manager.add()`. This is also possible with a plain _Listr_, but less convenient.

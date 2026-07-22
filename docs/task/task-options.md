@@ -26,7 +26,7 @@ Naturally, subtasks options are a subset of the general options, since some opti
 
 ## Per _Task_
 
-Some properties of the task options even propagate to the per-task setting, these are pretty limited in form of configuration but should be just enough for you to not wrap everything in subtasks to change behavior.
+Some of the task options propagate down to the per-task level. These per-task options are limited in scope, but usually enough to change a single task's behavior without wrapping it in a subtask.
 
 ## Adding Task Options
 

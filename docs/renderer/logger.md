@@ -44,9 +44,13 @@ The `icon` and `color` section of the supported renderer is in the form of [List
 
 <Version version="v6.0.0" />
 
-_ListrLogger_ can have fields for each entry in the form of prefixes and suffixes.
+_ListrLogger_ can wrap each entry with fields in the form of prefixes and suffixes through `logger.prefix(message, ...fields)` and `logger.suffix(message, ...fields)`. A field is either a plain `string` or a [`LoggerField`](/api/listr2/type-aliases/LoggerField.html) object, which can compute its value from arguments, render conditionally, and carry its own formatting.
 
-Please refer to the _presets_ section for how to use this with the renderers.
+```typescript
+logger.suffix('a message', { field: () => new Date().toISOString(), condition: showTimestamp })
+```
+
+The [presets](#presets) below are prebuilt fields — timers and timestamps — that plug into this same prefix/suffix mechanism.
 
 ## Presets
 

@@ -4,8 +4,6 @@ interface Ctx {}
 
 const ctx: Ctx = {}
 
-const tasks = new Listr<Ctx>([
-  /* tasks */
-])
+const tasks = new Listr<Ctx>([/* tasks */])
 
-await tasks.run({ ctx })
+await tasks.run({ ctx }) // [!code highlight]

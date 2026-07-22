@@ -25,7 +25,7 @@ Context type can be injected as a type parameter to Listr class to limit what is
 
 - A successful task will return the context for further operation.
 - Context can be injected from outside while creating the task list or running the task list.
-- If an error is encountered, the context at the time will be recorded as a frozen object to give the ability to further debug the issue.
+- If an error is encountered, the failed `task` is available on the collected `ListrError` for further debugging; the context itself is no longer attached.
 
 You can also manually inject a context variable default in multiple ways.
 
@@ -41,7 +41,7 @@ If all tasks are in the same task list, the context will be automatically inject
 
 Context can be injected as an option to the _Listr_.
 
-<<< @../../examples/docs/listr/context/as-option.ts{9}
+<<< @../../examples/docs/listr/context/as-option.ts
 
 #### Multiple Contexts <GithubIssue :issue="612" />
 
@@ -55,7 +55,7 @@ This can also be used to inject a different context into subtasks. Imagine that 
 
 ### Injecting Context at Runtime
 
-<<< @../../examples/docs/listr/context/at-runtime.ts{8}
+<<< @../../examples/docs/listr/context/at-runtime.ts
 
 ## Retrieving Context
 

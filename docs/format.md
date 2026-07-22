@@ -7,13 +7,13 @@ order: 0
 
 <!-- included code snippet -->
 
-<<< @../../examples/docs/task/subtasks/overwriting-options.ts{9,24}
+<<< @../../examples/docs/task/subtasks/overwriting-options.ts{8,23}
 
 <!-- collapsed code snippet-->
 
 ::: details <CodeExampleIcon /> Code Example
 
-@[code{4-} typescript{9,24,31,46,50}](../../examples/docs/task/subtasks/overwriting-options.ts)
+<<< @../../examples/docs/task/subtasks/overwriting-options.ts{8,23,30,45,49}
 
 :::
 
@@ -35,8 +35,12 @@ You can find the related examples [here](https://github.com/listr2/listr2/tree/m
 
 <!-- include details -->
 
+<llm-exclude>
+
 ::: details
 
-<!-- @include: ../api/listr2/interfaces/ListrDefaultRendererOptions.md{156-186} -->
+<!-- @include: ../api/listr2/interfaces/ListrDefaultRendererOptions.md{124,148} -->
 
 :::
+
+</llm-exclude>

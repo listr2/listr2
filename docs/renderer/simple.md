@@ -19,16 +19,24 @@ _SimpleRenderer_ still requires `vt100` terminal compatibility if you are using 
 
 ## Renderer Options
 
+<llm-exclude>
+
 ::: details
 
 <!-- @include: ../api/listr2/interfaces/ListrSimpleRendererOptions.md -->
 
 :::
 
+</llm-exclude>
+
 ## Renderer Task Options
+
+<llm-exclude>
 
 ::: details
 
 <!-- @include: ../api/listr2/interfaces/ListrSimpleRendererTaskOptions.md -->
 
 :::
+
+</llm-exclude>

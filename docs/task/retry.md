@@ -34,9 +34,11 @@ Retry action can have a delay between the tries. For enabling this behavior, you
 
 <<< @../../examples/docs/task/retry/retry-delay.ts{18-21}
 
+While waiting between attempts the task enters a paused state, and the _DefaultRenderer_ shows a live countdown until the next try through its `pausedTimer` option. You can check for this state inside a task with `task.isPaused()`.
+
 ## Retry Event
 
-Retrying is self-aware, and you can access the task if it is retrying via `task.isRetrying()`. It will either return an object [with the given interface](/api/listr2/interfaces/ListrTaskRetry.html) where the `count` will be `0` for not repeating tasks, and `withError` is the last encountered error if retrying.
+Retrying is self-aware, and you can access the task if it is retrying via `task.isRetrying()`. It will either return an object [with the given interface](/api/listr2/interfaces/ListrTaskRetry.html) where the `count` will be `0` for not repeating tasks, and `error` is the last encountered error if retrying.
 
 ### Retry Count
 
@@ -52,8 +54,12 @@ Retrying is self-aware, and you can access the task if it is retrying via `task.
 
 ### _DefaultRenderer_
 
+<llm-exclude>
+
 ::: details
 
-<!-- @include: ../api/listr2/interfaces/ListrDefaultRendererOptions.md{263,294} -->
+<!-- @include: ../api/listr2/interfaces/ListrDefaultRendererOptions.md{237,264} -->
 
 :::
+
+</llm-exclude>

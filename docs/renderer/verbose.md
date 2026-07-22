@@ -9,7 +9,7 @@ category:
 
 # {{ $frontmatter.title }}
 
-_VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logger.
+_VerboseRenderer_ was the default `non-TTY` renderer prior to <Version version="v6.0.0" /> and works mostly like a logger.
 
 <!-- more -->
 
@@ -17,16 +17,24 @@ _VerboseRenderer_ is the default `non-TTY` renderer and works mostly like a logg
 
 ## Renderer Options
 
+<llm-exclude>
+
 ::: details
 
 <!-- @include: ../api/listr2/interfaces/ListrVerboseRendererOptions.md -->
 
 :::
 
+</llm-exclude>
+
 ## Renderer Task Options
+
+<llm-exclude>
 
 ::: details
 
 <!-- @include: ../api/listr2/interfaces/ListrVerboseRendererTaskOptions.md -->
 
 :::
+
+</llm-exclude>
