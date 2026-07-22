@@ -68,7 +68,7 @@ Prior to this, `task.output = null` used to render the literal string `"null"`.
 
 <Version version="v2.1.0" /><GithubIssue :issue="31" />
 
-`process.stdout` and `process.stderr` might get hooked depending on the usage of _ProcessOutput_ on the selected renderer. So anything that requires a `WritableStream` while the task running to dump the output, should go through the _Listr_ itself by creating a temporary `WritableStream` with `task.stdout()`.
+`process.stdout` and `process.stderr` might get hooked depending on the usage of _ProcessOutput_ on the selected renderer. So anything that requires a `WritableStream` while the task is running to dump the output should go through `task.stdout()`, which creates a temporary `WritableStream` for the task, instead of writing to the stream directly.
 
 ## Render Output of a Command
 
@@ -139,3 +139,7 @@ To keep the output after the task has been completed while using the default ren
 <<< @../../examples/docs/task/output/renderer-default-persistent.ts
 
 :::
+
+### _SimpleRenderer_ & _VerboseRenderer_
+
+The non-TTY renderers have no bars. Every line written to `task.output` is logged as an `OUTPUT` entry as it arrives, interleaved with the rest of the log, so the output is inherently persistent — the `outputBar`, `bottomBar` and `persistentOutput` options do not apply.

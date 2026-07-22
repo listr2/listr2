@@ -13,7 +13,7 @@ Renderers are the communication interface with your _Listr_.
 
 <!-- more -->
 
-There are five main renderers, which are `default`, `simple`, `verbose`, and `silent` as well as a testing renderer called `test`.
+There are five renderers: `default`, `simple`, `verbose`, `silent`, and the testing-only `test`.
 
 _DefaultRenderer_ is the default choice.
 

@@ -10,7 +10,7 @@ category:
 
 # {{ $frontmatter.title }}
 
-Conditional skip is another way of enabling a _Task_ depending on the given context. But the main difference between `enable` and `skip` is `skip` will always render the given task. When the execution time comes, and it turns out that it should be skipped, it will render or mark it as skipped.
+Conditional skip is a way of skipping a _Task_ depending on the given context. But the main difference between `enable` and `skip` is `skip` will always render the given task. When the execution time comes, and it turns out that it should be skipped, it will render or mark it as skipped.
 
 <!-- more -->
 
@@ -44,8 +44,16 @@ Skip call can either have or not have a message, therefore it is optional. Havin
 
 The default renderer has options where you can change how the skip messages are displayed.
 
+<llm-exclude>
+
 ::: details
 
-<!-- @include: ../api/listr2/interfaces/ListrDefaultRendererOptions.md{168,221} -->
+<!-- @include: ../api/listr2/interfaces/ListrDefaultRendererOptions.md{152,199} -->
 
 :::
+
+</llm-exclude>
+
+### _SimpleRenderer_ & _VerboseRenderer_
+
+The non-TTY renderers log a `SKIPPED` entry with the skip reason when a task is skipped; the display options above are specific to the _DefaultRenderer_.

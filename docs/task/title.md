@@ -18,7 +18,7 @@ _Task_ can have a title to stand out from the crowd and give the user visual que
 
 The title of the _Task_ can be initiated while creating the task itself and, can be directly manipulated through the injected `task` object during runtime.
 
-This allows the user to change the title depending on the progress that has been made throughout the task or just inform the user that the task is finished, so looking from a grammar perspective it will all look right.
+This allows the user to change the title depending on the progress made throughout the task, or simply to inform the user that the task is finished.
 
 <<< @../../examples/docs/task/title/task-title.ts{5,9,13}
 

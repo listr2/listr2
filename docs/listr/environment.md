@@ -18,6 +18,6 @@ order: 10
 
 Thanks to [@hyperz111](https://github.com/hyperz111) for making me aware of this change, which cut our bundle distribution size in half.
 
-Given the latest changes on `ts-node`, `jest`, and `ts-jest` allowed us to move everything in the repository to `esm`. This enabled the repository starting from version <Version version="v6" /> to use dynamic imports for anything that is using an `esm` module. So from that version and upward, everything should be up to date with the upstream of the dependencies. So keeping the `cjs` version does not hinder us from updating the given packages.
+Recent changes to `ts-node`, `jest`, and `ts-jest` let us move the entire repository to `esm`. This enabled the repository starting from version <Version version="v6" /> to use dynamic imports for anything that is using an `esm` module. So from that version and upward, everything should be up to date with the upstream of the dependencies. So keeping the `cjs` version does not hinder us from updating the given packages.
 
 > The community is moving to pure `esm` modules. [sindresorhus](https://github.com/sindresorhus) who is the maintainer of many-core `npm` packages ([cheers!](https://github.com/sponsors/sindresorhus) ) has to lead the movement with the deprecated `node.js` `10` support. You can read more about it [here](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) in his post.

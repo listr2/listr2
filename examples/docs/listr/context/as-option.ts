@@ -5,10 +5,8 @@ interface Ctx {}
 const ctx: Ctx = {}
 
 const tasks = new Listr<Ctx>(
-  [
-    /* tasks */
-  ],
-  { ctx }
+  [/* tasks */],
+  { ctx } // [!code highlight]
 )
 
 await tasks.run()

@@ -30,7 +30,7 @@ After migrating `ts-node`, `jest`, `ts-jest` to `esm` as well in the repository 
 
 - A new version will be published whenever a production dependency is updated.
 - Major dependencies require accepting the pull requests manually.
-- Every CI rule that this repository employs will run before updating any dependency. So if something fails the tests, it will not be merged in. Till now it has never been an instance where garbage/unworking code has been published with this methodology, so it is not much of a wory.
+- Every CI rule that this repository employs will run before updating any dependency. So if something fails the tests, it will not be merged in. Till now it has never been an instance where garbage/unworking code has been published with this methodology, so it is not much of a worry.
 - This is running on my Gitlab instance, so you can not directly see the changes/requests in Github. It can only be inspected further through the public pipelines or changelog after the fact.
 
 ## Hooks

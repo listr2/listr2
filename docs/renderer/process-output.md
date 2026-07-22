@@ -24,6 +24,10 @@ category:
 
 After the renderer releases the _ProcessOutput_ and marks it ready to use, everything that has been outputted to the hooked streams will be dumped. **This intends to solve the most common cause of opening an issue in the repository which is saying that the output is corrupted and not realizing something else is writing to output the terminal.**
 
+## Writing Through Process Output
+
+When you write your own renderer or logger, emit through the _ProcessOutput_ instead of touching `process.stdout` directly, so your output stays coordinated with the hijack/release cycle. `output.toStdout(buffer)` and `output.toStderr(buffer)` write to the correct stream, and the underlying streams are also reachable through `output.stream`.
+
 ## Extending Process Output
 
 You can override the default _ProcessOutput_ by extending the class with your expected behavior (e.g. writing to a log file) on the _ListrLogger_ since all the renderers, that either use or do not use the hijacking function, use _ProcessOutput_ through _ListrLogger_ itself. For most cases, just creating a `new ProcessOutput()` by passing your own `WriteStream` for `process.stdout` and `process.stderr` through the constructor should be good enough.

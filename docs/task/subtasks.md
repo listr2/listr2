@@ -55,3 +55,13 @@ You can access the parent task class from subtasks by passing the function signa
 <<< @../../examples/docs/task/subtasks/access-parent-task.ts{9,15}
 
 :::
+
+## Renderer
+
+### _DefaultRenderer_
+
+Subtasks are rendered as an indented block under the parent task and can be collapsed once finished through the `collapseSubtasks` renderer option.
+
+### _SimpleRenderer_ & _VerboseRenderer_
+
+The non-TTY renderers have no nesting area to collapse; each subtask's state changes are logged inline as they happen, in the order they run.

@@ -18,8 +18,12 @@ This JSON format specific can be seen [here](/api/listr2/interfaces/TestRenderer
 
 ## Renderer Options
 
+<llm-exclude>
+
 ::: details
 
 <!-- @include: ../api/listr2/interfaces/ListrTestRendererOptions.md -->
 
 :::
+
+</llm-exclude>

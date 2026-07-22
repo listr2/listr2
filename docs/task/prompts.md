@@ -58,7 +58,7 @@ Since _Task_ keeps track of the active prompt and this adapter exposes a `cancel
 
 ::: warning
 
-`inquirer` acts a little bit different while canceling the prompt, since it is a implemented in a `CancellablePromise` kind of way and not exposing submit externally, whenever the promise is cancelled it will throw an error out from the promise.
+`inquirer` acts a little bit different while canceling the prompt, since it is implemented as a `CancellablePromise` that does not expose `submit` externally; cancelling the promise throws an error out of it.
 
 :::
 
@@ -140,7 +140,7 @@ As a convenience, whenever you have just one prompt, you do not have to name you
 
 ::: warning
 
-If you want to pass in an array of prompts, be careful that you should name them, this is also enforced by Typescript as well. This is not true for single prompts, since they only return a single value, it will be direct gets past to the assigned variable.
+If you want to pass in an array of prompts, be careful that you should name them, this is also enforced by Typescript as well. This is not true for single prompts, since they only return a single value that is passed directly to the assigned variable.
 
 :::
 
@@ -156,7 +156,7 @@ import EditorPrompt from 'enquirer-editor'
 import { Listr, ListrEnquirerPromptAdapter } from 'listr2'
 
 const enquirer = new Enquirer()
-enquirer.register('editor', Editor)
+enquirer.register('editor', EditorPrompt)
 
 const tasks = new Listr<Ctx>(
   [

@@ -120,6 +120,8 @@ build-docs:
   variables:
     NODE_COMMAND_SCRIPT: docs:build
     NODE_COMMAND_CWD: ./docs
+    # full history so VitePress `lastUpdated` reflects each file's real last commit, not a shallow-clone uniform date
+    GIT_DEPTH: '0'
   artifacts:
     paths:
       - ./docs/dist

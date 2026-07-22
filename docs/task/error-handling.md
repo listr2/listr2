@@ -69,15 +69,23 @@ Be aware that the execution will only stop after the error is thrown out. This c
 
 Default renderer has options where you can change how the errors are displayed.
 
+<llm-exclude>
+
 ::: details Interface
 
-<!-- @include: ../api/listr2/interfaces/ListrDefaultRendererOptions.md{225,259} -->
+<!-- @include: ../api/listr2/interfaces/ListrDefaultRendererOptions.md{203,233} -->
 
 :::
 
+</llm-exclude>
+
+### _SimpleRenderer_ & _VerboseRenderer_
+
+The non-TTY renderers log a `FAILED` entry carrying the error message.
+
 ## Collected Errors
 
-Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.error` where `tasks` is the _Listr_ class. **This option is opt-in since <Version version="v6.0.0" />.**
+Errors from the _Task_ are collected inside an array in the main _Listr_ task list as `tasks.errors` where `tasks` is the _Listr_ class. **This option is opt-in since <Version version="v6.0.0" />.**
 
 Since there are options to ignore some errors on cases like `exitOnError`, or the ability to retry the given task through `task.retry`, encountered errors can be swallowed while the execution. To deal with those swallowed errors, all the errors that are encountered even though it does not stops the execution gets collected through this property.
 
@@ -99,9 +107,17 @@ While collection is disabled, `Listr.errors` is `null` instead of an empty array
 
 A listr error can be caused by multiple reasons, for a better explanation of why that particular error occurred, a type property on the `ListrError` exists in the form of enum [`ListrErrorTypes`](/api/listr2/enumerations/ListrErrorTypes.html).
 
+### Reporting an Error Manually
+
+A _Task_ can attach an error to the collection without throwing or interrupting its own execution through `task.report(error, type)`, where `type` is one of [`ListrErrorTypes`](/api/listr2/enumerations/ListrErrorTypes.html). This is handy when a task recovers from a failure but you still want it recorded. The error is only stored while `collectErrors` is enabled.
+
+```typescript
+task.report(new Error('recovered, but worth noting'), ListrErrorTypes.HAS_FAILED)
+```
+
 ### Methodology
 
-The order of the array `tasks.error` where `tasks` is the _Listr_ class, represents the order of errors that are encountered.
+The order of the array `tasks.errors` where `tasks` is the _Listr_ class, represents the order of errors that are encountered.
 
 To keep the error collection mechanism simple and predictable, it might also process the errors coming from the subtasks as well.
 
@@ -121,7 +137,7 @@ For example, the following example will clear some things up about the given min
 
 ::: details Flow
 
-- First error will be thrown from the first task. Since exitOnError is `false` on that context, `ListrError` will get collected by `tasks.errors`], and the value will be `{ message: '1', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR }`.
+- First error will be thrown from the first task. Since exitOnError is `false` on that context, `ListrError` will get collected by `tasks.errors`, and the value will be `{ message: '1', type: ListrErrorTypes.HAS_FAILED_WITHOUT_ERROR }`.
 - Then it will recurse into the second task, which has two subtasks.
 - The first task from the subtasks will fail and since the `exitOnError` is set to `true` in that context, that subtasks will fail and throw. The `ListrError` appended to the `tasks.errors` will be `{ message: '3', type: ListrErrorTypes.HAS_FAILED }`
 - Since the subtask has crashed, it will not execute the upcoming tasks in the subtasks.
