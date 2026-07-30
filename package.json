@@ -64,7 +64,7 @@
     "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsdown": "0.22.13",
+    "tsdown": "0.22.14",
     "typescript": "^6.0.3"
   },
   "config": {
