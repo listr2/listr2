@@ -53,7 +53,7 @@
     "@tsconfig/node22": "^22.0.5",
     "@types/jest": "^30.0.0",
     "@types/node": "^26.1.1",
-    "eslint": "^10.8.0",
+    "eslint": "^10.8.1",
     "execa": "^10.0.0",
     "jest": "^30.4.2",
     "jest-mock-process": "^2.0.0",
