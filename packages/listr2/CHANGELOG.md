@@ -1,3 +1,10 @@
+## listr2 [11.0.1](https://github.com/listr2/listr2/compare/listr2@11.0.0...listr2@11.0.1) (2026-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency wrap-ansi to ^10.0.1 ([e6e0abd](https://github.com/listr2/listr2/commit/e6e0abd4d1076e637679c74e96dccc56239ab00b))
+
 # listr2 [11.0.0](https://github.com/listr2/listr2/compare/listr2@10.2.2...listr2@11.0.0) (2026-07-21)
 
 
