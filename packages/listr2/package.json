@@ -72,7 +72,7 @@
   "dependencies": {
     "cli-truncate": "^6.1.1",
     "log-update": "^8.0.0",
-    "wrap-ansi": "^10.0.0"
+    "wrap-ansi": "^10.0.1"
   },
   "devDependencies": {
     "@types/zen-observable": "^0.8.7",
