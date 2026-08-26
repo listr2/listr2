@@ -39,12 +39,7 @@ export default defineConfig({
     },
     lastUpdated: { formatOptions: { hour12: false } },
     search: {
-      provider: 'algolia',
-      options: {
-        appId: '4G64M4W5QP',
-        apiKey: '4cdadab526edbb306f6fb0d195f634e6',
-        indexName: 'listr2'
-      }
+      provider: 'local'
     },
     editLink: {
       pattern: 'https://github.com/listr2/listr2/edit/master/docs/:path'
