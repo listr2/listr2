@@ -30,7 +30,7 @@ importers:
         specifier: ^26.1.1
         version: 26.1.1
       eslint:
-        specifier: ^10.9.0
+        specifier: ^10.9.1
         version: 10.9.1(jiti@2.6.1)
       execa:
         specifier: ^10.0.0
