@@ -1,3 +1,10 @@
+# listr2 [11.1.0](https://github.com/listr2/listr2/compare/listr2@11.0.1...listr2@11.1.0) (2026-08-31)
+
+
+### Features
+
+* add 'info' figure ([bfec609](https://github.com/listr2/listr2/commit/bfec6099f4b96a7eb56f8fa4b795bb4c6fbe9e54))
+
 ## listr2 [11.0.1](https://github.com/listr2/listr2/compare/listr2@11.0.0...listr2@11.0.1) (2026-08-25)
 
 
