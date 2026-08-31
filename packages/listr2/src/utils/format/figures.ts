@@ -2,6 +2,7 @@ import { isUnicodeSupported } from '@utils'
 
 const FIGURES_MAIN = {
   warning: '⚠',
+  info: 'ℹ',
   cross: '✖',
   arrowDown: '↓',
   tick: '✔',
@@ -17,6 +18,7 @@ const FIGURES_MAIN = {
 const FIGURES_FALLBACK = {
   ...FIGURES_MAIN,
   warning: '‼',
+  info: 'i',
   cross: '×',
   tick: '√',
   pointer: '>',
