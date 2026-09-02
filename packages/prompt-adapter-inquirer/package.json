@@ -73,9 +73,9 @@
     "@inquirer/type": "^4.0.7"
   },
   "devDependencies": {
-    "@inquirer/core": "^12.0.0",
-    "@inquirer/input": "^5.1.3",
-    "@inquirer/prompts": "^8.6.0",
+    "@inquirer/core": "^12.0.1",
+    "@inquirer/input": "^5.1.4",
+    "@inquirer/prompts": "^8.7.0",
     "listr2": "workspace:*"
   },
   "peerDependencies": {
