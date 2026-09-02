@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^2.2.24
+        specifier: ^2.3.0
         version: 2.3.0(@types/node@26.4.0)(typescript@6.0.3)
       '@cenk1cenk2/eslint-config':
         specifier: ^3.2.6
@@ -5393,7 +5393,7 @@ snapshots:
     dependencies:
       '@inquirer/ansi': 2.0.7
       '@inquirer/figures': 2.0.8
-      '@inquirer/type': 4.0.7(@types/node@26.4.0)
+      '@inquirer/type': 4.1.0(@types/node@26.4.0)
       cli-width: 4.1.0
       fast-wrap-ansi: 0.2.2
       mute-stream: 3.0.0
@@ -5863,7 +5863,7 @@ snapshots:
   '@listr2/prompt-adapter-inquirer@4.2.6(@inquirer/prompts@8.7.0(@types/node@26.4.0))(@types/node@26.4.0)(listr2@11.0.1)':
     dependencies:
       '@inquirer/prompts': 8.7.0(@types/node@26.4.0)
-      '@inquirer/type': 4.0.7(@types/node@26.4.0)
+      '@inquirer/type': 4.1.0(@types/node@26.4.0)
       listr2: 11.0.1
     transitivePeerDependencies:
       - '@types/node'
