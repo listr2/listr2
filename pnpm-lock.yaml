@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^2.3.0
-        version: 2.3.0(@types/node@26.4.1)(typescript@6.0.3)
+        specifier: ^2.3.1
+        version: 2.3.1(@types/node@26.4.1)(typescript@6.0.3)
       '@cenk1cenk2/eslint-config':
         specifier: ^3.2.6
         version: 3.3.0(@typescript-eslint/utils@8.69.0(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3))(@vue/eslint-config-typescript@14.9.0(eslint-plugin-vue@10.10.0(@stylistic/eslint-plugin@5.10.0(eslint@10.9.1(jiti@2.6.1)))(@typescript-eslint/parser@8.69.0(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3))(eslint@10.9.1(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.9.1(jiti@2.6.1))))(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3))(eslint-plugin-vue@10.10.0(@stylistic/eslint-plugin@5.10.0(eslint@10.9.1(jiti@2.6.1)))(@typescript-eslint/parser@8.69.0(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3))(eslint@10.9.1(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.9.1(jiti@2.6.1))))(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3)
@@ -27,7 +27,7 @@ importers:
         specifier: ^30.0.0
         version: 30.0.0
       '@types/node':
-        specifier: ^26.3.0
+        specifier: ^26.4.0
         version: 26.4.1
       eslint:
         specifier: ^10.9.1
@@ -42,7 +42,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(jest@30.5.1(@types/node@26.4.1)(ts-node@10.9.2(@swc/core@1.16.1)(@types/node@26.4.1)(typescript@6.0.3)))
       lint-staged:
-        specifier: ^17.3.0
+        specifier: ^17.4.1
         version: 17.4.1
       prettier:
         specifier: ^3.9.6
@@ -117,7 +117,7 @@ importers:
         specifier: ^1.39.0
         version: 1.39.0
       vue:
-        specifier: ^3.5.41
+        specifier: ^3.5.42
         version: 3.5.42(typescript@6.0.3)
 
   examples:
@@ -454,8 +454,8 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@cenk1cenk2/cz-cc@2.3.0':
-    resolution: {integrity: sha512-k55NQ3z3h6mx5Oimeasu41Z4cJlTvoOcanMhMesD7pXlT9eOTyXJH3VIx4v7bw50uyXXLLcb/OZudzixY4vdOQ==}
+  '@cenk1cenk2/cz-cc@2.3.1':
+    resolution: {integrity: sha512-5rI/onfjThgQ+ZwjOICLJQr7M86J1nicdvK3tfSkSbOJ5wwsHpPO24sIbsRRRpj55cuY7HegvyPZPX/zgmOfuw==}
     engines: {node: '>= 24'}
 
   '@cenk1cenk2/eslint-config@3.3.0':
@@ -1026,12 +1026,12 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@listr2/prompt-adapter-inquirer@4.2.6':
-    resolution: {integrity: sha512-eQSUUwTpKIXOgbJ4Fx2vEzV0h6ofWknhgtaTSab0C5xG/kWZRg9n3hx5+lE9Z5Z+cXZ2efpVpWT0tNueWRP71w==}
+  '@listr2/prompt-adapter-inquirer@4.2.7':
+    resolution: {integrity: sha512-k180vxSv2KqmnDxoato6pCqEJsov4U5C0EVmldZkAdNeVBxY48A/LM6TCNPGIzDK/iZSfsZP0Mw+gbWc5hXLyA==}
     engines: {node: '>=22.13.0'}
     peerDependencies:
       '@inquirer/prompts': '>= 3 < 9'
-      listr2: 11.0.1
+      listr2: 11.1.0
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
@@ -3232,8 +3232,8 @@ packages:
     engines: {node: '>=22.22.1'}
     hasBin: true
 
-  listr2@11.0.1:
-    resolution: {integrity: sha512-TzOB/8yb2KIW/hb7DCLfloZi0j01xhIqqvvHuXhPVEprbebjPtxWzBmUC4jZoQv6imUfxYk6tbAudCb/m//DPQ==}
+  listr2@11.1.0:
+    resolution: {integrity: sha512-xsuczF6mWkEo/E80QHaEokQzKmTy7m80KcLRnkUt9wrcePres2w7dbQi5zOsWtDUg8Dac4gPFyu4EJ/IvKwTOg==}
     engines: {node: '>=22.13.0'}
 
   load-tsconfig@0.2.5:
@@ -4663,14 +4663,14 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@cenk1cenk2/cz-cc@2.3.0(@types/node@26.4.1)(typescript@6.0.3)':
+  '@cenk1cenk2/cz-cc@2.3.1(@types/node@26.4.1)(typescript@6.0.3)':
     dependencies:
       '@inquirer/prompts': 8.7.0(@types/node@26.4.1)
-      '@listr2/prompt-adapter-inquirer': 4.2.6(@inquirer/prompts@8.7.0(@types/node@26.4.1))(@types/node@26.4.1)(listr2@11.0.1)
+      '@listr2/prompt-adapter-inquirer': 4.2.7(@inquirer/prompts@8.7.0(@types/node@26.4.1))(@types/node@26.4.1)(listr2@11.1.0)
       commitizen: 4.3.2(@types/node@26.4.1)(typescript@6.0.3)
       conventional-commit-types: 3.0.0
       find-git-root: 1.1.0
-      listr2: 11.0.1
+      listr2: 11.1.0
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -5284,11 +5284,11 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@listr2/prompt-adapter-inquirer@4.2.6(@inquirer/prompts@8.7.0(@types/node@26.4.1))(@types/node@26.4.1)(listr2@11.0.1)':
+  '@listr2/prompt-adapter-inquirer@4.2.7(@inquirer/prompts@8.7.0(@types/node@26.4.1))(@types/node@26.4.1)(listr2@11.1.0)':
     dependencies:
       '@inquirer/prompts': 8.7.0(@types/node@26.4.1)
       '@inquirer/type': 4.1.0(@types/node@26.4.1)
-      listr2: 11.0.1
+      listr2: 11.1.0
     transitivePeerDependencies:
       - '@types/node'
 
@@ -7492,7 +7492,7 @@ snapshots:
     optionalDependencies:
       yaml: 2.9.0
 
-  listr2@11.0.1:
+  listr2@11.1.0:
     dependencies:
       cli-truncate: 6.1.1
       log-update: 8.0.0
