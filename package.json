@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^2.3.2",
-    "@cenk1cenk2/eslint-config": "^3.2.6",
+    "@cenk1cenk2/eslint-config": "^3.3.0",
     "@jest/globals": "^30.5.0",
     "@swc/core": "^1.16.1",
     "@tsconfig/node22": "^22.0.6",
@@ -55,7 +55,7 @@
     "@types/node": "^26.4.0",
     "eslint": "^10.9.1",
     "execa": "^10.0.1",
-    "jest": "^30.4.2",
+    "jest": "^30.5.0",
     "jest-mock-process": "^2.0.0",
     "lint-staged": "^17.4.1",
     "prettier": "^3.9.6",
