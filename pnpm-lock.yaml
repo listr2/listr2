@@ -12,7 +12,7 @@ importers:
         specifier: ^2.3.2
         version: 2.3.2(@types/node@26.4.1)(typescript@6.0.3)
       '@cenk1cenk2/eslint-config':
-        specifier: ^3.3.0
+        specifier: ^3.3.1
         version: 3.3.1(@typescript-eslint/utils@8.69.0(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3))(@vue/eslint-config-typescript@14.9.0(eslint-plugin-vue@10.10.0(@stylistic/eslint-plugin@5.10.0(eslint@10.9.1(jiti@2.6.1)))(@typescript-eslint/parser@8.69.0(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3))(eslint@10.9.1(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.9.1(jiti@2.6.1))))(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3))(eslint-plugin-vue@10.10.0(@stylistic/eslint-plugin@5.10.0(eslint@10.9.1(jiti@2.6.1)))(@typescript-eslint/parser@8.69.0(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3))(eslint@10.9.1(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.9.1(jiti@2.6.1))))(eslint@10.9.1(jiti@2.6.1))(typescript@6.0.3)
       '@jest/globals':
         specifier: ^30.5.0
