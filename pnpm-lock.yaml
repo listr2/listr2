@@ -195,13 +195,13 @@ importers:
         version: 4.1.1(@types/node@26.5.0)
     devDependencies:
       '@inquirer/core':
-        specifier: ^12.0.1
+        specifier: ^12.0.2
         version: 12.0.3(@types/node@26.5.0)
       '@inquirer/input':
-        specifier: ^5.1.4
+        specifier: ^5.1.5
         version: 5.1.6(@types/node@26.5.0)
       '@inquirer/prompts':
-        specifier: ^8.7.0
+        specifier: ^8.7.1
         version: 8.7.2(@types/node@26.5.0)
       listr2:
         specifier: workspace:*
