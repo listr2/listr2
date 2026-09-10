@@ -9,6 +9,7 @@ minimumReleaseAgeExclude:
   - '@cenk1cenk2/*'
 
 allowBuilds:
+  '@parcel/watcher': true
   '@swc/core': true
   esbuild: false
   simple-git-hooks: true
