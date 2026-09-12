@@ -114,7 +114,7 @@ importers:
         specifier: ^1.13.5
         version: 1.13.5
       vitepress-sidebar:
-        specifier: ^1.39.0
+        specifier: ^1.40.0
         version: 1.40.0
       vue:
         specifier: ^3.5.42
