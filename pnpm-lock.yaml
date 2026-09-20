@@ -27,7 +27,7 @@ importers:
         specifier: ^30.0.0
         version: 30.0.0
       '@types/node':
-        specifier: ^26.4.1
+        specifier: ^26.5.1
         version: 26.5.1
       eslint:
         specifier: ^10.10.0
@@ -42,7 +42,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(jest@30.5.1(@types/node@26.5.1)(ts-node@10.9.2(@swc/core@1.16.2)(@types/node@26.5.1)(typescript@6.0.3)))
       lint-staged:
-        specifier: ^17.5.0
+        specifier: ^17.5.1
         version: 17.5.1
       prettier:
         specifier: ^3.9.6
