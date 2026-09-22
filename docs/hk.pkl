@@ -5,7 +5,7 @@ hooks {
   ["pre-commit"] {
     steps {
       ["eslint"] = (Builtins.eslint) {
-        glob = List("**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx")
+        glob = List("**/*.ts")
         depends = List("prettier")
       }
     }

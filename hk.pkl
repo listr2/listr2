@@ -9,7 +9,7 @@ hooks {
     stash = "git"
     steps {
       ["prettier"] = (Builtins.prettier) {
-        glob = List("*.ts", "*.js", "*.tsx", "*.jsx", "*.json", "*.md")
+        glob = List("*.ts", "*.js", "*.json", "*.md")
       }
     }
   }
