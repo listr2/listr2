@@ -35,8 +35,8 @@ After migrating `ts-node`, `jest`, `ts-jest` to `esm` as well in the repository 
 
 ## Hooks
 
-A set of `git-hooks` are inplace to ensure consistency.
+A set of `git-hooks` are inplace to ensure consistency. They are managed by [hk](https://hk.jdx.dev) and configured through `hk.pkl` in the root of the repository.
 
-- `lint-staged` runs with the linting configuration for each commit, to ensure the styling of the code is consistent.
+- `prettier` and `eslint` run over the staged files for each commit, to ensure the styling of the code is consistent.
 - `commitizen` runs with `@cenk1cenk2/cz-cc` preset for each commit, to ensure the commits are in conventional-commits format.
 - `pnpm run test` run before pushing back to the repository.

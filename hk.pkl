@@ -1,0 +1,45 @@
+amends "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Builtins.pkl"
+
+// One configuration for the whole workspace: hk has no per-package config
+// discovery, so this is the union of the `lint-staged` blocks that used to sit
+// in the root, `docs`, `examples` and every `packages/*` package.json.
+hooks {
+  ["pre-commit"] {
+    fix = true
+    steps {
+      ["prettier"] = (Builtins.prettier) {
+        glob = List("*.ts", "*.js", "*.tsx", "*.jsx", "*.json", "*.md")
+      }
+      // Every workspace carries its own `eslint.config.mjs` layered on top of
+      // the root one, each bound to that workspace's `tsconfig.json`. Running
+      // eslint per workspace keeps that layering, which a single root
+      // invocation would lose.
+      ["eslint"] = (Builtins.eslint) {
+        glob = List("*.ts", "*.js", "*.tsx", "*.jsx")
+        // `packages/*` only ever linted `{src,tests}/**`, and the package
+        // tsconfigs only cover those, so keep their build/release config files
+        // out of the type-aware parser's way.
+        exclude = Regex(#"^packages/[^/]+/[^/]+\.(ts|js|tsx|jsx)$"#)
+        workspace_indicator = "package.json"
+        dir = "{{workspace}}"
+        depends = List("prettier")
+      }
+    }
+  }
+  ["prepare-commit-msg"] {
+    steps {
+      ["commitizen"] {
+        fix = "git cz --hook"
+        interactive = true
+      }
+    }
+  }
+  ["pre-push"] {
+    steps {
+      ["test"] {
+        check = "pnpm run test"
+      }
+    }
+  }
+}
