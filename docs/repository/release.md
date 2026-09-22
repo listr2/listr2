@@ -14,7 +14,7 @@ This library uses [semantic-release](https://github.com/semantic-release/semanti
 
 `listr2` follows the strict publishing guidelines with [semantic-versioning](https://semver.org/).
 
-This is enforced through [commitizen](https://github.com/commitizen/cz-cli) and [Angular conventional commits](https://www.conventionalcommits.org/).
+This is enforced through [commitizen](https://github.com/commitizen/cz-cli) and [Conventional Commits](https://www.conventionalcommits.org/).
 
 We are utilizing the default preset to publish a new version. Whenever you want to do a contribution, you should also follow it to ensure a proper version has been published, but no worries I will usually double-check this.
 

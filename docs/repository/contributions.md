@@ -36,7 +36,7 @@ So we can kind of give users an `ETA` of something whenever there are long-runni
 - [x] Create an issue for a preliminary discussion or link the existing issue.
 - [x] Read/Search existing issues and the provided documentation.
 - [x] Provide the implementation, and a pull request whenever finalized.
-- [x] Follow guidelines enforced by `git-hooks` of linting, tests, and commit convention, which is [Angular conventional commits](https://www.conventionalcommits.org/).
+- [x] Follow guidelines enforced by `git-hooks` of linting, tests, and commit convention, which is [Conventional Commits](https://www.conventionalcommits.org/).
 - [ ] Add tests whenever or if possible.
 - [ ] Update the documentation.
 
@@ -46,7 +46,7 @@ So we can kind of give users an `ETA` of something whenever there are long-runni
 
 - [x] Link the existing issue.
 - [x] Provide the implementation, and a pull request whenever finalized.
-- [x] Follow guidelines enforced by `git-hooks` of linting, tests, and commit convention, which is [Angular conventional commits](https://www.conventionalcommits.org/).
+- [x] Follow guidelines enforced by `git-hooks` of linting, tests, and commit convention, which is [Conventional Commits](https://www.conventionalcommits.org/).
 - [ ] Add tests whenever or if possible.
 - [ ] Update the documentation.
 
