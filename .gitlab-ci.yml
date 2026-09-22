@@ -23,7 +23,6 @@ variables:
   NODE_LINT_COMMAND: lint:ci
   NODE_TEST_COMMAND: test
   GITHUB_STATUS_PROJECT: listr2/listr2
-  SKIP_SIMPLE_GIT_HOOKS: '1'
 
 include:
   - project: devops/pipelines

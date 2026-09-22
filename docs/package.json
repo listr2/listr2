@@ -21,15 +21,6 @@
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
     "lint": "eslint"
   },
-  "lint-staged": {
-    "*.{ts,js,tsx,jsx,spec.ts}": [
-      "prettier --log-level warn --write",
-      "eslint --fix"
-    ],
-    "*.{json,md}": [
-      "prettier --log-level warn --write"
-    ]
-  },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
     "@fortawesome/free-brands-svg-icons": "^7.3.1",

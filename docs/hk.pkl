@@ -1,0 +1,13 @@
+amends "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Builtins.pkl"
+
+hooks {
+  ["pre-commit"] {
+    steps {
+      ["eslint"] = (Builtins.eslint) {
+        glob = List("**/*.ts")
+        depends = List("prettier")
+      }
+    }
+  }
+}

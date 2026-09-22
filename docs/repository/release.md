@@ -14,7 +14,7 @@ This library uses [semantic-release](https://github.com/semantic-release/semanti
 
 `listr2` follows the strict publishing guidelines with [semantic-versioning](https://semver.org/).
 
-This is enforced through [commitizen](https://github.com/commitizen/cz-cli) and [Angular conventional commits](https://www.conventionalcommits.org/).
+This is enforced through [commitizen](https://github.com/commitizen/cz-cli) and [Conventional Commits](https://www.conventionalcommits.org/).
 
 We are utilizing the default preset to publish a new version. Whenever you want to do a contribution, you should also follow it to ensure a proper version has been published, but no worries I will usually double-check this.
 
@@ -35,8 +35,8 @@ After migrating `ts-node`, `jest`, `ts-jest` to `esm` as well in the repository 
 
 ## Hooks
 
-A set of `git-hooks` are inplace to ensure consistency.
+A set of `git-hooks` are inplace to ensure consistency. They are managed by [hk](https://hk.jdx.dev) and configured through `hk.pkl` in the root of the repository.
 
-- `lint-staged` runs with the linting configuration for each commit, to ensure the styling of the code is consistent.
+- `prettier` and `eslint` run over the staged files for each commit, to ensure the styling of the code is consistent.
 - `commitizen` runs with `@cenk1cenk2/cz-cc` preset for each commit, to ensure the commits are in conventional-commits format.
 - `pnpm run test` run before pushing back to the repository.

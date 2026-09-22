@@ -41,15 +41,6 @@
     "test:cov": "pnpm run test --coverage",
     "test:dev": "NODE_OPTIONS='--no-warnings --experimental-vm-modules --inspect=0.0.0.0:9229' pnpm run test --verbose --watchAll"
   },
-  "lint-staged": {
-    "{src,tests}/**/*.{ts,js,tsx,jsx,spec.ts}": [
-      "prettier --log-level warn --write",
-      "eslint --fix"
-    ],
-    "*.{json,md}": [
-      "prettier --log-level warn --write"
-    ]
-  },
   "keywords": [
     "listr",
     "listr2",
