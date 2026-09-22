@@ -1,14 +1,10 @@
 amends "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Config.pkl"
 import "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Builtins.pkl"
 
-// Layered on top of the root `eslint.config.mjs` and bound to this
-// workspace's `tsconfig.json`, so it has to run from here.
 hooks {
   ["pre-commit"] {
     steps {
       ["eslint"] = (Builtins.eslint) {
-        // Globs are re-rooted to this directory, which makes them full-path
-        // patterns rather than bare filename ones, so they need `**/`.
         glob = List("**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx")
         depends = List("prettier")
       }
