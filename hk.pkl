@@ -1,29 +1,26 @@
 amends "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Config.pkl"
 import "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Builtins.pkl"
 
-// One configuration for the whole workspace: hk has no per-package config
-// discovery, so this is the union of the `lint-staged` blocks that used to sit
-// in the root, `docs`, `examples` and every `packages/*` package.json.
+// Every workspace carries its own `eslint.config.mjs` layered on top of the
+// root one, each bound to that workspace's `tsconfig.json`. Linting per
+// workspace keeps that layering, which a single root invocation would lose, so
+// every workspace owns an `hk.pkl` next to its code holding the eslint step
+// that used to be its `lint-staged` block. hk merges those into this config
+// scoped to their directory: globs and working directories are re-rooted
+// there, and the steps show up as `packages/listr2:eslint`.
+subprojects = List("docs", "examples", "packages/*")
+
 hooks {
   ["pre-commit"] {
     fix = true
+    // lint-staged parity: hide the unstaged hunks of a partially staged file
+    // while the fix steps run, then restore them afterwards.
+    stash = "git"
     steps {
+      // Prettier has one root config and no per-workspace layering, so it stays
+      // here and covers the whole repository in a single pass.
       ["prettier"] = (Builtins.prettier) {
         glob = List("*.ts", "*.js", "*.tsx", "*.jsx", "*.json", "*.md")
-      }
-      // Every workspace carries its own `eslint.config.mjs` layered on top of
-      // the root one, each bound to that workspace's `tsconfig.json`. Running
-      // eslint per workspace keeps that layering, which a single root
-      // invocation would lose.
-      ["eslint"] = (Builtins.eslint) {
-        glob = List("*.ts", "*.js", "*.tsx", "*.jsx")
-        // `packages/*` only ever linted `{src,tests}/**`, and the package
-        // tsconfigs only cover those, so keep their build/release config files
-        // out of the type-aware parser's way.
-        exclude = Regex(#"^packages/[^/]+/[^/]+\.(ts|js|tsx|jsx)$"#)
-        workspace_indicator = "package.json"
-        dir = "{{workspace}}"
-        depends = List("prettier")
       }
     }
   }

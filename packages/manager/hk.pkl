@@ -1,0 +1,17 @@
+amends "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v2.0.1/hk@2.0.1#/Builtins.pkl"
+
+// Layered on top of the root `eslint.config.mjs` and bound to this package's
+// `tsconfig.json`, so it has to run from here. The tsconfig only covers
+// `{src,tests}/**`, which keeps the build and release config files at the
+// package root out of the type-aware parser's way.
+hooks {
+  ["pre-commit"] {
+    steps {
+      ["eslint"] = (Builtins.eslint) {
+        glob = List("{src,tests}/**/*.ts", "{src,tests}/**/*.js", "{src,tests}/**/*.tsx", "{src,tests}/**/*.jsx")
+        depends = List("prettier")
+      }
+    }
+  }
+}
