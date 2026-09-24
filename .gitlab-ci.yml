@@ -47,8 +47,15 @@ include:
 
   - project: devops/pipelines
     ref: references@1.3.0
-    file:
-      - /references/gh-status.gitlab-ci.yml
+    file: /references/github-token.gitlab-ci.yml
+
+  - project: devops/pipelines
+    ref: references@1.3.0
+    file: /references/github-status.gitlab-ci.yml
+    inputs:
+      app_id_variable: PIPELINES_GITHUB_APP_ID
+      installation_id_variable: PIPELINES_GITHUB_APP_INSTALLATION_ID
+      private_key_variable: PIPELINES_GITHUB_APP_PRIVATE_KEY
 
 install:
   stage: install
@@ -95,6 +102,18 @@ test:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: '$CI_COMMIT_BRANCH =~ /^(next|next-major|alpha|beta|rc)$/'
     - if: $CI_COMMIT_TAG
+github-token:
+  stage: publish
+  extends: .github-token
+  variables:
+    GITHUB_APP_ID: ${SEMANTIC_RELEASE_GITHUB_APP_ID}
+    GITHUB_APP_INSTALLATION_ID: ${SEMANTIC_RELEASE_GITHUB_APP_INSTALLATION_ID}
+    GITHUB_APP_PRIVATE_KEY: ${SEMANTIC_RELEASE_GITHUB_APP_PRIVATE_KEY}
+    GITHUB_TOKEN_REPOSITORIES: listr2
+    GITHUB_TOKEN_PERMISSIONS: '{"contents":"write","issues":"write","pull_requests":"write"}'
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: '$CI_COMMIT_BRANCH =~ /^(next|next-major|alpha|beta|rc)$/'
 semantic-release:
   stage: publish
   extends: .semantic-release
@@ -104,8 +123,10 @@ semantic-release:
     - build
     - lint
     - test
+    - github-token
   dependencies:
     - build
+    - github-token
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: '$CI_COMMIT_BRANCH =~ /^(next|next-major|alpha|beta|rc)$/'
