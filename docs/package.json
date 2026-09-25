@@ -32,10 +32,10 @@
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
     "typedoc": "^0.28.20",
-    "typedoc-plugin-markdown": "4.13.0",
+    "typedoc-plugin-markdown": "4.13.1",
     "typedoc-vitepress-theme": "1.1.4",
     "vitepress": "1.6.4",
-    "vitepress-plugin-llms": "^1.13.5",
+    "vitepress-plugin-llms": "^1.14.0",
     "vitepress-sidebar": "^1.40.0",
     "vue": "^3.5.43"
   }
