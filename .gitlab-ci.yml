@@ -35,7 +35,7 @@ include:
       - /node/run.gitlab-ci.yml
 
   - project: devops/pipelines
-    ref: semantic-release@2.0.1
+    ref: semantic-release@2.1.0
     file:
       - /semantic-release/publish.gitlab-ci.yml
 
