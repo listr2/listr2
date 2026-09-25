@@ -6,8 +6,8 @@ export default {
       {
         client: 'pnpm',
         publish: 'staged',
-        commit: true,
-        changelog: true
+        commit: {},
+        changelog: {}
       }
     ],
     '@semantic-release/github'
