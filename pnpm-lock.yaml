@@ -15,7 +15,7 @@ importers:
         specifier: ^3.3.6
         version: 3.3.6(@typescript-eslint/utils@8.70.1(eslint@10.11.0(jiti@2.6.1))(typescript@6.0.3))(@vue/eslint-config-typescript@14.9.0(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.11.0(jiti@2.6.1)))(@typescript-eslint/parser@8.70.1(eslint@10.11.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.11.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.11.0(jiti@2.6.1))))(eslint@10.11.0(jiti@2.6.1))(typescript@6.0.3))(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.11.0(jiti@2.6.1)))(@typescript-eslint/parser@8.70.1(eslint@10.11.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.11.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.11.0(jiti@2.6.1))))(eslint@10.11.0(jiti@2.6.1))(typescript@6.0.3)
       '@jest/globals':
-        specifier: ^30.5.1
+        specifier: ^30.5.2
         version: 30.5.2
       '@swc/core':
         specifier: ^1.16.2
@@ -27,22 +27,22 @@ importers:
         specifier: ^30.0.0
         version: 30.0.0
       '@types/node':
-        specifier: ^26.5.1
+        specifier: ^26.6.2
         version: 26.6.3
       eslint:
-        specifier: ^10.10.0
+        specifier: ^10.11.0
         version: 10.11.0(jiti@2.6.1)
       execa:
         specifier: ^10.0.1
         version: 10.0.1
       jest:
-        specifier: ^30.5.1
+        specifier: ^30.5.2
         version: 30.5.2(@types/node@26.6.3)(ts-node@10.9.2(@swc/core@1.16.2)(@types/node@26.6.3)(typescript@6.0.3))
       jest-mock-process:
         specifier: ^2.0.0
         version: 2.0.0(jest@30.5.2(@types/node@26.6.3)(ts-node@10.9.2(@swc/core@1.16.2)(@types/node@26.6.3)(typescript@6.0.3)))
       prettier:
-        specifier: ^3.9.6
+        specifier: ^3.9.8
         version: 3.9.9
       rimraf:
         specifier: ^6.1.3
