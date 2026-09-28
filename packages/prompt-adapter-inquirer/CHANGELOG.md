@@ -1,3 +1,14 @@
+## @listr2/prompt-adapter-inquirer [4.2.7](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.6...@listr2/prompt-adapter-inquirer@4.2.7) (2026-09-28)
+
+### Bug Fixes
+
+* **deps:** update node all minor dependency updates ([66e2b30](https://github.com/listr2/listr2/commit/66e2b3099fb5eb7389f9b5a3bd410d5fa4f8e56a))
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.1.1
+
 ## @listr2/prompt-adapter-inquirer [4.2.7](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.6...@listr2/prompt-adapter-inquirer@4.2.7) (2026-09-02)
 
 
