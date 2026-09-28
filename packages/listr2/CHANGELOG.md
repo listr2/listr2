@@ -1,3 +1,9 @@
+## listr2 [11.1.1](https://github.com/listr2/listr2/compare/listr2@11.1.0...listr2@11.1.1) (2026-09-28)
+
+### Bug Fixes
+
+* **deps:** update node all minor dependency updates ([66e2b30](https://github.com/listr2/listr2/commit/66e2b3099fb5eb7389f9b5a3bd410d5fa4f8e56a))
+
 # listr2 [11.1.0](https://github.com/listr2/listr2/compare/listr2@11.0.1...listr2@11.1.0) (2026-09-02)
 
 
