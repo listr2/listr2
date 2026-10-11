@@ -189,13 +189,13 @@ importers:
         version: 4.2.0(@types/node@26.6.5)
     devDependencies:
       '@inquirer/core':
-        specifier: ^12.0.3
+        specifier: ^12.0.4
         version: 12.0.4(@types/node@26.6.5)
       '@inquirer/input':
-        specifier: ^5.1.6
+        specifier: ^5.1.7
         version: 5.1.7(@types/node@26.6.5)
       '@inquirer/prompts':
-        specifier: ^8.7.2
+        specifier: ^8.7.3
         version: 8.7.3(@types/node@26.6.5)
       listr2:
         specifier: 11.1.1
