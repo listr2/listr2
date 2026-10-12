@@ -19,6 +19,8 @@ const config: JestConfigWithTsJest = {
     ]
   },
   collectCoverageFrom: ['src/**/*'],
+  coverageReporters: ['clover', 'json', 'lcov', 'text', 'cobertura'],
+  reporters: ['default', ['jest-junit', { outputDirectory: '<rootDir>', outputName: 'junit.xml' }]],
   moduleFileExtensions: ['ts', 'js'],
   moduleNameMapper: {
     ...pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
