@@ -1,3 +1,9 @@
+## @listr2/prompt-adapter-inquirer [4.3.1](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.3.0...@listr2/prompt-adapter-inquirer@4.3.1) (2026-10-12)
+
+### Bug Fixes
+
+* **deps:** link listr2 to the workspace through pnpm ([6cb5e49](https://github.com/listr2/listr2/commit/6cb5e4970c18828ab123a4b3d50d63ae5a806cfc))
+
 ## @listr2/prompt-adapter-inquirer [4.3.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.2.7...@listr2/prompt-adapter-inquirer@4.3.0) (2026-10-12)
 
 ### Features
