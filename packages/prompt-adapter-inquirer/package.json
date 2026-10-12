@@ -67,10 +67,10 @@
     "@inquirer/core": "^12.0.4",
     "@inquirer/input": "^5.1.7",
     "@inquirer/prompts": "^8.7.3",
-    "listr2": "11.2.0"
+    "listr2": "^11.0.0"
   },
   "peerDependencies": {
     "@inquirer/prompts": ">= 3 < 9",
-    "listr2": "11.2.0"
+    "listr2": "^11.0.0"
   }
 }
