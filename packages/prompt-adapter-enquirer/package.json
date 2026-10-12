@@ -1,6 +1,6 @@
 {
   "name": "@listr2/prompt-adapter-enquirer",
-  "version": "4.3.3",
+  "version": "4.4.0",
   "description": "Listr2 prompt adapter for enquirer.",
   "license": "MIT",
   "repository": "https://github.com/listr2/listr2",
@@ -61,11 +61,11 @@
     "idle"
   ],
   "devDependencies": {
-    "listr2": "11.1.1",
+    "listr2": "11.2.0",
     "enquirer": "^2.4.1"
   },
   "peerDependencies": {
     "enquirer": ">= 2.3.0 < 3",
-    "listr2": "11.1.1"
+    "listr2": "11.2.0"
   }
 }

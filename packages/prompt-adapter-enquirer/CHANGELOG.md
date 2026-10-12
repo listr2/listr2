@@ -1,3 +1,14 @@
+## @listr2/prompt-adapter-enquirer [4.4.0](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@4.3.3...@listr2/prompt-adapter-enquirer@4.4.0) (2026-10-12)
+
+### Features
+
+* **test:** write junit and cobertura reports natively ([bacdfc2](https://github.com/listr2/listr2/commit/bacdfc2cbd3737fde67a652850c8556ce006bd4a))
+
+
+### Dependencies
+
+* **listr2:** upgraded to 11.2.0
+
 ## @listr2/prompt-adapter-enquirer [4.3.3](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-enquirer@4.3.2...@listr2/prompt-adapter-enquirer@4.3.3) (2026-09-28)
 
 
