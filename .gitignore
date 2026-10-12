@@ -42,3 +42,6 @@ package-lock.json
 
 # API Extractor
 /temp
+
+# test reports
+junit.xml
