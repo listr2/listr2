@@ -1,3 +1,9 @@
+## listr2 [11.2.0](https://github.com/listr2/listr2/compare/listr2@11.1.1...listr2@11.2.0) (2026-10-12)
+
+### Features
+
+* **test:** write junit and cobertura reports natively ([bacdfc2](https://github.com/listr2/listr2/commit/bacdfc2cbd3737fde67a652850c8556ce006bd4a))
+
 ## listr2 [11.1.1](https://github.com/listr2/listr2/compare/listr2@11.1.0...listr2@11.1.1) (2026-09-28)
 
 ### Bug Fixes
