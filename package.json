@@ -32,7 +32,7 @@
     "test:cov": "pnpm run --parallel -r test:cov"
   },
   "devDependencies": {
-    "@cenk1cenk2/cz-cc": "^3.0.3",
+    "@cenk1cenk2/cz-cc": "^3.0.4",
     "@cenk1cenk2/eslint-config": "^3.3.8",
     "@jest/globals": "^30.5.2",
     "@swc/core": "^1.16.13",
