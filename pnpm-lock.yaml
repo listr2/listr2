@@ -173,8 +173,8 @@ importers:
   packages/manager:
     devDependencies:
       listr2:
-        specifier: 11.1.1
-        version: 11.1.1
+        specifier: ^11.0.0
+        version: link:../listr2
 
   packages/prompt-adapter-enquirer:
     devDependencies:
@@ -182,8 +182,8 @@ importers:
         specifier: ^2.4.1
         version: 2.4.1
       listr2:
-        specifier: 11.1.1
-        version: 11.1.1
+        specifier: ^11.0.0
+        version: link:../listr2
 
   packages/prompt-adapter-inquirer:
     dependencies:
@@ -201,8 +201,8 @@ importers:
         specifier: ^8.7.3
         version: 8.7.3(@types/node@26.6.5)
       listr2:
-        specifier: 11.1.1
-        version: 11.1.1
+        specifier: ^11.0.0
+        version: link:../listr2
 
 packages:
 
