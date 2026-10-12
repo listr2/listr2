@@ -21,7 +21,7 @@ variables:
   NODE_PACKAGE_MANAGER: pnpm
   NODE_INSTALL_ARGS: --ignore-scripts
   NODE_LINT_COMMAND: lint:ci
-  NODE_TEST_COMMAND: test
+  NODE_TEST_COMMAND: test:cov
   GITHUB_STATUS_PROJECT: listr2/listr2
 
 include:
