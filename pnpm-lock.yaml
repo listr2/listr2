@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^3.0.3
-        version: 3.0.3(@types/node@26.6.5)(typescript@6.0.3)
+        specifier: ^3.0.6
+        version: 3.0.6(@types/node@26.6.5)(typescript@6.0.3)
       '@cenk1cenk2/eslint-config':
-        specifier: ^3.3.8
-        version: 3.3.8(@typescript-eslint/utils@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(@vue/eslint-config-typescript@14.9.0(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.12.0(jiti@2.6.1)))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.12.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.12.0(jiti@2.6.1))))(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.12.0(jiti@2.6.1)))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.12.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.12.0(jiti@2.6.1))))(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3)
+        specifier: ^3.3.9
+        version: 3.3.9(@typescript-eslint/utils@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(@vue/eslint-config-typescript@14.9.0(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.12.0(jiti@2.6.1)))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.12.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.12.0(jiti@2.6.1))))(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.12.0(jiti@2.6.1)))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.12.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.12.0(jiti@2.6.1))))(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3)
       '@jest/globals':
         specifier: ^30.5.2
         version: 30.5.2
@@ -457,12 +457,12 @@ packages:
   '@cacheable/utils@2.5.0':
     resolution: {integrity: sha512-buipgOVDkkPXNR5+xBpDw7Zk2n1EvU7qBJCNUcL7rhQ//kfpOXPAvQ511Os0vpLYJ1pZnvudNytkQt2hst3wqA==}
 
-  '@cenk1cenk2/cz-cc@3.0.3':
-    resolution: {integrity: sha512-nkanz8Qw6Q0GRHzsgZGbFVxvRPQvUnMc2XIpR1BMiSiLGe8ogfS0+JJPFSrw1mBGJg7Pcgzf3kcBqlEUoHgXJA==}
+  '@cenk1cenk2/cz-cc@3.0.6':
+    resolution: {integrity: sha512-l4svEPOegu2nCieJbk7WB/MxNlmYmlWSXKdh8hwH9NoL56gchNrukG6DtZAWKH+XK3+l5LxpIzeD0p9zfu9HCg==}
     engines: {node: '>= 24'}
 
-  '@cenk1cenk2/eslint-config@3.3.8':
-    resolution: {integrity: sha512-yRD5+bU6Exbv/kxok6brnoKGdI0w6SPhoHbmqCF1SyyIODgV0Ae/7xQxpKvk8a2FTiomYr8j7eNC8b2rhLQ1IA==}
+  '@cenk1cenk2/eslint-config@3.3.9':
+    resolution: {integrity: sha512-bw9kO4KHBhSQlE+hToMn0gApum+vXbvtIA92d44YJ3vQIlzWxznZDVNY+oJN1nv48XZyTIaMn5wcTKiqLeLVqg==}
     peerDependencies:
       '@vue/eslint-config-typescript': '>= 14.1.1'
       eslint: '>= 9'
@@ -1038,12 +1038,12 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@listr2/prompt-adapter-inquirer@4.2.7':
-    resolution: {integrity: sha512-k180vxSv2KqmnDxoato6pCqEJsov4U5C0EVmldZkAdNeVBxY48A/LM6TCNPGIzDK/iZSfsZP0Mw+gbWc5hXLyA==}
+  '@listr2/prompt-adapter-inquirer@4.3.1':
+    resolution: {integrity: sha512-NnKK9IrkBPr3v9DxXz/MTxQ989bJEfH1Q6Qr+MA9XU0QRXEgAQJO4XjFs8OzPQI5WYScz0kXi9WNDkANr2bRVw==}
     engines: {node: '>=22.13.0'}
     peerDependencies:
       '@inquirer/prompts': '>= 3 < 9'
-      listr2: 11.1.0
+      listr2: ^11.0.0
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
@@ -3181,8 +3181,8 @@ packages:
   linkify-it@5.0.2:
     resolution: {integrity: sha512-ONTm2jCMAVZjgQa/Fy1kScXsuOoF5NPTsoFBdE1KVIZ2vAh/r9+Bqo+0jINCBYnavTPQZz38QzFTme79ENoN3Q==}
 
-  listr2@11.1.1:
-    resolution: {integrity: sha512-zArGFXg2/nhA1vYBz789VpwzMQQXkGZiRxeguxFCsDrg4S+LOR22v4oQlSdTN7dR14XgOW+pW33UfvKf+i8nrQ==}
+  listr2@11.2.0:
+    resolution: {integrity: sha512-+H/hEo9EA7tyLY0ZihpDg76jHWolc0nCjbjnXFguSm4Epk+WYtL1w1tYs1kjEo229NmhgLmUrncyn81K1vBoRw==}
     engines: {node: '>=22.13.0'}
 
   load-tsconfig@0.2.5:
@@ -4651,19 +4651,19 @@ snapshots:
       hashery: 1.5.1
       keyv: 5.6.0
 
-  '@cenk1cenk2/cz-cc@3.0.3(@types/node@26.6.5)(typescript@6.0.3)':
+  '@cenk1cenk2/cz-cc@3.0.6(@types/node@26.6.5)(typescript@6.0.3)':
     dependencies:
       '@inquirer/prompts': 8.7.3(@types/node@26.6.5)
-      '@listr2/prompt-adapter-inquirer': 4.2.7(@inquirer/prompts@8.7.3(@types/node@26.6.5))(@types/node@26.6.5)(listr2@11.1.1)
+      '@listr2/prompt-adapter-inquirer': 4.3.1(@inquirer/prompts@8.7.3(@types/node@26.6.5))(@types/node@26.6.5)(listr2@11.2.0)
       commitizen: 4.3.2(@types/node@26.6.5)(typescript@6.0.3)
       conventional-commit-types: 3.0.0
       find-git-root: 1.1.0
-      listr2: 11.1.1
+      listr2: 11.2.0
     transitivePeerDependencies:
       - '@types/node'
       - typescript
 
-  '@cenk1cenk2/eslint-config@3.3.8(@typescript-eslint/utils@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(@vue/eslint-config-typescript@14.9.0(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.12.0(jiti@2.6.1)))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.12.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.12.0(jiti@2.6.1))))(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.12.0(jiti@2.6.1)))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.12.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.12.0(jiti@2.6.1))))(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3)':
+  '@cenk1cenk2/eslint-config@3.3.9(@typescript-eslint/utils@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(@vue/eslint-config-typescript@14.9.0(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.12.0(jiti@2.6.1)))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.12.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.12.0(jiti@2.6.1))))(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint-plugin-vue@10.11.1(@stylistic/eslint-plugin@5.10.0(eslint@10.12.0(jiti@2.6.1)))(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.12.0(jiti@2.6.1))(vue-eslint-parser@10.4.1(eslint@10.12.0(jiti@2.6.1))))(eslint@10.12.0(jiti@2.6.1))(typescript@6.0.3)':
     dependencies:
       '@eslint/js': 10.0.1(eslint@10.12.0(jiti@2.6.1))
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.12.0(jiti@2.6.1))
@@ -5280,11 +5280,11 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@listr2/prompt-adapter-inquirer@4.2.7(@inquirer/prompts@8.7.3(@types/node@26.6.5))(@types/node@26.6.5)(listr2@11.1.1)':
+  '@listr2/prompt-adapter-inquirer@4.3.1(@inquirer/prompts@8.7.3(@types/node@26.6.5))(@types/node@26.6.5)(listr2@11.2.0)':
     dependencies:
       '@inquirer/prompts': 8.7.3(@types/node@26.6.5)
       '@inquirer/type': 4.2.0(@types/node@26.6.5)
-      listr2: 11.1.1
+      listr2: 11.2.0
     transitivePeerDependencies:
       - '@types/node'
 
@@ -7465,7 +7465,7 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  listr2@11.1.1:
+  listr2@11.2.0:
     dependencies:
       cli-truncate: 6.1.1
       log-update: 8.0.0
