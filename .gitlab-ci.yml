@@ -26,7 +26,7 @@ variables:
 
 include:
   - project: devops/pipelines
-    ref: node@2.1.0
+    ref: node@2.1.1
     file:
       - /node/install.gitlab-ci.yml
       - /node/build.gitlab-ci.yml
@@ -35,7 +35,7 @@ include:
       - /node/run.gitlab-ci.yml
 
   - project: devops/pipelines
-    ref: semantic-release@2.5.1
+    ref: semantic-release@2.5.2
     file:
       - /semantic-release/publish.gitlab-ci.yml
 
