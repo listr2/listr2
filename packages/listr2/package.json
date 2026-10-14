@@ -37,6 +37,7 @@
     "dev:start": "tsdown --watch",
     "format": "prettier --log-level warn --write src/ tests/ && pnpm run lint --fix",
     "lint": "eslint src/ tests/",
+    "typecheck": "tsc --noEmit -p tests/tsconfig.json",
     "test": "NODE_OPTIONS='--no-warnings --experimental-vm-modules' jest --config tests/jest.config.ts",
     "test:cov": "pnpm run test --coverage",
     "test:dev": "NODE_OPTIONS='--no-warnings --experimental-vm-modules --inspect=0.0.0.0:9229' pnpm run test --verbose --watchAll"

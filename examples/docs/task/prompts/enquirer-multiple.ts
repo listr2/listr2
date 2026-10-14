@@ -1,5 +1,4 @@
 import { ListrEnquirerPromptAdapter } from '@listr2/prompt-adapter-enquirer'
-
 import { Listr } from 'listr2'
 
 interface Ctx {
