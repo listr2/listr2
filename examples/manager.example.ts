@@ -1,5 +1,4 @@
 import { Manager } from '@listr2/manager'
-
 import type { ListrBaseClassOptions } from 'listr2'
 import { delay, ListrLogger, ListrLogLevels } from 'listr2'
 

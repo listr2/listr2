@@ -8,6 +8,9 @@
     "noImplicitAny": false,
     "paths": {
       "listr2": ["../packages/listr2/src/index"],
+      "@listr2/manager": ["../packages/manager/src/index"],
+      "@listr2/prompt-adapter-enquirer": ["../packages/prompt-adapter-enquirer/src/index"],
+      "@listr2/prompt-adapter-inquirer": ["../packages/prompt-adapter-inquirer/src/index"],
       "@constants": ["../packages/listr2/src/constants/index"],
       "@interfaces": ["../packages/listr2/src/interfaces/index"],
       "@lib": ["../packages/listr2/src/lib/index"],

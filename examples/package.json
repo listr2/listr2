@@ -18,7 +18,8 @@
     "build": "tsc --noEmit",
     "start": "cd .. && NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --loader ./examples/loader.js' node",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@inquirer/prompts": "^8.5.2",

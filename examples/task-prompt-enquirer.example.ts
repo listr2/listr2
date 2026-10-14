@@ -1,5 +1,4 @@
 import { ListrEnquirerPromptAdapter } from '@listr2/prompt-adapter-enquirer'
-
 import { delay, Listr, ListrLogger, ListrLogLevels } from 'listr2'
 
 interface Ctx {
