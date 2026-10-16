@@ -81,8 +81,10 @@ typecheck:
     NODE_COMMAND_SCRIPT: typecheck
   needs:
     - install
+    - build
   dependencies:
     - install
+    - build
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       interruptible: true
@@ -107,8 +109,10 @@ test:
   extends: .node-test
   needs:
     - install
+    - build
   dependencies:
     - install
+    - build
   parallel:
     matrix:
       - NODE_VERSION: 26-alpine
@@ -182,7 +186,7 @@ container-docs:
   variables:
     CONTAINER_FILE_NAME: Dockerfile
     CONTAINER_FILE_CONTEXT: ./docs
-    CONTAINER_IMAGE_NAME: docs-listr2
+    CONTAINER_IMAGE_NAME: $CI_REGISTRY_IMAGE/docs-listr2
     CONTAINER_IMAGE_TAGS: latest
   needs:
     - build-docs
