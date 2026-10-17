@@ -1,3 +1,9 @@
+## listr2 [11.4.0](https://github.com/listr2/listr2/compare/listr2@11.3.0...listr2@11.4.0) (2026-10-17)
+
+### Features
+
+* **lib:** stop retries when a task returns task.fail ([c5af277](https://github.com/listr2/listr2/commit/c5af277dfc4e7d862eee4569cea4a3795024ff5f)), closes [#791](https://github.com/listr2/listr2/issues/791)
+
 ## listr2 [11.3.0](https://github.com/listr2/listr2/compare/listr2@11.2.0...listr2@11.3.0) (2026-10-17)
 
 ### Features
