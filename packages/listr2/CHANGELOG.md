@@ -1,3 +1,10 @@
+## listr2 [11.3.0](https://github.com/listr2/listr2/compare/listr2@11.2.0...listr2@11.3.0) (2026-10-17)
+
+### Features
+
+* **lib:** emit a separate TITLE_RESET event when a title is reset ([2ca70dd](https://github.com/listr2/listr2/commit/2ca70ddd518cb3cd5122b91ea3139ea1083b998f)), closes [#793](https://github.com/listr2/listr2/issues/793)
+* **lib:** remove a task's title when set to undefined ([ef0c1fe](https://github.com/listr2/listr2/commit/ef0c1fe303aa8b9f2a8666a3f05fdb9c654f795a)), closes [#793](https://github.com/listr2/listr2/issues/793)
+
 ## listr2 [11.2.0](https://github.com/listr2/listr2/compare/listr2@11.1.1...listr2@11.2.0) (2026-10-12)
 
 ### Features
