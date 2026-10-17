@@ -1,6 +1,6 @@
 {
   "name": "@listr2/manager",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "Extension for Listr2 to easily create sane defaults for task lists.",
   "license": "MIT",
   "repository": "https://github.com/listr2/listr2",
