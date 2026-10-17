@@ -36,6 +36,30 @@ Retry action can have a delay between the tries. For enabling this behavior, you
 
 While waiting between attempts the task enters a paused state, and the _DefaultRenderer_ shows a live countdown until the next try through its `pausedTimer` option. You can check for this state inside a task with `task.isPaused()`.
 
+### Dynamic Retry Delay
+
+<GithubIssue :issue="791" />
+
+The delay can also be a callback that returns the time to wait in milliseconds, which makes it possible to implement backoff strategies like an exponential backoff. The callback will be evaluated before every retry with [the current retry attempt](/api/listr2/interfaces/ListrTaskRetry.html), where the `count` is the number of the failed attempt and `error` is the error it has thrown, and the context. It can also return a `Promise`.
+
+<<< @../../examples/docs/task/retry/retry-delay-callback.ts{13}
+
+- If the callback throws, the task fails with that error without retrying further.
+- If the run is interrupted while the callback is pending, the task does not wait for it and stops with the error of the failed attempt.
+
+## Fail Without Retrying
+
+<GithubIssue :issue="791" />
+
+Whenever the task knows that retrying will never succeed, it can fail immediately by returning `task.fail(error)`. The task fails with the given error through the regular error handling, which means rollback, `exitOnError` and error collection behave the same as an error that has been thrown in the last attempt, but the remaining retries are not used.
+
+<<< @../../examples/docs/task/retry/fail.ts{11-13}
+
+- The value of `task.fail()` has to be returned from the task, calling it without returning it will not fail the task. Throwing it, i.e. `throw task.fail(error)`, behaves the same as returning it.
+- The given error is passed through as it is, without any validation or wrapping.
+- It only applies to the task that calls it. When a subtask fails itself and its error fails the parent task, the parent task still uses its own retries as usual.
+- Unlike `task.skip()`, the task ends up in the failed state, and unlike `task.cancel()`, it does not interrupt the other tasks.
+
 ## Retry Event
 
 Retrying is self-aware, and you can access the task if it is retrying via `task.isRetrying()`. It will either return an object [with the given interface](/api/listr2/interfaces/ListrTaskRetry.html) where the `count` will be `0` for not repeating tasks, and `error` is the last encountered error if retrying.
