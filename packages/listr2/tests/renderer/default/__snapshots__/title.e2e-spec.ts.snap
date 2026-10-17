@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`default renderer: title should hide the task when its title and output are removed: Qm3vT8xKp1LwZr6YcN0bHd4FsJ7gEa2U-exit 1`] = `[]`;
+
+exports[`default renderer: title should hide the task when its title and output are removed: Qm3vT8xKp1LwZr6YcN0bHd4FsJ7gEa2U-stderr 1`] = `[]`;
+
+exports[`default renderer: title should hide the task when its title and output are removed: Qm3vT8xKp1LwZr6YcN0bHd4FsJ7gEa2U-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[G[2K[G[2m◼[22m This task keeps its title.
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
+[2m◼[22m This task keeps its title.
+[?2026l",
+  "[?2026h[1A[G[2K[1B[2K[1A[G  › I will push an output.
+[2m◼[22m This task keeps its title.
+[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G  › I will push an output.
+[2m◼[22m This task keeps its title.
+[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[2m◼[22m This task keeps its title.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task keeps its title.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task keeps its title.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This task keeps its title.
+",
+  "[?25h",
+]
+`;
+
+exports[`default renderer: title should render the title again after it has been removed: Hs5nB9wRk2PeX7tUq4ZyLm0VcG8dJf3A-exit 1`] = `[]`;
+
+exports[`default renderer: title should render the title again after it has been removed: Hs5nB9wRk2PeX7tUq4ZyLm0VcG8dJf3A-stderr 1`] = `[]`;
+
+exports[`default renderer: title should render the title again after it has been removed: Hs5nB9wRk2PeX7tUq4ZyLm0VcG8dJf3A-stdout 1`] = `
+[
+  "[?25l",
+  "[?2026h[2m◼[22m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This title is restored.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This title is restored.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[?2026l",
+  "[32m✔[39m This title is restored.
+",
+  "[?25h",
+]
+`;

@@ -145,7 +145,7 @@ export class Task<
   /**
    * Update the current title of the Task and emit the neccassary events.
    */
-  set title$(title: string) {
+  set title$(title: string | undefined) {
     this.title = title
 
     this.emit(ListrTaskEventType.TITLE, title)

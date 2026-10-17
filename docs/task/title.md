@@ -35,3 +35,21 @@ You can always use `task.title` programmatically to add titles, and visually pop
 <<< @../../examples/docs/task/title/task-title-pop.ts{8,12,19,23}
 
 :::
+
+### Remove the Title <GithubIssue :issue="793" />
+
+Setting the title to `undefined` or `null` removes it, and the _Task_ is treated as a task without a title until a new title is assigned.
+
+```typescript
+task.title = undefined
+
+task.output = null
+```
+
+Combined with resetting the output, this hides a _Task_ from view without changing the renderer options for the rest of the tasks.
+
+::: warning
+
+Prior to this, `task.title = undefined` used to render the literal string `"undefined"`.
+
+:::

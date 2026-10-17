@@ -109,7 +109,9 @@ export class VerboseRenderer implements ListrRenderer {
 
       if (this.options?.logTitleChange !== false) {
         task.on(ListrTaskEventType.TITLE, (title) => {
-          this.logger.log(ListrLogLevels.TITLE, title)
+          if (task.hasTitle()) {
+            this.logger.log(ListrLogLevels.TITLE, title)
+          }
         })
       }
 

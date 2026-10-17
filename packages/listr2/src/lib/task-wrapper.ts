@@ -27,7 +27,13 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    *
    * @see {@link https://listr2.kilic.dev/task/title.html}
    */
-  set title(title: string | any[]) {
+  set title(title: string | any[] | null) {
+    if (title === undefined || title === null) {
+      this.task.title$ = undefined
+
+      return
+    }
+
     title = Array.isArray(title) ? title : [title]
 
     this.task.title$ = splat(title.shift(), ...title)
