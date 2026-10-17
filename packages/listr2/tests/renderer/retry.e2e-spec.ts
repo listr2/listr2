@@ -1,3 +1,4 @@
+import type { ListrTaskFailure } from '@root'
 import { Listr } from '@root'
 import type { MockProcessOutput, RendererSetup } from '@tests/utils'
 import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
@@ -87,5 +88,38 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
 
     expect(err).toBeFalsy()
     expectProcessOutputToMatchSnapshot(output, 'oZPNYsORzcG758b1BLdR91GcErmLlQsw')
+  })
+
+  it('should stop retrying if the task fails itself', async() => {
+    let err: Error
+
+    try {
+      await new Listr(
+        [
+          {
+            title: 'Some type errors',
+            task: async(_, task): Promise<ListrTaskFailure> => {
+              if (task.isRetrying().count === 0) {
+                throw new Error('not enough')
+              }
+
+              return task.fail(new Error('This will never work.'))
+            },
+            retry: 3
+          }
+        ],
+        {
+          concurrent: false,
+          exitOnError: true,
+          renderer,
+          rendererOptions
+        }
+      ).run()
+    } catch(e: any) {
+      err = e
+    }
+
+    expect(err).toBeTruthy()
+    expectProcessOutputToMatchSnapshot(output, 'f2kXq8VbNw3LtRzE7cHyUmJ5aPdG9sTo')
   })
 })

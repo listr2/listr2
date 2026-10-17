@@ -3,7 +3,7 @@ import type { Writable } from 'stream'
 import type { ListrErrorTypes } from '@constants'
 import { ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRendererFactory, ListrSubClassOptions, ListrTask } from '@interfaces'
-import { ListrError } from '@interfaces'
+import { ListrError, ListrTaskFailure } from '@interfaces'
 import type { Task } from '@lib'
 import { Listr } from '@root'
 import type { ListrPromptAdapter } from '@utils'
@@ -133,6 +133,17 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
     if (message) {
       this.task.message$ = { skip: message ? splat(message, ...metadata) : this.task?.title }
     }
+  }
+
+  /**
+   * Fail the current task with the given error without retrying it.
+   *
+   * - The returned value has to be returned from the task, i.e. `return task.fail(error)`.
+   *
+   * @see {@link https://listr2.kilic.dev/task/retry.html}
+   */
+  public fail(error: Error): ListrTaskFailure {
+    return new ListrTaskFailure(error)
   }
 
   /**
