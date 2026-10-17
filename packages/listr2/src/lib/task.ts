@@ -153,6 +153,16 @@ export class Task<
   }
 
   /**
+   * Reset the current title of the Task and emit the neccassary events.
+   */
+  set titleReset$(data: undefined) {
+    this.title = data
+
+    this.emit(ListrTaskEventType.TITLE_RESET)
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
+  }
+
+  /**
    * Current task path in the hierarchy.
    */
   get path(): string[] {

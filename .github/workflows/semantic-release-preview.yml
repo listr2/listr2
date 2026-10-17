@@ -38,6 +38,8 @@ jobs:
         with:
           dry_run: true
           ci: false
+          extra_plugins: |
+            @cenk1cenk2/semantic-release-config@^6.1.0
           branches: |
             [
               {name: 'master'},

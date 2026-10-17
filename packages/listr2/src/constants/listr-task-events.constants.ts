@@ -6,6 +6,8 @@
 export enum ListrTaskEventType {
   /** Title has changed for the current Task. */
   TITLE = 'TITLE',
+  /** The current Task has reset its title. */
+  TITLE_RESET = 'TITLE_RESET',
   /**
    * State has changed for the current Task.
    *
