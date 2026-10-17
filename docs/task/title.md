@@ -46,7 +46,7 @@ task.title = undefined
 task.output = null
 ```
 
-Combined with resetting the output, this hides a _Task_ from view without changing the renderer options for the rest of the tasks.
+This emits a dedicated `TITLE_RESET` task event instead of a `TITLE` event, so the `TITLE` event always carries a string. Combined with resetting the output, this hides a _Task_ from view without changing the renderer options for the rest of the tasks.
 
 ::: warning
 

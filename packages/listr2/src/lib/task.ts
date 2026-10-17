@@ -145,10 +145,20 @@ export class Task<
   /**
    * Update the current title of the Task and emit the neccassary events.
    */
-  set title$(title: string | undefined) {
+  set title$(title: string) {
     this.title = title
 
     this.emit(ListrTaskEventType.TITLE, title)
+    this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
+  }
+
+  /**
+   * Reset the current title of the Task and emit the neccassary events.
+   */
+  set titleReset$(data: undefined) {
+    this.title = data
+
+    this.emit(ListrTaskEventType.TITLE_RESET)
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
   }
 

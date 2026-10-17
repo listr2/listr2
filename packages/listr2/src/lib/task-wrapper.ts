@@ -29,7 +29,7 @@ export class TaskWrapper<Ctx, Renderer extends ListrRendererFactory, FallbackRen
    */
   set title(title: string | any[] | null) {
     if (title === undefined || title === null) {
-      this.task.title$ = undefined
+      this.task.titleReset$ = undefined
 
       return
     }
