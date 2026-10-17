@@ -1,6 +1,7 @@
 import type { ObservableLike, ReadableLike } from './data.interface'
 import type { ListrContext } from './listr.interface'
 import type { ListrPrimaryRendererTaskOptions, ListrRendererFactory, ListrRendererValue, ListrSecondaryRendererTaskOptions } from './renderer.interface'
+import type { ListrTaskFailure } from './task-failure.interface'
 import type { Task, TaskWrapper } from '@lib'
 import type { Listr } from '@root'
 import type { ListrPromptAdapter } from '@utils'
@@ -12,8 +13,7 @@ import type { ListrPromptAdapter } from '@utils'
  * @see {@link https://listr2.kilic.dev/task/task.html}
  */
 export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFactory = any, FallbackRenderer extends ListrRendererFactory = any>
-  extends ListrPrimaryRendererTaskOptions<Renderer>,
-  ListrSecondaryRendererTaskOptions<FallbackRenderer> {
+  extends ListrPrimaryRendererTaskOptions<Renderer>, ListrSecondaryRendererTaskOptions<FallbackRenderer> {
   /**
    * Title of the task.
    *
@@ -52,9 +52,11 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
   /**
    * Retries a task with the given amounts whenever a task fails.
    *
+   * - Returning `task.fail(error)` from the task fails it immediately without using the remaining retries.
+   *
    * @see {@link https://listr2.kilic.dev/task/retry.html}
    */
-  retry?: number | { tries: number; delay?: number }
+  retry?: number | ListrTaskRetryOptions<Ctx>
   /**
    * The callback function that you provide will run whenever the attached task fails and
    * give you the ability to revert your changes, before failing.
@@ -71,7 +73,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
 /**
  * Result of the processed task can be any of the supported types.
  */
-export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRendererValue, ListrRendererValue> | ReadableLike | ObservableLike<any>
+export type ListrTaskResult<Ctx> = string | Promise<any> | Listr<Ctx, ListrRendererValue, ListrRendererValue> | ReadableLike | ObservableLike<any> | ListrTaskFailure
 
 /**
  * The callback function from the user that defines the task.
@@ -94,6 +96,22 @@ export type ListrTaskPrompt = ListrPromptAdapter
 export interface ListrTaskRetry {
   count: number
   error?: Error
+}
+
+/**
+ * Options for retrying a task.
+ *
+ * @see {@link https://listr2.kilic.dev/task/retry.html}
+ */
+export interface ListrTaskRetryOptions<Ctx = ListrContext> {
+  /** Amount of retries after the first failed attempt. */
+  tries: number
+  /**
+   * Milliseconds to wait before each retry, or a callback that returns it.
+   *
+   * - The callback will be evaluated before every retry with the current retry attempt and the context.
+   */
+  delay?: number | ((retry: Required<ListrTaskRetry>, ctx: Ctx) => number | Promise<number>)
 }
 
 /**

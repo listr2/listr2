@@ -14,7 +14,7 @@ import type {
   ListrTaskPrompt,
   ListrTaskRetry
 } from '@interfaces'
-import { PromptError } from '@interfaces'
+import { ListrTaskFailure, PromptError } from '@interfaces'
 import { Listr } from '@root'
 import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable, isReadable, splat } from '@utils'
 
@@ -288,7 +288,9 @@ export class Task<
   // eslint-disable-next-line complexity
   public async run(context: Ctx, wrapper: TaskWrapper<Ctx, Renderer, FallbackRenderer>): Promise<void> {
     const handleResult = (result: any): Promise<any> => {
-      if (result instanceof Listr) {
+      if (result instanceof ListrTaskFailure) {
+        throw result
+      } else if (result instanceof Listr) {
         // Detect the subtask
         // assign options
         result.options = { ...this.options, ...result.options }
@@ -372,13 +374,46 @@ export class Task<
 
           break
         } catch(err: any) {
+          // the task has failed itself through task.fail(), so it should not be retried
+          if (err instanceof ListrTaskFailure) {
+            throw err.error
+          }
+
           // never retry an interrupted task
           if (this.listr.signal.aborted) {
             throw err
           }
 
           if (retries !== retryCount) {
-            this.retry = { count: retries, error: err }
+            const retry = { count: retries, error: err }
+            let time: number | false
+
+            if (typeof retryDelay === 'function') {
+              let onAbort: () => void
+
+              try {
+                // race against the shared signal directly, since whenInterrupted() never rejects for a task that has subtasks
+                time = await Promise.race([
+                  retryDelay(retry, context),
+                  new Promise<never>((_, reject) => {
+                    onAbort = (): void => reject(err)
+                    this.listr.signal.addEventListener('abort', onAbort, { once: true })
+                  })
+                ])
+              } catch(delayError: any) {
+                throw this.listr.signal.aborted ? err : delayError
+              } finally {
+                this.listr.signal.removeEventListener('abort', onAbort)
+              }
+
+              if (this.listr.signal.aborted) {
+                throw err
+              }
+            } else {
+              time = retryDelay
+            }
+
+            this.retry = retry
             this.message$ = { retry: this.retry }
             this.title$ = this.initialTitle
             this.output = undefined
@@ -387,8 +422,8 @@ export class Task<
 
             this.state$ = ListrTaskState.RETRY
 
-            if (retryDelay) {
-              await this.pause(retryDelay)
+            if (time) {
+              await this.pause(time)
             }
           } else {
             throw err
