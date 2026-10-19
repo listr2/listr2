@@ -34,7 +34,7 @@ importers:
         version: 10.13.0(jiti@2.6.1)(supports-color@8.1.1)
       execa:
         specifier: ^10.1.0
-        version: 10.1.1
+        version: 10.2.0
       jest:
         specifier: ^30.5.2
         version: 30.5.2(@types/node@26.6.5)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.18)(@types/node@26.6.5)(typescript@6.0.3))
@@ -124,7 +124,7 @@ importers:
         version: 8.7.3(@types/node@26.6.5)
       execa:
         specifier: ^10.0.0
-        version: 10.1.1
+        version: 10.2.0
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -2591,8 +2591,8 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
 
-  execa@10.1.1:
-    resolution: {integrity: sha512-yJAC9ulsE6fU0K6wzJBIH+wI+KAtMeu6Ck8rs23OVzvEhqXjGADdI6K+YNIDAjcQQ6AwXTD96cKExJo6xFJXyg==}
+  execa@10.2.0:
+    resolution: {integrity: sha512-j1pFOVxaybMVCTNHSBuISL2KQcDS3KIE1wBmUp4n2X+1FgaQI2ZDJVy9TYxDyMCzYojRIMh9O8X/UoWZtxTJdw==}
     engines: {node: '>=22'}
 
   execa@5.1.1:
@@ -6655,7 +6655,7 @@ snapshots:
 
   esutils@2.0.3: {}
 
-  execa@10.1.1:
+  execa@10.2.0:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       figures: 6.1.0
