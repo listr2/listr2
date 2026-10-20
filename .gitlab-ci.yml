@@ -39,7 +39,7 @@ include:
       - /semantic-release/publish.gitlab-ci.yml
 
   - project: devops/pipelines
-    ref: buildah@2.2.2
+    ref: buildah@2.3.0
     file:
       - /buildah/build.gitlab-ci.yml
       - /buildah/registry-gitlab.gitlab-ci.yml
