@@ -32,7 +32,7 @@
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
     "typedoc": "^0.28.20",
-    "typedoc-plugin-markdown": "4.13.1",
+    "typedoc-plugin-markdown": "4.14.0",
     "typedoc-vitepress-theme": "1.1.4",
     "vitepress": "1.6.4",
     "vitepress-plugin-llms": "^1.14.0",
