@@ -114,7 +114,7 @@ importers:
         specifier: ^1.40.0
         version: 1.40.0
       vue:
-        specifier: ^3.5.43
+        specifier: ^3.5.44
         version: 3.5.44(typescript@6.0.3)
 
   examples:
