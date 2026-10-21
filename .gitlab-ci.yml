@@ -1,13 +1,4 @@
 ---
-default:
-  interruptible: true
-
-workflow:
-  rules:
-    - if: $CI_COMMIT_BRANCH =~ /^renovate\//
-      when: never
-    - when: always
-
 stages:
   - install
   - build
@@ -34,7 +25,7 @@ include:
       - /node/run.gitlab-ci.yml
 
   - project: devops/pipelines
-    ref: semantic-release@2.5.2
+    ref: semantic-release@3.0.0
     file:
       - /semantic-release/publish.gitlab-ci.yml
 
@@ -45,11 +36,13 @@ include:
       - /buildah/registry-gitlab.gitlab-ci.yml
 
   - project: devops/pipelines
-    ref: references@1.4.0
-    file: /references/github-token.gitlab-ci.yml
+    ref: references@1.5.0
+    file:
+      - /references/github-token.gitlab-ci.yml
+      - /references/workflow.gitlab-ci.yml
 
   - project: devops/pipelines
-    ref: references@1.4.0
+    ref: references@1.5.0
     file: /references/github-status.gitlab-ci.yml
     inputs:
       app_id_variable: PIPELINES_GITHUB_APP_ID
