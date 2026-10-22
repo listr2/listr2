@@ -138,6 +138,7 @@ semantic-release:
     - build
     - lint
     - test
+    - typecheck
     - github-token
   dependencies:
     - build
