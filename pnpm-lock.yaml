@@ -33,7 +33,7 @@ importers:
         specifier: ^10.12.0
         version: 10.13.0(jiti@2.7.0)(supports-color@8.1.1)
       execa:
-        specifier: ^10.1.1
+        specifier: ^10.2.0
         version: 10.2.1
       jest:
         specifier: ^30.5.2
