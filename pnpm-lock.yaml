@@ -12,8 +12,8 @@ importers:
         specifier: ^3.0.10
         version: 3.0.10(@types/node@26.6.5)(typescript@6.0.3)
       '@cenk1cenk2/eslint-config':
-        specifier: ^3.4.1
-        version: 3.4.1(ab90a40e844ef28e2590ac4fcfa35122)
+        specifier: ^3.4.3
+        version: 3.4.3(ab90a40e844ef28e2590ac4fcfa35122)
       '@jest/globals':
         specifier: ^30.5.2
         version: 30.5.2(supports-color@8.1.1)
@@ -461,8 +461,8 @@ packages:
     resolution: {integrity: sha512-haJAj/U0xKHuXInNUxck7aZZ+GaB3+gHa/CkrckUykCarI5gyZEB5u/HKrhpAhY52abwF5qguphZw/XhwVH19Q==}
     engines: {node: '>= 24'}
 
-  '@cenk1cenk2/eslint-config@3.4.1':
-    resolution: {integrity: sha512-XNfMbR9qOD41pItd26CndWjV4FtYcpeb8RqFU+F+gN5ECdZKpvhLU+wbFFnNoTBRqwQmgewiJyGKVonY3BD1JA==}
+  '@cenk1cenk2/eslint-config@3.4.3':
+    resolution: {integrity: sha512-3bH/7rfm3LOecjrcfT5l8OTZHPMwNv05apviicBMUey19Fxxs2LsrC+LsRXRZiKChbS84TlrXeEpUfXR+BSd+A==}
     peerDependencies:
       '@vue/eslint-config-typescript': '>= 14.1.1'
       eslint: '>= 9'
@@ -4651,7 +4651,7 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@cenk1cenk2/eslint-config@3.4.1(ab90a40e844ef28e2590ac4fcfa35122)':
+  '@cenk1cenk2/eslint-config@3.4.3(ab90a40e844ef28e2590ac4fcfa35122)':
     dependencies:
       '@eslint/js': 10.0.1(eslint@10.13.0(jiti@2.7.0)(supports-color@8.1.1))
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.13.0(jiti@2.7.0)(supports-color@8.1.1))
