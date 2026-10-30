@@ -16,7 +16,7 @@ variables:
 
 include:
   - project: devops/pipelines
-    ref: node@2.2.0
+    ref: node@2.2.2
     file:
       - /node/install.gitlab-ci.yml
       - /node/build.gitlab-ci.yml
