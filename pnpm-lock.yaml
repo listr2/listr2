@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^3.0.11
-        version: 3.0.11(@types/node@26.6.6)(typescript@6.0.3)
+        specifier: ^3.0.12
+        version: 3.0.12(@types/node@26.6.6)(typescript@6.0.3)
       '@cenk1cenk2/eslint-config':
-        specifier: ^3.4.4
-        version: 3.4.4(6b38bbec9d68bda2b873ade8e79b5196)
+        specifier: ^3.4.5
+        version: 3.4.5(6b38bbec9d68bda2b873ade8e79b5196)
       '@jest/globals':
         specifier: ^30.5.2
         version: 30.5.2(supports-color@8.1.1)
@@ -457,12 +457,12 @@ packages:
   '@cacheable/utils@2.5.0':
     resolution: {integrity: sha512-buipgOVDkkPXNR5+xBpDw7Zk2n1EvU7qBJCNUcL7rhQ//kfpOXPAvQ511Os0vpLYJ1pZnvudNytkQt2hst3wqA==}
 
-  '@cenk1cenk2/cz-cc@3.0.11':
-    resolution: {integrity: sha512-pzGITwDCfjjqxuL6qdKF5NDBfSp351PBo9qPxbv2DEEtBvEDTgrOVRM5UnI1xfb6/ndeHcSlnl10yiybtq3Uxw==}
+  '@cenk1cenk2/cz-cc@3.0.12':
+    resolution: {integrity: sha512-nNWp6cMT8DjM+mk7DW8zJ+fCX7mgbTRyAfcEY/1HuleCytYVbgOBn/5skaSybIY0aiWIrp6HolDwkOfP0N1XTg==}
     engines: {node: '>= 24'}
 
-  '@cenk1cenk2/eslint-config@3.4.4':
-    resolution: {integrity: sha512-jgIDt9gwCk6mqObROcQBZyWzOtPYeRlZypUABMXKW8OAPjjuM57JAOO2SEYgdw/051lI6FjWZcpueyjstNsRyQ==}
+  '@cenk1cenk2/eslint-config@3.4.5':
+    resolution: {integrity: sha512-7gv1g17mOgccVf0mJIIvaRgPFtb3gPrfBUjgXdqFKucrLSm4ieIiHTPE9BkFFSJmBwVrQq//AvIGhnsInO/vIA==}
     peerDependencies:
       '@vue/eslint-config-typescript': '>= 14.1.1'
       eslint: '>= 9'
@@ -4628,7 +4628,7 @@ snapshots:
       hashery: 1.5.1
       keyv: 5.6.0
 
-  '@cenk1cenk2/cz-cc@3.0.11(@types/node@26.6.6)(typescript@6.0.3)':
+  '@cenk1cenk2/cz-cc@3.0.12(@types/node@26.6.6)(typescript@6.0.3)':
     dependencies:
       '@inquirer/prompts': 8.7.5(@types/node@26.6.6)
       '@listr2/prompt-adapter-inquirer': 4.3.3(@inquirer/prompts@8.7.5(@types/node@26.6.6))(@types/node@26.6.6)(listr2@11.4.0)
@@ -4640,7 +4640,7 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@cenk1cenk2/eslint-config@3.4.4(6b38bbec9d68bda2b873ade8e79b5196)':
+  '@cenk1cenk2/eslint-config@3.4.5(6b38bbec9d68bda2b873ade8e79b5196)':
     dependencies:
       '@eslint/js': 10.0.1(eslint@10.14.0(jiti@2.7.0)(supports-color@8.1.1))
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.14.0(jiti@2.7.0)(supports-color@8.1.1))
