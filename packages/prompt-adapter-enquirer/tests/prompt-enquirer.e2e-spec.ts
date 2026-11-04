@@ -57,26 +57,46 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
         {
           title: 'This task will execute.',
           task: async(ctx, task): Promise<void> => {
-            const output = task.prompt(ListrEnquirerPromptAdapter).run([
-              {
-                name: 'first',
-                type: 'Input',
-                message: 'Give me some input.'
-              },
+            const enquirer = new Enquirer()
 
-              {
-                name: 'second',
-                type: 'Select',
-                message: 'Give me more input.',
-                choices: ['test1', 'test2']
-              }
-            ])
+            const started = (name: string): Promise<void> =>
+              new Promise((resolve) => {
+                const listener = (prompt: { name: string; once: (event: string, listener: () => void) => void }): void => {
+                  if (prompt.name === name) {
+                    enquirer.off('start', listener)
+                    prompt.once('run', resolve)
+                  }
+                }
 
-            await delay(50)
+                enquirer.on('start', listener)
+              })
+
+            const first = started('first')
+            const second = started('second')
+
+            const output = task.prompt(ListrEnquirerPromptAdapter).run(
+              [
+                {
+                  name: 'first',
+                  type: 'Input',
+                  message: 'Give me some input.'
+                },
+
+                {
+                  name: 'second',
+                  type: 'Select',
+                  message: 'Give me more input.',
+                  choices: ['test1', 'test2']
+                }
+              ],
+              { enquirer }
+            )
+
+            await first
 
             process.stdin.emit('data', Buffer.from(`test${KEYS.ENTER}`))
 
-            await delay(50)
+            await second
 
             process.stdin.emit('data', Buffer.from(KEYS.ENTER))
 
