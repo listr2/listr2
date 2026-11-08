@@ -62,7 +62,7 @@
     "idle"
   ],
   "dependencies": {
-    "@inquirer/type": "^4.1.1"
+    "@inquirer/type": "^4.2.1"
   },
   "devDependencies": {
     "@inquirer/core": "^12.0.6",
