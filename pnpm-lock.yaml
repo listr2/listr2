@@ -151,7 +151,7 @@ importers:
   packages/listr2:
     dependencies:
       cli-truncate:
-        specifier: ^6.1.1
+        specifier: ^6.2.0
         version: 6.2.0
       log-update:
         specifier: ^8.0.0
@@ -188,7 +188,7 @@ importers:
   packages/prompt-adapter-inquirer:
     dependencies:
       '@inquirer/type':
-        specifier: ^4.1.1
+        specifier: ^4.2.1
         version: 4.2.1(@types/node@26.6.6)
     devDependencies:
       '@inquirer/core':
