@@ -1,3 +1,9 @@
+## listr2 [11.4.1](https://github.com/listr2/listr2/compare/listr2@11.4.0...listr2@11.4.1) (2026-11-08)
+
+### Bug Fixes
+
+* **deps:** update node all minor dependency updates ([916b724](https://github.com/listr2/listr2/commit/916b7244f83dd1115eaf9714cdae4e2980696cac))
+
 ## listr2 [11.4.0](https://github.com/listr2/listr2/compare/listr2@11.3.0...listr2@11.4.0) (2026-10-17)
 
 ### Features
