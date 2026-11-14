@@ -21,9 +21,82 @@ This renderer uses _ProcessOutput_ to take control of the terminal.
 
 ## How Updates Are Rendered
 
-<Version version="v11.0.0" />
+<Version version="v12.0.0" />
 
-The task list is drawn with partial, differential updates through [`log-update`](https://www.npmjs.com/package/log-update) `v8`. Instead of clearing and rewriting the whole screen on every change, only the lines that actually changed are rewritten, and each redraw is wrapped in synchronized-output markers (`ESC[?2026h`/`ESC[?2026l`) on supporting terminals to reduce flicker. The visible result is identical to previous versions, only smoother.
+The task list is split in two. Tasks that will not change anymore are written once, above the list, and scroll into the scrollback of the terminal like any other output. Everything that can still change stays in the _live region_ at the bottom of the terminal: running and waiting tasks, their output bars, the bottom bar, and the prompt. Only the live region is redrawn, through [`log-update`](https://www.npmjs.com/package/log-update) `v8`, with differential updates wrapped in synchronized-output markers (`ESC[?2026h`/`ESC[?2026l`) to reduce flicker, and finished tasks are written above it with its `persist()`.
+
+This keeps long task lists intact: finished tasks are never clipped from the top or erased by a wrong line count, and the live region is redrawn when the terminal is resized.
+
+You can find the related example [here](https://github.com/listr2/listr2/tree/master/examples/renderer-default-long.example.ts). It runs a task list taller than any terminal for about a minute, so you can scroll and resize the terminal while it runs:
+
+```bash
+pnpm run --filter @listr2/examples start examples/renderer-default-long.example.ts
+```
+
+### When Tasks Are Persisted
+
+A task is persisted once it has closed, so a task that retries or rolls back stays in the live region until it is done. A task that retries also keeps its subtasks in the live region until it closes, whatever its `collapseSubtasks`, since they run again on every attempt.
+
+- Tasks of a sequential list are persisted in order.
+- Tasks of a concurrent list are persisted in the order they finish.
+- A task whose subtasks collapse, which is the default `collapseSubtasks: true`, stays in the live region with its subtasks until it closes. It is then persisted as it is shown at that moment: collapsed into a single line, or expanded when one of its subtasks failed, rolled back, or was cancelled.
+- A task with `collapseSubtasks: false` persists its title when its first subtask is persisted, then its subtasks as they finish, and then its final title line, with its icon and timer, after its subtasks. While it does so, the tasks next to it in a concurrent list wait in the live region, so its subtasks stay under its title.
+
+A task whose title is persisted before its subtasks draws a connector in the first column of their indentation, in the persisted and the live part alike, so its first and its final title line read as one group. Nested tasks that are persisted the same way add one connector column each. The connector takes no extra column, so subtasks wrap and truncate as before, and with `indentation: 0` there is no column for it and none is drawn. A task that is persisted in one piece, such as a task whose subtasks collapse or a task that retries, and every task under `clearOutput: true` keep the layout without it.
+
+```text
+❯ Running migrations
+│ ✔ Running migration 001.
+│ ✔ Running migration 002.
+│ ⠋ Running migration 003.
+✔ Running migrations [2s]
+```
+
+The connector is `│`, or `|` when the terminal does not support unicode, drawn dimmed. Change it like any other icon through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.CONNECTOR` key.
+
+With `clearOutput: true` nothing is persisted: the whole list stays in the live region and is cleared at the end.
+
+Anything written to `process.stdout` or `process.stderr` while the renderer runs is written above the live region as it arrives. See [_ProcessOutput_](./process-output.md). Output that does not go through `process.stdout` or `process.stderr`, such as a child process spawned with `stdio: 'inherit'`, bypasses this and corrupts the live region; pipe it through [`task.stdout()`](../task/output.md) instead.
+
+### Taller Than the Terminal
+
+Rows that scrolled off the top of the terminal cannot be redrawn, so when the live region is taller than the terminal, it is shortened in steps until it fits:
+
+- The finished subtasks of a task whose subtasks collapse are summarized in a single `✔ N completed` line until the task closes, since they would disappear when it collapses anyway. The last ones that still fit stay visible above the running subtasks.
+- If that is not enough, the tasks at the end of each list that have not started yet are summarized in a single `◼ N waiting` line, so the running tasks stay on the screen. The first ones that still fit stay visible below the running tasks, and the rows that are left show the last finished subtasks again.
+- If it is still taller, only its bottom `rows - 1` rows are drawn.
+
+This only shortens the live region: every task is persisted in full once it finishes. The height of the terminal is the `rows` that `process.stdout` reports, and there is no other limit on the live region.
+
+::: warning
+
+When the terminal reports more rows than it actually has, which happens with some terminal multiplexers and remote sessions, the live region is not shortened until it is taller than the reported rows. While it is taller than the actual screen, every redraw leaves its top rows behind in the scrollback, so the scrollback fills with copies of the live region for as long as that lasts. The persisted output stays correct.
+
+:::
+
+### Resizing the Terminal
+
+When the terminal is resized, the live region is erased and drawn again at the new size. To erase it, its height at the new width has to be estimated:
+
+- Terminals that reflow, such as VTE-based terminals, iTerm2, Terminal.app, Windows Terminal, kitty, WezTerm, Alacritty, VS Code, and tmux, split each line wider than the new width into more rows. The height is counted that way.
+- Terminals that truncate lines instead, such as classic xterm, urxvt, st, GNU screen, and the Linux console, keep one row per line. Outside of tmux, they are detected from `XTERM_VERSION`, `TERM=linux`, `TERM=rxvt*`, `TERM=st*`, and `STY` or `TERM=screen*`.
+
+If the terminal is not detected correctly, getting narrower either erases some rows of the persisted output above the live region, on a truncating terminal taken for a reflowing one, or leaves some rows of the old live region behind, on a reflowing terminal taken for a truncating one. This happens once per resize and does not build up.
+
+When the live region does not fit into the resized terminal, the rows pushed off the top stay in the scrollback, once per resize. tmux also moves rows above the cursor into its history when it gets narrower, where they cannot be erased, so one stale row of the live region can stay behind.
+
+### Keyboard Input
+
+A terminal echoes what is typed, and an echoed line break moves the cursor below the live region without the renderer knowing, which would leave rows of the live region behind on every redraw. While the tasks run, the renderer turns off only the echo of the terminal with `stty -echo`:
+
+- Keystrokes typed while the tasks run are not shown. They stay in the input buffer of the terminal and reach the shell, or whatever reads the terminal next, after the run.
+- `Ctrl+C`, `Ctrl+\` and `Ctrl+Z` interrupt, quit, and suspend the whole foreground job as before, child processes included. When it is suspended, the live region is left on the screen as it is, since the shell may already have written below it, and the shell takes the terminal back in its own mode. When `fg` continues the job, the echo is turned off again and the live region is drawn again below the lines of the shell, so the frame from before the suspension stays in the scrollback. A job continued with `bg` leaves the terminal to the shell until `fg`: tasks that finish in the meantime are still written, but the live region is not drawn.
+- A job that is not in the foreground process group of the terminal, such as one started with `&` or under `timeout` in a script, draws the live region as before, without the lock, since changing the mode of the terminal from there would stop it. It checks about once a second whether it got the terminal, and turns off the echo once it has.
+- Prompts read the input as usual: the lock is lifted while a prompt is active and set again after it.
+- The previous mode of the terminal, saved with `stty -g`, is restored when the renderer ends and when the process exits, also through an error or a signal. Only a process killed with `SIGKILL` leaves the echo off; run `stty sane` or `reset` to turn it back on.
+- It only applies when both `process.stdin` and `process.stdout` are TTYs and `stty` is available, so not on Windows.
+
+Set the renderer option `lockInput` to `false` when a task needs the terminal input itself, such as a child process spawned with `stdio: 'inherit'` that reads from it.
 
 ## Renderer Options
 
