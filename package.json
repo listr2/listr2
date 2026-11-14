@@ -35,7 +35,6 @@
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^3.0.13",
     "@cenk1cenk2/eslint-config": "^3.4.7",
-    "@swc/core": "^1.16.22",
     "@tsconfig/node22": "^22.0.6",
     "@types/node": "^26.6.6",
     "@vitest/coverage-v8": "^5.1.0",
@@ -43,8 +42,6 @@
     "execa": "^10.2.1",
     "prettier": "^3.9.10",
     "rimraf": "^6.1.4",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
     "tsdown": "0.23.7",
     "typescript": "^6.0.3",
     "vitest": "^5.1.0"

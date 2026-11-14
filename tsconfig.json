@@ -8,14 +8,6 @@
     "strictNullChecks": false,
     "types": ["node"]
   },
-  "ts-node": {
-    "esm": true,
-    "compilerOptions": {
-      "module": "ESNext",
-      "target": "ESNext"
-    },
-    "swc": true
-  },
   "include": ["."],
   "exclude": ["node_modules"]
 }

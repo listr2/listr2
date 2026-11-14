@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "tsc --noEmit",
-    "start": "cd .. && NODE_OPTIONS='--no-warnings --experimental-specifier-resolution=node --experimental-vm-modules --loader ./examples/loader.js' node",
+    "start": "cd .. && tsx --tsconfig examples/tsconfig.json",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
     "lint": "eslint",
     "typecheck": "tsc --noEmit"
@@ -32,6 +32,7 @@
     "@listr2/prompt-adapter-enquirer": "workspace:*",
     "@listr2/prompt-adapter-inquirer": "workspace:*",
     "@types/zen-observable": "^0.8.7",
-    "listr2": "workspace:*"
+    "listr2": "workspace:*",
+    "tsx": "^4.23.15"
   }
 }
