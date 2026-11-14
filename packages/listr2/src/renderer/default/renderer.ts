@@ -94,6 +94,8 @@ export class DefaultRenderer implements ListrRenderer {
     this.truncate = truncate
     this.wrap = wrap
 
+    this.cache.render.clear()
+
     this.logger.process.hijack()
 
     /* istanbul ignore if */
@@ -281,7 +283,7 @@ export class DefaultRenderer implements ListrRenderer {
       }
 
       // if this is already cached return the cache
-      if (this.cache.render.has(task.id)) {
+      if (task.isClosed() && this.cache.render.has(task.id)) {
         return this.cache.render.get(task.id)
       }
 
@@ -554,9 +556,6 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private reset(task: ListrDefaultRendererTask): void {
-    this.cache.rendererOptions.delete(task.id)
-    this.cache.rendererTaskOptions.delete(task.id)
-
     // no need for this since this is now cached
     this.buffer.output.delete(task.id)
   }

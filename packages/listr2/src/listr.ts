@@ -174,6 +174,8 @@ export class Listr<
       this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
     }
 
+    this.reopenTasks()
+
     await this.renderer.render()
 
     // create a new context
@@ -197,10 +199,10 @@ export class Listr<
     if (this.signal.aborted) {
       await Promise.allSettled(this.startedTasks)
 
-      if (this.isRoot()) {
-        // cancel anything left unstarted or in progress so the renderer marks the whole tree as interrupted
-        this.cancelUnfinishedTasks()
+      // a sub-list cancels its own tasks before propagating, so its parent only closes once they are final
+      this.cancelUnfinishedTasks()
 
+      if (this.isRoot()) {
         this.renderer.end()
 
         this.removeSignalHandler()
@@ -287,6 +289,16 @@ export class Listr<
   private removeSignalHandler(): void {
     if (this.boundSignalHandler) {
       process.removeListener('SIGINT', this.boundSignalHandler)
+    }
+  }
+
+  private reopenTasks(tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[] = this.tasks): void {
+    for (const task of tasks) {
+      task.reopen()
+
+      if (task.hasSubtasks()) {
+        this.reopenTasks(task.subtasks)
+      }
     }
   }
 

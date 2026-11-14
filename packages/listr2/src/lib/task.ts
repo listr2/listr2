@@ -269,6 +269,15 @@ export class Task<
     return this.closed
   }
 
+  /**
+   * Reopen the task before its list runs again.
+   *
+   * @internal
+   */
+  public reopen(): void {
+    this.closed = false
+  }
+
   /** Pause the given task for certain time. */
   public async pause(time: number): Promise<void> {
     const state = this.state
@@ -352,6 +361,8 @@ export class Task<
       }
 
       this.state$ = ListrTaskState.SKIPPED
+
+      this.close()
 
       return
     }
@@ -497,6 +508,8 @@ export class Task<
   }
 
   private close(): void {
+    this.closed = true
+
     this.emit(ListrTaskEventType.CLOSED)
     this.listr.events.emit(ListrEventType.SHOULD_REFRESH_RENDER)
     this.complete()
