@@ -48,6 +48,16 @@ export interface ListrDefaultRendererOptions
    */
   lazy?: boolean
   /**
+   * Stop the terminal from echoing keyboard input while the tasks run, since an echoed line break moves the cursor under the task list.
+   *
+   * - This is a global option that can only be changed through the main Listr class.
+   * - Disable it when a task reads from the terminal, such as a child process spawned with `stdio: 'inherit'`.
+   *
+   * @see {@link https://listr2.kilic.dev/renderer/default.html#keyboard-input}
+   * @defaultValue `true`
+   */
+  lockInput?: boolean
+  /**
    * Remove empty lines from the output section for decluterring multiple line output.
    *
    * @defaultValue `true`

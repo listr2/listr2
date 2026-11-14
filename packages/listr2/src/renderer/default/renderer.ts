@@ -39,6 +39,7 @@ export class DefaultRenderer implements ListrRenderer {
     showErrorMessage: true,
     suffixRetries: true,
     lazy: false,
+    lockInput: true,
     removeEmptyLines: true,
     formatOutput: 'wrap',
     pausedTimer: {
@@ -105,6 +106,7 @@ export class DefaultRenderer implements ListrRenderer {
     this.hasPersisted = false
 
     this.logger.process.hijack()
+    this.lockInput()
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
@@ -151,6 +153,9 @@ export class DefaultRenderer implements ListrRenderer {
     } else {
       this.logger.process.update(render.join(EOL))
     }
+
+    // rendering a prompt task sets the active prompt before the prompt takes over stdin
+    this.lockInput()
   }
 
   public end(): void {
@@ -281,6 +286,18 @@ export class DefaultRenderer implements ListrRenderer {
     const bottomBar = this.cache.rendererTaskOptions.get(task.id).bottomBar
 
     return (typeof bottomBar === 'number' && bottomBar !== 0) || (typeof bottomBar === 'boolean' && bottomBar !== false) || !task.hasTitle()
+  }
+
+  private lockInput(): void {
+    if (!this.options.lockInput) {
+      return
+    }
+
+    if (this.activePrompt) {
+      this.logger.process.unlockInput()
+    } else {
+      this.logger.process.lockInput()
+    }
   }
 
   private readonly refresh = (): void => {

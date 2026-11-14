@@ -1,8 +1,13 @@
 import { jest } from '@jest/globals'
+import * as fs from 'fs'
 
-import { VirtualTerminal } from '@tests/utils'
+import { FakeStty, VirtualTerminal } from '@tests/utils'
 
 const exitHandlers: (() => void)[] = []
+const stty = new FakeStty()
+
+jest.unstable_mockModule('child_process', () => ({ spawnSync: stty.spawnSync }))
+jest.unstable_mockModule('fs', () => ({ ...fs, readFileSync: stty.readFileSync(fs.readFileSync) }))
 
 // signal-exit would exit the test process, so capture what runs on exit instead
 jest.unstable_mockModule('signal-exit', () => ({
@@ -149,6 +154,25 @@ describe('process output', () => {
       output.release()
 
       expect(exitHandlers).toHaveLength(0)
+    })
+
+    it('should restore the echo when the process exits while the input is locked', async() => {
+      vt = new VirtualTerminal({ columns: 40, rows: 10 })
+
+      stty.install()
+      const output = new ProcessOutput(vt as any, vt as any)
+
+      output.hijack()
+      output.lockInput()
+
+      expect(stty.echo).toBe(false)
+
+      exitHandlers.forEach((handler) => handler())
+
+      expect(stty.echo).toBe(true)
+
+      output.release()
+      stty.uninstall()
     })
   })
 

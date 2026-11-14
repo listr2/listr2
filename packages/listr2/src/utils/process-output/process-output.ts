@@ -1,3 +1,5 @@
+import { spawnSync } from 'child_process'
+import { readFileSync } from 'fs'
 import { createLogUpdate } from 'log-update'
 import { EOL } from 'os'
 import { onExit } from 'signal-exit'
@@ -22,6 +24,10 @@ export class ProcessOutput {
   private updater?: ReturnType<typeof createLogUpdate>
   private live = ''
   private lines: string[] = []
+  private input?: string
+  private stopped?: number
+  private background?: number
+  private failed = false
   private removeExitHook?: () => void
 
   constructor(
@@ -78,6 +84,7 @@ export class ProcessOutput {
     this.live = live
 
     if (text !== '') {
+      this.yieldTerminal()
       this.start().persist(text)
       this.lines = []
     }
@@ -89,6 +96,59 @@ export class ProcessOutput {
     this.live = ''
 
     this.draw()
+  }
+
+  /**
+   * Stops the terminal from echoing keyboard input until `unlockInput()` or `release()`, while the output is hijacked.
+   *
+   * @see {@link https://listr2.kilic.dev/renderer/default.html#keyboard-input}
+   */
+  public lockInput(): void {
+    if (!this.active || this.input !== undefined || this.failed || process.platform === 'win32' || !process.stdin.isTTY || !this.stdout.isTTY) {
+      return
+    }
+
+    // a job in the background draws like any other, and checks now and then whether it got the terminal
+    if (this.background !== undefined && Date.now() - this.background < 1000) {
+      return
+    }
+
+    if (!this.foreground()) {
+      this.background = Date.now()
+
+      return
+    }
+
+    this.background = undefined
+
+    const input = this.stty('-g')
+
+    if (!input || this.stty('-echo') === undefined) {
+      this.failed = true
+
+      return
+    }
+
+    this.input = input
+    process.on('SIGTSTP', this.onStop)
+  }
+
+  public unlockInput(): void {
+    this.background = undefined
+
+    if (this.input === undefined) {
+      return
+    }
+
+    process.off('SIGTSTP', this.onStop)
+    process.off('SIGCONT', this.onContinue)
+
+    if (this.stopped === undefined && this.foreground()) {
+      this.stty(this.input)
+    }
+
+    this.input = undefined
+    this.stopped = undefined
   }
 
   public release(): void {
@@ -132,6 +192,7 @@ export class ProcessOutput {
     this.restore()
     this.removeExitHook?.()
     this.removeExitHook = undefined
+    this.failed = false
 
     this.active = false
   }
@@ -162,6 +223,17 @@ export class ProcessOutput {
   }
 
   private draw(): void {
+    this.yieldTerminal()
+
+    // `fg` sends no SIGCONT to a job that already runs in the background, so check for the terminal now and then
+    if (this.stopped !== undefined) {
+      if (Date.now() - this.stopped >= 1000) {
+        this.resume()
+      }
+
+      return
+    }
+
     if (this.live === '') {
       this.updater?.clear()
     } else {
@@ -253,6 +325,89 @@ export class ProcessOutput {
   }
 
   private restore(): void {
+    this.unlockInput()
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+  }
+
+  // under a wrapper such as pnpm, the shell takes the terminal back and writes below the live region before this process handles SIGTSTP
+  private yieldTerminal(): void {
+    if (this.input === undefined || this.stopped !== undefined || this.owns() !== false) {
+      return
+    }
+
+    this.updater?.done()
+    this.lines = []
+    this.stopped = Date.now()
+  }
+
+  // stty stops the whole job with SIGTTOU when it changes the mode of the terminal from the background, so anything unknown is the background
+  private foreground(): boolean {
+    const owns = this.owns()
+
+    if (owns !== undefined) {
+      return owns
+    }
+
+    const { stdout } = spawnSync('ps', ['-o', 'stat=', '-p', String(process.pid)], { encoding: 'utf-8' })
+
+    return stdout?.includes('+') ?? false
+  }
+
+  // reading /proc is cheap enough for every frame, unlike ps, so it is undefined where there is no /proc
+  private owns(): boolean | undefined {
+    try {
+      const stat = readFileSync('/proc/self/stat', 'utf-8')
+      // the process name in the second field can hold spaces and parentheses
+      const [, , pgrp, , , tpgid] = stat.slice(stat.lastIndexOf(')') + 2).split(' ')
+
+      // without a controlling terminal there is no job control to stop the process
+      return pgrp === tpgid || tpgid === '-1'
+    } catch {
+      return undefined
+    }
+  }
+
+  private stty(...args: string[]): string | undefined {
+    const { status, stdout } = spawnSync('stty', args, {
+      stdio: ['inherit', 'pipe', 'ignore'],
+      encoding: 'utf-8',
+      timeout: 1000,
+      killSignal: 'SIGKILL'
+    })
+
+    return status === 0 ? stdout.trim() : undefined
+  }
+
+  // a SIGTSTP listener keeps the process from stopping, and the shell may already have written below the live region, so it stays as it is
+  private readonly onStop = (): void => {
+    this.updater?.done()
+    this.lines = []
+    this.stopped = Date.now()
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+
+    process.off('SIGTSTP', this.onStop)
+    process.on('SIGCONT', this.onContinue)
+    process.kill(process.pid, 'SIGTSTP')
+  }
+
+  private readonly onContinue = (): void => {
+    this.resume()
+  }
+
+  private resume(): void {
+    if (!this.foreground()) {
+      this.stopped = Date.now()
+
+      return
+    }
+
+    this.stopped = undefined
+    process.off('SIGCONT', this.onContinue)
+    process.off('SIGTSTP', this.onStop)
+    process.on('SIGTSTP', this.onStop)
+    this.stty('-echo')
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
+
+    this.draw()
   }
 }

@@ -1,3 +1,4 @@
+export * from './fake-stty'
 export * from './keys.constants'
 export type * from './mock.interface'
 export * from './mock'
