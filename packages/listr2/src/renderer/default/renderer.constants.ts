@@ -17,7 +17,8 @@ export enum ListrDefaultRendererLogLevels {
   FAILED_WITH_FAILED_SUBTASKS = 'FAILED_WITH_SUBTASKS',
   WAITING = 'WAITING',
   PAUSED = 'PAUSED',
-  CANCELLED = 'CANCELLED'
+  CANCELLED = 'CANCELLED',
+  CONNECTOR = 'CONNECTOR'
 }
 
 export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRendererLogLevels> = {
@@ -37,7 +38,8 @@ export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRende
     [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: figures.pointer,
     [ListrDefaultRendererLogLevels.WAITING]: figures.squareSmallFilled,
     [ListrDefaultRendererLogLevels.PAUSED]: figures.squareSmallFilled,
-    [ListrDefaultRendererLogLevels.CANCELLED]: figures.circleSlash
+    [ListrDefaultRendererLogLevels.CANCELLED]: figures.circleSlash,
+    [ListrDefaultRendererLogLevels.CONNECTOR]: figures.lineVertical
   },
   color: {
     [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: color.yellow,
@@ -53,6 +55,7 @@ export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRende
     [ListrDefaultRendererLogLevels.FAILED_WITH_FAILED_SUBTASKS]: color.red,
     [ListrDefaultRendererLogLevels.WAITING]: color.dim,
     [ListrDefaultRendererLogLevels.PAUSED]: color.yellowBright,
-    [ListrDefaultRendererLogLevels.CANCELLED]: color.red
+    [ListrDefaultRendererLogLevels.CANCELLED]: color.red,
+    [ListrDefaultRendererLogLevels.CONNECTOR]: color.dim
   }
 }

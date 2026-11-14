@@ -17,7 +17,11 @@ exports[`default renderer: task-enable should enable task with general context i
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 [2m◼[22m This task will show subtasks.
 [?2026l",
-  "[?2026h[1A[G[2K[G[33m❯[39m This task will show subtasks.[K
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[?2026l",
+  "[?2026h[2m◼[22m This task will show subtasks.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will show subtasks.
 [?2026l",
   "[?2026h[G[2K[G  [2m◼[22m This task will execute.
 [K[?2026l",
@@ -25,12 +29,10 @@ exports[`default renderer: task-enable should enable task with general context i
 [?2026l",
   "[?2026h[1A[G[2K[G  [32m✔[39m This task will execute.[K
 [?2026l",
-  "[?2026h[2A[G[2K[1B[2K[1B[2K[2A[G[32m✔[39m This task will show subtasks.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will execute.
-[32m✔[39m This task will show subtasks.
-",
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will show subtasks.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will show subtasks.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -52,10 +54,11 @@ exports[`default renderer: task-enable should enable task with general context: 
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 [2m◼[22m This task will never execute.
 [?2026l",
-  "[?2026h[1A[G[2K[1B[2K[1A[G[K[?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
+[?2026l",
+  "[?2026h[2m◼[22m This task will never execute.
+[?2026l",
   "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will execute.
-",
   "[?25h",
 ]
 `;

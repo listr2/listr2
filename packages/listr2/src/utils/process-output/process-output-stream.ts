@@ -27,18 +27,30 @@ export class ProcessOutputStream {
     })
   }
 
-  public hijack(): void {
-    this.stream.write = this.buffer.write.bind(this.buffer)
+  /** @internal */
+  public hijack(onWrite?: () => void): void {
+    this.stream.write = (...args: Parameters<ProcessOutputBuffer['write']>): boolean => {
+      const result: boolean = Reflect.apply(this.buffer.write, this.buffer, args)
+
+      onWrite?.()
+
+      return result
+    }
   }
 
-  public release(): ProcessOutputBufferEntry[] {
-    this.stream.write = this.method
-
+  /** @internal */
+  public take(): ProcessOutputBufferEntry[] {
     const buffer = [...this.buffer.all]
 
     this.buffer.reset()
 
     return buffer
+  }
+
+  public release(): ProcessOutputBufferEntry[] {
+    this.stream.write = this.method
+
+    return this.take()
   }
 
   public write(...args: Parameters<NodeJS.WriteStream['write']>): ReturnType<NodeJS.WriteStream['write']> {

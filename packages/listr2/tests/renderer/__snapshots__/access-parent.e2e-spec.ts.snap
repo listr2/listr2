@@ -29,9 +29,8 @@ exports[`default renderer: parent task access should be able to change the title
 [?2026l",
   "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m Title changed from subtask.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m Title changed from subtask.
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m Title changed from subtask.
+[?2026l",
   "[?25h",
 ]
 `;

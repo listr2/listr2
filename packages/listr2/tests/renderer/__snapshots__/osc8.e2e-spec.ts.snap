@@ -15,9 +15,8 @@ exports[`default renderer: osc-8 should preserve a bell-terminated osc-8 hyperli
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a hyperlink.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will output a hyperlink.
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will output a hyperlink.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -37,9 +36,8 @@ exports[`default renderer: osc-8 should preserve a hyperlink wrapped in sgr colo
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a colored hyperlink.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will output a colored hyperlink.
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will output a colored hyperlink.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -59,9 +57,8 @@ exports[`default renderer: osc-8 should strip an injected cursor code next to a 
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will output a hyperlink next to a cursor code.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will output a hyperlink next to a cursor code.
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will output a hyperlink next to a cursor code.
+[?2026l",
   "[?25h",
 ]
 `;

@@ -26,9 +26,8 @@ exports[`default renderer: option: line wrap should skip empty lines false: lEAj
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This will skip empty lines on output: false
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This will skip empty lines on output: false
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This will skip empty lines on output: false
+[?2026l",
   "[?25h",
 ]
 `;
@@ -57,9 +56,8 @@ exports[`default renderer: option: line wrap should skip empty lines true: lEAjB
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This will skip empty lines on output: true
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This will skip empty lines on output: true
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This will skip empty lines on output: true
+[?2026l",
   "[?25h",
 ]
 `;
@@ -83,9 +81,8 @@ exports[`default renderer: option: line wrap should truncate long strings: 31Xbk
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will with formating the output with truncate output.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will with formating the output with truncate output.
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will with formating the output with truncate output.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -112,9 +109,8 @@ exports[`default renderer: option: line wrap should truncate long strings: 31Xbk
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will with formating the output with truncate output.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will with formating the output with truncate output.
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will with formating the output with truncate output.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -138,9 +134,8 @@ exports[`default renderer: option: line wrap should truncate long titles: effxCy
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
+[?2026l",
   "[?25h",
 ]
 `;
@@ -189,8 +184,7 @@ exports[`default renderer: option: line wrap should truncate long titles: effxCy
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[32m✔[39m THIS IS A LONG LONG MESSAGE
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
@@ -202,7 +196,7 @@ exports[`default renderer: option: line wrap should truncate long titles: effxCy
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
-",
+[?2026l",
   "[?25h",
 ]
 `;
@@ -230,9 +224,8 @@ exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zz
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will with formating the output with wrap output.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will with formating the output with wrap output.
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will with formating the output with wrap output.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -259,9 +252,8 @@ exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zz
 [K[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will with formating the output with wrap output.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will with formating the output with wrap output.
-",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will with formating the output with wrap output.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -297,13 +289,12 @@ exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0
   A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
   MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
    LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
   A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
-",
+[?2026l",
   "[?25h",
 ]
 `;
@@ -352,8 +343,7 @@ exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[32m✔[39m THIS IS A LONG LONG MESSAGE
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
@@ -365,7 +355,7 @@ exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
-",
+[?2026l",
   "[?25h",
 ]
 `;

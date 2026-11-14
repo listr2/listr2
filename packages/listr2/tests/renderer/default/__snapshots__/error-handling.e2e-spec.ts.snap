@@ -17,10 +17,12 @@ exports[`default renderer: error handling should show the default task title whe
   "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
 [31m◼[39m This task will never execute.
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
-  "[31m✖[39m This task will fail.
-[31m◼[39m This task will never execute.
-",
+  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
+[?2026l",
+  "[?2026h[31m◼[39m This task will never execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[31m◼[39m This task will never execute.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -45,11 +47,13 @@ exports[`default renderer: error handling should throw out an error in the data 
   "[?2026h[1A[G[2K[1B[2K[1A[G  › This task failed after 2 seconds.
 [31m◼[39m This task will never execute.
 [K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[31m✖[39m This task will fail.
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
   › This task failed after 2 seconds.
-[31m◼[39m This task will never execute.
-",
+[?2026l",
+  "[?2026h[31m◼[39m This task will never execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[31m◼[39m This task will never execute.
+[?2026l",
   "[?25h",
 ]
 `;

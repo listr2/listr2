@@ -17,14 +17,16 @@ exports[`default renderer: task-skip should skip from context: 8KLp76vGVlGdzoy4H
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 [2m◼[22m This task will never execute.
 [?2026l",
-  "[?2026h[1A[G[2K[G[33m❯[39m This task will never execute.[K
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 [?2026l",
-  "[?2026h[1A[G[2K[G[33m↓[39m This task will never execute.[K
+  "[?2026h[2m◼[22m This task will never execute.
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will execute.
-[33m↓[39m This task will never execute.
-",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will never execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m↓[39m This task will never execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m↓[39m This task will never execute.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -44,9 +46,8 @@ exports[`default renderer: task-skip should skip from internal function: ws7S3nD
 [?2026l",
   "[?2026h[2K[1A[2K[G[33m↓[39m I am skipping this tasks for reasons.
 [?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[33m↓[39m I am skipping this tasks for reasons.
-",
+  "[?2026h[2K[1A[2K[G[33m↓[39m I am skipping this tasks for reasons.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -68,14 +69,16 @@ exports[`default renderer: task-skip skip from function: BmDpgfyyKMN40Ei5uinrsuO
   "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 [2m◼[22m This task will never execute.
 [?2026l",
-  "[?2026h[1A[G[2K[G[33m❯[39m This task will never execute.[K
+  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
 [?2026l",
-  "[?2026h[1A[G[2K[G[33m↓[39m I will be skipped![K
+  "[?2026h[2m◼[22m This task will never execute.
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[?2026l",
-  "[32m✔[39m This task will execute.
-[33m↓[39m I will be skipped!
-",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will never execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m↓[39m I will be skipped!
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m↓[39m I will be skipped!
+[?2026l",
   "[?25h",
 ]
 `;

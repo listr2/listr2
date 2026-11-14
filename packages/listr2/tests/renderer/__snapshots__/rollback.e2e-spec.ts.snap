@@ -47,6 +47,12 @@ exports[`default renderer: rollback should both stop the execution with exitOnEr
   [31m◼[39m This task will execute.
 [2m◼[22m This task will maybe execute.
 [?2026l",
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
+  [31m✖[39m This task failed after 2 seconds.
+  [31m◼[39m This task will execute.
+[?2026l",
+  "[?2026h[2m◼[22m This task will maybe execute.
+[?2026l",
 ]
 `;
 
@@ -97,12 +103,14 @@ exports[`default renderer: rollback should both stop the execution with exitOnEr
   [31m◼[39m This task will execute.
 [2m◼[22m This task will maybe execute.
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[91m←[39m Some actions required rollback stuff.
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
   [31m✖[39m This task failed after 2 seconds.
   [31m◼[39m This task will execute.
-[2m◼[22m This task will maybe execute.
-",
+[?2026l",
+  "[?2026h[2m◼[22m This task will maybe execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[2m◼[22m This task will maybe execute.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -154,16 +162,18 @@ exports[`default renderer: rollback should contunie execution or stop there with
   [31m◼[39m This task will execute.
 [2m◼[22m This task will maybe execute.
 [?2026l",
-  "[?2026h[1A[G[2K[G[33m❯[39m This task will maybe execute.[K
-[?2026l",
-  "[?2026h[1A[G[2K[G[32m✔[39m This task will maybe execute.[K
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[91m←[39m Some actions required rollback stuff.
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
   [31m✖[39m This task failed after 2 seconds.
   [31m◼[39m This task will execute.
-[32m✔[39m This task will maybe execute.
-",
+[?2026l",
+  "[?2026h[2m◼[22m This task will maybe execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[33m❯[39m This task will maybe execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will maybe execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m This task will maybe execute.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -215,12 +225,14 @@ exports[`default renderer: rollback should contunie execution or stop there with
   [31m◼[39m This task will execute.
 [2m◼[22m This task will maybe execute.
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[91m←[39m Some actions required rollback stuff.
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
   [31m✖[39m This task failed after 2 seconds.
   [31m◼[39m This task will execute.
-[2m◼[22m This task will maybe execute.
-",
+[?2026l",
+  "[?2026h[2m◼[22m This task will maybe execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[2m◼[22m This task will maybe execute.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -272,12 +284,14 @@ exports[`default renderer: rollback should rollback the main task if any of the 
   [31m◼[39m This task will execute.
 [2m◼[22m This task will never execute.
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[91m←[39m Some actions required rollback stuff.
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[91m←[39m Some actions required rollback stuff.
   [31m✖[39m This task failed after 2 seconds.
   [31m◼[39m This task will execute.
-[2m◼[22m This task will never execute.
-",
+[?2026l",
+  "[?2026h[2m◼[22m This task will never execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[2m◼[22m This task will never execute.
+[?2026l",
   "[?25h",
 ]
 `;
@@ -317,12 +331,14 @@ exports[`default renderer: rollback should rollback the subtask if the subtask i
   [2m◼[22m This task will execute.
 [31m◼[39m This task will never execute.
 [?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[?2026l",
-  "[31m❯[39m Something with rollback.
+  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[31m❯[39m Something with rollback.
   [91m←[39m Some actions required rollback stuff.
   [2m◼[22m This task will execute.
-[31m◼[39m This task will never execute.
-",
+[?2026l",
+  "[?2026h[31m◼[39m This task will never execute.
+[?2026l",
+  "[?2026h[2K[1A[2K[G[31m◼[39m This task will never execute.
+[?2026l",
   "[?25h",
 ]
 `;

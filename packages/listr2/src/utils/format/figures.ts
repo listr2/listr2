@@ -12,7 +12,8 @@ const FIGURES_MAIN = {
   arrowLeft: '←',
   squareSmallFilled: '◼',
   pointerSmall: '›',
-  circleSlash: '⊘'
+  circleSlash: '⊘',
+  lineVertical: '│'
 }
 
 const FIGURES_FALLBACK = {
@@ -24,7 +25,8 @@ const FIGURES_FALLBACK = {
   pointer: '>',
   checkboxOn: '[×]',
   squareSmallFilled: '■',
-  circleSlash: 'ø'
+  circleSlash: 'ø',
+  lineVertical: '|'
 }
 
 export type Figures = typeof FIGURES_MAIN

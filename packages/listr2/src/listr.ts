@@ -131,7 +131,7 @@ export class Listr<
     this.add(task ?? [])
 
     // Register a persistent SIGINT listener on the root only. It stays until removeSignalHandler(), so it survives the
-    // SIGINT re-raise that signal-exit (pulled in by log-update's cursor handling) fires, giving the async rollbacks
+    // SIGINT re-raise that signal-exit (pulled in by the cursor handling of the process output) fires, giving the async rollbacks
     // time to settle before run() exits — a `once` listener would be gone by the re-raise and the process would die.
     /* istanbul ignore if */
     if (this.options.registerSignalListeners && this.isRoot()) {

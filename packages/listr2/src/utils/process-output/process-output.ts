@@ -1,4 +1,7 @@
+import { createLogUpdate } from 'log-update'
 import { EOL } from 'os'
+import { onExit } from 'signal-exit'
+import wrapAnsi from 'wrap-ansi'
 
 import { ProcessOutputStream } from './process-output-stream'
 import type { ProcessOutputOptions, ProcessOutputStreamMap } from './process-output.interface'
@@ -15,6 +18,11 @@ import { cleanseAnsi } from '@utils'
 export class ProcessOutput {
   public readonly stream: ProcessOutputStreamMap
   protected active: boolean
+  private readonly shared: boolean
+  private updater?: ReturnType<typeof createLogUpdate>
+  private live = ''
+  private lines: string[] = []
+  private removeExitHook?: () => void
 
   constructor(
     stdout?: NodeJS.WriteStream,
@@ -25,6 +33,8 @@ export class ProcessOutput {
       stdout: new ProcessOutputStream(stdout ?? process.stdout),
       stderr: new ProcessOutputStream(stderr ?? process.stderr)
     }
+
+    this.shared = (stdout ?? process.stdout) === (stderr ?? process.stderr)
 
     this.options = {
       dump: ['stdout', 'stderr'],
@@ -47,11 +57,50 @@ export class ProcessOutput {
     }
 
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
-    Object.values(this.stream).forEach((stream) => stream.hijack())
+    this.removeExitHook = onExit(() => this.restore(), { alwaysLast: true })
+    Object.values(this.stream).forEach((stream) => stream.hijack(() => this.schedule()))
     this.active = true
   }
 
+  /**
+   * Redraws the live region at the bottom of `stdout`.
+   *
+   * Once a live region is drawn, captured writes are written above it as they arrive instead of on `release()`.
+   */
+  public update(live: string): void {
+    this.live = live
+
+    this.draw()
+  }
+
+  /** Writes the text above the live region, where it stays, and redraws the live region below it. */
+  public persist(text: string, live = this.live): void {
+    this.live = live
+
+    if (text !== '') {
+      this.start().persist(text)
+      this.lines = []
+    }
+
+    this.draw()
+  }
+
+  public clear(): void {
+    this.live = ''
+
+    this.draw()
+  }
+
   public release(): void {
+    if (this.updater) {
+      this.stdout.off('resize', this.onResize)
+      this.updater.done()
+      this.updater = undefined
+    }
+
+    this.live = ''
+    this.lines = []
+
     // not the most performant of functions, since creating a lots of memory
     // maybe refactor this sometime, but shouldnt be concern since we do not expect
     // huge number of outputs being buffered
@@ -80,7 +129,9 @@ export class ProcessOutput {
       })
     }
 
-    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+    this.restore()
+    this.removeExitHook?.()
+    this.removeExitHook = undefined
 
     this.active = false
   }
@@ -99,5 +150,109 @@ export class ProcessOutput {
     }
 
     return this.stream.stderr.write(buffer)
+  }
+
+  private start(): ReturnType<typeof createLogUpdate> {
+    if (!this.updater) {
+      this.updater = createLogUpdate(this.stdout, { showCursor: true })
+      this.stdout.on('resize', this.onResize)
+    }
+
+    return this.updater
+  }
+
+  private draw(): void {
+    if (this.live === '') {
+      this.updater?.clear()
+    } else {
+      this.start()(this.live)
+    }
+
+    this.lines = this.layout(this.live)
+  }
+
+  private readonly onResize = (): void => {
+    if (this.lines.length === 0) {
+      return
+    }
+
+    const columns = this.stdout.columns
+    // log-update erases with the line count of the last frame, which is stale once the terminal reflowed it
+    const height = this.reflows() ? this.lines.reduce((height, line) => height + this.wrap(line, columns).length, 0) : this.lines.length
+
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.ERASE_LINE + (ANSI_ESCAPE_CODES.CURSOR_UP + ANSI_ESCAPE_CODES.ERASE_LINE).repeat(height) + ANSI_ESCAPE_CODES.CURSOR_LEFT)
+    this.updater.done()
+
+    this.draw()
+  }
+
+  private layout(text: string): string[] {
+    if (text === '') {
+      return []
+    }
+
+    const lines = this.wrap(text.replace(/\n$/, ''), this.stdout.columns ?? 80)
+    const rows = this.stdout.rows ?? 24
+
+    return lines.slice(Math.max(lines.length - rows + 1, 0))
+  }
+
+  private wrap(text: string, columns: number): string[] {
+    return wrapAnsi(text, columns, {
+      hard: true, trim: false, wordWrap: false
+    }).split('\n')
+  }
+
+  private reflows(): boolean {
+    // tmux reflows, and its panes inherit the environment of the terminal it was started from
+    if (process.env.TMUX) {
+      return true
+    }
+
+    const term = process.env.TERM ?? ''
+
+    return !(process.env.XTERM_VERSION || process.env.STY || term === 'linux' || /^(rxvt|st|screen)/.test(term))
+  }
+
+  private schedule(): void {
+    if (this.updater) {
+      queueMicrotask(() => this.flush())
+    }
+  }
+
+  private flush(): void {
+    if (!this.updater || !this.active) {
+      return
+    }
+
+    const entries = (Object.keys(this.stream) as (keyof ProcessOutputStreamMap)[])
+      .flatMap((name) =>
+        this.stream[name].take().map((message) => ({
+          name,
+          time: message.time,
+          entry: cleanseAnsi(message.entry)
+        }))
+      )
+      .filter((message) => message.entry && this.options.dump.includes(message.name))
+      .sort((a, b) => a.time - b.time)
+
+    if (entries.length === 0) {
+      return
+    }
+
+    if (this.shared || entries.every((message) => message.name === 'stdout')) {
+      this.persist(entries.map((message) => message.entry).join(EOL))
+
+      return
+    }
+
+    this.updater.clear()
+    entries.forEach((message) => this.stream[message.name].write(message.entry + EOL))
+
+    this.draw()
+  }
+
+  private restore(): void {
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
   }
 }

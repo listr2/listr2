@@ -1,5 +1,4 @@
 import type truncate from 'cli-truncate'
-import type { createLogUpdate } from 'log-update'
 import { EOL } from 'os'
 import type wrap from 'wrap-ansi'
 
@@ -11,6 +10,14 @@ import type {
   ListrDefaultRendererTask,
   ListrDefaultRendererTaskOptions
 } from './renderer.interface'
+import type {
+  ListrDefaultRendererContext,
+  ListrDefaultRendererFit,
+  ListrDefaultRendererFrame,
+  ListrDefaultRendererFrozen,
+  ListrDefaultRendererSummary,
+  ListrDefaultRendererTaskRender
+} from './renderer.internal.interface'
 import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
 import type { ListrRenderer, ListrTaskEventMap } from '@interfaces'
 import { ListrRendererError } from '@interfaces'
@@ -47,7 +54,6 @@ export class DefaultRenderer implements ListrRenderer {
   private activePrompt: string
   private readonly spinner: Spinner
   private readonly logger: ListrLogger<ListrDefaultRendererLogLevels>
-  private updater: ReturnType<typeof createLogUpdate>
   private truncate: typeof truncate
   private wrap: typeof wrap
   private readonly buffer: ListrDefaultRendererOutputBuffer = {
@@ -59,6 +65,8 @@ export class DefaultRenderer implements ListrRenderer {
     rendererOptions: new Map(),
     rendererTaskOptions: new Map()
   }
+  private readonly frozen = new Map<string, ListrDefaultRendererFrozen>()
+  private hasPersisted = false
 
   constructor(
     private readonly tasks: ListrDefaultRendererTask[],
@@ -86,15 +94,15 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   public async render(): Promise<void> {
-    const { createLogUpdate } = await import('log-update')
     const { default: truncate } = await import('cli-truncate')
     const { default: wrap } = await import('wrap-ansi')
 
-    this.updater = createLogUpdate(this.logger.process.stdout)
     this.truncate = truncate
     this.wrap = wrap
 
     this.cache.render.clear()
+    this.frozen.clear()
+    this.hasPersisted = false
 
     this.logger.process.hijack()
 
@@ -109,7 +117,40 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   public update(): void {
-    this.updater(this.create())
+    const rows = this.logger.process.stdout.rows
+    const { persist, live } = this.renderer(this.tasks, 0, { commit: !this.options.clearOutput })
+
+    // rows that scrolled off the top cannot be redrawn, so summarize until the live region fits
+    const render = typeof rows === 'number' && live.length > rows - 1 ? this.summarize(rows - 1) : live
+
+    if (persist.length > 0) {
+      this.hasPersisted = true
+    }
+
+    const renderBottomBar = this.renderBottomBar()
+    const renderPrompt = this.renderPrompt()
+
+    if (renderBottomBar.length > 0) {
+      if (render.length > 0 || this.hasPersisted) {
+        render.push('')
+      }
+
+      render.push(...renderBottomBar)
+    }
+
+    if (renderPrompt.length > 0) {
+      if (render.length > 0 || this.hasPersisted) {
+        render.push('')
+      }
+
+      render.push(...renderPrompt)
+    }
+
+    if (persist.length > 0) {
+      this.logger.process.persist(persist.join(EOL), render.join(EOL))
+    } else {
+      this.logger.process.update(render.join(EOL))
+    }
   }
 
   public end(): void {
@@ -118,53 +159,24 @@ export class DefaultRenderer implements ListrRenderer {
     // unsubscribe before teardown, otherwise a late refresh repaints a duplicate frame below the persisted output
     this.events.off(ListrEventType.SHOULD_REFRESH_RENDER, this.refresh)
 
-    // clear log updater
-    this.updater.clear()
-    this.updater.done()
+    if (this.options.clearOutput) {
+      this.logger.process.clear()
+    } else {
+      const { persist } = this.renderer(this.tasks, 0, { commit: true, final: true })
+      const bottomBar = this.renderBottomBar()
 
-    // directly write to process.stdout, since logupdate only can update the seen height of terminal
-    if (!this.options.clearOutput) {
-      this.logger.process.toStdout(this.create({ prompt: false }))
+      if (bottomBar.length > 0) {
+        if (persist.length > 0 || this.hasPersisted) {
+          persist.push('')
+        }
+
+        persist.push(...bottomBar)
+      }
+
+      this.logger.process.persist(persist.join(EOL), '')
     }
 
     this.logger.process.release()
-  }
-
-  public create(options?: { tasks?: boolean; bottomBar?: boolean; prompt?: boolean }): string {
-    options = {
-      tasks: true,
-      bottomBar: true,
-      prompt: true,
-      ...options
-    }
-
-    const render: string[] = []
-
-    const renderTasks = this.renderer(this.tasks)
-    const renderBottomBar = this.renderBottomBar()
-    const renderPrompt = this.renderPrompt()
-
-    if (options.tasks && renderTasks.length > 0) {
-      render.push(...renderTasks)
-    }
-
-    if (options.bottomBar && renderBottomBar.length > 0) {
-      if (render.length > 0) {
-        render.push('')
-      }
-
-      render.push(...renderBottomBar)
-    }
-
-    if (options.prompt && renderPrompt.length > 0) {
-      if (render.length > 0) {
-        render.push('')
-      }
-
-      render.push(...renderPrompt)
-    }
-
-    return render.join(EOL)
   }
 
   // eslint-disable-next-line complexity
@@ -275,183 +287,413 @@ export class DefaultRenderer implements ListrRenderer {
     this.update()
   }
 
-  private renderer(tasks: ListrDefaultRendererTask[], level = 0): string[] {
-    // eslint-disable-next-line complexity
-    return tasks.flatMap((task) => {
-      if (!task.isEnabled()) {
-        return []
+  private summarize(height: number): string[] {
+    const completed = this.fit(height, (keep) => ({ completed: keep }))
+
+    if (completed.render.length <= height) {
+      return completed.render
+    }
+
+    const waiting = this.fit(height, (keep) => ({ completed: 0, waiting: keep }))
+
+    // the rows that the waiting tasks leave go back to the completed tasks
+    return this.fit(height, (keep) => ({ completed: keep, waiting: waiting.keep })).render
+  }
+
+  private fit(height: number, summary: (keep: number) => ListrDefaultRendererSummary): ListrDefaultRendererFit {
+    let render = this.renderer(this.tasks, 0, { summary: summary(0) }).live
+
+    if (render.length > height) {
+      return { keep: 0, render }
+    }
+
+    // keeping fewer tasks visible never takes more rows, so search for the most that fit
+    let low = 0
+    let high = height
+
+    while (low < high) {
+      const keep = Math.ceil((low + high) / 2)
+      const attempt = this.renderer(this.tasks, 0, { summary: summary(keep) }).live
+
+      if (attempt.length <= height) {
+        low = keep
+        render = attempt
+      } else {
+        high = keep - 1
+      }
+    }
+
+    return { keep: low, render }
+  }
+
+  private renderer(tasks: ListrDefaultRendererTask[], level = 0, context: ListrDefaultRendererContext = {}): ListrDefaultRendererFrame {
+    const completed = context.compact ? this.getCompleted(tasks, context.summary.completed) : []
+    const pending = tasks.filter((task) => !completed.includes(task))
+    const waiting = context.summary?.waiting !== undefined ? this.getWaiting(pending, context.summary.waiting) : []
+    const shown = pending.slice(0, pending.length - waiting.length)
+
+    const frames = this.renderFrames(shown, tasks, level, context)
+    const output = shown.flatMap((task) => frames.get(task.id)?.live ?? [])
+
+    if (completed.length > 0) {
+      output.unshift(...this.format(`${completed.length} completed`, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED), level))
+    }
+
+    const titled = waiting.filter((task) => task.isEnabled() && task.hasTitle())
+
+    if (titled.length > 0) {
+      output.push(...this.format(`${titled.length} waiting`, this.logger.icon(ListrDefaultRendererLogLevels.WAITING), level))
+    }
+
+    return {
+      persist: [...frames.values()].flatMap((frame) => frame.persist),
+      live: output
+    }
+  }
+
+  private renderFrames(
+    tasks: ListrDefaultRendererTask[],
+    siblings: ListrDefaultRendererTask[],
+    level: number,
+    context: ListrDefaultRendererContext
+  ): Map<string, ListrDefaultRendererFrame> {
+    const concurrent = (siblings[0]?.listr.options.concurrent as number) > 1
+    const open = context.commit ? tasks.find((task) => this.frozen.get(task.id) === 'open') : undefined
+    const frames = new Map<string, ListrDefaultRendererFrame>()
+    let held = false
+
+    // siblings wait for an open task, so its subtasks stay under its title
+    for (const task of open ? [open, ...tasks.filter((task) => task !== open)] : tasks) {
+      if (!task.isEnabled() || this.frozen.get(task.id) === 'done') {
+        continue
       }
 
-      // if this is already cached return the cache
-      if (task.isClosed() && this.cache.render.has(task.id)) {
-        return this.cache.render.get(task.id)
+      const commit = context.commit && !held
+
+      frames.set(
+        task.id,
+        this.renderBlock(task, siblings, level, {
+          ...context,
+          commit,
+          compact: false
+        })
+      )
+
+      if (this.frozen.get(task.id) !== 'done' && (!concurrent || this.frozen.has(task.id))) {
+        held = true
       }
+    }
 
-      this.calculate(task)
-      this.setupBuffer(task)
+    return frames
+  }
 
-      const rendererOptions = this.cache.rendererOptions.get(task.id)
-      const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
+  private renderBlock(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], level: number, context: ListrDefaultRendererContext): ListrDefaultRendererFrame {
+    this.calculate(task)
 
-      const output: string[] = []
+    if (context.commit && this.isProgressive(task)) {
+      return this.renderProgressive(task, siblings, level, context)
+    }
 
-      if (task.isPrompt()) {
-        if (this.activePrompt && this.activePrompt !== task.id) {
-          throw new ListrRendererError('Only one prompt can be active at the given time, please re-evaluate your task design.')
-        } else if (!this.activePrompt) {
-          task.on(ListrTaskEventType.PROMPT, (prompt: ListrTaskEventMap[ListrTaskEventType.PROMPT]): void => {
-            const cleansed = cleanseAnsi(prompt)
+    const commit = context.commit && (context.final || task.isClosed())
+    const output = this.renderLines(task, siblings, level, commit ? undefined : context.summary)
 
-            if (cleansed) {
-              this.prompt = cleansed
-            }
-          })
+    if (!commit) {
+      return { persist: [], live: output }
+    }
 
-          task.on(ListrTaskEventType.STATE, (state) => {
-            if (state === ListrTaskState.PROMPT_COMPLETED || task.hasFinalized() || task.hasReset()) {
-              this.prompt = null
-              this.activePrompt = null
-              task.off(ListrTaskEventType.PROMPT)
-            }
-          })
+    this.frozen.set(task.id, 'done')
 
-          this.activePrompt = task.id
-        }
+    return { persist: output, live: [] }
+  }
+
+  private renderProgressive(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], level: number, context: ListrDefaultRendererContext): ListrDefaultRendererFrame {
+    const final = context.final || task.isClosed()
+    const { title, body, subtasks, subtaskLevel } = this.renderTask(task, siblings, level)
+
+    const frozen = this.frozen.size
+    const children = this.renderer(task.subtasks, subtaskLevel, { ...context, final })
+    const opened = this.frozen.has(task.id)
+
+    if (final && task.subtasks.every((subtask) => !subtask.isEnabled() || this.frozen.get(subtask.id) === 'done')) {
+      this.frozen.set(task.id, 'done')
+
+      return {
+        persist: opened ? [...this.connect(task, level, children.persist), ...title, ...body] : [...title, ...body, ...children.persist],
+        live: []
       }
+    }
 
-      // Current Task Title
-      if (task.hasTitle()) {
-        if (!(
-          tasks.some((task) => task.hasFailed()) &&
-          !task.hasFailed() &&
-          task.options.exitOnError !== false &&
-          !(task.isCompleted() || task.isSkipped() || task.isCancelled())
-        )) {
-          // if task is skipped
-          if (task.hasFailed() && rendererOptions.collapseErrors) {
-            // current task title and skip change the title
-            output.push(...this.format(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : task.title, this.style(task), level))
-          } else if (task.isSkipped() && rendererOptions.collapseSkips) {
-            // current task title and skip change the title
-            output.push(
-              ...this.format(
-                this.logger.suffix(task.message.skip && rendererOptions.showSkipMessage ? task.message.skip : task.title, {
-                  field: ListrLogLevels.SKIPPED,
-                  condition: rendererOptions.suffixSkips,
-                  format: () => color.dim
-                }),
-                this.style(task),
-                level
-              )
-            )
-          } else if (task.isRetrying()) {
-            output.push(
-              ...this.format(
-                this.logger.suffix(task.title, {
-                  field: `${ListrLogLevels.RETRY}:${task.message.retry.count}`,
-                  format: () => color.yellow,
-                  condition: rendererOptions.suffixRetries
-                }),
-                this.style(task),
-                level
-              )
-            )
-          } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
-            // task with timer
-            output.push(
-              ...this.format(
-                this.logger.suffix(task?.title, {
-                  ...rendererTaskOptions.timer,
-                  args: [task.message.duration]
-                }),
-                this.style(task),
-                level
-              )
-            )
-          } else if (task.isPaused()) {
-            output.push(
-              ...this.format(
-                this.logger.suffix(task.title, {
-                  ...rendererOptions.pausedTimer,
-                  args: [task.message.paused - Date.now()]
-                }),
-                this.style(task),
-                level
-              )
-            )
-          } else {
-            // normal state
-            output.push(...this.format(task.title, this.style(task), level))
+    const live = subtasks ? [...body, ...children.live] : body
+
+    if (!opened && this.frozen.size === frozen) {
+      return {
+        persist: children.persist,
+        live: [...title, ...live]
+      }
+    }
+
+    // the title is persisted with the first subtask that is persisted
+    if (!opened) {
+      this.frozen.set(task.id, 'open')
+    }
+
+    return {
+      persist: opened ? this.connect(task, level, children.persist) : [...title, ...this.connect(task, level, children.persist)],
+      live: this.connect(task, level, live)
+    }
+  }
+
+  private renderLines(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], level: number, summary?: ListrDefaultRendererSummary): string[] {
+    const open = this.frozen.get(task.id) === 'open'
+
+    // if this is already cached return the cache
+    if (!open && task.isClosed() && this.cache.render.has(task.id)) {
+      return this.cache.render.get(task.id)
+    }
+
+    const { title, body, subtasks, subtaskLevel } = this.renderTask(task, siblings, level)
+    const output = open ? [...body] : [...title, ...body]
+
+    if (subtasks) {
+      const compact = summary !== undefined && !task.isClosed() && !this.isProgressive(task)
+
+      output.push(...this.renderer(task.subtasks, subtaskLevel, { summary, compact }).live)
+    }
+
+    if (open) {
+      return this.connect(task, level, output)
+    }
+
+    // a summarized render is not the final one
+    if (task.isClosed() && !summary) {
+      this.cache.render.set(task.id, output)
+      this.reset(task)
+    }
+
+    return output
+  }
+
+  // eslint-disable-next-line complexity
+  private renderTask(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], level: number): ListrDefaultRendererTaskRender {
+    this.calculate(task)
+    this.setupBuffer(task)
+
+    const rendererOptions = this.cache.rendererOptions.get(task.id)
+    const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
+
+    const title: string[] = []
+    const body: string[] = []
+
+    if (task.isPrompt()) {
+      if (this.activePrompt && this.activePrompt !== task.id) {
+        throw new ListrRendererError('Only one prompt can be active at the given time, please re-evaluate your task design.')
+      } else if (!this.activePrompt) {
+        task.on(ListrTaskEventType.PROMPT, (prompt: ListrTaskEventMap[ListrTaskEventType.PROMPT]): void => {
+          const cleansed = cleanseAnsi(prompt)
+
+          if (cleansed) {
+            this.prompt = cleansed
           }
+        })
+
+        task.on(ListrTaskEventType.STATE, (state) => {
+          if (state === ListrTaskState.PROMPT_COMPLETED || task.hasFinalized() || task.hasReset()) {
+            this.prompt = null
+            this.activePrompt = null
+            task.off(ListrTaskEventType.PROMPT)
+          }
+        })
+
+        this.activePrompt = task.id
+      }
+    }
+
+    // Current Task Title
+    if (task.hasTitle()) {
+      if (!(
+        siblings.some((sibling) => sibling.hasFailed()) &&
+        !task.hasFailed() &&
+        task.options.exitOnError !== false &&
+        !(task.isCompleted() || task.isSkipped() || task.isCancelled())
+      )) {
+        // if task is skipped
+        if (task.hasFailed() && rendererOptions.collapseErrors) {
+          // current task title and skip change the title
+          title.push(...this.format(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : task.title, this.style(task), level))
+        } else if (task.isSkipped() && rendererOptions.collapseSkips) {
+          // current task title and skip change the title
+          title.push(
+            ...this.format(
+              this.logger.suffix(task.message.skip && rendererOptions.showSkipMessage ? task.message.skip : task.title, {
+                field: ListrLogLevels.SKIPPED,
+                condition: rendererOptions.suffixSkips,
+                format: () => color.dim
+              }),
+              this.style(task),
+              level
+            )
+          )
+        } else if (task.isRetrying()) {
+          title.push(
+            ...this.format(
+              this.logger.suffix(task.title, {
+                field: `${ListrLogLevels.RETRY}:${task.message.retry.count}`,
+                format: () => color.yellow,
+                condition: rendererOptions.suffixRetries
+              }),
+              this.style(task),
+              level
+            )
+          )
+        } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
+          // task with timer
+          title.push(
+            ...this.format(
+              this.logger.suffix(task?.title, {
+                ...rendererTaskOptions.timer,
+                args: [task.message.duration]
+              }),
+              this.style(task),
+              level
+            )
+          )
+        } else if (task.isPaused()) {
+          title.push(
+            ...this.format(
+              this.logger.suffix(task.title, {
+                ...rendererOptions.pausedTimer,
+                args: [task.message.paused - Date.now()]
+              }),
+              this.style(task),
+              level
+            )
+          )
         } else {
-          // some sibling task but self has failed and this has stopped
-          output.push(...this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), level))
+          // normal state
+          title.push(...this.format(task.title, this.style(task), level))
         }
+      } else {
+        // some sibling task but self has failed and this has stopped
+        title.push(...this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), level))
       }
+    }
 
-      // task should not have subtasks since subtasks will handle the error already
-      // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
-      if (!task.hasSubtasks() || !rendererOptions.showSubtasks) {
-        // without the collapse option for skip and errors
-        if (task.hasFailed() && rendererOptions.collapseErrors === false && (rendererOptions.showErrorMessage || !rendererOptions.showSubtasks)) {
-          // show skip data if collapsing is not defined
-          output.push(...this.dump(task, level, ListrLogLevels.FAILED))
-        } else if (task.isSkipped() && rendererOptions.collapseSkips === false && (rendererOptions.showSkipMessage || !rendererOptions.showSubtasks)) {
-          // show skip data if collapsing is not defined
-          output.push(...this.dump(task, level, ListrLogLevels.SKIPPED))
-        }
+    // task should not have subtasks since subtasks will handle the error already
+    // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
+    if (!task.hasSubtasks() || !rendererOptions.showSubtasks) {
+      // without the collapse option for skip and errors
+      if (task.hasFailed() && rendererOptions.collapseErrors === false && (rendererOptions.showErrorMessage || !rendererOptions.showSubtasks)) {
+        // show skip data if collapsing is not defined
+        body.push(...this.dump(task, level, ListrLogLevels.FAILED))
+      } else if (task.isSkipped() && rendererOptions.collapseSkips === false && (rendererOptions.showSkipMessage || !rendererOptions.showSubtasks)) {
+        // show skip data if collapsing is not defined
+        body.push(...this.dump(task, level, ListrLogLevels.SKIPPED))
       }
+    }
 
-      if (task.isPending() || rendererTaskOptions.persistentOutput) {
-        output.push(...this.renderOutputBar(task, level))
+    if (task.isPending() || rendererTaskOptions.persistentOutput) {
+      body.push(...this.renderOutputBar(task, level))
+    }
+
+    const subtasks =
+      // check if renderer option is on first
+      rendererOptions.showSubtasks !== false &&
+      // if it doesnt have subtasks no need to check
+      task.hasSubtasks() &&
+      (task.isPending() ||
+        (task.hasFinalized() && !task.hasTitle()) ||
+        // have to be completed and have subtasks
+        (task.isCompleted() &&
+          rendererOptions.collapseSubtasks === false &&
+          !task.subtasks.some((subtask) => this.cache.rendererOptions.get(subtask.id)?.collapseSubtasks === true)) ||
+        // if any of the subtasks have the collapse option of
+        task.subtasks.some((subtask) => this.cache.rendererOptions.get(subtask.id)?.collapseSubtasks === false) ||
+        // if any of the subtasks has failed
+        task.subtasks.some((subtask) => subtask.hasFailed()) ||
+        // if any of the subtasks rolled back
+        task.subtasks.some((subtask) => subtask.hasRolledBack()) ||
+        // if any of the subtasks was cancelled
+        task.subtasks.some((subtask) => subtask.isCancelled()))
+
+    // after task is finished actions
+    if (task.hasFinalized()) {
+      // clean up the output buffer if not persistent
+      if (!rendererTaskOptions.persistentOutput) {
+        this.buffer.bottom.delete(task.id)
+        this.buffer.output.delete(task.id)
       }
+    }
 
-      // render subtasks, some complicated conditionals going on
-      if (
-        // check if renderer option is on first
-        rendererOptions.showSubtasks !== false &&
-        // if it doesnt have subtasks no need to check
-        task.hasSubtasks() &&
-        (task.isPending() ||
-          (task.hasFinalized() && !task.hasTitle()) ||
-          // have to be completed and have subtasks
-          (task.isCompleted() &&
-            rendererOptions.collapseSubtasks === false &&
-            !task.subtasks.some((subtask) => this.cache.rendererOptions.get(subtask.id)?.collapseSubtasks === true)) ||
-          // if any of the subtasks have the collapse option of
-          task.subtasks.some((subtask) => this.cache.rendererOptions.get(subtask.id)?.collapseSubtasks === false) ||
-          // if any of the subtasks has failed
-          task.subtasks.some((subtask) => subtask.hasFailed()) ||
-          // if any of the subtasks rolled back
-          task.subtasks.some((subtask) => subtask.hasRolledBack()) ||
-          // if any of the subtasks was cancelled
-          task.subtasks.some((subtask) => subtask.isCancelled()))
-      ) {
-        // set level
-        const subtaskLevel = !task.hasTitle() ? level : level + 1
+    return {
+      title,
+      body,
+      subtasks,
+      subtaskLevel: task.hasTitle() ? level + 1 : level
+    }
+  }
 
-        // render the subtasks as in the same way
-        const subtaskRender = this.renderer(task.subtasks, subtaskLevel)
+  private isProgressive(task: ListrDefaultRendererTask): boolean {
+    const rendererOptions = this.cache.rendererOptions.get(task.id)
 
-        output.push(...subtaskRender)
-      }
+    // a retrying task runs its subtasks again
+    if (!task.hasSubtasks() || rendererOptions.showSubtasks === false || task.task?.retry) {
+      return false
+    }
 
-      // after task is finished actions
-      if (task.hasFinalized()) {
-        // clean up the output buffer if not persistent
-        if (!rendererTaskOptions.persistentOutput) {
-          this.buffer.bottom.delete(task.id)
-          this.buffer.output.delete(task.id)
-        }
-      }
+    if (!task.hasTitle()) {
+      return true
+    }
 
-      if (task.isClosed()) {
-        this.cache.render.set(task.id, output)
-        this.reset(task)
-      }
+    const collapse = task.subtasks.map((subtask) => {
+      this.calculate(subtask)
 
-      return output
+      return this.cache.rendererOptions.get(subtask.id).collapseSubtasks
     })
+
+    return (rendererOptions.collapseSubtasks === false && !collapse.includes(true)) || collapse.includes(false)
+  }
+
+  private connect(task: ListrDefaultRendererTask, level: number, lines: string[]): string[] {
+    // a parent without a title renders its subtasks at its own level, so there is no column to draw into
+    if (!task.hasTitle() || this.options.indentation < 1) {
+      return lines
+    }
+
+    const column = level * this.options.indentation
+    const connector = this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR)
+
+    // the column is part of the indentation of every subtask line, so the connector does not change the width
+    return lines.map((line) => {
+      const padded = line.padEnd(column + 1)
+
+      return padded.slice(0, column) + connector + padded.slice(column + 1)
+    })
+  }
+
+  private getCompleted(tasks: ListrDefaultRendererTask[], keep: number): ListrDefaultRendererTask[] {
+    const completed = tasks.filter((task) => task.isEnabled() && (task.isCompleted() || task.isSkipped()))
+
+    return completed.slice(0, Math.max(completed.length - keep, 0))
+  }
+
+  private getWaiting(tasks: ListrDefaultRendererTask[], keep: number): ListrDefaultRendererTask[] {
+    let shown = tasks.length
+
+    while (shown > 0 && (!tasks[shown - 1].isEnabled() || tasks[shown - 1].state === ListrTaskState.WAITING)) {
+      shown--
+    }
+
+    let kept = 0
+
+    while (shown < tasks.length && kept < keep) {
+      if (tasks[shown].isEnabled() && tasks[shown].hasTitle()) {
+        kept++
+      }
+
+      shown++
+    }
+
+    return tasks.slice(shown)
   }
 
   private renderOutputBar(task: ListrDefaultRendererTask, level: number): string[] {
