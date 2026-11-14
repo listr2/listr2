@@ -10,7 +10,7 @@ order: 10
 <!-- more -->
 
 - `listr2` supports both `esm` and `cjs` modules **for now**. But is only bundled for `esm` modules going forward.
-- You need a supported `node.js` version, end-of-life versions are deprecated and not supported.
+- You need a `node.js` release line that is still supported, on its latest security release. The exact range is in `engines` in the `package.json` of `listr2`.
 
 ## Supporting Multiple Node Module Structures <Version version="v10.1.0" /><GithubIssue :issue="755" />
 
