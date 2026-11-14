@@ -25,7 +25,6 @@ describe('default renderer: option: line wrap', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   it.each([
@@ -57,7 +56,7 @@ describe('default renderer: option: line wrap', () => {
     }
 
     expect(err).toBeFalsy()
-    expectProcessOutputToMatchSnapshot(output, '31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
   it.each([
@@ -89,7 +88,7 @@ describe('default renderer: option: line wrap', () => {
     }
 
     expect(err).toBeFalsy()
-    expectProcessOutputToMatchSnapshot(output, 'effxCyY3v0UwCvij5FA2kc2XllnFtU4B')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
   it.each([
@@ -123,6 +122,6 @@ describe('default renderer: option: line wrap', () => {
     }
 
     expect(err).toBeFalsy()
-    expectProcessOutputToMatchSnapshot(output, 'lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 })

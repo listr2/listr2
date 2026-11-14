@@ -13,10 +13,8 @@ describe('default renderer: title', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // Qm3vT8xKp1LwZr6YcN0bHd4FsJ7gEa2U
   it('should hide the task when its title and output are removed', async() => {
     await new Listr(
       [
@@ -42,10 +40,9 @@ describe('default renderer: title', () => {
     ).run()
 
     expect(output.stdout.mock.calls.map(([line]) => line).join('')).not.toContain('undefined')
-    expectProcessOutputToMatchSnapshot(output, 'Qm3vT8xKp1LwZr6YcN0bHd4FsJ7gEa2U')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // Hs5nB9wRk2PeX7tUq4ZyLm0VcG8dJf3A
   it('should render the title again after it has been removed', async() => {
     await new Listr(
       [
@@ -65,6 +62,6 @@ describe('default renderer: title', () => {
     ).run()
 
     expect(output.stdout.mock.calls.map(([line]) => line).join('')).not.toContain('undefined')
-    expectProcessOutputToMatchSnapshot(output, 'Hs5nB9wRk2PeX7tUq4ZyLm0VcG8dJf3A')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 })

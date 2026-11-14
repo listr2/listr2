@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`observable as task should work with returning a observable from task: H2L4DnyiqkFuyBKwvsX6ytONqKmaxUBm-exit 1`] = `[]`;
+exports[`observable as task > should work with returning a observable from task > exit 1`] = `[]`;
 
-exports[`observable as task should work with returning a observable from task: H2L4DnyiqkFuyBKwvsX6ytONqKmaxUBm-stderr 1`] = `[]`;
+exports[`observable as task > should work with returning a observable from task > stderr 1`] = `[]`;
 
-exports[`observable as task should work with returning a observable from task: H2L4DnyiqkFuyBKwvsX6ytONqKmaxUBm-stdout 1`] = `
+exports[`observable as task > should work with returning a observable from task > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Observable test.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Observable test."]}}
 ",
@@ -17,11 +17,11 @@ exports[`observable as task should work with returning a observable from task: H
 ]
 `;
 
-exports[`observable as task should work with returning a zen-observable from task: SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF-exit 1`] = `[]`;
+exports[`observable as task > should work with returning a zen-observable from task > exit 1`] = `[]`;
 
-exports[`observable as task should work with returning a zen-observable from task: SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF-stderr 1`] = `[]`;
+exports[`observable as task > should work with returning a zen-observable from task > stderr 1`] = `[]`;
 
-exports[`observable as task should work with returning a zen-observable from task: SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF-stdout 1`] = `
+exports[`observable as task > should work with returning a zen-observable from task > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"Observable test.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["Observable test."]}}
 ",

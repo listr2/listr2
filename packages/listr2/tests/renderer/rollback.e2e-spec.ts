@@ -13,10 +13,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // 4SIhMkI14b8s2hW1esiORoa1UINGHwAr
   it('should rollback the main task if any of the subtasks fail', async() => {
     let err: Error
 
@@ -69,10 +67,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
     }
 
     expect(err).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, '4SIhMkI14b8s2hW1esiORoa1UINGHwAr')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx
   it('should rollback the subtask if the subtask itself fails', async() => {
     let err: Error
 
@@ -124,10 +121,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
     }
 
     expect(err).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, 'vnT6mmZ5GtNqgXaPHqXxTIpDm5sltAZx')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // 0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A
   it.each([true, false])('should both stop the execution with exitOnError %s since exitAfterRollback is independent', async(cases) => {
     let err: Error
 
@@ -184,10 +180,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
     } else {
       expect(err).toBeFalsy()
     }
-    expectProcessOutputToMatchSnapshot(output, '0IT1rYAGLTZ6UNfsxrJCFMik9UrnEd7A')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // 1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8
   it.each([true, false])('should contunie execution or stop there with exitAfterRollback: %s', async(cases) => {
     let err: Error
 
@@ -243,6 +238,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: rollback', (renderer,
       expect(err).toBeFalsy()
     }
 
-    expectProcessOutputToMatchSnapshot(output, '1cj9pfWF3xjiEk2FW1Rt13qVcfSY9sR8')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })

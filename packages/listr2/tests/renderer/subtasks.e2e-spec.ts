@@ -13,10 +13,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR
   it('should create a set of subtasks', async() => {
     await new Listr(
       [
@@ -43,10 +41,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'JQYWVb3x1scokQK2IzhwA4F0qxWbYzXR')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // 3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k
   it('should be able to change concurrency setting in subtask, second subtask should finish first', async() => {
     await new Listr(
       [
@@ -78,10 +75,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, '3ygUxrTkCDLDfDrXzF1ocWR6626jaL0k')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // 12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY
   it('should be able to change exit on error', async() => {
     try {
       await new Listr(
@@ -131,6 +127,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: show subtasks', (rend
       expect(e).toBeTruthy()
     }
 
-    expectProcessOutputToMatchSnapshot(output, '12ttDlnth5pr1YuJEnfXm3I2CzRbcFlY')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })

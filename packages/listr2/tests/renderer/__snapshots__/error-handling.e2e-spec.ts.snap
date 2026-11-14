@@ -1,72 +1,106 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+exports[`default renderer: error handling > should change exit on error per subtask > exit 1`] = `[]`;
 
-exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `[]`;
-
-exports[`default renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+exports[`default renderer: error handling > should change exit on error per subtask > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will execute and not quit on errors.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute and not quit on errors.
-[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[1A[G[2K[1B[2K[1A[G  [2m◼[22m This is a subtask.
-[2m◼[22m This task will execute.
-[K[?2026l",
-  "[?2026h[1A[G[2K[1B[2K[1A[G  [2m◼[22m This is an another subtask.
-[2m◼[22m This task will execute.
-[K[?2026l",
-  "[?2026h[1A[G[2K[1B[2K[1A[G  [2m◼[22m This is yet an another subtask.
-[2m◼[22m This task will execute.
-[K[?2026l",
-  "[?2026h[4A[G[2K[G  [33m❯[39m This is a subtask.[K
-[3B[?2026l",
-  "[?2026h[4A[G[2K[G  [31m✖[39m This is a subtask.[K
-[3B[?2026l",
-  "[?2026h[4A[G[2K[G  [31m✖[39m I have failed [0][K
-[3B[?2026l",
-  "[?2026h[3A[G[2K[G  [33m❯[39m This is an another subtask.[K
-[2B[?2026l",
-  "[?2026h[3A[G[2K[G  [31m✖[39m This is an another subtask.[K
-[2B[?2026l",
-  "[?2026h[3A[G[2K[G  [31m✖[39m I have failed [1][K
-[2B[?2026l",
-  "[?2026h[2A[G[2K[G  [33m❯[39m This is yet an another subtask.[K
-[1B[?2026l",
-  "[?2026h[2A[G[2K[G  [33m❯[39m I have succeeded.[K
-[1B[?2026l",
-  "[?2026h[2A[G[2K[G  [32m✔[39m I have succeeded.[K
-[1B[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m⚠[39m This task will execute and not quit on errors.
-  [31m✖[39m I have failed [0]
-  [31m✖[39m I have failed [1]
-  [32m✔[39m I have succeeded.
-[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m⚠[39m This task will execute and not quit on errors.
-  [31m✖[39m I have failed [0]
-  [31m✖[39m I have failed [1]
-  [32m✔[39m I have succeeded.
-[?2026l",
-  "[?2026h[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[31m✖[39m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[31m✖[39m I will exit on error since I am a direct child of parent task.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[31m✖[39m I will exit on error since I am a direct child of parent task.
-[?2026l",
-  "[?25h",
+  "◼ This task will execute and not quit on errors.",
+  "◼ This task will execute and not quit on errors.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ◼ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ❯ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ✖ This is a subtask.
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ◼ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ❯ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ This is an another subtask.
+  ◼ This is yet an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ◼ This is yet an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ This is yet an another subtask.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ❯ I have succeeded.
+◼ This task will execute.",
+  "❯ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+◼ This task will execute.",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+❯ This task will execute.",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ This task will execute.",
+  "⚠ This task will execute and not quit on errors.
+  ✖ I have failed [0]
+  ✖ I have failed [1]
+  ✔ I have succeeded.
+✖ I will exit on error since I am a direct child of parent task.",
 ]
 `;
 
-exports[`default renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+exports[`default renderer: error handling > should change exit on error per subtask > stderr 1`] = `[]`;
+
+exports[`default renderer: error handling > should contain errors from failed tasks 1`] = `
 [
   [ListrError: I have failed [0]],
   [ListrError: I have failed [1]],
@@ -74,139 +108,103 @@ exports[`default renderer: error handling should contain errors from failed task
 ]
 `;
 
-exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+exports[`default renderer: error handling > should disable exitOnError from task level while: false > exit 1`] = `[]`;
 
-exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `[]`;
-
-exports[`default renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+exports[`default renderer: error handling > should disable exitOnError from task level while: false > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will fail.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will maybe execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
-[2m◼[22m This task will maybe execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
-[31m◼[39m This task will maybe execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task failed after 2 seconds.
-[31m◼[39m This task will maybe execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task failed after 2 seconds.
-[?2026l",
-  "[?2026h[31m◼[39m This task will maybe execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[31m◼[39m I will change my title if this executes.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m I will change my title if this executes.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m I will change my title if this executes.
-[?2026l",
-  "[?25h",
+  "◼ This task will fail.",
+  "◼ This task will fail.
+◼ This task will maybe execute.",
+  "❯ This task will fail.
+◼ This task will maybe execute.",
+  "✖ This task will fail.
+◼ This task will maybe execute.",
+  "✖ This task failed after 2 seconds.
+◼ This task will maybe execute.",
+  "✖ This task failed after 2 seconds.",
+  "✖ This task failed after 2 seconds.
+◼ This task will maybe execute.",
+  "✖ This task failed after 2 seconds.
+◼ I will change my title if this executes.",
+  "✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.",
 ]
 `;
 
-exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+exports[`default renderer: error handling > should disable exitOnError from task level while: false > stderr 1`] = `[]`;
 
-exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `[]`;
+exports[`default renderer: error handling > should disable exitOnError from task level while: true > exit 1`] = `[]`;
 
-exports[`default renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+exports[`default renderer: error handling > should disable exitOnError from task level while: true > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will fail.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will maybe execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
-[2m◼[22m This task will maybe execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
-[31m◼[39m This task will maybe execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task failed after 2 seconds.
-[31m◼[39m This task will maybe execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task failed after 2 seconds.
-[?2026l",
-  "[?2026h[31m◼[39m This task will maybe execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[31m◼[39m This task will maybe execute.
-[?2026l",
-  "[?25h",
+  "◼ This task will fail.",
+  "◼ This task will fail.
+◼ This task will maybe execute.",
+  "❯ This task will fail.
+◼ This task will maybe execute.",
+  "✖ This task will fail.
+◼ This task will maybe execute.",
+  "✖ This task failed after 2 seconds.
+◼ This task will maybe execute.",
+  "✖ This task failed after 2 seconds.",
+  "✖ This task failed after 2 seconds.
+◼ This task will maybe execute.",
 ]
 `;
 
-exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+exports[`default renderer: error handling > should disable exitOnError from task level while: true > stderr 1`] = `[]`;
 
-exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `[]`;
+exports[`default renderer: error handling > should not throw out an error when exitonerror is disabled > exit 1`] = `[]`;
 
-exports[`default renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+exports[`default renderer: error handling > should not throw out an error when exitonerror is disabled > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will fail.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
-[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
-[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task failed after 2 seconds.
-[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task failed after 2 seconds.
-[?2026l",
-  "[?2026h[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m I will change my title if this executes.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m I will change my title if this executes.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m I will change my title if this executes.
-[?2026l",
-  "[?25h",
+  "◼ This task will fail.",
+  "◼ This task will fail.
+◼ This task will execute.",
+  "❯ This task will fail.
+◼ This task will execute.",
+  "✖ This task will fail.
+◼ This task will execute.",
+  "✖ This task failed after 2 seconds.
+◼ This task will execute.",
+  "✖ This task failed after 2 seconds.",
+  "✖ This task failed after 2 seconds.
+◼ This task will execute.",
+  "✖ This task failed after 2 seconds.
+❯ This task will execute.",
+  "✖ This task failed after 2 seconds.
+❯ I will change my title if this executes.",
+  "✖ This task failed after 2 seconds.
+✔ I will change my title if this executes.",
 ]
 `;
 
-exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+exports[`default renderer: error handling > should not throw out an error when exitonerror is disabled > stderr 1`] = `[]`;
 
-exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `[]`;
+exports[`default renderer: error handling > should throw out an error > exit 1`] = `[]`;
 
-exports[`default renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+exports[`default renderer: error handling > should throw out an error > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will fail.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will never execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
-[2m◼[22m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
-[31m◼[39m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task failed after 2 seconds.
-[31m◼[39m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task failed after 2 seconds.
-[?2026l",
-  "[?2026h[31m◼[39m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[31m◼[39m This task will never execute.
-[?2026l",
-  "[?25h",
+  "◼ This task will fail.",
+  "◼ This task will fail.
+◼ This task will never execute.",
+  "❯ This task will fail.
+◼ This task will never execute.",
+  "✖ This task will fail.
+◼ This task will never execute.",
+  "✖ This task failed after 2 seconds.
+◼ This task will never execute.",
+  "✖ This task failed after 2 seconds.",
+  "✖ This task failed after 2 seconds.
+◼ This task will never execute.",
 ]
 `;
 
-exports[`simple renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+exports[`default renderer: error handling > should throw out an error > stderr 1`] = `[]`;
 
-exports[`simple renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `
+exports[`simple renderer: error handling > should change exit on error per subtask > exit 1`] = `[]`;
+
+exports[`simple renderer: error handling > should change exit on error per subtask > stderr 1`] = `
 [
   "[31m✖[39m This is a subtask. [31m[FAILED: I have failed [0]][39m
 ",
@@ -217,7 +215,7 @@ exports[`simple renderer: error handling should change exit on error per subtask
 ]
 `;
 
-exports[`simple renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+exports[`simple renderer: error handling > should change exit on error per subtask > stdout 1`] = `
 [
   "[33m❯[39m This task will execute and not quit on errors.
 ",
@@ -236,7 +234,7 @@ exports[`simple renderer: error handling should change exit on error per subtask
 ]
 `;
 
-exports[`simple renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+exports[`simple renderer: error handling > should contain errors from failed tasks 1`] = `
 [
   [ListrError: I have failed [0]],
   [ListrError: I have failed [1]],
@@ -244,16 +242,16 @@ exports[`simple renderer: error handling should contain errors from failed tasks
 ]
 `;
 
-exports[`simple renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+exports[`simple renderer: error handling > should disable exitOnError from task level while: false > exit 1`] = `[]`;
 
-exports[`simple renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+exports[`simple renderer: error handling > should disable exitOnError from task level while: false > stderr 1`] = `
 [
   "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
 ]
 `;
 
-exports[`simple renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+exports[`simple renderer: error handling > should disable exitOnError from task level while: false > stdout 1`] = `
 [
   "[33m❯[39m This task will fail.
 ",
@@ -264,32 +262,32 @@ exports[`simple renderer: error handling should disable exitOnError from task le
 ]
 `;
 
-exports[`simple renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+exports[`simple renderer: error handling > should disable exitOnError from task level while: true > exit 1`] = `[]`;
 
-exports[`simple renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+exports[`simple renderer: error handling > should disable exitOnError from task level while: true > stderr 1`] = `
 [
   "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
 ]
 `;
 
-exports[`simple renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+exports[`simple renderer: error handling > should disable exitOnError from task level while: true > stdout 1`] = `
 [
   "[33m❯[39m This task will fail.
 ",
 ]
 `;
 
-exports[`simple renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+exports[`simple renderer: error handling > should not throw out an error when exitonerror is disabled > exit 1`] = `[]`;
 
-exports[`simple renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `
+exports[`simple renderer: error handling > should not throw out an error when exitonerror is disabled > stderr 1`] = `
 [
   "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
 ]
 `;
 
-exports[`simple renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+exports[`simple renderer: error handling > should not throw out an error when exitonerror is disabled > stdout 1`] = `
 [
   "[33m❯[39m This task will fail.
 ",
@@ -300,25 +298,25 @@ exports[`simple renderer: error handling should not throw out an error when exit
 ]
 `;
 
-exports[`simple renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+exports[`simple renderer: error handling > should throw out an error > exit 1`] = `[]`;
 
-exports[`simple renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `
+exports[`simple renderer: error handling > should throw out an error > stderr 1`] = `
 [
   "[31m✖[39m This task will fail. [31m[FAILED: This task failed after 2 seconds.][39m
 ",
 ]
 `;
 
-exports[`simple renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+exports[`simple renderer: error handling > should throw out an error > stdout 1`] = `
 [
   "[33m❯[39m This task will fail.
 ",
 ]
 `;
 
-exports[`test renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+exports[`test renderer: error handling > should change exit on error per subtask > exit 1`] = `[]`;
 
-exports[`test renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `
+exports[`test renderer: error handling > should change exit on error per subtask > stderr 1`] = `
 [
   "{"event":"MESSAGE","data":{"error":"I have failed [0]"},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This is a subtask.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isCancelled":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors.","This is a subtask."]}}
 ",
@@ -329,7 +327,7 @@ exports[`test renderer: error handling should change exit on error per subtask: 
 ]
 `;
 
-exports[`test renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+exports[`test renderer: error handling > should change exit on error per subtask > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute and not quit on errors.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute and not quit on errors."]}}
 ",
@@ -356,7 +354,7 @@ exports[`test renderer: error handling should change exit on error per subtask: 
 ]
 `;
 
-exports[`test renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+exports[`test renderer: error handling > should contain errors from failed tasks 1`] = `
 [
   [ListrError: I have failed [0]],
   [ListrError: I have failed [1]],
@@ -364,16 +362,16 @@ exports[`test renderer: error handling should contain errors from failed tasks: 
 ]
 `;
 
-exports[`test renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+exports[`test renderer: error handling > should disable exitOnError from task level while: false > exit 1`] = `[]`;
 
-exports[`test renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+exports[`test renderer: error handling > should disable exitOnError from task level while: false > stderr 1`] = `
 [
   "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isCancelled":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will fail."]}}
 ",
 ]
 `;
 
-exports[`test renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+exports[`test renderer: error handling > should disable exitOnError from task level while: false > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will fail."]}}
 ",
@@ -388,16 +386,16 @@ exports[`test renderer: error handling should disable exitOnError from task leve
 ]
 `;
 
-exports[`test renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+exports[`test renderer: error handling > should disable exitOnError from task level while: true > exit 1`] = `[]`;
 
-exports[`test renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+exports[`test renderer: error handling > should disable exitOnError from task level while: true > stderr 1`] = `
 [
   "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isCancelled":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will fail."]}}
 ",
 ]
 `;
 
-exports[`test renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+exports[`test renderer: error handling > should disable exitOnError from task level while: true > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will fail."]}}
 ",
@@ -406,16 +404,16 @@ exports[`test renderer: error handling should disable exitOnError from task leve
 ]
 `;
 
-exports[`test renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+exports[`test renderer: error handling > should not throw out an error when exitonerror is disabled > exit 1`] = `[]`;
 
-exports[`test renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `
+exports[`test renderer: error handling > should not throw out an error when exitonerror is disabled > stderr 1`] = `
 [
   "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isCancelled":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will fail."]}}
 ",
 ]
 `;
 
-exports[`test renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+exports[`test renderer: error handling > should not throw out an error when exitonerror is disabled > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will fail."]}}
 ",
@@ -430,16 +428,16 @@ exports[`test renderer: error handling should not throw out an error when exiton
 ]
 `;
 
-exports[`test renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+exports[`test renderer: error handling > should throw out an error > exit 1`] = `[]`;
 
-exports[`test renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `
+exports[`test renderer: error handling > should throw out an error > stderr 1`] = `
 [
   "{"event":"MESSAGE","data":{"error":"This task failed after 2 seconds."},"task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":true,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":false,"isCancelled":false,"isStarted":false,"hasFailed":true,"isEnabled":true,"isRetrying":false,"path":["This task will fail."]}}
 ",
 ]
 `;
 
-exports[`test renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+exports[`test renderer: error handling > should throw out an error > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will fail.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will fail."]}}
 ",
@@ -448,9 +446,9 @@ exports[`test renderer: error handling should throw out an error: vxSr6uKuGeO4iX
 ]
 `;
 
-exports[`verbose renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-exit 1`] = `[]`;
+exports[`verbose renderer: error handling > should change exit on error per subtask > exit 1`] = `[]`;
 
-exports[`verbose renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stderr 1`] = `
+exports[`verbose renderer: error handling > should change exit on error per subtask > stderr 1`] = `
 [
   "[31m[FAILED][39m I have failed [0]
 ",
@@ -461,7 +459,7 @@ exports[`verbose renderer: error handling should change exit on error per subtas
 ]
 `;
 
-exports[`verbose renderer: error handling should change exit on error per subtask: HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO-stdout 1`] = `
+exports[`verbose renderer: error handling > should change exit on error per subtask > stdout 1`] = `
 [
   "[33m[STARTED][39m This task will execute and not quit on errors.
 ",
@@ -482,7 +480,7 @@ exports[`verbose renderer: error handling should change exit on error per subtas
 ]
 `;
 
-exports[`verbose renderer: error handling should contain errors from failed tasks: H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM 1`] = `
+exports[`verbose renderer: error handling > should contain errors from failed tasks 1`] = `
 [
   [ListrError: I have failed [0]],
   [ListrError: I have failed [1]],
@@ -490,16 +488,16 @@ exports[`verbose renderer: error handling should contain errors from failed task
 ]
 `;
 
-exports[`verbose renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+exports[`verbose renderer: error handling > should disable exitOnError from task level while: false > exit 1`] = `[]`;
 
-exports[`verbose renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+exports[`verbose renderer: error handling > should disable exitOnError from task level while: false > stderr 1`] = `
 [
   "[31m[FAILED][39m This task failed after 2 seconds.
 ",
 ]
 `;
 
-exports[`verbose renderer: error handling should disable exitOnError from task level while: false: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+exports[`verbose renderer: error handling > should disable exitOnError from task level while: false > stdout 1`] = `
 [
   "[33m[STARTED][39m This task will fail.
 ",
@@ -512,32 +510,32 @@ exports[`verbose renderer: error handling should disable exitOnError from task l
 ]
 `;
 
-exports[`verbose renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-exit 1`] = `[]`;
+exports[`verbose renderer: error handling > should disable exitOnError from task level while: true > exit 1`] = `[]`;
 
-exports[`verbose renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stderr 1`] = `
+exports[`verbose renderer: error handling > should disable exitOnError from task level while: true > stderr 1`] = `
 [
   "[31m[FAILED][39m This task failed after 2 seconds.
 ",
 ]
 `;
 
-exports[`verbose renderer: error handling should disable exitOnError from task level while: true: Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37-stdout 1`] = `
+exports[`verbose renderer: error handling > should disable exitOnError from task level while: true > stdout 1`] = `
 [
   "[33m[STARTED][39m This task will fail.
 ",
 ]
 `;
 
-exports[`verbose renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-exit 1`] = `[]`;
+exports[`verbose renderer: error handling > should not throw out an error when exitonerror is disabled > exit 1`] = `[]`;
 
-exports[`verbose renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stderr 1`] = `
+exports[`verbose renderer: error handling > should not throw out an error when exitonerror is disabled > stderr 1`] = `
 [
   "[31m[FAILED][39m This task failed after 2 seconds.
 ",
 ]
 `;
 
-exports[`verbose renderer: error handling should not throw out an error when exitonerror is disabled: OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl-stdout 1`] = `
+exports[`verbose renderer: error handling > should not throw out an error when exitonerror is disabled > stdout 1`] = `
 [
   "[33m[STARTED][39m This task will fail.
 ",
@@ -550,16 +548,16 @@ exports[`verbose renderer: error handling should not throw out an error when exi
 ]
 `;
 
-exports[`verbose renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-exit 1`] = `[]`;
+exports[`verbose renderer: error handling > should throw out an error > exit 1`] = `[]`;
 
-exports[`verbose renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stderr 1`] = `
+exports[`verbose renderer: error handling > should throw out an error > stderr 1`] = `
 [
   "[31m[FAILED][39m This task failed after 2 seconds.
 ",
 ]
 `;
 
-exports[`verbose renderer: error handling should throw out an error: vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf-stdout 1`] = `
+exports[`verbose renderer: error handling > should throw out an error > stdout 1`] = `
 [
   "[33m[STARTED][39m This task will fail.
 ",

@@ -13,10 +13,8 @@ describe('default renderer: task-enable', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU
   it('should enable task with general context', async() => {
     await new Listr(
       [
@@ -39,10 +37,9 @@ describe('default renderer: task-enable', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB
   it('should enable task with general context in subtasks', async() => {
     await new Listr(
       [
@@ -79,6 +76,6 @@ describe('default renderer: task-enable', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, '2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 })

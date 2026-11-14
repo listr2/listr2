@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`subtask nested handling should run concurrent on parent, serial on child: JGkuFCkPH1hvpem4paRkCU0aYRKcyFAX-exit 1`] = `[]`;
+exports[`subtask nested handling > should run concurrent on parent, serial on child > exit 1`] = `[]`;
 
-exports[`subtask nested handling should run concurrent on parent, serial on child: JGkuFCkPH1hvpem4paRkCU0aYRKcyFAX-stderr 1`] = `[]`;
+exports[`subtask nested handling > should run concurrent on parent, serial on child > stderr 1`] = `[]`;
 
-exports[`subtask nested handling should run concurrent on parent, serial on child: JGkuFCkPH1hvpem4paRkCU0aYRKcyFAX-stdout 1`] = `
+exports[`subtask nested handling > should run concurrent on parent, serial on child > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"1","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["1"]}}
 ",
@@ -45,11 +45,11 @@ exports[`subtask nested handling should run concurrent on parent, serial on chil
 ]
 `;
 
-exports[`subtask nested handling should run serial on parent, concurrent on child: zFdEUbIjy1pWE2Me1Zk9EVxEcAcCVw5G-exit 1`] = `[]`;
+exports[`subtask nested handling > should run serial on parent, concurrent on child > exit 1`] = `[]`;
 
-exports[`subtask nested handling should run serial on parent, concurrent on child: zFdEUbIjy1pWE2Me1Zk9EVxEcAcCVw5G-stderr 1`] = `[]`;
+exports[`subtask nested handling > should run serial on parent, concurrent on child > stderr 1`] = `[]`;
 
-exports[`subtask nested handling should run serial on parent, concurrent on child: zFdEUbIjy1pWE2Me1Zk9EVxEcAcCVw5G-stdout 1`] = `
+exports[`subtask nested handling > should run serial on parent, concurrent on child > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"1","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["1"]}}
 ",

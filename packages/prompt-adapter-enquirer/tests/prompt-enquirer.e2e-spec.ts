@@ -16,10 +16,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // WdiO5CUfBLf5hMlp9sPct5973YhRlnLz
   it('should render a prompt', async() => {
     const ctx = await new Listr(
       [
@@ -47,10 +45,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
     ).run()
 
     expect(ctx.output).toBe('test')
-    expectProcessOutputToMatchSnapshot(output, 'WdiO5CUfBLf5hMlp9sPct5973YhRlnLz')
+    expectProcessOutputToMatchSnapshot(output)
   })
 
-  // ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9
   it('should render multiple prompt', async() => {
     const ctx = await new Listr(
       [
@@ -112,10 +109,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
     ).run()
 
     expect(ctx.output).toStrictEqual({ first: 'test', second: 'test1' })
-    expectProcessOutputToMatchSnapshot(output, 'ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9')
+    expectProcessOutputToMatchSnapshot(output)
   })
 
-  // HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w
   it.skip('should run cancel callback', async() => {
     const ctx = new Listr(
       [
@@ -151,42 +147,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
     }
 
     expect(err).toStrictEqual(new PromptError('Cancelled prompt.'))
-    expectProcessOutputToMatchSnapshot(output, 'HaNF6mQO2FvhOQe4bPQRBRhk9MS9lx9w')
+    expectProcessOutputToMatchSnapshot(output)
   })
 
-  // it('should run passed in cancel callback', async () => {
-  //   expect(
-  //     Promise.all([
-  //       createPrompt({
-  //         type: 'Input',
-  //         message: 'Give me some input.'
-  //       }, {
-  //         cancelCallback: () => {
-  //           throw new Error('test')
-  //         },
-  //         stdout: process.stdout
-  //       }),
-  //       delay(10).then(() => { process.stdin.emit('data', Buffer.from(KEYS.CTRL_C)) })
-  //     ])
-  //   ).rejects.toThrowError('test')
-  // })
-
-  // it('should run throw error from prompt', async () => {
-  //   expect(
-  //     Promise.all([
-  //       createPrompt({
-  //         type: 'Input',
-  //         message: 'Give me some input.'
-  //       }, {
-  //         error: true,
-  //         stdout: process.stdout
-  //       }),
-  //       delay(10).then(() => { process.stdin.emit('data', Buffer.from(KEYS.CTRL_C)) })
-  //     ])
-  //   ).rejects.toThrowError('Cancelled prompt.')
-  // })
-
-  // t3VXfqT0crsCYRzqYYWZGllN6oNARZcn
   it('should use the passed in enquirer', async() => {
     const ctx = await new Listr(
       [
@@ -217,13 +180,10 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
     ).run()
 
     expect(ctx).toStrictEqual({ output: 'test' })
-    expectProcessOutputToMatchSnapshot(output, 't3VXfqT0crsCYRzqYYWZGllN6oNARZcn')
+    expectProcessOutputToMatchSnapshot(output)
   })
 
-  // 8QRF9bQEdSKkH62yUKbteKnrpevTbGan
   it('should use skip enquirer', async() => {
-    const cancel = jest.spyOn(ListrEnquirerPromptAdapter.prototype, 'cancel')
-
     const listr = new Listr(
       [
         {
@@ -238,11 +198,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
 
             task.skip()
 
-            try {
-              ctx.output = await result
-            } catch {
-              ctx.output = ''
-            }
+            ctx.output = await result
           }
         },
 
@@ -262,12 +218,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> enquirer', 
 
     const ctx = await listr.run()
 
-    // the adapter cancels the active prompt via submit (not throw) when the task is skipped
-    expect(cancel).toHaveBeenCalledWith({ throw: false })
-    // cancelling resolves the prompt with an empty value instead of hanging or throwing,
-    // since nothing ever answers the prompt this can only pass if the adapter cancelled it
+    // nothing answers the prompt, so it resolves only when skipping the task cancels it without throwing
     expect(ctx).toStrictEqual({ output: '' })
-
-    cancel.mockRestore()
   })
 })

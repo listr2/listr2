@@ -13,10 +13,8 @@ describe('default renderer: process output', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
   it('should hook in to stdout/stderr and write everything above the task list as it arrives', async() => {
     await new Listr(
       [
@@ -39,7 +37,7 @@ describe('default renderer: process output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'qI0M3xvUnGRj5hNg9NhHYq5lezkNGlRK')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
   it('should hook in to stdout/stderr and write everything above the task list even though there is an error', async() => {
@@ -70,6 +68,6 @@ describe('default renderer: process output', () => {
       expect(e).toBeTruthy()
     }
 
-    expectProcessOutputToMatchSnapshot(output, '77ddpC6bJ1Tj5Mz0JNjCqjq9pkwN7Gxh')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 })

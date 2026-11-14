@@ -1,10 +1,7 @@
 import { ListrTaskEventType, ListrTaskState } from '#constants'
 import { Listr, delay } from '#root'
 import type { MockProcessOutput } from '#tests/utils'
-import { mockProcessOutput, unmockProcessOutput } from '#tests/utils'
-
-// keeps a task in-flight until the interruption races it out, without leaving a real timer alive past the test
-const hang = (): Promise<void> => new Promise<void>(() => undefined)
+import { mockProcessOutput, unmockProcessOutput, hang } from '#tests/utils'
 
 describe('close a task', () => {
   const output: MockProcessOutput = {} as MockProcessOutput
@@ -15,7 +12,6 @@ describe('close a task', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   it('should close tasks that complete, fail, or are skipped through the skip option', async() => {

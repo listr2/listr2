@@ -14,10 +14,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // R34CKurUXSpq65S8ebD6jpUrwmIiYrKa
   it('should retry the main task if any of the subtasks fail', async() => {
     let err: Error
 
@@ -52,7 +50,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
     }
 
     expect(err).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, 'R34CKurUXSpq65S8ebD6jpUrwmIiYrKa')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
   it('should stop retrying if the task succeeds afterwards', async() => {
@@ -87,7 +85,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
     }
 
     expect(err).toBeFalsy()
-    expectProcessOutputToMatchSnapshot(output, 'oZPNYsORzcG758b1BLdR91GcErmLlQsw')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
   it('should stop retrying if the task fails itself', async() => {
@@ -120,6 +118,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, re
     }
 
     expect(err).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, 'f2kXq8VbNw3LtRzE7cHyUmJ5aPdG9sTo')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })

@@ -13,10 +13,8 @@ describe('default renderer: output', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // oYHBlOYGg8juKRkaqigY617eyLbGMuDd
   it('should have persistent output', async() => {
     await new Listr(
       [
@@ -38,10 +36,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'oYHBlOYGg8juKRkaqigY617eyLbGMuDd')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // LGtvNwRVWZWJQuucaYcVDSrjspKwNnVF
   it('should output to output bar with all output', async() => {
     await new Listr(
       [
@@ -63,10 +60,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'LGtvNwRVWZWJQuucaYcVDSrjspKwNnVF')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // hXDsrvlxponbYraVVuHSWACjDbyUBXkb
   it('should output to output bar with last 2 output', async() => {
     await new Listr(
       [
@@ -88,10 +84,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'hXDsrvlxponbYraVVuHSWACjDbyUBXkb')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // qmiOeXTUyStaFeRgDYVlGoPJMVDbRRuC
   it('should output to output bar with last output', async() => {
     await new Listr(
       [
@@ -113,10 +108,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'qmiOeXTUyStaFeRgDYVlGoPJMVDbRRuC')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // ojurBbWZEPenKVeoFcKksBeMbaYWmbGO
   it('should output to nowhere since outputBar and bottomBar is false', async() => {
     await new Listr(
       [
@@ -138,10 +132,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'ojurBbWZEPenKVeoFcKksBeMbaYWmbGO')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // 767BkeBTfR1lrS2ANYYH7CLWPATxqyat
   it('should output to bottom bar', async() => {
     await new Listr(
       [
@@ -163,10 +156,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, '767BkeBTfR1lrS2ANYYH7CLWPATxqyat')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP
   it('should output to bottom bar from task with no title', async() => {
     await new Listr(
       [
@@ -187,10 +179,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'JMCRBo4OtLm7JB3XbcYoRcCdQRiKfPdP')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // iI52S3WPytorU9EZKPar2AiBrLAZTVut
   it('should output to bottom bar from task with no title persistently', async() => {
     await new Listr(
       [
@@ -211,10 +202,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'iI52S3WPytorU9EZKPar2AiBrLAZTVut')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA
   it('should output to bottom bar persistently', async() => {
     await new Listr(
       [
@@ -236,10 +226,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'HhZEM7noGNW4xpgxv4ZtXsPMroPWqrEA')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // d4wXg4yGYak09qivTqgKFZaQJ3PvDZm5
   it('should limit output to bottom bar persistently', async() => {
     await new Listr(
       [
@@ -261,10 +250,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'd4wXg4yGYak09qivTqgKFZaQJ3PvDZm5')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus
   it('should output to bottom bar 2 times at most and delete the prior tasks output when finished', async() => {
     await new Listr(
       [
@@ -298,10 +286,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'NpGb4ry8b6hlK7VkJ1YcXcVibx0k5Sus')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn
   it('should indent long multiline output with persistent output', async() => {
     await new Listr(
       [
@@ -323,10 +310,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'j7BqsosH97ffW1SQSdkADSm2HnSZQ9nn')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv
   it.each([true, false])('should have persistent output on task fail with bottom bar %s', async(input) => {
     await new Listr(
       [
@@ -351,10 +337,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'MjcoXTjPbNRDsgOIbGzvjt7MEaZcmasv')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // NduelZU7RnrfhxPfeXiFeQhYBm9bIRKW
   it('should clear the output bar when output is set to null', async() => {
     await new Listr(
       [
@@ -376,10 +361,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'NduelZU7RnrfhxPfeXiFeQhYBm9bIRKW')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // 9Ol7Y5L4326KO4NFEpMpNHZuIEGJwR1N
   it('should clear all lines from the output bar with outputBar as Infinity when output is set to null', async() => {
     await new Listr(
       [
@@ -403,10 +387,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, '9Ol7Y5L4326KO4NFEpMpNHZuIEGJwR1N')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // PWHBuAjpZIwJ9XlrlYQTri847NT0RuKY
   it('should clear all lines from the output bar with outputBar as a number when output is set to null', async() => {
     await new Listr(
       [
@@ -430,10 +413,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'PWHBuAjpZIwJ9XlrlYQTri847NT0RuKY')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // X9WByECJDy84XWuHMs8djxYdkWQEZpIa
   it('should clear the bottom bar when output is set to null', async() => {
     await new Listr(
       [
@@ -457,10 +439,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'X9WByECJDy84XWuHMs8djxYdkWQEZpIa')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // W8PPqm0hMrdkqJZ46wdFJdFbHnpQIV71
   it('should stream new output again after being cleared with null', async() => {
     await new Listr(
       [
@@ -482,10 +463,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'W8PPqm0hMrdkqJZ46wdFJdFbHnpQIV71')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // J6xy27g81kBDTGYxfgOx6pwkGPmeNYHL
   it('should be a no-op when output is cleared before any output is streamed', async() => {
     await new Listr(
       [
@@ -503,10 +483,9 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'J6xy27g81kBDTGYxfgOx6pwkGPmeNYHL')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // cthX0yZwrfeOdOxrvWGTZnCQrarUIuG3
   it('should be a no-op when output is cleared after the task has finalized', async() => {
     let finalized: any
 
@@ -535,6 +514,6 @@ describe('default renderer: output', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'cthX0yZwrfeOdOxrvWGTZnCQrarUIuG3')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 })

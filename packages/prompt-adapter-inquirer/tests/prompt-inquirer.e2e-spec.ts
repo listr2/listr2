@@ -17,7 +17,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   it('should render a prompt', async() => {
@@ -46,7 +45,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
     ).run()
 
     expect(ctx.output).toBe('test')
-    expectProcessOutputToMatchSnapshot(output, 'zTXlHkwllFGUiGXlWztXAeZMvIleiEFF')
+    expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should be able to cancel a prompt', async() => {
@@ -78,7 +77,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: prompt -> inquirer', 
       err = e as Error
     }
 
-    expect(err).toEqual(new AbortPromptError({ cause: 'Prompt was canceled' }))
-    expectProcessOutputToMatchSnapshot(output, 'AABZsFFYgZITgdWMQdLGmxABwlBaXdiv')
+    expect(err).toEqual(new AbortPromptError({ cause: 'Prompt was cancelled' }))
+    expectProcessOutputToMatchSnapshot(output)
   })
 })

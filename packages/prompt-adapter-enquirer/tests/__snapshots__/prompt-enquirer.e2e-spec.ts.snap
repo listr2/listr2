@@ -1,10 +1,10 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer > should render a prompt > exit 1`] = `[]`;
 
-exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer > should render a prompt > stderr 1`] = `[]`;
 
-exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
+exports[`default renderer: prompt -> enquirer > should render a prompt > stdout 1`] = `
 [
   "[?25l",
   "[?2026h[2m◼[22m This task will execute.
@@ -35,11 +35,11 @@ exports[`default renderer: prompt -> enquirer should render a prompt: WdiO5CUfBL
 ]
 `;
 
-exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer > should render multiple prompt > exit 1`] = `[]`;
 
-exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer > should render multiple prompt > stderr 1`] = `[]`;
 
-exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
+exports[`default renderer: prompt -> enquirer > should render multiple prompt > stdout 1`] = `
 [
   "[?25l",
   "[?2026h[2m◼[22m This task will execute.
@@ -76,11 +76,11 @@ exports[`default renderer: prompt -> enquirer should render multiple prompt: ZyU
 ]
 `;
 
-exports[`default renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer > should use the passed in enquirer > exit 1`] = `[]`;
 
-exports[`default renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
+exports[`default renderer: prompt -> enquirer > should use the passed in enquirer > stderr 1`] = `[]`;
 
-exports[`default renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
+exports[`default renderer: prompt -> enquirer > should use the passed in enquirer > stdout 1`] = `
 [
   "[?25l",
   "[?2026h[2m◼[22m This task will execute.
@@ -111,9 +111,9 @@ exports[`default renderer: prompt -> enquirer should use the passed in enquirer:
 ]
 `;
 
-exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
+exports[`simple renderer: prompt -> enquirer > should render a prompt > exit 1`] = `[]`;
 
-exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `
+exports[`simple renderer: prompt -> enquirer > should render a prompt > stderr 1`] = `
 [
   "[?25l",
   "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
@@ -140,7 +140,7 @@ exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf
 ]
 `;
 
-exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
+exports[`simple renderer: prompt -> enquirer > should render a prompt > stdout 1`] = `
 [
   "[33m❯[39m This task will execute.
 ",
@@ -151,9 +151,9 @@ exports[`simple renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf
 ]
 `;
 
-exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
+exports[`simple renderer: prompt -> enquirer > should render multiple prompt > exit 1`] = `[]`;
 
-exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `
+exports[`simple renderer: prompt -> enquirer > should render multiple prompt > stderr 1`] = `
 [
   "[?25l",
   "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
@@ -189,7 +189,7 @@ exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB
 ]
 `;
 
-exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
+exports[`simple renderer: prompt -> enquirer > should render multiple prompt > stdout 1`] = `
 [
   "[33m❯[39m This task will execute.
 ",
@@ -200,9 +200,9 @@ exports[`simple renderer: prompt -> enquirer should render multiple prompt: ZyUB
 ]
 `;
 
-exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
+exports[`simple renderer: prompt -> enquirer > should use the passed in enquirer > exit 1`] = `[]`;
 
-exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `
+exports[`simple renderer: prompt -> enquirer > should use the passed in enquirer > stderr 1`] = `
 [
   "[?25l",
   "[36m?[39m [1mGive me some input.[22m [2m‣[22m [46m[30m[30m [39m[30m[39m[49m",
@@ -229,7 +229,7 @@ exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: 
 ]
 `;
 
-exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
+exports[`simple renderer: prompt -> enquirer > should use the passed in enquirer > stdout 1`] = `
 [
   "[33m❯[39m This task will execute.
 ",
@@ -240,11 +240,11 @@ exports[`simple renderer: prompt -> enquirer should use the passed in enquirer: 
 ]
 `;
 
-exports[`test renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer > should render a prompt > exit 1`] = `[]`;
 
-exports[`test renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer > should render a prompt > stderr 1`] = `[]`;
 
-exports[`test renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
+exports[`test renderer: prompt -> enquirer > should render a prompt > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -301,11 +301,11 @@ exports[`test renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5h
 ]
 `;
 
-exports[`test renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer > should render multiple prompt > exit 1`] = `[]`;
 
-exports[`test renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer > should render multiple prompt > stderr 1`] = `[]`;
 
-exports[`test renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
+exports[`test renderer: prompt -> enquirer > should render multiple prompt > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -376,11 +376,11 @@ exports[`test renderer: prompt -> enquirer should render multiple prompt: ZyUB9J
 ]
 `;
 
-exports[`test renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer > should use the passed in enquirer > exit 1`] = `[]`;
 
-exports[`test renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
+exports[`test renderer: prompt -> enquirer > should use the passed in enquirer > stderr 1`] = `[]`;
 
-exports[`test renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
+exports[`test renderer: prompt -> enquirer > should use the passed in enquirer > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"This task will execute.","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["This task will execute."]}}
 ",
@@ -437,11 +437,11 @@ exports[`test renderer: prompt -> enquirer should use the passed in enquirer: t3
 ]
 `;
 
-exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-exit 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer > should render a prompt > exit 1`] = `[]`;
 
-exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stderr 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer > should render a prompt > stderr 1`] = `[]`;
 
-exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBLf5hMlp9sPct5973YhRlnLz-stdout 1`] = `
+exports[`verbose renderer: prompt -> enquirer > should render a prompt > stdout 1`] = `
 [
   "[33m[STARTED][39m This task will execute.
 ",
@@ -462,11 +462,11 @@ exports[`verbose renderer: prompt -> enquirer should render a prompt: WdiO5CUfBL
 ]
 `;
 
-exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-exit 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer > should render multiple prompt > exit 1`] = `[]`;
 
-exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stderr 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer > should render multiple prompt > stderr 1`] = `[]`;
 
-exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyUB9J2StmYMasXkHsMgjyszR4n0vvi9-stdout 1`] = `
+exports[`verbose renderer: prompt -> enquirer > should render multiple prompt > stdout 1`] = `
 [
   "[33m[STARTED][39m This task will execute.
 ",
@@ -493,11 +493,11 @@ exports[`verbose renderer: prompt -> enquirer should render multiple prompt: ZyU
 ]
 `;
 
-exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-exit 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer > should use the passed in enquirer > exit 1`] = `[]`;
 
-exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stderr 1`] = `[]`;
+exports[`verbose renderer: prompt -> enquirer > should use the passed in enquirer > stderr 1`] = `[]`;
 
-exports[`verbose renderer: prompt -> enquirer should use the passed in enquirer: t3VXfqT0crsCYRzqYYWZGllN6oNARZcn-stdout 1`] = `
+exports[`verbose renderer: prompt -> enquirer > should use the passed in enquirer > stdout 1`] = `
 [
   "[33m[STARTED][39m This task will execute.
 ",

@@ -13,10 +13,8 @@ describe('default renderer: show subtasks', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // 8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ
   it('should be able to change collapse settings', async() => {
     await new Listr(
       [
@@ -61,6 +59,6 @@ describe('default renderer: show subtasks', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, '8TNRrm8bI9ndz4jrhYC492luGNhtMTmZ')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 })

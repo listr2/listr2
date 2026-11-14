@@ -1,64 +1,53 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-exit 1`] = `[]`;
+exports[`default renderer: task-enable > should enable task with general context > exit 1`] = `[]`;
 
-exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-stderr 1`] = `[]`;
-
-exports[`default renderer: task-enable should enable task with general context in subtasks: 2PeJ1GS5SrNdC7DXMv8nHAQNfire6UYB-stdout 1`] = `
+exports[`default renderer: task-enable > should enable task with general context > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will show subtasks.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-[2m◼[22m This task will show subtasks.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[2m◼[22m This task will show subtasks.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[?2026l",
-  "[?2026h[2m◼[22m This task will show subtasks.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This task will show subtasks.
-[?2026l",
-  "[?2026h[G[2K[G  [2m◼[22m This task will execute.
-[K[?2026l",
-  "[?2026h[1A[G[2K[G  [33m❯[39m This task will execute.[K
-[?2026l",
-  "[?2026h[1A[G[2K[G  [32m✔[39m This task will execute.[K
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will show subtasks.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m This task will show subtasks.
-[?2026l",
-  "[?25h",
+  "◼ This task will execute.",
+  "◼ This task will execute.
+◼ This task will never execute.",
+  "❯ This task will execute.
+◼ This task will never execute.",
+  "✔ This task will execute.
+◼ This task will never execute.",
+  "✔ This task will execute.",
+  "✔ This task will execute.
+◼ This task will never execute.",
+  "✔ This task will execute.",
 ]
 `;
 
-exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-exit 1`] = `[]`;
+exports[`default renderer: task-enable > should enable task with general context > stderr 1`] = `[]`;
 
-exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-stderr 1`] = `[]`;
+exports[`default renderer: task-enable > should enable task with general context in subtasks > exit 1`] = `[]`;
 
-exports[`default renderer: task-enable should enable task with general context: JeLYvYj1f4ddSjgwkUp7Nr8hICHLdEsU-stdout 1`] = `
+exports[`default renderer: task-enable > should enable task with general context in subtasks > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will execute.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will never execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will execute.
-[2m◼[22m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[2m◼[22m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will execute.
-[?2026l",
-  "[?2026h[2m◼[22m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[?2026l",
-  "[?25h",
+  "◼ This task will execute.",
+  "◼ This task will execute.
+◼ This task will show subtasks.",
+  "❯ This task will execute.
+◼ This task will show subtasks.",
+  "✔ This task will execute.
+◼ This task will show subtasks.",
+  "✔ This task will execute.",
+  "✔ This task will execute.
+◼ This task will show subtasks.",
+  "✔ This task will execute.
+❯ This task will show subtasks.",
+  "✔ This task will execute.
+❯ This task will show subtasks.
+  ◼ This task will execute.",
+  "✔ This task will execute.
+❯ This task will show subtasks.
+  ❯ This task will execute.",
+  "✔ This task will execute.
+❯ This task will show subtasks.
+  ✔ This task will execute.",
+  "✔ This task will execute.
+✔ This task will show subtasks.",
 ]
 `;
+
+exports[`default renderer: task-enable > should enable task with general context in subtasks > stderr 1`] = `[]`;

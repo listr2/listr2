@@ -1,18 +1,18 @@
-import { jest } from '@jest/globals'
-import * as fs from 'fs'
-import { mockProcessExit } from 'jest-mock-process'
+import type * as fs from 'fs'
 
 import type { ListrTaskWrapper } from '#root'
-import { FakeStty, VirtualTerminal } from '#tests/utils'
+import { FakeStty, VirtualTerminal, hang, range } from '#tests/utils'
 
 const stty = new FakeStty()
 
-jest.unstable_mockModule('child_process', () => ({ spawnSync: stty.spawnSync }))
-jest.unstable_mockModule('fs', () => ({ ...fs, readFileSync: stty.readFileSync(fs.readFileSync) }))
+vi.mock('child_process', () => ({ spawnSync: stty.spawnSync }))
+vi.mock('fs', async(original) => {
+  const actual = await original<typeof fs>()
+
+  return { ...actual, readFileSync: stty.readFileSync(actual.readFileSync) }
+})
 
 const { Listr, ListrLogger, ListrPromptAdapter, ProcessOutput, delay } = await import('#root')
-
-const range = <T>(count: number, format: (index: number) => T): T[] => Array.from({ length: count }, (_, index) => format(index))
 
 describe('default renderer: input', () => {
   let vt: VirtualTerminal
@@ -159,8 +159,8 @@ describe('default renderer: input', () => {
     it('should roll back and restore the echo on ctrl+c after a prompt', async() => {
       stty.install()
 
-      const exit = mockProcessExit()
-      const rollback = jest.fn()
+      const exit = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
+      const rollback = vi.fn()
 
       await new Listr(
         [
@@ -176,7 +176,7 @@ describe('default renderer: input', () => {
               // the terminal raises SIGINT for ctrl+c, since the lock leaves the keyboard signals on
               process.emit('SIGINT')
 
-              await new Promise<void>(() => undefined)
+              await hang()
             },
             rollback: async(): Promise<void> => {
               rollback()
@@ -196,7 +196,7 @@ describe('default renderer: input', () => {
     it('should never erase what the shell writes when the job stops, and lock the input again and draw the live region below it when the job continues', async() => {
       stty.install()
 
-      const kill = jest.spyOn(process, 'kill').mockImplementation(() => true)
+      const kill = vi.spyOn(process, 'kill').mockImplementation(() => true)
       const screen = vt.write
       let stopped: string[]
       let continued: { echo: boolean; content: string[] }
@@ -239,7 +239,7 @@ describe('default renderer: input', () => {
     it('should leave the terminal to the shell while the job runs in the background, and lock it again once it is back in the foreground', async() => {
       stty.install()
 
-      const kill = jest.spyOn(process, 'kill').mockImplementation(() => true)
+      const kill = vi.spyOn(process, 'kill').mockImplementation(() => true)
       let background: { echo: boolean; content: string[] }
       let foreground: boolean
 
@@ -258,7 +258,7 @@ describe('default renderer: input', () => {
 
               // `fg` sends no SIGCONT to a job that already runs
               stty.foreground = true
-              jest.spyOn(Date, 'now').mockReturnValue(Date.now() + 1000)
+              vi.spyOn(Date, 'now').mockReturnValue(Date.now() + 1000)
               task.title = 'running in the foreground'
               foreground = stty.echo
             }
@@ -273,7 +273,7 @@ describe('default renderer: input', () => {
       expect(stty.echo).toBe(true)
 
       kill.mockRestore()
-      jest.mocked(Date.now).mockRestore()
+      vi.mocked(Date.now).mockRestore()
     })
 
     it('should draw without locking the input while the job was started in the background, and lock it once it is in the foreground', async() => {
@@ -291,7 +291,7 @@ describe('default renderer: input', () => {
               background = { echo: stty.echo, content: await vt.content() }
 
               stty.foreground = true
-              jest.spyOn(Date, 'now').mockReturnValue(Date.now() + 1000)
+              vi.spyOn(Date, 'now').mockReturnValue(Date.now() + 1000)
               task.title = 'running in the foreground'
               foreground = stty.echo
             }
@@ -305,7 +305,7 @@ describe('default renderer: input', () => {
       expect(await vt.content()).toEqual(['✔ running in the foreground'])
       expect(stty.echo).toBe(true)
 
-      jest.mocked(Date.now).mockRestore()
+      vi.mocked(Date.now).mockRestore()
     })
 
     it('should not change the mode of the terminal when the job runs in the background until the end', async() => {

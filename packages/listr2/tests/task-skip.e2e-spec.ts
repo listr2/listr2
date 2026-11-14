@@ -11,7 +11,6 @@ describe('skip a task', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   it('should skip the task from internal call', async() => {
@@ -26,7 +25,7 @@ describe('skip a task', () => {
       { renderer: 'test' }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'xbUV7hvMZiVL4dEYDyiXKFhpTNo9ASiA')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should skip the task from skip method', async() => {
@@ -42,7 +41,7 @@ describe('skip a task', () => {
       { renderer: 'test' }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'uOy7d3bwwmW4LXWPY3HDh4k25LDwa5RZ')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('skip to enable by context will work properly in serial', async() => {
@@ -64,7 +63,7 @@ describe('skip a task', () => {
       { renderer: 'test', concurrent: false }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'CR5tEdrMVapfqwMjIa4nP1CgEYZu3tfc')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('skip to enable by context will not work properly in concurrent', async() => {
@@ -86,7 +85,7 @@ describe('skip a task', () => {
       { renderer: 'test', concurrent: true }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'WKhUc2IR0U5Hc7hKFuvFUq36ovxjyPy6')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it.each<[boolean | string, string]>([[true, 'Skipped task without a title.']])(
@@ -106,7 +105,7 @@ describe('skip a task', () => {
         { renderer: 'test' }
       ).run()
 
-      expectProcessOutputToMatchSnapshot(output, 'dKEmraxPfJH3cEj4bHeTsieEALbqcFIR')
+      await expectProcessOutputToMatchSnapshot(output)
     }
   )
 })

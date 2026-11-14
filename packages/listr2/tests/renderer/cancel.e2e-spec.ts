@@ -1,9 +1,6 @@
 import { delay, Listr } from '#root'
 import type { MockProcessOutput, RendererSetup } from '#tests/utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '#tests/utils'
-
-// keeps a task in-flight until the interruption races it out, without leaving a real timer alive past the test
-const hang = (): Promise<void> => new Promise<void>(() => undefined)
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP, hang } from '#tests/utils'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: cancel', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput
@@ -16,10 +13,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: cancel', (renderer, r
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE
   it('should render cancelled and rolled back tasks on interruption', async() => {
     await new Listr(
       [
@@ -56,10 +51,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: cancel', (renderer, r
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'Cn7xKp2RtLm4Wq8YvB0ZsJ5dF3gH9aE')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz
   it('should render a cancelled subtask tree on interruption', async() => {
     await new Listr(
       [
@@ -96,6 +90,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: cancel', (renderer, r
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'Nx4Jm8QrTp2WkD6cV0PbL5YfS9gH3aBz')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })

@@ -11,7 +11,7 @@
       "@tests/utils": ["../tests/utils/index"],
       "@root": ["../src/index"]
     },
-    "types": ["node", "jest"]
+    "types": ["node", "vitest/globals"]
   },
   "include": ["../src", "../tests"],
   "exclude": ["node_modules", "dist"]

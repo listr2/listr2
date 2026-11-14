@@ -11,7 +11,6 @@ describe('enable with context', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   describe('should be disabled', () => {
@@ -27,7 +26,7 @@ describe('enable with context', () => {
         { renderer: 'test' }
       ).run()
 
-      expectProcessOutputToMatchSnapshot(output, 'aJWDY40NUyBBGenLqPWsXO6NOncHTUSU')
+      await expectProcessOutputToMatchSnapshot(output)
     })
 
     it('with async function returning boolean', async() => {
@@ -42,7 +41,7 @@ describe('enable with context', () => {
         { renderer: 'test' }
       ).run()
 
-      expectProcessOutputToMatchSnapshot(output, 'QeoNcUfm5iAfZkWwttrc3l5dAB5LRvNx')
+      await expectProcessOutputToMatchSnapshot(output)
     })
   })
 
@@ -59,7 +58,7 @@ describe('enable with context', () => {
         { renderer: 'test' }
       ).run()
 
-      expectProcessOutputToMatchSnapshot(output, 'AebhVo1EK6MRCWEubovgNXHDo093g8YV')
+      await expectProcessOutputToMatchSnapshot(output)
     })
 
     it('with async function returning boolean', async() => {
@@ -74,7 +73,7 @@ describe('enable with context', () => {
         { renderer: 'test' }
       ).run()
 
-      expectProcessOutputToMatchSnapshot(output, 've1QT0lP54yGe3x0e6yPYfb2SVEDulCE')
+      await expectProcessOutputToMatchSnapshot(output)
     })
   })
 
@@ -97,7 +96,7 @@ describe('enable with context', () => {
         { renderer: 'test', concurrent: true }
       ).run()
 
-      expectProcessOutputToMatchSnapshot(output, 'jbyappoYDm16wG6ARf5qOnS8CgSjhd7S')
+      await expectProcessOutputToMatchSnapshot(output)
     })
 
     it('with an injected context', async() => {
@@ -114,7 +113,7 @@ describe('enable with context', () => {
         { renderer: 'test' }
       ).run(ctx)
 
-      expectProcessOutputToMatchSnapshot(output, 'TkhbH3NQuuZN39gvRmwhH6iB6ZrNrxDX')
+      await expectProcessOutputToMatchSnapshot(output)
     })
   })
 })

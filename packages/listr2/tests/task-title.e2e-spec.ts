@@ -14,7 +14,6 @@ describe('task: title', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   it('should change title on function', async() => {
@@ -30,7 +29,7 @@ describe('task: title', () => {
       { renderer: 'test' }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output)
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should change title on async function', async() => {
@@ -46,12 +45,12 @@ describe('task: title', () => {
       { renderer: 'test' }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output)
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should reset the title when it is set to undefined', async() => {
-    const title = jest.fn()
-    const reset = jest.fn()
+    const title = vi.fn()
+    const reset = vi.fn()
 
     await new Listr(
       [
@@ -80,8 +79,8 @@ describe('task: title', () => {
   })
 
   it('should reset the title when it is set to null', async() => {
-    const title = jest.fn()
-    const reset = jest.fn()
+    const title = vi.fn()
+    const reset = vi.fn()
 
     await new Listr(
       [
@@ -107,8 +106,8 @@ describe('task: title', () => {
   })
 
   it('should restore the title after it has been reset', async() => {
-    const title = jest.fn()
-    const reset = jest.fn()
+    const title = vi.fn()
+    const reset = vi.fn()
 
     await new Listr(
       [

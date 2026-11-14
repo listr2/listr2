@@ -12,7 +12,6 @@ describe('subtask nested handling', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   const tasks: ListrTask<any, any>[] = [
@@ -58,7 +57,7 @@ describe('subtask nested handling', () => {
       { concurrent: true, renderer: 'test' }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'JGkuFCkPH1hvpem4paRkCU0aYRKcyFAX')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should run serial on parent, concurrent on child', async() => {
@@ -73,6 +72,6 @@ describe('subtask nested handling', () => {
       { concurrent: false, renderer: 'test' }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'zFdEUbIjy1pWE2Me1Zk9EVxEcAcCVw5G')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 })

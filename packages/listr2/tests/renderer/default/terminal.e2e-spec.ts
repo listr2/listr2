@@ -1,14 +1,6 @@
-import { jest } from '@jest/globals'
-import { mockProcessExit } from 'jest-mock-process'
-
 import type { ListrTask } from '#root'
 import { Listr, ListrLogger, ProcessOutput, delay } from '#root'
-import { VirtualTerminal } from '#tests/utils'
-
-const range = <T>(count: number, format: (index: number) => T): T[] => Array.from({ length: count }, (_, index) => format(index))
-
-// keeps a task in-flight until the interruption races it out, without leaving a real timer alive past the test
-const hang = (): Promise<void> => new Promise<void>(() => undefined)
+import { VirtualTerminal, hang, range } from '#tests/utils'
 
 describe('default renderer: terminal', () => {
   let vt: VirtualTerminal
@@ -326,7 +318,7 @@ describe('default renderer: terminal', () => {
     const env = { ...process.env }
 
     // the figures are picked when the module loads
-    jest.resetModules()
+    vi.resetModules()
     Object.defineProperty(process, 'platform', { value: 'win32' })
 
     for (const name of ['LISTR_FORCE_UNICODE', 'CI', 'WT_SESSION', 'TERM_PROGRAM']) {
@@ -503,7 +495,7 @@ describe('default renderer: terminal', () => {
   it('should persist the whole list as cancelled on SIGINT', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
 
-    const exit = mockProcessExit()
+    const exit = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
 
     await new Listr(
       [

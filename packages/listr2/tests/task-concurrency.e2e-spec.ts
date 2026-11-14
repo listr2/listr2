@@ -1,7 +1,7 @@
 import type { ListrTask } from '#root'
 import { Listr, delay } from '#root'
 import type { MockProcessOutput } from '#tests/utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '#tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, range, unmockProcessOutput } from '#tests/utils'
 
 describe('concurrency', () => {
   const output: MockProcessOutput = {} as MockProcessOutput
@@ -12,7 +12,6 @@ describe('concurrency', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   const tasks: ListrTask<any, any>[] = [
@@ -48,16 +47,30 @@ describe('concurrency', () => {
   it('should run tasks in parallel', async() => {
     await new Listr(tasks, { concurrent: true, renderer: 'test' }).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'WKPv1yKZBa2LY7IStPAL9emHNpaTSsQQ')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it.each([1, 2, 3, 4])('should limit the concurrency: %d', async(concurrent) => {
-    await new Listr(tasks, { concurrent, renderer: 'test' }).run()
+    let running = 0
+    let peak = 0
+
+    await new Listr(
+      range(8, () => ({
+        task: async(): Promise<void> => {
+          peak = Math.max(peak, ++running)
+          await delay(10)
+          running--
+        }
+      })),
+      { concurrent, renderer: 'silent' }
+    ).run()
+
+    expect(peak).toBe(concurrent)
   })
 
   it('should run tasks sequentially', async() => {
     await new Listr(tasks, { concurrent: false, renderer: 'test' }).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'wqpFCLvXmbjnc3DNDBL76AWAK8uxEHlo')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 })

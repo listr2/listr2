@@ -1,9 +1,6 @@
 import type { MockProcessOutput } from './utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from './utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, hang } from './utils'
 import { Listr, delay } from '#root'
-
-// keeps a task in-flight until the interruption races it out, without leaving a real timer alive past the test
-const hang = (): Promise<void> => new Promise<void>(() => undefined)
 
 describe('signal handlers', () => {
   const output: MockProcessOutput = {} as MockProcessOutput
@@ -16,10 +13,8 @@ describe('signal handlers', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // LFRhPFJHChAJcQIEadkDdOlPezdltcfe
   it('should try to cancel running tasks', async() => {
     await new Listr(
       [
@@ -41,12 +36,11 @@ describe('signal handlers', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'LFRhPFJHChAJcQIEadkDdOlPezdltcfe')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   // https://github.com/listr2/listr2/issues/709 running this double seems to mess it somehow?
-  // ACxcRBILlHsqiSxYArjASFdofVqLaUyE
-  it('should try to cancel running tasks', async() => {
+  it('should try to cancel running tasks after another list has run', async() => {
     await new Listr(
       [
         {
@@ -81,10 +75,9 @@ describe('signal handlers', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'ACxcRBILlHsqiSxYArjASFdofVqLaUyE')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
-  // aQ9mZ2kR7wT4xB1nC6vL0pF3sD8gH5jU
   it('should run the rollback of a task when interrupted, not cancel it', async() => {
     let rolledBack = false
 
@@ -116,10 +109,9 @@ describe('signal handlers', () => {
     expect(rolledBack).toBe(true)
     expect(list.tasks[0].hasRolledBack()).toBe(true)
     expect(list.tasks[0].isCancelled()).toBe(false)
-    expectProcessOutputToMatchSnapshot(output, 'aQ9mZ2kR7wT4xB1nC6vL0pF3sD8gH5jU')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
-  // Bq7Kd2XpRn4YtM8LwZ0FsC6VjH3gA9Eu
   it('should still exit when the interrupted failure is swallowed by exitOnError false', async() => {
     await new Listr(
       [
@@ -143,10 +135,9 @@ describe('signal handlers', () => {
     ).run()
 
     expect(output.exit).toHaveBeenCalledWith(127)
-    expectProcessOutputToMatchSnapshot(output, 'Bq7Kd2XpRn4YtM8LwZ0FsC6VjH3gA9Eu')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
-  // Vw2NpT6RcX9KdL4mB1QsJ7ZfG0hY5aEi
   it('should still exit and rollback when exitAfterRollback is false', async() => {
     let rolledBack = false
 
@@ -176,7 +167,7 @@ describe('signal handlers', () => {
 
     expect(rolledBack).toBe(true)
     expect(output.exit).toHaveBeenCalledWith(127)
-    expectProcessOutputToMatchSnapshot(output, 'Vw2NpT6RcX9KdL4mB1QsJ7ZfG0hY5aEi')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should settle all concurrent sibling rollbacks before the parent rolls back', async() => {
@@ -234,7 +225,6 @@ describe('signal handlers', () => {
     expect(output.exit).toHaveBeenCalledWith(127)
   })
 
-  // Fn4Ld6WpQr8YtX2mB0KsJ5ZcV7hG3aEu
   it('should mark still-pending tasks as cancelled on interrupt', async() => {
     const list = new Listr(
       [
@@ -272,7 +262,7 @@ describe('signal handlers', () => {
 
     expect(list.tasks.every((task) => task.isCancelled() && task.hasFinalized() && !task.hasFailed())).toBe(true)
     expect(output.exit).toHaveBeenCalledWith(127)
-    expectProcessOutputToMatchSnapshot(output, 'Fn4Ld6WpQr8YtX2mB0KsJ5ZcV7hG3aEu')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should interrupt the run programmatically with cancel()', async() => {

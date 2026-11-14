@@ -1,8 +1,10 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`task: title should change title on async function 1`] = `[]`;
+exports[`task: title > should change title on async function > exit 1`] = `[]`;
 
-exports[`task: title should change title on async function 2`] = `
+exports[`task: title > should change title on async function > stderr 1`] = `[]`;
+
+exports[`task: title > should change title on async function > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"test","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["test"]}}
 ",
@@ -13,11 +15,11 @@ exports[`task: title should change title on async function 2`] = `
 ]
 `;
 
-exports[`task: title should change title on async function 3`] = `[]`;
+exports[`task: title > should change title on function > exit 1`] = `[]`;
 
-exports[`task: title should change title on function 1`] = `[]`;
+exports[`task: title > should change title on function > stderr 1`] = `[]`;
 
-exports[`task: title should change title on function 2`] = `
+exports[`task: title > should change title on function > stdout 1`] = `
 [
   "{"event":"STATE","data":"STARTED","task":{"hasRolledBack":false,"isRollingBack":false,"isCompleted":false,"isSkipped":false,"hasFinalized":false,"hasSubtasks":false,"title":"test","hasReset":false,"hasTitle":true,"isPrompt":false,"isPaused":false,"isPending":true,"isCancelled":false,"isStarted":true,"hasFailed":false,"isEnabled":true,"isRetrying":false,"path":["test"]}}
 ",
@@ -27,5 +29,3 @@ exports[`task: title should change title on function 2`] = `
 ",
 ]
 `;
-
-exports[`task: title should change title on function 3`] = `[]`;

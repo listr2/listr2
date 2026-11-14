@@ -1,16 +1,19 @@
-import { jest } from '@jest/globals'
-import * as fs from 'fs'
+import type * as fs from 'fs'
 
-import { FakeStty, VirtualTerminal } from '#tests/utils'
+import { FakeStty, VirtualTerminal, range } from '#tests/utils'
 
 const exitHandlers: (() => void)[] = []
 const stty = new FakeStty()
 
-jest.unstable_mockModule('child_process', () => ({ spawnSync: stty.spawnSync }))
-jest.unstable_mockModule('fs', () => ({ ...fs, readFileSync: stty.readFileSync(fs.readFileSync) }))
+vi.mock('child_process', () => ({ spawnSync: stty.spawnSync }))
+vi.mock('fs', async(original) => {
+  const actual = await original<typeof fs>()
+
+  return { ...actual, readFileSync: stty.readFileSync(actual.readFileSync) }
+})
 
 // signal-exit would exit the test process, so capture what runs on exit instead
-jest.unstable_mockModule('signal-exit', () => ({
+vi.mock('signal-exit', () => ({
   onExit: (handler: () => void): (() => void) => {
     exitHandlers.push(handler)
 
@@ -21,8 +24,6 @@ jest.unstable_mockModule('signal-exit', () => ({
 }))
 
 const { ANSI_ESCAPE_CODES, ProcessOutput } = await import('#root')
-
-const range = <T>(count: number, format: (index: number) => T): T[] => Array.from({ length: count }, (_, index) => format(index))
 
 describe('process output', () => {
   let vt: VirtualTerminal

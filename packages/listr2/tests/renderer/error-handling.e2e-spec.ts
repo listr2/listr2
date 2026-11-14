@@ -13,10 +13,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf
   it('should throw out an error', async() => {
     let err: Error
 
@@ -48,10 +46,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
     }
 
     expect(err).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, 'vxSr6uKuGeO4iX7r2j2Uo9SYlXRhz6nf')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl
   it('should not throw out an error when exitonerror is disabled', async() => {
     let err: Error
 
@@ -83,10 +80,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
     }
 
     expect(err).toBeFalsy()
-    expectProcessOutputToMatchSnapshot(output, 'OgQG0pbo8qgn5ZD8TLdlzM3HnnnYoozl')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO
   it('should change exit on error per subtask', async() => {
     let err: Error
 
@@ -139,10 +135,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
     }
 
     expect(err).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, 'HUHzWgxW8O1FGgEisITyBb2eDKzmyhUO')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM
   it('should contain errors from failed tasks', async() => {
     let err: Error
     const task: Listr<any, any, any> = new Listr(
@@ -197,7 +192,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
     }
 
     expect(err).toBeTruthy()
-    expect(task.errors).toMatchSnapshot('H2KTg7q5F1kWMtrPFdOERVSZc3UT2IsM')
+    expect(task.errors).toMatchSnapshot()
   })
 
   it.each([true, false])('should disable exitOnError from task level while: %s', async(exitOnError) => {
@@ -237,6 +232,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: error handling', (ren
       expect(err).toBeFalsy()
     }
 
-    expectProcessOutputToMatchSnapshot(output, 'Y9ADBbD3GX6P6HIKGTdeHybvNK4OPw37')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })

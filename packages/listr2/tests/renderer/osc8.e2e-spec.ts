@@ -18,7 +18,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: osc-8', (renderer, re
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   function content(): string {
@@ -37,7 +36,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: osc-8', (renderer, re
       .join('')
   }
 
-  // GuVrX0HJ82h7aCSBxfdRJm3LbCJ1scU4
   it('should preserve a bell-terminated osc-8 hyperlink', async() => {
     await new Listr(
       [
@@ -59,10 +57,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: osc-8', (renderer, re
     expect(written).toContain(`${ESC}]8;;https://listr2.kilic.dev`)
     expect(written).toContain(`${ESC}]8;;${BEL}`)
 
-    expectProcessOutputToMatchSnapshot(output, 'GuVrX0HJ82h7aCSBxfdRJm3LbCJ1scU4')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // k9Fj0ZFCmcutR9qKoIYBHDNGAzhDAjWP
   it('should preserve a hyperlink wrapped in sgr colors', async() => {
     await new Listr(
       [
@@ -86,10 +83,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: osc-8', (renderer, re
     expect(written).toContain(`${ESC}[32m`)
     expect(written).toContain(`${ESC}[39m`)
 
-    expectProcessOutputToMatchSnapshot(output, 'k9Fj0ZFCmcutR9qKoIYBHDNGAzhDAjWP')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // GIuPLb3vSEkIj8naBxgBbLow2xt0ZGky
   it('should strip an injected cursor code next to a hyperlink', async() => {
     await new Listr(
       [
@@ -116,7 +112,7 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: osc-8', (renderer, re
       expect(written).not.toContain(`${ESC}[2K${ESC}]8;;`)
     }
 
-    expectProcessOutputToMatchSnapshot(output, 'GIuPLb3vSEkIj8naBxgBbLow2xt0ZGky')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })
 

@@ -11,7 +11,6 @@ describe('fallback renderer', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   it('should fallback renderer with function', async() => {

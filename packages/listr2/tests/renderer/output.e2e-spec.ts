@@ -13,10 +13,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: output', (renderer, r
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // rMG224TBrLk3ocYtKidc1D4AyZtEHm11
   it('should yield example output', async() => {
     await new Listr(
       [
@@ -37,6 +35,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: output', (renderer, r
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'rMG224TBrLk3ocYtKidc1D4AyZtEHm11')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })

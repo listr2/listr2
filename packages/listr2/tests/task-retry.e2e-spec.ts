@@ -13,13 +13,13 @@ describe('task retry', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   })
 
   describe('fail', () => {
     it('should fail the task without using the remaining retries', async() => {
       const error = new Error('fatal')
-      const fn = jest.fn(async(_, task) => task.fail(error))
+      const fn = vi.fn(async(_, task) => task.fail(error))
       const listr = new Listr([{ task: fn, retry: 5 }], { renderer: 'silent', collectErrors: true })
 
       await expect(listr.run()).rejects.toBe(error)
@@ -33,7 +33,7 @@ describe('task retry', () => {
 
     it('should fail from a synchronous task', async() => {
       const error = new Error('fatal')
-      const fn = jest.fn((_, task) => task.fail(error))
+      const fn = vi.fn((_, task) => task.fail(error))
 
       await expect(new Listr([{ task: fn, retry: 5 }], { renderer: 'silent' }).run()).rejects.toBe(error)
 
@@ -42,7 +42,7 @@ describe('task retry', () => {
 
     it('should still retry thrown errors before the task fails itself', async() => {
       const error = new Error('fatal')
-      const fn = jest.fn(async(_, task) => {
+      const fn = vi.fn(async(_, task) => {
         if (task.isRetrying().count < 2) {
           throw new Error('not yet')
         }
@@ -58,7 +58,7 @@ describe('task retry', () => {
     })
 
     it('should retry thrown errors with all the retries', async() => {
-      const fn = jest.fn(async() => {
+      const fn = vi.fn(async() => {
         throw new Error('not yet')
       })
 
@@ -122,8 +122,8 @@ describe('task retry', () => {
 
     it('should roll back the task with the given error', async() => {
       const error = new Error('fatal')
-      const fn = jest.fn(async(_, task) => task.fail(error))
-      const rollback = jest.fn(async(): Promise<void> => {})
+      const fn = vi.fn(async(_, task) => task.fail(error))
+      const rollback = vi.fn(async(): Promise<void> => {})
       const listr = new Listr(
         [
           {
@@ -145,7 +145,7 @@ describe('task retry', () => {
 
     it('should fail the task when task.fail is thrown', async() => {
       const error = new Error('fatal')
-      const fn = jest.fn(async(_, task): Promise<void> => {
+      const fn = vi.fn(async(_, task): Promise<void> => {
         throw task.fail(error)
       })
       const listr = new Listr([{ task: fn, retry: 5 }], { renderer: 'silent', collectErrors: true })
@@ -158,8 +158,8 @@ describe('task retry', () => {
 
     it('should not stop the retries of the parent when a subtask fails itself', async() => {
       const error = new Error('fatal')
-      const child = jest.fn(async(_, task): Promise<ListrTaskFailure> => task.fail(error))
-      const parent = jest.fn((_, task) => task.newListr([{ task: child, retry: 5 }]))
+      const child = vi.fn(async(_, task): Promise<ListrTaskFailure> => task.fail(error))
+      const parent = vi.fn((_, task) => task.newListr([{ task: child, retry: 5 }]))
 
       await expect(new Listr([{ task: parent, retry: 2 }], { renderer: 'silent' }).run()).rejects.toBe(error)
 
@@ -178,11 +178,11 @@ describe('task retry', () => {
 
   describe('delay', () => {
     it('should evaluate the delay callback before every retry', async() => {
-      const pause = jest.spyOn(Task.prototype, 'pause')
+      const pause = vi.spyOn(Task.prototype, 'pause')
       const ctx = { base: 1 }
       const errors = [new Error('1'), new Error('2'), new Error('3')]
-      const retryDelay = jest.fn(({ count }, { base }: { base: number }) => base * 2 ** (count - 1))
-      const fn = jest.fn(async(_, task) => {
+      const retryDelay = vi.fn(({ count }, { base }: { base: number }) => base * 2 ** (count - 1))
+      const fn = vi.fn(async(_, task) => {
         throw errors[task.isRetrying().count]
       })
 
@@ -197,8 +197,8 @@ describe('task retry', () => {
     })
 
     it('should await an asynchronous delay callback', async() => {
-      const pause = jest.spyOn(Task.prototype, 'pause')
-      const fn = jest.fn(async() => {
+      const pause = vi.spyOn(Task.prototype, 'pause')
+      const fn = vi.fn(async() => {
         throw new Error('not yet')
       })
 
@@ -209,8 +209,8 @@ describe('task retry', () => {
     })
 
     it('should not pause when the delay callback returns zero', async() => {
-      const pause = jest.spyOn(Task.prototype, 'pause')
-      const fn = jest.fn(async() => {
+      const pause = vi.spyOn(Task.prototype, 'pause')
+      const fn = vi.fn(async() => {
         throw new Error('not yet')
       })
 
@@ -222,7 +222,7 @@ describe('task retry', () => {
 
     it('should fail the task with the error of the delay callback', async() => {
       const error = new Error('delay')
-      const fn = jest.fn(async() => {
+      const fn = vi.fn(async() => {
         throw new Error('not yet')
       })
       const listr = new Listr(
@@ -252,10 +252,10 @@ describe('task retry', () => {
 
     it('should not hang on a pending delay callback when interrupted', async() => {
       const error = new Error('attempt')
-      const fn = jest.fn(async(): Promise<void> => {
+      const fn = vi.fn(async(): Promise<void> => {
         throw error
       })
-      const rollback = jest.fn(async(): Promise<void> => {})
+      const rollback = vi.fn(async(): Promise<void> => {})
       let started: () => void
       const pending = new Promise<void>((resolve) => {
         started = resolve
@@ -296,7 +296,7 @@ describe('task retry', () => {
       const pending = new Promise<void>((resolve) => {
         started = resolve
       })
-      const parent = jest.fn((_, task) =>
+      const parent = vi.fn((_, task) =>
         task.newListr([
           {
             task: async(): Promise<void> => {
@@ -335,10 +335,10 @@ describe('task retry', () => {
 
     it('should keep the error of the attempt when the delay callback throws after an interrupt', async() => {
       const error = new Error('attempt')
-      const fn = jest.fn(async(): Promise<void> => {
+      const fn = vi.fn(async(): Promise<void> => {
         throw error
       })
-      const rollback = jest.fn(async(): Promise<void> => {})
+      const rollback = vi.fn(async(): Promise<void> => {})
       const listr = new Listr(
         [
           {
@@ -366,8 +366,8 @@ describe('task retry', () => {
     })
 
     it('should keep pausing with a numeric delay', async() => {
-      const pause = jest.spyOn(Task.prototype, 'pause')
-      const fn = jest.fn(async() => {
+      const pause = vi.spyOn(Task.prototype, 'pause')
+      const fn = vi.fn(async() => {
         throw new Error('not yet')
       })
 

@@ -14,10 +14,8 @@ describe('observable as task', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // SM8IHVdptzrFs7Qk2bseYbdCwtTf03QT
   it('should work with returning a observable from task', async() => {
     await new Listr(
       [
@@ -38,10 +36,9 @@ describe('observable as task', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'H2L4DnyiqkFuyBKwvsX6ytONqKmaxUBm')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
-  // SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF
   it('should work with returning a zen-observable from task', async() => {
     await new Listr(
       [
@@ -62,6 +59,6 @@ describe('observable as task', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'SVzTyDOzNFqljREVfOCNrLvKsTIXtRJF')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 })

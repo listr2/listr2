@@ -1,17 +1,13 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`default renderer: option: line wrap should skip empty lines false: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-exit 1`] = `[]`;
+exports[`default renderer: option: line wrap > should skip empty lines false > exit 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should skip empty lines false: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-stderr 1`] = `[]`;
-
-exports[`default renderer: option: line wrap should skip empty lines false: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-stdout 1`] = `
+exports[`default renderer: option: line wrap > should skip empty lines false > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This will skip empty lines on output: false
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This will skip empty lines on output: false
-[?2026l",
-  "[?2026h[G[2K[G  › THIS IS A LONG LONG MESSAGE
+  "◼ This will skip empty lines on output: false",
+  "❯ This will skip empty lines on output: false",
+  "❯ This will skip empty lines on output: false
+  › THIS IS A LONG LONG MESSAGE
 
 
     AGE
@@ -22,28 +18,21 @@ exports[`default renderer: option: line wrap should skip empty lines false: lEAj
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This will skip empty lines on output: false
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m This will skip empty lines on output: false
-[?2026l",
-  "[?25h",
+    THIS IS A LONG LONG MESSAGE",
+  "✔ This will skip empty lines on output: false",
 ]
 `;
 
-exports[`default renderer: option: line wrap should skip empty lines true: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-exit 1`] = `[]`;
+exports[`default renderer: option: line wrap > should skip empty lines false > stderr 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should skip empty lines true: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-stderr 1`] = `[]`;
+exports[`default renderer: option: line wrap > should skip empty lines true > exit 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should skip empty lines true: lEAjB2T3MtNUO3ufIOFMvwZ6eLpeIfhx-stdout 1`] = `
+exports[`default renderer: option: line wrap > should skip empty lines true > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This will skip empty lines on output: true
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This will skip empty lines on output: true
-[?2026l",
-  "[?2026h[G[2K[G  › THIS IS A LONG LONG MESSAGE
+  "◼ This will skip empty lines on output: true",
+  "❯ This will skip empty lines on output: true",
+  "❯ This will skip empty lines on output: true
+  › THIS IS A LONG LONG MESSAGE
     AGE
     THIS ISESSAGE
     THIS IG LONG MESSAGE
@@ -52,49 +41,33 @@ exports[`default renderer: option: line wrap should skip empty lines true: lEAjB
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This will skip empty lines on output: true
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m This will skip empty lines on output: true
-[?2026l",
-  "[?25h",
+    THIS IS A LONG LONG MESSAGE",
+  "✔ This will skip empty lines on output: true",
 ]
 `;
 
-exports[`default renderer: option: line wrap should truncate long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-exit 1`] = `[]`;
+exports[`default renderer: option: line wrap > should skip empty lines true > stderr 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should truncate long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-exit 2`] = `[]`;
+exports[`default renderer: option: line wrap > should truncate long strings > exit 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should truncate long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stderr 1`] = `[]`;
+exports[`default renderer: option: line wrap > should truncate long strings > exit 2`] = `[]`;
 
-exports[`default renderer: option: line wrap should truncate long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stderr 2`] = `[]`;
-
-exports[`default renderer: option: line wrap should truncate long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stdout 1`] = `
+exports[`default renderer: option: line wrap > should truncate long strings > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will with formating the output with truncate output.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This task will with formating the output with truncate output.
-[?2026l",
-  "[?2026h[G[2K[G  › THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LO…
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m This task will with formating the output with truncate output.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m This task will with formating the output with truncate output.
-[?2026l",
-  "[?25h",
+  "◼ This task will with formating the output with truncate output.",
+  "❯ This task will with formating the output with truncate output.",
+  "❯ This task will with formating the output with truncate output.
+  › THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LO…",
+  "✔ This task will with formating the output with truncate output.",
 ]
 `;
 
-exports[`default renderer: option: line wrap should truncate long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stdout 2`] = `
+exports[`default renderer: option: line wrap > should truncate long strings > screen 2`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will with formating the output with truncate output.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This task will with formating the output with truncate output.
-[?2026l",
-  "[?2026h[G[2K[G  › THIS IS A LONG LONG MESSAGE
+  "◼ This task will with formating the output with truncate output.",
+  "❯ This task will with formating the output with truncate output.",
+  "❯ This task will with formating the output with truncate output.
+  › THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
@@ -105,45 +78,56 @@ exports[`default renderer: option: line wrap should truncate long strings: 31Xbk
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will with formating the output with truncate output.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m This task will with formating the output with truncate output.
-[?2026l",
-  "[?25h",
+    THIS IS A LONG LONG MESSAGE",
+  "✔ This task will with formating the output with truncate output.",
 ]
 `;
 
-exports[`default renderer: option: line wrap should truncate long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-exit 1`] = `[]`;
+exports[`default renderer: option: line wrap > should truncate long strings > stderr 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should truncate long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-exit 2`] = `[]`;
+exports[`default renderer: option: line wrap > should truncate long strings > stderr 2`] = `[]`;
 
-exports[`default renderer: option: line wrap should truncate long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stderr 1`] = `[]`;
+exports[`default renderer: option: line wrap > should truncate long titles > exit 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should truncate long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stderr 2`] = `[]`;
+exports[`default renderer: option: line wrap > should truncate long titles > exit 2`] = `[]`;
 
-exports[`default renderer: option: line wrap should truncate long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stdout 1`] = `
+exports[`default renderer: option: line wrap > should truncate long titles > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-[?2026l",
-  "[?2026h[G[2K[G  › This task will with formating the title with truncate output.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
-[?2026l",
-  "[?25h",
+  "◼ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…",
+  "❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…",
+  "❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…
+  › This task will with formating the title with truncate output.",
+  "✔ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG…",
 ]
 `;
 
-exports[`default renderer: option: line wrap should truncate long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stdout 2`] = `
+exports[`default renderer: option: line wrap > should truncate long titles > screen 2`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m THIS IS A LONG LONG MESSAGE
+  "◼ THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE",
+  "❯ THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE",
+  "❯ THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
@@ -155,8 +139,8 @@ exports[`default renderer: option: line wrap should truncate long titles: effxCy
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m THIS IS A LONG LONG MESSAGE
+  › This task will with formating the title with truncate output.",
+  "✔ THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
@@ -167,77 +151,38 @@ exports[`default renderer: option: line wrap should truncate long titles: effxCy
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[G[2K[G  › This task will with formating the title with truncate output.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?25h",
+  THIS IS A LONG LONG MESSAGE",
 ]
 `;
 
-exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-exit 1`] = `[]`;
+exports[`default renderer: option: line wrap > should truncate long titles > stderr 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-exit 2`] = `[]`;
+exports[`default renderer: option: line wrap > should truncate long titles > stderr 2`] = `[]`;
 
-exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stderr 1`] = `[]`;
+exports[`default renderer: option: line wrap > should wrap long strings > exit 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stderr 2`] = `[]`;
+exports[`default renderer: option: line wrap > should wrap long strings > exit 2`] = `[]`;
 
-exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stdout 1`] = `
+exports[`default renderer: option: line wrap > should wrap long strings > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will with formating the output with wrap output.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This task will with formating the output with wrap output.
-[?2026l",
-  "[?2026h[G[2K[G  › THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
+  "◼ This task will with formating the output with wrap output.",
+  "❯ This task will with formating the output with wrap output.",
+  "❯ This task will with formating the output with wrap output.
+  › THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
     LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
      A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
      THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-     MESSAGE THIS IS A LONG LONG MESSAGE
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will with formating the output with wrap output.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m This task will with formating the output with wrap output.
-[?2026l",
-  "[?25h",
+     MESSAGE THIS IS A LONG LONG MESSAGE",
+  "✔ This task will with formating the output with wrap output.",
 ]
 `;
 
-exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zzsfDqlG3p8uAIotvBXNr92hA-stdout 2`] = `
+exports[`default renderer: option: line wrap > should wrap long strings > screen 2`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will with formating the output with wrap output.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[33m❯[39m This task will with formating the output with wrap output.
-[?2026l",
-  "[?2026h[G[2K[G  › THIS IS A LONG LONG MESSAGE
+  "◼ This task will with formating the output with wrap output.",
+  "❯ This task will with formating the output with wrap output.",
+  "❯ This task will with formating the output with wrap output.
+  › THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
@@ -248,61 +193,72 @@ exports[`default renderer: option: line wrap should wrap long strings: 31Xbkp3zz
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
     THIS IS A LONG LONG MESSAGE
-    THIS IS A LONG LONG MESSAGE
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m This task will with formating the output with wrap output.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[32m✔[39m This task will with formating the output with wrap output.
-[?2026l",
-  "[?25h",
+    THIS IS A LONG LONG MESSAGE",
+  "✔ This task will with formating the output with wrap output.",
 ]
 `;
 
-exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-exit 1`] = `[]`;
+exports[`default renderer: option: line wrap > should wrap long strings > stderr 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-exit 2`] = `[]`;
+exports[`default renderer: option: line wrap > should wrap long strings > stderr 2`] = `[]`;
 
-exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stderr 1`] = `[]`;
+exports[`default renderer: option: line wrap > should wrap long titles > exit 1`] = `[]`;
 
-exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stderr 2`] = `[]`;
+exports[`default renderer: option: line wrap > should wrap long titles > exit 2`] = `[]`;
 
-exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stdout 1`] = `
+exports[`default renderer: option: line wrap > should wrap long titles > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
+  "◼ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
+  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
+   LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
+  A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE",
+  "❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
+  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
+   LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
+  A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE",
+  "❯ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
   MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
    LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
   A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
+  › This task will with formating the title with wrap output.",
+  "✔ THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
   MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
    LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
   A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[G[2K[G  › This task will with formating the title with wrap output.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
-   LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
-  A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG
-  MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG
-   LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS
-  A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?25h",
+  THIS IS A LONG LONG MESSAGE",
 ]
 `;
 
-exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0UwCvij5FA2kc2XllnFtU4B-stdout 2`] = `
+exports[`default renderer: option: line wrap > should wrap long titles > screen 2`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m THIS IS A LONG LONG MESSAGE
+  "◼ THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE",
+  "❯ THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE
+  THIS IS A LONG LONG MESSAGE",
+  "❯ THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
@@ -314,8 +270,8 @@ exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[33m❯[39m THIS IS A LONG LONG MESSAGE
+  › This task will with formating the title with wrap output.",
+  "✔ THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
@@ -326,36 +282,10 @@ exports[`default renderer: option: line wrap should wrap long titles: effxCyY3v0
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
   THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[G[2K[G  › This task will with formating the title with wrap output.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[32m✔[39m THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-  THIS IS A LONG LONG MESSAGE
-[?2026l",
-  "[?25h",
+  THIS IS A LONG LONG MESSAGE",
 ]
 `;
+
+exports[`default renderer: option: line wrap > should wrap long titles > stderr 1`] = `[]`;
+
+exports[`default renderer: option: line wrap > should wrap long titles > stderr 2`] = `[]`;

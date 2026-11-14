@@ -13,10 +13,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: parent task access', 
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // nvFwliir81dQSzoa7xPXaq0E1lauH674
   it('should be able to change the title of parent from subtask', async() => {
     await new Listr(
       [
@@ -45,6 +43,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: parent task access', 
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'nvFwliir81dQSzoa7xPXaq0E1lauH674')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })

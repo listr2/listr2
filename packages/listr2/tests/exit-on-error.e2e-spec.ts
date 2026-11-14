@@ -11,7 +11,6 @@ describe('exit on error', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
   it('should throw out an error when exit on error is disabled', async() => {
@@ -42,7 +41,7 @@ describe('exit on error', () => {
 
     expect(crash).toBeTruthy()
     expect(result).toBeFalsy()
-    expectProcessOutputToMatchSnapshot(output, 'LzVmO4zGsDmmp1zbNsmTMjuiKEGFFPSM')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should contunie execution while exit on error is disabled', async() => {
@@ -65,7 +64,7 @@ describe('exit on error', () => {
     const result = await task.run()
 
     expect(result).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, 'EjYNt9Z2RtF4tqNsJ5PmTfYGhP6R70OH')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should contunie execution while exit on error is disabled in subtask', async() => {
@@ -91,7 +90,7 @@ describe('exit on error', () => {
     const result = await task.run()
 
     expect(result).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, 'MNdM4qgvgd0A43ALVQPcEa8EBq7wHja3')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should contunie execution while exit on error is disabled in parenttask', async() => {
@@ -150,7 +149,7 @@ describe('exit on error', () => {
 
     expect(crash).toBeTruthy()
     expect(result).toBeFalsy()
-    expectProcessOutputToMatchSnapshot(output, '4R3XUruBArL7ZBSS1X6VlufOYH9cSAo8')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 
   it('should throw out an error if subtask in subtask fails while exit on error is disabled', async() => {
@@ -189,6 +188,6 @@ describe('exit on error', () => {
 
     expect(crash).toBeTruthy()
     expect(result).toBeFalsy()
-    expectProcessOutputToMatchSnapshot(output, 'cAcT7aLZ2rDDFDH6EllJjYaG4mTe7Rrb')
+    await expectProcessOutputToMatchSnapshot(output)
   })
 })

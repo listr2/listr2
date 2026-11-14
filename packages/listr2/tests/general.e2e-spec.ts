@@ -91,14 +91,13 @@ describe('show output from task', () => {
     expect(ctx.test2).toBe(true)
   })
 
-  // Jest timeout does not work here as cloneObject(ctx) is eating up all cpu
-  // cycles, i.e. the stack frame take a long time to complete.
+  // the test timeout cannot interrupt the synchronous clone, so the duration is asserted instead
   it('should not take an unreasonable amount of time to clone a large ctx object during error collection', async() => {
     const ctx = createLargeNestedObject(6, 8) // About 20Mb
     const start = Date.now()
 
-    try {
-      await new Listr(
+    await expect(
+      new Listr(
         [
           {
             title: 'This task will fail.',
@@ -112,22 +111,20 @@ describe('show output from task', () => {
           renderer: 'silent'
         }
       ).run(ctx)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch(_: any) {
-      // Ignore
-    }
+    ).rejects.toThrow('This task failed.')
+
     const end = Date.now()
 
     expect(end - start).toBeLessThan(10000)
   })
-})
 
-function createLargeNestedObject(depth: number, branches: number): Record<PropertyKey, any> {
-  const obj: Record<PropertyKey, any> = {}
+  function createLargeNestedObject(depth: number, branches: number): Record<PropertyKey, any> {
+    const obj: Record<PropertyKey, any> = {}
 
-  for (let i = 0; i < branches; ++i) {
-    obj['k' + i] = depth === 0 ? 'v' : createLargeNestedObject(depth - 1, branches)
+    for (let i = 0; i < branches; ++i) {
+      obj['k' + i] = depth === 0 ? 'v' : createLargeNestedObject(depth - 1, branches)
+    }
+
+    return obj
   }
-
-  return obj
-}
+})

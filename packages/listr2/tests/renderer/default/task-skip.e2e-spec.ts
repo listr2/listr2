@@ -13,10 +13,8 @@ describe('default renderer: task-skip', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // 7IvF8C3RevPE0cdsG7QZonUN1JS26n0N
   it('should not collapse skip message', async() => {
     await new Listr(
       [
@@ -39,10 +37,9 @@ describe('default renderer: task-skip', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, '7IvF8C3RevPE0cdsG7QZonUN1JS26n0N')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB
   it('should skip without a suffix', async() => {
     await new Listr(
       [
@@ -59,10 +56,9 @@ describe('default renderer: task-skip', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'omE6UjDQWFXPCa7F8rNE7ByEXsllnMAB')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // c4Q9Hk2x725caX6F6qXGMgyUQh36HQls
   it('should show the original title of the task', async() => {
     await new Listr(
       [
@@ -79,10 +75,9 @@ describe('default renderer: task-skip', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'c4Q9Hk2x725caX6F6qXGMgyUQh36HQls')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // 3n2w67J8KnAihH5KaGDGnHe2O9xawvnx
   it('should show the original title of the task when skipped with empty message', async() => {
     await new Listr(
       [
@@ -99,6 +94,6 @@ describe('default renderer: task-skip', () => {
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, '3n2w67J8KnAihH5KaGDGnHe2O9xawvnx')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 })

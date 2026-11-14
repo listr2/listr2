@@ -21,11 +21,8 @@ describe('default renderer: output buffer listeners', () => {
 
   afterEach(() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // a finalized task used to have its output buffer re-created — and its output/state listeners re-attached — on every
-  // render, leaking without bound when another task streamed to task.output at a high rate over a long run
   it('should not re-attach output listeners to a finalized task while another streams output', async() => {
     const task = new Listr(
       [

@@ -7,7 +7,7 @@
     "module": "ESNext",
     "target": "ESNext",
     "resolveJsonModule": true,
-    "types": ["node", "jest"]
+    "types": ["node", "vitest/globals"]
   },
   "include": ["../src", "../tests"],
   "exclude": ["node_modules", "dist"]

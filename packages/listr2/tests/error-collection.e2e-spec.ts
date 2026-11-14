@@ -339,7 +339,6 @@ describe('error collection', () => {
     expect(crash).toBeFalsy()
     expect(task.errors.length).toBe(3)
     expect(task.errors.map((error) => error.message)).toStrictEqual(['1', '2', '3'])
-    // the context is no longer cloned into the collected errors
     expect(task.errors.every((error) => !('ctx' in error))).toBe(true)
   })
 

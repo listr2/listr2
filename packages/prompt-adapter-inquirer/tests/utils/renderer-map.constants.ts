@@ -1,6 +1,6 @@
-import type { ListrDefaultRendererValue, ListrVerboseRendererValue, ListrGetRendererOptions, ListrRendererValue, ListrSimpleRendererValue, ListrTestRendererValue } from 'listr2'
+import type { ListrDefaultRendererValue, ListrVerboseRendererValue, ListrGetRendererOptions, ListrSimpleRendererValue, ListrTestRendererValue } from 'listr2'
 
-export type RendererSetup = [ListrRendererValue, ListrGetRendererOptions<ListrRendererValue>]
+import type { RendererSetup } from './renderer-map.interface'
 
 export const RENDERER_SETUP: RendererSetup[] = [
   ['default', { lazy: true } satisfies ListrGetRendererOptions<ListrDefaultRendererValue>],

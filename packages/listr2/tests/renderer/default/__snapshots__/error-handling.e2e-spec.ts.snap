@@ -1,59 +1,44 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-exit 1`] = `[]`;
+exports[`default renderer: error handling > should show the default task title when failed with showErrorMessage of > exit 1`] = `[]`;
 
-exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-stderr 1`] = `[]`;
-
-exports[`default renderer: error handling should show the default task title when failed with showErrorMessage of: lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH-stdout 1`] = `
+exports[`default renderer: error handling > should show the default task title when failed with showErrorMessage of > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will fail.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will never execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
-[2m◼[22m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
-[31m◼[39m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
-[?2026l",
-  "[?2026h[31m◼[39m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[31m◼[39m This task will never execute.
-[?2026l",
-  "[?25h",
+  "◼ This task will fail.",
+  "◼ This task will fail.
+◼ This task will never execute.",
+  "❯ This task will fail.
+◼ This task will never execute.",
+  "✖ This task will fail.
+◼ This task will never execute.",
+  "✖ This task will fail.",
+  "✖ This task will fail.
+◼ This task will never execute.",
 ]
 `;
 
-exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-exit 1`] = `[]`;
+exports[`default renderer: error handling > should show the default task title when failed with showErrorMessage of > stderr 1`] = `[]`;
 
-exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-stderr 1`] = `[]`;
+exports[`default renderer: error handling > should throw out an error in the data field with collapse errors false > exit 1`] = `[]`;
 
-exports[`default renderer: error handling should throw out an error in the data field with collapse errors false: 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H-stdout 1`] = `
+exports[`default renderer: error handling > should throw out an error in the data field with collapse errors false > screen 1`] = `
 [
-  "[?25l",
-  "[?2026h[2m◼[22m This task will fail.
-[?2026l",
-  "[?2026h[G[2K[G[2m◼[22m This task will never execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[33m❯[39m This task will fail.
-[2m◼[22m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
-[31m◼[39m This task will never execute.
-[?2026l",
-  "[?2026h[1A[G[2K[1B[2K[1A[G  › This task failed after 2 seconds.
-[31m◼[39m This task will never execute.
-[K[?2026l",
-  "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[31m✖[39m This task will fail.
+  "◼ This task will fail.",
+  "◼ This task will fail.
+◼ This task will never execute.",
+  "❯ This task will fail.
+◼ This task will never execute.",
+  "✖ This task will fail.
+◼ This task will never execute.",
+  "✖ This task will fail.
   › This task failed after 2 seconds.
-[?2026l",
-  "[?2026h[31m◼[39m This task will never execute.
-[?2026l",
-  "[?2026h[2K[1A[2K[G[31m◼[39m This task will never execute.
-[?2026l",
-  "[?25h",
+◼ This task will never execute.",
+  "✖ This task will fail.
+  › This task failed after 2 seconds.",
+  "✖ This task will fail.
+  › This task failed after 2 seconds.
+◼ This task will never execute.",
 ]
 `;
+
+exports[`default renderer: error handling > should throw out an error in the data field with collapse errors false > stderr 1`] = `[]`;

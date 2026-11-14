@@ -13,10 +13,8 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: task-skip', (renderer
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F
   it('should skip from internal function', async() => {
     await new Listr(
       [
@@ -34,10 +32,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: task-skip', (renderer
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'ws7S3nDQgIm3rqk7S8Z1z9NgWUWyqx6F')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // 8KLp76vGVlGdzoy4HztCYcYe2coxpO7e
   it('should skip from context', async() => {
     await new Listr(
       [
@@ -61,10 +58,9 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: task-skip', (renderer
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, '8KLp76vGVlGdzoy4HztCYcYe2coxpO7e')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 
-  // BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK
   it('skip from function', async() => {
     await new Listr(
       [
@@ -88,6 +84,6 @@ describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: task-skip', (renderer
       }
     ).run()
 
-    expectProcessOutputToMatchSnapshot(output, 'BmDpgfyyKMN40Ei5uinrsuOz1b2lEqtK')
+    await expectProcessOutputToMatchSnapshot(output, renderer)
   })
 })

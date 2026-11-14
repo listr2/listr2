@@ -13,10 +13,8 @@ describe('default renderer: error handling', () => {
 
   afterEach(async() => {
     unmockProcessOutput(output)
-    jest.clearAllMocks()
   })
 
-  // 03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H
   it('should throw out an error in the data field with collapse errors false', async() => {
     let err: Error
 
@@ -47,10 +45,9 @@ describe('default renderer: error handling', () => {
     }
 
     expect(err).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, '03IyrStkPGQBIcbYM0HQXoYQxDEVZu8H')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 
-  // lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH
   it('should show the default task title when failed with showErrorMessage of', async() => {
     let err: Error
 
@@ -81,6 +78,6 @@ describe('default renderer: error handling', () => {
     }
 
     expect(err).toBeTruthy()
-    expectProcessOutputToMatchSnapshot(output, 'lnjpjmnHOxRSKy9J6YCMtqSAsVkHC3mH')
+    await expectProcessOutputToMatchSnapshot(output, 'default')
   })
 })
