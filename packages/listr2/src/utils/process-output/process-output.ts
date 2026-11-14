@@ -7,8 +7,8 @@ import wrapAnsi from 'wrap-ansi'
 
 import { ProcessOutputStream } from './process-output-stream'
 import type { ProcessOutputOptions, ProcessOutputStreamMap } from './process-output.interface'
-import { ANSI_ESCAPE_CODES } from '@constants'
-import { cleanseAnsi } from '@utils'
+import { ANSI_ESCAPE_CODES } from '#constants'
+import { cleanseAnsi } from '#utils'
 
 /**
  * Creates a new Listr2 process-output controller.

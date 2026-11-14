@@ -1,6 +1,6 @@
 import type { TestRenderer } from './renderer'
-import type { ListrTaskEventType } from '@constants'
-import type { ListrRendererTask, ListrTaskEventMap } from '@interfaces'
+import type { ListrTaskEventType } from '#constants'
+import type { ListrRendererTask, ListrTaskEventMap } from '#interfaces'
 
 export interface TestRendererSerializerOutput<T extends ListrTaskEventType> {
   event: T

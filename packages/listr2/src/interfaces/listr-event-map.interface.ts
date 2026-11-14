@@ -1,6 +1,6 @@
 import type { EventMap } from './event.interface'
 import { BaseEventMap } from './event.interface'
-import { ListrEventType } from '@constants'
+import { ListrEventType } from '#constants'
 
 /**
  * Event map for Listr.

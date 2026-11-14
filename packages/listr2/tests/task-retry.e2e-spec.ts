@@ -1,8 +1,8 @@
-import { Task } from '@lib'
-import type { ListrTaskFailure } from '@root'
-import { ListrErrorTypes, ListrTaskState, Listr, delay } from '@root'
-import type { MockProcessOutput } from '@tests/utils'
-import { mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import { Task } from '#lib'
+import type { ListrTaskFailure } from '#root'
+import { ListrErrorTypes, ListrTaskState, Listr, delay } from '#root'
+import type { MockProcessOutput } from '#tests/utils'
+import { mockProcessOutput, unmockProcessOutput } from '#tests/utils'
 
 describe('task retry', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

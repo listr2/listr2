@@ -1,4 +1,4 @@
-import { ListrErrorTypes, Listr } from '@root'
+import { ListrErrorTypes, Listr } from '#root'
 
 describe('error collection', () => {
   it('should default to not collecting errors', async() => {

@@ -1,8 +1,8 @@
 import type { TestRenderer } from './renderer'
 import type { TestRendererSerializerTaskKeys } from './serializer.interface'
-import type { ListrTaskState } from '@constants'
-import type { ListrRendererTask, ListrTaskMessage } from '@interfaces'
-import type { ListrLogLevels, RendererLoggerOptions } from '@utils'
+import type { ListrTaskState } from '#constants'
+import type { ListrRendererTask, ListrTaskMessage } from '#interfaces'
+import type { ListrLogLevels, RendererLoggerOptions } from '#utils'
 
 export type ListrTestRendererTask = ListrRendererTask<typeof TestRenderer>
 

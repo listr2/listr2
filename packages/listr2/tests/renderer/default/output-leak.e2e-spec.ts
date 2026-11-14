@@ -1,9 +1,9 @@
 import type EventEmitter from 'node:events'
 
-import { ListrTaskEventType } from '@constants'
-import { Listr, delay } from '@root'
-import type { MockProcessOutput } from '@tests/utils'
-import { mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import { ListrTaskEventType } from '#constants'
+import { Listr, delay } from '#root'
+import type { MockProcessOutput } from '#tests/utils'
+import { mockProcessOutput, unmockProcessOutput } from '#tests/utils'
 
 describe('default renderer: output buffer listeners', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

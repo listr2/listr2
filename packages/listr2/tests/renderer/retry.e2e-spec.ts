@@ -1,7 +1,7 @@
-import type { ListrTaskFailure } from '@root'
-import { Listr } from '@root'
-import type { MockProcessOutput, RendererSetup } from '@tests/utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
+import type { ListrTaskFailure } from '#root'
+import { Listr } from '#root'
+import type { MockProcessOutput, RendererSetup } from '#tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '#tests/utils'
 
 describe.each<RendererSetup>(RENDERER_SETUP)('%s renderer: retry', (renderer, rendererOptions) => {
   const output: MockProcessOutput = {} as MockProcessOutput

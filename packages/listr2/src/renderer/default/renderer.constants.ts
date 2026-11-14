@@ -1,5 +1,5 @@
-import type { ListrLoggerStyleMap } from '@utils'
-import { color, figures } from '@utils'
+import type { ListrLoggerStyleMap } from '#utils'
+import { color, figures } from '#utils'
 
 export enum ListrDefaultRendererLogLevels {
   SKIPPED_WITH_COLLAPSE = 'SKIPPED_WITH_COLLAPSE',

@@ -2,15 +2,15 @@ import { jest } from '@jest/globals'
 import * as fs from 'fs'
 import { mockProcessExit } from 'jest-mock-process'
 
-import type { ListrTaskWrapper } from '@root'
-import { FakeStty, VirtualTerminal } from '@tests/utils'
+import type { ListrTaskWrapper } from '#root'
+import { FakeStty, VirtualTerminal } from '#tests/utils'
 
 const stty = new FakeStty()
 
 jest.unstable_mockModule('child_process', () => ({ spawnSync: stty.spawnSync }))
 jest.unstable_mockModule('fs', () => ({ ...fs, readFileSync: stty.readFileSync(fs.readFileSync) }))
 
-const { Listr, ListrLogger, ListrPromptAdapter, ProcessOutput, delay } = await import('@root')
+const { Listr, ListrLogger, ListrPromptAdapter, ProcessOutput, delay } = await import('#root')
 
 const range = <T>(count: number, format: (index: number) => T): T[] => Array.from({ length: count }, (_, index) => format(index))
 

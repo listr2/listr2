@@ -1,5 +1,5 @@
 import type { ListrLoggerStyleMap } from './logger.interface'
-import { color, figures } from '@utils'
+import { color, figures } from '#utils'
 
 /** Default ListrLogLevels for the logger */
 export enum ListrLogLevels {

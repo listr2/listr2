@@ -1,7 +1,7 @@
 import type { ListrContext } from './listr.interface'
 import type { ListrRendererFactory } from './renderer.interface'
-import type { ListrErrorTypes } from '@constants'
-import type { Task } from '@lib'
+import type { ListrErrorTypes } from '#constants'
+import type { Task } from '#lib'
 
 /**
  * Internal error handling mechanism for Listr collects the errors and details for a failed task.

@@ -1,9 +1,9 @@
 import type { EventMap } from './event.interface'
 import { BaseEventMap } from './event.interface'
 import type { ListrTaskMessage } from './task.interface'
-import type { ListrTaskState } from '@constants'
-import { ListrTaskEventType } from '@constants'
-import type { Task } from '@lib'
+import type { ListrTaskState } from '#constants'
+import { ListrTaskEventType } from '#constants'
+import type { Task } from '#lib'
 
 /**
  * Event map for Task.

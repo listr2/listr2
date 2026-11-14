@@ -1,4 +1,4 @@
-import { Listr } from '@root'
+import { Listr } from '#root'
 
 describe('show output from task', () => {
   it('should add a single task', async() => {

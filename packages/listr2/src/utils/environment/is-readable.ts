@@ -1,4 +1,4 @@
-import type { ReadableLike } from '@interfaces'
+import type { ReadableLike } from '#interfaces'
 
 /**
  * Tests to see if the object is an Readable or NodeJS.ReadableStream {@link Readable, NodeJS.ReadableStream}

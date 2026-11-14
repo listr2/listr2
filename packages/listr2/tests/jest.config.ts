@@ -1,7 +1,4 @@
 import type { JestConfigWithTsJest } from 'ts-jest'
-import { pathsToModuleNameMapper } from 'ts-jest'
-
-import tsconfig from './tsconfig.json' with { type: 'json' }
 
 const config: JestConfigWithTsJest = {
   testEnvironment: 'node',
@@ -24,9 +21,6 @@ const config: JestConfigWithTsJest = {
   reporters: ['default', ['jest-junit', { outputDirectory: '<rootDir>', outputName: 'junit.xml' }]],
   moduleFileExtensions: ['ts', 'js'],
   moduleNameMapper: {
-    ...pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
-      prefix: '<rootDir>/tests/'
-    }),
     ['^(\\.{1,2}/.*)\\.js$']: '$1'
   }
 }

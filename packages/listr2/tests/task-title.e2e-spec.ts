@@ -1,7 +1,7 @@
-import { ListrTaskEventType } from '@constants'
-import { Listr } from '@root'
-import type { MockProcessOutput } from '@tests/utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import { ListrTaskEventType } from '#constants'
+import { Listr } from '#root'
+import type { MockProcessOutput } from '#tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '#tests/utils'
 
 describe('task: title', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

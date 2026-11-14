@@ -1,7 +1,7 @@
 import type { VerboseRenderer } from './renderer'
-import type { ListrRendererCacheMap, ListrRendererTask } from '@interfaces'
-import type { PresetTimer, RendererPresetTimer, RendererPresetTimestamp } from '@presets'
-import type { ListrLogLevels, ListrLoggerStyleMap, RendererLoggerOptions } from '@utils'
+import type { ListrRendererCacheMap, ListrRendererTask } from '#interfaces'
+import type { PresetTimer, RendererPresetTimer, RendererPresetTimestamp } from '#presets'
+import type { ListrLogLevels, ListrLoggerStyleMap, RendererLoggerOptions } from '#utils'
 
 export type ListrVerboseRendererTask = ListrRendererTask<typeof VerboseRenderer>
 

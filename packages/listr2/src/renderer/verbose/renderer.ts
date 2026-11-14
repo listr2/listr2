@@ -1,8 +1,8 @@
 import type { ListrVerboseRendererCache, ListrVerboseRendererOptions, ListrVerboseRendererTask, ListrVerboseRendererTaskOptions } from './renderer.interface'
-import { ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrRenderer } from '@interfaces'
-import { PRESET_TIMER } from '@presets'
-import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, cleanseAnsi, color } from '@utils'
+import { ListrTaskEventType, ListrTaskState } from '#constants'
+import type { ListrRenderer } from '#interfaces'
+import { PRESET_TIMER } from '#presets'
+import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, cleanseAnsi, color } from '#utils'
 
 export class VerboseRenderer implements ListrRenderer {
   public static nonTTY = true

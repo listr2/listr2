@@ -1,7 +1,7 @@
-import { ListrRendererSelection } from '@constants'
-import type { ListrGetRendererOptions, ListrOptions, ListrRenderer, ListrRendererFactory, ListrRendererValue, SupportedRenderer } from '@interfaces'
-import { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
-import { assertFunctionOrSelf } from '@utils'
+import { ListrRendererSelection } from '#constants'
+import type { ListrGetRendererOptions, ListrOptions, ListrRenderer, ListrRendererFactory, ListrRendererValue, SupportedRenderer } from '#interfaces'
+import { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '#renderer'
+import { assertFunctionOrSelf } from '#utils'
 
 const RENDERERS: Record<'default' | 'simple' | 'verbose' | 'test' | 'silent', typeof ListrRenderer> = {
   default: DefaultRenderer,

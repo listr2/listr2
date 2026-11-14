@@ -1,6 +1,6 @@
 import { setMaxListeners } from 'node:events'
 
-import { ListrRendererSelection, ListrEnvironmentVariables, ListrTaskState } from '@constants'
+import { ListrRendererSelection, ListrEnvironmentVariables, ListrTaskState } from '#constants'
 import type {
   ListrBaseClassOptions,
   ListrContext,
@@ -14,9 +14,9 @@ import type {
   ListrRendererValue,
   ListrSecondaryRendererValue,
   ListrTask
-} from '@interfaces'
-import { ListrEventManager, Task, TaskWrapper } from '@lib'
-import { Concurrency, getRenderer } from '@utils'
+} from '#interfaces'
+import { ListrEventManager, Task, TaskWrapper } from '#lib'
+import { Concurrency, getRenderer } from '#utils'
 
 /**
  * Create a new task list with Listr.

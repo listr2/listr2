@@ -1,6 +1,6 @@
-import type { ListrRendererSelection } from '@constants'
-import type { ListrEventManager, Task } from '@lib'
-import type { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
+import type { ListrRendererSelection } from '#constants'
+import type { ListrEventManager, Task } from '#lib'
+import type { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '#renderer'
 
 /** Name of the default renderer. */
 export type ListrDefaultRendererValue = 'default'

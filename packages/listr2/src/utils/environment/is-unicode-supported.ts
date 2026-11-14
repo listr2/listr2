@@ -1,4 +1,4 @@
-import { ListrEnvironmentVariables } from '@constants'
+import { ListrEnvironmentVariables } from '#constants'
 
 export function isUnicodeSupported(): boolean {
   /* istanbul ignore next */

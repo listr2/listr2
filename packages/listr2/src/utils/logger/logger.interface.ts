@@ -1,5 +1,5 @@
 import type { ListrLogger } from './logger'
-import type { ProcessOutputRendererOptions } from '@utils'
+import type { ProcessOutputRendererOptions } from '#utils'
 
 /**
  * Options for the logger

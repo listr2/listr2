@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs'
 import ZenObservable from 'zen-observable'
 
-import { Listr } from '@root'
-import type { MockProcessOutput } from '@tests/utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import { Listr } from '#root'
+import type { MockProcessOutput } from '#tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from '#tests/utils'
 
 describe('observable as task', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

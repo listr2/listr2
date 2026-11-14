@@ -61,6 +61,16 @@
     "wait",
     "idle"
   ],
+  "imports": {
+    "#constants": "./src/constants/index.ts",
+    "#interfaces": "./src/interfaces/index.ts",
+    "#lib": "./src/lib/index.ts",
+    "#presets": "./src/presets/index.ts",
+    "#renderer": "./src/renderer/index.ts",
+    "#root": "./src/index.ts",
+    "#tests/utils": "./tests/utils/index.ts",
+    "#utils": "./src/utils/index.ts"
+  },
   "dependencies": {
     "cli-truncate": "^6.2.0",
     "log-update": "^8.0.0",

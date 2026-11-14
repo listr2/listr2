@@ -1,8 +1,8 @@
 import type { ListrTestRendererOptions, ListrTestRendererTask, ListrTestRendererTaskOptions } from './renderer.interface'
 import { TestRendererSerializer } from './serializer'
-import { ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrRenderer, ListrTaskMessage } from '@interfaces'
-import { ListrLogger } from '@utils'
+import { ListrTaskEventType, ListrTaskState } from '#constants'
+import type { ListrRenderer, ListrTaskMessage } from '#interfaces'
+import { ListrLogger } from '#utils'
 
 export class TestRenderer implements ListrRenderer {
   public static nonTTY = true

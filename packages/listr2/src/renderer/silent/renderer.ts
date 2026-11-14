@@ -1,5 +1,5 @@
 import type { ListrSilentRendererOptions, ListrSilentRendererTask, ListrSilentRendererTaskOptions } from './renderer.interface'
-import type { ListrRenderer } from '@interfaces'
+import type { ListrRenderer } from '#interfaces'
 
 export class SilentRenderer implements ListrRenderer {
   public static nonTTY = true

@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals'
 import * as fs from 'fs'
 
-import { FakeStty, VirtualTerminal } from '@tests/utils'
+import { FakeStty, VirtualTerminal } from '#tests/utils'
 
 const exitHandlers: (() => void)[] = []
 const stty = new FakeStty()
@@ -20,7 +20,7 @@ jest.unstable_mockModule('signal-exit', () => ({
   }
 }))
 
-const { ANSI_ESCAPE_CODES, ProcessOutput } = await import('@root')
+const { ANSI_ESCAPE_CODES, ProcessOutput } = await import('#root')
 
 const range = <T>(count: number, format: (index: number) => T): T[] => Array.from({ length: count }, (_, index) => format(index))
 

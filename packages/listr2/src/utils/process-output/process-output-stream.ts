@@ -1,5 +1,5 @@
 import { ProcessOutputBuffer } from './process-output-buffer'
-import type { ProcessOutputBufferEntry } from '@utils'
+import type { ProcessOutputBufferEntry } from '#utils'
 
 // taken from https://github.com/keindev/stdout-update/blob/main/src/Hook.ts
 // with all credits to keindev, wish i could integrate the stdout-update

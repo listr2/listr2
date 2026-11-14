@@ -1,7 +1,7 @@
 import { EOL } from 'os'
 
 import type { ListrLoggerOptions, LoggerField, LoggerFieldOptions, LoggerFormat, LoggerFormatOptions } from './logger.interface'
-import { ProcessOutput, splat } from '@utils'
+import { ProcessOutput, splat } from '#utils'
 
 /**
  * Creates a new Listr2 logger.

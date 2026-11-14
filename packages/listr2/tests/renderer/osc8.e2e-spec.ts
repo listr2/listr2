@@ -1,7 +1,7 @@
-import { Listr } from '@root'
-import type { MockProcessOutput, RendererSetup } from '@tests/utils'
-import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '@tests/utils'
-import { cleanseAnsi } from '@utils'
+import { Listr } from '#root'
+import type { MockProcessOutput, RendererSetup } from '#tests/utils'
+import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput, RENDERER_SETUP } from '#tests/utils'
+import { cleanseAnsi } from '#utils'
 
 const ESC = '\x1b'
 const BEL = '\x07'

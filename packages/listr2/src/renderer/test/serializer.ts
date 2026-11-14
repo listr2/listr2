@@ -1,7 +1,7 @@
 import type { ListrTestRendererOptions, ListrTestRendererTask } from './renderer.interface'
 import type { TestRendererSerializerOutput } from './serializer.interface'
-import type { ListrTaskEventType } from '@constants'
-import type { ListrTaskEventMap } from '@interfaces'
+import type { ListrTaskEventType } from '#constants'
+import type { ListrTaskEventMap } from '#interfaces'
 
 export class TestRendererSerializer {
   constructor(public options?: ListrTestRendererOptions) {}

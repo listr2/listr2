@@ -1,6 +1,6 @@
 import { PassThrough } from 'stream'
 
-import { Listr, ListrLogger, ProcessOutput } from '@root'
+import { Listr, ListrLogger, ProcessOutput } from '#root'
 
 describe('default renderer: wrap width from configured stream', () => {
   const message = 'THIS IS A LONG LONG MESSAGE '.repeat(12).trim()

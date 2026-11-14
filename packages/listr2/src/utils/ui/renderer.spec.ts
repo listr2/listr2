@@ -1,5 +1,5 @@
 import { getRendererClass } from './renderer'
-import { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '@renderer'
+import { DefaultRenderer, SilentRenderer, SimpleRenderer, TestRenderer, VerboseRenderer } from '#renderer'
 
 describe('renderers', () => {
   process.stdout.isTTY = true

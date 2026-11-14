@@ -1,7 +1,7 @@
-import { ListrEventType } from '@constants'
-import { Listr } from '@root'
-import type { MockProcessOutput } from '@tests/utils'
-import { mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import { ListrEventType } from '#constants'
+import { Listr } from '#root'
+import type { MockProcessOutput } from '#tests/utils'
+import { mockProcessOutput, unmockProcessOutput } from '#tests/utils'
 
 describe('default renderer: teardown', () => {
   const output: MockProcessOutput = {} as MockProcessOutput

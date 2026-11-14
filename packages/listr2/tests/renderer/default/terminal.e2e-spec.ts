@@ -1,9 +1,9 @@
 import { jest } from '@jest/globals'
 import { mockProcessExit } from 'jest-mock-process'
 
-import type { ListrTask } from '@root'
-import { Listr, ListrLogger, ProcessOutput, delay } from '@root'
-import { VirtualTerminal } from '@tests/utils'
+import type { ListrTask } from '#root'
+import { Listr, ListrLogger, ProcessOutput, delay } from '#root'
+import { VirtualTerminal } from '#tests/utils'
 
 const range = <T>(count: number, format: (index: number) => T): T[] => Array.from({ length: count }, (_, index) => format(index))
 
@@ -336,7 +336,7 @@ describe('default renderer: terminal', () => {
     process.env.TERM = 'dumb'
 
     try {
-      const listr2 = await import('@root')
+      const listr2 = await import('#root')
 
       await new listr2.Listr(
         [

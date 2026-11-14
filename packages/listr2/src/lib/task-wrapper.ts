@@ -1,13 +1,13 @@
 import type { Writable } from 'stream'
 
-import type { ListrErrorTypes } from '@constants'
-import { ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrRendererFactory, ListrSubClassOptions, ListrTask } from '@interfaces'
-import { ListrError, ListrTaskFailure } from '@interfaces'
-import type { Task } from '@lib'
-import { Listr } from '@root'
-import type { ListrPromptAdapter } from '@utils'
-import { createWritable, splat } from '@utils'
+import type { ListrErrorTypes } from '#constants'
+import { ListrTaskEventType, ListrTaskState } from '#constants'
+import type { ListrRendererFactory, ListrSubClassOptions, ListrTask } from '#interfaces'
+import { ListrError, ListrTaskFailure } from '#interfaces'
+import type { Task } from '#lib'
+import { Listr } from '#root'
+import type { ListrPromptAdapter } from '#utils'
+import { createWritable, splat } from '#utils'
 
 /**
  * The original Task that is defined by the user is wrapped with the TaskWrapper to provide additional functionality.

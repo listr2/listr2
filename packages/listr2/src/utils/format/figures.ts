@@ -1,4 +1,4 @@
-import { isUnicodeSupported } from '@utils'
+import { isUnicodeSupported } from '#utils'
 
 const FIGURES_MAIN = {
   warning: '⚠',

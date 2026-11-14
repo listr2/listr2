@@ -18,12 +18,12 @@ import type {
   ListrDefaultRendererSummary,
   ListrDefaultRendererTaskRender
 } from './renderer.internal.interface'
-import { ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrRenderer, ListrTaskEventMap } from '@interfaces'
-import { ListrRendererError } from '@interfaces'
-import type { ListrEventManager } from '@lib'
-import { PRESET_TIMER } from '@presets'
-import { ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '@utils'
+import { ListrEventType, ListrTaskEventType, ListrTaskState } from '#constants'
+import type { ListrRenderer, ListrTaskEventMap } from '#interfaces'
+import { ListrRendererError } from '#interfaces'
+import type { ListrEventManager } from '#lib'
+import { PRESET_TIMER } from '#presets'
+import { ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '#utils'
 
 export class DefaultRenderer implements ListrRenderer {
   public static nonTTY = false

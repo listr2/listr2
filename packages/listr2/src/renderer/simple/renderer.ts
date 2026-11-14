@@ -1,8 +1,8 @@
 import type { ListrSimpleRendererCache, ListrSimpleRendererOptions, ListrSimpleRendererTask, ListrSimpleRendererTaskOptions } from './renderer.interface'
-import { ListrTaskEventType, ListrTaskState } from '@constants'
-import type { ListrRenderer } from '@interfaces'
-import { PRESET_TIMER } from '@presets'
-import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, color } from '@utils'
+import { ListrTaskEventType, ListrTaskState } from '#constants'
+import type { ListrRenderer } from '#interfaces'
+import { PRESET_TIMER } from '#presets'
+import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, color } from '#utils'
 
 export class SimpleRenderer implements ListrRenderer {
   public static nonTTY = true

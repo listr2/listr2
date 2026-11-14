@@ -1,4 +1,4 @@
-import { isUnicodeSupported } from '@utils'
+import { isUnicodeSupported } from '#utils'
 
 /* istanbul ignore next */
 export class Spinner {

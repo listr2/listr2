@@ -1,6 +1,6 @@
 import type { MockProcessOutput } from './utils'
 import { expectProcessOutputToMatchSnapshot, mockProcessOutput, unmockProcessOutput } from './utils'
-import { Listr, delay } from '@root'
+import { Listr, delay } from '#root'
 
 // keeps a task in-flight until the interruption races it out, without leaving a real timer alive past the test
 const hang = (): Promise<void> => new Promise<void>(() => undefined)

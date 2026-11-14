@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto'
 
 import { ListrTaskEventManager } from './listr-task-event-manager'
 import type { TaskWrapper } from './task-wrapper'
-import { ListrErrorTypes, ListrEventType, ListrTaskEventType, ListrTaskState } from '@constants'
+import { ListrErrorTypes, ListrEventType, ListrTaskEventType, ListrTaskState } from '#constants'
 import type {
   ListrGetRendererOptions,
   ListrGetRendererTaskOptions,
@@ -13,10 +13,10 @@ import type {
   ListrTaskMessage,
   ListrTaskPrompt,
   ListrTaskRetry
-} from '@interfaces'
-import { ListrTaskFailure, PromptError } from '@interfaces'
-import { Listr } from '@root'
-import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable, isReadable, splat } from '@utils'
+} from '#interfaces'
+import { ListrTaskFailure, PromptError } from '#interfaces'
+import { Listr } from '#root'
+import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable, isReadable, splat } from '#utils'
 
 /**
  * Creates and handles a runnable instance of the Task.

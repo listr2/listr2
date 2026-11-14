@@ -2,9 +2,9 @@ import type { ObservableLike, ReadableLike } from './data.interface'
 import type { ListrContext } from './listr.interface'
 import type { ListrPrimaryRendererTaskOptions, ListrRendererFactory, ListrRendererValue, ListrSecondaryRendererTaskOptions } from './renderer.interface'
 import type { ListrTaskFailure } from './task-failure.interface'
-import type { Task, TaskWrapper } from '@lib'
-import type { Listr } from '@root'
-import type { ListrPromptAdapter } from '@utils'
+import type { Task, TaskWrapper } from '#lib'
+import type { Listr } from '#root'
+import type { ListrPromptAdapter } from '#utils'
 
 /**
  * Defines the task, conditions and options to run a specific task in the Listr.

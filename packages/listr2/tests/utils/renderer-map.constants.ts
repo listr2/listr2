@@ -5,7 +5,7 @@ import type {
   ListrRendererValue,
   ListrSimpleRendererValue,
   ListrTestRendererValue
-} from '@interfaces'
+} from '#interfaces'
 
 export type RendererSetup = [ListrRendererValue, ListrGetRendererOptions<ListrRendererValue>]
 

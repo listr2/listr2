@@ -1,7 +1,7 @@
-import { ListrTaskEventType, ListrTaskState } from '@constants'
-import { Listr, delay } from '@root'
-import type { MockProcessOutput } from '@tests/utils'
-import { mockProcessOutput, unmockProcessOutput } from '@tests/utils'
+import { ListrTaskEventType, ListrTaskState } from '#constants'
+import { Listr, delay } from '#root'
+import type { MockProcessOutput } from '#tests/utils'
+import { mockProcessOutput, unmockProcessOutput } from '#tests/utils'
 
 // keeps a task in-flight until the interruption races it out, without leaving a real timer alive past the test
 const hang = (): Promise<void> => new Promise<void>(() => undefined)

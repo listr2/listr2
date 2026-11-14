@@ -1,4 +1,4 @@
-import type { ObservableLike } from '@interfaces'
+import type { ObservableLike } from '#interfaces'
 
 /**
  * Tests to see if the object is an RxJS {@link Observable}

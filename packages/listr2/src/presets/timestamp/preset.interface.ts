@@ -1,4 +1,4 @@
-import type { LoggerFieldFn } from '@utils'
+import type { LoggerFieldFn } from '#utils'
 
 export type PresetTimestamp = LoggerFieldFn
 

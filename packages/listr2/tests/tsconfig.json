@@ -7,16 +7,6 @@
     "module": "ESNext",
     "target": "ESNext",
     "resolveJsonModule": true,
-    "paths": {
-      "@constants": ["../src/constants/index"],
-      "@interfaces": ["../src/interfaces/index"],
-      "@lib": ["../src/lib/index"],
-      "@presets": ["../src/presets/index"],
-      "@renderer": ["../src/renderer/index"],
-      "@utils": ["../src/utils/index"],
-      "@tests/utils": ["../tests/utils/index"],
-      "@root": ["../src/index"]
-    },
     "types": ["node", "jest"]
   },
   "include": ["../src", "../tests"],
