@@ -11,9 +11,6 @@ exports[`default renderer: task-skip > should skip from context > screen 1`] = `
 ◼ This task will never execute.",
   "✔ This task will execute.
 ◼ This task will never execute.",
-  "✔ This task will execute.",
-  "✔ This task will execute.
-◼ This task will never execute.",
   "✔ This task will execute.
 ❯ This task will never execute.",
   "✔ This task will execute.
@@ -45,9 +42,6 @@ exports[`default renderer: task-skip > skip from function > screen 1`] = `
 ◼ This task will never execute.",
   "❯ This task will execute.
 ◼ This task will never execute.",
-  "✔ This task will execute.
-◼ This task will never execute.",
-  "✔ This task will execute.",
   "✔ This task will execute.
 ◼ This task will never execute.",
   "✔ This task will execute.

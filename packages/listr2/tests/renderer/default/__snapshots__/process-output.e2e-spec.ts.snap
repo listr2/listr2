@@ -14,9 +14,6 @@ exports[`default renderer: process output > should hook in to stdout/stderr and 
   › I will push an output. [2]",
   "this should be written above [0]
 this should be written above [1]
-this should be written above [2]",
-  "this should be written above [0]
-this should be written above [1]
 this should be written above [2]
 ❯ This task will execute.
   › I will push an output. [2]",
@@ -41,9 +38,6 @@ exports[`default renderer: process output > should hook in to stdout/stderr and 
   › I will push an output. [1]",
   "❯ This task will execute.
   › I will push an output. [2]",
-  "this should be written above [0]
-this should be written above [1]
-this should be written above [2]",
   "this should be written above [0]
 this should be written above [1]
 this should be written above [2]

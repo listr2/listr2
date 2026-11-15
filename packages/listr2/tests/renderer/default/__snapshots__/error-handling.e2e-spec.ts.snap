@@ -11,9 +11,6 @@ exports[`default renderer: error handling > should show the default task title w
 ◼ This task will never execute.",
   "✖ This task will fail.
 ◼ This task will never execute.",
-  "✖ This task will fail.",
-  "✖ This task will fail.
-◼ This task will never execute.",
 ]
 `;
 
@@ -30,11 +27,6 @@ exports[`default renderer: error handling > should throw out an error in the dat
 ◼ This task will never execute.",
   "✖ This task will fail.
 ◼ This task will never execute.",
-  "✖ This task will fail.
-  › This task failed after 2 seconds.
-◼ This task will never execute.",
-  "✖ This task will fail.
-  › This task failed after 2 seconds.",
   "✖ This task will fail.
   › This task failed after 2 seconds.
 ◼ This task will never execute.",

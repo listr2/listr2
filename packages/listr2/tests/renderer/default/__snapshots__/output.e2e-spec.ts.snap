@@ -16,11 +16,6 @@ exports[`default renderer: output > should be a no-op when output is cleared aft
   › I will push an output. [0]
 ◼ This task will execute.",
   "✔ This task will execute.
-  › I will push an output. [0]",
-  "✔ This task will execute.
-  › I will push an output. [0]
-◼ This task will execute.",
-  "✔ This task will execute.
   › I will push an output. [0]
 ❯ This task will execute.",
   "✔ This task will execute.
@@ -190,10 +185,6 @@ exports[`default renderer: output > should have persistent output on task fail w
   "✖ This task has failed
 
 › I will push an output. [2]",
-  "✖ This task has failed",
-  "✖ This task has failed
-
-› I will push an output. [2]",
 ]
 `;
 
@@ -314,9 +305,6 @@ exports[`default renderer: output > should output to bottom bar 2 times at most 
 › I will push an output. [2]",
   "✔ This task will execute.
 ◼ This task will execute.",
-  "✔ This task will execute.",
-  "✔ This task will execute.
-◼ This task will execute.",
   "✔ This task will execute.
 ❯ This task will execute.",
   "✔ This task will execute.
@@ -331,12 +319,6 @@ exports[`default renderer: output > should output to bottom bar 2 times at most 
 ❯ This task will execute.
 
 › I will push an output. [2]",
-  "✔ This task will execute.
-✔ This task will execute.
-
-› I will push an output. [2]",
-  "✔ This task will execute.
-✔ This task will execute.",
   "✔ This task will execute.
 ✔ This task will execute.
 
@@ -395,12 +377,6 @@ exports[`default renderer: output > should output to bottom bar persistently > s
 › I will push an output. [0]
 › I will push an output. [1]
 › I will push an output. [2]",
-  "✔ This task will execute.
-
-› I will push an output. [0]
-› I will push an output. [1]
-› I will push an output. [2]",
-  "✔ This task will execute.",
   "✔ This task will execute.
 
 › I will push an output. [0]

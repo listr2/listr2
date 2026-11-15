@@ -151,7 +151,7 @@ describe('process output', () => {
 
       exitHandlers.forEach((handler) => handler())
 
-      expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+      expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
 
       output.release()
 
@@ -174,6 +174,33 @@ describe('process output', () => {
       expect(stty.echo).toBe(true)
 
       output.release()
+    })
+  })
+
+  describe('synchronized output', () => {
+    it('should write a persist and the redraw below it as one synchronized update', async() => {
+      vt = new VirtualTerminal({ columns: 40, rows: 10 })
+
+      const output = new ProcessOutput(vt as any, vt as any)
+
+      output.hijack()
+      output.update('live 1\nlive 2')
+
+      const before = vt.writes.length
+
+      output.persist('done', 'live 3')
+
+      const frames = vt.writes.slice(before)
+
+      expect(frames).toHaveLength(1)
+      expect(frames[0].startsWith(ANSI_ESCAPE_CODES.SYNC_START)).toBe(true)
+      expect(frames[0].endsWith(ANSI_ESCAPE_CODES.SYNC_END)).toBe(true)
+      expect(frames[0].split(ANSI_ESCAPE_CODES.SYNC_START)).toHaveLength(2)
+      expect(await vt.content()).toEqual(['done', 'live 3'])
+
+      output.release()
+
+      expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
     })
   })
 

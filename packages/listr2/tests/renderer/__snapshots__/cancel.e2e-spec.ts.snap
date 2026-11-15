@@ -68,10 +68,6 @@ exports[`default renderer: cancel > should render cancelled and rolled back task
   "⊘ This task will trigger the interruption.
 ❯ This task will roll back.
 ❯ This task will be cancelled.",
-  "⊘ This task will trigger the interruption.",
-  "⊘ This task will trigger the interruption.
-❯ This task will roll back.
-❯ This task will be cancelled.",
   "⊘ This task will trigger the interruption.
 ⚠ This task will roll back.
 ❯ This task will be cancelled.",
@@ -80,8 +76,6 @@ exports[`default renderer: cancel > should render cancelled and rolled back task
 ❯ This task will be cancelled.",
   "⊘ This task will trigger the interruption.
 ⚠ This task has rolled back.
-⊘ This task will be cancelled.",
-  "⊘ This task will trigger the interruption.
 ⊘ This task will be cancelled.",
   "⊘ This task will trigger the interruption.
 ⊘ This task will be cancelled.

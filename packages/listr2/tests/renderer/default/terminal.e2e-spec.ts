@@ -1,5 +1,5 @@
 import type { ListrTask } from '#root'
-import { Listr, ListrLogger, PRESET_TIMER, ProcessOutput, delay } from '#root'
+import { ANSI_ESCAPE_CODES, Listr, ListrLogger, PRESET_TIMER, ProcessOutput, delay } from '#root'
 import { VirtualTerminal, hang, range } from '#tests/utils'
 
 describe('default renderer: terminal', () => {
@@ -823,6 +823,44 @@ describe('default renderer: terminal', () => {
 
     expect(exit).toHaveBeenCalledWith(127)
     expect(await vt.content()).toEqual(['✔ before', '┌ parent', '│ ⊘ interrupted', '│ ⊘ never started', '└ ⊘', '⊘ after'])
+    // a terminal left in a synchronized update would show nothing anymore
+    expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
+  })
+
+  it('should write every frame as one synchronized update', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 6 })
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr(
+              range(8, (index) => ({
+                title: `task ${index}`,
+                task: async(_, subtask): Promise<void> => {
+                  subtask.output = `output ${index}`
+                  await delay(5)
+                }
+              })),
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        },
+        { title: 'after', task: async(): Promise<void> => {} }
+      ],
+      options()
+    ).run()
+
+    const writes = vt.writes.slice(1, -1)
+
+    expect(vt.writes[0]).toBe(ANSI_ESCAPE_CODES.CURSOR_HIDE)
+    expect(writes.length).toBeGreaterThan(5)
+    writes.forEach((write) => {
+      expect(write.startsWith(ANSI_ESCAPE_CODES.SYNC_START)).toBe(true)
+      expect(write.endsWith(ANSI_ESCAPE_CODES.SYNC_END)).toBe(true)
+      expect(write.split(ANSI_ESCAPE_CODES.SYNC_START)).toHaveLength(2)
+    })
+    expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
   })
 
   it('should write stray output above the live region as it arrives', async() => {

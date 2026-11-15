@@ -24,7 +24,8 @@ export class ProcessOutput {
   private readonly shared: boolean
   private updater?: ReturnType<typeof createLogUpdate>
   private live = ''
-  private drawn?: { text: string, columns: number, rows: number }
+  private drawn?: { text: string; columns: number; rows: number }
+  private frame?: string[]
   private input?: string
   private stopped?: number
   private background?: number
@@ -78,7 +79,7 @@ export class ProcessOutput {
   public update(live: string): void {
     this.live = live
 
-    this.draw()
+    this.batch(() => this.draw())
   }
 
   /** Writes the text above the live region, where it stays, and redraws the live region below it. */
@@ -86,19 +87,21 @@ export class ProcessOutput {
     this.live = live
     this.yieldTerminal()
 
-    if (text !== '') {
-      this.start().persist(text)
-      this.drawn = undefined
-    }
+    this.batch(() => {
+      if (text !== '') {
+        this.start().persist(text)
+        this.drawn = undefined
+      }
 
-    this.draw(true)
+      this.draw(true)
+    })
   }
 
   /** Erases the live region. */
   public clear(): void {
     this.live = ''
 
-    this.draw()
+    this.batch(() => this.draw())
   }
 
   /**
@@ -223,7 +226,12 @@ export class ProcessOutput {
 
   private start(): ReturnType<typeof createLogUpdate> {
     if (!this.updater) {
-      this.updater = createLogUpdate(this.stdout, { showCursor: true })
+      this.updater = createLogUpdate(
+        new Proxy(this.stdout, {
+          get: (target, prop, receiver): any => (prop === 'write' ? (chunk: string): boolean => this.writeFrame(chunk) : Reflect.get(target, prop, receiver))
+        }),
+        { showCursor: true }
+      )
       this.stdout.on('resize', this.onResize)
     }
 
@@ -271,13 +279,53 @@ export class ProcessOutput {
     // log-update erases with the line count of the last frame, which is stale once the terminal reflowed it
     const height = this.reflows() ? lines.reduce((height, line) => height + this.wrap(line, columns).length, 0) : lines.length
 
-    this.stream.stdout.write(ANSI_ESCAPE_CODES.ERASE_LINE + (ANSI_ESCAPE_CODES.CURSOR_UP + ANSI_ESCAPE_CODES.ERASE_LINE).repeat(height) + ANSI_ESCAPE_CODES.CURSOR_LEFT)
-    this.updater.done()
+    this.batch(() => {
+      this.writeFrame(ANSI_ESCAPE_CODES.ERASE_LINE + (ANSI_ESCAPE_CODES.CURSOR_UP + ANSI_ESCAPE_CODES.ERASE_LINE).repeat(height) + ANSI_ESCAPE_CODES.CURSOR_LEFT)
+      this.updater.done()
 
-    this.draw()
+      this.draw()
+    })
   }
 
-  private layout({ text, columns, rows }: { text: string, columns: number, rows: number }): string[] {
+  // log-update wraps each of its writes in a synchronized update, so a persist and the redraw below it would show as two frames, the first
+  // without a live region
+  private batch(draw: () => void): void {
+    if (this.frame) {
+      return draw()
+    }
+
+    this.frame = []
+
+    try {
+      draw()
+    } finally {
+      const frame = this.frame.join('')
+
+      this.frame = undefined
+
+      if (frame !== '') {
+        this.writeSynced(frame)
+      }
+    }
+  }
+
+  private writeFrame(chunk: string): boolean {
+    chunk = chunk.replaceAll(ANSI_ESCAPE_CODES.SYNC_START, '').replaceAll(ANSI_ESCAPE_CODES.SYNC_END, '')
+
+    if (this.frame) {
+      this.frame.push(chunk)
+
+      return true
+    }
+
+    return this.writeSynced(chunk)
+  }
+
+  private writeSynced(text: string): boolean {
+    return this.stream.stdout.write(this.stdout.isTTY ? ANSI_ESCAPE_CODES.SYNC_START + text + ANSI_ESCAPE_CODES.SYNC_END : text)
+  }
+
+  private layout({ text, columns, rows }: { text: string; columns: number; rows: number }): string[] {
     const lines = this.wrap(text.endsWith(EOL) ? text.slice(0, -EOL.length) : text, columns)
 
     return lines.slice(Math.max(lines.length - rows + 1, 0))
@@ -286,7 +334,9 @@ export class ProcessOutput {
   // wrap-ansi turns every line break into \n, also where EOL is \r\n
   private wrap(text: string, columns: number): string[] {
     return wrapAnsi(text, columns, {
-      hard: true, trim: false, wordWrap: false
+      hard: true,
+      trim: false,
+      wordWrap: false
     }).split('\n')
   }
 
@@ -344,9 +394,10 @@ export class ProcessOutput {
     this.draw()
   }
 
+  // a terminal left in a synchronized update shows nothing anymore, so end it in case the process stops in the middle of a frame
   private restore(): void {
     this.unlockInput()
-    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
   }
 
   // under a wrapper such as pnpm, the shell takes the terminal back and writes below the live region before this process handles SIGTSTP
@@ -410,7 +461,7 @@ export class ProcessOutput {
     this.updater?.done()
     this.drawn = undefined
     this.stopped = Date.now()
-    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
+    this.stream.stdout.write(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
 
     process.off('SIGTSTP', this.onStop)
     process.on('SIGCONT', this.onContinue)
@@ -440,6 +491,6 @@ export class ProcessOutput {
 
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
 
-    this.draw()
+    this.batch(() => this.draw())
   }
 }

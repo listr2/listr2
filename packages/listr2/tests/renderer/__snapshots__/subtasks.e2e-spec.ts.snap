@@ -123,17 +123,6 @@ exports[`default renderer: show subtasks > should be able to change exit on erro
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
 │ ✔ I have succeeded.
-└ ⚠",
-  "┌ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-│ ✔ I have succeeded.
-└ ⚠
-◼ This task will execute.",
-  "┌ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-│ ✔ I have succeeded.
 └ ⚠
 ❯ This task will execute.",
   "┌ This task will execute and not quit on errors.

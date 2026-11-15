@@ -88,17 +88,6 @@ exports[`default renderer: error handling > should change exit on error per subt
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
 │ ✔ I have succeeded.
-└ ⚠",
-  "┌ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-│ ✔ I have succeeded.
-└ ⚠
-◼ This task will execute.",
-  "┌ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-│ ✔ I have succeeded.
 └ ⚠
 ❯ This task will execute.",
   "┌ This task will execute and not quit on errors.
@@ -139,9 +128,6 @@ exports[`default renderer: error handling > should disable exitOnError from task
 ◼ This task will maybe execute.",
   "✖ This task failed after 2 seconds.
 ◼ This task will maybe execute.",
-  "✖ This task failed after 2 seconds.",
-  "✖ This task failed after 2 seconds.
-◼ This task will maybe execute.",
   "✖ This task failed after 2 seconds.
 ◼ I will change my title if this executes.",
   "✖ This task failed after 2 seconds.
@@ -164,9 +150,6 @@ exports[`default renderer: error handling > should disable exitOnError from task
 ◼ This task will maybe execute.",
   "✖ This task failed after 2 seconds.
 ◼ This task will maybe execute.",
-  "✖ This task failed after 2 seconds.",
-  "✖ This task failed after 2 seconds.
-◼ This task will maybe execute.",
 ]
 `;
 
@@ -183,9 +166,6 @@ exports[`default renderer: error handling > should not throw out an error when e
 ◼ This task will execute.",
   "✖ This task will fail.
 ◼ This task will execute.",
-  "✖ This task failed after 2 seconds.
-◼ This task will execute.",
-  "✖ This task failed after 2 seconds.",
   "✖ This task failed after 2 seconds.
 ◼ This task will execute.",
   "✖ This task failed after 2 seconds.
@@ -210,9 +190,6 @@ exports[`default renderer: error handling > should throw out an error > screen 1
 ◼ This task will never execute.",
   "✖ This task will fail.
 ◼ This task will never execute.",
-  "✖ This task failed after 2 seconds.
-◼ This task will never execute.",
-  "✖ This task failed after 2 seconds.",
   "✖ This task failed after 2 seconds.
 ◼ This task will never execute.",
 ]

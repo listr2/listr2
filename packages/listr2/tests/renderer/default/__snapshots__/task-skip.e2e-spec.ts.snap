@@ -11,9 +11,6 @@ exports[`default renderer: task-skip > should not collapse skip message > screen
 ◼ This task will never execute.",
   "✔ This task will execute.
 ◼ This task will never execute.",
-  "✔ This task will execute.",
-  "✔ This task will execute.
-◼ This task will never execute.",
   "✔ This task will execute.
 ❯ This task will never execute.",
   "✔ This task will execute.
