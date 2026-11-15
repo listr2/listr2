@@ -126,8 +126,8 @@ Anything written to `process.stdout` or `process.stderr` while the renderer runs
 
 Rows that scrolled off the top of the terminal cannot be redrawn, so when the live region is taller than the terminal, it is shortened in steps until it fits:
 
-- The finished subtasks of a task whose subtasks collapse are summarized in a single `↑ N completed` line until the task closes, since they would disappear when it collapses anyway. The last ones that still fit stay visible above the running subtasks.
-- If that is not enough, the tasks at the end of each list that have not started yet are summarized in a single `… N waiting` line, so the running tasks stay on the screen. The first ones that still fit stay visible below the running tasks, and the rows that are left show the last finished subtasks again.
+- The finished subtasks of a task whose subtasks collapse are summarized in a single `↑ N` line that counts them until the task closes, since they would disappear when it collapses anyway. The last ones that still fit stay visible above the running subtasks.
+- If that is not enough, the tasks at the end of each list that have not started yet are summarized in a single `… N` line that counts them, so the running tasks stay on the screen. The first ones that still fit stay visible below the running tasks, and the rows that are left show the last finished subtasks again.
 - If it is still taller, only its bottom `rows - 1` rows are drawn.
 
 ![A list taller than the terminal while it runs](../../examples/screenshots/summary.png)
@@ -138,7 +138,7 @@ _A list taller than a terminal of 12 rows while it runs: the finished subtasks a
 
 _The same list from start to end. Every task is persisted in full once it finishes._
 
-The summary lines have their own icons, so they do not read as a single task: `↑` in green for the completed tasks, folded above, and a dimmed `…` for the waiting ones, or `^` and `:` when the terminal does not support unicode. Change them through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.SUMMARY_COMPLETED` and `SUMMARY_WAITING` keys. Inside a bracketed group, they take the connector like the subtasks around them, and the footer of a group stays on the screen below them.
+The summary lines have their own icons, so they do not read as a single task: `↑` in green for the completed tasks, folded above, and a dimmed `…` for the waiting ones, or `^` and `+` when the terminal does not support unicode. Change them through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.SUMMARY_COMPLETED` and `SUMMARY_WAITING` keys. Inside a bracketed group, they take the connector like the subtasks around them, and the footer of a group stays on the screen below them.
 
 This only shortens the live region: every task is persisted in full once it finishes. The height of the terminal is the `rows` that `process.stdout` reports, and there is no other limit on the live region.
 

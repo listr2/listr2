@@ -37,7 +37,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // the live region is taller than the terminal, so the tasks that have not started and do not fit are summarized
-    expect(seen[5]).toEqual([...range(5, (index) => `✔ task ${index}`), '❯ task 5', ...range(7, (index) => `◼ task ${index + 6}`), '… 17 waiting'])
+    expect(seen[5]).toEqual([...range(5, (index) => `✔ task ${index}`), '❯ task 5', ...range(7, (index) => `◼ task ${index + 6}`), '… 17'])
     expect(seen[25]).toEqual([...range(25, (index) => `✔ task ${index}`), '❯ task 25', ...range(4, (index) => `◼ task ${index + 26}`)])
     expect(await vt.content()).toEqual(range(30, (index) => `✔ task ${index}`))
   })
@@ -122,7 +122,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['┌ parent', '│ ↑ 9 completed', '│ ✔ task 9', '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`), '└ ❯ parent'])
+    expect(seen).toEqual(['┌ parent', '│ ↑ 9', '│ ✔ task 9', '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`), '└ ❯ parent'])
     expect(await vt.content()).toEqual(['✔ parent'])
   })
 
@@ -422,7 +422,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(seen).toEqual(['┌ parent', ...range(5, (index) => `│ ✔ task ${index}`), '│ ❯ task 5', ...range(6, (index) => `│ ◼ task ${index + 6}`), '│ … 8 waiting', '└ ❯ parent'])
+    expect(seen).toEqual(['┌ parent', ...range(5, (index) => `│ ✔ task ${index}`), '│ ❯ task 5', ...range(6, (index) => `│ ◼ task ${index + 6}`), '│ … 8', '└ ❯ parent'])
   })
 
   it('should draw the connector when the output is cleared', async() => {
@@ -481,11 +481,14 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // a summary of one finished subtask takes the same row as the subtask itself
-    expect(seen).toEqual(['┌ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ … 3 waiting', '└ ❯ parent', '◼ after 0', '… 9 waiting'])
+    expect(seen).toEqual(['┌ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ … 3', '└ ❯ parent', '◼ after 0', '… 9'])
   })
 
   it('should draw the connector with the fallback figure when unicode is not supported', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    const small = new VirtualTerminal({ columns: 80, rows: 5 })
+    let seen: string[]
 
     const platform = Object.getOwnPropertyDescriptor(process, 'platform')
     const env = { ...process.env }
@@ -523,12 +526,32 @@ describe('default renderer: terminal', () => {
           }
         }
       ).run()
+
+      await new listr2.Listr(
+        range(10, (index) => ({
+          title: `task ${index}`,
+          task: async(): Promise<void> => {
+            if (index === 0) {
+              seen = await small.content()
+            }
+          }
+        })),
+        {
+          renderer: 'default',
+          rendererOptions: {
+            lazy: true,
+            logger: new listr2.ListrLogger({ useIcons: true, processOutput: new listr2.ProcessOutput(small as any, small as any) })
+          }
+        }
+      ).run()
     } finally {
       Object.defineProperty(process, 'platform', platform)
       process.env = env
+      small.dispose()
     }
 
     expect(await vt.content()).toEqual(['. parent', '| √ first', '| √ second', '` √'])
+    expect(seen).toEqual(['> task 0', '■ task 1', '■ task 2', '+ 7'])
   })
 
   it('should keep a collapsing parent live and persist it expanded when a subtask fails', async() => {
@@ -692,7 +715,7 @@ describe('default renderer: terminal', () => {
       options({ icon: { CONNECTOR_START: '╭', SUMMARY_WAITING: '~' } })
     ).run()
 
-    expect(seen).toEqual(['╭ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ ~ 3 waiting', '└ ❯ parent', '◼ after 0', '~ 9 waiting'])
+    expect(seen).toEqual(['╭ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ ~ 3', '└ ❯ parent', '◼ after 0', '~ 9'])
   })
 
   it('should persist the tasks of a concurrent list in the order they finish', async() => {

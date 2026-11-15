@@ -21,7 +21,9 @@ export enum ListrDefaultRendererLogLevels {
   CONNECTOR = 'CONNECTOR',
   CONNECTOR_START = 'CONNECTOR_START',
   CONNECTOR_END = 'CONNECTOR_END',
+  /** The line that counts the finished tasks folded above the running ones while the list is taller than the terminal, such as `↑ 20`. */
   SUMMARY_COMPLETED = 'SUMMARY_COMPLETED',
+  /** The line that counts the tasks that have not started yet and do not fit below the running ones, such as `… 27`. */
   SUMMARY_WAITING = 'SUMMARY_WAITING'
 }
 

@@ -371,13 +371,13 @@ export class DefaultRenderer implements ListrRenderer {
     const output = shown.flatMap((task) => frames.get(task.id)?.live ?? [])
 
     if (completed.length > 0) {
-      output.unshift(...this.format(`${completed.length} completed`, this.logger.icon(ListrDefaultRendererLogLevels.SUMMARY_COMPLETED), level))
+      output.unshift(...this.format(`${completed.length}`, this.logger.icon(ListrDefaultRendererLogLevels.SUMMARY_COMPLETED), level))
     }
 
     const titled = waiting.filter((task) => task.isEnabled() && task.hasTitle())
 
     if (titled.length > 0) {
-      output.push(...this.format(`${titled.length} waiting`, this.logger.icon(ListrDefaultRendererLogLevels.SUMMARY_WAITING), level))
+      output.push(...this.format(`${titled.length}`, this.logger.icon(ListrDefaultRendererLogLevels.SUMMARY_WAITING), level))
     }
 
     return {

@@ -34,7 +34,7 @@ const FIGURES_FALLBACK = {
   lineDownRight: '.',
   lineUpRight: '`',
   arrowUp: '^',
-  ellipsis: ':'
+  ellipsis: '+'
 }
 
 export type Figures = typeof FIGURES_MAIN
