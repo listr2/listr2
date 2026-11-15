@@ -105,6 +105,12 @@ export default defineConfig({
       }
     }
   },
+  vue: {
+    template: {
+      // the dev server would resolve relative image paths against the page, which breaks those outside the docs root, such as the screenshots in examples/
+      transformAssetUrls: { base: null }
+    }
+  },
   vite: {
     clearScreen: false,
     plugins: [
