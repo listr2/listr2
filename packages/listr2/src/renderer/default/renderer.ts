@@ -68,6 +68,7 @@ export class DefaultRenderer implements ListrRenderer {
     rendererTaskOptions: new Map()
   }
   private readonly frozen = new Map<string, ListrDefaultRendererFrozen>()
+  private readonly headers = new Map<string, string>()
   private hasPersisted = false
 
   constructor(
@@ -104,6 +105,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     this.cache.render.clear()
     this.frozen.clear()
+    this.headers.clear()
     this.hasPersisted = false
 
     this.logger.process.hijack()
@@ -462,6 +464,7 @@ export class DefaultRenderer implements ListrRenderer {
     // the header is persisted with the first subtask that is persisted
     if (!opened) {
       this.frozen.set(task.id, 'open')
+      this.headers.set(task.id, task.title)
     }
 
     return {
@@ -563,6 +566,9 @@ export class DefaultRenderer implements ListrRenderer {
     // the final title line of a bracket is its footer, which lines up with the subtasks
     const bracket = subtasks && this.isConnected(task)
     const titleLevel = bracket ? level + 1 : level
+    // the closing line of a bracket shows its status, and its title only when its persisted header shows another one
+    const text = bracket && task.hasFinalized() && (this.headers.get(task.id) ?? task.title) === task.title ? '' : task.title
+    const line = (message: string, icon: string): string[] => (message.trim() === '' ? this.format(icon, '', titleLevel) : this.format(message, icon, titleLevel))
 
     // Current Task Title
     if (task.hasTitle()) {
@@ -575,62 +581,58 @@ export class DefaultRenderer implements ListrRenderer {
         // if task is skipped
         if (task.hasFailed() && rendererOptions.collapseErrors) {
           // current task title and skip change the title
-          title.push(...this.format(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : task.title, this.style(task), titleLevel))
+          title.push(...line(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : text, this.style(task)))
         } else if (task.isSkipped() && rendererOptions.collapseSkips) {
           // current task title and skip change the title
           title.push(
-            ...this.format(
-              this.logger.suffix(task.message.skip && rendererOptions.showSkipMessage ? task.message.skip : task.title, {
+            ...line(
+              this.logger.suffix(task.message.skip && rendererOptions.showSkipMessage ? task.message.skip : text, {
                 field: ListrLogLevels.SKIPPED,
                 condition: rendererOptions.suffixSkips,
                 format: () => color.dim
               }),
-              this.style(task),
-              titleLevel
+              this.style(task)
             )
           )
         } else if (task.isRetrying()) {
           title.push(
-            ...this.format(
-              this.logger.suffix(task.title, {
+            ...line(
+              this.logger.suffix(text, {
                 field: `${ListrLogLevels.RETRY}:${task.message.retry.count}`,
                 format: () => color.yellow,
                 condition: rendererOptions.suffixRetries
               }),
-              this.style(task),
-              titleLevel
+              this.style(task)
             )
           )
         } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
           // task with timer
           title.push(
-            ...this.format(
-              this.logger.suffix(task?.title, {
+            ...line(
+              this.logger.suffix(text, {
                 ...rendererTaskOptions.timer,
                 args: [task.message.duration]
               }),
-              this.style(task),
-              titleLevel
+              this.style(task)
             )
           )
         } else if (task.isPaused()) {
           title.push(
-            ...this.format(
-              this.logger.suffix(task.title, {
+            ...line(
+              this.logger.suffix(text, {
                 ...rendererOptions.pausedTimer,
                 args: [task.message.paused - Date.now()]
               }),
-              this.style(task),
-              titleLevel
+              this.style(task)
             )
           )
         } else {
           // normal state
-          title.push(...this.format(task.title, this.style(task), titleLevel))
+          title.push(...line(text, this.style(task)))
         }
       } else {
         // some sibling task but self has failed and this has stopped
-        title.push(...this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), titleLevel))
+        title.push(...line(text, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS)))
       }
     }
 

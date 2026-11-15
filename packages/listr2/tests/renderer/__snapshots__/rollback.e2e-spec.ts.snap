@@ -51,16 +51,16 @@ exports[`default renderer: rollback > should both stop the execution with exitOn
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will maybe execute.",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.",
+└ ←",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will maybe execute.",
 ]
 `;
@@ -118,16 +118,16 @@ exports[`default renderer: rollback > should both stop the execution with exitOn
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will maybe execute.",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.",
+└ ←",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will maybe execute.",
 ]
 `;
@@ -185,26 +185,26 @@ exports[`default renderer: rollback > should contunie execution or stop there wi
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will maybe execute.",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.",
+└ ←",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will maybe execute.",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ❯ This task will maybe execute.",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ✔ This task will maybe execute.",
 ]
 `;
@@ -262,16 +262,16 @@ exports[`default renderer: rollback > should contunie execution or stop there wi
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will maybe execute.",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.",
+└ ←",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will maybe execute.",
 ]
 `;
@@ -329,16 +329,16 @@ exports[`default renderer: rollback > should rollback the main task if any of th
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will never execute.",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.",
+└ ←",
   "┌ Some actions required rollback stuff.
 │ ✖ This task failed after 2 seconds.
 │ ◼ This task will execute.
-└ ← Some actions required rollback stuff.
+└ ←
 ◼ This task will never execute.",
 ]
 `;
@@ -391,11 +391,16 @@ exports[`default renderer: rollback > should rollback the subtask if the subtask
   "┌ Something with rollback.
 │ ← Some actions required rollback stuff.
 │ ◼ This task will execute.
-└ ❯ Something with rollback.",
+└ ❯
+◼ This task will never execute.",
   "┌ Something with rollback.
 │ ← Some actions required rollback stuff.
 │ ◼ This task will execute.
-└ ❯ Something with rollback.
+└ ❯",
+  "┌ Something with rollback.
+│ ← Some actions required rollback stuff.
+│ ◼ This task will execute.
+└ ❯
 ◼ This task will never execute.",
 ]
 `;

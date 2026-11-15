@@ -40,9 +40,9 @@ A task is persisted once it has closed, so a task that retries or rolls back sta
 - Tasks of a sequential list are persisted in order.
 - Tasks of a concurrent list are persisted in the order they finish.
 - A task whose subtasks collapse, which is the default `collapseSubtasks: true`, stays in the live region with its subtasks until it closes. It is then persisted as it is shown at that moment: collapsed into a single line, or expanded when one of its subtasks failed, rolled back, or was cancelled.
-- A task with `collapseSubtasks: false` persists its title when its first subtask is persisted, then its subtasks as they finish, and then its final title line, with its icon and timer, after its subtasks, drawn as the header and the footer of a bracket as described below. While it does so, the tasks next to it in a concurrent list wait in the live region, so its subtasks stay under its title.
+- A task with `collapseSubtasks: false` persists its title when its first subtask is persisted, then its subtasks as they finish, and then its final status line after its subtasks, drawn as the header and the footer of a bracket as described below. While it does so, the tasks next to it in a concurrent list wait in the live region, so its subtasks stay under its title.
 
-Every task that shows its subtasks under its title draws them as a bracketed group: a header line with its title, a connector in the first column of the indentation of its subtasks, and a footer line with its icon, title and timer. That covers a task whose subtasks collapse while it runs, a task that stays expanded because one of its subtasks failed, rolled back, or was cancelled, a task that retries, and a task with `collapseSubtasks: false`. A task whose subtasks collapse and finish without a problem is persisted as a single line, as before.
+Every task that shows its subtasks under its title draws them as a bracketed group: a header line with its title, a connector in the first column of the indentation of its subtasks, and a footer line with its status. That covers a task whose subtasks collapse while it runs, a task that stays expanded because one of its subtasks failed, rolled back, or was cancelled, a task that retries, and a task with `collapseSubtasks: false`. A task whose subtasks collapse and finish without a problem is persisted as a single line, as before.
 
 ```text
 ┌ Running migrations
@@ -52,19 +52,23 @@ Every task that shows its subtasks under its title draws them as a bracketed gro
 └ ❯ Running migrations
 ```
 
-While the group runs, its footer stays in the live region with the `❯` icon of a running task with subtasks. A task with `collapseSubtasks: false` persists its header with its first finished subtask, so the connector runs on from the persisted part into the live part, and persists its footer, with its final icon and timer, once it closes. A task persisted as one block, such as one that stays expanded because a subtask failed, is persisted with its header and footer at once.
+While the group runs, its footer stays in the live region with the `❯` icon of a running task with subtasks and its title, since the header may have scrolled off the screen. A task with `collapseSubtasks: false` persists its header with its first finished subtask, so the connector runs on from the persisted part into the live part, and persists its footer once it closes. A task persisted as one block, such as one that stays expanded because a subtask failed, is persisted with its header and footer at once.
+
+The persisted footer shows the final icon of the task only, since its title is already in the header. The timer follows it when the `timer` renderer option of the task is on, and when the title of the task changed after its header was persisted, the footer shows the new title, so it is not lost.
 
 ```text
 ┌ Running migrations
 │ ✔ Running migration 001.
 │ ✔ Running migration 002.
 │ ✔ Running migration 003.
-└ ✔ Running migrations [2s]
+└ ✔
 ```
+
+With the `timer` option, the footer reads `└ ✔ [2s]`, and when the task changed its title to `Ran 3 migrations.` while its subtasks ran, it reads `└ ✔ Ran 3 migrations.`
 
 Nested groups add one connector column each, and each draws its own header and footer. The header and footer take the column of the icon of the task, so the title stays where it was, and the connector takes the place of a space, so subtasks wrap and truncate as before. A task without a title draws no bracket, since there is no title line above its subtasks, and neither does any task with `indentation: 0`, since there is no column for the connector.
 
-The bracket is drawn dimmed, with `┌`, `│` and `└`, or with `.`, `|` and `` ` `` when the terminal does not support unicode, so every line keeps its width. Change them like any other icon through the `icon` and `color` renderer options, with the `ListrDefaultRendererLogLevels.CONNECTOR_START`, `CONNECTOR` and `CONNECTOR_END` keys. Set the renderer option `markIndentation` to `false` to draw no bracket at all: a task then shows its title with its icon above its subtasks as before, and a task with `collapseSubtasks: false` persists its title with the `❯` icon before its subtasks and its final title line after them, at the column of the task.
+The bracket is drawn dimmed, with `┌`, `│` and `└`, or with `.`, `|` and `` ` `` when the terminal does not support unicode, so every line keeps its width. Change them like any other icon through the `icon` and `color` renderer options, with the `ListrDefaultRendererLogLevels.CONNECTOR_START`, `CONNECTOR` and `CONNECTOR_END` keys. Set the renderer option `markIndentation` to `false` to draw no bracket at all: a task then shows its title with its icon above its subtasks as before, and a task with `collapseSubtasks: false` persists its title with the `❯` icon before its subtasks and its final title line, with its title and timer, after them, at the column of the task.
 
 With `clearOutput: true` nothing is persisted: the whole list stays in the live region and is cleared at the end.
 

@@ -1,5 +1,5 @@
 import type { ListrTask } from '#root'
-import { Listr, ListrLogger, ProcessOutput, delay } from '#root'
+import { Listr, ListrLogger, PRESET_TIMER, ProcessOutput, delay } from '#root'
 import { VirtualTerminal, hang, range } from '#tests/utils'
 
 describe('default renderer: terminal', () => {
@@ -62,7 +62,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(await vt.content()).toEqual(range(3, (parent) => [`┌ parent ${parent}`, ...range(10, (index) => `│ ✔ task ${parent}.${index}`), `└ ✔ parent ${parent}`]).flat())
+    expect(await vt.content()).toEqual(range(3, (parent) => [`┌ parent ${parent}`, ...range(10, (index) => `│ ✔ task ${parent}.${index}`), '└ ✔']).flat())
   })
 
   it('should recover when the terminal gets narrower and wider mid-run', async() => {
@@ -152,7 +152,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     expect(seen).toEqual(['┌ parent', ...range(10, (index) => `│ ✔ task ${index}`), '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`), '└ ❯ parent', '◼ after'])
-    expect(await vt.content()).toEqual(['┌ parent', ...range(15, (index) => `│ ✔ task ${index}`), '└ ✔ parent', '✔ after'])
+    expect(await vt.content()).toEqual(['┌ parent', ...range(15, (index) => `│ ✔ task ${index}`), '└ ✔', '✔ after'])
   })
 
   it('should draw a connector for each open non-collapsing parent', async() => {
@@ -197,9 +197,9 @@ describe('default renderer: terminal', () => {
       '│ │ ✔ inner first',
       '│ │ ✔ inner second',
       '│ │   › some output',
-      '│ └ ✔ inner',
+      '│ └ ✔',
       '│ ✔ last',
-      '└ ✔ outer'
+      '└ ✔'
     ])
   })
 
@@ -221,29 +221,118 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // the icon and title wrap at 30 - 1 * 2 - 2 = 26 columns, then the continuation rows are indented once more
-    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✔ a subtask with a title', '│   that wraps over the rows', '│   of this terminal', '└ ✔ parent'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✔ a subtask with a title', '│   that wraps over the rows', '│   of this terminal', '└ ✔'])
   })
 
   it('should wrap the header and the footer of a bracket inside the bracket', async() => {
     vt = new VirtualTerminal({ columns: 30, rows: 10 })
 
+    let seen: string[]
+
     await new Listr(
       [
         {
           title: 'a parent with a title that wraps over the rows',
-          task: (_, task): Listr => task.newListr([{ title: 'first', task: async(): Promise<void> => {} }])
+          task: (_, task): Listr =>
+            task.newListr([
+              {
+                title: 'first',
+                task: async(): Promise<void> => {
+                  seen = await vt.content()
+                }
+              }
+            ])
         }
       ],
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(await vt.content()).toEqual([
-      '┌ a parent with a title that',
-      '│  wraps over the rows',
-      '│ ✔ first',
-      '└ ✔ a parent with a title',
-      '    that wraps over the rows'
-    ])
+    expect(seen).toEqual(['┌ a parent with a title that', '│  wraps over the rows', '│ ❯ first', '└ ❯ a parent with a title', '    that wraps over the rows'])
+    expect(await vt.content()).toEqual(['┌ a parent with a title that', '│  wraps over the rows', '│ ✔ first', '└ ✔'])
+  })
+
+  it('should close a bracket with only the status of its parent, and its timer when it has one', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    const group = (title: string, timer: boolean): ListrTask => ({
+      title,
+      task: (_, task): Listr => task.newListr([{ title: `${title} subtask`, task: async(): Promise<void> => {} }], { rendererOptions: { collapseSubtasks: false } }),
+      rendererOptions: {
+        timer: {
+          ...PRESET_TIMER,
+          condition: timer,
+          field: (): string => '1s'
+        }
+      }
+    })
+
+    await new Listr([group('plain', false), group('timed', true)], options()).run()
+
+    expect(await vt.content()).toEqual(['┌ plain', '│ ✔ plain subtask', '└ ✔', '┌ timed', '│ ✔ timed subtask', '└ ✔ [1s]'])
+  })
+
+  it('should close a bracket with the title of its parent when it changed after the header was persisted', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'Compiling packages',
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                { title: 'first', task: async(): Promise<void> => {} },
+                {
+                  title: 'second',
+                  task: async(): Promise<void> => {
+                    task.title = 'Compiled 2 packages.'
+                    seen = await vt.content()
+                  }
+                }
+              ],
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        }
+      ],
+      options()
+    ).run()
+
+    // the header is in the scrollback, so only the live footer shows the new title while the group runs
+    expect(seen).toEqual(['┌ Compiling packages', '│ ✔ first', '│ ❯ second', '└ ❯ Compiled 2 packages.'])
+    expect(await vt.content()).toEqual(['┌ Compiling packages', '│ ✔ first', '│ ✔ second', '└ ✔ Compiled 2 packages.'])
+  })
+
+  it('should update the header of a bracket in place when the title changes before the header is persisted', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'Compiling packages',
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                {
+                  title: 'first',
+                  task: async(): Promise<void> => {
+                    task.title = 'Compiled 1 package.'
+                    seen = await vt.content()
+                  }
+                }
+              ],
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        }
+      ],
+      options()
+    ).run()
+
+    expect(seen).toEqual(['┌ Compiled 1 package.', '│ ❯ first', '└ ❯ Compiled 1 package.'])
+    expect(await vt.content()).toEqual(['┌ Compiled 1 package.', '│ ✔ first', '└ ✔'])
   })
 
   it('should close the bracket of a concurrent group once its last subtask finishes', async() => {
@@ -276,7 +365,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     expect(seen).toEqual(['┌ parent', '│ ✔ fast', '│ ❯ slow', '└ ❯ parent'])
-    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ fast', '│ ✔ slow', '└ ✔ parent'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ fast', '│ ✔ slow', '└ ✔'])
   })
 
   it('should close the bracket of a failed group with the status of its parent', async() => {
@@ -304,7 +393,7 @@ describe('default renderer: terminal', () => {
       .run()
       .catch(() => {})
 
-    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ◼ never runs', '└ ❯ parent'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ◼ never runs', '└ ❯'])
   })
 
   it('should keep the connector on the summaries of an open non-collapsing parent taller than the terminal', async() => {
@@ -438,7 +527,7 @@ describe('default renderer: terminal', () => {
       process.env = env
     }
 
-    expect(await vt.content()).toEqual(['. parent', '| √ first', '| √ second', '` √ parent'])
+    expect(await vt.content()).toEqual(['. parent', '| √ first', '| √ second', '` √'])
   })
 
   it('should keep a collapsing parent live and persist it expanded when a subtask fails', async() => {
@@ -476,7 +565,7 @@ describe('default renderer: terminal', () => {
 
     // nothing of the subtree is persisted while the parent runs
     expect(seen).toEqual({ scrollback: [], screen: ['┌ parent'] })
-    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ✔ third', '└ ⚠ parent'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ✔ third', '└ ⚠'])
   })
 
   it('should draw no connector when markIndentation is disabled', async() => {
@@ -653,7 +742,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     expect(exit).toHaveBeenCalledWith(127)
-    expect(await vt.content()).toEqual(['✔ before', '┌ parent', '│ ⊘ interrupted', '│ ⊘ never started', '└ ⊘ parent', '⊘ after'])
+    expect(await vt.content()).toEqual(['✔ before', '┌ parent', '│ ⊘ interrupted', '│ ⊘ never started', '└ ⊘', '⊘ after'])
 
     exit.mockRestore()
   })
@@ -727,7 +816,7 @@ describe('default renderer: terminal', () => {
     await list.run()
     await list.run()
 
-    expect(await vt.content()).toEqual([1, 2].flatMap((index) => ['┌ parent', `│ ✔ subtask finished (run ${index})`, '└ ✔ parent', `✔ second (run ${index})`]))
+    expect(await vt.content()).toEqual([1, 2].flatMap((index) => ['┌ parent', `│ ✔ subtask finished (run ${index})`, '└ ✔', `✔ second (run ${index})`]))
   })
 
   it('should persist a non-collapsing parent that retries once it has finished', async() => {
@@ -761,6 +850,6 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the first attempt is persisted
-    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first (attempt 2)', '│ ✔ second (attempt 2)', '└ ✔ parent'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first (attempt 2)', '│ ✔ second (attempt 2)', '└ ✔'])
   })
 })
