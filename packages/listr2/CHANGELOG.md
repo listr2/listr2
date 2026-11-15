@@ -1,3 +1,19 @@
+## listr2 [12.0.0-beta.8](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.7...listr2@12.0.0-beta.8) (2026-11-15)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** the summary lines of the default renderer show only the icon
+and the count, `↑ 20` instead of `↑ 20 completed` and `… 27` instead of
+`… 27 waiting`, and the ASCII fallback for SUMMARY_WAITING is `+` instead of
+`:`.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
+
+### Features
+
+* **renderer:** show only the icon and the count on the summary lines ([f33dee6](https://github.com/listr2/listr2/commit/f33dee62f58f6601736146d476f877874a01837c))
+
 ## listr2 [12.0.0-beta.7](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.6...listr2@12.0.0-beta.7) (2026-11-15)
 
 ### Bug Fixes
