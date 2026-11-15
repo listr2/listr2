@@ -5,6 +5,8 @@ packages:
 
 linkWorkspacePackages: true
 
+enablePrePostScripts: true
+
 minimumReleaseAge: 1440
 
 minimumReleaseAgeExclude:

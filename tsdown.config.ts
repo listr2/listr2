@@ -13,7 +13,7 @@ export default defineConfig((options) => ({
 
   sourcemap: options.watch ? true : undefined,
 
-  clean: true,
+  clean: !options.watch,
   minify: false,
   keepNames: true,
   unbundle: false

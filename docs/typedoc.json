@@ -6,5 +6,6 @@
   "plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
   "readme": "none",
   "categorizeByGroup": false,
-  "sort": ["source-order"]
+  "sort": ["source-order"],
+  "skipErrorChecking": true
 }

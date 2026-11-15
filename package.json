@@ -22,6 +22,7 @@
   ],
   "scripts": {
     "clean": "rimraf node_modules pnpm-lock.yaml packages/*/node_modules examples/node_modules docs/node_modules",
+    "predev:start": "pnpm run build",
     "dev:start": "pnpm run --parallel -r dev:start",
     "build": "pnpm run -r build",
     "docs:build": "pnpm run --filter @listr2/docs docs:build",

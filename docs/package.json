@@ -16,8 +16,10 @@
   },
   "scripts": {
     "docs:typedoc": "typedoc",
-    "docs:build": "pnpm run docs:typedoc && vitepress build",
-    "dev:start": "pnpm run docs:typedoc && vitepress dev --host 0.0.0.0",
+    "predocs:build": "pnpm run docs:typedoc",
+    "docs:build": "vitepress build",
+    "predev:start": "pnpm run docs:typedoc",
+    "dev:start": "vitepress dev --host 0.0.0.0",
     "format": "prettier --log-level warn --write ./ && pnpm run lint --fix",
     "lint": "eslint"
   },
