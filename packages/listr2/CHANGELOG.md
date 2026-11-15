@@ -1,3 +1,19 @@
+## listr2 [12.0.0-beta.4](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.3...listr2@12.0.0-beta.4) (2026-11-15)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** the closing line of an expanded subtask group of the
+default renderer reads `└ ✔` instead of `└ ✔ <title>`, with the timer
+only when the `timer` option is on, and the title only when it changed
+after the header was persisted.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
+
+### Features
+
+* **renderer:** show only the status on the closing line of a subtask group ([434fa4b](https://github.com/listr2/listr2/commit/434fa4bf14b1694ae75437c8718fe81ed6ad44b1))
+
 ## listr2 [12.0.0-beta.3](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.2...listr2@12.0.0-beta.3) (2026-11-15)
 
 ### ⚠ BREAKING CHANGES
