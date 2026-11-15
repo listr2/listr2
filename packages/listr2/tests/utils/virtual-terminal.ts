@@ -107,13 +107,6 @@ export class VirtualTerminal extends EventEmitter {
     return lines
   }
 
-  /** The cursor row on the screen, counted from the top of the screen. */
-  public async cursor(): Promise<{ x: number; y: number }> {
-    await this.flush()
-
-    return { x: this.emulator.buffer.active.cursorX, y: this.emulator.buffer.active.cursorY }
-  }
-
   public dispose(): void {
     this.emulator.dispose()
   }
