@@ -1,3 +1,36 @@
+## @listr2/prompt-adapter-inquirer [5.0.0-beta.1](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.3.4...@listr2/prompt-adapter-inquirer@5.0.0-beta.1) (2026-11-15)
+
+### ⚠ BREAKING CHANGES
+
+* listr2 and its companion packages require Node.js
+^22.23.5, ^24.22.3 or >=26.13.1.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
+* **renderer:** the default renderer persists finished tasks while it
+runs. Concurrent lists show their tasks in the order they finish, a
+parent with `collapseSubtasks: [secure]` prints its final title line after
+its subtasks, and output captured from stdout and stderr is written above
+the task list as it arrives instead of after it. `DefaultRenderer.create()`,
+which rendered the whole task list into a string and was no longer used
+by the renderer, is removed.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
+
+### Features
+
+* **renderer:** freeze finished tasks into the scrollback ([1f7b9b8](https://github.com/listr2/listr2/commit/1f7b9b868071a7c96943bd8a5cca829f25a69913))
+
+### Miscellaneous Chores
+
+* require patched Node.js 22, 24 or 26 ([7d71530](https://github.com/listr2/listr2/commit/7d71530c3972e7d058ab726c73ec196ba5eba93c))
+
+
+### Dependencies
+
+* **listr2:** upgraded to 12.0.0-beta.1
+
 ## @listr2/prompt-adapter-inquirer [4.3.4](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@4.3.3...@listr2/prompt-adapter-inquirer@4.3.4) (2026-11-08)
 
 ### Bug Fixes
