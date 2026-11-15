@@ -1,6 +1,6 @@
-import type truncate from 'cli-truncate'
+import truncate from 'cli-truncate'
 import { EOL } from 'os'
-import type wrap from 'wrap-ansi'
+import wrap from 'wrap-ansi'
 
 import { LISTR_DEFAULT_RENDERER_STYLE, ListrDefaultRendererLogLevels } from './renderer.constants'
 import type {
@@ -56,8 +56,6 @@ export class DefaultRenderer implements ListrRenderer {
   private activePrompt: string
   private readonly spinner: Spinner
   private readonly logger: ListrLogger<ListrDefaultRendererLogLevels>
-  private truncate: typeof truncate
-  private wrap: typeof wrap
   private readonly buffer: ListrDefaultRendererOutputBuffer = {
     output: new Map(),
     bottom: new Map()
@@ -96,20 +94,14 @@ export class DefaultRenderer implements ListrRenderer {
     this.logger.options.color = this.options.color
   }
 
-  public async render(): Promise<void> {
-    const { default: truncate } = await import('cli-truncate')
-    const { default: wrap } = await import('wrap-ansi')
-
-    this.truncate = truncate
-    this.wrap = wrap
-
+  public render(): void {
     this.cache.render.clear()
     this.frozen.clear()
     this.headers.clear()
     this.hasPersisted = false
 
     this.logger.process.hijack()
-    this.lockInput()
+    this.syncInputLock()
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
@@ -158,7 +150,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     // rendering a prompt task sets the active prompt before the prompt takes over stdin
-    this.lockInput()
+    this.syncInputLock()
   }
 
   public end(): void {
@@ -255,13 +247,13 @@ export class DefaultRenderer implements ListrRenderer {
     switch (this.options.formatOutput) {
       case 'truncate':
         parsed = message.split(EOL).map((s, i) => {
-          return this.truncate(this.indent(s, i), columns)
+          return truncate(this.indent(s, i), columns)
         })
 
         break
 
       case 'wrap':
-        parsed = this.wrap(message, columns, { hard: true, trim: false })
+        parsed = wrap(message, columns, { hard: true, trim: false })
           .split(EOL)
           .map((s, i) => this.indent(s, i))
 
@@ -291,7 +283,8 @@ export class DefaultRenderer implements ListrRenderer {
     return (typeof bottomBar === 'number' && bottomBar !== 0) || (typeof bottomBar === 'boolean' && bottomBar !== false) || !task.hasTitle()
   }
 
-  private lockInput(): void {
+  // locks the input while the renderer draws, and lifts the lock while a prompt reads the terminal
+  private syncInputLock(): void {
     if (!this.options.lockInput) {
       return
     }
@@ -378,12 +371,12 @@ export class DefaultRenderer implements ListrRenderer {
     context: ListrDefaultRendererContext
   ): Map<string, ListrDefaultRendererFrame> {
     const concurrent = (siblings[0]?.listr.options.concurrent as number) > 1
-    const open = context.commit ? tasks.find((task) => this.frozen.get(task.id) === 'open') : undefined
+    const opened = context.commit ? tasks.find((task) => this.frozen.get(task.id) === 'open') : undefined
     const frames = new Map<string, ListrDefaultRendererFrame>()
     let held = false
 
     // siblings wait for an open task, so its subtasks stay under its title
-    for (const task of open ? [open, ...tasks.filter((task) => task !== open)] : tasks) {
+    for (const task of opened ? [opened, ...tasks.filter((other) => other !== opened)] : tasks) {
       if (!task.isEnabled() || this.frozen.get(task.id) === 'done') {
         continue
       }
@@ -428,11 +421,10 @@ export class DefaultRenderer implements ListrRenderer {
 
   private renderProgressive(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], level: number, context: ListrDefaultRendererContext): ListrDefaultRendererFrame {
     const final = context.final || task.isClosed()
-    const { title, body, subtasks, subtaskLevel, bracket } = this.renderTask(task, siblings, level)
-    const header = bracket ? this.renderHeader(task, level) : title
-    const footer = bracket ? this.renderFooter(task, level, title) : []
+    const { title, header, footer, body, subtasks, subtaskLevel, bracket } = this.renderTask(task, siblings, level)
 
-    const frozen = this.frozen.size
+    // the children persisted something in this frame when the frozen map grew, and the header goes with the first of them
+    const frozenBefore = this.frozen.size
     const children = this.renderer(task.subtasks, subtaskLevel, { ...context, final })
     const opened = this.frozen.has(task.id)
 
@@ -446,6 +438,7 @@ export class DefaultRenderer implements ListrRenderer {
         }
       }
 
+      // without a bracket, the closing line is the title itself, at the column of the task
       return {
         persist: bracket ? [...this.connect(task, level, [...children.persist, ...body]), ...footer] : [...this.connect(task, level, children.persist), ...title, ...body],
         live: []
@@ -454,7 +447,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     const live = subtasks ? [...body, ...children.live] : body
 
-    if (!opened && this.frozen.size === frozen) {
+    if (!opened && this.frozen.size === frozenBefore) {
       return {
         persist: children.persist,
         live: [...header, ...(subtasks ? this.connect(task, level, live) : live), ...footer]
@@ -481,7 +474,7 @@ export class DefaultRenderer implements ListrRenderer {
       return this.cache.render.get(task.id)
     }
 
-    const { title, body, subtasks, subtaskLevel, bracket } = this.renderTask(task, siblings, level)
+    const { header, footer, body, subtasks, subtaskLevel } = this.renderTask(task, siblings, level)
     const lines = [...body]
 
     if (subtasks) {
@@ -491,13 +484,12 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     const group = subtasks || open ? this.connect(task, level, lines) : lines
-    const footer = bracket ? this.renderFooter(task, level, title) : []
 
     if (open) {
       return [...group, ...footer]
     }
 
-    const output = bracket ? [...this.renderHeader(task, level), ...group, ...footer] : [...title, ...group]
+    const output = [...header, ...group, ...footer]
 
     // a summarized render is not the final one
     if (task.isClosed() && !summary) {
@@ -568,6 +560,7 @@ export class DefaultRenderer implements ListrRenderer {
     const titleLevel = bracket ? level + 1 : level
     // the closing line of a bracket shows its status, and its title only when its persisted header shows another one
     const text = bracket && task.hasFinalized() && (this.headers.get(task.id) ?? task.title) === task.title ? '' : task.title
+    // format() drops an empty message, so a closing line with only its icon passes the icon as the message
     const line = (message: string, icon: string): string[] => (message.trim() === '' ? this.format(icon, '', titleLevel) : this.format(message, icon, titleLevel))
 
     // Current Task Title
@@ -664,6 +657,8 @@ export class DefaultRenderer implements ListrRenderer {
 
     return {
       title,
+      header: bracket ? this.renderHeader(task, level) : title,
+      footer: bracket ? this.renderFooter(task, level, title) : [],
       body,
       subtasks,
       subtaskLevel: task.hasTitle() ? level + 1 : level,

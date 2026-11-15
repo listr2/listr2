@@ -6,6 +6,7 @@ import { onExit } from 'signal-exit'
 import wrapAnsi from 'wrap-ansi'
 
 import { ProcessOutputStream } from './process-output-stream'
+import { TERMINAL_POLL_INTERVAL } from './process-output.constants'
 import type { ProcessOutputOptions, ProcessOutputStreamMap } from './process-output.interface'
 import { ANSI_ESCAPE_CODES } from '#constants'
 import { cleanseAnsi } from '#utils'
@@ -23,7 +24,7 @@ export class ProcessOutput {
   private readonly shared: boolean
   private updater?: ReturnType<typeof createLogUpdate>
   private live = ''
-  private lines: string[] = []
+  private drawn?: { text: string, columns: number, rows: number }
   private input?: string
   private stopped?: number
   private background?: number
@@ -86,12 +87,13 @@ export class ProcessOutput {
     if (text !== '') {
       this.yieldTerminal()
       this.start().persist(text)
-      this.lines = []
+      this.drawn = undefined
     }
 
     this.draw()
   }
 
+  /** Erases the live region. */
   public clear(): void {
     this.live = ''
 
@@ -104,12 +106,16 @@ export class ProcessOutput {
    * @see {@link https://listr2.kilic.dev/renderer/default.html#keyboard-input}
    */
   public lockInput(): void {
-    if (!this.active || this.input !== undefined || this.failed || process.platform === 'win32' || !process.stdin.isTTY || !this.stdout.isTTY) {
+    if (!this.active || this.input !== undefined || this.failed) {
+      return
+    }
+
+    if (process.platform === 'win32' || !process.stdin.isTTY || !this.stdout.isTTY) {
       return
     }
 
     // a job in the background draws like any other, and checks now and then whether it got the terminal
-    if (this.background !== undefined && Date.now() - this.background < 1000) {
+    if (this.background !== undefined && Date.now() - this.background < TERMINAL_POLL_INTERVAL) {
       return
     }
 
@@ -133,6 +139,7 @@ export class ProcessOutput {
     process.on('SIGTSTP', this.onStop)
   }
 
+  /** Restores the echo of the terminal that `lockInput()` turned off. */
   public unlockInput(): void {
     this.background = undefined
 
@@ -159,7 +166,7 @@ export class ProcessOutput {
     }
 
     this.live = ''
-    this.lines = []
+    this.drawn = undefined
 
     // not the most performant of functions, since creating a lots of memory
     // maybe refactor this sometime, but shouldnt be concern since we do not expect
@@ -227,7 +234,7 @@ export class ProcessOutput {
 
     // `fg` sends no SIGCONT to a job that already runs in the background, so check for the terminal now and then
     if (this.stopped !== undefined) {
-      if (Date.now() - this.stopped >= 1000) {
+      if (Date.now() - this.stopped >= TERMINAL_POLL_INTERVAL) {
         this.resume()
       }
 
@@ -236,21 +243,29 @@ export class ProcessOutput {
 
     if (this.live === '') {
       this.updater?.clear()
-    } else {
-      this.start()(this.live)
-    }
+      this.drawn = undefined
 
-    this.lines = this.layout(this.live)
-  }
-
-  private readonly onResize = (): void => {
-    if (this.lines.length === 0) {
       return
     }
 
+    this.start()(this.live)
+    // laid out only on a resize, at the size it was drawn at
+    this.drawn = {
+      text: this.live,
+      columns: this.stdout.columns ?? 80,
+      rows: this.stdout.rows ?? 24
+    }
+  }
+
+  private readonly onResize = (): void => {
+    if (!this.drawn) {
+      return
+    }
+
+    const lines = this.layout(this.drawn)
     const columns = this.stdout.columns
     // log-update erases with the line count of the last frame, which is stale once the terminal reflowed it
-    const height = this.reflows() ? this.lines.reduce((height, line) => height + this.wrap(line, columns).length, 0) : this.lines.length
+    const height = this.reflows() ? lines.reduce((height, line) => height + this.wrap(line, columns).length, 0) : lines.length
 
     this.stream.stdout.write(ANSI_ESCAPE_CODES.ERASE_LINE + (ANSI_ESCAPE_CODES.CURSOR_UP + ANSI_ESCAPE_CODES.ERASE_LINE).repeat(height) + ANSI_ESCAPE_CODES.CURSOR_LEFT)
     this.updater.done()
@@ -258,17 +273,13 @@ export class ProcessOutput {
     this.draw()
   }
 
-  private layout(text: string): string[] {
-    if (text === '') {
-      return []
-    }
-
-    const lines = this.wrap(text.replace(/\n$/, ''), this.stdout.columns ?? 80)
-    const rows = this.stdout.rows ?? 24
+  private layout({ text, columns, rows }: { text: string, columns: number, rows: number }): string[] {
+    const lines = this.wrap(text.endsWith(EOL) ? text.slice(0, -EOL.length) : text, columns)
 
     return lines.slice(Math.max(lines.length - rows + 1, 0))
   }
 
+  // wrap-ansi turns every line break into \n, also where EOL is \r\n
   private wrap(text: string, columns: number): string[] {
     return wrapAnsi(text, columns, {
       hard: true, trim: false, wordWrap: false
@@ -281,9 +292,14 @@ export class ProcessOutput {
       return true
     }
 
+    // these terminals truncate lines instead of reflowing them
+    if (process.env.XTERM_VERSION || process.env.STY) {
+      return false
+    }
+
     const term = process.env.TERM ?? ''
 
-    return !(process.env.XTERM_VERSION || process.env.STY || term === 'linux' || /^(rxvt|st|screen)/.test(term))
+    return term !== 'linux' && !/^(rxvt|st|screen)/.test(term)
   }
 
   private schedule(): void {
@@ -336,7 +352,7 @@ export class ProcessOutput {
     }
 
     this.updater?.done()
-    this.lines = []
+    this.drawn = undefined
     this.stopped = Date.now()
   }
 
@@ -371,7 +387,7 @@ export class ProcessOutput {
     const { status, stdout } = spawnSync('stty', args, {
       stdio: ['inherit', 'pipe', 'ignore'],
       encoding: 'utf-8',
-      timeout: 1000,
+      timeout: TERMINAL_POLL_INTERVAL,
       killSignal: 'SIGKILL'
     })
 
@@ -381,7 +397,7 @@ export class ProcessOutput {
   // a SIGTSTP listener keeps the process from stopping, and the shell may already have written below the live region, so it stays as it is
   private readonly onStop = (): void => {
     this.updater?.done()
-    this.lines = []
+    this.drawn = undefined
     this.stopped = Date.now()
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_SHOW)
 
@@ -403,6 +419,7 @@ export class ProcessOutput {
 
     this.stopped = undefined
     process.off('SIGCONT', this.onContinue)
+    // a resume through the poll in draw() never went through onStop, so remove the listener first to never register it twice
     process.off('SIGTSTP', this.onStop)
     process.on('SIGTSTP', this.onStop)
     this.stty('-echo')

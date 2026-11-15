@@ -269,11 +269,7 @@ export class Task<
     return this.closed
   }
 
-  /**
-   * Reopen the task before its list runs again.
-   *
-   * @internal
-   */
+  /** Reopen the task before its list runs again. */
   public reopen(): void {
     this.closed = false
   }

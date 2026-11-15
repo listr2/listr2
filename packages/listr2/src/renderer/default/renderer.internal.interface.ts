@@ -10,6 +10,8 @@ export interface ListrDefaultRendererFit {
 
 export interface ListrDefaultRendererTaskRender {
   title: string[]
+  header: string[]
+  footer: string[]
   body: string[]
   subtasks: boolean
   subtaskLevel: number

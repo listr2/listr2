@@ -27,9 +27,10 @@ export class ProcessOutputStream {
     })
   }
 
-  /** @internal */
+  /** Captures the writes to the stream in a buffer, and calls `onWrite` after each of them. */
   public hijack(onWrite?: () => void): void {
     this.stream.write = (...args: Parameters<ProcessOutputBuffer['write']>): boolean => {
+      // the arguments are a union of tuples, which neither a spread nor a typed apply can pass on
       const result: boolean = Reflect.apply(this.buffer.write, this.buffer, args)
 
       onWrite?.()
@@ -38,7 +39,7 @@ export class ProcessOutputStream {
     }
   }
 
-  /** @internal */
+  /** Returns the captured writes and empties the buffer, while the stream stays hijacked. */
   public take(): ProcessOutputBufferEntry[] {
     const buffer = [...this.buffer.all]
 
