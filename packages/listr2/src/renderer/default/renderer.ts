@@ -560,6 +560,8 @@ export class DefaultRenderer implements ListrRenderer {
     const titleLevel = bracket ? level + 1 : level
     // the closing line of a bracket shows its status, and its title only when its persisted header shows another one
     const text = bracket && task.hasFinalized() && (this.headers.get(task.id) ?? task.title) === task.title ? '' : task.title
+    // a failed group closes on the failed icon, since its own icon for failed subtasks reads like a running footer
+    const icon = bracket && task.hasFailed() ? this.logger.icon(ListrDefaultRendererLogLevels.FAILED) : this.style(task)
     // format() drops an empty message, so a closing line with only its icon passes the icon as the message
     const line = (message: string, icon: string): string[] => (message.trim() === '' ? this.format(icon, '', titleLevel) : this.format(message, icon, titleLevel))
 
@@ -574,7 +576,7 @@ export class DefaultRenderer implements ListrRenderer {
         // if task is skipped
         if (task.hasFailed() && rendererOptions.collapseErrors) {
           // current task title and skip change the title
-          title.push(...line(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : text, this.style(task)))
+          title.push(...line(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : text, icon))
         } else if (task.isSkipped() && rendererOptions.collapseSkips) {
           // current task title and skip change the title
           title.push(
@@ -584,7 +586,7 @@ export class DefaultRenderer implements ListrRenderer {
                 condition: rendererOptions.suffixSkips,
                 format: () => color.dim
               }),
-              this.style(task)
+              icon
             )
           )
         } else if (task.isRetrying()) {
@@ -595,7 +597,7 @@ export class DefaultRenderer implements ListrRenderer {
                 format: () => color.yellow,
                 condition: rendererOptions.suffixRetries
               }),
-              this.style(task)
+              icon
             )
           )
         } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
@@ -606,7 +608,7 @@ export class DefaultRenderer implements ListrRenderer {
                 ...rendererTaskOptions.timer,
                 args: [task.message.duration]
               }),
-              this.style(task)
+              icon
             )
           )
         } else if (task.isPaused()) {
@@ -616,12 +618,12 @@ export class DefaultRenderer implements ListrRenderer {
                 ...rendererOptions.pausedTimer,
                 args: [task.message.paused - Date.now()]
               }),
-              this.style(task)
+              icon
             )
           )
         } else {
           // normal state
-          title.push(...line(text, this.style(task)))
+          title.push(...line(text, icon))
         }
       } else {
         // some sibling task but self has failed and this has stopped

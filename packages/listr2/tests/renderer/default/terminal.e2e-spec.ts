@@ -393,7 +393,7 @@ describe('default renderer: terminal', () => {
       .run()
       .catch(() => {})
 
-    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ◼ never runs', '└ ❯'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ◼ never runs', '└ ✖'])
   })
 
   it('should keep the connector on the summaries of an open non-collapsing parent taller than the terminal', async() => {

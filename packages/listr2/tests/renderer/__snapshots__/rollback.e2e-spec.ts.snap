@@ -391,16 +391,16 @@ exports[`default renderer: rollback > should rollback the subtask if the subtask
   "┌ Something with rollback.
 │ ← Some actions required rollback stuff.
 │ ◼ This task will execute.
-└ ❯
+└ ✖
 ◼ This task will never execute.",
   "┌ Something with rollback.
 │ ← Some actions required rollback stuff.
 │ ◼ This task will execute.
-└ ❯",
+└ ✖",
   "┌ Something with rollback.
 │ ← Some actions required rollback stuff.
 │ ◼ This task will execute.
-└ ❯
+└ ✖
 ◼ This task will never execute.",
 ]
 `;
