@@ -16,7 +16,7 @@ import type {
 } from '#interfaces'
 import { ListrTaskFailure, PromptError } from '#interfaces'
 import { Listr } from '#root'
-import { assertFunctionOrSelf, cleanseAnsi, delay, getRendererClass, isObservable, isReadable, splat } from '#utils'
+import { assertFunctionOrSelf, assertOption, cleanseAnsi, delay, getRendererClass, isObservable, isReadable, splat } from '#utils'
 
 /**
  * Creates and handles a runnable instance of the Task.
@@ -77,6 +77,13 @@ export class Task<
 
     this.taskFn = task.task
     this.parent = listr.parentTask
+
+    // a fraction kept the task retrying past its last try and then let it pass
+    const tries = typeof task.retry === 'number' ? task.retry : task.retry?.tries
+
+    if (typeof tries === 'number') {
+      assertOption(typeof task.retry === 'number' ? 'retry' : 'retry.tries', tries, !(tries > 0) || Number.isInteger(tries), 'must be a whole number')
+    }
   }
 
   /**

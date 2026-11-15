@@ -33,12 +33,7 @@ export type ListrSecondaryRendererValue = ListrSimpleRendererValue
  * or utilize a compatible style renderer that extends the ListrRenderer abstract class.
  */
 export type ListrRendererValue =
-  | ListrSilentRendererValue
-  | ListrDefaultRendererValue
-  | ListrSimpleRendererValue
-  | ListrVerboseRendererValue
-  | ListrTestRendererValue
-  | ListrRendererFactory
+  ListrSilentRendererValue | ListrDefaultRendererValue | ListrSimpleRendererValue | ListrVerboseRendererValue | ListrTestRendererValue | ListrRendererFactory
 
 /**
  * Returns the class type from friendly names of the renderers.
@@ -136,6 +131,8 @@ export declare class ListrRenderer {
   public static rendererTaskOptions: Record<PropertyKey, any>
   /** designate whether this renderer can work in non-tty environments */
   public static nonTTY: boolean
+  /** Throws when the options of a task list or of a task hold a value the renderer cannot use, before anything renders. */
+  public static assertOptions?: (options: Record<PropertyKey, any>) => void
   /** A function to what to do on render */
   public render: () => void | Promise<void>
   /** A function to what to do on end of the render */

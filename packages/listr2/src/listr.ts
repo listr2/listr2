@@ -16,7 +16,7 @@ import type {
   ListrTask
 } from '#interfaces'
 import { ListrEventManager, Task, TaskWrapper } from '#lib'
-import { Concurrency, getRenderer } from '#utils'
+import { Concurrency, assertOption, getRenderer } from '#utils'
 
 /**
  * Create a new task list with Listr.
@@ -74,6 +74,9 @@ export class Listr<
       this.options.concurrent = 1
     }
 
+    // no task would ever start, and the list would never settle
+    assertOption('concurrent', this.options.concurrent, this.options.concurrent > 0, 'must be true, false or a number greater than 0')
+
     this.concurrency = new Concurrency({ concurrency: this.options.concurrent as number })
 
     // Update currentPath
@@ -125,6 +128,7 @@ export class Listr<
     this.rendererClass = renderer.renderer
     this.rendererClassOptions = renderer.options as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer> | ListrGetRendererClassFromValue<FallbackRenderer>>
     this.rendererSelection = renderer.selection
+    this.rendererClass.assertOptions?.(this.rendererClassOptions ?? {})
 
     // parse and add tasks
     /* istanbul ignore next */
@@ -258,6 +262,8 @@ export class Listr<
       } else if (this.rendererSelection === ListrRendererSelection.SECONDARY) {
         rendererTaskOptions = task.fallbackRendererOptions
       }
+
+      this.rendererClass.assertOptions?.(rendererTaskOptions ?? {})
 
       return new Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>(
         this as Listr<Ctx, any, any>,

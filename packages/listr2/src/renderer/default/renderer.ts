@@ -23,7 +23,7 @@ import type { ListrRenderer, ListrTaskEventMap } from '#interfaces'
 import { ListrRendererError } from '#interfaces'
 import type { ListrEventManager } from '#lib'
 import { PRESET_TIMER } from '#presets'
-import { ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, cleanseAnsi, color, indent } from '#utils'
+import { ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, assertOption, cleanseAnsi, color, indent } from '#utils'
 
 export class DefaultRenderer implements ListrRenderer {
   public static nonTTY = false
@@ -92,6 +92,28 @@ export class DefaultRenderer implements ListrRenderer {
     this.logger = this.options.logger ?? new ListrLogger<ListrDefaultRendererLogLevels>({ useIcons: true, toStderr: [] })
     this.logger.options.icon = this.options.icon
     this.logger.options.color = this.options.color
+  }
+
+  /**
+   * Throws a `RangeError` for an option value that would break the rendering, when a task list or a task is created.
+   *
+   * - A negative or `NaN` indentation never renders, an unknown `formatOutput` renders nothing, and a negative or `NaN` `outputBar` or
+   *   `bottomBar` shows no output or every line of it.
+   */
+  public static assertOptions(options: ListrDefaultRendererOptions & ListrDefaultRendererTaskOptions = {}): void {
+    if (options.indentation !== undefined) {
+      assertOption('indentation', options.indentation, options.indentation >= 0 && Number.isFinite(options.indentation), 'must be a number of 0 or more')
+    }
+
+    if (options.formatOutput !== undefined) {
+      assertOption('formatOutput', options.formatOutput, ['truncate', 'wrap'].includes(options.formatOutput), 'must be \'truncate\' or \'wrap\'')
+    }
+
+    for (const name of ['outputBar', 'bottomBar'] as const) {
+      const value = options[name]
+
+      assertOption(name, value, typeof value !== 'number' || value >= 0, 'must be a boolean or a number of 0 or more')
+    }
   }
 
   public render(): void {

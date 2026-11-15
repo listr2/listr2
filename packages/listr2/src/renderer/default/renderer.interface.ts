@@ -9,15 +9,15 @@ export type ListrDefaultRendererOptionsStyle = ListrLoggerStyleMap<ListrDefaultR
 export type ListrDefaultRendererTask = ListrRendererTask<typeof DefaultRenderer>
 
 export interface ListrDefaultRendererOptions
-  extends RendererPresetTimer,
-  RendererLoggerOptions<ListrDefaultRendererLogLevels>,
-  ListrLoggerStyleMap<ListrDefaultRendererLogLevels> {
+  extends RendererPresetTimer, RendererLoggerOptions<ListrDefaultRendererLogLevels>, ListrLoggerStyleMap<ListrDefaultRendererLogLevels> {
   // global
 
   /**
    * Indentation per-level.
    *
    * - This is a global option that can only be changed through the main Listr class.
+   *
+   * - Creating the list throws a `RangeError` when it is negative or `NaN`.
    *
    * @defaultValue `2`
    */
@@ -26,6 +26,8 @@ export interface ListrDefaultRendererOptions
    * Formats the output in to the given lines of `process.stdout.columns`.
    *
    * - This is a global option that can only be changed through the main Listr class.
+   *
+   * - Creating the list throws a `RangeError` for any other value.
    *
    * @defaultValue `'wrap'`
    */
@@ -177,6 +179,7 @@ export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
    * - `Infinity` will keep all the lines.
    * - `number` will keep the defined amount of lines.
    * - `false` will not render output with this method.
+   * - Creating the task throws a `RangeError` for a negative number or `NaN`.
    *
    * @defaultValue `true`
    */
@@ -191,6 +194,7 @@ export interface ListrDefaultRendererTaskOptions extends RendererPresetTimer {
    * - `Infinity` will keep all the lines.
    * - `number` will keep the defined amount of lines.
    * - `false` will not render output with this method.
+   * - Creating the task throws a `RangeError` for a negative number or `NaN`.
    *
    * @defaultValue `false`
    */

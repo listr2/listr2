@@ -27,7 +27,8 @@ export interface ListrOptions<Ctx = ListrContext> {
    *
    * - `false` will only run a single task at a time.
    * - `true` will set it to `Infinity` to run all the tasks in parallel.
-   * - Given a `number` it will limit the concurrency to that number.
+   * - Given a `number` it will limit the concurrency to that number. A fraction is rounded up, so `0.5` runs one task at a time.
+   * - Creating the list throws a `RangeError` for `0`, a negative number or `NaN`.
    *
    * @defaultValue `false`
    */

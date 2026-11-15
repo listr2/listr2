@@ -13,3 +13,12 @@ export function assertFunctionOrSelf<T>(
     return functionOrSelf as any
   }
 }
+
+/**
+ * Throws a `RangeError` that names the option and its value, when the value is not one that the option accepts.
+ */
+export function assertOption(name: string, value: unknown, valid: boolean, expected: string): void {
+  if (!valid) {
+    throw new RangeError(`The ${name} option ${expected}, but it is ${typeof value === 'string' ? `'${value}'` : String(value)}.`)
+  }
+}

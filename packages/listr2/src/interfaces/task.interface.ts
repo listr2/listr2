@@ -53,6 +53,7 @@ export interface ListrTask<Ctx = ListrContext, Renderer extends ListrRendererFac
    * Retries a task with the given amounts whenever a task fails.
    *
    * - Returning `task.fail(error)` from the task fails it immediately without using the remaining retries.
+   * - Creating the task throws a `RangeError` when the number of retries is a fraction greater than 0. `0`, a negative number or `NaN` does not retry.
    *
    * @see {@link https://listr2.kilic.dev/task/retry.html}
    */
@@ -104,7 +105,7 @@ export interface ListrTaskRetry {
  * @see {@link https://listr2.kilic.dev/task/retry.html}
  */
 export interface ListrTaskRetryOptions<Ctx = ListrContext> {
-  /** Amount of retries after the first failed attempt. */
+  /** Amount of retries after the first failed attempt, a whole number. */
   tries: number
   /**
    * Milliseconds to wait before each retry, or a callback that returns it.
