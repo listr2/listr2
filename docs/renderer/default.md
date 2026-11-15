@@ -61,7 +61,7 @@ Every task that shows its subtasks under its title draws them as a bracketed gro
 │ ✔ Running migration 001.
 │ ✔ Running migration 002.
 │ ⠋ Running migration 003.
-└ ❯ Running migrations
+└ ❯
 ```
 
 ![A group with collapseSubtasks: false while it runs](../../examples/screenshots/bracket-running.png)
@@ -72,9 +72,9 @@ _A group with `collapseSubtasks: false` while it runs: the header and the finish
 
 _The same group from start to end._
 
-While the group runs, its footer stays in the live region with the icon of the task and its title, since the header may have scrolled off the screen: `❯` while it runs, or the spinner of a retry followed by `[RETRY:n]` while it retries. A task with `collapseSubtasks: false` persists its header with its first finished subtask, so the connector runs on from the persisted part into the live part, and persists its footer once it closes. A task persisted as one block, such as one that stays expanded because a subtask failed, is persisted with its header and footer at once.
+While the group runs, its footer stays in the live region with the icon of the task: `❯` while it runs, or the spinner of a retry followed by `[RETRY:n]` while it retries. It shows the title of the task as well once the header can no longer be on the screen, so a long group still names the task it belongs to. This counts the lines of the group from its header down, so output written above the live region inside the group, such as from `console.log`, can push the header off the screen before the title shows. A task with `collapseSubtasks: false` persists its header with its first finished subtask, so the connector runs on from the persisted part into the live part, and persists its footer once it closes. A task persisted as one block, such as one that stays expanded because a subtask failed, is persisted with its header and footer at once.
 
-The persisted footer shows the final icon of the task only, since its title is already in the header: `✔` once it completed, `⚠` when some of its subtasks failed without failing it, and a red `✖` when it failed. The timer follows it when the `timer` renderer option of the task is on, and when the title of the task changed after its header was persisted, the footer shows the new title, so it is not lost.
+The persisted footer shows the final icon of the task only, since its title is already in the header: `✔` once it completed, `⚠` when some of its subtasks failed without failing it, and a red `✖` when it failed. The timer follows it when the `timer` renderer option of the task is on, and when the title of the task changed after its header was persisted, the footer shows the new title, while it runs and once it finished, so it is not lost. A footer with only its icon ends on a space, since some terminals, such as kitty, draw a symbol that ends the line narrower than one with a space after it.
 
 ```text
 ┌ Running migrations

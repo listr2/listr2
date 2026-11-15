@@ -31,3 +31,12 @@ export interface ListrDefaultRendererFrame {
 }
 
 export type ListrDefaultRendererFrozen = 'open' | 'done'
+
+export interface ListrDefaultRendererHeader {
+  /** The title the persisted header shows. */
+  title: string
+  /** The lines persisted inside the group below its header, each of which takes at least one row. */
+  persisted: number
+  /** The lines of the live part of the group on the last frame, its footer included. */
+  live: number
+}
