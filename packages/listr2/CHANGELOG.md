@@ -1,3 +1,19 @@
+## listr2 [12.0.0-beta.2](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.1...listr2@12.0.0-beta.2) (2026-11-15)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** expanded subtasks of the default renderer are prefixed
+with a dimmed `│` (`|` without unicode) in place of the first space of
+their indentation. Set `markIndentation: [secure]` to keep the previous
+layout.
+
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+
+### Features
+
+* **renderer:** mark every expanded subtask group with a connector ([3a8697d](https://github.com/listr2/listr2/commit/3a8697d476f1a9f78dd45e4b8bc44690dc4da3de))
+
 ## listr2 [12.0.0-beta.1](https://github.com/listr2/listr2/compare/listr2@11.4.1...listr2@12.0.0-beta.1) (2026-11-15)
 
 ### ⚠ BREAKING CHANGES
