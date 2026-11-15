@@ -1,3 +1,21 @@
+## listr2 [12.0.0-beta.3](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.2...listr2@12.0.0-beta.3) (2026-11-15)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** expanded subtask groups of the default renderer are
+drawn with a `┌` header and a `└` footer in place of the parent's title
+line, and a `collapseSubtasks: [secure]` parent's final line is the footer
+of its group. The overflow summaries read `↑ N completed` and
+`… N waiting` instead of `✔ N completed` and `◼ N waiting`. Set
+`markIndentation: [secure]` to drop the bracket.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
+
+### Features
+
+* **renderer:** draw non-collapsing subtask groups as a bracket ([4b9a151](https://github.com/listr2/listr2/commit/4b9a151299cdba4b8d61624235f592a8418b5503))
+
 ## listr2 [12.0.0-beta.2](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.1...listr2@12.0.0-beta.2) (2026-11-15)
 
 ### ⚠ BREAKING CHANGES
