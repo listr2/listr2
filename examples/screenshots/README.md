@@ -38,6 +38,13 @@ bright6=56b6c2
 bright7=ffffff
 ```
 
+The images use a cell of 17×34 pixels at a scale of 2. Newer foot versions round the cell up to 18×35 pixels with the same font, so when a capture comes out wider than the other images, add these lines to the top of `foot.ini` to keep it the same size:
+
+```ini
+line-height=17px
+letter-spacing=-0.4
+```
+
 ```bash
 # start sway without a display, and foot with tmux inside it
 WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 WLR_RENDERER=pixman sway &
