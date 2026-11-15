@@ -121,7 +121,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['❯ parent', '  ✔ 8 completed', '  ✔ task 8', '  ✔ task 9', '  ❯ task 10', ...range(4, (index) => `  ◼ task ${index + 11}`)])
+    expect(seen).toEqual(['❯ parent', '│ ✔ 8 completed', '│ ✔ task 8', '│ ✔ task 9', '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`)])
     expect(await vt.content()).toEqual(['✔ parent'])
   })
 
@@ -252,7 +252,7 @@ describe('default renderer: terminal', () => {
     expect(seen).toEqual(['❯ parent', ...range(5, (index) => `│ ✔ task ${index}`), '│ ❯ task 5', ...range(7, (index) => `│ ◼ task ${index + 6}`), '│ ◼ 7 waiting'])
   })
 
-  it('should draw no connector when the output is cleared, since nothing is persisted above the subtasks', async() => {
+  it('should draw the connector when the output is cleared', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
 
     let seen: string[]
@@ -277,7 +277,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false, clearOutput: true })
     ).run()
 
-    expect(seen).toEqual(['❯ parent', '  ✔ task 0', '  ❯ task 1', '  ◼ task 2'])
+    expect(seen).toEqual(['❯ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2'])
     expect(await vt.content()).toEqual([])
   })
 
@@ -308,7 +308,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // a summary of one finished subtask takes the same row as the subtask itself
-    expect(seen).toEqual(['❯ parent', '  ✔ task 0', '  ❯ task 1', '  ◼ task 2', '  ◼ task 3', '  ◼ 2 waiting', '◼ after 0', '◼ after 1', '◼ 8 waiting'])
+    expect(seen).toEqual(['❯ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ ◼ task 3', '│ ◼ 2 waiting', '◼ after 0', '◼ after 1', '◼ 8 waiting'])
   })
 
   it('should draw the connector with the fallback figure when unicode is not supported', async() => {
@@ -393,7 +393,54 @@ describe('default renderer: terminal', () => {
 
     // nothing of the subtree is persisted while the parent runs
     expect(seen).toEqual({ scrollback: [], screen: ['❯ parent'] })
-    expect(await vt.content()).toEqual(['⚠ parent', '  ✔ first', '  ✖ second failed', '  ✔ third'])
+    expect(await vt.content()).toEqual(['⚠ parent', '│ ✔ first', '│ ✖ second failed', '│ ✔ third'])
+  })
+
+  it('should draw no connector when markIndentation is disabled', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'collapsing',
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                {
+                  title: 'first',
+                  task: async(): Promise<void> => {
+                    seen = await vt.content()
+                  }
+                },
+                {
+                  title: 'second',
+                  task: async(): Promise<void> => {
+                    throw new Error('second failed')
+                  }
+                }
+              ],
+              { exitOnError: false }
+            )
+        },
+        {
+          title: 'staying',
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                { title: 'third', task: async(): Promise<void> => {} },
+                { title: 'fourth', task: async(): Promise<void> => {} }
+              ],
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        }
+      ],
+      options({ markIndentation: false })
+    ).run()
+
+    expect(seen).toEqual(['❯ collapsing', '  ❯ first', '  ◼ second', '◼ staying'])
+    expect(await vt.content()).toEqual(['⚠ collapsing', '  ✔ first', '  ✖ second failed', '❯ staying', '  ✔ third', '  ✔ fourth', '✔ staying'])
   })
 
   it('should persist the tasks of a concurrent list in the order they finish', async() => {
@@ -523,7 +570,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     expect(exit).toHaveBeenCalledWith(127)
-    expect(await vt.content()).toEqual(['✔ before', '⊘ parent', '  ⊘ interrupted', '  ⊘ never started', '⊘ after'])
+    expect(await vt.content()).toEqual(['✔ before', '⊘ parent', '│ ⊘ interrupted', '│ ⊘ never started', '⊘ after'])
 
     exit.mockRestore()
   })
@@ -631,6 +678,6 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the first attempt is persisted
-    expect(await vt.content()).toEqual(['✔ parent', '  ✔ first (attempt 2)', '  ✔ second (attempt 2)'])
+    expect(await vt.content()).toEqual(['✔ parent', '│ ✔ first (attempt 2)', '│ ✔ second (attempt 2)'])
   })
 })

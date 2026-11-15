@@ -58,6 +58,15 @@ export interface ListrDefaultRendererOptions
    */
   lockInput?: boolean
   /**
+   * Draw a vertical line in front of the subtasks of an expanded task, so the subtasks are visibly linked to the title of their parent.
+   *
+   * - This is a global option that can only be changed through the main Listr class.
+   * - The line takes the first column of the indentation, so it is not drawn when `indentation` is `0`.
+   *
+   * @defaultValue `true`
+   */
+  markIndentation?: boolean
+  /**
    * Remove empty lines from the output section for decluterring multiple line output.
    *
    * @defaultValue `true`

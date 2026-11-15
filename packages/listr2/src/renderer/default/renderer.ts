@@ -40,6 +40,7 @@ export class DefaultRenderer implements ListrRenderer {
     suffixRetries: true,
     lazy: false,
     lockInput: true,
+    markIndentation: true,
     removeEmptyLines: true,
     formatOutput: 'wrap',
     pausedTimer: {
@@ -435,7 +436,7 @@ export class DefaultRenderer implements ListrRenderer {
       this.frozen.set(task.id, 'done')
 
       return {
-        persist: opened ? [...this.connect(task, level, children.persist), ...title, ...body] : [...title, ...body, ...children.persist],
+        persist: opened ? [...this.connect(task, level, children.persist), ...title, ...body] : [...title, ...this.connect(task, level, [...body, ...children.persist])],
         live: []
       }
     }
@@ -445,7 +446,7 @@ export class DefaultRenderer implements ListrRenderer {
     if (!opened && this.frozen.size === frozen) {
       return {
         persist: children.persist,
-        live: [...title, ...live]
+        live: [...title, ...(subtasks ? this.connect(task, level, live) : live)]
       }
     }
 
@@ -469,17 +470,21 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     const { title, body, subtasks, subtaskLevel } = this.renderTask(task, siblings, level)
-    const output = open ? [...body] : [...title, ...body]
+    const lines = [...body]
 
     if (subtasks) {
       const compact = summary !== undefined && !task.isClosed() && !this.isProgressive(task)
 
-      output.push(...this.renderer(task.subtasks, subtaskLevel, { summary, compact }).live)
+      lines.push(...this.renderer(task.subtasks, subtaskLevel, { summary, compact }).live)
     }
 
+    const group = subtasks || open ? this.connect(task, level, lines) : lines
+
     if (open) {
-      return this.connect(task, level, output)
+      return group
     }
+
+    const output = [...title, ...group]
 
     // a summarized render is not the final one
     if (task.isClosed() && !summary) {
@@ -672,7 +677,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   private connect(task: ListrDefaultRendererTask, level: number, lines: string[]): string[] {
     // a parent without a title renders its subtasks at its own level, so there is no column to draw into
-    if (!task.hasTitle() || this.options.indentation < 1) {
+    if (!this.options.markIndentation || !task.hasTitle() || this.options.indentation < 1) {
       return lines
     }
 

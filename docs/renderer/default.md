@@ -42,7 +42,7 @@ A task is persisted once it has closed, so a task that retries or rolls back sta
 - A task whose subtasks collapse, which is the default `collapseSubtasks: true`, stays in the live region with its subtasks until it closes. It is then persisted as it is shown at that moment: collapsed into a single line, or expanded when one of its subtasks failed, rolled back, or was cancelled.
 - A task with `collapseSubtasks: false` persists its title when its first subtask is persisted, then its subtasks as they finish, and then its final title line, with its icon and timer, after its subtasks. While it does so, the tasks next to it in a concurrent list wait in the live region, so its subtasks stay under its title.
 
-A task whose title is persisted before its subtasks draws a connector in the first column of their indentation, in the persisted and the live part alike, so its first and its final title line read as one group. Nested tasks that are persisted the same way add one connector column each. The connector takes no extra column, so subtasks wrap and truncate as before, and with `indentation: 0` there is no column for it and none is drawn. A task that is persisted in one piece, such as a task whose subtasks collapse or a task that retries, and every task under `clearOutput: true` keep the layout without it.
+Every task that shows its subtasks under its title draws a connector in the first column of their indentation: a task whose subtasks collapse while it runs, or when it stays expanded because one of its subtasks failed, rolled back, or was cancelled, and a task with `collapseSubtasks: false`. A task whose title is persisted before its subtasks draws it in the persisted and the live part alike, so its first and its final title line read as one group. Nested tasks add one connector column each. The connector takes no extra column, so subtasks wrap and truncate as before. A task without a title draws none, since there is no title line above its subtasks, and with `indentation: 0` there is no column for it.
 
 ```text
 ❯ Running migrations
@@ -52,7 +52,7 @@ A task whose title is persisted before its subtasks draws a connector in the fir
 ✔ Running migrations [2s]
 ```
 
-The connector is `│`, or `|` when the terminal does not support unicode, drawn dimmed. Change it like any other icon through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.CONNECTOR` key.
+The connector is `│`, or `|` when the terminal does not support unicode, drawn dimmed. Change it like any other icon through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.CONNECTOR` key. Set the renderer option `markIndentation` to `false` to draw no connector at all; the indentation, and the first and final title lines of a task with `collapseSubtasks: false`, stay as they are.
 
 With `clearOutput: true` nothing is persisted: the whole list stays in the live region and is cleared at the end.
 
