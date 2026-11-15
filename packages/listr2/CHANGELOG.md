@@ -1,3 +1,9 @@
+## listr2 [12.0.0-beta.7](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.6...listr2@12.0.0-beta.7) (2026-11-15)
+
+### Bug Fixes
+
+* **renderer:** write each frame as one synchronized update ([9883021](https://github.com/listr2/listr2/commit/9883021001d3f4177b3b604e7d7a083281d64e98))
+
 ## listr2 [12.0.0-beta.6](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.5...listr2@12.0.0-beta.6) (2026-11-15)
 
 ### ⚠ BREAKING CHANGES
