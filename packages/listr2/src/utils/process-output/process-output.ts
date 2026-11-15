@@ -433,7 +433,11 @@ export class ProcessOutput {
     // a resume through the poll in draw() never went through onStop, so remove the listener first to never register it twice
     process.off('SIGTSTP', this.onStop)
     process.on('SIGTSTP', this.onStop)
-    this.stty('-echo')
+
+    if (this.stty('-echo') === undefined) {
+      this.failed = true
+    }
+
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
 
     this.draw()
