@@ -25,7 +25,6 @@ export class ProcessOutputBuffer {
 
     this.buffer.push({
       time: Date.now(),
-      stream: this.options?.stream,
       entry: this.decoder.write(typeof data === 'string' ? Buffer.from(data, typeof args[0] === 'string' ? (args[0] as BufferEncoding) : undefined) : Buffer.from(data))
     })
 

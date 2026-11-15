@@ -10,7 +10,7 @@ category:
 
 # {{ $frontmatter.title }}
 
-[ProcessOutput](/api/listr2/classes/ProcessOutput.html), [ProcessOutputStream](/api/listr2/classes/ProcessOutputStream.html), [ProcessOutputBuffer](/api/listr2/classes/ProcessOutputBuffer.html) is used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
+[ProcessOutput](/api/listr2/classes/ProcessOutput.html) and [ProcessOutputStream](/api/listr2/classes/ProcessOutputStream.html) are used to take control of the current `stdout` and `stderr` for _ListrLogger_ to ensure that nothing else is written to the console and creates an abstraction for accessing `process.stdout` and `process.stderr` when needed.
 
 <!-- more -->
 
@@ -18,13 +18,13 @@ category:
 
 ## Hijack
 
-[ProcessOutput](/api/listr2/classes/ProcessOutput.html) for renderers like _DefaultRenderer_ that need updating your `vt100` compatible terminal gives the ability to hijack the current `process.stdout` and `process.stderr`, create a temporary buffer for storing anything that is trying to write to the terminal since it will corrupt the output of _Listr_. If the renderer does not request to hijack the terminal output, `process.stdout` and `process.stderr` will be used directly without any trickery.
+[ProcessOutput](/api/listr2/classes/ProcessOutput.html) for renderers like _DefaultRenderer_ that need updating your `vt100` compatible terminal gives the ability to hijack the current `process.stdout` and `process.stderr`, and to capture anything else that tries to write to the terminal, since it would corrupt the output of _Listr_. If the renderer does not request to hijack the terminal output, `process.stdout` and `process.stderr` will be used directly without any trickery.
 
 ## Live Region
 
 <Version version="v12.0.0" />
 
-_ProcessOutput_ also owns the live region at the bottom of `stdout` that the _DefaultRenderer_ draws through [`log-update`](https://www.npmjs.com/package/log-update): `output.update()` redraws it, `output.persist()` writes text above it, where the text stays, and `output.clear()` erases it. It is redrawn when the terminal is resized. Once a renderer draws through it, anything written to the hijacked streams is written above the live region as it arrives, together with everything else written in the same tick, instead of being buffered until the release. Writes to `stderr` still go to `stderr`. Streams left out of the `dump` option are still discarded. Output that is not written through `process.stdout` or `process.stderr`, such as a child process spawned with `stdio: 'inherit'`, cannot be hijacked and corrupts the live region; use [`task.stdout()`](../task/output.md) for it instead.
+_ProcessOutput_ also owns the live region at the bottom of `stdout` that the _DefaultRenderer_ draws through [`log-update`](https://www.npmjs.com/package/log-update): `output.update()` redraws it, `output.persist()` writes text above it, where the text stays, and `output.clear()` erases it. It is redrawn when the terminal is resized. Once a renderer draws through it, anything written to the hijacked streams is written above the live region as it arrives, together with everything else written in the same tick. Writes to `stderr` still go to `stderr`. Streams left out of the `dump` option are still discarded. Output that is not written through `process.stdout` or `process.stderr`, such as a child process spawned with `stdio: 'inherit'`, cannot be hijacked and corrupts the live region; use [`task.stdout()`](../task/output.md) for it instead.
 
 ## Locking the Input
 
@@ -32,7 +32,7 @@ While the output is hijacked, `output.lockInput()` turns off the echo of the ter
 
 ## Release
 
-After the renderer releases the _ProcessOutput_ and marks it ready to use, everything that has been outputted to the hooked streams and has not been written yet will be dumped. **This intends to solve the most common cause of opening an issue in the repository which is saying that the output is corrupted and not realizing something else is writing to output the terminal.**
+When the renderer releases the _ProcessOutput_, the streams are restored, and anything captured that has not been written yet is written to its stream, in the order it arrived. With the _DefaultRenderer_ that is at most what was written in the last tick, since everything else was already written above the live region. A renderer that hijacks the streams without drawing a live region, such as the _SimpleRenderer_ while a prompt is active, holds the captured output until the release, so it does not break into the prompt.
 
 ## Writing Through Process Output
 

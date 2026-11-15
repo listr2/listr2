@@ -16,17 +16,17 @@ export interface ProcessOutputRendererOptions {
  */
 export interface ProcessOutputOptions {
   /**
-   * Which captured streams are written: while a renderer draws, above its live region as the writes arrive, and after `ProcessOutput.release()`.
+   * Which captured streams are written: above the live region as the writes arrive while a renderer draws one, otherwise on
+   * `ProcessOutput.release()`. The writes to the other streams are dropped.
    *
    * @defaultValue `[ 'stdout', 'stderr' ]`
    */
   dump?: (keyof ProcessOutputStreamMap)[]
-  /**
-   * After the `ProcessOutput.release()` whether to leave empty line or not.
-   *
-   * @defaultValue `true`
-   */
-  leaveEmptyLine?: boolean
+}
+
+export interface ProcessOutputCapture {
+  name: keyof ProcessOutputStreamMap
+  entry: string
 }
 
 export type ProcessOutputStreamMap = Record<'stdout' | 'stderr', ProcessOutputStream>

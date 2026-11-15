@@ -7,7 +7,7 @@ import wrapAnsi from 'wrap-ansi'
 
 import { ProcessOutputStream } from './process-output-stream'
 import { TERMINAL_POLL_INTERVAL } from './process-output.constants'
-import type { ProcessOutputOptions, ProcessOutputStreamMap } from './process-output.interface'
+import type { ProcessOutputCapture, ProcessOutputOptions, ProcessOutputStreamMap } from './process-output.interface'
 import { ANSI_ESCAPE_CODES } from '#constants'
 import { cleanseAnsi } from '#utils'
 
@@ -24,6 +24,7 @@ export class ProcessOutput {
   private readonly shared: boolean
   private updater?: ReturnType<typeof createLogUpdate>
   private live = ''
+  private captured: ProcessOutputCapture[] = []
   private drawn?: { text: string; columns: number; rows: number }
   private frame?: string[]
   private input?: string
@@ -47,7 +48,6 @@ export class ProcessOutput {
 
     this.options = {
       dump: ['stdout', 'stderr'],
-      leaveEmptyLine: true,
       ...options
     }
   }
@@ -67,14 +67,18 @@ export class ProcessOutput {
 
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
     this.removeExitHook = onExit(() => this.restore(), { alwaysLast: true })
-    Object.values(this.stream).forEach((stream) => stream.hijack(() => this.schedule()))
+
+    for (const name of Object.keys(this.stream) as (keyof ProcessOutputStreamMap)[]) {
+      this.stream[name].hijack((entry) => this.capture(name, entry))
+    }
+
     this.active = true
   }
 
   /**
    * Redraws the live region at the bottom of `stdout`.
    *
-   * Once a live region is drawn, captured writes are written above it as they arrive instead of on `release()`.
+   * Once a live region is drawn, captured writes are written above it as they arrive.
    */
   public update(live: string): void {
     this.live = live
@@ -162,6 +166,7 @@ export class ProcessOutput {
     this.stopped = undefined
   }
 
+  /** Writes what was captured and not written yet, such as while a prompt of the simple renderer was active, and restores the streams. */
   public release(): void {
     if (this.updater) {
       this.stdout.off('resize', this.onResize)
@@ -172,33 +177,8 @@ export class ProcessOutput {
     this.live = ''
     this.drawn = undefined
 
-    // not the most performant of functions, since creating a lots of memory
-    // maybe refactor this sometime, but shouldnt be concern since we do not expect
-    // huge number of outputs being buffered
-    const output = Object.entries(this.stream)
-      .map(([name, stream]) => ({ name, buffer: stream.release() }))
-      .filter((output) => this.options.dump.includes(output.name as keyof ProcessOutputStreamMap))
-      .flatMap((output) => output.buffer)
-      .sort((a, b) => a.time - b.time)
-      .map((message) => {
-        return {
-          ...message,
-          entry: cleanseAnsi(message.entry)
-        }
-      })
-      .filter((message) => message.entry)
-
-    if (output.length > 0) {
-      if (this.options.leaveEmptyLine) {
-        this.stdout.write(EOL)
-      }
-
-      output.forEach((message) => {
-        const stream = message.stream ?? this.stdout
-
-        stream.write(message.entry + EOL)
-      })
-    }
+    Object.values(this.stream).forEach((stream) => stream.release())
+    this.take().forEach((message) => this.stream[message.name].write(message.entry + EOL))
 
     this.restore()
     this.removeExitHook?.()
@@ -356,7 +336,13 @@ export class ProcessOutput {
     return term !== 'linux' && !/^(rxvt|st|screen)/.test(term)
   }
 
-  private schedule(): void {
+  private capture(name: keyof ProcessOutputStreamMap, entry: string): void {
+    if (!this.options.dump.includes(name)) {
+      return
+    }
+
+    this.captured.push({ name, entry })
+
     if (this.updater) {
       queueMicrotask(() => this.flush())
     }
@@ -367,31 +353,30 @@ export class ProcessOutput {
       return
     }
 
-    const entries = (Object.keys(this.stream) as (keyof ProcessOutputStreamMap)[])
-      .flatMap((name) =>
-        this.stream[name].take().map((message) => ({
-          name,
-          time: message.time,
-          entry: cleanseAnsi(message.entry)
-        }))
-      )
-      .filter((message) => message.entry && this.options.dump.includes(message.name))
-      .sort((a, b) => a.time - b.time)
+    const captured = this.take()
 
-    if (entries.length === 0) {
+    if (captured.length === 0) {
       return
     }
 
-    if (this.shared || entries.every((message) => message.name === 'stdout')) {
-      this.persist(entries.map((message) => message.entry).join(EOL))
+    if (this.shared || captured.every((message) => message.name === 'stdout')) {
+      this.persist(captured.map((message) => message.entry).join(EOL))
 
       return
     }
 
     this.updater.clear()
-    entries.forEach((message) => this.stream[message.name].write(message.entry + EOL))
+    captured.forEach((message) => this.stream[message.name].write(message.entry + EOL))
 
     this.draw()
+  }
+
+  private take(): ProcessOutputCapture[] {
+    const captured = this.captured.map((message) => ({ ...message, entry: cleanseAnsi(message.entry) })).filter((message) => message.entry)
+
+    this.captured = []
+
+    return captured
   }
 
   // a terminal left in a synchronized update shows nothing anymore, so end it in case the process stops in the middle of a frame

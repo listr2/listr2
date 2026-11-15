@@ -1,15 +1,13 @@
-import { ProcessOutputBuffer } from './process-output-buffer'
-import type { ProcessOutputBufferEntry } from '#utils'
+import { StringDecoder } from 'string_decoder'
 
 // taken from https://github.com/keindev/stdout-update/blob/main/src/Hook.ts
 // with all credits to keindev, wish i could integrate the stdout-update
 export class ProcessOutputStream {
   private readonly method: NodeJS.WriteStream['write']
-  private readonly buffer: ProcessOutputBuffer
+  private readonly decoder = new StringDecoder()
 
   constructor(private stream: NodeJS.WriteStream) {
     this.method = stream.write
-    this.buffer = new ProcessOutputBuffer({ stream })
   }
 
   get out(): NodeJS.WriteStream {
@@ -27,31 +25,23 @@ export class ProcessOutputStream {
     })
   }
 
-  /** Captures the writes to the stream in a buffer, and calls `onWrite` after each of them. */
-  public hijack(onWrite?: () => void): void {
-    this.stream.write = (...args: Parameters<ProcessOutputBuffer['write']>): boolean => {
-      // the arguments are a union of tuples, which neither a spread nor a typed apply can pass on
-      const result: boolean = Reflect.apply(this.buffer.write, this.buffer, args)
+  /** Passes the writes to the stream to `onWrite` as text instead of writing them, until `release()`. */
+  public hijack(onWrite: (entry: string) => void): void {
+    this.stream.write = (data: Uint8Array | string, ...args: [(string | undefined)?, ((err?: Error) => void)?] | [((err?: Error) => void)?]): boolean => {
+      const callback = args[args.length - 1]
 
-      onWrite?.()
+      onWrite(this.decoder.write(typeof data === 'string' ? Buffer.from(data, typeof args[0] === 'string' ? (args[0] as BufferEncoding) : undefined) : Buffer.from(data)))
 
-      return result
+      if (typeof callback === 'function') {
+        callback()
+      }
+
+      return true
     }
   }
 
-  /** Returns the captured writes and empties the buffer, while the stream stays hijacked. */
-  public take(): ProcessOutputBufferEntry[] {
-    const buffer = [...this.buffer.all]
-
-    this.buffer.reset()
-
-    return buffer
-  }
-
-  public release(): ProcessOutputBufferEntry[] {
+  public release(): void {
     this.stream.write = this.method
-
-    return this.take()
   }
 
   public write(...args: Parameters<NodeJS.WriteStream['write']>): ReturnType<NodeJS.WriteStream['write']> {

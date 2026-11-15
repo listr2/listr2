@@ -78,20 +78,24 @@ describe('process output', () => {
       output.release()
     })
 
-    it('should dump captured output on release when no live region is drawn', async() => {
+    it('should write the captured output in the order it arrived on release when no live region is drawn', async() => {
       vt = new VirtualTerminal({ columns: 40, rows: 10 })
 
-      const output = new ProcessOutput(vt as any, vt as any)
+      const screen = vt.write
+      const stderr = { isTTY: true, write: (data: string): boolean => screen(data) }
+      const output = new ProcessOutput(vt as any, stderr as any)
 
       output.hijack()
       output.toStdout('own output')
-      vt.write('captured')
+      vt.write('first')
+      stderr.write('second')
+      vt.write('third')
 
       expect(await vt.content()).toEqual(['own output'])
 
       output.release()
 
-      expect(await vt.content()).toEqual(['own output', '', 'captured'])
+      expect(await vt.content()).toEqual(['own output', 'first', 'second', 'third'])
     })
 
     it('should drop captured output of streams that are not dumped', async() => {
