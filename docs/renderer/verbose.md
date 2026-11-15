@@ -15,6 +15,10 @@ _VerboseRenderer_ was the default `non-TTY` renderer prior to <Version version="
 
 ![demo](../../examples/renderer-verbose.gif)
 
+![The verbose renderer with the timer, the timestamp and title changes](../../examples/screenshots/verbose.png)
+
+_The _VerboseRenderer_ with the `timer`, `timestamp` and `logTitleChange` options._
+
 ## Renderer Options
 
 <llm-exclude>

@@ -1,3 +1,4 @@
 # Use JSONC for syntax highlighting on GitHub.com
 *.json linguist-language=jsonc
 *.gif filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text

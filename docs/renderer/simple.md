@@ -17,6 +17,10 @@ _SimpleRenderer_ still requires `vt100` terminal compatibility if you are using 
 
 ![demo](../../examples/renderer-simple.gif)
 
+![The simple renderer with the timer and the timestamp](../../examples/screenshots/simple.png)
+
+_Installing packages, running migrations and writing a report, with the `timer` and `timestamp` options._
+
 ## Renderer Options
 
 <llm-exclude>
