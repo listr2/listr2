@@ -26,18 +26,13 @@
 * listr2 and its companion packages require Node.js
 ^22.23.5, ^24.22.3 or >=26.13.1.
 
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
 * **renderer:** the default renderer persists finished tasks while it
 runs. Concurrent lists show their tasks in the order they finish, a
-parent with `collapseSubtasks: [secure]` prints its final title line after
+parent with `collapseSubtasks: false` prints its final title line after
 its subtasks, and output captured from stdout and stderr is written above
 the task list as it arrives instead of after it. `DefaultRenderer.create()`,
 which rendered the whole task list into a string and was no longer used
 by the renderer, is removed.
-
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
 
 ### Features
 

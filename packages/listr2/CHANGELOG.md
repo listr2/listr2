@@ -7,9 +7,6 @@ default renderer reads `└ ✔` instead of `└ ✔ <title>`, with the timer
 only when the `timer` option is on, and the title only when it changed
 after the header was persisted.
 
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
-
 ### Features
 
 * **renderer:** show only the status on the closing line of a subtask group ([434fa4b](https://github.com/listr2/listr2/commit/434fa4bf14b1694ae75437c8718fe81ed6ad44b1))
@@ -20,13 +17,10 @@ Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f24
 
 * **renderer:** expanded subtask groups of the default renderer are
 drawn with a `┌` header and a `└` footer in place of the parent's title
-line, and a `collapseSubtasks: [secure]` parent's final line is the footer
+line, and a `collapseSubtasks: false` parent's final line is the footer
 of its group. The overflow summaries read `↑ N completed` and
 `… N waiting` instead of `✔ N completed` and `◼ N waiting`. Set
-`markIndentation: [secure]` to drop the bracket.
-
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
+`markIndentation: false` to drop the bracket.
 
 ### Features
 
@@ -38,11 +32,8 @@ Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f24
 
 * **renderer:** expanded subtasks of the default renderer are prefixed
 with a dimmed `│` (`|` without unicode) in place of the first space of
-their indentation. Set `markIndentation: [secure]` to keep the previous
+their indentation. Set `markIndentation: false` to keep the previous
 layout.
-
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
 
 ### Features
 
@@ -55,25 +46,18 @@ Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
 * listr2 and its companion packages require Node.js
 ^22.23.5, ^24.22.3 or >=26.13.1.
 
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
 * **renderer:** the default renderer turns off the echo of the terminal
 while it runs, so keystrokes typed during the run are not shown and reach
-the shell after it. Set `rendererOptions.lockInput` to `[secure]` to keep
+the shell after it. Set `rendererOptions.lockInput` to `false` to keep
 the echo on.
 
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
 * **renderer:** the default renderer persists finished tasks while it
 runs. Concurrent lists show their tasks in the order they finish, a
-parent with `collapseSubtasks: [secure]` prints its final title line after
+parent with `collapseSubtasks: false` prints its final title line after
 its subtasks, and output captured from stdout and stderr is written above
 the task list as it arrives instead of after it. `DefaultRenderer.create()`,
 which rendered the whole task list into a string and was no longer used
 by the renderer, is removed.
-
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
 
 ### Features
 
@@ -186,7 +170,7 @@ Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f24
 ### BREAKING CHANGES
 
 * **lib:** Listr.errors is now `ListrError[] | null`. With the
-default `collectErrors: [secure]` it is `null` instead of an empty array;
+default `collectErrors: false` it is `null` instead of an empty array;
 guard reads with `listr.errors?.length` or an explicit null check.
 
 refs K-715
@@ -243,7 +227,7 @@ export and the rfdc dependency are removed.
 ### BREAKING CHANGES
 
 * **lib:** Listr.errors is now `ListrError[] | null`. With the
-default `collectErrors: [secure]` it is `null` instead of an empty array;
+default `collectErrors: false` it is `null` instead of an empty array;
 guard reads with `listr.errors?.length` or an explicit null check.
 
 refs K-715
@@ -1600,7 +1584,7 @@ This is a big change that might make the user checkout the new README.
 
 ### Bug Fixes
 
-- **default-renderer:** added some fixes to swallowing error output in collapseErrors: [secure] mode and showErrorMessage ([b0c2bb7](https://github.com/cenk1cenk2/listr2/commit/b0c2bb7d11cd3b3e9cdffdaa4a6a2dfab725a0c7))
+- **default-renderer:** added some fixes to swallowing error output in collapseErrors: false mode and showErrorMessage ([b0c2bb7](https://github.com/cenk1cenk2/listr2/commit/b0c2bb7d11cd3b3e9cdffdaa4a6a2dfab725a0c7))
 
 ## [3.0.0](https://github.com/cenk1cenk2/listr2/compare/v2.6.2...v3.0.0) (2020-09-04)
 
@@ -2003,7 +1987,7 @@ Overall there are no breaking changes introduced to the code directly but it mig
       persistentOutput: true
     }
   ], {
-    concurrent: [secure],
+    concurrent: false,
     collapse: true
   ```
   - After <v1.3.12:
@@ -2016,8 +2000,8 @@ Overall there are no breaking changes introduced to the code directly but it mig
       }
     ],
     {
-      concurrent: [secure],
-      rendererOptions: { collapse: [secure] }
+      concurrent: false,
+      rendererOptions: { collapse: false }
       // global renderer options moved to their own key
     }
   )

@@ -26,9 +26,6 @@
 * listr2 and its companion packages require Node.js
 ^22.23.5, ^24.22.3 or >=26.13.1.
 
-Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
-Amp-Thread-ID: https://ampcode.com/threads/T-01a1d9bb-c4f0-74ab-a083-497dfc14f242
-
 ### Miscellaneous Chores
 
 * require patched Node.js 22, 24 or 26 ([7d71530](https://github.com/listr2/listr2/commit/7d71530c3972e7d058ab726c73ec196ba5eba93c))
