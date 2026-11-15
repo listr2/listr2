@@ -15,6 +15,7 @@ describe('default renderer: terminal', () => {
   })
 
   afterEach(() => {
+    vi.restoreAllMocks()
     vt.dispose()
   })
 
@@ -615,6 +616,85 @@ describe('default renderer: terminal', () => {
     expect(await vt.content()).toEqual(['⚠ collapsing', '  ✔ first', '  ✖ second failed', '❯ staying', '  ✔ third', '  ✔ fourth', '✔ staying'])
   })
 
+  it.each([
+    // without a column to draw into, a parent with a title persists its title before its subtasks and closes on its title after them
+    [
+      'the indentation is 0',
+      {
+        title: 'parent',
+        options: { indentation: 0 },
+        seen: ['❯ parent', '✔ first', '❯ second'],
+        final: ['❯ parent', '✔ first', '✔ second', '✔ parent']
+      }
+    ],
+    [
+      'the parent has no title',
+      {
+        title: undefined,
+        options: {},
+        seen: ['✔ first', '❯ second'],
+        final: ['✔ first', '✔ second']
+      }
+    ]
+  ])('should draw no bracket when %s', async(_, { title, options: rendererOptions, ...expected }) => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title,
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                { title: 'first', task: async(): Promise<void> => {} },
+                {
+                  title: 'second',
+                  task: async(): Promise<void> => {
+                    seen = await vt.content()
+                  }
+                }
+              ],
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        }
+      ],
+      options(rendererOptions)
+    ).run()
+
+    expect({ seen, final: await vt.content() }).toEqual(expected)
+  })
+
+  it('should draw the bracket and the summaries with the icons given in the options', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr(
+              range(6, (index) => ({
+                title: `task ${index}`,
+                task: async(): Promise<void> => {
+                  if (index === 1) {
+                    seen = await vt.content()
+                  }
+                }
+              }))
+            )
+        },
+        ...range(10, (index) => ({ title: `after ${index}`, task: async(): Promise<void> => {} }))
+      ],
+      options({ icon: { CONNECTOR_START: '╭', SUMMARY_WAITING: '~' } })
+    ).run()
+
+    expect(seen).toEqual(['╭ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ ~ 3 waiting', '└ ❯ parent', '◼ after 0', '~ 9 waiting'])
+  })
+
   it('should persist the tasks of a concurrent list in the order they finish', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
 
@@ -743,8 +823,6 @@ describe('default renderer: terminal', () => {
 
     expect(exit).toHaveBeenCalledWith(127)
     expect(await vt.content()).toEqual(['✔ before', '┌ parent', '│ ⊘ interrupted', '│ ⊘ never started', '└ ⊘', '⊘ after'])
-
-    exit.mockRestore()
   })
 
   it('should write stray output above the live region as it arrives', async() => {

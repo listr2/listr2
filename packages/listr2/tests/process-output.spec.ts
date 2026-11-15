@@ -29,6 +29,7 @@ describe('process output', () => {
   let vt: VirtualTerminal
 
   afterEach(() => {
+    stty.uninstall()
     vt.dispose()
   })
 
@@ -173,7 +174,6 @@ describe('process output', () => {
       expect(stty.echo).toBe(true)
 
       output.release()
-      stty.uninstall()
     })
   })
 

@@ -13,6 +13,7 @@ vi.mock('fs', async(original) => {
 })
 
 const { Listr, ListrLogger, ListrPromptAdapter, ProcessOutput, delay } = await import('#root')
+const { TERMINAL_POLL_INTERVAL } = await import('../../../src/utils/process-output/process-output.constants')
 
 describe('default renderer: input', () => {
   let vt: VirtualTerminal
@@ -31,6 +32,7 @@ describe('default renderer: input', () => {
   })
 
   afterEach(() => {
+    vi.restoreAllMocks()
     stty.uninstall()
     vt.dispose()
   })
@@ -189,8 +191,6 @@ describe('default renderer: input', () => {
       expect(rollback).toHaveBeenCalledTimes(1)
       expect(exit).toHaveBeenCalledWith(127)
       expect(stty.echo).toBe(true)
-
-      exit.mockRestore()
     })
 
     it('should never erase what the shell writes when the job stops, and lock the input again and draw the live region below it when the job continues', async() => {
@@ -232,14 +232,12 @@ describe('default renderer: input', () => {
       expect(continued).toEqual({ echo: false, content: ['✔ before', '❯ running', '[1]+  Stopped', '$ fg', '❯ running', '  › still running'] })
       expect(await vt.content()).toEqual(['✔ before', '❯ running', '[1]+  Stopped', '$ fg', '✔ running'])
       expect(stty.echo).toBe(true)
-
-      kill.mockRestore()
     })
 
     it('should leave the terminal to the shell while the job runs in the background, and lock it again once it is back in the foreground', async() => {
       stty.install()
+      vi.spyOn(process, 'kill').mockImplementation(() => true)
 
-      const kill = vi.spyOn(process, 'kill').mockImplementation(() => true)
       let background: { echo: boolean; content: string[] }
       let foreground: boolean
 
@@ -258,7 +256,7 @@ describe('default renderer: input', () => {
 
               // `fg` sends no SIGCONT to a job that already runs
               stty.foreground = true
-              vi.spyOn(Date, 'now').mockReturnValue(Date.now() + 1000)
+              vi.spyOn(Date, 'now').mockReturnValue(Date.now() + TERMINAL_POLL_INTERVAL)
               task.title = 'running in the foreground'
               foreground = stty.echo
             }
@@ -271,13 +269,13 @@ describe('default renderer: input', () => {
       expect(foreground).toBe(false)
       expect(await vt.content()).toEqual(['❯ running', '✔ running in the foreground'])
       expect(stty.echo).toBe(true)
-
-      kill.mockRestore()
-      vi.mocked(Date.now).mockRestore()
     })
 
-    it('should draw without locking the input while the job was started in the background, and lock it once it is in the foreground', async() => {
-      stty.install()
+    it.each([
+      ['/proc', { proc: true }],
+      ['ps where there is no /proc', { proc: false }]
+    ])('should draw without locking the input while the job was started in the background, and lock it once it is in the foreground, found through %s', async(_, install) => {
+      stty.install(install)
       stty.foreground = false
 
       let background: { echo: boolean; content: string[] }
@@ -291,7 +289,7 @@ describe('default renderer: input', () => {
               background = { echo: stty.echo, content: await vt.content() }
 
               stty.foreground = true
-              vi.spyOn(Date, 'now').mockReturnValue(Date.now() + 1000)
+              vi.spyOn(Date, 'now').mockReturnValue(Date.now() + TERMINAL_POLL_INTERVAL)
               task.title = 'running in the foreground'
               foreground = stty.echo
             }
@@ -304,8 +302,7 @@ describe('default renderer: input', () => {
       expect(foreground).toBe(false)
       expect(await vt.content()).toEqual(['✔ running in the foreground'])
       expect(stty.echo).toBe(true)
-
-      vi.mocked(Date.now).mockRestore()
+      expect(stty.ps > 0).toBe(!install.proc)
     })
 
     it('should not change the mode of the terminal when the job runs in the background until the end', async() => {
@@ -365,6 +362,23 @@ describe('default renderer: input', () => {
 
       expect(stty.calls.filter((call) => call !== '-g')).toEqual([])
       expect(stty.echo).toBe(true)
+      expect(await vt.content()).toEqual(['✔ task'])
+    })
+
+    it('should not lock the input on windows, which has no stty', async() => {
+      stty.install()
+
+      const platform = Object.getOwnPropertyDescriptor(process, 'platform')
+
+      Object.defineProperty(process, 'platform', { value: 'win32' })
+
+      try {
+        await new Listr([{ title: 'task', task: async(): Promise<void> => {} }], options()).run()
+      } finally {
+        Object.defineProperty(process, 'platform', platform)
+      }
+
+      expect(stty.calls).toEqual([])
       expect(await vt.content()).toEqual(['✔ task'])
     })
 
