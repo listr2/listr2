@@ -20,7 +20,7 @@ _ListrLogger_ is used for every renderer to a certain degree. _ListrLogger_ is a
 
 Log levels for the _ListrLogger_ are dynamically injected while creating an instance of _ListrLogger_ and will affect the styling section of the instance.
 
-By default, [ListrLogLevels](/api/listr2/enumerations/ListrLogLevels.html) is used for text-based renderers. For renderers like _DefaultRenderer_ styling require more cases than usual compared to the text-based renderers, therefore custom log levels [ListrDefaultRendererListrLogLevels](/api/listr2/enumerations/ListrDefaultRendererListrLogLevels.html) are injected.
+By default, [ListrLogLevels](/api/listr2/enumerations/ListrLogLevels.html) is used for text-based renderers. For renderers like _DefaultRenderer_ styling require more cases than usual compared to the text-based renderers, therefore custom log levels [ListrDefaultRendererLogLevels](/api/listr2/enumerations/ListrDefaultRendererLogLevels.html) are injected. Among them, the `CONNECTOR_START`, `CONNECTOR` and `CONNECTOR_END` keys style the bracket around expanded subtasks, and the `SUMMARY_COMPLETED` and `SUMMARY_WAITING` keys style the summary lines of a list taller than the terminal.
 
 ## Style
 

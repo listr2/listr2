@@ -24,9 +24,6 @@ git clone git@github.com:listr2/listr2.git
 # install the dependencies
 pnpm install
 
-# build packages
-pnpm build
-
 # run any example, by giving the script a relative path in the repository
 pnpm run --filter @listr2/examples start examples/renderer-default.example.ts
 ```
@@ -37,4 +34,4 @@ For every exposed option mostly includes a brief explanation, if it is missing i
 
 ## Tests
 
-In the cases where the examples might not be enough, you can always dive deeper into the tests folder that lives in the folder [`./tests/`](https://github.com/listr2/listr2/tree/master/tests). This application is mostly well-tested for edge conditions, however, it is limited to being a primarily terminal application. Unfortunately, since the terminal is mocked while testing you cannot directly see your changes on the tests, but you can always dive deeper into the examples given there.
+In the cases where the examples might not be enough, you can always dive deeper into the tests folder that lives in the folder [`./packages/listr2/tests/`](https://github.com/listr2/listr2/tree/master/packages/listr2/tests). This application is mostly well-tested for edge conditions, however, it is limited to being a primarily terminal application. Unfortunately, since the terminal is mocked while testing you cannot directly see your changes on the tests, but you can always dive deeper into the examples given there.

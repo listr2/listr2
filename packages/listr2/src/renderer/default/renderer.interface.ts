@@ -62,7 +62,9 @@ export interface ListrDefaultRendererOptions
    *
    * - This is a global option that can only be changed through the main Listr class.
    * - The bracket takes the first column of the indentation, so it is not drawn when `indentation` is `0`.
+   * - Tasks without a title draw no bracket.
    *
+   * @see {@link https://listr2.kilic.dev/renderer/default.html#when-tasks-are-persisted}
    * @defaultValue `true`
    */
   markIndentation?: boolean
@@ -153,7 +155,7 @@ export interface ListrDefaultRendererOptions
    * - `true` will add `[RETRY:COUNT]` as a suffix.
    * - `false` will not add a suffix.
    *
-   * @defaultValue `false`
+   * @defaultValue `true`
    */
   suffixRetries?: boolean
 

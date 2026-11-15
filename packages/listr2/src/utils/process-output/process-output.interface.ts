@@ -16,7 +16,7 @@ export interface ProcessOutputRendererOptions {
  */
 export interface ProcessOutputOptions {
   /**
-   * After the `ProcessOutput.release()` which streams should be dumped.
+   * Which captured streams are written: while a renderer draws, above its live region as the writes arrive, and after `ProcessOutput.release()`.
    *
    * @defaultValue `[ 'stdout', 'stderr' ]`
    */

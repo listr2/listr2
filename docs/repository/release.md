@@ -26,7 +26,7 @@ Commits are usually scoped to the changes being done, so even though it is a hug
 
 `listr2` employs automated updates to all dependencies utilizing [renovate](https://github.com/renovatebot/renovate).
 
-After migrating `ts-node`, `jest`, `ts-jest` to `esm` as well in the repository itself, there is nothing holding us back to use the latest versions of the dependencies.
+The repository itself runs on `esm`, with Vitest for the tests and `tsx` for the examples, so nothing holds us back from using the latest versions of the dependencies.
 
 - A new version will be published whenever a production dependency is updated.
 - Major dependencies require accepting the pull requests manually.

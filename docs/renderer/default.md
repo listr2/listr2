@@ -23,7 +23,7 @@ This renderer uses _ProcessOutput_ to take control of the terminal.
 
 <Version version="v12.0.0" />
 
-The task list is split in two. Tasks that will not change anymore are written once, above the list, and scroll into the scrollback of the terminal like any other output. Everything that can still change stays in the _live region_ at the bottom of the terminal: running and waiting tasks, their output bars, the bottom bar, and the prompt. Only the live region is redrawn, through [`log-update`](https://www.npmjs.com/package/log-update) `v8`, with differential updates wrapped in synchronized-output markers (`ESC[?2026h`/`ESC[?2026l`) to reduce flicker, and finished tasks are written above it with its `persist()`.
+The task list is split in two. Tasks that will not change anymore are written once, above the list, and scroll into the scrollback of the terminal like any other output. Everything that can still change stays in the _live region_ at the bottom of the terminal: running and waiting tasks, their output bars, the bottom bar, and the prompt. Only the live region is redrawn, through [`log-update`](https://www.npmjs.com/package/log-update), with differential updates wrapped in synchronized-output markers (`ESC[?2026h`/`ESC[?2026l`) to reduce flicker, and finished tasks are written above it with its `persist()`.
 
 This keeps long task lists intact: finished tasks are never clipped from the top or erased by a wrong line count, and the live region is redrawn when the terminal is resized.
 
@@ -52,9 +52,9 @@ Every task that shows its subtasks under its title draws them as a bracketed gro
 └ ❯ Running migrations
 ```
 
-While the group runs, its footer stays in the live region with the `❯` icon of a running task with subtasks and its title, since the header may have scrolled off the screen. A task with `collapseSubtasks: false` persists its header with its first finished subtask, so the connector runs on from the persisted part into the live part, and persists its footer once it closes. A task persisted as one block, such as one that stays expanded because a subtask failed, is persisted with its header and footer at once.
+While the group runs, its footer stays in the live region with the icon of the task and its title, since the header may have scrolled off the screen: `❯` while it runs, or the spinner of a retry followed by `[RETRY:n]` while it retries. A task with `collapseSubtasks: false` persists its header with its first finished subtask, so the connector runs on from the persisted part into the live part, and persists its footer once it closes. A task persisted as one block, such as one that stays expanded because a subtask failed, is persisted with its header and footer at once.
 
-The persisted footer shows the final icon of the task only, since its title is already in the header. The timer follows it when the `timer` renderer option of the task is on, and when the title of the task changed after its header was persisted, the footer shows the new title, so it is not lost.
+The persisted footer shows the final icon of the task only, since its title is already in the header: `✔` once it completed, `⚠` when some of its subtasks failed without failing it, and a red `✖` when it failed. The timer follows it when the `timer` renderer option of the task is on, and when the title of the task changed after its header was persisted, the footer shows the new title, so it is not lost.
 
 ```text
 ┌ Running migrations
@@ -64,7 +64,7 @@ The persisted footer shows the final icon of the task only, since its title is a
 └ ✔
 ```
 
-With the `timer` option, the footer reads `└ ✔ [2s]`, and when the task changed its title to `Ran 3 migrations.` while its subtasks ran, it reads `└ ✔ Ran 3 migrations.`
+With the `timer` option, the footer reads `└ ✔ [2s]`. The title shows only when a task with `collapseSubtasks: false` changed it after its first subtask was persisted: when it changed its title to `Ran 3 migrations.` by then, the footer reads `└ ✔ Ran 3 migrations.` A title changed before that updates the header, which is still in the live region, and a group persisted as one block writes its header with the final title.
 
 Nested groups add one connector column each, and each draws its own header and footer. The header and footer take the column of the icon of the task, so the title stays where it was, and the connector takes the place of a space, so subtasks wrap and truncate as before. A task without a title draws no bracket, since there is no title line above its subtasks, and neither does any task with `indentation: 0`, since there is no column for the connector.
 
@@ -80,10 +80,9 @@ Rows that scrolled off the top of the terminal cannot be redrawn, so when the li
 
 - The finished subtasks of a task whose subtasks collapse are summarized in a single `↑ N completed` line until the task closes, since they would disappear when it collapses anyway. The last ones that still fit stay visible above the running subtasks.
 - If that is not enough, the tasks at the end of each list that have not started yet are summarized in a single `… N waiting` line, so the running tasks stay on the screen. The first ones that still fit stay visible below the running tasks, and the rows that are left show the last finished subtasks again.
+- If it is still taller, only its bottom `rows - 1` rows are drawn.
 
 The summary lines have their own icons, so they do not read as a single task: `↑` in green for the completed tasks, folded above, and a dimmed `…` for the waiting ones, or `^` and `:` when the terminal does not support unicode. Change them through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.SUMMARY_COMPLETED` and `SUMMARY_WAITING` keys. Inside a bracketed group, they take the connector like the subtasks around them, and the footer of a group stays on the screen below them.
-
-- If it is still taller, only its bottom `rows - 1` rows are drawn.
 
 This only shortens the live region: every task is persisted in full once it finishes. The height of the terminal is the `rows` that `process.stdout` reports, and there is no other limit on the live region.
 
