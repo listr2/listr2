@@ -29,6 +29,7 @@ export class ProcessOutput {
   private stopped?: number
   private background?: number
   private failed = false
+  private proc = true
   private removeExitHook?: () => void
 
   constructor(
@@ -83,14 +84,14 @@ export class ProcessOutput {
   /** Writes the text above the live region, where it stays, and redraws the live region below it. */
   public persist(text: string, live = this.live): void {
     this.live = live
+    this.yieldTerminal()
 
     if (text !== '') {
-      this.yieldTerminal()
       this.start().persist(text)
       this.drawn = undefined
     }
 
-    this.draw()
+    this.draw(true)
   }
 
   /** Erases the live region. */
@@ -229,8 +230,11 @@ export class ProcessOutput {
     return this.updater
   }
 
-  private draw(): void {
-    this.yieldTerminal()
+  // the caller passes yielded when it already checked for the terminal in this frame
+  private draw(yielded = false): void {
+    if (!yielded) {
+      this.yieldTerminal()
+    }
 
     // `fg` sends no SIGCONT to a job that already runs in the background, so check for the terminal now and then
     if (this.stopped !== undefined) {
@@ -371,6 +375,10 @@ export class ProcessOutput {
 
   // reading /proc is cheap enough for every frame, unlike ps, so it is undefined where there is no /proc
   private owns(): boolean | undefined {
+    if (!this.proc) {
+      return undefined
+    }
+
     try {
       const stat = readFileSync('/proc/self/stat', 'utf-8')
       // the process name in the second field can hold spaces and parentheses
@@ -379,6 +387,9 @@ export class ProcessOutput {
       // without a controlling terminal there is no job control to stop the process
       return pgrp === tpgid || tpgid === '-1'
     } catch {
+      // there is no /proc on this platform, so do not look for it on every frame
+      this.proc = false
+
       return undefined
     }
   }
