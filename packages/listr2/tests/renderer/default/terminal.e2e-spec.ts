@@ -36,7 +36,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // the live region is taller than the terminal, so the tasks that have not started and do not fit are summarized
-    expect(seen[5]).toEqual([...range(5, (index) => `✔ task ${index}`), '❯ task 5', ...range(7, (index) => `◼ task ${index + 6}`), '◼ 17 waiting'])
+    expect(seen[5]).toEqual([...range(5, (index) => `✔ task ${index}`), '❯ task 5', ...range(7, (index) => `◼ task ${index + 6}`), '… 17 waiting'])
     expect(seen[25]).toEqual([...range(25, (index) => `✔ task ${index}`), '❯ task 25', ...range(4, (index) => `◼ task ${index + 26}`)])
     expect(await vt.content()).toEqual(range(30, (index) => `✔ task ${index}`))
   })
@@ -62,7 +62,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(await vt.content()).toEqual(range(3, (parent) => [`❯ parent ${parent}`, ...range(10, (index) => `│ ✔ task ${parent}.${index}`), `✔ parent ${parent}`]).flat())
+    expect(await vt.content()).toEqual(range(3, (parent) => [`┌ parent ${parent}`, ...range(10, (index) => `│ ✔ task ${parent}.${index}`), `└ ✔ parent ${parent}`]).flat())
   })
 
   it('should recover when the terminal gets narrower and wider mid-run', async() => {
@@ -121,7 +121,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['❯ parent', '│ ✔ 8 completed', '│ ✔ task 8', '│ ✔ task 9', '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`)])
+    expect(seen).toEqual(['┌ parent', '│ ↑ 9 completed', '│ ✔ task 9', '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`), '└ ❯ parent'])
     expect(await vt.content()).toEqual(['✔ parent'])
   })
 
@@ -151,8 +151,8 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(seen).toEqual(['❯ parent', ...range(10, (index) => `│ ✔ task ${index}`), '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`), '◼ after'])
-    expect(await vt.content()).toEqual(['❯ parent', ...range(15, (index) => `│ ✔ task ${index}`), '✔ parent', '✔ after'])
+    expect(seen).toEqual(['┌ parent', ...range(10, (index) => `│ ✔ task ${index}`), '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`), '└ ❯ parent', '◼ after'])
+    expect(await vt.content()).toEqual(['┌ parent', ...range(15, (index) => `│ ✔ task ${index}`), '└ ✔ parent', '✔ after'])
   })
 
   it('should draw a connector for each open non-collapsing parent', async() => {
@@ -189,17 +189,17 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(seen).toEqual(['❯ outer', '│ ✔ first', '│ ❯ inner', '│ │ ✔ inner first', '│ │ ❯ inner second', '│ │   › some output', '│ ◼ last'])
+    expect(seen).toEqual(['┌ outer', '│ ✔ first', '│ ┌ inner', '│ │ ✔ inner first', '│ │ ❯ inner second', '│ │   › some output', '│ └ ❯ inner', '│ ◼ last', '└ ❯ outer'])
     expect(await vt.content()).toEqual([
-      '❯ outer',
+      '┌ outer',
       '│ ✔ first',
-      '│ ❯ inner',
+      '│ ┌ inner',
       '│ │ ✔ inner first',
       '│ │ ✔ inner second',
       '│ │   › some output',
-      '│ ✔ inner',
+      '│ └ ✔ inner',
       '│ ✔ last',
-      '✔ outer'
+      '└ ✔ outer'
     ])
   })
 
@@ -221,7 +221,90 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // the icon and title wrap at 30 - 1 * 2 - 2 = 26 columns, then the continuation rows are indented once more
-    expect(await vt.content()).toEqual(['❯ parent', '│ ✔ first', '│ ✔ a subtask with a title', '│   that wraps over the rows', '│   of this terminal', '✔ parent'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✔ a subtask with a title', '│   that wraps over the rows', '│   of this terminal', '└ ✔ parent'])
+  })
+
+  it('should wrap the header and the footer of a bracket inside the bracket', async() => {
+    vt = new VirtualTerminal({ columns: 30, rows: 10 })
+
+    await new Listr(
+      [
+        {
+          title: 'a parent with a title that wraps over the rows',
+          task: (_, task): Listr => task.newListr([{ title: 'first', task: async(): Promise<void> => {} }])
+        }
+      ],
+      options({ collapseSubtasks: false })
+    ).run()
+
+    expect(await vt.content()).toEqual([
+      '┌ a parent with a title that',
+      '│  wraps over the rows',
+      '│ ✔ first',
+      '└ ✔ a parent with a title',
+      '    that wraps over the rows'
+    ])
+  })
+
+  it('should close the bracket of a concurrent group once its last subtask finishes', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                {
+                  title: 'slow',
+                  task: async(): Promise<void> => {
+                    await delay(50)
+
+                    seen = await vt.content()
+                  }
+                },
+                { title: 'fast', task: async(): Promise<void> => {} }
+              ],
+              { concurrent: true }
+            )
+        }
+      ],
+      options({ collapseSubtasks: false })
+    ).run()
+
+    expect(seen).toEqual(['┌ parent', '│ ✔ fast', '│ ❯ slow', '└ ❯ parent'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ fast', '│ ✔ slow', '└ ✔ parent'])
+  })
+
+  it('should close the bracket of a failed group with the status of its parent', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr([
+              { title: 'first', task: async(): Promise<void> => {} },
+              {
+                title: 'second',
+                task: async(): Promise<void> => {
+                  throw new Error('second failed')
+                }
+              },
+              { title: 'never runs', task: async(): Promise<void> => {} }
+            ])
+        }
+      ],
+      { ...options({ collapseSubtasks: false }), exitOnError: true }
+    )
+      .run()
+      .catch(() => {})
+
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ◼ never runs', '└ ❯ parent'])
   })
 
   it('should keep the connector on the summaries of an open non-collapsing parent taller than the terminal', async() => {
@@ -249,7 +332,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(seen).toEqual(['❯ parent', ...range(5, (index) => `│ ✔ task ${index}`), '│ ❯ task 5', ...range(7, (index) => `│ ◼ task ${index + 6}`), '│ ◼ 7 waiting'])
+    expect(seen).toEqual(['┌ parent', ...range(5, (index) => `│ ✔ task ${index}`), '│ ❯ task 5', ...range(6, (index) => `│ ◼ task ${index + 6}`), '│ … 8 waiting', '└ ❯ parent'])
   })
 
   it('should draw the connector when the output is cleared', async() => {
@@ -277,7 +360,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false, clearOutput: true })
     ).run()
 
-    expect(seen).toEqual(['❯ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2'])
+    expect(seen).toEqual(['┌ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '└ ❯ parent'])
     expect(await vt.content()).toEqual([])
   })
 
@@ -308,7 +391,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // a summary of one finished subtask takes the same row as the subtask itself
-    expect(seen).toEqual(['❯ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ ◼ task 3', '│ ◼ 2 waiting', '◼ after 0', '◼ after 1', '◼ 8 waiting'])
+    expect(seen).toEqual(['┌ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ … 3 waiting', '└ ❯ parent', '◼ after 0', '… 9 waiting'])
   })
 
   it('should draw the connector with the fallback figure when unicode is not supported', async() => {
@@ -355,7 +438,7 @@ describe('default renderer: terminal', () => {
       process.env = env
     }
 
-    expect(await vt.content()).toEqual(['> parent', '| √ first', '| √ second', '√ parent'])
+    expect(await vt.content()).toEqual(['. parent', '| √ first', '| √ second', '` √ parent'])
   })
 
   it('should keep a collapsing parent live and persist it expanded when a subtask fails', async() => {
@@ -392,8 +475,8 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the subtree is persisted while the parent runs
-    expect(seen).toEqual({ scrollback: [], screen: ['❯ parent'] })
-    expect(await vt.content()).toEqual(['⚠ parent', '│ ✔ first', '│ ✖ second failed', '│ ✔ third'])
+    expect(seen).toEqual({ scrollback: [], screen: ['┌ parent'] })
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ✔ third', '└ ⚠ parent'])
   })
 
   it('should draw no connector when markIndentation is disabled', async() => {
@@ -570,7 +653,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     expect(exit).toHaveBeenCalledWith(127)
-    expect(await vt.content()).toEqual(['✔ before', '⊘ parent', '│ ⊘ interrupted', '│ ⊘ never started', '⊘ after'])
+    expect(await vt.content()).toEqual(['✔ before', '┌ parent', '│ ⊘ interrupted', '│ ⊘ never started', '└ ⊘ parent', '⊘ after'])
 
     exit.mockRestore()
   })
@@ -644,7 +727,7 @@ describe('default renderer: terminal', () => {
     await list.run()
     await list.run()
 
-    expect(await vt.content()).toEqual([1, 2].flatMap((index) => ['❯ parent', `│ ✔ subtask finished (run ${index})`, '✔ parent', `✔ second (run ${index})`]))
+    expect(await vt.content()).toEqual([1, 2].flatMap((index) => ['┌ parent', `│ ✔ subtask finished (run ${index})`, '└ ✔ parent', `✔ second (run ${index})`]))
   })
 
   it('should persist a non-collapsing parent that retries once it has finished', async() => {
@@ -678,6 +761,6 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the first attempt is persisted
-    expect(await vt.content()).toEqual(['✔ parent', '│ ✔ first (attempt 2)', '│ ✔ second (attempt 2)'])
+    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first (attempt 2)', '│ ✔ second (attempt 2)', '└ ✔ parent'])
   })
 })

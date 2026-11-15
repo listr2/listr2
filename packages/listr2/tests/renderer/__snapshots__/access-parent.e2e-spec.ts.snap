@@ -6,26 +6,33 @@ exports[`default renderer: parent task access > should be able to change the tit
 [
   "◼ This task will execute.",
   "❯ This task will execute.",
-  "❯ This task will execute.
-│ ◼ This is a subtask.",
-  "❯ This task will execute.
+  "┌ This task will execute.
 │ ◼ This is a subtask.
-│ ◼ This is a subtask.",
-  "❯ This task will execute.
+└ ❯ This task will execute.",
+  "┌ This task will execute.
+│ ◼ This is a subtask.
+│ ◼ This is a subtask.
+└ ❯ This task will execute.",
+  "┌ This task will execute.
 │ ❯ This is a subtask.
-│ ◼ This is a subtask.",
-  "❯ Title changed from subtask.
+│ ◼ This is a subtask.
+└ ❯ This task will execute.",
+  "┌ Title changed from subtask.
 │ ❯ This is a subtask.
-│ ◼ This is a subtask.",
-  "❯ Title changed from subtask.
+│ ◼ This is a subtask.
+└ ❯ Title changed from subtask.",
+  "┌ Title changed from subtask.
 │ ✔ This is a subtask.
-│ ◼ This is a subtask.",
-  "❯ Title changed from subtask.
+│ ◼ This is a subtask.
+└ ❯ Title changed from subtask.",
+  "┌ Title changed from subtask.
 │ ✔ This is a subtask.
-│ ❯ This is a subtask.",
-  "❯ Title changed from subtask.
+│ ❯ This is a subtask.
+└ ❯ Title changed from subtask.",
+  "┌ Title changed from subtask.
 │ ✔ This is a subtask.
-│ ✔ This is a subtask.",
+│ ✔ This is a subtask.
+└ ❯ Title changed from subtask.",
   "✔ Title changed from subtask.",
 ]
 `;

@@ -18,7 +18,11 @@ export enum ListrDefaultRendererLogLevels {
   WAITING = 'WAITING',
   PAUSED = 'PAUSED',
   CANCELLED = 'CANCELLED',
-  CONNECTOR = 'CONNECTOR'
+  CONNECTOR = 'CONNECTOR',
+  CONNECTOR_START = 'CONNECTOR_START',
+  CONNECTOR_END = 'CONNECTOR_END',
+  SUMMARY_COMPLETED = 'SUMMARY_COMPLETED',
+  SUMMARY_WAITING = 'SUMMARY_WAITING'
 }
 
 export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRendererLogLevels> = {
@@ -39,7 +43,11 @@ export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRende
     [ListrDefaultRendererLogLevels.WAITING]: figures.squareSmallFilled,
     [ListrDefaultRendererLogLevels.PAUSED]: figures.squareSmallFilled,
     [ListrDefaultRendererLogLevels.CANCELLED]: figures.circleSlash,
-    [ListrDefaultRendererLogLevels.CONNECTOR]: figures.lineVertical
+    [ListrDefaultRendererLogLevels.CONNECTOR]: figures.lineVertical,
+    [ListrDefaultRendererLogLevels.CONNECTOR_START]: figures.lineDownRight,
+    [ListrDefaultRendererLogLevels.CONNECTOR_END]: figures.lineUpRight,
+    [ListrDefaultRendererLogLevels.SUMMARY_COMPLETED]: figures.arrowUp,
+    [ListrDefaultRendererLogLevels.SUMMARY_WAITING]: figures.ellipsis
   },
   color: {
     [ListrDefaultRendererLogLevels.SKIPPED_WITH_COLLAPSE]: color.yellow,
@@ -56,6 +64,10 @@ export const LISTR_DEFAULT_RENDERER_STYLE: ListrLoggerStyleMap<ListrDefaultRende
     [ListrDefaultRendererLogLevels.WAITING]: color.dim,
     [ListrDefaultRendererLogLevels.PAUSED]: color.yellowBright,
     [ListrDefaultRendererLogLevels.CANCELLED]: color.red,
-    [ListrDefaultRendererLogLevels.CONNECTOR]: color.dim
+    [ListrDefaultRendererLogLevels.CONNECTOR]: color.dim,
+    [ListrDefaultRendererLogLevels.CONNECTOR_START]: color.dim,
+    [ListrDefaultRendererLogLevels.CONNECTOR_END]: color.dim,
+    [ListrDefaultRendererLogLevels.SUMMARY_COMPLETED]: color.green,
+    [ListrDefaultRendererLogLevels.SUMMARY_WAITING]: color.dim
   }
 }

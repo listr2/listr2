@@ -13,6 +13,7 @@ export interface ListrDefaultRendererTaskRender {
   body: string[]
   subtasks: boolean
   subtaskLevel: number
+  bracket: boolean
 }
 
 export interface ListrDefaultRendererContext {

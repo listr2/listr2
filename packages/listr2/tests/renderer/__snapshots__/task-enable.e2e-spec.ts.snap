@@ -37,14 +37,17 @@ exports[`default renderer: task-enable > should enable task with general context
   "✔ This task will execute.
 ❯ This task will show subtasks.",
   "✔ This task will execute.
-❯ This task will show subtasks.
-│ ◼ This task will execute.",
+┌ This task will show subtasks.
+│ ◼ This task will execute.
+└ ❯ This task will show subtasks.",
   "✔ This task will execute.
-❯ This task will show subtasks.
-│ ❯ This task will execute.",
+┌ This task will show subtasks.
+│ ❯ This task will execute.
+└ ❯ This task will show subtasks.",
   "✔ This task will execute.
-❯ This task will show subtasks.
-│ ✔ This task will execute.",
+┌ This task will show subtasks.
+│ ✔ This task will execute.
+└ ❯ This task will show subtasks.",
   "✔ This task will execute.
 ✔ This task will show subtasks.",
 ]

@@ -58,10 +58,10 @@ export interface ListrDefaultRendererOptions
    */
   lockInput?: boolean
   /**
-   * Draw a vertical line in front of the subtasks of an expanded task, so the subtasks are visibly linked to the title of their parent.
+   * Draw an expanded task as a bracket: a header with its title, a vertical line in front of its subtasks, and a footer with its status.
    *
    * - This is a global option that can only be changed through the main Listr class.
-   * - The line takes the first column of the indentation, so it is not drawn when `indentation` is `0`.
+   * - The bracket takes the first column of the indentation, so it is not drawn when `indentation` is `0`.
    *
    * @defaultValue `true`
    */

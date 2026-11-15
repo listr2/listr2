@@ -13,7 +13,11 @@ const FIGURES_MAIN = {
   squareSmallFilled: '◼',
   pointerSmall: '›',
   circleSlash: '⊘',
-  lineVertical: '│'
+  lineVertical: '│',
+  lineDownRight: '┌',
+  lineUpRight: '└',
+  arrowUp: '↑',
+  ellipsis: '…'
 }
 
 const FIGURES_FALLBACK = {
@@ -26,7 +30,11 @@ const FIGURES_FALLBACK = {
   checkboxOn: '[×]',
   squareSmallFilled: '■',
   circleSlash: 'ø',
-  lineVertical: '|'
+  lineVertical: '|',
+  lineDownRight: '.',
+  lineUpRight: '`',
+  arrowUp: '^',
+  ellipsis: ':'
 }
 
 export type Figures = typeof FIGURES_MAIN

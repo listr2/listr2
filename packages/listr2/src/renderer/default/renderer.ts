@@ -354,13 +354,13 @@ export class DefaultRenderer implements ListrRenderer {
     const output = shown.flatMap((task) => frames.get(task.id)?.live ?? [])
 
     if (completed.length > 0) {
-      output.unshift(...this.format(`${completed.length} completed`, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED), level))
+      output.unshift(...this.format(`${completed.length} completed`, this.logger.icon(ListrDefaultRendererLogLevels.SUMMARY_COMPLETED), level))
     }
 
     const titled = waiting.filter((task) => task.isEnabled() && task.hasTitle())
 
     if (titled.length > 0) {
-      output.push(...this.format(`${titled.length} waiting`, this.logger.icon(ListrDefaultRendererLogLevels.WAITING), level))
+      output.push(...this.format(`${titled.length} waiting`, this.logger.icon(ListrDefaultRendererLogLevels.SUMMARY_WAITING), level))
     }
 
     return {
@@ -426,7 +426,9 @@ export class DefaultRenderer implements ListrRenderer {
 
   private renderProgressive(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], level: number, context: ListrDefaultRendererContext): ListrDefaultRendererFrame {
     const final = context.final || task.isClosed()
-    const { title, body, subtasks, subtaskLevel } = this.renderTask(task, siblings, level)
+    const { title, body, subtasks, subtaskLevel, bracket } = this.renderTask(task, siblings, level)
+    const header = bracket ? this.renderHeader(task, level) : title
+    const footer = bracket ? this.renderFooter(task, level, title) : []
 
     const frozen = this.frozen.size
     const children = this.renderer(task.subtasks, subtaskLevel, { ...context, final })
@@ -435,8 +437,15 @@ export class DefaultRenderer implements ListrRenderer {
     if (final && task.subtasks.every((subtask) => !subtask.isEnabled() || this.frozen.get(subtask.id) === 'done')) {
       this.frozen.set(task.id, 'done')
 
+      if (!opened) {
+        return {
+          persist: [...header, ...this.connect(task, level, [...body, ...children.persist]), ...footer],
+          live: []
+        }
+      }
+
       return {
-        persist: opened ? [...this.connect(task, level, children.persist), ...title, ...body] : [...title, ...this.connect(task, level, [...body, ...children.persist])],
+        persist: bracket ? [...this.connect(task, level, [...children.persist, ...body]), ...footer] : [...this.connect(task, level, children.persist), ...title, ...body],
         live: []
       }
     }
@@ -446,18 +455,18 @@ export class DefaultRenderer implements ListrRenderer {
     if (!opened && this.frozen.size === frozen) {
       return {
         persist: children.persist,
-        live: [...title, ...(subtasks ? this.connect(task, level, live) : live)]
+        live: [...header, ...(subtasks ? this.connect(task, level, live) : live), ...footer]
       }
     }
 
-    // the title is persisted with the first subtask that is persisted
+    // the header is persisted with the first subtask that is persisted
     if (!opened) {
       this.frozen.set(task.id, 'open')
     }
 
     return {
-      persist: opened ? this.connect(task, level, children.persist) : [...title, ...this.connect(task, level, children.persist)],
-      live: this.connect(task, level, live)
+      persist: opened ? this.connect(task, level, children.persist) : [...header, ...this.connect(task, level, children.persist)],
+      live: [...this.connect(task, level, live), ...footer]
     }
   }
 
@@ -469,7 +478,7 @@ export class DefaultRenderer implements ListrRenderer {
       return this.cache.render.get(task.id)
     }
 
-    const { title, body, subtasks, subtaskLevel } = this.renderTask(task, siblings, level)
+    const { title, body, subtasks, subtaskLevel, bracket } = this.renderTask(task, siblings, level)
     const lines = [...body]
 
     if (subtasks) {
@@ -479,12 +488,13 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     const group = subtasks || open ? this.connect(task, level, lines) : lines
+    const footer = bracket ? this.renderFooter(task, level, title) : []
 
     if (open) {
-      return group
+      return [...group, ...footer]
     }
 
-    const output = [...title, ...group]
+    const output = bracket ? [...this.renderHeader(task, level), ...group, ...footer] : [...title, ...group]
 
     // a summarized render is not the final one
     if (task.isClosed() && !summary) {
@@ -530,93 +540,6 @@ export class DefaultRenderer implements ListrRenderer {
       }
     }
 
-    // Current Task Title
-    if (task.hasTitle()) {
-      if (!(
-        siblings.some((sibling) => sibling.hasFailed()) &&
-        !task.hasFailed() &&
-        task.options.exitOnError !== false &&
-        !(task.isCompleted() || task.isSkipped() || task.isCancelled())
-      )) {
-        // if task is skipped
-        if (task.hasFailed() && rendererOptions.collapseErrors) {
-          // current task title and skip change the title
-          title.push(...this.format(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : task.title, this.style(task), level))
-        } else if (task.isSkipped() && rendererOptions.collapseSkips) {
-          // current task title and skip change the title
-          title.push(
-            ...this.format(
-              this.logger.suffix(task.message.skip && rendererOptions.showSkipMessage ? task.message.skip : task.title, {
-                field: ListrLogLevels.SKIPPED,
-                condition: rendererOptions.suffixSkips,
-                format: () => color.dim
-              }),
-              this.style(task),
-              level
-            )
-          )
-        } else if (task.isRetrying()) {
-          title.push(
-            ...this.format(
-              this.logger.suffix(task.title, {
-                field: `${ListrLogLevels.RETRY}:${task.message.retry.count}`,
-                format: () => color.yellow,
-                condition: rendererOptions.suffixRetries
-              }),
-              this.style(task),
-              level
-            )
-          )
-        } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
-          // task with timer
-          title.push(
-            ...this.format(
-              this.logger.suffix(task?.title, {
-                ...rendererTaskOptions.timer,
-                args: [task.message.duration]
-              }),
-              this.style(task),
-              level
-            )
-          )
-        } else if (task.isPaused()) {
-          title.push(
-            ...this.format(
-              this.logger.suffix(task.title, {
-                ...rendererOptions.pausedTimer,
-                args: [task.message.paused - Date.now()]
-              }),
-              this.style(task),
-              level
-            )
-          )
-        } else {
-          // normal state
-          title.push(...this.format(task.title, this.style(task), level))
-        }
-      } else {
-        // some sibling task but self has failed and this has stopped
-        title.push(...this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), level))
-      }
-    }
-
-    // task should not have subtasks since subtasks will handle the error already
-    // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
-    if (!task.hasSubtasks() || !rendererOptions.showSubtasks) {
-      // without the collapse option for skip and errors
-      if (task.hasFailed() && rendererOptions.collapseErrors === false && (rendererOptions.showErrorMessage || !rendererOptions.showSubtasks)) {
-        // show skip data if collapsing is not defined
-        body.push(...this.dump(task, level, ListrLogLevels.FAILED))
-      } else if (task.isSkipped() && rendererOptions.collapseSkips === false && (rendererOptions.showSkipMessage || !rendererOptions.showSubtasks)) {
-        // show skip data if collapsing is not defined
-        body.push(...this.dump(task, level, ListrLogLevels.SKIPPED))
-      }
-    }
-
-    if (task.isPending() || rendererTaskOptions.persistentOutput) {
-      body.push(...this.renderOutputBar(task, level))
-    }
-
     const subtasks =
       // check if renderer option is on first
       rendererOptions.showSubtasks !== false &&
@@ -637,6 +560,97 @@ export class DefaultRenderer implements ListrRenderer {
         // if any of the subtasks was cancelled
         task.subtasks.some((subtask) => subtask.isCancelled()))
 
+    // the final title line of a bracket is its footer, which lines up with the subtasks
+    const bracket = subtasks && this.isConnected(task)
+    const titleLevel = bracket ? level + 1 : level
+
+    // Current Task Title
+    if (task.hasTitle()) {
+      if (!(
+        siblings.some((sibling) => sibling.hasFailed()) &&
+        !task.hasFailed() &&
+        task.options.exitOnError !== false &&
+        !(task.isCompleted() || task.isSkipped() || task.isCancelled())
+      )) {
+        // if task is skipped
+        if (task.hasFailed() && rendererOptions.collapseErrors) {
+          // current task title and skip change the title
+          title.push(...this.format(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : task.title, this.style(task), titleLevel))
+        } else if (task.isSkipped() && rendererOptions.collapseSkips) {
+          // current task title and skip change the title
+          title.push(
+            ...this.format(
+              this.logger.suffix(task.message.skip && rendererOptions.showSkipMessage ? task.message.skip : task.title, {
+                field: ListrLogLevels.SKIPPED,
+                condition: rendererOptions.suffixSkips,
+                format: () => color.dim
+              }),
+              this.style(task),
+              titleLevel
+            )
+          )
+        } else if (task.isRetrying()) {
+          title.push(
+            ...this.format(
+              this.logger.suffix(task.title, {
+                field: `${ListrLogLevels.RETRY}:${task.message.retry.count}`,
+                format: () => color.yellow,
+                condition: rendererOptions.suffixRetries
+              }),
+              this.style(task),
+              titleLevel
+            )
+          )
+        } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
+          // task with timer
+          title.push(
+            ...this.format(
+              this.logger.suffix(task?.title, {
+                ...rendererTaskOptions.timer,
+                args: [task.message.duration]
+              }),
+              this.style(task),
+              titleLevel
+            )
+          )
+        } else if (task.isPaused()) {
+          title.push(
+            ...this.format(
+              this.logger.suffix(task.title, {
+                ...rendererOptions.pausedTimer,
+                args: [task.message.paused - Date.now()]
+              }),
+              this.style(task),
+              titleLevel
+            )
+          )
+        } else {
+          // normal state
+          title.push(...this.format(task.title, this.style(task), titleLevel))
+        }
+      } else {
+        // some sibling task but self has failed and this has stopped
+        title.push(...this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS), titleLevel))
+      }
+    }
+
+    // task should not have subtasks since subtasks will handle the error already
+    // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
+    if (!task.hasSubtasks() || !rendererOptions.showSubtasks) {
+      // without the collapse option for skip and errors
+      if (task.hasFailed() && rendererOptions.collapseErrors === false && (rendererOptions.showErrorMessage || !rendererOptions.showSubtasks)) {
+        // show skip data if collapsing is not defined
+        body.push(...this.dump(task, level, ListrLogLevels.FAILED))
+      } else if (task.isSkipped() && rendererOptions.collapseSkips === false && (rendererOptions.showSkipMessage || !rendererOptions.showSubtasks)) {
+        // show skip data if collapsing is not defined
+        body.push(...this.dump(task, level, ListrLogLevels.SKIPPED))
+      }
+    }
+
+    if (task.isPending() || rendererTaskOptions.persistentOutput) {
+      body.push(...this.renderOutputBar(task, level))
+    }
+
     // after task is finished actions
     if (task.hasFinalized()) {
       // clean up the output buffer if not persistent
@@ -650,7 +664,8 @@ export class DefaultRenderer implements ListrRenderer {
       title,
       body,
       subtasks,
-      subtaskLevel: task.hasTitle() ? level + 1 : level
+      subtaskLevel: task.hasTitle() ? level + 1 : level,
+      bracket
     }
   }
 
@@ -675,14 +690,29 @@ export class DefaultRenderer implements ListrRenderer {
     return (rendererOptions.collapseSubtasks === false && !collapse.includes(true)) || collapse.includes(false)
   }
 
-  private connect(task: ListrDefaultRendererTask, level: number, lines: string[]): string[] {
+  private isConnected(task: ListrDefaultRendererTask): boolean {
     // a parent without a title renders its subtasks at its own level, so there is no column to draw into
-    if (!this.options.markIndentation || !task.hasTitle() || this.options.indentation < 1) {
+    return this.options.markIndentation && task.hasTitle() && this.options.indentation > 0
+  }
+
+  private renderHeader(task: ListrDefaultRendererTask, level: number): string[] {
+    const [first, ...rest] = this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_START), level)
+
+    return [first, ...this.connect(task, level, rest)]
+  }
+
+  private renderFooter(task: ListrDefaultRendererTask, level: number, title: string[]): string[] {
+    const [first, ...rest] = title
+
+    return [...this.connect(task, level, [first], this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_END)), ...rest]
+  }
+
+  private connect(task: ListrDefaultRendererTask, level: number, lines: string[], connector = this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR)): string[] {
+    if (!this.isConnected(task)) {
       return lines
     }
 
     const column = level * this.options.indentation
-    const connector = this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR)
 
     // the column is part of the indentation of every subtask line, so the connector does not change the width
     return lines.map((line) => {
