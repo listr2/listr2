@@ -1,3 +1,17 @@
+## listr2 [12.0.0-beta.6](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.5...listr2@12.0.0-beta.6) (2026-11-15)
+
+### ⚠ BREAKING CHANGES
+
+* **lib:** creating a list or a task now throws a RangeError for
+concurrent set to 0, a negative number or NaN, for retry or retry.tries set
+to a fraction greater than 0, and for the default renderer options
+indentation (negative or NaN), formatOutput (neither truncate nor wrap),
+outputBar and bottomBar (negative or NaN).
+
+### Bug Fixes
+
+* **lib:** throw on option values that hang or render nothing ([0c21bf9](https://github.com/listr2/listr2/commit/0c21bf963c3bd09bfd512efef1bb56b423af9180)), closes [listr2/listr2#796](https://github.com/listr2/listr2/issues/796)
+
 ## listr2 [12.0.0-beta.5](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.4...listr2@12.0.0-beta.5) (2026-11-15)
 
 ### Bug Fixes
