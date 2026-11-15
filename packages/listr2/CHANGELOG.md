@@ -1,3 +1,18 @@
+## listr2 [12.0.0-beta.5](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.4...listr2@12.0.0-beta.5) (2026-11-15)
+
+### Bug Fixes
+
+* **process-output:** give up the input lock when stty fails on resume ([020880f](https://github.com/listr2/listr2/commit/020880f10356e0b5e109129c04efb4658c3c49e5))
+* **renderer:** close a failed subtask group on the failed icon ([be8ea04](https://github.com/listr2/listr2/commit/be8ea04ba42c7cbe659c12fda6ddfb51a63b2480))
+
+### Performance Improvements
+
+* **process-output:** check the terminal once per frame and remember a missing /proc ([a0c39b9](https://github.com/listr2/listr2/commit/a0c39b943876e3ef293e38be77e9e5422f3f3594))
+
+### Code Refactoring
+
+* **renderer:** tidy the default renderer and the process output ([e0aea44](https://github.com/listr2/listr2/commit/e0aea443a42cf4c398da37f68a59754d02722d55))
+
 ## listr2 [12.0.0-beta.4](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.3...listr2@12.0.0-beta.4) (2026-11-15)
 
 ### ⚠ BREAKING CHANGES
