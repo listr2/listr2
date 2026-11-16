@@ -124,7 +124,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['┌ parent', '│ ↑ 9', '│ ✔ task 9', '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`), '└ ❯'])
+    expect(seen).toEqual(['┌ ❯ parent', '│ ↑ 9', '│ ✔ task 9', '│ ❯ task 10', ...range(4, (index) => `│ ◼ task ${index + 11}`), '└'])
     expect(await vt.content()).toEqual(['✔ parent'])
   })
 
@@ -250,7 +250,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(seen).toEqual(['┌ a parent with a title that', '│  wraps over the rows', '│ ❯ first', '└ ❯'])
+    expect(seen).toEqual(['┌ ❯ a parent with a title', '│   that wraps over the rows', '│ ❯ first', '└'])
     expect(await vt.content()).toEqual(['┌ a parent with a title that', '│  wraps over the rows', '│ ✔ first', '└ ✔'])
   })
 
@@ -334,12 +334,12 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['┌ Compiled 1 package.', '│ ❯ first', '└ ❯'])
+    expect(seen).toEqual(['┌ ❯ Compiled 1 package.', '│ ❯ first', '└'])
     expect(await vt.content()).toEqual(['┌ Compiled 1 package.', '│ ✔ first', '└ ✔'])
   })
 
   it('should show the title on the footer of a running bracket only while its header is off the screen', async() => {
-    const footers: { header: boolean, footer: string }[] = []
+    const footers: { header?: string, footer: string }[] = []
 
     // the header needs 6 rows to stay on the screen next to the last subtask: the persisted subtasks, the live region and the cursor
     for (const rows of [5, 6, 7, 8]) {
@@ -357,7 +357,7 @@ describe('default renderer: terminal', () => {
                   task: async(): Promise<void> => {
                     const screen = await vt.screen()
 
-                    footers.push({ header: screen.includes('┌ parent'), footer: screen.find((line) => line.startsWith('└')) })
+                    footers.push({ header: screen.find((line) => line.startsWith('┌')), footer: screen.find((line) => line.startsWith('└')) })
                   }
                 })),
                 { rendererOptions: { collapseSubtasks: false } }
@@ -368,9 +368,15 @@ describe('default renderer: terminal', () => {
       ).run()
     }
 
-    expect(footers.filter(({ header }) => header).length).toBeGreaterThan(0)
-    expect(footers.filter(({ header }) => !header).length).toBeGreaterThan(0)
-    expect(footers).toEqual(footers.map(({ header }) => ({ header, footer: header ? '└ ❯' : '└ ❯ parent' })))
+    // the live header carries the status until the first subtask persists it, then the footer does, with the title once it is off the screen
+    const expected = new Map([
+      ['┌ ❯ parent', '└'],
+      ['┌ parent', '└ ❯'],
+      [undefined, '└ ❯ parent']
+    ])
+
+    expect(new Set(footers.map(({ header }) => header))).toEqual(new Set(expected.keys()))
+    expect(footers).toEqual(footers.map(({ header }) => ({ header, footer: expected.get(header) })))
   })
 
   it('should end a line that shows only an icon with a space', async() => {
@@ -508,7 +514,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false, clearOutput: true })
     ).run()
 
-    expect(seen).toEqual(['┌ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '└ ❯'])
+    expect(seen).toEqual(['┌ ❯ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '└'])
     expect(await vt.content()).toEqual([])
   })
 
@@ -539,7 +545,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // a summary of one finished subtask takes the same row as the subtask itself
-    expect(seen).toEqual(['┌ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ … 3', '└ ❯', '◼ after 0', '… 9'])
+    expect(seen).toEqual(['┌ ❯ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ … 3', '└', '◼ after 0', '… 9'])
   })
 
   it('should draw the connector with the fallback figure when unicode is not supported', async() => {
@@ -646,8 +652,8 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the subtree is persisted while the parent runs
-    expect(seen).toEqual({ scrollback: [], screen: ['┌ parent'] })
-    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first', '│ ✖ second failed', '│ ✔ third', '└ ⚠'])
+    expect(seen).toEqual({ scrollback: [], screen: ['┌ ❯ parent'] })
+    expect(await vt.content()).toEqual(['┌ ⚠ parent', '│ ✔ first', '│ ✖ second failed', '│ ✔ third', '└'])
   })
 
   it('should draw no connector when markIndentation is disabled', async() => {
@@ -773,7 +779,7 @@ describe('default renderer: terminal', () => {
       options({ icon: { CONNECTOR_START: '╭', SUMMARY_WAITING: '~' } })
     ).run()
 
-    expect(seen).toEqual(['╭ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ ~ 3', '└ ❯', '◼ after 0', '~ 9'])
+    expect(seen).toEqual(['╭ ❯ parent', '│ ✔ task 0', '│ ❯ task 1', '│ ◼ task 2', '│ ~ 3', '└', '◼ after 0', '~ 9'])
   })
 
   it('should persist the tasks of a concurrent list in the order they finish', async() => {
@@ -844,7 +850,7 @@ describe('default renderer: terminal', () => {
     expect(await vt.content()).toEqual(['✔ before', '✔ retry'])
   })
 
-  it('should keep the retry count on the footer of a retrying group', async() => {
+  it('should show the retry count on the header of a retrying group', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
 
     const seen: string[][] = []
@@ -875,7 +881,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen.at(-1)).toEqual(['┌ retry', '│ ❯ subtask', '└ ⚠ [RETRY:1]'])
+    expect(seen.at(-1)).toEqual(['┌ ⚠ retry [RETRY:1]', '│ ❯ subtask', '└'])
   })
 
   it('should persist a task once its rollback has finished', async() => {
@@ -904,6 +910,104 @@ describe('default renderer: terminal', () => {
 
     expect(seen).toEqual(['⚠ rollback', '◼ never runs'])
     expect(await vt.content()).toEqual(['← rolled back', '◼ never runs'])
+  })
+
+  it('should show the status of a group that rolls back on its header, next to the title it rolls back with', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await expect(
+      new Listr(
+        [
+          {
+            title: 'parent',
+            task: (_, task): Listr =>
+              task.newListr([
+                {
+                  title: 'fails',
+                  task: async(): Promise<void> => {
+                    throw new Error('failed')
+                  }
+                },
+                { title: 'never runs', task: async(): Promise<void> => {} }
+              ]),
+            rollback: async(_, task): Promise<void> => {
+              task.title = 'rolling back'
+              seen = await vt.content()
+              task.title = 'rolled back'
+            }
+          }
+        ],
+        options()
+      ).run()
+    ).rejects.toThrow('failed')
+
+    expect(seen).toEqual(['┌ ⚠ rolling back', '│ ✖ failed', '│ ◼ never runs', '└'])
+    expect(await vt.content()).toEqual(['┌ ← rolled back', '│ ✖ failed', '│ ◼ never runs', '└'])
+  })
+
+  it('should show the status of a failed group written in one go on its header', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    await expect(
+      new Listr(
+        [
+          {
+            title: 'parent',
+            task: (_, task): Listr =>
+              task.newListr([
+                { title: 'first', task: async(): Promise<void> => {} },
+                {
+                  title: 'second',
+                  task: async(): Promise<void> => {
+                    throw new Error('second failed')
+                  }
+                }
+              ])
+          }
+        ],
+        options()
+      ).run()
+    ).rejects.toThrow('second failed')
+
+    expect(await vt.content()).toEqual(['┌ ✖ parent', '│ ✔ first', '│ ✖ second failed', '└'])
+  })
+
+  it('should show the status of a non-collapsing group on exactly one line of its bracket in every frame', async() => {
+    vt = new VirtualTerminal({
+      columns: 80,
+      rows: 10,
+      frames: true
+    })
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr(
+              range(3, (index) => ({
+                title: `task ${index}`,
+                task: async(): Promise<void> => delay(10)
+              })),
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        }
+      ],
+      options()
+    ).run()
+
+    await vt.flush()
+
+    const brackets = vt.frames.map((screen) => screen.filter((line) => /^[┌└]/.test(line)))
+
+    // the header carries the status while it is live, and the footer once the first subtask persisted the header
+    expect(brackets).toContainEqual(['┌ ❯ parent', '└'])
+    expect(brackets).toContainEqual(['┌ parent', '└ ❯'])
+    expect(brackets.at(-1)).toEqual(['┌ parent', '└ ✔'])
+    expect(brackets.filter((lines) => lines.length > 0).map((lines) => lines.filter((line) => !['┌ parent', '└'].includes(line)).length)).not.toContain(0)
+    expect(brackets.map((lines) => lines.filter((line) => !['┌ parent', '└'].includes(line)).length).filter((count) => count > 1)).toEqual([])
   })
 
   it('should persist the whole list as cancelled on SIGINT', async() => {
@@ -937,7 +1041,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     expect(exit).toHaveBeenCalledWith(127)
-    expect(await vt.content()).toEqual(['✔ before', '┌ parent', '│ ⊘ interrupted', '│ ⊘ never started', '└ ⊘', '⊘ after'])
+    expect(await vt.content()).toEqual(['✔ before', '┌ ⊘ parent', '│ ⊘ interrupted', '│ ⊘ never started', '└', '⊘ after'])
     // a terminal left in a synchronized update would show nothing anymore
     expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
   })
@@ -1081,6 +1185,6 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the first attempt is persisted
-    expect(await vt.content()).toEqual(['┌ parent', '│ ✔ first (attempt 2)', '│ ✔ second (attempt 2)', '└ ✔'])
+    expect(await vt.content()).toEqual(['┌ ✔ parent', '│ ✔ first (attempt 2)', '│ ✔ second (attempt 2)', '└'])
   })
 })

@@ -16,4 +16,10 @@ export interface VirtualTerminalOptions {
    * @defaultValue `false`
    */
   scrollOnClear?: boolean
+  /**
+   * Whether to keep the screen after every write in `frames`.
+   *
+   * @defaultValue `false`
+   */
+  frames?: boolean
 }

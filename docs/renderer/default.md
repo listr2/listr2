@@ -54,7 +54,18 @@ _A concurrent group with `collapseSubtasks: false`: each subtask is printed as i
 
 ### Brackets
 
-A task that shows its subtasks under its title draws them as a bracket: a header with its title, a dimmed connector in front of its subtasks, and a footer with its status.
+A task that shows its subtasks under its title draws them as a bracket: a header with its title, a dimmed connector in front of its subtasks, and a footer. The status of the task shows on whichever of the header and the footer can still change.
+
+While the header can still change, it shows the status: a task whose subtasks collapse while it runs, or a group printed at once because it failed, rolled back, retried or was cancelled. The footer is then a bare `└`.
+
+```text
+┌ ⠋ Rolling back migrations
+│ ✖ Running migration 002 failed.
+│ ◼ Running migration 003.
+└
+```
+
+A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on its footer shows the status.
 
 ```text
 ┌ Running migrations
@@ -72,7 +83,7 @@ _A group with `collapseSubtasks: false` while it runs._
 
 _The same group from start to end._
 
-The footer shows `❯` while the task runs, or the spinner and `[RETRY:n]` while it retries. Once the task finished, it shows `✔`, `⚠` when some subtasks failed without failing the task, or a red `✖` when the task failed, followed by the time it took with the `timer` option. The footer also shows the title when the task changed it after its header was printed, or while it runs once the header has scrolled off the screen.
+The status is `❯` while the task runs, or the spinner and `[RETRY:n]` while it retries. Once the task finished, it is `✔`, `⚠` when some subtasks failed without failing the task, `←` when it rolled back, or a red `✖` when the task failed, followed by the time it took with the `timer` option. A footer that shows the status also shows the title when the task changed it after its header was printed, or while it runs once the header has scrolled off the screen.
 
 ```text
 ┌ Running migrations
@@ -88,7 +99,7 @@ _The same group once it finished._
 
 ![Two groups that stay expanded because a subtask failed](../../examples/screenshots/failure.png)
 
-_Groups that stay expanded because a subtask failed. The first carries on past the failure and closes on `⚠`, the second fails with its subtask and closes on a red `✖`._
+_Groups that stay expanded because a subtask failed, printed at once with the status on the header. The first carries on past the failure and shows `⚠`, the second fails with its subtask and shows a red `✖`._
 
 ![A footer with a changed title, and a footer with a timer](../../examples/screenshots/title.png)
 

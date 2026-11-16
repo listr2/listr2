@@ -474,24 +474,29 @@ export class DefaultRenderer implements ListrRenderer {
       }
     }
 
-    // the header is persisted with the first subtask that is persisted
+    // the header is persisted with the first subtask that is persisted, so it is rendered again to move the status to the footer
     if (!opened) {
       this.frozen.set(task.id, 'open')
       this.headers.set(task.id, {
         title: task.title,
-        persisted: header.length - 1,
+        persisted: 0,
         live: 0
       })
     }
 
     const shown = this.headers.get(task.id)
-    const block = [...this.connect(task, level, live), ...footer]
+    const persisted = opened ? { header, footer } : this.renderTask(task, siblings, level)
+    const block = [...this.connect(task, level, live), ...persisted.footer]
+
+    if (!opened) {
+      shown.persisted = persisted.header.length - 1
+    }
 
     shown.persisted += children.persist.length
     shown.live = block.length
 
     return {
-      persist: opened ? this.connect(task, level, children.persist) : [...header, ...this.connect(task, level, children.persist)],
+      persist: opened ? this.connect(task, level, children.persist) : [...persisted.header, ...this.connect(task, level, children.persist)],
       live: block
     }
   }
@@ -585,13 +590,12 @@ export class DefaultRenderer implements ListrRenderer {
         // if any of the subtasks was cancelled
         task.subtasks.some((subtask) => subtask.isCancelled()))
 
-    // the final title line of a bracket is its footer, which lines up with the subtasks
+    // the status line of a bracket lines up with the subtasks, on its header until the header is persisted and on its footer after
     const bracket = subtasks && this.isConnected(task)
     const titleLevel = bracket ? level + 1 : level
     const persisted = this.headers.get(task.id)
-    // the footer of a bracket shows its status, and its title only when its persisted header shows another one, or scrolled off the
-    // screen while the group runs
-    const titled = (persisted?.title ?? task.title) !== task.title || (!task.hasFinalized() && this.hasScrolledOff(persisted))
+    // the footer shows the title only when the persisted header shows another one, or scrolled off the screen while the group runs
+    const titled = !persisted || persisted.title !== task.title || (!task.hasFinalized() && this.hasScrolledOff(persisted))
     const text = bracket && !titled ? '' : task.title
     // a failed group closes on the failed icon, since its own icon for failed subtasks reads like a running footer
     const icon = bracket && task.hasFailed() ? this.logger.icon(ListrDefaultRendererLogLevels.FAILED) : this.style(task)
@@ -694,8 +698,8 @@ export class DefaultRenderer implements ListrRenderer {
 
     return {
       title,
-      header: bracket ? this.renderHeader(task, level) : title,
-      footer: bracket ? this.renderFooter(task, level, title) : [],
+      header: bracket ? this.renderHeader(task, level, persisted ? undefined : title) : title,
+      footer: bracket ? this.renderFooter(task, level, persisted ? title : undefined) : [],
       body,
       subtasks,
       subtaskLevel: task.hasTitle() ? level + 1 : level,
@@ -737,14 +741,22 @@ export class DefaultRenderer implements ListrRenderer {
     return header !== undefined && typeof rows === 'number' && header.persisted + header.live + 2 > rows
   }
 
-  private renderHeader(task: ListrDefaultRendererTask, level: number): string[] {
+  /** The header carries the status line while it is live, and only the title once it is persisted. */
+  private renderHeader(task: ListrDefaultRendererTask, level: number, status?: string[]): string[] {
+    if (status) {
+      const [first, ...rest] = status
+
+      return [...this.connect(task, level, [first], this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_START)), ...this.connect(task, level, rest)]
+    }
+
     const [first, ...rest] = this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_START), level)
 
     return [first, ...this.connect(task, level, rest)]
   }
 
-  private renderFooter(task: ListrDefaultRendererTask, level: number, title: string[]): string[] {
-    const [first, ...rest] = title
+  /** The footer carries the status line once the header is persisted, and is bare while the header carries it. */
+  private renderFooter(task: ListrDefaultRendererTask, level: number, status?: string[]): string[] {
+    const [first, ...rest] = status ?? ['']
 
     return [...this.connect(task, level, [first], this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_END)), ...rest]
   }

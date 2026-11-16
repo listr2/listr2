@@ -14,14 +14,18 @@ export class VirtualTerminal extends EventEmitter {
   public columns: number
   public rows: number
   public readonly writes: string[] = []
+  /** The screen after every write, when the `frames` option is on. */
+  public readonly frames: string[][] = []
   public readonly emulator: InstanceType<typeof xterm.Terminal>
   private pending: Promise<void> = Promise.resolve()
   private readonly scrollOnClear: boolean
+  private readonly recordFrames: boolean
 
   constructor(options: VirtualTerminalOptions) {
     super()
 
     this.scrollOnClear = options.scrollOnClear ?? false
+    this.recordFrames = options.frames ?? false
 
     this.columns = options.columns
     this.rows = options.reportedRows ?? options.rows
@@ -53,6 +57,12 @@ export class VirtualTerminal extends EventEmitter {
         }
 
         await new Promise<void>((resolve) => this.emulator.write(part, resolve))
+      }
+
+      if (this.recordFrames) {
+        const buffer = this.emulator.buffer.active
+
+        this.frames.push(this.read(buffer.baseY, buffer.baseY + this.emulator.rows))
       }
     })
 
