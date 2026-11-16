@@ -1,3 +1,20 @@
+## listr2 [12.0.0-beta.11](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.10...listr2@12.0.0-beta.11) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** a bracket whose header is not persisted yet shows the
+status icon, the retry count and the timer on its header, as
+"┌ ✔ title", and closes with a bare "└". Only a collapseSubtasks: [secure]
+group whose header was persisted keeps them on its footer. Snapshot tests
+of the output may need updating.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Features
+
+* **renderer:** show the status of a bracket on the line that can still change ([fe80863](https://github.com/listr2/listr2/commit/fe808634b6ae7377b4fcc02e289a346e14ac6ad0))
+
 ## listr2 [12.0.0-beta.10](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.9...listr2@12.0.0-beta.10) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
