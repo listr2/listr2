@@ -1,3 +1,20 @@
+## listr2 [12.0.0-beta.22](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.21...listr2@12.0.0-beta.22) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** markIndentation defaults to [secure]. Set markIndentation: true to keep the bracket of the earlier 12.0.0 betas.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Features
+
+* **renderer:** draw the bracket only when markIndentation is set ([8bee564](https://github.com/listr2/listr2/commit/8bee564eee93098d58f5c0156f92c16da4c4b55c))
+
+### Bug Fixes
+
+* **renderer:** fold the waiting tasks before the finished subtasks ([35acd01](https://github.com/listr2/listr2/commit/35acd01ed616fff266e9942b81367ed5782735bf))
+
 ## listr2 [12.0.0-beta.21](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.20...listr2@12.0.0-beta.21) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
