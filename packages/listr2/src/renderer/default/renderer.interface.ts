@@ -13,7 +13,7 @@ export interface ListrDefaultRendererOptions
   // global
 
   /**
-   * Indentation per-level.
+   * Indentation per-level. Under a bracket, the rows of a group sit this many columns deeper than its status icon.
    *
    * - This is a global option that can only be changed through the main Listr class.
    *

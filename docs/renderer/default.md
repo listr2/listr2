@@ -202,7 +202,7 @@ _With `formatOutput: 'truncate'`, a line longer than the terminal is cut at its 
 
 ![Nested groups with indentation: 4](../../examples/screenshots/indentation.png)
 
-_Nested groups with `indentation: 4`. The connector takes the first column of the indentation of each level._
+_Nested groups with `indentation: 4`. The connector and the space after it take two columns whatever the indentation is, and the rows of a group sit `indentation` columns deeper than its status icon._
 
 ### `outputBar`, `bottomBar` and `persistentOutput`
 

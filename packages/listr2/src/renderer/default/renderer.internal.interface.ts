@@ -15,7 +15,7 @@ export interface ListrDefaultRendererTaskRender {
   footer: string[]
   body: string[]
   subtasks: boolean
-  subtaskLevel: number
+  subtaskColumn: number
   bracket: boolean
 }
 

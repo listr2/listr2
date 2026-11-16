@@ -1287,20 +1287,24 @@ describe('default renderer: terminal', () => {
       nested: ['┌ outer', '│   ✔ first', '│   ┌ ⚠ inner', '│   │   ✔ inner first', '│   └   ✖ second failed', '│   ✔ last', '└ ✔']
     },
     {
+      indentation: 1,
+      header: ['┌ ⚠ header', '│  ✔ first', '└  ✖ second failed'],
+      footer: ['┌ footer', '│  ✔ first', '│  ✔ second', '└ ✔'],
+      nested: ['┌ outer', '│  ✔ first', '│  ┌ ⚠ inner', '│  │  ✔ inner first', '│  └  ✖ second failed', '│  ✔ last', '└ ✔']
+    },
+    {
+      indentation: 3,
+      header: ['┌ ⚠ header', '│    ✔ first', '└    ✖ second failed'],
+      footer: ['┌ footer', '│    ✔ first', '│    ✔ second', '└ ✔'],
+      nested: ['┌ outer', '│    ✔ first', '│    ┌ ⚠ inner', '│    │    ✔ inner first', '│    └    ✖ second failed', '│    ✔ last', '└ ✔']
+    },
+    {
       indentation: 4,
-      header: ['┌   ⚠ header', '│       ✔ first', '└       ✖ second failed'],
-      footer: ['┌ footer', '│       ✔ first', '│       ✔ second', '└   ✔'],
-      nested: [
-        '┌ outer',
-        '│       ✔ first',
-        '│       ┌   ⚠ inner',
-        '│       │       ✔ inner first',
-        '│       └       ✖ second failed',
-        '│       ✔ last',
-        '└   ✔'
-      ]
+      header: ['┌ ⚠ header', '│     ✔ first', '└     ✖ second failed'],
+      footer: ['┌ footer', '│     ✔ first', '│     ✔ second', '└ ✔'],
+      nested: ['┌ outer', '│     ✔ first', '│     ┌ ⚠ inner', '│     │     ✔ inner first', '│     └     ✖ second failed', '│     ✔ last', '└ ✔']
     }
-  ])('should put the rows of a bracket one level deeper than its status icon with indentation $indentation', async({ indentation, header, footer, nested }) => {
+  ])('should put the rows of a bracket one indentation deeper than its status icon with indentation $indentation', async({ indentation, header, footer, nested }) => {
     const fails: ListrTask = {
       title: 'second',
       task: async(): Promise<void> => {
