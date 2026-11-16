@@ -137,6 +137,8 @@ exports[`simple renderer: prompt -> enquirer > should render a prompt > stderr 1
   "[?25h",
   "[?25h",
   "[?25h",
+  "
+",
 ]
 `;
 
@@ -186,6 +188,8 @@ exports[`simple renderer: prompt -> enquirer > should render multiple prompt > s
   "[32m✔[39m [1mGive me more input.[22m [2m·[22m [36mtest1[39m",
   "[4D",
   "[?25h",
+  "
+",
 ]
 `;
 
@@ -226,6 +230,8 @@ exports[`simple renderer: prompt -> enquirer > should use the passed in enquirer
   "[?25h",
   "[?25h",
   "[?25h",
+  "
+",
 ]
 `;
 

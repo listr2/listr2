@@ -1,3 +1,5 @@
+import { stripVTControlCharacters } from 'node:util'
+
 import type { ListrSimpleRendererCache, ListrSimpleRendererOptions, ListrSimpleRendererTask, ListrSimpleRendererTaskOptions } from './renderer.interface'
 import { ListrTaskEventType, ListrTaskState } from '#constants'
 import type { ListrRenderer } from '#interfaces'
@@ -69,6 +71,10 @@ export class SimpleRenderer implements ListrRenderer {
         this.renderer(subtasks)
       })
 
+      let prompting = false
+      // whether the prompt left the cursor at the start of a line
+      let ended = true
+
       task.on(ListrTaskEventType.STATE, (state) => {
         if (!task.hasTitle()) {
           return
@@ -91,13 +97,28 @@ export class SimpleRenderer implements ListrRenderer {
             }
           )
         } else if (state === ListrTaskState.PROMPT) {
+          prompting = true
           this.logger.process.hijack()
 
           task.on(ListrTaskEventType.PROMPT, (prompt) => {
             this.logger.process.toStderr(prompt, false)
+
+            const text = stripVTControlCharacters(prompt)
+
+            if (text !== '') {
+              ended = text.endsWith('\n')
+            }
           })
-        } else if (state === ListrTaskState.PROMPT_COMPLETED) {
+        } else if (prompting && (state === ListrTaskState.PROMPT_COMPLETED || state === ListrTaskState.PROMPT_FAILED)) {
+          // a cancelled prompt can report that it failed twice
+          prompting = false
           task.off(ListrTaskEventType.PROMPT)
+
+          // enquirer ends the line of the answer by the width of the terminal, which the stream of a prompt reports as infinite
+          if (!ended) {
+            this.logger.process.toStderr('')
+            ended = true
+          }
 
           this.logger.process.release()
         } else if (state === ListrTaskState.CANCELLED) {

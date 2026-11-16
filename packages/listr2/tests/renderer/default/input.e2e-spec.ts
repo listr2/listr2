@@ -12,7 +12,7 @@ vi.mock('fs', async(original) => {
   return { ...actual, readFileSync: stty.readFileSync(actual.readFileSync) }
 })
 
-const { Listr, ListrLogger, ListrPromptAdapter, ProcessOutput, delay } = await import('#root')
+const { Listr, ListrLogger, ListrPromptAdapter, ListrTaskEventType, ProcessOutput, delay } = await import('#root')
 const { TERMINAL_POLL_INTERVAL } = await import('../../../src/utils/process-output/process-output.constants')
 
 describe('default renderer: input', () => {
@@ -380,6 +380,37 @@ describe('default renderer: input', () => {
 
       expect(stty.calls).toEqual([])
       expect(await vt.content()).toEqual(['✔ task'])
+    })
+
+    it.each(['completes', 'fails'])('should end the line of a prompt that %s without ending it itself with the simple renderer', async(outcome) => {
+      class Question extends ListrPromptAdapter {
+        public async run<T = any>(): Promise<T> {
+          this.reportStarted()
+          // enquirer leaves the answer like this, since the stream of a prompt reports an infinite width
+          this.wrapper.stdout(ListrTaskEventType.PROMPT).write('✔ What is your name? · Ada')
+
+          if (outcome === 'fails') {
+            this.reportFailed()
+          } else {
+            this.reportCompleted()
+          }
+
+          return undefined as T
+        }
+      }
+
+      await new Listr(
+        [
+          { title: 'asking', task: async(_, task): Promise<void> => task.prompt(Question).run() },
+          { title: 'after', task: async(): Promise<void> => {} }
+        ],
+        {
+          renderer: 'simple',
+          rendererOptions: { logger: new ListrLogger({ processOutput: new ProcessOutput(vt as any, vt as any) }) }
+        }
+      ).run()
+
+      expect(await vt.content()).toEqual(['❯ asking', '✔ What is your name? · Ada', '✔ asking', '❯ after', '✔ after'])
     })
 
     it('should not lock the input with the simple renderer', async() => {

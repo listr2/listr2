@@ -68,7 +68,7 @@ exports[`simple renderer: prompt -> inquirer > should be able to cancel a prompt
 [
   "[34m?[39m [1mGive me some input.[22m[23G",
   "
-[G[?25h",
+",
   "[31m✖[39m This task will execute. [31m[FAILED: Prompt was aborted][39m
 ",
 ]
@@ -79,6 +79,7 @@ exports[`simple renderer: prompt -> inquirer > should be able to cancel a prompt
   "[33m❯[39m This task will execute.
 ",
   "[?25l",
+  "[?2026l[?25h",
 ]
 `;
 
