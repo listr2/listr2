@@ -54,9 +54,9 @@ _A concurrent group with `collapseSubtasks: false`: each subtask is printed as i
 
 ### Brackets
 
-A task that shows its subtasks under its title draws them as a bracket: a header with its title and a dimmed connector in front of its subtasks, which sit one level deeper than the status icon. The status of the task shows on whichever line can still change.
+A task that shows its subtasks under its title draws them as a bracket: a header with its title and a dimmed connector in front of its subtasks, which sit one level deeper than the status icon. A group has one status line, on the side that is printed last.
 
-While the header can still change, it shows the status: a task whose subtasks collapse while it runs, or a group printed at once because it failed, rolled back, retried or was cancelled. The bracket then closes on its last line.
+A group printed at once shows the status on its header: a task whose subtasks collapse, or one that retries. The bracket then closes on its last line.
 
 ```text
 ┌ ⠋ Rolling back migrations
@@ -64,7 +64,7 @@ While the header can still change, it shows the status: a task whose subtasks co
 └   ◼ Running migration 003.
 ```
 
-A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on a footer below its subtasks shows the status. The title shows on one line only: the footer adds it once the header is off the screen, or when the title changed after the header was printed. A resize that rewraps the lines above makes the footer show the title too, since it cannot tell where the header went.
+A group with `collapseSubtasks: false` prints its header with its first finished subtask, so a footer below its subtasks shows the status from the start. The title shows on one line only: the footer adds it once the header is off the screen, or when the title changed after the header was printed. A resize that rewraps the lines above makes the footer show the title too, since it cannot tell where the header went.
 
 ```text
 ┌ Running migrations

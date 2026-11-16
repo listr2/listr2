@@ -506,8 +506,6 @@ export class DefaultRenderer implements ListrRenderer {
     const final = context.final || task.isClosed()
     const { title, header, footer, body, subtasks, subtaskLevel, bracket } = this.renderTask(task, siblings, level)
 
-    // the children persisted something in this frame when the frozen map grew, and the header goes with the first of them
-    const frozenBefore = this.frozen.size
     const children = this.renderer(task.subtasks, subtaskLevel, { ...context, final })
     const opened = this.frozen.has(task.id)
 
@@ -515,8 +513,12 @@ export class DefaultRenderer implements ListrRenderer {
       this.frozen.set(task.id, 'done')
 
       if (!opened) {
+        if (bracket) {
+          this.headers.set(task.id, { title: task.title })
+        }
+
         return {
-          persist: [...header, ...this.close(task, level, [...body, ...children.persist], footer)],
+          persist: this.close(task, level, header, [...body, ...children.persist], footer, title),
           live: []
         }
       }
@@ -530,25 +532,22 @@ export class DefaultRenderer implements ListrRenderer {
 
     const live = subtasks ? [...body, ...children.live] : body
 
-    if (!opened && this.frozen.size === frozenBefore) {
+    // the header is persisted with the first line of the subtasks that is persisted
+    if (!opened && children.persist.length === 0) {
       return {
         persist: children.persist,
-        live: [...header, ...(subtasks ? this.close(task, level, live, footer) : live)]
+        live: subtasks ? this.close(task, level, header, live, footer, title) : [...header, ...live]
       }
     }
 
-    // the header is persisted with the first subtask that is persisted, so it is rendered again to move the status to the footer
     if (!opened) {
       this.frozen.set(task.id, 'open')
       this.headers.set(task.id, { title: task.title })
     }
 
-    const persisted = opened ? { header, footer } : this.renderTask(task, siblings, level)
-    const block = [...this.connect(task, level, live), ...persisted.footer]
-
     return {
-      persist: opened ? this.connect(task, level, children.persist) : [...persisted.header, ...this.connect(task, level, children.persist)],
-      live: block
+      persist: opened ? this.connect(task, level, children.persist) : [...header, ...this.connect(task, level, children.persist)],
+      live: [...this.connect(task, level, live), ...footer]
     }
   }
 
@@ -560,7 +559,7 @@ export class DefaultRenderer implements ListrRenderer {
       return this.cache.render.get(task.id)
     }
 
-    const { header, footer, body, subtasks, subtaskLevel, bracket } = this.renderTask(task, siblings, level)
+    const { title, header, footer, body, subtasks, subtaskLevel, bracket } = this.renderTask(task, siblings, level)
     const lines = [...body]
 
     if (subtasks) {
@@ -575,7 +574,7 @@ export class DefaultRenderer implements ListrRenderer {
       return [...group, ...footer]
     }
 
-    const output = [...header, ...(bracket ? this.close(task, level, lines, footer) : group)]
+    const output = bracket ? this.close(task, level, header, lines, footer, title) : [...header, ...group]
 
     // a summarized render is not the final one
     if (task.isClosed() && !summary) {
@@ -640,20 +639,20 @@ export class DefaultRenderer implements ListrRenderer {
         // if any of the subtasks was cancelled
         task.subtasks.some((subtask) => subtask.isCancelled()))
 
-    // the status line of a bracket takes the column after its connector, on its header while the header is live and on its footer once
-    // the header is persisted or does not fit on the terminal
+    // the status line of a bracket takes the column after its connector
     const bracket = subtasks && this.isConnected(task)
     const titleLevel = bracket ? level + 1 : level
     const persisted = this.headers.get(task.id)
+    // a group that persists its subtasks one by one shows its status on its footer, since its header is persisted first
+    const footed = bracket && this.isProgressive(task)
     // a failed group shows the failed icon, since its own icon for failed subtasks reads like a running one
     const icon = bracket && task.hasFailed() ? this.logger.icon(ListrDefaultRendererLogLevels.FAILED) : this.style(task)
-    // format() drops an empty message, so a line with only its icon passes the icon as the message, and ends on a space since some
-    // terminals, such as kitty, draw a symbol that ends the line narrower than one followed by a space
-    const line = (message: string, icon: string): string[] =>
-      message.trim() === '' ? this.format(icon, '', titleLevel).map((line) => line + ' ') : this.format(message, icon, titleLevel)
-
-    // the status line, and the same without the title for a footer whose header shows it
-    const status = (text: string): string[] => {
+    // the status line, and the same without the title for a footer whose header shows it, or at the column of the task without a bracket
+    const status = (text: string, at = titleLevel): string[] => {
+      // format() drops an empty message, so a line with only its icon passes the icon as the message, and ends on a space since some
+      // terminals, such as kitty, draw a symbol that ends the line narrower than one followed by a space
+      const line = (message: string, icon: string): string[] =>
+        message.trim() === '' ? this.format(icon, '', at).map((line) => line + ' ') : this.format(message, icon, at)
       const title: string[] = []
 
       // Current Task Title
@@ -753,9 +752,10 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     return {
-      title,
-      header: bracket ? (persisted ? this.mark(task, this.renderHeader(task, level)) : this.renderHeader(task, level, title)) : title,
-      footer: bracket ? this.renderStatusFooter(task, level, persisted, status) : [],
+      // the line of a group without rows, which draws no bracket
+      title: bracket ? status(task.title, level) : title,
+      header: bracket ? (footed ? this.mark(task, this.renderHeader(task, level)) : this.renderHeader(task, level, title)) : title,
+      footer: footed ? this.renderStatusFooter(task, level, persisted, status) : [],
       body,
       subtasks,
       // the rows of a bracket sit one level deeper than the column of its status icon
@@ -815,8 +815,6 @@ export class DefaultRenderer implements ListrRenderer {
   ): string[] {
     if (persisted && persisted.title !== task.title) {
       return this.renderFooter(task, level, status(task.title))
-    } else if (!persisted) {
-      return []
     }
 
     const column = level * this.options.indentation
@@ -830,22 +828,26 @@ export class DefaultRenderer implements ListrRenderer {
     return [`${bare}\u{F8FE}${task.id}\u{F8FE}`, ...rest]
   }
 
-  /** The footer carries the status line once the header is persisted or does not fit on the terminal, and is bare only to close an empty group. */
-  private renderFooter(task: ListrDefaultRendererTask, level: number, status?: string[]): string[] {
-    const [first, ...rest] = status ?? ['']
+  /** The footer carries the status line of a group that persists its subtasks one by one. */
+  private renderFooter(task: ListrDefaultRendererTask, level: number, status: string[]): string[] {
+    const [first, ...rest] = status
 
     return [...this.connect(task, level, [first], this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_END)), ...rest]
   }
 
-  /** Connects the lines of a bracket and closes it on its footer, or without one on its last line. */
-  private close(task: ListrDefaultRendererTask, level: number, lines: string[], footer: string[]): string[] {
-    if (footer.length > 0) {
-      return [...this.connect(task, level, lines), ...footer]
-    } else if (lines.length === 0) {
-      return this.renderFooter(task, level)
+  /** Connects the lines of a bracket and closes it on its footer, or without one on its last line. A group without lines is its title. */
+  private close(task: ListrDefaultRendererTask, level: number, header: string[], lines: string[], footer: string[], title: string[]): string[] {
+    if (lines.length === 0) {
+      return title
+    } else if (footer.length > 0) {
+      return [...header, ...this.connect(task, level, lines), ...footer]
     }
 
-    return [...this.connect(task, level, lines.slice(0, -1)), ...this.connect(task, level, lines.slice(-1), this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_END))]
+    return [
+      ...header,
+      ...this.connect(task, level, lines.slice(0, -1)),
+      ...this.connect(task, level, lines.slice(-1), this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_END))
+    ]
   }
 
   private mark(task: ListrDefaultRendererTask, [first, ...rest]: string[]): string[] {

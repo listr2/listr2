@@ -61,8 +61,7 @@ export interface ListrDefaultRendererOptions
   lockInput?: boolean
   /**
    * Draw an expanded task as a bracket: a header with its title and a vertical line in front of its subtasks. Its status shows on the
-   * header while the header can still change, and on a footer once the header is persisted, with the title while the header
-   * is not on the screen.
+   * header, or on a footer when the task has `collapseSubtasks: false`, with the title while the header is not on the screen.
    *
    * - This is a global option that can only be changed through the main Listr class.
    * - Tasks without a title, and every task when `indentation` is `0`, draw no bracket.

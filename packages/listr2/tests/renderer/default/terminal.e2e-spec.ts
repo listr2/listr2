@@ -278,7 +278,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(seen).toEqual(['┌ ❯ a parent with a title', '│   that wraps over the rows', '└   ❯ first'])
+    expect(seen).toEqual(['┌ a parent with a title that', '│  wraps over the rows', '│   ❯ first', '└ ❯'])
     expect(await vt.content()).toEqual(['┌ a parent with a title that', '│  wraps over the rows', '│   ✔ first', '└ ✔'])
   })
 
@@ -362,7 +362,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['┌ ❯ Compiled 1 package.', '└   ❯ first'])
+    expect(seen).toEqual(['┌ Compiled 1 package.', '│   ❯ first', '└ ❯'])
     expect(await vt.content()).toEqual(['┌ Compiled 1 package.', '│   ✔ first', '└ ✔'])
   })
 
@@ -480,7 +480,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false, clearOutput: true })
     ).run()
 
-    expect(seen).toEqual(['┌ ❯ parent', '│   ✔ task 0', '│   ❯ task 1', '└   ◼ task 2'])
+    expect(seen).toEqual(['┌ parent', '│   ✔ task 0', '│   ❯ task 1', '│   ◼ task 2', '└ ❯'])
     expect(await vt.content()).toEqual([])
   })
 
@@ -973,12 +973,78 @@ describe('default renderer: terminal', () => {
     const shown = vt.frames.filter((screen) => screen.some((line) => /^[┌│└]/.test(line)))
     const brackets = shown.map((screen) => screen.filter((line) => /^[┌└]/.test(line)))
 
-    // the live header carries the status, then the footer once the header is persisted, with the title once the header scrolled off
-    expect(brackets[0][0]).toEqual('┌ ❯ parent')
-    expect(brackets).toContainEqual(['┌ parent', '└ ❯'])
+    // the footer carries the status from the first frame, with the title once the header scrolled off
+    expect(brackets[0]).toEqual(['┌ parent', '└ ❯'])
     expect(brackets).toContainEqual(['└ ❯ parent'])
     expect(brackets.at(-1)).toEqual(['└ ✔ parent'])
     expect(shown.filter((screen) => screen.filter((line) => /^[┌└] (\S )?parent$/.test(line)).length !== 1)).toEqual([])
+  })
+
+  it('should keep the status of a non-collapsing group that retries on its header', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+    let attempt = 0
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          retry: 1,
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                { title: 'first', task: async(): Promise<void> => {} },
+                {
+                  title: 'second',
+                  task: async(): Promise<void> => {
+                    if (attempt++ === 0) {
+                      throw new Error('second failed')
+                    }
+
+                    seen = await vt.content()
+                  }
+                }
+              ],
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        }
+      ],
+      options()
+    ).run()
+
+    // a group that can run its subtasks again is written in one go, so its header can still change
+    expect(seen).toEqual(['┌ ⚠ parent [RETRY:1]', '│   ✔ first', '└   ❯ second'])
+    expect(await vt.content()).toEqual(['┌ ✔ parent', '│   ✔ first', '└   ✔ second'])
+  })
+
+  it('should draw a group without rows as its title alone', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                {
+                  task: async(): Promise<void> => {
+                    seen = await vt.content()
+                  }
+                }
+              ],
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        }
+      ],
+      options()
+    ).run()
+
+    expect(seen).toEqual(['❯ parent'])
+    expect(await vt.content()).toEqual(['✔ parent'])
   })
 
   it('should show the title on the footer once captured output pushed the header off the screen', async() => {
