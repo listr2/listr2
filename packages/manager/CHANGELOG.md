@@ -1,3 +1,10 @@
+## @listr2/manager [5.0.0-beta.10](https://github.com/listr2/listr2/compare/@listr2/manager@5.0.0-beta.9...@listr2/manager@5.0.0-beta.10) (2026-11-16)
+
+
+### Dependencies
+
+* **listr2:** upgraded to 12.0.0-beta.10
+
 ## @listr2/manager [5.0.0-beta.9](https://github.com/listr2/listr2/compare/@listr2/manager@5.0.0-beta.8...@listr2/manager@5.0.0-beta.9) (2026-11-16)
 
 
