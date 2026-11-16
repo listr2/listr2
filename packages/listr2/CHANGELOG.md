@@ -1,3 +1,16 @@
+## listr2 [12.0.0-beta.21](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.20...listr2@12.0.0-beta.21) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** a collapseSubtasks: [secure] group is written once it closes, with its status on the header instead of a footer, and its subtasks in list order.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Features
+
+* **renderer:** keep collapseSubtasks: [secure] groups live until they close ([5778fd2](https://github.com/listr2/listr2/commit/5778fd23b6a33c577d61f4173b171b44c64e2c5b))
+
 ## listr2 [12.0.0-beta.20](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.19...listr2@12.0.0-beta.20) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
