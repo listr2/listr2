@@ -1,3 +1,18 @@
+## listr2 [12.0.0-beta.19](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.18...listr2@12.0.0-beta.19) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** a collapseSubtasks: [secure] group shows "┌ title" and a status
+footer from its first frame. Snapshot tests of the output while it runs may
+need updating.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Bug Fixes
+
+* **renderer:** show the status of a collapseSubtasks: [secure] group on its footer from the start ([4841ac8](https://github.com/listr2/listr2/commit/4841ac8e7a2786da228c88a4404b0e98dc9b712f))
+
 ## listr2 [12.0.0-beta.18](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.17...listr2@12.0.0-beta.18) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
