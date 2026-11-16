@@ -1,3 +1,14 @@
+## @listr2/prompt-adapter-inquirer [5.0.0-beta.15](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@5.0.0-beta.14...@listr2/prompt-adapter-inquirer@5.0.0-beta.15) (2026-11-16)
+
+### Bug Fixes
+
+* **renderer:** end the line of a prompt under the simple renderer ([f675124](https://github.com/listr2/listr2/commit/f675124da95ed6dfe099ac0eb30c8219d5ae70b5))
+
+
+### Dependencies
+
+* **listr2:** upgraded to 12.0.0-beta.15
+
 ## @listr2/prompt-adapter-inquirer [5.0.0-beta.14](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@5.0.0-beta.13...@listr2/prompt-adapter-inquirer@5.0.0-beta.14) (2026-11-16)
 
 
