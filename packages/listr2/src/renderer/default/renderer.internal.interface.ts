@@ -1,15 +1,12 @@
 export interface ListrDefaultRendererSummary {
   completed?: number
   waiting?: number
+  running?: number
 }
 
-export interface ListrDefaultRendererSummarized {
-  render: string[]
-  summary?: ListrDefaultRendererSummary
-}
-
-export interface ListrDefaultRendererFit extends ListrDefaultRendererSummarized {
+export interface ListrDefaultRendererFit {
   keep: number
+  render: string[]
 }
 
 export interface ListrDefaultRendererTaskRender {

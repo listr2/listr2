@@ -206,12 +206,6 @@ export class ProcessOutput {
     this.active = false
   }
 
-  /** The rows at the top of the text that `update()` would not show, since the live region only shows what fits on the terminal. */
-  public overflow(text: string): number {
-    // the same rows and columns that log-update clips to
-    return Math.max(this.height(text) - (this.stdout.rows ?? 24) + 1, 0)
-  }
-
   /**
    * The rows that the text takes on the terminal.
    *

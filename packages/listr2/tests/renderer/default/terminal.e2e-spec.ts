@@ -1159,8 +1159,12 @@ describe('default renderer: terminal', () => {
     expect(seen).toEqual(['┌ ❯ outer', '│   ✔ first', '│   ┌ ❯ inner', '└   └   ❯ last'])
   })
 
-  it('should show the status of a live header that does not fit on the terminal on a footer, and write the group without it', async() => {
-    vt = new VirtualTerminal({ columns: 80, rows: 6 })
+  it('should count the running tasks that do not fit on the terminal and keep the header on the screen', async() => {
+    vt = new VirtualTerminal({
+      columns: 80,
+      rows: 12,
+      frames: true
+    })
 
     let release: () => void
     const gate = new Promise<void>((resolve) => {
@@ -1174,10 +1178,10 @@ describe('default renderer: terminal', () => {
           title: 'parent',
           task: (_, task): Listr =>
             task.newListr(
-              range(8, (index) => ({
+              range(24, (index) => ({
                 title: `task ${index}`,
                 task: async(): Promise<void> => {
-                  if (index === 7) {
+                  if (index === 23) {
                     await delay(10)
                     seen = await vt.screen()
                     release()
@@ -1197,9 +1201,16 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    // every subtask runs, so nothing can be summarized and the header is clipped from the live region
-    expect(seen).toEqual([...range(4, (index) => `│   ❯ task ${index + 4}`), '└ ❯ parent', ''])
-    expect(await vt.content()).toEqual(['┌ ⚠ parent', '│   ✖ task 0 failed', ...range(6, (index) => `│   ✔ task ${index + 1}`), '└   ✔ task 7'])
+    await vt.flush()
+
+    // every subtask runs, so the ones at the end are counted, and the header of the group, which is written in one go, stays on the screen
+    expect(seen).toEqual(['┌ ❯ parent', ...range(9, (index) => `│   ❯ task ${index}`), '└   … 15', ''])
+    // while the group runs, every frame that shows its rows shows its header too
+    const running = vt.frames.filter((screen) => screen.some((line) => /^│\s+[❯…]/.test(line)))
+
+    expect(running.length).toBeGreaterThan(0)
+    expect(running.filter((screen) => !screen.some((line) => line.startsWith('┌ ❯ parent')))).toEqual([])
+    expect(await vt.content()).toEqual(['┌ ⚠ parent', '│   ✖ task 0 failed', ...range(22, (index) => `│   ✔ task ${index + 1}`), '└   ✔ task 23'])
   })
 
   it.each([

@@ -134,7 +134,8 @@ When the running part of the list is taller than the terminal, it is shortened u
 
 - The finished subtasks of a task whose subtasks collapse are folded into a single `↑ N` line.
 - The tasks that have not started yet are folded into a single `… N` line.
-- If it still does not fit, only its bottom rows are shown. A group whose header is cut off this way shows its status and title on a footer until the header fits again.
+- If more tasks run than the terminal shows, the running tasks at the end of a list are counted in the `… N` line too, so the header of their group stays on the screen.
+- Output bars that are taller than the terminal on their own still push the top of the list off the screen.
 
 Every task is still printed in full once it finishes.
 

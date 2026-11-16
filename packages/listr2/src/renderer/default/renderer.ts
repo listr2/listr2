@@ -13,7 +13,6 @@ import type {
 import type {
   ListrDefaultRendererContext,
   ListrDefaultRendererFit,
-  ListrDefaultRendererSummarized,
   ListrDefaultRendererFrame,
   ListrDefaultRendererFrozen,
   ListrDefaultRendererHeader,
@@ -53,7 +52,7 @@ export class DefaultRenderer implements ListrRenderer {
   public static rendererTaskOptions: ListrDefaultRendererTaskOptions = {
     outputBar: true
   }
-  /** Tags the header that shows the status of a group with the id of its task, until the frame is written. */
+  /** Tags the persisted header of a group with the id of its task, until the frame finds the row it is written to. */
   private static readonly MARK = /\u{F8FF}([^\u{F8FF}]*)\u{F8FF}/u
   /** Tags the footer of a group whose header is persisted, until the frame decides whether it shows the title. */
   private static readonly FOOTER = /\u{F8FE}([^\u{F8FE}]*)\u{F8FE}/u
@@ -76,8 +75,6 @@ export class DefaultRenderer implements ListrRenderer {
   private readonly headers = new Map<string, ListrDefaultRendererHeader>()
   // the footers of these groups with and without the title, as the part of the line after the connectors of their parents
   private readonly footers = new Map<string, { bare: string, titled: string[] }>()
-  // the groups whose live header does not fit on the terminal, so their footer shows their status for this frame
-  private clipped = new Set<string>()
   private hasPersisted = false
 
   constructor(
@@ -150,7 +147,7 @@ export class DefaultRenderer implements ListrRenderer {
     const { persist, live } = this.renderer(this.tasks, 0, { commit: !this.options.clearOutput })
 
     // rows that scrolled off the top cannot be redrawn, so summarize until the live region fits
-    const { render, summary } = typeof rows === 'number' && live.length > rows - 1 ? this.summarize(rows - 1) : { render: live, summary: undefined }
+    const render = typeof rows === 'number' && live.length > rows - 1 ? this.summarize(rows - 1) : live
 
     if (persist.length > 0) {
       this.hasPersisted = true
@@ -159,17 +156,7 @@ export class DefaultRenderer implements ListrRenderer {
     const bars = [this.renderBottomBar(), this.renderPrompt()]
     const compose = (lines: string[]): string[] =>
       bars.reduce((output, bar) => (bar.length > 0 ? [...output, ...(output.length > 0 || this.hasPersisted ? [''] : []), ...bar] : output), lines)
-    const output = this.unclip(compose(render), (clipped) => {
-      this.clipped = clipped
-
-      try {
-        return compose(this.renderer(this.tasks, 0, { summary }).live)
-      } finally {
-        this.clipped = new Set()
-      }
-    })
-
-    const frame = this.reveal(persist, output)
+    const frame = this.reveal(persist, compose(render))
 
     if (persist.length > 0) {
       this.logger.process.persist(frame.persist, frame.live)
@@ -330,41 +317,25 @@ export class DefaultRenderer implements ListrRenderer {
     this.update()
   }
 
-  private summarize(height: number): ListrDefaultRendererSummarized {
+  private summarize(height: number): string[] {
     const completed = this.fit(height, (keep) => ({ completed: keep }))
 
     if (completed.render.length <= height) {
-      return completed
+      return completed.render
     }
 
     const waiting = this.fit(height, (keep) => ({ completed: 0, waiting: keep }))
-
     // the rows that the waiting tasks leave go back to the completed tasks
-    return this.fit(height, (keep) => ({ completed: keep, waiting: waiting.keep }))
-  }
+    const both = this.fit(height, (keep) => ({ completed: keep, waiting: waiting.keep }))
 
-  /**
-   * A live header that the live region does not show, since it is taller than the terminal, hands its status to a footer until it fits
-   * again. Rendering the footer can take rows, which can push more headers off, so this repeats until no more headers are hidden.
-   */
-  private unclip(lines: string[], render: (clipped: Set<string>) => string[]): string[] {
-    const clipped = new Set<string>()
-
-    while (this.logger.process.overflow(this.unmark(lines).join(EOL)) > 0) {
-      const text = this.unmark(lines)
-      const hidden = lines
-        .map((line, index) => ({ id: DefaultRenderer.MARK.exec(line)?.[1], index }))
-        .filter(({ id, index }) => id && !clipped.has(id) && this.logger.process.overflow(text.slice(index).join(EOL)) > 0)
-
-      if (hidden.length === 0) {
-        break
-      }
-
-      hidden.forEach(({ id }) => clipped.add(id))
-      lines = render(clipped)
+    if (both.render.length <= height) {
+      return both.render
     }
 
-    return lines
+    // more tasks run than the terminal shows, so the running tasks at the end of a list are counted too
+    const running = this.fit(height, (keep) => ({ completed: 0, running: keep }))
+
+    return this.fit(height, (keep) => ({ completed: keep, running: running.keep })).render
   }
 
   /**
@@ -429,11 +400,7 @@ export class DefaultRenderer implements ListrRenderer {
     let render = this.renderer(this.tasks, 0, { summary: summary(0) }).live
 
     if (render.length > height) {
-      return {
-        keep: 0,
-        render,
-        summary: summary(0)
-      }
+      return { keep: 0, render }
     }
 
     // keeping fewer tasks visible never takes more rows, so search for the most that fit
@@ -452,17 +419,13 @@ export class DefaultRenderer implements ListrRenderer {
       }
     }
 
-    return {
-      keep: low,
-      render,
-      summary: summary(low)
-    }
+    return { keep: low, render }
   }
 
   private renderer(tasks: ListrDefaultRendererTask[], level = 0, context: ListrDefaultRendererContext = {}): ListrDefaultRendererFrame {
     const completed = context.compact ? this.getCompleted(tasks, context.summary.completed) : []
     const pending = tasks.filter((task) => !completed.includes(task))
-    const waiting = context.summary?.waiting !== undefined ? this.getWaiting(pending, context.summary.waiting) : []
+    const waiting = this.getWaiting(pending, context.summary)
     const shown = pending.slice(0, pending.length - waiting.length)
 
     const frames = this.renderFrames(shown, tasks, level, context)
@@ -592,11 +555,8 @@ export class DefaultRenderer implements ListrRenderer {
   private renderLines(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], level: number, summary?: ListrDefaultRendererSummary): string[] {
     const open = this.frozen.get(task.id) === 'open'
 
-    // a clipped group shows its status on its footer only for this frame, so it bypasses the cache
-    const cached = !this.clipped.has(task.id)
-
     // if this is already cached return the cache
-    if (cached && !open && task.isClosed() && this.cache.render.has(task.id)) {
+    if (!open && task.isClosed() && this.cache.render.has(task.id)) {
       return this.cache.render.get(task.id)
     }
 
@@ -618,7 +578,7 @@ export class DefaultRenderer implements ListrRenderer {
     const output = [...header, ...(bracket ? this.close(task, level, lines, footer) : group)]
 
     // a summarized render is not the final one
-    if (cached && task.isClosed() && !summary) {
+    if (task.isClosed() && !summary) {
       this.cache.render.set(task.id, output)
       this.reset(task)
     }
@@ -794,7 +754,7 @@ export class DefaultRenderer implements ListrRenderer {
 
     return {
       title,
-      header: bracket ? this.mark(task, persisted ? this.renderHeader(task, level) : this.renderHeader(task, level, title)) : title,
+      header: bracket ? (persisted ? this.mark(task, this.renderHeader(task, level)) : this.renderHeader(task, level, title)) : title,
       footer: bracket ? this.renderStatusFooter(task, level, persisted, status) : [],
       body,
       subtasks,
@@ -844,8 +804,8 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   /**
-   * A live header that does not fit on the terminal hands its status and title to the footer. A persisted header leaves the status to the
-   * footer, which shows the title too when the header shows another one, or once the frame decides that the header is off the screen.
+   * A persisted header leaves the status to the footer, which shows the title too when the header shows another one, or once the frame
+   * decides that the header is off the screen.
    */
   private renderStatusFooter(
     task: ListrDefaultRendererTask,
@@ -853,7 +813,7 @@ export class DefaultRenderer implements ListrRenderer {
     persisted: ListrDefaultRendererHeader | undefined,
     status: (text: string) => string[]
   ): string[] {
-    if (this.clipped.has(task.id) || (persisted && persisted.title !== task.title)) {
+    if (persisted && persisted.title !== task.title) {
       return this.renderFooter(task, level, status(task.title))
     } else if (!persisted) {
       return []
@@ -913,10 +873,18 @@ export class DefaultRenderer implements ListrRenderer {
     return completed.slice(0, Math.max(completed.length - keep, 0))
   }
 
-  private getWaiting(tasks: ListrDefaultRendererTask[], keep: number): ListrDefaultRendererTask[] {
+  private getWaiting(tasks: ListrDefaultRendererTask[], summary?: ListrDefaultRendererSummary): ListrDefaultRendererTask[] {
+    const keep = summary?.running ?? summary?.waiting
+
+    if (keep === undefined) {
+      return []
+    }
+
+    // with running, the tasks at the end that have not finished are counted, whether they started or not
+    const counted = (task: ListrDefaultRendererTask): boolean => (summary.running !== undefined ? !task.hasFinalized() : task.state === ListrTaskState.WAITING)
     let shown = tasks.length
 
-    while (shown > 0 && (!tasks[shown - 1].isEnabled() || tasks[shown - 1].state === ListrTaskState.WAITING)) {
+    while (shown > 0 && (!tasks[shown - 1].isEnabled() || counted(tasks[shown - 1]))) {
       shown--
     }
 
