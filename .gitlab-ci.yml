@@ -132,8 +132,13 @@ github-token:
 semantic-release:
   stage: publish
   extends: .semantic-release
+  # the release pushes to the GitHub mirror, which rejects commits whose LFS objects it does not have, and it pushes every commit that
+  # GitHub has not seen yet, so the objects of the whole history are fetched and not only those at HEAD
+  before_script:
+    - git lfs fetch --all origin
   variables:
     SEMANTIC_RELEASE_WORKSPACE: 'true'
+    GIT_DEPTH: '0'
   needs:
     - build
     - lint
