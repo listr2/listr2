@@ -1,3 +1,19 @@
+## listr2 [12.0.0-beta.12](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.11...listr2@12.0.0-beta.12) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** a bracket that shows its status on its header closes on its
+last line instead of a footer row. The footer of a collapseSubtasks: [secure]
+group shows its title after the status, as "└ ✔ Running migrations".
+Snapshot tests of the output may need updating.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Features
+
+* **renderer:** close a bracket on its last line and name the group on its footer ([2188fcf](https://github.com/listr2/listr2/commit/2188fcf1fabd6a2f821b13596d0266c65c53b4d7))
+
 ## listr2 [12.0.0-beta.11](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.10...listr2@12.0.0-beta.11) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
