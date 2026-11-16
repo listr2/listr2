@@ -64,14 +64,14 @@ While the header can still change, it shows the status: a task whose subtasks co
 └   ◼ Running migration 003.
 ```
 
-A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on a footer below its subtasks shows the status and the title.
+A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on a footer below its subtasks shows the status. The title shows on one line only: the footer adds it once the header is off the screen, or when the title changed after the header was printed.
 
 ```text
 ┌ Running migrations
 │   ✔ Running migration 001.
 │   ✔ Running migration 002.
 │   ⠋ Running migration 003.
-└ ❯ Running migrations
+└ ❯
 ```
 
 ![A group with collapseSubtasks: false while it runs](../../examples/screenshots/bracket-running.png)
@@ -89,7 +89,7 @@ The status is `❯` while the task runs, or the spinner and `[RETRY:n]` while it
 │   ✔ Running migration 001.
 │   ✔ Running migration 002.
 │   ✔ Running migration 003.
-└ ✔ Running migrations
+└ ✔
 ```
 
 ![A group with collapseSubtasks: false once it finished](../../examples/screenshots/bracket.png)
@@ -102,7 +102,7 @@ _Groups that stay expanded because a subtask failed, printed at once with the st
 
 ![A footer with a changed title, and a footer with a timer](../../examples/screenshots/title.png)
 
-_The first group changed its title after its header was printed, so its footer shows the new title. The second has the `timer` option, so its footer shows the time it took after its title._
+_The first group changed its title after its header was printed, so its footer shows the new title. The second has the `timer` option, so its footer shows the time it took._
 
 Nested groups draw one bracket per level, each at the column of the subtasks of its parent. Tasks without a title draw no bracket, and neither does any task with `indentation: 0`.
 

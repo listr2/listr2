@@ -34,4 +34,10 @@ export interface ListrDefaultRendererFrame {
   live: string[]
 }
 
+export interface ListrDefaultRendererHeader {
+  title: string
+  // the row it takes, counted like ProcessOutput.written, once it is written
+  row?: number
+}
+
 export type ListrDefaultRendererFrozen = 'open' | 'done'

@@ -16,6 +16,7 @@ import type {
   ListrDefaultRendererSummarized,
   ListrDefaultRendererFrame,
   ListrDefaultRendererFrozen,
+  ListrDefaultRendererHeader,
   ListrDefaultRendererSummary,
   ListrDefaultRendererTaskRender
 } from './renderer.internal.interface'
@@ -54,6 +55,8 @@ export class DefaultRenderer implements ListrRenderer {
   }
   /** Tags the header that shows the status of a group with the id of its task, until the frame is written. */
   private static readonly MARK = /\u{F8FF}([^\u{F8FF}]*)\u{F8FF}/u
+  /** Tags the footer of a group whose header is persisted, until the frame decides whether it shows the title. */
+  private static readonly FOOTER = /\u{F8FE}([^\u{F8FE}]*)\u{F8FE}/u
 
   private prompt: string
   private activePrompt: string
@@ -70,7 +73,9 @@ export class DefaultRenderer implements ListrRenderer {
   }
   private readonly frozen = new Map<string, ListrDefaultRendererFrozen>()
   // the groups whose header is persisted, so their footer shows their status
-  private readonly headers = new Set<string>()
+  private readonly headers = new Map<string, ListrDefaultRendererHeader>()
+  // the footers of these groups with and without the title, as the part of the line after the connectors of their parents
+  private readonly footers = new Map<string, { bare: string, titled: string[] }>()
   // the groups whose live header does not fit on the terminal, so their footer shows their status for this frame
   private clipped = new Set<string>()
   private hasPersisted = false
@@ -125,7 +130,7 @@ export class DefaultRenderer implements ListrRenderer {
     this.headers.clear()
     this.hasPersisted = false
 
-    this.logger.process.hijack()
+    this.logger.process.hijack(() => this.update())
     this.syncInputLock()
 
     /* istanbul ignore if */
@@ -139,6 +144,8 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   public update(): void {
+    this.footers.clear()
+
     const rows = this.logger.process.stdout.rows
     const { persist, live } = this.renderer(this.tasks, 0, { commit: !this.options.clearOutput })
 
@@ -162,10 +169,12 @@ export class DefaultRenderer implements ListrRenderer {
       }
     })
 
+    const frame = this.reveal(persist, output)
+
     if (persist.length > 0) {
-      this.logger.process.persist(this.unmark(persist).join(EOL), this.unmark(output).join(EOL))
+      this.logger.process.persist(frame.persist, frame.live)
     } else {
-      this.logger.process.update(this.unmark(output).join(EOL))
+      this.logger.process.update(frame.live)
     }
 
     // rendering a prompt task sets the active prompt before the prompt takes over stdin
@@ -181,6 +190,8 @@ export class DefaultRenderer implements ListrRenderer {
     if (this.options.clearOutput) {
       this.logger.process.clear()
     } else {
+      this.footers.clear()
+
       const { persist } = this.renderer(this.tasks, 0, { commit: true, final: true })
       const bottomBar = this.renderBottomBar()
 
@@ -192,7 +203,7 @@ export class DefaultRenderer implements ListrRenderer {
         persist.push(...bottomBar)
       }
 
-      this.logger.process.persist(this.unmark(persist).join(EOL), '')
+      this.logger.process.persist(this.reveal(persist, []).persist, '')
     }
 
     this.logger.process.release()
@@ -356,8 +367,62 @@ export class DefaultRenderer implements ListrRenderer {
     return lines
   }
 
-  private unmark(lines: string[]): string[] {
-    return lines.map((line) => line.replace(DefaultRenderer.MARK, ''))
+  /**
+   * The footer of a persisted header shows the title once the header is off the screen, which is known only for the whole frame, so the
+   * footers that the frame pushes off the screen get their title, and the frame is checked again.
+   */
+  private reveal(persist: string[], live: string[]): { persist: string, live: string } {
+    const titled = new Set<string>()
+
+    for (;;) {
+      const text = this.unmark(persist, titled)
+      const shown = this.unmark(live, titled)
+      const top = this.logger.process.top(text.join(EOL), shown.join(EOL))
+      // the headers that this frame persists, at the rows that they take
+      const rows = new Map<string, number>()
+      let row = this.logger.process.written
+
+      for (const line of persist) {
+        const id = DefaultRenderer.MARK.exec(line)?.[1]
+
+        if (this.headers.has(id) && this.headers.get(id).row === undefined) {
+          rows.set(id, row)
+        }
+
+        row += this.logger.process.height(this.unmark([line], titled).join(EOL))
+      }
+
+      const hidden = [...this.footers.keys()].filter((id) => !titled.has(id) && (rows.get(id) ?? this.headers.get(id)?.row ?? Infinity) < top)
+
+      if (hidden.length === 0) {
+        rows.forEach((row, id) => {
+          this.headers.get(id).row = row
+        })
+
+        return { persist: text.join(EOL), live: shown.join(EOL) }
+      }
+
+      hidden.forEach((id) => titled.add(id))
+    }
+  }
+
+  private unmark(lines: string[], titled = new Set<string>()): string[] {
+    return lines.flatMap((line) => {
+      const id = DefaultRenderer.FOOTER.exec(line)?.[1]
+      const footer = this.footers.get(id)
+
+      line = line.replace(DefaultRenderer.MARK, '').replace(DefaultRenderer.FOOTER, '')
+
+      if (!footer || !titled.has(id)) {
+        return [line]
+      }
+
+      // the connectors of the parents come before the footer, and a corner among them ends with the first line
+      const prefix = line.slice(0, line.length - footer.bare.length)
+      const below = prefix.replaceAll(this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_END), ' ')
+
+      return footer.titled.map((titled, index) => (index === 0 ? prefix : below) + titled)
+    })
   }
 
   private fit(height: number, summary: (keep: number) => ListrDefaultRendererSummary): ListrDefaultRendererFit {
@@ -512,7 +577,7 @@ export class DefaultRenderer implements ListrRenderer {
     // the header is persisted with the first subtask that is persisted, so it is rendered again to move the status to the footer
     if (!opened) {
       this.frozen.set(task.id, 'open')
-      this.headers.add(task.id)
+      this.headers.set(task.id, { title: task.title })
     }
 
     const persisted = opened ? { header, footer } : this.renderTask(task, siblings, level)
@@ -569,7 +634,6 @@ export class DefaultRenderer implements ListrRenderer {
     const rendererOptions = this.cache.rendererOptions.get(task.id)
     const rendererTaskOptions = this.cache.rendererTaskOptions.get(task.id)
 
-    const title: string[] = []
     const body: string[] = []
 
     if (task.isPrompt()) {
@@ -620,77 +684,87 @@ export class DefaultRenderer implements ListrRenderer {
     // the header is persisted or does not fit on the terminal
     const bracket = subtasks && this.isConnected(task)
     const titleLevel = bracket ? level + 1 : level
-    const persisted = this.headers.has(task.id)
-    const text = task.title
+    const persisted = this.headers.get(task.id)
     // a failed group shows the failed icon, since its own icon for failed subtasks reads like a running one
     const icon = bracket && task.hasFailed() ? this.logger.icon(ListrDefaultRendererLogLevels.FAILED) : this.style(task)
-    const line = (message: string, icon: string): string[] => this.format(message, icon, titleLevel)
+    // format() drops an empty message, so a line with only its icon passes the icon as the message, and ends on a space since some
+    // terminals, such as kitty, draw a symbol that ends the line narrower than one followed by a space
+    const line = (message: string, icon: string): string[] =>
+      message.trim() === '' ? this.format(icon, '', titleLevel).map((line) => line + ' ') : this.format(message, icon, titleLevel)
 
-    // Current Task Title
-    if (task.hasTitle()) {
-      if (!(
-        siblings.some((sibling) => sibling.hasFailed()) &&
-        !task.hasFailed() &&
-        task.options.exitOnError !== false &&
-        !(task.isCompleted() || task.isSkipped() || task.isCancelled())
-      )) {
-        // if task is skipped
-        if (task.hasFailed() && rendererOptions.collapseErrors) {
-          // current task title and skip change the title
-          title.push(...line(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : text, icon))
-        } else if (task.isSkipped() && rendererOptions.collapseSkips) {
-          // current task title and skip change the title
-          title.push(
-            ...line(
-              this.logger.suffix(task.message.skip && rendererOptions.showSkipMessage ? task.message.skip : text, {
-                field: ListrLogLevels.SKIPPED,
-                condition: rendererOptions.suffixSkips,
-                format: () => color.dim
-              }),
-              icon
+    // the status line, and the same without the title for a footer whose header shows it
+    const status = (text: string): string[] => {
+      const title: string[] = []
+
+      // Current Task Title
+      if (task.hasTitle()) {
+        if (!(
+          siblings.some((sibling) => sibling.hasFailed()) &&
+          !task.hasFailed() &&
+          task.options.exitOnError !== false &&
+          !(task.isCompleted() || task.isSkipped() || task.isCancelled())
+        )) {
+          // if task is skipped
+          if (task.hasFailed() && rendererOptions.collapseErrors) {
+            // current task title and skip change the title
+            title.push(...line(!task.hasSubtasks() && task.message.error && rendererOptions.showErrorMessage ? task.message.error : text, icon))
+          } else if (task.isSkipped() && rendererOptions.collapseSkips) {
+            // current task title and skip change the title
+            title.push(
+              ...line(
+                this.logger.suffix(task.message.skip && rendererOptions.showSkipMessage ? task.message.skip : text, {
+                  field: ListrLogLevels.SKIPPED,
+                  condition: rendererOptions.suffixSkips,
+                  format: () => color.dim
+                }),
+                icon
+              )
             )
-          )
-        } else if (task.isRetrying()) {
-          title.push(
-            ...line(
-              this.logger.suffix(text, {
-                field: `${ListrLogLevels.RETRY}:${task.message.retry.count}`,
-                format: () => color.yellow,
-                condition: rendererOptions.suffixRetries
-              }),
-              icon
+          } else if (task.isRetrying()) {
+            title.push(
+              ...line(
+                this.logger.suffix(text, {
+                  field: `${ListrLogLevels.RETRY}:${task.message.retry.count}`,
+                  format: () => color.yellow,
+                  condition: rendererOptions.suffixRetries
+                }),
+                icon
+              )
             )
-          )
-        } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
-          // task with timer
-          title.push(
-            ...line(
-              this.logger.suffix(text, {
-                ...rendererTaskOptions.timer,
-                args: [task.message.duration]
-              }),
-              icon
+          } else if (task.isCompleted() && task.hasTitle() && assertFunctionOrSelf(rendererTaskOptions.timer?.condition, task.message.duration)) {
+            // task with timer
+            title.push(
+              ...line(
+                this.logger.suffix(text, {
+                  ...rendererTaskOptions.timer,
+                  args: [task.message.duration]
+                }),
+                icon
+              )
             )
-          )
-        } else if (task.isPaused()) {
-          title.push(
-            ...line(
-              this.logger.suffix(text, {
-                ...rendererOptions.pausedTimer,
-                args: [task.message.paused - Date.now()]
-              }),
-              icon
+          } else if (task.isPaused()) {
+            title.push(
+              ...line(
+                this.logger.suffix(text, {
+                  ...rendererOptions.pausedTimer,
+                  args: [task.message.paused - Date.now()]
+                }),
+                icon
+              )
             )
-          )
+          } else {
+            // normal state
+            title.push(...line(text, icon))
+          }
         } else {
-          // normal state
-          title.push(...line(text, icon))
+          // some sibling task but self has failed and this has stopped
+          title.push(...line(text, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS)))
         }
-      } else {
-        // some sibling task but self has failed and this has stopped
-        title.push(...line(text, this.logger.icon(ListrDefaultRendererLogLevels.COMPLETED_WITH_FAILED_SISTER_TASKS)))
       }
+
+      return title
     }
+    const title = status(task.title)
 
     // task should not have subtasks since subtasks will handle the error already
     // maybe it is a better idea to show the error or skip messages when show subtasks is disabled.
@@ -720,8 +794,8 @@ export class DefaultRenderer implements ListrRenderer {
 
     return {
       title,
-      header: bracket ? (persisted ? this.renderHeader(task, level) : this.mark(task, this.renderHeader(task, level, title))) : title,
-      footer: bracket && (persisted || this.clipped.has(task.id)) ? this.renderFooter(task, level, title) : [],
+      header: bracket ? this.mark(task, persisted ? this.renderHeader(task, level) : this.renderHeader(task, level, title)) : title,
+      footer: bracket ? this.renderStatusFooter(task, level, persisted, status) : [],
       body,
       subtasks,
       // the rows of a bracket sit one level deeper than the column of its status icon
@@ -767,6 +841,33 @@ export class DefaultRenderer implements ListrRenderer {
     const [first, ...rest] = this.format(task.title, this.logger.icon(ListrDefaultRendererLogLevels.CONNECTOR_START), level)
 
     return [first, ...this.connect(task, level, rest)]
+  }
+
+  /**
+   * A live header that does not fit on the terminal hands its status and title to the footer. A persisted header leaves the status to the
+   * footer, which shows the title too when the header shows another one, or once the frame decides that the header is off the screen.
+   */
+  private renderStatusFooter(
+    task: ListrDefaultRendererTask,
+    level: number,
+    persisted: ListrDefaultRendererHeader | undefined,
+    status: (text: string) => string[]
+  ): string[] {
+    if (this.clipped.has(task.id) || (persisted && persisted.title !== task.title)) {
+      return this.renderFooter(task, level, status(task.title))
+    } else if (!persisted) {
+      return []
+    }
+
+    const column = level * this.options.indentation
+    const [bare, ...rest] = this.renderFooter(task, level, status(''))
+
+    this.footers.set(task.id, {
+      bare: bare.slice(column),
+      titled: this.renderFooter(task, level, status(task.title)).map((line) => line.slice(column))
+    })
+
+    return [`${bare}\u{F8FE}${task.id}\u{F8FE}`, ...rest]
   }
 
   /** The footer carries the status line once the header is persisted or does not fit on the terminal, and is bare only to close an empty group. */
