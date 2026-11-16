@@ -1,3 +1,19 @@
+## listr2 [12.0.0-beta.18](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.17...listr2@12.0.0-beta.18) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** a group whose running subtasks do not fit on the terminal
+keeps its header on the screen and counts the rest in "… N", instead of
+showing its status and title on a footer. ProcessOutput.overflow() is
+removed.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Bug Fixes
+
+* **renderer:** count the running tasks that do not fit instead of cutting off the header ([5315f82](https://github.com/listr2/listr2/commit/5315f82d4fa136ff0106c1bc5a627cb97cf1c288))
+
 ## listr2 [12.0.0-beta.17](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.16...listr2@12.0.0-beta.17) (2026-11-16)
 
 ### Bug Fixes
