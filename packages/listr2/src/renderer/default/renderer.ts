@@ -305,15 +305,16 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private summarize(height: number): string[] {
-    const completed = this.fit(height, (keep) => ({ completed: keep }))
+    // the waiting tasks fold first, so the open groups keep their rows
+    const waiting = this.fit(height, (keep) => ({ waiting: keep }))
 
-    if (completed.render.length <= height) {
-      return completed.render
+    if (waiting.render.length <= height) {
+      return waiting.render
     }
 
-    const waiting = this.fit(height, (keep) => ({ completed: 0, waiting: keep }))
-    // the rows that the waiting tasks leave go back to the completed tasks
-    const both = this.fit(height, (keep) => ({ completed: keep, waiting: waiting.keep }))
+    const completed = this.fit(height, (keep) => ({ completed: keep, waiting: 0 }))
+    // the rows that the completed tasks leave go back to the waiting tasks
+    const both = this.fit(height, (keep) => ({ completed: completed.keep, waiting: keep }))
 
     if (both.render.length <= height) {
       return both.render
@@ -352,9 +353,9 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private renderer(tasks: ListrDefaultRendererTask[], column = 0, context: ListrDefaultRendererContext = {}): ListrDefaultRendererFrame {
-    const completed = context.compact ? this.getCompleted(tasks, context.summary.completed) : []
+    const completed = context.compact ? this.unfold(this.getCompleted(tasks, context.summary.completed), tasks, column, context) : []
     const pending = tasks.filter((task) => !completed.includes(task))
-    const waiting = this.getWaiting(pending, context.summary)
+    const waiting = this.unfold(this.getWaiting(pending, context.summary), tasks, column, context)
     const shown = pending.slice(0, pending.length - waiting.length)
 
     const frames = this.renderFrames(shown, tasks, column, context)
@@ -374,6 +375,22 @@ export class DefaultRenderer implements ListrRenderer {
       persist: [...frames.values()].flatMap((frame) => frame.persist),
       live: output
     }
+  }
+
+  /** A summary of a single task that takes one row shows the task instead. */
+  private unfold(
+    folded: ListrDefaultRendererTask[],
+    siblings: ListrDefaultRendererTask[],
+    column: number,
+    context: ListrDefaultRendererContext
+  ): ListrDefaultRendererTask[] {
+    if (folded.filter((task) => task.isEnabled() && task.hasTitle()).length !== 1) {
+      return folded
+    }
+
+    const rows = [...this.renderFrames(folded, siblings, column, { ...context, commit: false }).values()].flatMap((frame) => frame.live)
+
+    return rows.length === 1 ? [] : folded
   }
 
   private renderFrames(
@@ -686,7 +703,11 @@ export class DefaultRenderer implements ListrRenderer {
     })
   }
 
-  private getCompleted(tasks: ListrDefaultRendererTask[], keep: number): ListrDefaultRendererTask[] {
+  private getCompleted(tasks: ListrDefaultRendererTask[], keep?: number): ListrDefaultRendererTask[] {
+    if (keep === undefined) {
+      return []
+    }
+
     const completed = tasks.filter((task) => task.isEnabled() && (task.isCompleted() || task.isSkipped()))
 
     return completed.slice(0, Math.max(completed.length - keep, 0))

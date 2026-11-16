@@ -125,7 +125,7 @@ describe('default renderer: terminal', () => {
     expect(seen.filter((line) => line !== '')).toEqual(['┌ ❯ parent', '│   ❯ a subtask with a title', '│     that wraps on a narrow', '└     terminal'])
   })
 
-  it('should summarize the finished subtasks of a collapsing parent taller than the terminal', async() => {
+  it('should summarize the waiting and then the finished subtasks of a collapsing parent taller than the terminal', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
 
     let seen: string[]
@@ -150,7 +150,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['┌ ❯ parent', '│   ↑ 8', '│   ✔ task 8', '│   ✔ task 9', '│   ❯ task 10', ...range(3, (index) => `│   ◼ task ${index + 11}`), '└   ◼ task 14'])
+    expect(seen).toEqual(['┌ ❯ parent', '│   ↑ 5', ...range(5, (index) => `│   ✔ task ${index + 5}`), '│   ❯ task 10', '└   … 4'])
     expect(await vt.content()).toEqual(['✔ parent'])
   })
 
@@ -181,7 +181,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the group is written while it runs, so the finished subtasks that do not fit are summarized
-    expect(seen).toEqual(['┌ ❯ parent', '│   ↑ 9', '│   ✔ task 9', '│   ❯ task 10', ...range(3, (index) => `│   ◼ task ${index + 11}`), '└   ◼ task 14', '◼ after'])
+    expect(seen).toEqual(['┌ ❯ parent', '│   ↑ 6', ...range(4, (index) => `│   ✔ task ${index + 6}`), '│   ❯ task 10', '└   … 4', '◼ after'])
     expect(await vt.content()).toEqual(['┌ ✔ parent', ...range(14, (index) => `│   ✔ task ${index}`), '└   ✔ task 14', '✔ after'])
   })
 
@@ -375,7 +375,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(seen).toEqual(['┌ ❯ parent', '│   ↑ 5', '│   ❯ task 5', ...range(5, (index) => `│   ◼ task ${index + 6}`), '└   … 9'])
+    expect(seen).toEqual(['┌ ❯ parent', ...range(5, (index) => `│   ✔ task ${index}`), '│   ❯ task 5', '│   ◼ task 6', '└   … 13'])
   })
 
   it('should draw the connector when the output is cleared', async() => {
@@ -435,6 +435,112 @@ describe('default renderer: terminal', () => {
 
     // a summary of one finished subtask takes the same row as the subtask itself
     expect(seen).toEqual(['┌ ❯ parent', '│   ✔ task 0', '│   ❯ task 1', '│   ◼ task 2', '│   ◼ task 3', '└   … 2', '◼ after 0', '◼ after 1', '… 8'])
+  })
+
+  it('should summarize the waiting tasks before the finished subtasks of an open group', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr(
+              range(4, (index) => ({
+                title: `task ${index}`,
+                task: async(): Promise<void> => {
+                  if (index === 2) {
+                    seen = await vt.content()
+                  }
+                }
+              }))
+            )
+        },
+        ...range(10, (index) => ({ title: `after ${index}`, task: async(): Promise<void> => {} }))
+      ],
+      options()
+    ).run()
+
+    expect(seen).toEqual(['┌ ❯ parent', '│   ✔ task 0', '│   ✔ task 1', '│   ❯ task 2', '└   ◼ task 3', '◼ after 0', '◼ after 1', '◼ after 2', '… 7'])
+  })
+
+  it.each([
+    {
+      name: 'shows the task when it takes one row', title: 'task 3', last: '└   ◼ task 3'
+    },
+    {
+      name: 'keeps the summary when the task wraps', title: 'task 3 with a title that wraps on this terminal', last: '└   … 1'
+    }
+  ])('should summarize a single waiting task that $name', async({ title, last }) => {
+    vt = new VirtualTerminal({ columns: 40, rows: 9 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr(
+              range(4, (index) => ({
+                title: index === 3 ? title : `task ${index}`,
+                task: async(): Promise<void> => {
+                  if (index === 0) {
+                    seen = await vt.content()
+                  }
+                }
+              }))
+            )
+        },
+        ...range(6, (index) => ({ title: `after ${index}`, task: async(): Promise<void> => {} }))
+      ],
+      options()
+    ).run()
+
+    // the summaries keep as many waiting tasks in every list, so the shorter list would summarize a single task
+    expect(seen).toEqual(['┌ ❯ parent', '│   ❯ task 0', '│   ◼ task 1', '│   ◼ task 2', last, '◼ after 0', '◼ after 1', '… 4'])
+  })
+
+  it('should show a single finished subtask instead of its summary', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 9 })
+
+    let seen: string[]
+    let release: () => void
+    const captured = new Promise<void>((resolve) => {
+      release = resolve
+    })
+
+    const group = (name: string, count: number, last: () => Promise<void>): ListrTask => ({
+      title: name,
+      task: (_, task): Listr =>
+        task.newListr(
+          range(count, (index) => ({
+            title: `${name} ${index}`,
+            task: async(): Promise<void> => {
+              if (index === count - 1) {
+                await last()
+              }
+            }
+          }))
+        )
+    })
+
+    await new Listr(
+      [
+        group('first', 3, () => captured),
+        group('second', 6, async() => {
+          await delay(20)
+          seen = await vt.content()
+          release()
+        })
+      ],
+      { ...options(), concurrent: true }
+    ).run()
+
+    // the summaries keep as many finished subtasks in every group, so the shorter group would summarize a single subtask
+    expect(seen).toEqual(['┌ ❯ first', '│   ✔ first 0', '│   ✔ first 1', '└   ❯ first 2', '┌ ❯ second', '│   ↑ 4', '│   ✔ second 4', '└   ❯ second 5'])
   })
 
   it('should draw the connector with the fallback figure when unicode is not supported', async() => {

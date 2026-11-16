@@ -118,12 +118,13 @@ Anything written to `process.stdout` or `process.stderr` while the renderer runs
 
 ### Taller Than the Terminal
 
-When the running part of the list is taller than the terminal, it is shortened until it fits:
+When the running part of the list is taller than the terminal, it is shortened until it fits, in this order:
 
-- The finished subtasks of an open group are folded into a single `↑ N` line.
-- The tasks that have not started yet are folded into a single `… N` line.
-- If more tasks run than the terminal shows, the running tasks at the end of a list are counted in the `… N` line too, so the header of their group stays on the screen.
-- Output bars that are taller than the terminal on their own still push the top of the list off the screen.
+1. The tasks that have not started yet are folded into a single `… N` line.
+2. The finished subtasks of an open group are folded into a single `↑ N` line.
+3. If more tasks run than the terminal shows, the running tasks at the end of a list are counted in the `… N` line too, so the header of their group stays on the screen.
+
+A single task that fits in one row is shown instead of a summary of it. Output bars that are taller than the terminal on their own still push the top of the list off the screen.
 
 Every task is still printed in full once it finishes.
 
