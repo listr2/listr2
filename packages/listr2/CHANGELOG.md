@@ -1,3 +1,9 @@
+## listr2 [12.0.0-beta.17](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.16...listr2@12.0.0-beta.17) (2026-11-16)
+
+### Bug Fixes
+
+* **renderer:** keep the title off the footer after a resize or a stop while the header is on the screen ([89b3e7d](https://github.com/listr2/listr2/commit/89b3e7ded95fa01749d5da5bbf70173a9e5510c9))
+
 ## listr2 [12.0.0-beta.16](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.15...listr2@12.0.0-beta.16) (2026-11-16)
 
 ### Bug Fixes
