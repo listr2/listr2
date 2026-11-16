@@ -1,3 +1,9 @@
+## listr2 [12.0.0-beta.16](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.15...listr2@12.0.0-beta.16) (2026-11-16)
+
+### Bug Fixes
+
+* **renderer:** render the live region again on a resize ([27514fc](https://github.com/listr2/listr2/commit/27514fc46230694ebd11b6dda061cd6fb59ac9c4))
+
 ## listr2 [12.0.0-beta.15](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.14...listr2@12.0.0-beta.15) (2026-11-16)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "listr2",
-  "version": "12.0.0-beta.15",
+  "version": "12.0.0-beta.16",
   "description": "Terminal task list reborn! Create beautiful CLI interfaces via easy and logical to implement task lists that feel alive and interactive.",
   "license": "MIT",
   "repository": "https://github.com/listr2/listr2",
