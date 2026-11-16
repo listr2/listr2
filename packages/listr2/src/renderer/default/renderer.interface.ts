@@ -13,7 +13,7 @@ export interface ListrDefaultRendererOptions
   // global
 
   /**
-   * Indentation per-level. Under a bracket, the rows of a group sit this many columns deeper than its status icon.
+   * Indentation per-level. With `markIndentation`, the rows of a group sit this many columns deeper than its status icon.
    *
    * - This is a global option that can only be changed through the main Listr class.
    *
@@ -65,8 +65,8 @@ export interface ListrDefaultRendererOptions
    * - This is a global option that can only be changed through the main Listr class.
    * - Tasks without a title, and every task when `indentation` is `0`, draw no bracket.
    *
-   * @see {@link https://listr2.kilic.dev/renderer/default.html#brackets}
-   * @defaultValue `true`
+   * @see {@link https://listr2.kilic.dev/renderer/default.html#markindentation}
+   * @defaultValue `false`
    */
   markIndentation?: boolean
   /**

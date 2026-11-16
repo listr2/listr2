@@ -96,32 +96,35 @@ const reporting: ListrTask[] = [
   }
 ]
 
+const building: ListrTask = {
+  title: 'Building',
+  task: (_, task) =>
+    task.newListr(
+      [
+        { title: 'Cleaning dist.', task: async(): Promise<void> => delay(800) },
+        {
+          title: 'Compiling packages',
+          task: (_, task) => task.newListr(steps(numbered(3, (index) => `Compiling package-${index}.`)), { rendererOptions: { collapseSubtasks: false } })
+        },
+        { title: 'Writing types.', task: async(): Promise<void> => delay(800) }
+      ],
+      { rendererOptions: { collapseSubtasks: false } }
+    )
+}
+
 const cases: Record<string, () => Promise<unknown>> = {
   // a group with collapseSubtasks: false, while it runs and once it closed
-  bracket: () => run([migrations]),
+  group: () => run([migrations]),
+
+  // the same groups drawn as brackets
+  bracket: () => run([migrations], { rendererOptions: { markIndentation: true } }),
+  'bracket-nested': () => run([building], { rendererOptions: { markIndentation: true } }),
 
   // a group that collapses once all of its subtasks finished
   collapse: () => run([installing, { title: 'Building the bundles.', task: async(): Promise<void> => delay(800) }]),
 
-  // a group inside a group, each with its own bracket
-  nested: () =>
-    run([
-      {
-        title: 'Building',
-        task: (_, task) =>
-          task.newListr(
-            [
-              { title: 'Cleaning dist.', task: async(): Promise<void> => delay(800) },
-              {
-                title: 'Compiling packages',
-                task: (_, task) => task.newListr(steps(numbered(3, (index) => `Compiling package-${index}.`)), { rendererOptions: { collapseSubtasks: false } })
-              },
-              { title: 'Writing types.', task: async(): Promise<void> => delay(800) }
-            ],
-            { rendererOptions: { collapseSubtasks: false } }
-          )
-      }
-    ]),
+  // a group inside a group
+  nested: () => run([building]),
 
   // a concurrent list, whose tasks are persisted in the order they finish
   concurrent: () =>
@@ -189,11 +192,8 @@ const cases: Record<string, () => Promise<unknown>> = {
       { ...migrations, rendererOptions: { timer: PRESET_TIMER } }
     ]),
 
-  // the layout without the bracket
-  plain: () => run([migrations], { rendererOptions: { markIndentation: false } }),
-
   // the fallback figures of a terminal without unicode
-  ascii: () => run([migrations]),
+  ascii: () => run([migrations], { rendererOptions: { markIndentation: true } }),
 
   // the renderer options that change how a task looks, each next to its default
   'show-subtasks': () => run([installing], { rendererOptions: { showSubtasks: false } }),
@@ -232,6 +232,7 @@ const cases: Record<string, () => Promise<unknown>> = {
   icons: () =>
     run([migrations], {
       rendererOptions: {
+        markIndentation: true,
         icon: {
           [ListrDefaultRendererLogLevels.CONNECTOR_START]: '╭',
           [ListrDefaultRendererLogLevels.CONNECTOR_END]: '╰',

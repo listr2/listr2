@@ -63,7 +63,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks: false })
     ).run()
 
-    expect(await vt.content()).toEqual(range(3, (parent) => [`┌ ✔ parent ${parent}`, ...range(9, (index) => `│   ✔ task ${parent}.${index}`), `└   ✔ task ${parent}.9`]).flat())
+    expect(await vt.content()).toEqual(range(3, (parent) => [`✔ parent ${parent}`, ...range(9, (index) => `  ✔ task ${parent}.${index}`), `  ✔ task ${parent}.9`]).flat())
   })
 
   it('should recover when the terminal gets narrower and wider mid-run', async() => {
@@ -122,7 +122,7 @@ describe('default renderer: terminal', () => {
       options({ collapseSubtasks })
     ).run()
 
-    expect(seen.filter((line) => line !== '')).toEqual(['┌ ❯ parent', '│   ❯ a subtask with a title', '│     that wraps on a narrow', '└     terminal'])
+    expect(seen.filter((line) => line !== '')).toEqual(['❯ parent', '  ❯ a subtask with a title', '    that wraps on a narrow', '    terminal'])
   })
 
   it('should summarize the waiting and then the finished subtasks of a collapsing parent taller than the terminal', async() => {
@@ -150,7 +150,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['┌ ❯ parent', '│   ↑ 5', ...range(5, (index) => `│   ✔ task ${index + 5}`), '│   ❯ task 10', '└   … 4'])
+    expect(seen).toEqual(['❯ parent', '  ↑ 5', ...range(5, (index) => `  ✔ task ${index + 5}`), '  ❯ task 10', '  … 4'])
     expect(await vt.content()).toEqual(['✔ parent'])
   })
 
@@ -181,8 +181,8 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the group is written while it runs, so the finished subtasks that do not fit are summarized
-    expect(seen).toEqual(['┌ ❯ parent', '│   ↑ 6', ...range(4, (index) => `│   ✔ task ${index + 6}`), '│   ❯ task 10', '└   … 4', '◼ after'])
-    expect(await vt.content()).toEqual(['┌ ✔ parent', ...range(14, (index) => `│   ✔ task ${index}`), '└   ✔ task 14', '✔ after'])
+    expect(seen).toEqual(['❯ parent', '  ↑ 6', ...range(4, (index) => `  ✔ task ${index + 6}`), '  ❯ task 10', '  … 4', '◼ after'])
+    expect(await vt.content()).toEqual(['✔ parent', ...range(14, (index) => `  ✔ task ${index}`), '  ✔ task 14', '✔ after'])
   })
 
   it('should draw a connector for each open non-collapsing parent', async() => {
@@ -216,7 +216,7 @@ describe('default renderer: terminal', () => {
             ])
         }
       ],
-      options({ collapseSubtasks: false })
+      options({ markIndentation: true, collapseSubtasks: false })
     ).run()
 
     expect(seen).toEqual(['┌ ❯ outer', '│   ✔ first', '│   ┌ ❯ inner', '│   │   ✔ inner first', '│   │   ❯ inner second', '│   └     › some output', '└   ◼ last'])
@@ -237,7 +237,7 @@ describe('default renderer: terminal', () => {
             ])
         }
       ],
-      options({ collapseSubtasks: false })
+      options({ markIndentation: true, collapseSubtasks: false })
     ).run()
 
     // the icon and title wrap at 30 - 1 * 2 - 2 = 26 columns, then the continuation rows are indented once more
@@ -264,7 +264,7 @@ describe('default renderer: terminal', () => {
             ])
         }
       ],
-      options({ collapseSubtasks: false })
+      options({ markIndentation: true, collapseSubtasks: false })
     ).run()
 
     expect(seen).toEqual(['┌ ❯ a parent with a title', '│   that wraps over the rows', '└   ❯ first'])
@@ -286,7 +286,7 @@ describe('default renderer: terminal', () => {
       }
     })
 
-    await new Listr([group('plain', false), group('timed', true)], options()).run()
+    await new Listr([group('plain', false), group('timed', true)], options({ markIndentation: true })).run()
 
     expect(await vt.content()).toEqual(['┌ ✔ plain', '└   ✔ plain subtask', '┌ ✔ timed [1s]', '└   ✔ timed subtask'])
   })
@@ -315,7 +315,7 @@ describe('default renderer: terminal', () => {
             )
         }
       ],
-      options()
+      options({ markIndentation: true })
     ).run()
 
     expect(seen).toEqual(['┌ ❯ Compiled 1 package.', '└   ❯ first'])
@@ -342,7 +342,7 @@ describe('default renderer: terminal', () => {
             ])
         }
       ],
-      { ...options({ collapseSubtasks: false }), exitOnError: true }
+      { ...options({ markIndentation: true, collapseSubtasks: false }), exitOnError: true }
     )
       .run()
       .catch(() => {})
@@ -372,7 +372,7 @@ describe('default renderer: terminal', () => {
             )
         }
       ],
-      options({ collapseSubtasks: false })
+      options({ markIndentation: true, collapseSubtasks: false })
     ).run()
 
     expect(seen).toEqual(['┌ ❯ parent', ...range(5, (index) => `│   ✔ task ${index}`), '│   ❯ task 5', '│   ◼ task 6', '└   … 13'])
@@ -400,7 +400,9 @@ describe('default renderer: terminal', () => {
             )
         }
       ],
-      options({ collapseSubtasks: false, clearOutput: true })
+      options({
+        markIndentation: true, collapseSubtasks: false, clearOutput: true
+      })
     ).run()
 
     expect(seen).toEqual(['┌ ❯ parent', '│   ✔ task 0', '│   ❯ task 1', '└   ◼ task 2'])
@@ -434,7 +436,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // a summary of one finished subtask takes the same row as the subtask itself
-    expect(seen).toEqual(['┌ ❯ parent', '│   ✔ task 0', '│   ❯ task 1', '│   ◼ task 2', '│   ◼ task 3', '└   … 2', '◼ after 0', '◼ after 1', '… 8'])
+    expect(seen).toEqual(['❯ parent', '  ✔ task 0', '  ❯ task 1', '  ◼ task 2', '  ◼ task 3', '  … 2', '◼ after 0', '◼ after 1', '… 8'])
   })
 
   it('should summarize the waiting tasks before the finished subtasks of an open group', async() => {
@@ -463,15 +465,15 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['┌ ❯ parent', '│   ✔ task 0', '│   ✔ task 1', '│   ❯ task 2', '└   ◼ task 3', '◼ after 0', '◼ after 1', '◼ after 2', '… 7'])
+    expect(seen).toEqual(['❯ parent', '  ✔ task 0', '  ✔ task 1', '  ❯ task 2', '  ◼ task 3', '◼ after 0', '◼ after 1', '◼ after 2', '… 7'])
   })
 
   it.each([
     {
-      name: 'shows the task when it takes one row', title: 'task 3', last: '└   ◼ task 3'
+      name: 'shows the task when it takes one row', title: 'task 3', last: '  ◼ task 3'
     },
     {
-      name: 'keeps the summary when the task wraps', title: 'task 3 with a title that wraps on this terminal', last: '└   … 1'
+      name: 'keeps the summary when the task wraps', title: 'task 3 with a title that wraps on this terminal', last: '  … 1'
     }
   ])('should summarize a single waiting task that $name', async({ title, last }) => {
     vt = new VirtualTerminal({ columns: 40, rows: 9 })
@@ -500,7 +502,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // the summaries keep as many waiting tasks in every list, so the shorter list would summarize a single task
-    expect(seen).toEqual(['┌ ❯ parent', '│   ❯ task 0', '│   ◼ task 1', '│   ◼ task 2', last, '◼ after 0', '◼ after 1', '… 4'])
+    expect(seen).toEqual(['❯ parent', '  ❯ task 0', '  ◼ task 1', '  ◼ task 2', last, '◼ after 0', '◼ after 1', '… 4'])
   })
 
   it('should show a single finished subtask instead of its summary', async() => {
@@ -540,7 +542,56 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // the summaries keep as many finished subtasks in every group, so the shorter group would summarize a single subtask
-    expect(seen).toEqual(['┌ ❯ first', '│   ✔ first 0', '│   ✔ first 1', '└   ❯ first 2', '┌ ❯ second', '│   ↑ 4', '│   ✔ second 4', '└   ❯ second 5'])
+    expect(seen).toEqual(['❯ first', '  ✔ first 0', '  ✔ first 1', '  ❯ first 2', '❯ second', '  ↑ 4', '  ✔ second 4', '  ❯ second 5'])
+  })
+
+  it('should draw no bracket by default', async() => {
+    vt = new VirtualTerminal({
+      columns: 80,
+      rows: 10,
+      frames: true
+    })
+
+    const fails = (title: string, rollback?: boolean): ListrTask => ({
+      title,
+      task: async(): Promise<void> => {
+        throw new Error(`${title} failed`)
+      },
+      rollback: rollback ? async(_, task): Promise<void> => {
+        task.title = `${title} rolled back`
+      } : undefined
+    })
+    const passes = (title: string): ListrTask => ({ title, task: async(): Promise<void> => {} })
+
+    await new Listr(
+      [
+        {
+          title: 'outer',
+          task: (_, task): Listr =>
+            task.newListr(
+              [
+                passes('first'),
+                { title: 'inner', task: (_, task): Listr => task.newListr([passes('inner first'), fails('inner second')], { exitOnError: false }) }
+              ],
+              { rendererOptions: { collapseSubtasks: false } }
+            )
+        },
+        { title: 'rollback', task: (_, task): Listr => task.newListr([fails('rolls back', true), passes('never runs')], { exitOnError: true }) }
+      ],
+      { ...options(), exitOnError: false }
+    ).run()
+
+    expect(vt.frames.flat().filter((line) => /[┌│└]/.test(line))).toEqual([])
+    expect(await vt.content()).toEqual([
+      '✔ outer',
+      '  ✔ first',
+      '  ⚠ inner',
+      '    ✔ inner first',
+      '    ✖ inner second failed',
+      '❯ rollback',
+      '  ← rolls back rolled back',
+      '  ◼ never runs'
+    ])
   })
 
   it('should draw the connector with the fallback figure when unicode is not supported', async() => {
@@ -581,6 +632,7 @@ describe('default renderer: terminal', () => {
           rendererOptions: {
             lazy: true,
             collapseSubtasks: false,
+            markIndentation: true,
             logger: new listr2.ListrLogger({ useIcons: true, processOutput: new listr2.ProcessOutput(vt as any, vt as any) })
           }
         }
@@ -647,8 +699,8 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the subtree is persisted while the parent runs
-    expect(seen).toEqual({ scrollback: [], screen: ['┌ ❯ parent'] })
-    expect(await vt.content()).toEqual(['┌ ⚠ parent', '│   ✔ first', '│   ✖ second failed', '└   ✔ third'])
+    expect(seen).toEqual({ scrollback: [], screen: ['❯ parent'] })
+    expect(await vt.content()).toEqual(['⚠ parent', '  ✔ first', '  ✖ second failed', '  ✔ third'])
   })
 
   it('should draw no connector when markIndentation is disabled', async() => {
@@ -770,7 +822,7 @@ describe('default renderer: terminal', () => {
         },
         ...range(10, (index) => ({ title: `after ${index}`, task: async(): Promise<void> => {} }))
       ],
-      options({ icon: { CONNECTOR_START: '╭', SUMMARY_WAITING: '~' } })
+      options({ markIndentation: true, icon: { CONNECTOR_START: '╭', SUMMARY_WAITING: '~' } })
     ).run()
 
     expect(seen).toEqual(['╭ ❯ parent', '│   ✔ task 0', '│   ❯ task 1', '│   ◼ task 2', '│   ◼ task 3', '└   ~ 2', '◼ after 0', '◼ after 1', '~ 8'])
@@ -848,8 +900,8 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    expect(seen).toEqual(['┌ ❯ parent', '│   ❯ task 0', '│   ❯ task 1', '└   ✔ task 2'])
-    expect(await vt.content()).toEqual(['┌ ⚠ parent', '│   ✖ task 0 failed', '│   ✔ task 1', '└   ✔ task 2'])
+    expect(seen).toEqual(['❯ parent', '  ❯ task 0', '  ❯ task 1', '  ✔ task 2'])
+    expect(await vt.content()).toEqual(['⚠ parent', '  ✖ task 0 failed', '  ✔ task 1', '  ✔ task 2'])
   })
 
   it('should keep a retrying task live until it finishes', async() => {
@@ -911,7 +963,7 @@ describe('default renderer: terminal', () => {
             )
         }
       ],
-      options()
+      options({ markIndentation: true })
     ).run()
 
     expect(seen.at(-1)).toEqual(['┌ ⚠ retry [RETRY:1]', '└   ❯ subtask'])
@@ -972,7 +1024,7 @@ describe('default renderer: terminal', () => {
             }
           }
         ],
-        options({ collapseSubtasks })
+        options({ markIndentation: true, collapseSubtasks })
       ).run()
     ).rejects.toThrow('failed')
 
@@ -1000,7 +1052,7 @@ describe('default renderer: terminal', () => {
               ])
           }
         ],
-        options()
+        options({ markIndentation: true })
       ).run()
     ).rejects.toThrow('second failed')
 
@@ -1037,7 +1089,7 @@ describe('default renderer: terminal', () => {
             )
         }
       ],
-      options()
+      options({ markIndentation: true })
     ).run()
 
     // a group that can run its subtasks again is written in one go, so its header can still change
@@ -1096,7 +1148,7 @@ describe('default renderer: terminal', () => {
             ])
         }
       ],
-      options()
+      options({ markIndentation: true })
     ).run()
 
     expect(seen).toEqual(['┌ ❯ parent', '│   ✔ first', '│   ❯ second', '└     › some output'])
@@ -1129,7 +1181,7 @@ describe('default renderer: terminal', () => {
             ])
         }
       ],
-      options()
+      options({ markIndentation: true })
     ).run()
 
     expect(seen).toEqual(['┌ ❯ outer', '│   ✔ first', '│   ┌ ❯ inner', '└   └   ❯ last'])
@@ -1180,13 +1232,13 @@ describe('default renderer: terminal', () => {
     await vt.flush()
 
     // every subtask runs, so the ones at the end are counted, and the header of the group, which is written in one go, stays on the screen
-    expect(seen).toEqual(['┌ ❯ parent', ...range(9, (index) => `│   ❯ task ${index}`), '└   … 15', ''])
+    expect(seen).toEqual(['❯ parent', ...range(9, (index) => `  ❯ task ${index}`), '  … 15', ''])
     // while the group runs, every frame that shows its rows shows its header too
-    const running = vt.frames.filter((screen) => screen.some((line) => /^│\s+[❯…]/.test(line)))
+    const running = vt.frames.filter((screen) => screen.some((line) => /^\s+[❯…]/.test(line)))
 
     expect(running.length).toBeGreaterThan(0)
-    expect(running.filter((screen) => !screen.some((line) => line.startsWith('┌ ❯ parent')))).toEqual([])
-    expect(await vt.content()).toEqual(['┌ ⚠ parent', '│   ✖ task 0 failed', ...range(22, (index) => `│   ✔ task ${index + 1}`), '└   ✔ task 23'])
+    expect(running.filter((screen) => !screen.some((line) => line.startsWith('❯ parent')))).toEqual([])
+    expect(await vt.content()).toEqual(['⚠ parent', '  ✖ task 0 failed', ...range(22, (index) => `  ✔ task ${index + 1}`), '  ✔ task 23'])
   })
 
   it.each([
@@ -1222,7 +1274,7 @@ describe('default renderer: terminal', () => {
       vt?.dispose()
       vt = new VirtualTerminal({ columns: 80, rows: 20 })
 
-      await new Listr(tasks, { ...options({ indentation }), exitOnError: false }).run()
+      await new Listr(tasks, { ...options({ markIndentation: true, indentation }), exitOnError: false }).run()
 
       return vt.content()
     }
@@ -1281,7 +1333,7 @@ describe('default renderer: terminal', () => {
     ).run()
 
     expect(exit).toHaveBeenCalledWith(127)
-    expect(await vt.content()).toEqual(['✔ before', '┌ ⊘ parent', '│   ⊘ interrupted', '└   ⊘ never started', '⊘ after'])
+    expect(await vt.content()).toEqual(['✔ before', '⊘ parent', '  ⊘ interrupted', '  ⊘ never started', '⊘ after'])
     // a terminal left in a synchronized update would show nothing anymore
     expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
   })
@@ -1391,7 +1443,7 @@ describe('default renderer: terminal', () => {
     await list.run()
     await list.run()
 
-    expect(await vt.content()).toEqual([1, 2].flatMap((index) => ['┌ ✔ parent', `└   ✔ subtask finished (run ${index})`, `✔ second (run ${index})`]))
+    expect(await vt.content()).toEqual([1, 2].flatMap((index) => ['✔ parent', `  ✔ subtask finished (run ${index})`, `✔ second (run ${index})`]))
   })
 
   it('should persist a non-collapsing parent that retries once it has finished', async() => {
@@ -1425,6 +1477,6 @@ describe('default renderer: terminal', () => {
     ).run()
 
     // nothing of the first attempt is persisted
-    expect(await vt.content()).toEqual(['┌ ✔ parent', '│   ✔ first (attempt 2)', '└   ✔ second (attempt 2)'])
+    expect(await vt.content()).toEqual(['✔ parent', '  ✔ first (attempt 2)', '  ✔ second (attempt 2)'])
   })
 })

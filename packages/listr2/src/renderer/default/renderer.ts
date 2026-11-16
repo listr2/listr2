@@ -39,7 +39,7 @@ export class DefaultRenderer implements ListrRenderer {
     suffixRetries: true,
     lazy: false,
     lockInput: true,
-    markIndentation: true,
+    markIndentation: false,
     removeEmptyLines: true,
     formatOutput: 'wrap',
     pausedTimer: {

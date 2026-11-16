@@ -56,13 +56,13 @@ foot -c foot.ini --app-id listr2-shot --window-size-chars=100x8 tmux new-session
 Run a case in the pane, from the root of the repository:
 
 ```bash
-tmux send-keys -t s "clear; pnpm run --filter @listr2/examples start examples/renderer-cases.example.ts bracket; printf '\e[?25l'; read" Enter
+tmux send-keys -t s "clear; pnpm run --filter @listr2/examples start examples/renderer-cases.example.ts group; printf '\e[?25l'; read" Enter
 ```
 
-Grab the window with `grim` while the run is in the state the image shows, such as a spinner on the third subtask for `bracket-running.png`, or once it ended for `bracket.png`:
+Grab the window with `grim` while the run is in the state the image shows, such as a spinner on the third subtask for `group-running.png`, or once it ended for `group.png`:
 
 ```bash
-grim -g "$(swaymsg -t get_tree | jq -r '.. | objects | select(.app_id? == "listr2-shot") | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" bracket.png
+grim -g "$(swaymsg -t get_tree | jq -r '.. | objects | select(.app_id? == "listr2-shot") | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" group.png
 ```
 
 The files ending in `-running.png` show a case while it runs, and `summary.png`, `show-subtasks.png`, `retry.png` and `output-bar.png` are taken while it runs as well. Every other PNG file shows the end of the run.
@@ -72,11 +72,7 @@ The files ending in `-running.png` show a case while it runs, and `summary.png`,
 Grab the window with `grim -s 1` in a loop for as long as the case runs, keeping the time of each frame. Then drop the frames that repeat the one before, keep each frame on screen for as long as it was, hold the last one for 3 seconds, and encode it with a palette of 64 colors:
 
 ```bash
-ffmpeg -f concat -safe 0 -i frames.txt -vf "split[a][b];[a]palettegen=max_colors=64:stats_mode=full[p];[b][p]paletteuse=dither=none" -vsync vfr bracket.gif
+ffmpeg -f concat -safe 0 -i frames.txt -vf "split[a][b];[a]palettegen=max_colors=64:stats_mode=full[p];[b][p]paletteuse=dither=none" -vsync vfr group.gif
 ```
 
 `frames.txt` lists each kept frame with `file` and `duration` lines. `renderer-default.gif` is recorded the same way from `renderer-default.example.ts`, answering its prompt with Enter.
-
-## Before v12
-
-The `before-*.png` files show the same cases with `listr2@11.4.1`. Copy `renderer-cases.example.ts` as `cases.mts` into an empty folder, install `listr2@11.4.1` there, and run it with `tsx cases.mts <case>`.

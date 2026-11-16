@@ -52,47 +52,38 @@ _The same task once it finished, printed as a single line._
 
 _A concurrent list: each task is printed as it finishes, so the slowest one comes last._
 
-### Brackets
+### Groups
 
-A task that shows its subtasks under its title draws them as a bracket: a header with its status and title, and a dimmed connector in front of its subtasks, which sit one level deeper than the status icon. The bracket closes on its last line.
+A task that shows its subtasks prints its status and title above them, and its subtasks one indentation deeper.
 
 ```text
-┌ ❯ Running migrations
-│   ✔ Running migration 001.
-│   ✔ Running migration 002.
-└   ⠋ Running migration 003.
+❯ Running migrations
+  ✔ Running migration 001.
+  ✔ Running migration 002.
+  ⠋ Running migration 003.
 ```
 
-![A group with collapseSubtasks: false while it runs](../../examples/screenshots/bracket-running.png)
+![A group with collapseSubtasks: false while it runs](../../examples/screenshots/group-running.png)
 
 _A group with `collapseSubtasks: false` while it runs._
 
-![A group with collapseSubtasks: false from start to end](../../examples/screenshots/bracket.gif)
+![A group with collapseSubtasks: false from start to end](../../examples/screenshots/group.gif)
 
 _The same group from start to end._
 
-The status is `❯` while the task runs, the spinner and `[RETRY:n]` while it retries, or a red spinner while it rolls back. Once the task finished, it is `✔`, `⚠` when some subtasks failed without failing the task, `←` when it rolled back, or a red `✖` when the task failed, followed by the time it took with the `timer` option.
+The status is `❯` while the task runs, the spinner and `[RETRY:n]` while it retries, or a red spinner while it rolls back. Once the task finished, it is `✔`, `⚠` when some subtasks failed without failing the task, `←` when it rolled back, or a red `❯` when the task failed, followed by the time it took with the `timer` option.
 
-```text
-┌ ✔ Running migrations
-│   ✔ Running migration 001.
-│   ✔ Running migration 002.
-└   ✔ Running migration 003.
-```
-
-![A group with collapseSubtasks: false once it finished](../../examples/screenshots/bracket.png)
+![A group with collapseSubtasks: false once it finished](../../examples/screenshots/group.png)
 
 _The same group once it finished._
 
 ![Two groups that stay expanded because a subtask failed](../../examples/screenshots/failure.png)
 
-_Groups that stay expanded because a subtask failed. The first carries on past the failure and shows `⚠`, the second fails with its subtask and shows a red `✖`._
+_Groups that stay expanded because a subtask failed. The first carries on past the failure and shows `⚠`, the second fails with its subtask and shows a red `❯`._
 
-![A header with a changed title, and a header with a timer](../../examples/screenshots/title.png)
+![A group with a changed title, and a group with a timer](../../examples/screenshots/title.png)
 
-_The first group changed its title while it ran, so its header shows the new title. The second has the `timer` option, so its header shows the time it took._
-
-Nested groups draw one bracket per level, each at the column of the subtasks of its parent. Tasks without a title draw no bracket, and neither does any task with `indentation: 0`.
+_The first group changed its title while it ran. The second has the `timer` option, so it shows the time it took._
 
 ![Nested groups while they run](../../examples/screenshots/nested-running.png)
 
@@ -102,15 +93,7 @@ _Nested groups while they run._
 
 _The same groups once they finished._
 
-The bracket uses `┌`, `│` and `└`, or `.`, `|` and `` ` `` when the terminal does not support unicode. Change them through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.CONNECTOR_START`, `CONNECTOR` and `CONNECTOR_END` keys. Set `markIndentation: false` to draw no bracket: a task then shows its status and title above its subtasks.
-
-![The bracket on a terminal without unicode](../../examples/screenshots/ascii.png)
-
-_The fallback glyphs, on a terminal that does not support unicode._
-
-![A group with collapseSubtasks: false and markIndentation: false](../../examples/screenshots/mark-indentation-false.png)
-
-_The same group with `markIndentation: false`._
+Set [`markIndentation: true`](#markindentation) to draw each group as a bracket.
 
 With `clearOutput: true` nothing is printed for good: the whole list stays at the bottom and is cleared at the end.
 
@@ -192,7 +175,7 @@ _With `formatOutput: 'truncate'`, a line longer than the terminal is cut at its 
 
 ![Nested groups with indentation: 4](../../examples/screenshots/indentation.png)
 
-_Nested groups with `indentation: 4`. The connector and the space after it take two columns whatever the indentation is, and the rows of a group sit `indentation` columns deeper than its status icon._
+_Nested groups with `indentation: 4`._
 
 ### `outputBar`, `bottomBar` and `persistentOutput`
 
@@ -212,11 +195,42 @@ _Once they finished, the output of the second task stays below the list, since i
 
 ![A group with its icons changed](../../examples/screenshots/icons.png)
 
-_The `icon` option replaces the icons of the bracket and of the tasks, here `CONNECTOR_START`, `CONNECTOR_END` and `COMPLETED`._
+_With `markIndentation: true`, the `icon` option replaces the icons of the bracket and of the tasks, here `CONNECTOR_START`, `CONNECTOR_END` and `COMPLETED`._
 
 ### `markIndentation`
 
-See [Brackets](#brackets) for the same group with and without the bracket.
+With `markIndentation: true`, a task that shows its subtasks draws them as a bracket: a header with its status and title, and a dimmed connector in front of its subtasks, which sit one indentation deeper than the status icon. The bracket closes on its last line.
+
+```text
+┌ ❯ Running migrations
+│   ✔ Running migration 001.
+│   ✔ Running migration 002.
+└   ⠋ Running migration 003.
+```
+
+![A group with markIndentation: true while it runs](../../examples/screenshots/bracket-running.png)
+
+_The group of [Groups](#groups) with `markIndentation: true` while it runs._
+
+![A group with markIndentation: true from start to end](../../examples/screenshots/bracket.gif)
+
+_The same group from start to end._
+
+![A group with markIndentation: true once it finished](../../examples/screenshots/bracket.png)
+
+_The same group once it finished. A failed group shows a red `✖` on its header._
+
+![Nested groups with markIndentation: true](../../examples/screenshots/bracket-nested.png)
+
+_Nested groups draw one bracket per level, each at the column of the subtasks of its parent._
+
+Tasks without a title draw no bracket, and neither does any task with `indentation: 0`. The connector and the space after it take two columns whatever the indentation is.
+
+The bracket uses `┌`, `│` and `└`, or `.`, `|` and `` ` `` when the terminal does not support unicode. Change them through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.CONNECTOR_START`, `CONNECTOR` and `CONNECTOR_END` keys.
+
+![The bracket on a terminal without unicode](../../examples/screenshots/ascii.png)
+
+_The fallback glyphs, on a terminal that does not support unicode._
 
 ## Renderer Options
 
