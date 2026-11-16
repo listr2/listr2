@@ -1,3 +1,19 @@
+## listr2 [12.0.0-beta.20](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.19...listr2@12.0.0-beta.20) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** DefaultRenderer.format() takes the column of the line
+instead of a level of indentation; pass level * indentation. With an
+indentation other than 2, the rows inside a bracket move by one or two
+columns.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Bug Fixes
+
+* **renderer:** draw a bracket two columns wide whatever the indentation is ([4ec6f20](https://github.com/listr2/listr2/commit/4ec6f201144924cee342df21397b0ce283c8e282))
+
 ## listr2 [12.0.0-beta.19](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.18...listr2@12.0.0-beta.19) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
