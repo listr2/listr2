@@ -785,6 +785,45 @@ describe('default renderer: terminal', () => {
     expect(await vt.content()).toEqual(['✔ fast 2', '✔ fast 1', '✔ fast 0', '✔ slow'])
   })
 
+  it.each([
+    {
+      name: 'persists its subtasks one by one in the order they finish', collapseSubtasks: false, final: ['┌ parent', '│   ✔ task 2', '│   ✔ task 1', '│   ✖ task 0 failed', '└ ⚠']
+    },
+    {
+      name: 'is printed at once in list order', collapseSubtasks: true, final: ['┌ ⚠ parent', '│   ✖ task 0 failed', '│   ✔ task 1', '└   ✔ task 2']
+    }
+  ])('should print a concurrent group that $name', async({ collapseSubtasks, final }) => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr(
+              range(3, (index) => ({
+                title: `task ${index}`,
+                task: async(): Promise<void> => {
+                  // the last task finishes first
+                  await delay(20 * (3 - index))
+
+                  if (index === 0) {
+                    throw new Error('task 0 failed')
+                  }
+                }
+              })),
+              {
+                concurrent: true, exitOnError: false, rendererOptions: { collapseSubtasks }
+              }
+            )
+        }
+      ],
+      options()
+    ).run()
+
+    expect(await vt.content()).toEqual(final)
+  })
+
   it('should keep a retrying task live until it finishes', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
 

@@ -36,7 +36,7 @@ pnpm run --filter @listr2/examples start examples/renderer-default-long.example.
 A task is printed once it has finished. A task that retries or rolls back stays at the bottom, with its subtasks, until it is done.
 
 - Tasks of a sequential list are printed in order.
-- Tasks of a concurrent list are printed in the order they finish.
+- Tasks of a concurrent list are printed in the order they finish. A group printed at once, such as a collapsing group that is printed expanded, keeps its subtasks in the order they were declared in.
 - With `collapseSubtasks: true`, the default, a task shows its subtasks while it runs and is printed as a single line once it finishes. It is printed expanded instead when one of its subtasks failed, rolled back, or was cancelled.
 - With `collapseSubtasks: false`, a task prints its title with its first finished subtask, then its subtasks as they finish, and then its status line. Tasks next to it in a concurrent list wait at the bottom until it is done.
 
@@ -158,6 +158,8 @@ While the tasks run, what you type is not shown, so it cannot break the task lis
 - A child process spawned with `stdio: 'inherit'` writes over the task list. Pipe its output through [`task.stdout()`](../task/output.md) instead, and set `lockInput: false` if it reads the terminal input, so what you type for it is shown.
 - A process killed with `SIGKILL` leaves typed keys hidden. Run `stty sane` or `reset`.
 - Resizing the terminal can leave a stray row of the task list behind, or erase a row above it, once per resize.
+- Stopping the run with `Ctrl+Z` leaves a copy of the running tasks where the shell took over. They are drawn again below once the run continues.
+- Output that a task writes to `stdout` or `stderr` is printed between the rows of an open `collapseSubtasks: false` group, where it arrived.
 - When the terminal reports more rows than it shows, as some multiplexers and remote sessions do, the scrollback can fill with copies of the task list while it runs. The final output is still correct.
 
 ## How the Options Look
