@@ -234,45 +234,6 @@ describe('default renderer: input', () => {
       expect(stty.echo).toBe(true)
     })
 
-    it('should not show the title on the footer of a group after the job continues while its header is still on the screen', async() => {
-      stty.install()
-      vi.spyOn(process, 'kill').mockImplementation(() => true)
-
-      const screen = vt.write
-      let continued: string[]
-
-      await new Listr(
-        [
-          {
-            title: 'parent',
-            task: (_, task): InstanceType<typeof Listr> =>
-              task.newListr(
-                [
-                  { title: 'first', task: async(): Promise<void> => {} },
-                  {
-                    title: 'second',
-                    task: async(_, task): Promise<void> => {
-                      process.emit('SIGTSTP', 'SIGTSTP')
-                      screen('[1]+  Stopped\n$ ')
-                      stty.echo = true
-                      screen('fg\n')
-                      process.emit('SIGCONT', 'SIGCONT')
-                      // the next frame decides the footer again
-                      task.output = 'still running'
-                      continued = await vt.content()
-                    }
-                  }
-                ],
-                { rendererOptions: { collapseSubtasks: false } }
-              )
-          }
-        ],
-        options()
-      ).run()
-
-      expect(continued).toEqual(['┌ parent', '│   ✔ first', '│   ❯ second', '└ ❯', '[1]+  Stopped', '$ fg', '│   ❯ second', '│     › still running', '└ ❯'])
-    })
-
     it('should leave the terminal to the shell while the job runs in the background, and lock it again once it is back in the foreground', async() => {
       stty.install()
       vi.spyOn(process, 'kill').mockImplementation(() => true)

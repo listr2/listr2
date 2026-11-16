@@ -60,8 +60,7 @@ export interface ListrDefaultRendererOptions
    */
   lockInput?: boolean
   /**
-   * Draw an expanded task as a bracket: a header with its title and a vertical line in front of its subtasks. Its status shows on the
-   * header, or on a footer when the task has `collapseSubtasks: false`, with the title while the header is not on the screen.
+   * Draw an expanded task as a bracket: a header with its status and title, and a vertical line in front of its subtasks.
    *
    * - This is a global option that can only be changed through the main Listr class.
    * - Tasks without a title, and every task when `indentation` is `0`, draw no bracket.
@@ -94,6 +93,9 @@ export interface ListrDefaultRendererOptions
   /**
    * Collapse subtasks after current task completes its execution.
    *
+   * - With `false`, the subtasks stay expanded, and the task is written to the scrollback with them once it completes.
+   *
+   * @see {@link https://listr2.kilic.dev/renderer/default.html#when-tasks-are-persisted}
    * @defaultValue `true`
    */
   collapseSubtasks?: boolean

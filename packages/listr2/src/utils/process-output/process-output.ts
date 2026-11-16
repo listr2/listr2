@@ -26,9 +26,7 @@ export class ProcessOutput {
   private live = ''
   private captured: ProcessOutputCapture[] = []
   private drawn?: { text: string; columns: number; rows: number }
-  private rows = 0
   private redraw?: () => void
-  private scrolled = 0
   private frame?: string[]
   private input?: string
   private stopped?: number
@@ -64,17 +62,8 @@ export class ProcessOutput {
   }
 
   /**
-   * The rows written above the live region since `hijack()`.
-   *
-   * @internal
-   */
-  get written(): number {
-    return this.rows
-  }
-
-  /**
    * Captures the writes to `stdout` and `stderr`, and writes them above the live region. `redraw` draws the live region again after a
-   * resize or after captured output, since what it shows can depend on both.
+   * resize, since what it shows depends on the size of the terminal.
    */
   public hijack(redraw?: () => void): void {
     if (this.active) {
@@ -90,8 +79,6 @@ export class ProcessOutput {
       this.stream[name].hijack((entry) => this.capture(name, entry))
     }
 
-    this.rows = 0
-    this.scrolled = 0
     this.active = true
   }
 
@@ -110,7 +97,6 @@ export class ProcessOutput {
     this.batch(() => {
       if (text !== '') {
         this.start().persist(text)
-        this.rows += this.height(text)
         this.drawn = undefined
       }
 
@@ -206,29 +192,6 @@ export class ProcessOutput {
     this.active = false
   }
 
-  /**
-   * The rows that the text takes on the terminal.
-   *
-   * @internal
-   */
-  public height(text: string): number {
-    return text === '' ? 0 : this.wrap(text, this.stdout.columns ?? 80).length
-  }
-
-  /**
-   * The row at the top of the screen, counted like `written`, once the text is written above the live region and the live region is drawn
-   * below it. Rows that scrolled off come back only when a resize makes the terminal taller.
-   *
-   * @internal
-   */
-  public top(text = '', live = this.live): number {
-    if (typeof this.stdout.rows !== 'number') {
-      return 0
-    }
-
-    return Math.max(this.scrolled, this.rows + this.height(text) + this.height(live) + 1 - this.stdout.rows)
-  }
-
   public toStdout(buffer: string, eol = true): boolean {
     if (eol) {
       buffer = buffer + EOL
@@ -274,8 +237,6 @@ export class ProcessOutput {
       return
     }
 
-    this.scrolled = this.top()
-
     if (this.live === '') {
       this.updater?.clear()
       this.drawn = undefined
@@ -299,19 +260,6 @@ export class ProcessOutput {
 
     const lines = this.layout(this.drawn)
     const columns = this.stdout.columns
-    const cursor = this.rows + lines.length
-
-    if (this.drawn.columns !== columns && this.reflows()) {
-      // a terminal that reflows moves the rows above by as much as only the terminal knows, so they count as off the screen
-      this.scrolled = this.rows
-    } else if (this.scrolled === cursor + 1 - this.drawn.rows) {
-      // the cursor was on the bottom row, which stays at the bottom, so a taller terminal shows rows from above again
-      this.scrolled = cursor + 1 - this.stdout.rows
-    } else {
-      // the screen was not full, so its top row stays until the cursor reaches the bottom
-      this.scrolled = Math.max(this.scrolled, cursor + 1 - this.stdout.rows)
-    }
-
     // log-update erases with the line count of the last frame, which is stale once the terminal reflowed it
     const height = this.reflows() ? lines.reduce((height, line) => height + this.wrap(line, columns).length, 0) : lines.length
 
@@ -421,23 +369,15 @@ export class ProcessOutput {
     }
 
     if (this.shared || captured.every((message) => message.name === 'stdout')) {
-      this.batch(() => {
-        this.persist(captured.map((message) => message.entry).join(EOL))
-        this.redraw?.()
-      })
+      this.persist(captured.map((message) => message.entry).join(EOL))
 
       return
     }
 
     this.updater.clear()
     captured.forEach((message) => this.stream[message.name].write(message.entry + EOL))
-    this.rows += this.height(captured.map((message) => message.entry).join(EOL))
 
-    if (this.redraw) {
-      this.redraw()
-    } else {
-      this.draw()
-    }
+    this.draw()
   }
 
   private take(): ProcessOutputCapture[] {
@@ -460,13 +400,6 @@ export class ProcessOutput {
       return
     }
 
-    this.leave()
-  }
-
-  private leave(): void {
-    // the live region stays where it is, and the shell writes below it at least the line that says the job stopped and the line of its
-    // prompt, so the rows above count at least that much further up
-    this.rows += (this.drawn ? this.layout(this.drawn).length : 0) + 2
     this.updater?.done()
     this.drawn = undefined
     this.stopped = Date.now()
@@ -519,7 +452,9 @@ export class ProcessOutput {
 
   // a SIGTSTP listener keeps the process from stopping, and the shell may already have written below the live region, so it stays as it is
   private readonly onStop = (): void => {
-    this.leave()
+    this.updater?.done()
+    this.drawn = undefined
+    this.stopped = Date.now()
     this.stream.stdout.write(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
 
     process.off('SIGTSTP', this.onStop)

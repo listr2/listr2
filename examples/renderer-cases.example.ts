@@ -103,7 +103,7 @@ const cases: Record<string, () => Promise<unknown>> = {
   // a group that collapses once all of its subtasks finished
   collapse: () => run([installing, { title: 'Building the bundles.', task: async(): Promise<void> => delay(800) }]),
 
-  // a group inside a group, each with its own header and footer
+  // a group inside a group, each with its own bracket
   nested: () =>
     run([
       {
@@ -123,21 +123,15 @@ const cases: Record<string, () => Promise<unknown>> = {
       }
     ]),
 
-  // a concurrent group, whose subtasks are persisted in the order they finish
+  // a concurrent list, whose tasks are persisted in the order they finish
   concurrent: () =>
-    run([
-      {
-        title: 'Downloading assets',
-        task: (_, task) =>
-          task.newListr(
-            steps(
-              numbered(4, (index) => `Downloading asset-${index}.`),
-              (index) => [3200, 1000, 2200, 600][index]
-            ),
-            { concurrent: true, rendererOptions: { collapseSubtasks: false } }
-          )
-      }
-    ]),
+    run(
+      steps(
+        numbered(4, (index) => `Downloading asset-${index}.`),
+        (index) => [3200, 1000, 2200, 600][index]
+      ),
+      { concurrent: true }
+    ),
 
   // groups that would collapse, but stay expanded because a subtask failed: one carries on past the failure, the other fails with it
   failure: () =>
@@ -171,7 +165,7 @@ const cases: Record<string, () => Promise<unknown>> = {
       ...steps(numbered(8, (index) => `Cleaning up, step ${index} of 8.`), () => 400)
     ]),
 
-  // a group that changes its title after its header was persisted, and a group with a timer
+  // a group that changes its title while it runs, and a group with a timer
   title: () =>
     run([
       {

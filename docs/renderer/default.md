@@ -33,12 +33,12 @@ pnpm run --filter @listr2/examples start examples/renderer-default-long.example.
 
 ### When Tasks Are Persisted
 
-A task is printed once it has finished. A task that retries or rolls back stays at the bottom, with its subtasks, until it is done.
+A task is printed once it has finished. A group is printed in one piece when it closes, with its subtasks in the order they were declared in; only the tasks of the top-level list are printed one by one. A task that retries or rolls back stays at the bottom, with its subtasks, until it is done.
 
 - Tasks of a sequential list are printed in order.
-- Tasks of a concurrent list are printed in the order they finish. A group printed at once, such as a collapsing group that is printed expanded, keeps its subtasks in the order they were declared in.
+- Tasks of a concurrent top-level list are printed in the order they finish.
 - With `collapseSubtasks: true`, the default, a task shows its subtasks while it runs and is printed as a single line once it finishes. It is printed expanded instead when one of its subtasks failed, rolled back, or was cancelled.
-- With `collapseSubtasks: false`, a task prints its title with its first finished subtask, then its subtasks as they finish, and then its status line. Tasks next to it in a concurrent list wait at the bottom until it is done.
+- With `collapseSubtasks: false`, a task is printed expanded, with its subtasks.
 
 ![A collapsing task while it runs](../../examples/screenshots/collapse-running.png)
 
@@ -48,30 +48,19 @@ _A task whose subtasks collapse, while it runs._
 
 _The same task once it finished, printed as a single line._
 
-![A concurrent group persisting its subtasks as they finish](../../examples/screenshots/concurrent.gif)
+![A concurrent list persisting its tasks as they finish](../../examples/screenshots/concurrent.gif)
 
-_A concurrent group with `collapseSubtasks: false`: each subtask is printed as it finishes, so the slowest one comes last._
+_A concurrent list: each task is printed as it finishes, so the slowest one comes last._
 
 ### Brackets
 
-A task that shows its subtasks under its title draws them as a bracket: a header with its title and a dimmed connector in front of its subtasks, which sit one level deeper than the status icon. A group has one status line, on the side that is printed last.
-
-A group printed at once shows the status on its header: a task whose subtasks collapse, or one that retries. The bracket then closes on its last line.
+A task that shows its subtasks under its title draws them as a bracket: a header with its status and title, and a dimmed connector in front of its subtasks, which sit one level deeper than the status icon. The bracket closes on its last line.
 
 ```text
-┌ ⠋ Rolling back migrations
-│   ✖ Running migration 002 failed.
-└   ◼ Running migration 003.
-```
-
-A group with `collapseSubtasks: false` prints its header with its first finished subtask, so a footer below its subtasks shows the status from the start. The title shows on one line only: the footer adds it once the header is off the screen, or when the title changed after the header was printed. A resize that rewraps the lines above makes the footer show the title too, since it cannot tell where the header went.
-
-```text
-┌ Running migrations
+┌ ❯ Running migrations
 │   ✔ Running migration 001.
 │   ✔ Running migration 002.
-│   ⠋ Running migration 003.
-└ ❯
+└   ⠋ Running migration 003.
 ```
 
 ![A group with collapseSubtasks: false while it runs](../../examples/screenshots/bracket-running.png)
@@ -82,14 +71,13 @@ _A group with `collapseSubtasks: false` while it runs._
 
 _The same group from start to end._
 
-The status is `❯` while the task runs, or the spinner and `[RETRY:n]` while it retries. Once the task finished, it is `✔`, `⚠` when some subtasks failed without failing the task, `←` when it rolled back, or a red `✖` when the task failed, followed by the time it took with the `timer` option.
+The status is `❯` while the task runs, the spinner and `[RETRY:n]` while it retries, or a red spinner while it rolls back. Once the task finished, it is `✔`, `⚠` when some subtasks failed without failing the task, `←` when it rolled back, or a red `✖` when the task failed, followed by the time it took with the `timer` option.
 
 ```text
-┌ Running migrations
+┌ ✔ Running migrations
 │   ✔ Running migration 001.
 │   ✔ Running migration 002.
-│   ✔ Running migration 003.
-└ ✔
+└   ✔ Running migration 003.
 ```
 
 ![A group with collapseSubtasks: false once it finished](../../examples/screenshots/bracket.png)
@@ -98,11 +86,11 @@ _The same group once it finished._
 
 ![Two groups that stay expanded because a subtask failed](../../examples/screenshots/failure.png)
 
-_Groups that stay expanded because a subtask failed, printed at once with the status on the header. The first carries on past the failure and shows `⚠`, the second fails with its subtask and shows a red `✖`._
+_Groups that stay expanded because a subtask failed. The first carries on past the failure and shows `⚠`, the second fails with its subtask and shows a red `✖`._
 
-![A footer with a changed title, and a footer with a timer](../../examples/screenshots/title.png)
+![A header with a changed title, and a header with a timer](../../examples/screenshots/title.png)
 
-_The first group changed its title after its header was printed, so its footer shows the new title. The second has the `timer` option, so its footer shows the time it took._
+_The first group changed its title while it ran, so its header shows the new title. The second has the `timer` option, so its header shows the time it took._
 
 Nested groups draw one bracket per level, each at the column of the subtasks of its parent. Tasks without a title draw no bracket, and neither does any task with `indentation: 0`.
 
@@ -114,7 +102,7 @@ _Nested groups while they run._
 
 _The same groups once they finished._
 
-The bracket uses `┌`, `│` and `└`, or `.`, `|` and `` ` `` when the terminal does not support unicode. Change them through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.CONNECTOR_START`, `CONNECTOR` and `CONNECTOR_END` keys. Set `markIndentation: false` to draw no bracket: a task then shows its title above its subtasks, and with `collapseSubtasks: false` a closing line with its title after them.
+The bracket uses `┌`, `│` and `└`, or `.`, `|` and `` ` `` when the terminal does not support unicode. Change them through the `icon` and `color` renderer options with the `ListrDefaultRendererLogLevels.CONNECTOR_START`, `CONNECTOR` and `CONNECTOR_END` keys. Set `markIndentation: false` to draw no bracket: a task then shows its status and title above its subtasks.
 
 ![The bracket on a terminal without unicode](../../examples/screenshots/ascii.png)
 
@@ -132,7 +120,7 @@ Anything written to `process.stdout` or `process.stderr` while the renderer runs
 
 When the running part of the list is taller than the terminal, it is shortened until it fits:
 
-- The finished subtasks of a task whose subtasks collapse are folded into a single `↑ N` line.
+- The finished subtasks of an open group are folded into a single `↑ N` line.
 - The tasks that have not started yet are folded into a single `… N` line.
 - If more tasks run than the terminal shows, the running tasks at the end of a list are counted in the `… N` line too, so the header of their group stays on the screen.
 - Output bars that are taller than the terminal on their own still push the top of the list off the screen.
@@ -159,7 +147,6 @@ While the tasks run, what you type is not shown, so it cannot break the task lis
 - A process killed with `SIGKILL` leaves typed keys hidden. Run `stty sane` or `reset`.
 - Resizing the terminal can leave a stray row of the task list behind, or erase a row above it, once per resize.
 - Stopping the run with `Ctrl+Z` leaves a copy of the running tasks where the shell took over. They are drawn again below once the run continues.
-- Output that a task writes to `stdout` or `stderr` is printed between the rows of an open `collapseSubtasks: false` group, where it arrived.
 - When the terminal reports more rows than it shows, as some multiplexers and remote sessions do, the scrollback can fill with copies of the task list while it runs. The final output is still correct.
 
 ## How the Options Look
@@ -168,7 +155,7 @@ The renderer options below change how tasks are drawn. Each image shows a case o
 
 ### `collapseSubtasks`
 
-A task collapses its subtasks into a single line once it finishes, by default. With `collapseSubtasks: false`, it keeps them under its title and prints them as they finish. See [When Tasks Are Persisted](#when-tasks-are-persisted) for both.
+A task collapses its subtasks into a single line once it finishes, by default. With `collapseSubtasks: false`, it keeps them under its title. See [When Tasks Are Persisted](#when-tasks-are-persisted) for both.
 
 ### `showSubtasks`
 

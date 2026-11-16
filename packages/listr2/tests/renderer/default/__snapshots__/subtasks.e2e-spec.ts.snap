@@ -37,39 +37,32 @@ exports[`default renderer: show subtasks > should be able to change collapse set
   "✔ This task will execute.
 ❯ This task will execute.",
   "✔ This task will execute.
-┌ This task will execute.
-│   ◼ This is a subtask.
-└ ❯",
+┌ ❯ This task will execute.
+└   ◼ This is a subtask.",
   "✔ This task will execute.
-┌ This task will execute.
+┌ ❯ This task will execute.
 │   ◼ This is a subtask.
-│   ◼ This is an another subtask.
-└ ❯",
+└   ◼ This is an another subtask.",
   "✔ This task will execute.
-┌ This task will execute.
+┌ ❯ This task will execute.
 │   ❯ This is a subtask.
-│   ◼ This is an another subtask.
-└ ❯",
+└   ◼ This is an another subtask.",
   "✔ This task will execute.
-┌ This task will execute.
+┌ ❯ This task will execute.
 │   ✔ This is a subtask.
-│   ◼ This is an another subtask.
-└ ❯",
+└   ◼ This is an another subtask.",
   "✔ This task will execute.
-┌ This task will execute.
+┌ ❯ This task will execute.
 │   ✔ This is a subtask.
-│   ❯ This is an another subtask.
-└ ❯",
+└   ❯ This is an another subtask.",
   "✔ This task will execute.
-┌ This task will execute.
+┌ ❯ This task will execute.
 │   ✔ This is a subtask.
-│   ✔ This is an another subtask.
-└ ❯",
+└   ✔ This is an another subtask.",
   "✔ This task will execute.
-┌ This task will execute.
+┌ ✔ This task will execute.
 │   ✔ This is a subtask.
-│   ✔ This is an another subtask.
-└ ✔",
+└   ✔ This is an another subtask.",
 ]
 `;
 
