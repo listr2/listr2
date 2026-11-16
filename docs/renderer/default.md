@@ -25,7 +25,7 @@ This renderer uses _ProcessOutput_ to take control of the terminal.
 
 Finished tasks are printed once and scroll up like any other output. Running and waiting tasks, their output bars, the bottom bar, and prompts stay at the bottom of the terminal and update in place.
 
-You can find the related example [here](https://github.com/listr2/listr2/tree/master/examples/renderer-default-long.example.ts). It runs a task list taller than any terminal for about a minute, so you can scroll and resize the terminal while it runs:
+You can find the related example [here](https://github.com/listr2/listr2/tree/master/examples/renderer-default-long.example.ts). It runs a task list taller than any terminal for about a minute, so you can scroll and resize the terminal while it runs. Near the end, a group rolls back, a group retries, and a group runs more subtasks at once than a terminal of 20 rows shows:
 
 ```bash
 pnpm run --filter @listr2/examples start examples/renderer-default-long.example.ts
@@ -54,25 +54,24 @@ _A concurrent group with `collapseSubtasks: false`: each subtask is printed as i
 
 ### Brackets
 
-A task that shows its subtasks under its title draws them as a bracket: a header with its title, a dimmed connector in front of its subtasks, and a footer. The status of the task shows on whichever of the header and the footer can still change.
+A task that shows its subtasks under its title draws them as a bracket: a header with its title and a dimmed connector in front of its subtasks. The status of the task shows on whichever line can still change.
 
-While the header can still change, it shows the status: a task whose subtasks collapse while it runs, or a group printed at once because it failed, rolled back, retried or was cancelled. The footer is then a bare `└`.
+While the header can still change, it shows the status: a task whose subtasks collapse while it runs, or a group printed at once because it failed, rolled back, retried or was cancelled. The bracket then closes on its last line.
 
 ```text
 ┌ ⠋ Rolling back migrations
 │ ✖ Running migration 002 failed.
-│ ◼ Running migration 003.
-└
+└ ◼ Running migration 003.
 ```
 
-A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on its footer shows the status.
+A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on a footer below its subtasks shows the status and the title.
 
 ```text
 ┌ Running migrations
 │ ✔ Running migration 001.
 │ ✔ Running migration 002.
 │ ⠋ Running migration 003.
-└ ❯
+└ ❯ Running migrations
 ```
 
 ![A group with collapseSubtasks: false while it runs](../../examples/screenshots/bracket-running.png)
@@ -83,14 +82,14 @@ _A group with `collapseSubtasks: false` while it runs._
 
 _The same group from start to end._
 
-The status is `❯` while the task runs, or the spinner and `[RETRY:n]` while it retries. Once the task finished, it is `✔`, `⚠` when some subtasks failed without failing the task, `←` when it rolled back, or a red `✖` when the task failed, followed by the time it took with the `timer` option. A footer that shows the status also shows the title when the task changed it after its header was printed, or while it runs once the header has scrolled off the screen.
+The status is `❯` while the task runs, or the spinner and `[RETRY:n]` while it retries. Once the task finished, it is `✔`, `⚠` when some subtasks failed without failing the task, `←` when it rolled back, or a red `✖` when the task failed, followed by the time it took with the `timer` option.
 
 ```text
 ┌ Running migrations
 │ ✔ Running migration 001.
 │ ✔ Running migration 002.
 │ ✔ Running migration 003.
-└ ✔
+└ ✔ Running migrations
 ```
 
 ![A group with collapseSubtasks: false once it finished](../../examples/screenshots/bracket.png)
@@ -103,7 +102,7 @@ _Groups that stay expanded because a subtask failed, printed at once with the st
 
 ![A footer with a changed title, and a footer with a timer](../../examples/screenshots/title.png)
 
-_The first group changed its title after its header was printed, so its footer shows the new title. The second has the `timer` option, so its footer shows the time it took._
+_The first group changed its title after its header was printed, so its footer shows the new title. The second has the `timer` option, so its footer shows the time it took after its title._
 
 Nested groups draw one bracket per level. Tasks without a title draw no bracket, and neither does any task with `indentation: 0`.
 
@@ -135,7 +134,7 @@ When the running part of the list is taller than the terminal, it is shortened u
 
 - The finished subtasks of a task whose subtasks collapse are folded into a single `↑ N` line.
 - The tasks that have not started yet are folded into a single `… N` line.
-- If it still does not fit, only its bottom rows are shown.
+- If it still does not fit, only its bottom rows are shown. A group whose header is cut off this way shows its status and title on a footer until the header fits again.
 
 Every task is still printed in full once it finishes.
 

@@ -17,7 +17,7 @@ try {
       ...steps(
         30,
         (index) => `Preparing the workspace, step ${index + 1} of 30.`,
-        () => 300
+        () => 150
       ),
 
       {
@@ -27,7 +27,7 @@ try {
             steps(
               60,
               (index) => `Installing package-${index + 1}.`,
-              () => 250
+              () => 150
             )
           )
       },
@@ -39,7 +39,7 @@ try {
             steps(
               20,
               (index) => `Running migration ${String(index + 1).padStart(3, '0')}.`,
-              () => 300
+              () => 250
             ),
             { rendererOptions: { collapseSubtasks: false } }
           )
@@ -101,13 +101,74 @@ try {
         }
       },
 
+      {
+        title: 'Publishing the release, which rolls back when it fails.',
+        task: (_, task): Listr =>
+          task.newListr([
+            {
+              title: 'Uploading the artifacts.',
+              task: async(): Promise<void> => {
+                await delay(1500)
+                throw new Error('The upload failed after 1.5 seconds.')
+              }
+            },
+            { title: 'Tagging the release.', task: async(): Promise<void> => delay(500) }
+          ]),
+        rollback: async(_, task): Promise<void> => {
+          task.title = 'Rolling back the release, the upload failed.'
+          await delay(1000)
+          task.title = 'Removing the uploaded artifacts.'
+          await delay(1000)
+          task.title = 'Rolled back the release.'
+        }
+      },
+
+      {
+        title: 'Deploying, which retries the whole group once.',
+        task: (_, task): Listr =>
+          task.newListr([
+            { title: 'Starting the containers.', task: async(): Promise<void> => delay(700) },
+            {
+              title: 'Checking the health of the containers.',
+              task: async(): Promise<void> => {
+                await delay(800)
+
+                if (!task.isRetrying().count) {
+                  throw new Error('The containers did not become healthy.')
+                }
+              }
+            }
+          ]),
+        retry: 1
+      },
+
+      {
+        title: 'Running the test shards at the same time, more than a short terminal shows.',
+        task: (_, task): Listr =>
+          task.newListr(
+            Array.from({ length: 24 }, (_, index) => ({
+              title: `Running test shard ${index + 1} of 24.`,
+              task: async(): Promise<void> => {
+                // uneven delays, so the shards finish out of order and the finished ones fold into a summary
+                await delay(1000 + ((index * 700) % 3000))
+
+                if (index === 9) {
+                  throw new Error('Test shard 10 of 24 failed.')
+                }
+              }
+            })),
+            { concurrent: true, exitOnError: false }
+          )
+      },
+
       ...steps(
         30,
         (index) => `Cleaning up, step ${index + 1} of 30.`,
-        () => 300
+        () => 150
       )
     ],
-    { renderer: 'default' }
+    // the release rolls back and the run carries on
+    { renderer: 'default', exitAfterRollback: false }
   ).run()
 } catch(e: any) {
   console.error(e)

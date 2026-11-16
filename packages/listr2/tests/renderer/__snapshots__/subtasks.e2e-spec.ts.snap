@@ -7,28 +7,22 @@ exports[`default renderer: show subtasks > should be able to change concurrency 
   "◼ This task will execute.",
   "❯ This task will execute.",
   "┌ ❯ This task will execute.
-│ ◼ This is a subtask.
-└",
+└ ◼ This is a subtask.",
   "┌ ❯ This task will execute.
 │ ◼ This is a subtask.
-│ ◼ This is an another subtask.
-└",
+└ ◼ This is an another subtask.",
   "┌ ❯ This task will execute.
 │ ❯ This is a subtask.
-│ ◼ This is an another subtask.
-└",
+└ ◼ This is an another subtask.",
   "┌ ❯ This task will execute.
 │ ❯ This is a subtask.
-│ ❯ This is an another subtask.
-└",
+└ ❯ This is an another subtask.",
   "┌ ❯ This task will execute.
 │ ❯ This is a subtask.
-│ ✔ This is an another subtask.
-└",
+└ ✔ This is an another subtask.",
   "┌ ❯ This task will execute.
 │ ✔ This is a subtask.
-│ ✔ This is an another subtask.
-└",
+└ ✔ This is an another subtask.",
   "✔ This task will execute.",
 ]
 `;
@@ -45,97 +39,81 @@ exports[`default renderer: show subtasks > should be able to change exit on erro
   "❯ This task will execute and not quit on errors.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
+└ ◼ This is a subtask.
+◼ This task will execute.",
+  "┌ ❯ This task will execute and not quit on errors.
 │ ◼ This is a subtask.
-└
+└ ◼ This is an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ◼ This is a subtask.
 │ ◼ This is an another subtask.
-└
-◼ This task will execute.",
-  "┌ ❯ This task will execute and not quit on errors.
-│ ◼ This is a subtask.
-│ ◼ This is an another subtask.
-│ ◼ This is yet an another subtask.
-└
+└ ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ❯ This is a subtask.
 │ ◼ This is an another subtask.
-│ ◼ This is yet an another subtask.
-└
+└ ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ✖ This is a subtask.
 │ ◼ This is an another subtask.
-│ ◼ This is yet an another subtask.
-└
+└ ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ◼ This is an another subtask.
-│ ◼ This is yet an another subtask.
-└
+└ ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ❯ This is an another subtask.
-│ ◼ This is yet an another subtask.
-└
+└ ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ This is an another subtask.
-│ ◼ This is yet an another subtask.
-└
+└ ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
-│ ◼ This is yet an another subtask.
-└
+└ ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
-│ ❯ This is yet an another subtask.
-└
+└ ❯ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
-│ ❯ I have succeeded.
-└
+└ ❯ I have succeeded.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
-│ ✔ I have succeeded.
-└
+└ ✔ I have succeeded.
 ◼ This task will execute.",
   "┌ ⚠ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
-│ ✔ I have succeeded.
-└
+└ ✔ I have succeeded.
 ◼ This task will execute.",
   "┌ ⚠ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
-│ ✔ I have succeeded.
-└
+└ ✔ I have succeeded.
 ❯ This task will execute.",
   "┌ ⚠ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
-│ ✔ I have succeeded.
-└
+└ ✔ I have succeeded.
 ✖ This task will execute.",
   "┌ ⚠ This task will execute and not quit on errors.
 │ ✖ I have failed [0]
 │ ✖ I have failed [1]
-│ ✔ I have succeeded.
-└
+└ ✔ I have succeeded.
 ✖ exit",
 ]
 `;
@@ -149,28 +127,22 @@ exports[`default renderer: show subtasks > should create a set of subtasks > scr
   "◼ This task will execute.",
   "❯ This task will execute.",
   "┌ ❯ This task will execute.
-│ ◼ This is a subtask.
-└",
+└ ◼ This is a subtask.",
   "┌ ❯ This task will execute.
 │ ◼ This is a subtask.
-│ ◼ This is a subtask.
-└",
+└ ◼ This is a subtask.",
   "┌ ❯ This task will execute.
 │ ❯ This is a subtask.
-│ ◼ This is a subtask.
-└",
+└ ◼ This is a subtask.",
   "┌ ❯ This task will execute.
 │ ✔ This is a subtask.
-│ ◼ This is a subtask.
-└",
+└ ◼ This is a subtask.",
   "┌ ❯ This task will execute.
 │ ✔ This is a subtask.
-│ ❯ This is a subtask.
-└",
+└ ❯ This is a subtask.",
   "┌ ❯ This task will execute.
 │ ✔ This is a subtask.
-│ ✔ This is a subtask.
-└",
+└ ✔ This is a subtask.",
   "✔ This task will execute.",
 ]
 `;
