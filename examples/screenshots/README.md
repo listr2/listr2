@@ -65,7 +65,9 @@ Grab the window with `grim` while the run is in the state the image shows, such 
 grim -g "$(swaymsg -t get_tree | jq -r '.. | objects | select(.app_id? == "listr2-shot") | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" group.png
 ```
 
-The files ending in `-running.png` show a case while it runs, and `summary.png`, `show-subtasks.png`, `retry.png` and `output-bar.png` are taken while it runs as well. Every other PNG file shows the end of the run.
+The files ending in `-running.png` show a case while it runs, and `summary.png`, `show-subtasks.png`, `retry.png`, `output-bar.png`, `command.png`, `process-output.png` and `prompt.png` are taken while it runs as well. Every other PNG file shows the end of the run. Answer the prompt of the `prompt` case with Enter once it is grabbed.
+
+For `interruption.png`, press `Ctrl+C` while `Switching the release.` runs. Run the case with `examples/node_modules/.bin/tsx --tsconfig examples/tsconfig.json` from the root of the repository instead of `pnpm run`, since pnpm returns on `SIGINT` before the run has printed its end.
 
 ## Recording a GIF
 

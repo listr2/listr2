@@ -87,6 +87,13 @@ This preset is available for the _VerboseRenderer_, _SimpleRenderer_ on _Listr_ 
 <<< @../../examples/docs/renderer/logger/preset-timestamp.ts
 
 :::
+<<< @../../examples/docs/renderer/logger/preset-timestamp.ts
+
+:::
+
+![The simple renderer with the timer and the timestamp](../../examples/screenshots/simple.png)
+
+_The simple renderer with `PRESET_TIMER` and `PRESET_TIMESTAMP`._
 
 ## Custom Logger
 

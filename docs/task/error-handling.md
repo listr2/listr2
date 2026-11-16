@@ -69,6 +69,14 @@ Be aware that the execution will only stop after the error is thrown out. This c
 
 Default renderer has options where you can change how the errors are displayed.
 
+![Two groups expanded by a failed subtask](../../examples/screenshots/failure.png)
+
+_A task that carries on past a failed subtask with `exitOnError: false` and shows `⚠`, and a task that fails with its subtask and shows a red `❯`._
+
+![collapseErrors true and false](../../examples/screenshots/collapse-errors.png)
+
+_With `collapseErrors: true`, the default, a failed subtask shows its error message in place of its title. With `collapseErrors: false`, it keeps its title and shows the error message below it._
+
 <llm-exclude>
 
 ::: details Interface
@@ -82,6 +90,11 @@ Default renderer has options where you can change how the errors are displayed.
 ### _SimpleRenderer_ & _VerboseRenderer_
 
 The non-TTY renderers log a `FAILED` entry carrying the error message.
+The non-TTY renderers log a `FAILED` entry carrying the error message.
+
+![Two groups with a failed subtask with the simple renderer](../../examples/screenshots/failure-simple.png)
+
+_The same tasks with the simple renderer._
 
 ## Collected Errors
 

@@ -26,6 +26,10 @@ When a run is interrupted with `Ctrl+C` (`SIGINT`):
 - Tasks without a `rollback`, as well as any tasks that had not started yet, are marked with the `cancelled` state, shown as a `⊘` in the default renderer. This is distinct from `failed`, so an interrupted run is not mistaken for one that errored.
 - The process exits with code `127`, but only after every in-flight rollback has settled.
 
+![A run interrupted with Ctrl+C](../../examples/screenshots/interruption.png)
+
+_A run interrupted while `Switching the release.` ran. It has a rollback, so it rolled back, and the tasks that had not started are cancelled._
+
 ## The signal mechanism
 
 Interruption can not cancel an already-running _Promise_, so the original task function keeps executing in the background until it settles on its own while its `rollback` runs. To cancel your own asynchronous work cooperatively, use the `AbortSignal` exposed as `task.signal`, which aborts as soon as the run is interrupted.

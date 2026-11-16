@@ -78,6 +78,10 @@ Retrying is self-aware, and you can access the task if it is retrying via `task.
 
 ### _DefaultRenderer_
 
+![A task that retries](../../examples/screenshots/retry.png)
+
+_A task while it retries, with the `[RETRY:n]` suffix of `suffixRetries: true`, the default._
+
 <llm-exclude>
 
 ::: details
@@ -91,3 +95,7 @@ Retrying is self-aware, and you can access the task if it is retrying via `task.
 ### _SimpleRenderer_ & _VerboseRenderer_
 
 The non-TTY renderers log a `RETRY` entry with the current attempt count on each retry, rather than resetting an in-place title.
+
+![A task that retries with the simple renderer](../../examples/screenshots/retry-simple.png)
+
+_A task that succeeds on its third attempt, with the simple renderer._

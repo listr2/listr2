@@ -39,6 +39,18 @@ Besides task failures, `rollback` also runs when a run is interrupted with `Ctrl
 
 When rollback is activated the default renderer will change the spinner color to bright red, if the rollback successfully concludes then it will be a redback arrow, else it would be like a normal error where it will show the error from the rollback action itself.
 
+![A subtask while it rolls back](../../examples/screenshots/rollback-running.png)
+
+_A subtask that failed, while its rollback runs and changes its title._
+
+![A subtask that rolled back](../../examples/screenshots/rollback.png)
+
+_The same subtask once it rolled back. Its parent failed, so it shows a red `❯`._
+
 ### _SimpleRenderer_ & _VerboseRenderer_
 
 The non-TTY renderers cannot recolor a spinner, so they log a `ROLLBACK` entry carrying the rollback message instead.
+
+![A subtask that rolled back with the simple renderer](../../examples/screenshots/rollback-simple.png)
+
+_The same rollback with the simple renderer._

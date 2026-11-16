@@ -22,6 +22,10 @@ This allows the user to change the title depending on the progress made througho
 
 <<< @../../examples/docs/task/title/task-title.ts{5,9,13}
 
+![A task that changed its title](../../examples/screenshots/title.png)
+
+_The first task changed its title to `Compiled 3 packages.` while it ran._
+
 ## Tasks without a Title
 
 The title of a _Task_ is an optional property.

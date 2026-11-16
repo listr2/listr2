@@ -44,6 +44,10 @@ Skip call can either have or not have a message, therefore it is optional. Havin
 
 The default renderer has options where you can change how the skip messages are displayed.
 
+![collapseSkips true and false](../../examples/screenshots/collapse-skips.png)
+
+_With `collapseSkips: true`, the default, a skipped subtask shows its skip message in place of its title. With `collapseSkips: false`, it keeps its title and shows the skip message below it._
+
 <llm-exclude>
 
 ::: details
@@ -57,3 +61,7 @@ The default renderer has options where you can change how the skip messages are 
 ### _SimpleRenderer_ & _VerboseRenderer_
 
 The non-TTY renderers log a `SKIPPED` entry with the skip reason when a task is skipped; the display options above are specific to the _DefaultRenderer_.
+
+![A skipped task with the simple renderer](../../examples/screenshots/skip-simple.png)
+
+_A skipped subtask with the simple renderer._

@@ -82,6 +82,10 @@ Task output can be piped to the `task.stdout()` directly since it is a `Writable
 
 :::
 
+![The output of a command in the output bar](../../examples/screenshots/command.png)
+
+_A command piped to `task.stdout()`, with `outputBar: Infinity`._
+
 Whenever more control over the stream is required, temporary `WritableStream` can be created through helper function `createWritable` via passing it a callback to dictate the behavior of the `write` call.
 
 ::: details <CodeExampleIcon /> Code Example
@@ -111,6 +115,10 @@ Item count that is desired to be showed in the output bar can be set through the
 
 :::
 
+![A task with outputBar: 3 while it runs](../../examples/screenshots/output-bar.png)
+
+_A task with `outputBar: 3` shows its last three lines of output under its title while it runs._
+
 #### Use the Bottom Bar
 
 For _DefaultRenderer_, data can be outputted to a bar below all the render area, this is useful for fast moving logs. If the task has no title, last line of output will be rendered in the bottom bar by default.
@@ -130,6 +138,10 @@ Item count that is desired to be showed in the bottom bar can be set through the
 
 :::
 
+![The output bar and the bottom bar from start to end](../../examples/screenshots/output.gif)
+
+_The output bar of the first task, and the bottom bar of the second, which has `bottomBar: 3`._
+
 #### Persistent Output
 
 To keep the output after the task has been completed while using the default renderer, you can set `{ persistentOutput: true }` in the _Task_ or _Listr_ renderer options.
@@ -140,6 +152,14 @@ To keep the output after the task has been completed while using the default ren
 
 :::
 
+![The persisted output of a task with persistentOutput](../../examples/screenshots/output.png)
+
+_Once they finished, the output of the second task stays below the list, since it has `persistentOutput: true`._
+
 ### _SimpleRenderer_ & _VerboseRenderer_
 
 The non-TTY renderers have no bars. Every line written to `task.output` is logged as an `OUTPUT` entry as it arrives, interleaved with the rest of the log, so the output is inherently persistent — the `outputBar`, `bottomBar` and `persistentOutput` options do not apply.
+
+![The output of two tasks with the simple renderer](../../examples/screenshots/output-simple.png)
+
+_The tasks of the output bar and the bottom bar above, with the simple renderer._

@@ -6,8 +6,8 @@ import type { ListrBaseClassOptions, ListrTask } from 'listr2'
 
 const name = process.argv[2]
 
-// the figures are picked when listr2 loads, so the ascii case pretends to run on a terminal without unicode first
-if (name === 'ascii') {
+// the figures are picked when listr2 loads, so the cases without unicode pretend to run on such a terminal first
+if (name === 'ascii' || name === 'fallback') {
   Object.defineProperty(process, 'platform', { value: 'win32' })
 }
 
@@ -112,6 +112,49 @@ const building: ListrTask = {
     )
 }
 
+const flaky: ListrTask = {
+  title: 'Calling a flaky service.',
+  retry: 2,
+  task: async(_, task): Promise<void> => {
+    await delay(1500)
+
+    if (task.isRetrying().count < 2) {
+      throw new Error('The service did not answer.')
+    }
+  }
+}
+
+// a deploy that fails on its second step, and with a rollback, restores the previous release
+const deploying = (rollback?: boolean): ListrTask => ({
+  title: 'Deploying',
+  task: (_, task) =>
+    task.newListr(
+      [
+        { title: 'Uploading the bundles.', task: async(): Promise<void> => delay(800) },
+        {
+          title: 'Switching the release.',
+          task: async(): Promise<void> => {
+            await delay(800)
+
+            throw new Error('The release lock is held by another deploy.')
+          },
+          rollback: rollback
+            ? async(_, task): Promise<void> => {
+              task.title = 'Restoring the previous release.'
+              await delay(2400)
+              task.title = 'Restored the previous release.'
+            }
+            : undefined
+        },
+        { title: 'Purging the cache.', task: async(): Promise<void> => delay(800) }
+      ],
+      { exitOnError: true }
+    )
+})
+
+// the simple renderer, which a non-TTY environment falls back to
+const logged = (tasks: ListrTask[]): Promise<unknown> => new Listr(tasks, { exitOnError: false, renderer: 'simple' }).run()
+
 const cases: Record<string, () => Promise<unknown>> = {
   // a group with collapseSubtasks: false, while it runs and once it closed
   group: () => run([migrations]),
@@ -137,26 +180,7 @@ const cases: Record<string, () => Promise<unknown>> = {
     ),
 
   // groups that would collapse, but stay expanded because a subtask failed: one carries on past the failure, the other fails with it
-  failure: () =>
-    run([
-      validating('Validating config'),
-      {
-        title: 'Deploying',
-        task: (_, task) =>
-          task.newListr([
-            { title: 'Uploading the bundles.', task: async(): Promise<void> => delay(800) },
-            {
-              title: 'Switching the release.',
-              task: async(): Promise<void> => {
-                await delay(800)
-
-                throw new Error('The release lock is held by another deploy.')
-              }
-            },
-            { title: 'Purging the cache.', task: async(): Promise<void> => delay(800) }
-          ], { exitOnError: true })
-      }
-    ]),
+  failure: () => run([validating('Validating config'), deploying()]),
 
   // a list taller than the terminal, shortened with the summary lines while it runs
   summary: () =>
@@ -199,20 +223,7 @@ const cases: Record<string, () => Promise<unknown>> = {
   'show-subtasks': () => run([installing], { rendererOptions: { showSubtasks: false } }),
   'collapse-errors': () => run([validating('collapseErrors: true, the default'), validating('collapseErrors: false', { collapseErrors: false })]),
   'collapse-skips': () => run([skipping('collapseSkips: true, the default'), skipping('collapseSkips: false', { collapseSkips: false })]),
-  retry: () =>
-    run([
-      {
-        title: 'Calling a flaky service.',
-        retry: 2,
-        task: async(_, task): Promise<void> => {
-          await delay(1500)
-
-          if (task.isRetrying().count < 2) {
-            throw new Error('The service did not answer.')
-          }
-        }
-      }
-    ]),
+  retry: () => run([flaky]),
   truncate: () =>
     run(steps(['Generating the changelog from every conventional commit since the last release tag, grouped by scope and type.']), {
       rendererOptions: { formatOutput: 'truncate' }
@@ -240,6 +251,94 @@ const cases: Record<string, () => Promise<unknown>> = {
         }
       }
     }),
+
+  // a subtask that rolls back once it failed, while it rolls back and once it closed
+  rollback: () => run([deploying(true)]),
+
+  // the output of a command piped to the output bar
+  command: () =>
+    run([
+      {
+        title: 'Running the test suite.',
+        task: async(_, task): Promise<void> => {
+          const { execa } = await import('execa')
+          const child = execa('node', [
+            '-e',
+            '[\'parse\', \'render\', \'format\', \'logger\'].forEach((file, index) => setTimeout(() => console.log(`✓ tests/${file}.spec.ts`), 700 * (index + 1)))'
+          ])
+
+          child.stdout.pipe(task.stdout())
+          await child
+        },
+        rendererOptions: { outputBar: Infinity }
+      }
+    ]),
+
+  // a prompt, answered with its default
+  prompt: () =>
+    run([
+      {
+        title: 'Configuring the project.',
+        task: async(_, task): Promise<void> => {
+          const { input } = await import('@inquirer/prompts')
+          const { ListrInquirerPromptAdapter } = await import('@listr2/prompt-adapter-inquirer')
+          const name = await task.prompt(ListrInquirerPromptAdapter).run(input, { message: 'What is the name of the project?', default: 'my-project' })
+
+          task.title = `Configured ${name}.`
+        }
+      },
+      { title: 'Writing package.json.', task: async(): Promise<void> => delay(800) }
+    ]),
+
+  // a run interrupted with Ctrl+C while a task with a rollback runs
+  interruption: () =>
+    run([
+      {
+        title: 'Deploying',
+        task: (_, task) =>
+          task.newListr([
+            { title: 'Uploading the bundles.', task: async(): Promise<void> => delay(800) },
+            {
+              title: 'Switching the release.',
+              task: async(): Promise<void> => delay(10000),
+              rollback: async(_, task): Promise<void> => {
+                task.title = 'Restoring the previous release.'
+                await delay(1200)
+                task.title = 'Restored the previous release.'
+              }
+            },
+            { title: 'Purging the cache.', task: async(): Promise<void> => delay(800) }
+          ])
+      },
+      { title: 'Notifying the team.', task: async(): Promise<void> => delay(800) }
+    ]),
+
+  // a task that writes to the console while the list runs
+  'process-output': () =>
+    run([
+      {
+        title: 'Building the bundles.',
+        task: async(): Promise<void> => {
+          for (const bundle of ['main', 'vendor', 'styles']) {
+            await delay(700)
+            console.log(`Wrote dist/${bundle}.js.`)
+          }
+
+          await delay(1500)
+        }
+      },
+      { title: 'Publishing to npm.', task: async(): Promise<void> => delay(800) }
+    ]),
+
+  // the fallback figures of a terminal without unicode, without the bracket
+  fallback: () => run([validating('Validating config'), skipping('Publishing')]),
+
+  // the same features with the simple renderer
+  'rollback-simple': () => logged([deploying(true)]),
+  'failure-simple': () => logged([validating('Validating config'), deploying()]),
+  'retry-simple': () => logged([flaky]),
+  'skip-simple': () => logged([skipping('Publishing')]),
+  'output-simple': () => logged(reporting),
 
   // the simple and the verbose renderer
   simple: () =>

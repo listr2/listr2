@@ -37,6 +37,10 @@ Unicode characters like icons are not used whenever it is detected that your out
 
 - You can use the `forceUnicode` option on _Listr_ or set the environment variable `LISTR_FORCE_UNICODE=1` to force the usage of the Unicode characters.
 
+![The fallback figures of the default renderer](../../examples/screenshots/fallback.png)
+
+_The default renderer on a terminal that does not support unicode._
+
 ::: warning
 
 These checks are primal at best but do not forget that in many cases, your terminal might support any of these UI properties, but the application in between might abstract access to them therefore it can be detected otherwise.

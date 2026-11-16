@@ -200,3 +200,7 @@ Prompts, since their output passes through an internal `WritableStream` as a `pr
 ### _DefaultRenderer_
 
 Prompts can either have a title or not, but they will always be rendered at the end of the current console output.
+
+![A prompt below the task list](../../examples/screenshots/prompt.png)
+
+_A prompt of the `inquirer` adapter, below the tasks._
