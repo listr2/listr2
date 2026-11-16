@@ -96,10 +96,7 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   /**
-   * Throws a `RangeError` for an option value that would break the rendering, when a task list or a task is created.
-   *
-   * - A negative or `NaN` indentation never renders, an unknown `formatOutput` renders nothing, and a negative or `NaN` `outputBar` or
-   *   `bottomBar` shows no output or every line of it.
+   * Throws a `RangeError` for an invalid `indentation`, `formatOutput`, `outputBar` or `bottomBar`, when a task list or a task is created.
    */
   public static assertOptions(options: ListrDefaultRendererOptions & ListrDefaultRendererTaskOptions = {}): void {
     if (options.indentation !== undefined) {

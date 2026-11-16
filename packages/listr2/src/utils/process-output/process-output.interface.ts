@@ -16,8 +16,7 @@ export interface ProcessOutputRendererOptions {
  */
 export interface ProcessOutputOptions {
   /**
-   * Which captured streams are written: above the live region as the writes arrive while a renderer draws one, otherwise on
-   * `ProcessOutput.release()`. The writes to the other streams are dropped.
+   * Which captured streams are written. Writes to the other streams are dropped.
    *
    * @defaultValue `[ 'stdout', 'stderr' ]`
    */

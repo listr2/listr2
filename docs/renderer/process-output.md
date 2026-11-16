@@ -24,15 +24,15 @@ category:
 
 <Version version="v12.0.0" />
 
-_ProcessOutput_ also owns the live region at the bottom of `stdout` that the _DefaultRenderer_ draws through [`log-update`](https://www.npmjs.com/package/log-update): `output.update()` redraws it, `output.persist()` writes text above it, where the text stays, and `output.clear()` erases it. It is redrawn when the terminal is resized. Once a renderer draws through it, anything written to the hijacked streams is written above the live region as it arrives, together with everything else written in the same tick. Writes to `stderr` still go to `stderr`. Streams left out of the `dump` option are still discarded. Output that is not written through `process.stdout` or `process.stderr`, such as a child process spawned with `stdio: 'inherit'`, cannot be hijacked and corrupts the live region; use [`task.stdout()`](../task/output.md) for it instead.
+_ProcessOutput_ also keeps the part of `stdout` that the _DefaultRenderer_ updates in place: `output.update()` draws it, `output.persist()` prints text above it for good, and `output.clear()` erases it. While it is drawn, anything written to `process.stdout` or `process.stderr` is printed above it as it arrives, and streams left out of the `dump` option are dropped. A child process spawned with `stdio: 'inherit'` is not captured; use [`task.stdout()`](../task/output.md) for it instead.
 
 ## Locking the Input
 
-While the output is hijacked, `output.lockInput()` turns off the echo of the terminal with `stty -echo` until `output.unlockInput()` or the release, so keystrokes are not echoed into the live region. The keyboard signals are left on, so `Ctrl+C`, `Ctrl+\` and `Ctrl+Z` reach the whole foreground job as before. The _DefaultRenderer_ locks the input unless its `lockInput` option is `false`, and unlocks it while a prompt is active. See [the default renderer](./default.md#keyboard-input).
+`output.lockInput()` hides what is typed until `output.unlockInput()` or the release. The _DefaultRenderer_ calls it unless its `lockInput` option is `false`. See [the default renderer](./default.md#keyboard-input).
 
 ## Release
 
-When the renderer releases the _ProcessOutput_, the streams are restored, and anything captured that has not been written yet is written to its stream, in the order it arrived. With the _DefaultRenderer_ that is at most what was written in the last tick, since everything else was already written above the live region. A renderer that hijacks the streams without drawing a live region, such as the _SimpleRenderer_ while a prompt is active, holds the captured output until the release, so it does not break into the prompt.
+When the renderer releases the _ProcessOutput_, the streams are restored, and anything still captured is written in the order it arrived.
 
 ## Writing Through Process Output
 

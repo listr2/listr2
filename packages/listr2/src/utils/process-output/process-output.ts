@@ -75,11 +75,7 @@ export class ProcessOutput {
     this.active = true
   }
 
-  /**
-   * Redraws the live region at the bottom of `stdout`.
-   *
-   * Once a live region is drawn, captured writes are written above it as they arrive.
-   */
+  /** Draws the live region at the bottom of `stdout`, which captured writes are then printed above. */
   public update(live: string): void {
     this.live = live
 
@@ -109,7 +105,7 @@ export class ProcessOutput {
   }
 
   /**
-   * Stops the terminal from echoing keyboard input until `unlockInput()` or `release()`, while the output is hijacked.
+   * Hides keyboard input until `unlockInput()` or `release()`, while the output is hijacked.
    *
    * @see {@link https://listr2.kilic.dev/renderer/default.html#keyboard-input}
    */
@@ -147,7 +143,7 @@ export class ProcessOutput {
     process.on('SIGTSTP', this.onStop)
   }
 
-  /** Restores the echo of the terminal that `lockInput()` turned off. */
+  /** Shows keyboard input again after `lockInput()`. */
   public unlockInput(): void {
     this.background = undefined
 
@@ -166,7 +162,7 @@ export class ProcessOutput {
     this.stopped = undefined
   }
 
-  /** Writes what was captured and not written yet, such as while a prompt of the simple renderer was active, and restores the streams. */
+  /** Writes what was captured and not written yet, and restores the streams. */
   public release(): void {
     if (this.updater) {
       this.stdout.off('resize', this.onResize)

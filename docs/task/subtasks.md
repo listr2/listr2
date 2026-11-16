@@ -60,7 +60,7 @@ You can access the parent task class from subtasks by passing the function signa
 
 ### _DefaultRenderer_
 
-Subtasks are rendered as an indented block under the parent task and can be collapsed once finished through the `collapseSubtasks` renderer option. While they are shown under the title of their parent, they are drawn as a bracket, with a header, a connector and a footer, so they read as one group. See [When Tasks Are Persisted](../renderer/default.md#when-tasks-are-persisted).
+Subtasks are rendered as an indented block under the parent task and can be collapsed once finished through the `collapseSubtasks` renderer option. While they are shown under their parent, they are drawn as a bracket. See [Brackets](../renderer/default.md#brackets).
 
 ### _SimpleRenderer_ & _VerboseRenderer_
 

@@ -50,7 +50,7 @@ export interface ListrDefaultRendererOptions
    */
   lazy?: boolean
   /**
-   * Stop the terminal from echoing keyboard input while the tasks run, since an echoed line break moves the cursor under the task list.
+   * Hide keyboard input while the tasks run, so it cannot break the task list.
    *
    * - This is a global option that can only be changed through the main Listr class.
    * - Disable it when a task reads from the terminal, such as a child process spawned with `stdio: 'inherit'`.
@@ -63,10 +63,9 @@ export interface ListrDefaultRendererOptions
    * Draw an expanded task as a bracket: a header with its title, a vertical line in front of its subtasks, and a footer with its status.
    *
    * - This is a global option that can only be changed through the main Listr class.
-   * - The bracket takes the first column of the indentation, so it is not drawn when `indentation` is `0`.
-   * - Tasks without a title draw no bracket.
+   * - Tasks without a title, and every task when `indentation` is `0`, draw no bracket.
    *
-   * @see {@link https://listr2.kilic.dev/renderer/default.html#when-tasks-are-persisted}
+   * @see {@link https://listr2.kilic.dev/renderer/default.html#brackets}
    * @defaultValue `true`
    */
   markIndentation?: boolean
