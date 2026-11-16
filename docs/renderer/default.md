@@ -54,23 +54,23 @@ _A concurrent group with `collapseSubtasks: false`: each subtask is printed as i
 
 ### Brackets
 
-A task that shows its subtasks under its title draws them as a bracket: a header with its title and a dimmed connector in front of its subtasks. The status of the task shows on whichever line can still change.
+A task that shows its subtasks under its title draws them as a bracket: a header with its title and a dimmed connector in front of its subtasks, which sit one level deeper than the status icon. The status of the task shows on whichever line can still change.
 
 While the header can still change, it shows the status: a task whose subtasks collapse while it runs, or a group printed at once because it failed, rolled back, retried or was cancelled. The bracket then closes on its last line.
 
 ```text
 ┌ ⠋ Rolling back migrations
-│ ✖ Running migration 002 failed.
-└ ◼ Running migration 003.
+│   ✖ Running migration 002 failed.
+└   ◼ Running migration 003.
 ```
 
 A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on a footer below its subtasks shows the status and the title.
 
 ```text
 ┌ Running migrations
-│ ✔ Running migration 001.
-│ ✔ Running migration 002.
-│ ⠋ Running migration 003.
+│   ✔ Running migration 001.
+│   ✔ Running migration 002.
+│   ⠋ Running migration 003.
 └ ❯ Running migrations
 ```
 
@@ -86,9 +86,9 @@ The status is `❯` while the task runs, or the spinner and `[RETRY:n]` while it
 
 ```text
 ┌ Running migrations
-│ ✔ Running migration 001.
-│ ✔ Running migration 002.
-│ ✔ Running migration 003.
+│   ✔ Running migration 001.
+│   ✔ Running migration 002.
+│   ✔ Running migration 003.
 └ ✔ Running migrations
 ```
 
@@ -104,7 +104,7 @@ _Groups that stay expanded because a subtask failed, printed at once with the st
 
 _The first group changed its title after its header was printed, so its footer shows the new title. The second has the `timer` option, so its footer shows the time it took after its title._
 
-Nested groups draw one bracket per level. Tasks without a title draw no bracket, and neither does any task with `indentation: 0`.
+Nested groups draw one bracket per level, each at the column of the subtasks of its parent. Tasks without a title draw no bracket, and neither does any task with `indentation: 0`.
 
 ![Nested groups while they run](../../examples/screenshots/nested-running.png)
 

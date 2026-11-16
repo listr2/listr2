@@ -10,81 +10,81 @@ exports[`default renderer: error handling > should change exit on error per subt
   "❯ This task will execute and not quit on errors.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-└ ◼ This is a subtask.
+└   ◼ This is a subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ◼ This is a subtask.
-└ ◼ This is an another subtask.
+│   ◼ This is a subtask.
+└   ◼ This is an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ◼ This is a subtask.
-│ ◼ This is an another subtask.
-└ ◼ This is yet an another subtask.
+│   ◼ This is a subtask.
+│   ◼ This is an another subtask.
+└   ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ❯ This is a subtask.
-│ ◼ This is an another subtask.
-└ ◼ This is yet an another subtask.
+│   ❯ This is a subtask.
+│   ◼ This is an another subtask.
+└   ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ✖ This is a subtask.
-│ ◼ This is an another subtask.
-└ ◼ This is yet an another subtask.
+│   ✖ This is a subtask.
+│   ◼ This is an another subtask.
+└   ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ◼ This is an another subtask.
-└ ◼ This is yet an another subtask.
+│   ✖ I have failed [0]
+│   ◼ This is an another subtask.
+└   ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ❯ This is an another subtask.
-└ ◼ This is yet an another subtask.
+│   ✖ I have failed [0]
+│   ❯ This is an another subtask.
+└   ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ This is an another subtask.
-└ ◼ This is yet an another subtask.
+│   ✖ I have failed [0]
+│   ✖ This is an another subtask.
+└   ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-└ ◼ This is yet an another subtask.
+│   ✖ I have failed [0]
+│   ✖ I have failed [1]
+└   ◼ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-└ ❯ This is yet an another subtask.
+│   ✖ I have failed [0]
+│   ✖ I have failed [1]
+└   ❯ This is yet an another subtask.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-└ ❯ I have succeeded.
+│   ✖ I have failed [0]
+│   ✖ I have failed [1]
+└   ❯ I have succeeded.
 ◼ This task will execute.",
   "┌ ❯ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-└ ✔ I have succeeded.
+│   ✖ I have failed [0]
+│   ✖ I have failed [1]
+└   ✔ I have succeeded.
 ◼ This task will execute.",
   "┌ ⚠ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-└ ✔ I have succeeded.
+│   ✖ I have failed [0]
+│   ✖ I have failed [1]
+└   ✔ I have succeeded.
 ◼ This task will execute.",
   "┌ ⚠ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-└ ✔ I have succeeded.
+│   ✖ I have failed [0]
+│   ✖ I have failed [1]
+└   ✔ I have succeeded.
 ❯ This task will execute.",
   "┌ ⚠ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-└ ✔ I have succeeded.
+│   ✖ I have failed [0]
+│   ✖ I have failed [1]
+└   ✔ I have succeeded.
 ✖ This task will execute.",
   "┌ ⚠ This task will execute and not quit on errors.
-│ ✖ I have failed [0]
-│ ✖ I have failed [1]
-└ ✔ I have succeeded.
+│   ✖ I have failed [0]
+│   ✖ I have failed [1]
+└   ✔ I have succeeded.
 ✖ I will exit on error since I am a direct child of parent task.",
 ]
 `;

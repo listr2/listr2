@@ -698,15 +698,15 @@ export class DefaultRenderer implements ListrRenderer {
       // without the collapse option for skip and errors
       if (task.hasFailed() && rendererOptions.collapseErrors === false && (rendererOptions.showErrorMessage || !rendererOptions.showSubtasks)) {
         // show skip data if collapsing is not defined
-        body.push(...this.dump(task, level, ListrLogLevels.FAILED))
+        body.push(...this.dump(task, titleLevel, ListrLogLevels.FAILED))
       } else if (task.isSkipped() && rendererOptions.collapseSkips === false && (rendererOptions.showSkipMessage || !rendererOptions.showSubtasks)) {
         // show skip data if collapsing is not defined
-        body.push(...this.dump(task, level, ListrLogLevels.SKIPPED))
+        body.push(...this.dump(task, titleLevel, ListrLogLevels.SKIPPED))
       }
     }
 
     if (task.isPending() || rendererTaskOptions.persistentOutput) {
-      body.push(...this.renderOutputBar(task, level))
+      body.push(...this.renderOutputBar(task, titleLevel))
     }
 
     // after task is finished actions
@@ -724,7 +724,8 @@ export class DefaultRenderer implements ListrRenderer {
       footer: bracket && (persisted || this.clipped.has(task.id)) ? this.renderFooter(task, level, title) : [],
       body,
       subtasks,
-      subtaskLevel: task.hasTitle() ? level + 1 : level,
+      // the rows of a bracket sit one level deeper than the column of its status icon
+      subtaskLevel: bracket ? level + 2 : task.hasTitle() ? level + 1 : level,
       bracket
     }
   }
