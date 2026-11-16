@@ -63,7 +63,11 @@ export class ProcessOutput {
     return this.stream.stderr.out
   }
 
-  /** The rows written above the live region since `hijack()`. */
+  /**
+   * The rows written above the live region since `hijack()`.
+   *
+   * @internal
+   */
   get written(): number {
     return this.rows
   }
@@ -208,14 +212,20 @@ export class ProcessOutput {
     return Math.max(this.height(text) - (this.stdout.rows ?? 24) + 1, 0)
   }
 
-  /** The rows that the text takes on the terminal. */
+  /**
+   * The rows that the text takes on the terminal.
+   *
+   * @internal
+   */
   public height(text: string): number {
     return text === '' ? 0 : this.wrap(text, this.stdout.columns ?? 80).length
   }
 
   /**
    * The row at the top of the screen, counted like `written`, once the text is written above the live region and the live region is drawn
-   * below it. Rows that scrolled off never come back.
+   * below it. Rows that scrolled off come back only when a resize makes the terminal taller.
+   *
+   * @internal
    */
   public top(text = '', live = this.live): number {
     if (typeof this.stdout.rows !== 'number') {
@@ -295,9 +305,19 @@ export class ProcessOutput {
 
     const lines = this.layout(this.drawn)
     const columns = this.stdout.columns
+    const cursor = this.rows + lines.length
 
-    // a terminal that reflows moves the rows above, so they count as off the screen
-    this.scrolled = this.rows
+    if (this.drawn.columns !== columns && this.reflows()) {
+      // a terminal that reflows moves the rows above by as much as only the terminal knows, so they count as off the screen
+      this.scrolled = this.rows
+    } else if (this.scrolled === cursor + 1 - this.drawn.rows) {
+      // the cursor was on the bottom row, which stays at the bottom, so a taller terminal shows rows from above again
+      this.scrolled = cursor + 1 - this.stdout.rows
+    } else {
+      // the screen was not full, so its top row stays until the cursor reaches the bottom
+      this.scrolled = Math.max(this.scrolled, cursor + 1 - this.stdout.rows)
+    }
+
     // log-update erases with the line count of the last frame, which is stale once the terminal reflowed it
     const height = this.reflows() ? lines.reduce((height, line) => height + this.wrap(line, columns).length, 0) : lines.length
 
@@ -446,11 +466,16 @@ export class ProcessOutput {
       return
     }
 
+    this.leave()
+  }
+
+  private leave(): void {
+    // the live region stays where it is, and the shell writes below it at least the line that says the job stopped and the line of its
+    // prompt, so the rows above count at least that much further up
+    this.rows += (this.drawn ? this.layout(this.drawn).length : 0) + 2
     this.updater?.done()
     this.drawn = undefined
     this.stopped = Date.now()
-    // the shell writes below the live region that stays, so the rows above count as off the screen
-    this.scrolled = this.rows
   }
 
   // stty stops the whole job with SIGTTOU when it changes the mode of the terminal from the background, so anything unknown is the background
@@ -500,11 +525,7 @@ export class ProcessOutput {
 
   // a SIGTSTP listener keeps the process from stopping, and the shell may already have written below the live region, so it stays as it is
   private readonly onStop = (): void => {
-    this.updater?.done()
-    this.drawn = undefined
-    this.stopped = Date.now()
-    // the shell writes below the live region that stays, so the rows above count as off the screen
-    this.scrolled = this.rows
+    this.leave()
     this.stream.stdout.write(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
 
     process.off('SIGTSTP', this.onStop)

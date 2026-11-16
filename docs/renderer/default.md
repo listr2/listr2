@@ -64,7 +64,7 @@ While the header can still change, it shows the status: a task whose subtasks co
 └   ◼ Running migration 003.
 ```
 
-A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on a footer below its subtasks shows the status. The title shows on one line only: the footer adds it once the header is off the screen, or when the title changed after the header was printed.
+A group with `collapseSubtasks: false` prints its header with its first finished subtask, and from then on a footer below its subtasks shows the status. The title shows on one line only: the footer adds it once the header is off the screen, or when the title changed after the header was printed. A resize that rewraps the lines above makes the footer show the title too, since it cannot tell where the header went.
 
 ```text
 ┌ Running migrations

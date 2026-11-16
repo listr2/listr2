@@ -3,7 +3,8 @@
   "compilerOptions": {
     "sourceMap": false,
     "incremental": false,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "stripInternal": true
   },
   "exclude": ["node_modules", "dist", "tests", "**/*spec.ts"],
   "include": ["src/**/*"]

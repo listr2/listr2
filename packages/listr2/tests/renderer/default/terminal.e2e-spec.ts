@@ -1015,6 +1015,61 @@ describe('default renderer: terminal', () => {
     expect(await vt.content()).toEqual(['┌ parent', '│   ✔ first', ...range(6, (index) => `line ${index}`), '│   ✔ second', '└ ✔ parent'])
   })
 
+  it.each([
+    {
+      name: 'a shorter terminal that still shows the header', sizes: [[80, 8]], footer: '└ ❯'
+    },
+    {
+      name: 'a shorter terminal that no longer shows the header', sizes: [[80, 4]], footer: '└ ❯ parent'
+    },
+    {
+      name: 'a terminal that grows back and shows the header again', sizes: [[80, 4], [80, 12]], footer: '└ ❯'
+    },
+    {
+      name: 'a narrower terminal that reflows the rows above', sizes: [[60, 12]], footer: '└ ❯ parent'
+    }
+  ])('should show the title on the footer after a resize to $name only when the header may be off the screen', async({ sizes, footer }) => {
+    vi.stubEnv('TERM', 'xterm-256color')
+    vi.stubEnv('TMUX', '')
+    vi.stubEnv('XTERM_VERSION', '')
+    vi.stubEnv('STY', '')
+    vt = new VirtualTerminal({ columns: 80, rows: 12 })
+
+    let seen: string[]
+
+    try {
+      await new Listr(
+        [
+          {
+            title: 'parent',
+            task: (_, task): Listr =>
+              task.newListr(
+                [
+                  { title: 'first', task: async(): Promise<void> => {} },
+                  {
+                    title: 'second',
+                    task: async(): Promise<void> => {
+                      for (const [columns, rows] of sizes) {
+                        await vt.resize(columns, rows)
+                      }
+
+                      seen = await vt.screen()
+                    }
+                  }
+                ],
+                { rendererOptions: { collapseSubtasks: false } }
+              )
+          }
+        ],
+        options()
+      ).run()
+    } finally {
+      vi.unstubAllEnvs()
+    }
+
+    expect(seen.filter((line) => line.startsWith('└'))).toEqual([footer])
+  })
+
   it('should end a line that shows only an icon with a space', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
 
