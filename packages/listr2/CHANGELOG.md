@@ -1,3 +1,20 @@
+## listr2 [12.0.0-beta.9](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.8...listr2@12.0.0-beta.9) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** the footer of a running bracketed group in the default
+renderer shows only its icon, `└ ❯` instead of `└ ❯ <title>`, unless the
+title changed after the header was persisted or the header no longer
+fits on the screen. A line with only an icon, such as `└ ✔`, ends on a
+space.
+
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+
+### Features
+
+* **renderer:** show only the icon on the footer of a running group ([242a618](https://github.com/listr2/listr2/commit/242a6187426f1b73c554a02d2fe5c09c980dbf42))
+
 ## listr2 [12.0.0-beta.8](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.7...listr2@12.0.0-beta.8) (2026-11-15)
 
 ### ⚠ BREAKING CHANGES
