@@ -26,7 +26,7 @@ category:
 
 _ProcessOutput_ also keeps the part of `stdout` that the _DefaultRenderer_ updates in place: `output.update()` draws it, `output.persist()` prints text above it for good, and `output.clear()` erases it. While it is drawn, anything written to `process.stdout` or `process.stderr` is printed above it as it arrives, and streams left out of the `dump` option are dropped. A child process spawned with `stdio: 'inherit'` is not captured; use [`task.stdout()`](../task/output.md) for it instead.
 
-A renderer that passes a callback to `output.hijack()` is called after captured output was printed, to draw its live region again. `output.top()` tells which of the rows printed so far, counted by `output.written`, are still on the screen.
+A renderer that passes a callback to `output.hijack()` is called after a resize and after captured output was printed, to draw its live region again for the terminal as it is now. `output.top()` tells which of the rows printed so far, counted by `output.written`, are still on the screen.
 
 ## Locking the Input
 

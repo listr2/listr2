@@ -69,8 +69,8 @@ export class ProcessOutput {
   }
 
   /**
-   * Captures the writes to `stdout` and `stderr`, and writes them above the live region. `redraw` then draws the live region again, since
-   * what it shows can depend on what was written above it.
+   * Captures the writes to `stdout` and `stderr`, and writes them above the live region. `redraw` draws the live region again after a
+   * resize or after captured output, since what it shows can depend on both.
    */
   public hijack(redraw?: () => void): void {
     if (this.active) {
@@ -305,7 +305,12 @@ export class ProcessOutput {
       this.writeFrame(ANSI_ESCAPE_CODES.ERASE_LINE + (ANSI_ESCAPE_CODES.CURSOR_UP + ANSI_ESCAPE_CODES.ERASE_LINE).repeat(height) + ANSI_ESCAPE_CODES.CURSOR_LEFT)
       this.updater.done()
 
-      this.draw()
+      // what the live region shows depends on the size of the terminal
+      if (this.redraw) {
+        this.redraw()
+      } else {
+        this.draw()
+      }
     })
   }
 

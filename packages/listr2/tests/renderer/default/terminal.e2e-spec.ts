@@ -99,6 +99,34 @@ describe('default renderer: terminal', () => {
     expect(content.split('\n').at(-1)).toBe(`✔ ${title(7)}`)
   })
 
+  it('should render the live region again for the new size of the terminal on a resize', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 10 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'parent',
+          task: (_, task): Listr =>
+            task.newListr([
+              {
+                title: 'a subtask with a title that wraps on a narrow terminal',
+                task: async(): Promise<void> => {
+                  // no task event follows the resize before the screen is read
+                  await vt.resize(32, 10)
+                  seen = await vt.screen()
+                }
+              }
+            ])
+        }
+      ],
+      options()
+    ).run()
+
+    expect(seen.filter((line) => line !== '')).toEqual(['┌ ❯ parent', '│   ❯ a subtask with a title', '│     that wraps on a narrow', '└     terminal'])
+  })
+
   it('should summarize the finished subtasks of a collapsing parent taller than the terminal', async() => {
     vt = new VirtualTerminal({ columns: 80, rows: 10 })
 
