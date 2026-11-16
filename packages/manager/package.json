@@ -1,6 +1,6 @@
 {
   "name": "@listr2/manager",
-  "version": "5.0.0-beta.15",
+  "version": "5.0.0-beta.16",
   "description": "Extension for Listr2 to easily create sane defaults for task lists.",
   "license": "MIT",
   "repository": "https://github.com/listr2/listr2",
