@@ -1,3 +1,18 @@
+## listr2 [12.0.0-beta.13](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.12...listr2@12.0.0-beta.13) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** the rows inside a bracket are indented one level more, as
+"│   ✔ Running migration 001." instead of "│ ✔ Running migration 001.".
+Snapshot tests of the output may need updating.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Features
+
+* **renderer:** indent the rows of a bracket one level deeper than its status ([25ac90a](https://github.com/listr2/listr2/commit/25ac90a25d065fecf6fc1488ea94324c1e2fd0bc))
+
 ## listr2 [12.0.0-beta.12](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.11...listr2@12.0.0-beta.12) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
