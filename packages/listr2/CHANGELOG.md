@@ -1,3 +1,18 @@
+## listr2 [12.0.0-beta.14](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.13...listr2@12.0.0-beta.14) (2026-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **renderer:** the footer of a collapseSubtasks: [secure] group shows only the
+status, as "└ ✔", while its header is still on the screen. Snapshot tests of
+the output may need updating.
+
+Co-authored-by: Cenk Kılıç <cenk1cenk2cenk3@gmail.com>
+Amp-Thread-ID: https://ampcode.com/threads/T-01a1e16d-a464-712e-905e-1e0f2483a34f
+
+### Bug Fixes
+
+* **renderer:** show the title of a group on its footer only while the header is off the screen ([8350856](https://github.com/listr2/listr2/commit/835085675ddd4281707e5ae005bbdcc4cee1348d))
+
 ## listr2 [12.0.0-beta.13](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.12...listr2@12.0.0-beta.13) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
