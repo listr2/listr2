@@ -1580,8 +1580,8 @@ packages:
   '@tsconfig/node22@22.0.7':
     resolution: {integrity: sha512-xnYM5q+HTeLm+jRBIB7Mu61OyOmNpgzPmJuhwPODSyITDPIWVK2TXxn/+O5fJ4n/P0u/gPsgSyPw/Dl3Cz/L4g==}
 
-  '@tybys/wasm-util@0.10.4':
-    resolution: {integrity: sha512-W3c4gRigFS0T/Ma4qIYF3GDAc5AQdHb1yL5znJT1Zv1YaD9Kitx656wBjvr19qbiosmZT8lWDM5BEMynUqX65A==}
+  '@tybys/wasm-util@0.10.5':
+    resolution: {integrity: sha512-dOGOPxlaNV+G046mZzN+9C0dAcQZeSKcXiVaM0TYy/LM4ttTmgSBDxYfovcYI8Em3+eAbiAYpvWLOv8+ZVRJKA==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -2425,8 +2425,8 @@ packages:
   es-module-lexer@2.3.2:
     resolution: {integrity: sha512-poHGpORABojJJucnV9KbOavETW8lBVnphkW77ER5/BQ5Fz7oXSoCNek7IH3vR5nRjdsEz926ibFYX8KtLQmdyw==}
 
-  es-module-lexer@3.0.4:
-    resolution: {integrity: sha512-BldNY5mwkVu+cQ5Ymn3e6hB9Sx8XHx4ZevWbiUyZbfKxJxYO27Hf0wfzkxIaD5CAJMaGl3YspKELj0ff/7nCMA==}
+  es-module-lexer@3.0.5:
+    resolution: {integrity: sha512-RNq2lKJw53c7z9QRHeiKeA6Ez0oikOqiBGdmxQhKDxEiOX1g5QJR4IoFVwicn8uCZcRWNrXC3NZaJihgK7aEbg==}
 
   es-toolkit@1.53.2:
     resolution: {integrity: sha512-iUqZ+NlwH4jUgRmXZUxFBsV/9762TQEa1O4IXLFBmDEjVHScBytKuseX23I0+v9ShZ5MYxEx6WKNzm6IPnex8g==}
@@ -5262,7 +5262,7 @@ snapshots:
     dependencies:
       '@emnapi/core': 2.0.0-beta.2
       '@emnapi/runtime': 2.0.0-beta.2
-      '@tybys/wasm-util': 0.10.4
+      '@tybys/wasm-util': 0.10.5
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -5631,7 +5631,7 @@ snapshots:
 
   '@tsconfig/node22@22.0.7': {}
 
-  '@tybys/wasm-util@0.10.4':
+  '@tybys/wasm-util@0.10.5':
     dependencies:
       tslib: 2.9.1
     optional: true
@@ -6447,7 +6447,7 @@ snapshots:
 
   es-module-lexer@2.3.2: {}
 
-  es-module-lexer@3.0.4: {}
+  es-module-lexer@3.0.5: {}
 
   es-toolkit@1.53.2:
     optional: true
@@ -6501,7 +6501,7 @@ snapshots:
       cjs-module-lexer: 2.3.0
       comment-parser: 1.4.9
       debug: 4.4.3(supports-color@8.1.1)
-      es-module-lexer: 3.0.4
+      es-module-lexer: 3.0.5
       eslint: 10.15.0(jiti@2.7.0)(supports-color@8.1.1)
       eslint-import-context: 0.1.9(unrs-resolver@1.13.0)
       is-glob: 4.0.3
