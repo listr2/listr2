@@ -435,8 +435,7 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
-    // a summary of one finished subtask takes the same row as the subtask itself
-    expect(seen).toEqual(['❯ parent', '  ✔ task 0', '  ❯ task 1', '  ◼ task 2', '  ◼ task 3', '  … 2', '◼ after 0', '◼ after 1', '… 8'])
+    expect(seen).toEqual(['❯ parent', '  ✔ task 0', '  ❯ task 1', ...range(4, (index) => `  ◼ task ${index + 2}`), '◼ after 0', '… 9'])
   })
 
   it('should summarize the waiting tasks before the finished subtasks of an open group', async() => {
@@ -470,13 +469,13 @@ describe('default renderer: terminal', () => {
 
   it.each([
     {
-      name: 'shows the task when it takes one row', title: 'task 3', last: '  ◼ task 3'
+      name: 'shows the task when it takes one row', title: 'after 0', last: ['◼ after 0']
     },
     {
-      name: 'keeps the summary when the task wraps', title: 'task 3 with a title that wraps on this terminal', last: '  … 1'
+      name: 'keeps the summary when the task wraps', title: 'after 0 with a title that wraps on this terminal', last: ['… 1']
     }
   ])('should summarize a single waiting task that $name', async({ title, last }) => {
-    vt = new VirtualTerminal({ columns: 40, rows: 9 })
+    vt = new VirtualTerminal({ columns: 40, rows: 7 })
 
     let seen: string[]
 
@@ -486,8 +485,8 @@ describe('default renderer: terminal', () => {
           title: 'parent',
           task: (_, task): Listr =>
             task.newListr(
-              range(4, (index) => ({
-                title: index === 3 ? title : `task ${index}`,
+              range(6, (index) => ({
+                title: `task ${index}`,
                 task: async(): Promise<void> => {
                   if (index === 0) {
                     seen = await vt.content()
@@ -496,13 +495,62 @@ describe('default renderer: terminal', () => {
               }))
             )
         },
-        ...range(6, (index) => ({ title: `after ${index}`, task: async(): Promise<void> => {} }))
+        { title, task: async(): Promise<void> => {} }
       ],
       options()
     ).run()
 
-    // the summaries keep as many waiting tasks in every list, so the shorter list would summarize a single task
-    expect(seen).toEqual(['❯ parent', '  ❯ task 0', '  ◼ task 1', '  ◼ task 2', last, '◼ after 0', '◼ after 1', '… 4'])
+    // the task below the group folds first, but a summary of it saves a row only when the task takes more than one
+    expect(seen).toEqual(['❯ parent', '  ❯ task 0', '  ◼ task 1', '  ◼ task 2', '  … 3', ...last])
+  })
+
+  it('should fold the waiting tasks from the bottom of the live region upwards and keep the fold steady while the tasks run', async() => {
+    vt = new VirtualTerminal({
+      columns: 80,
+      rows: 12,
+      frames: true
+    })
+
+    await new Listr(
+      [
+        {
+          title: 'outer',
+          task: (_, task): Listr =>
+            task.newListr([
+              {
+                title: 'inner',
+                task: (_, task): Listr => task.newListr(range(12, (index) => ({ title: `inner ${index}`, task: async(): Promise<void> => delay(5) })))
+              },
+              ...range(6, (index) => ({ title: `outer ${index}`, task: async(): Promise<void> => {} }))
+            ])
+        },
+        ...range(8, (index) => ({ title: `after ${index}`, task: async(): Promise<void> => {} }))
+      ],
+      options()
+    ).run()
+
+    const count = (screen: string[], pattern: RegExp): number => screen.filter((line) => pattern.test(line)).length
+    const summary = (screen: string[], indent: string): number => Number(screen.find((line) => line.startsWith(`${indent}… `))?.slice(indent.length + 2) ?? 0)
+    // the frames once a subtask of the inner group finished, while it runs
+    const running = vt.frames.filter((screen) => screen.some((line) => /^ {4}✔ inner/.test(line)) && screen.some((line) => line.startsWith('  ❯ inner')))
+    const counts = running.map((screen) => ({
+      outer: count(screen, /^ {2}◼ outer/),
+      after: count(screen, /^◼ after/),
+      inner: summary(screen, '    '),
+      outerSummary: summary(screen, '  '),
+      afterSummary: summary(screen, '')
+    }))
+
+    expect(running.length).toBeGreaterThan(3)
+    // a list folds its waiting tasks only once every waiting task below it folded
+    expect(counts.filter(({ inner, outer, after }) => inner > 0 && outer + after > 0)).toEqual([])
+    expect(counts.filter(({ outerSummary, after }) => outerSummary > 0 && after > 0)).toEqual([])
+
+    // no task below the inner group starts while it runs, so its summaries only ever count down
+    for (const [previous, next] of counts.slice(0, -1).map((value, index) => [value, counts[index + 1]])) {
+      expect(next.inner).toBeLessThanOrEqual(previous.inner)
+      expect([next.outerSummary, next.afterSummary]).toEqual([previous.outerSummary, previous.afterSummary])
+    }
   })
 
   it('should show a single finished subtask instead of its summary', async() => {
@@ -825,7 +873,7 @@ describe('default renderer: terminal', () => {
       options({ markIndentation: true, icon: { CONNECTOR_START: '╭', SUMMARY_WAITING: '~' } })
     ).run()
 
-    expect(seen).toEqual(['╭ ❯ parent', '│   ✔ task 0', '│   ❯ task 1', '│   ◼ task 2', '│   ◼ task 3', '└   ~ 2', '◼ after 0', '◼ after 1', '~ 8'])
+    expect(seen).toEqual(['╭ ❯ parent', '│   ✔ task 0', '│   ❯ task 1', '│   ◼ task 2', '│   ◼ task 3', '│   ◼ task 4', '└   ◼ task 5', '◼ after 0', '~ 9'])
   })
 
   it('should persist the tasks of a concurrent list in the order they finish', async() => {

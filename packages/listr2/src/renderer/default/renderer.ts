@@ -305,16 +305,18 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   private summarize(height: number): string[] {
-    // the waiting tasks fold first, so the open groups keep their rows
-    const waiting = this.fit(height, (keep) => ({ waiting: keep }))
+    // the waiting tasks fold first, so the open groups keep their rows, and from the bottom up, so the tasks farthest from the running ones go first
+    const order = this.getFoldOrder(this.tasks)
+    const fold = (keep: number): Set<string> => new Set(order.slice(0, Math.max(order.length - keep, 0)).map((task) => task.id))
+    const waiting = this.fit(height, (keep) => ({ folded: fold(keep) }))
 
     if (waiting.render.length <= height) {
       return waiting.render
     }
 
-    const completed = this.fit(height, (keep) => ({ completed: keep, waiting: 0 }))
+    const completed = this.fit(height, (keep) => ({ completed: keep, folded: fold(0) }))
     // the rows that the completed tasks leave go back to the waiting tasks
-    const both = this.fit(height, (keep) => ({ completed: completed.keep, waiting: keep }))
+    const both = this.fit(height, (keep) => ({ completed: completed.keep, folded: fold(keep) }))
 
     if (both.render.length <= height) {
       return both.render
@@ -713,24 +715,51 @@ export class DefaultRenderer implements ListrRenderer {
     return completed.slice(0, Math.max(completed.length - keep, 0))
   }
 
-  private getWaiting(tasks: ListrDefaultRendererTask[], summary?: ListrDefaultRendererSummary): ListrDefaultRendererTask[] {
-    const keep = summary?.running ?? summary?.waiting
+  /** The waiting tasks at the end of each list, from the bottom of the live region upwards. */
+  private getFoldOrder(tasks: ListrDefaultRendererTask[]): ListrDefaultRendererTask[] {
+    const order: ListrDefaultRendererTask[] = []
+    let tail = true
 
-    if (keep === undefined) {
-      return []
+    for (const task of [...tasks].reverse()) {
+      if (!task.isEnabled()) {
+        continue
+      }
+
+      if (tail && task.state === ListrTaskState.WAITING) {
+        order.push(task)
+
+        continue
+      }
+
+      tail = false
+
+      if (task.hasSubtasks() && !this.frozen.has(task.id)) {
+        order.push(...this.getFoldOrder(task.subtasks))
+      }
     }
 
-    // with running, the tasks at the end that have not finished are counted, whether they started or not
-    const counted = (task: ListrDefaultRendererTask): boolean => (summary.running !== undefined ? !task.hasFinalized() : task.state === ListrTaskState.WAITING)
+    return order
+  }
+
+  private getWaiting(tasks: ListrDefaultRendererTask[], summary?: ListrDefaultRendererSummary): ListrDefaultRendererTask[] {
     let shown = tasks.length
 
-    while (shown > 0 && (!tasks[shown - 1].isEnabled() || counted(tasks[shown - 1]))) {
+    if (summary?.running === undefined) {
+      while (shown > 0 && (!tasks[shown - 1].isEnabled() || summary?.folded?.has(tasks[shown - 1].id))) {
+        shown--
+      }
+
+      return tasks.slice(shown)
+    }
+
+    // the tasks at the end that have not finished are counted, whether they started or not
+    while (shown > 0 && (!tasks[shown - 1].isEnabled() || !tasks[shown - 1].hasFinalized())) {
       shown--
     }
 
     let kept = 0
 
-    while (shown < tasks.length && kept < keep) {
+    while (shown < tasks.length && kept < summary.running) {
       if (tasks[shown].isEnabled() && tasks[shown].hasTitle()) {
         kept++
       }

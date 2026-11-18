@@ -103,7 +103,7 @@ Anything written to `process.stdout` or `process.stderr` while the renderer runs
 
 When the running part of the list is taller than the terminal, it is shortened until it fits, in this order:
 
-1. The tasks that have not started yet are folded into a single `… N` line.
+1. The tasks that have not started yet are folded into a `… N` line at the end of their list, from the bottom of the list upwards: a list folds its waiting tasks only once every waiting task below it is folded.
 2. The finished subtasks of an open group are folded into a single `↑ N` line.
 3. If more tasks run than the terminal shows, the running tasks at the end of a list are counted in the `… N` line too, so the header of their group stays on the screen.
 

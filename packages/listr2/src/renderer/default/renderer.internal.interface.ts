@@ -1,6 +1,7 @@
 export interface ListrDefaultRendererSummary {
   completed?: number
-  waiting?: number
+  /** The waiting tasks that fold into the summaries. */
+  folded?: Set<string>
   running?: number
 }
 
