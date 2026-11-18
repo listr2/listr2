@@ -529,6 +529,8 @@ describe('default renderer: terminal', () => {
       options()
     ).run()
 
+    await vt.flush()
+
     const count = (screen: string[], pattern: RegExp): number => screen.filter((line) => pattern.test(line)).length
     const summary = (screen: string[], indent: string): number => Number(screen.find((line) => line.startsWith(`${indent}… `))?.slice(indent.length + 2) ?? 0)
     // the frames once a subtask of the inner group finished, while it runs
@@ -628,6 +630,8 @@ describe('default renderer: terminal', () => {
       ],
       { ...options(), exitOnError: false }
     ).run()
+
+    await vt.flush()
 
     expect(vt.frames.flat().filter((line) => /[┌│└]/.test(line))).toEqual([])
     expect(await vt.content()).toEqual([
