@@ -106,11 +106,6 @@ test:
   dependencies:
     - install
     - build
-  parallel:
-    matrix:
-      - NODE_VERSION: 26-alpine
-      - NODE_VERSION: 24-alpine
-      - NODE_VERSION: 22-alpine
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       interruptible: true
