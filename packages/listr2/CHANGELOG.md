@@ -1,3 +1,9 @@
+## listr2 [12.0.0-beta.23](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.22...listr2@12.0.0-beta.23) (2026-11-18)
+
+### Bug Fixes
+
+* **renderer:** fold the waiting tasks from the bottom of the live region upwards ([3062480](https://github.com/listr2/listr2/commit/30624800cbb1c72115a056fce9dbf78323663a4e))
+
 ## listr2 [12.0.0-beta.22](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.21...listr2@12.0.0-beta.22) (2026-11-16)
 
 ### ⚠ BREAKING CHANGES
