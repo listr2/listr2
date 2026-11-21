@@ -35,8 +35,8 @@
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^3.0.13",
-    "@cenk1cenk2/eslint-config": "^3.4.7",
-    "@tsconfig/node22": "^22.0.6",
+    "@cenk1cenk2/eslint-config": "^3.4.8",
+    "@tsconfig/node22": "^22.0.7",
     "@types/node": "^26.6.6",
     "@vitest/coverage-v8": "^5.1.0",
     "eslint": "^10.14.0",
