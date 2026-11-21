@@ -1,3 +1,9 @@
+## listr2 [12.0.0-beta.24](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.23...listr2@12.0.0-beta.24) (2026-11-21)
+
+### Features
+
+* **renderer:** validate the options of every integrated renderer ([d621cf6](https://github.com/listr2/listr2/commit/d621cf6bcb7b707bd394b42b09fffada473248d6))
+
 ## listr2 [12.0.0-beta.23](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.22...listr2@12.0.0-beta.23) (2026-11-18)
 
 ### Bug Fixes
