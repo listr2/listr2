@@ -1,6 +1,7 @@
 import type { ListrTask } from '#root'
-import { Listr, ListrLogger, ProcessOutput, delay } from '#root'
-import { VirtualTerminal } from '#tests/utils'
+import { Listr, ListrLogger, PRESET_TIMER, PRESET_TIMESTAMP, ProcessOutput, delay } from '#root'
+import type { MockProcessOutput } from '#tests/utils'
+import { VirtualTerminal, mockProcessOutput, unmockProcessOutput } from '#tests/utils'
 
 describe('option validation', () => {
   let order: string[]
@@ -118,7 +119,9 @@ describe('option validation', () => {
       ['indentation', NaN, 'must be a number of 0 or more, but it is NaN'],
       ['formatOutput', 'cut', 'must be \'truncate\' or \'wrap\', but it is \'cut\''],
       ['outputBar', -1, 'must be a boolean or a number of 0 or more, but it is -1'],
-      ['bottomBar', NaN, 'must be a boolean or a number of 0 or more, but it is NaN']
+      ['bottomBar', NaN, 'must be a boolean or a number of 0 or more, but it is NaN'],
+      ['logger', {}, 'must be a ListrLogger, but it is [object Object]'],
+      ['pausedTimer', true, 'must be an object with a field, but it is true']
     ])('should throw when a list is created with %s: %s', (name, value, message) => {
       expect(() => new Listr(tasks(), options({ [name]: value }))).toThrow(new RangeError(`The ${name} option ${message}.`))
       expect(vt.writes).toEqual([])
@@ -170,6 +173,82 @@ describe('option validation', () => {
 
       expect(order).toEqual(['first', 'second'])
       expect(await vt.content()).toContain('✔ second')
+    })
+  })
+
+  describe('other renderers', () => {
+    const output = {} as MockProcessOutput
+
+    beforeEach(() => {
+      mockProcessOutput(output)
+    })
+
+    afterEach(() => {
+      unmockProcessOutput(output)
+    })
+
+    describe.each(['simple', 'verbose', 'test'] as const)('%s renderer', (renderer) => {
+      it.each([
+        ['logger', {}, 'must be a ListrLogger, but it is [object Object]'],
+        ['logger', null, 'must be a ListrLogger, but it is null']
+      ])('should throw when a list is created with %s: %j', (name, value, message) => {
+        expect(() => new Listr(tasks(), { renderer, rendererOptions: { [name]: value } as any })).toThrow(new RangeError(`The ${name} option ${message}.`))
+      })
+
+      it('should still run the tasks with a ListrLogger', { timeout: 2000 }, async() => {
+        await new Listr(tasks(), { renderer, rendererOptions: { logger: new ListrLogger() } }).run()
+
+        expect(order).toEqual(['first', 'second'])
+      })
+    })
+
+    describe.each(['simple', 'verbose'] as const)('%s renderer presets', (renderer) => {
+      it.each([
+        ['timestamp', 'now', '\'now\''],
+        ['pausedTimer', true, 'true']
+      ])('should throw when a list is created with %s: %s', (name, value, shown) => {
+        expect(() => new Listr(tasks(), { renderer, rendererOptions: { [name]: value } as any })).toThrow(
+          new RangeError(`The ${name} option must be an object with a field, but it is ${shown}.`)
+        )
+      })
+
+      it('should throw when a task is created with timer: true', () => {
+        expect(() => new Listr([{
+          title: 'task', task: (): void => {}, rendererOptions: { timer: true as any }
+        }], { renderer })).toThrow(
+          new RangeError('The timer option must be an object with a field, but it is true.')
+        )
+      })
+
+      it('should still run the tasks with the presets', { timeout: 2000 }, async() => {
+        await new Listr(
+          tasks().map((task) => ({ ...task, rendererOptions: { timer: PRESET_TIMER } })),
+          { renderer, rendererOptions: { timestamp: PRESET_TIMESTAMP, pausedTimer: PRESET_TIMER } }
+        ).run()
+
+        expect(order).toEqual(['first', 'second'])
+      })
+    })
+
+    describe('test renderer', () => {
+      it.each([
+        ['state', 'STARTED', 'must be a list, but it is \'STARTED\''],
+        ['messages', 'error', 'must be a list, but it is \'error\''],
+        ['messagesToStderr', true, 'must be a list, but it is true'],
+        ['task', true, 'must be false or a list, but it is true']
+      ])('should throw when a list is created with %s: %s', (name, value, message) => {
+        expect(() => new Listr(tasks(), { renderer: 'test', rendererOptions: { [name]: value } as any })).toThrow(new RangeError(`The ${name} option ${message}.`))
+      })
+
+      it('should still run the tasks with task: false', { timeout: 2000 }, async() => {
+        await new Listr(tasks(), {
+          renderer: 'test', rendererOptions: {
+            task: false, state: [], messages: []
+          }
+        }).run()
+
+        expect(order).toEqual(['first', 'second'])
+      })
     })
   })
 })

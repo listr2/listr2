@@ -4,7 +4,7 @@ import type { ListrSimpleRendererCache, ListrSimpleRendererOptions, ListrSimpleR
 import { ListrTaskEventType, ListrTaskState } from '#constants'
 import type { ListrRenderer } from '#interfaces'
 import { PRESET_TIMER } from '#presets'
-import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, color } from '#utils'
+import { LISTR_LOGGER_STDERR_LEVELS, LISTR_LOGGER_STYLE, ListrLogLevels, ListrLogger, assertLoggerOptions, color } from '#utils'
 
 export class SimpleRenderer implements ListrRenderer {
   public static nonTTY = true
@@ -48,6 +48,13 @@ export class SimpleRenderer implements ListrRenderer {
     if (this.options.timestamp) {
       this.logger.options.fields.prefix.unshift(this.options.timestamp)
     }
+  }
+
+  /**
+   * Throws a `RangeError` for an invalid `logger`, `timer`, `timestamp` or `pausedTimer`, when a task list or a task is created.
+   */
+  public static assertOptions(options: ListrSimpleRendererOptions & ListrSimpleRendererTaskOptions = {}): void {
+    assertLoggerOptions(options)
   }
 
   public end(): void {}

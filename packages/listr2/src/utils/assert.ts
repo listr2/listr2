@@ -22,3 +22,20 @@ export function assertOption(name: string, value: unknown, valid: boolean, expec
     throw new RangeError(`The ${name} option ${expected}, but it is ${typeof value === 'string' ? `'${value}'` : String(value)}.`)
   }
 }
+
+/**
+ * Throws a `RangeError` for a `logger` that is not a `ListrLogger`, or a `timer`, `timestamp` or `pausedTimer` that is not a preset, which the renderers that log share.
+ */
+export function assertLoggerOptions(options: Partial<Record<'logger' | 'timer' | 'timestamp' | 'pausedTimer', any>>): void {
+  if (options.logger !== undefined) {
+    assertOption('logger', options.logger, typeof options.logger?.options === 'object' && typeof options.logger?.log === 'function', 'must be a ListrLogger')
+  }
+
+  for (const name of ['timer', 'timestamp', 'pausedTimer'] as const) {
+    const value = options[name]
+
+    if (value !== undefined) {
+      assertOption(name, value, typeof value === 'object' && value !== null && 'field' in value, 'must be an object with a field')
+    }
+  }
+}

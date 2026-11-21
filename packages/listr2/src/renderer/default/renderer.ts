@@ -22,7 +22,9 @@ import type { ListrRenderer, ListrTaskEventMap } from '#interfaces'
 import { ListrRendererError } from '#interfaces'
 import type { ListrEventManager } from '#lib'
 import { PRESET_TIMER } from '#presets'
-import { ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, assertOption, cleanseAnsi, color, indent } from '#utils'
+import {
+  ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, assertLoggerOptions, assertOption, cleanseAnsi, color, indent
+} from '#utils'
 
 export class DefaultRenderer implements ListrRenderer {
   public static nonTTY = false
@@ -94,9 +96,11 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   /**
-   * Throws a `RangeError` for an invalid `indentation`, `formatOutput`, `outputBar` or `bottomBar`, when a task list or a task is created.
+   * Throws a `RangeError` for an invalid `indentation`, `formatOutput`, `outputBar`, `bottomBar`, `logger`, `timer` or `pausedTimer`, when a task list or a task is created.
    */
   public static assertOptions(options: ListrDefaultRendererOptions & ListrDefaultRendererTaskOptions = {}): void {
+    assertLoggerOptions(options)
+
     if (options.indentation !== undefined) {
       assertOption('indentation', options.indentation, options.indentation >= 0 && Number.isFinite(options.indentation), 'must be a number of 0 or more')
     }

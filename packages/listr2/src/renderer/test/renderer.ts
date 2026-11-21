@@ -2,7 +2,7 @@ import type { ListrTestRendererOptions, ListrTestRendererTask, ListrTestRenderer
 import { TestRendererSerializer } from './serializer'
 import { ListrTaskEventType, ListrTaskState } from '#constants'
 import type { ListrRenderer, ListrTaskMessage } from '#interfaces'
-import { ListrLogger } from '#utils'
+import { ListrLogger, assertLoggerOptions, assertOption } from '#utils'
 
 export class TestRenderer implements ListrRenderer {
   public static nonTTY = true
@@ -49,6 +49,24 @@ export class TestRenderer implements ListrRenderer {
     this.logger = this.options.logger ?? new ListrLogger<never>({ useIcons: false })
 
     this.serializer = new TestRendererSerializer(this.options)
+  }
+
+  /**
+   * Throws a `RangeError` for an invalid `logger`, a `state`, `messages` or `messagesToStderr` that is not a list,
+   * or a `task` that is neither `false` nor a list, when a task list is created.
+   */
+  public static assertOptions(options: ListrTestRendererOptions = {}): void {
+    assertLoggerOptions(options)
+
+    for (const name of ['state', 'messages', 'messagesToStderr'] as const) {
+      if (options[name] !== undefined) {
+        assertOption(name, options[name], Array.isArray(options[name]), 'must be a list')
+      }
+    }
+
+    if (options.task !== undefined) {
+      assertOption('task', options.task, options.task === false || Array.isArray(options.task), 'must be false or a list')
+    }
   }
 
   public render(): void {

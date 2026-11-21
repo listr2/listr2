@@ -80,6 +80,20 @@ this.events.on(ListrEventType.SHOULD_REFRESH_RENDER, () => {
 })
 ```
 
+## Validating the Options
+
+A renderer can declare a static `assertOptions(options)` method. _Listr_ calls it with the renderer options when a task list is created, and with the renderer options of each task when the task is created, before anything renders. Throw from it to reject a value the renderer cannot use; the integrated renderers throw a `RangeError` that names the option and the value.
+
+```typescript
+class MyRenderer implements ListrRenderer {
+  public static assertOptions(options: MyRendererOptions = {}): void {
+    if (options.width !== undefined && !(options.width > 0)) {
+      throw new RangeError(`The width option must be greater than 0, but it is ${options.width}.`)
+    }
+  }
+}
+```
+
 ## Using a Custom Renderer
 
 You can tell Listr to use your custom renderer by setting the `renderer` option in _Listr_ to your custom renderer.
