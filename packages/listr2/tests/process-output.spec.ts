@@ -1,16 +1,9 @@
-import type * as fs from 'fs'
-
 import { FakeStty, VirtualTerminal, range } from '#tests/utils'
 
 const exitHandlers: (() => void)[] = []
 const stty = new FakeStty()
 
 vi.mock('child_process', () => ({ spawnSync: stty.spawnSync }))
-vi.mock('fs', async(original) => {
-  const actual = await original<typeof fs>()
-
-  return { ...actual, readFileSync: stty.readFileSync(actual.readFileSync) }
-})
 
 // signal-exit would exit the test process, so capture what runs on exit instead
 vi.mock('signal-exit', () => ({

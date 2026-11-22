@@ -131,6 +131,8 @@ While the tasks run, what you type is not shown, so it cannot break the task lis
 - A process killed with `SIGKILL` leaves typed keys hidden. Run `stty sane` or `reset`.
 - Resizing the terminal can leave a stray row of the task list behind, or erase a row above it, once per resize.
 - Stopping the run with `Ctrl+Z` leaves a copy of the running tasks where the shell took over. They are drawn again below once the run continues.
+- After `Ctrl+Z`, what you type is shown for the rest of the run, since changing the terminal mode from the background would stop the run again.
+- A run started in the background, such as with `&` or under `timeout` in a script, stops with `Stopped (tty output)` until it is brought to the foreground. Set `lockInput: false` for it.
 - When the terminal reports more rows than it shows, as some multiplexers and remote sessions do, the scrollback can fill with copies of the task list while it runs. The final output is still correct.
 
 ## How the Options Look

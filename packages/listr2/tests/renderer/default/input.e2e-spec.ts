@@ -1,19 +1,11 @@
-import type * as fs from 'fs'
-
 import type { ListrTaskWrapper } from '#root'
 import { FakeStty, VirtualTerminal, hang, range } from '#tests/utils'
 
 const stty = new FakeStty()
 
 vi.mock('child_process', () => ({ spawnSync: stty.spawnSync }))
-vi.mock('fs', async(original) => {
-  const actual = await original<typeof fs>()
 
-  return { ...actual, readFileSync: stty.readFileSync(actual.readFileSync) }
-})
-
-const { Listr, ListrLogger, ListrPromptAdapter, ListrTaskEventType, ProcessOutput, delay } = await import('#root')
-const { TERMINAL_POLL_INTERVAL } = await import('../../../src/utils/process-output/process-output.constants')
+const { ANSI_ESCAPE_CODES, Listr, ListrLogger, ListrPromptAdapter, ListrTaskEventType, ProcessOutput, delay } = await import('#root')
 
 describe('default renderer: input', () => {
   let vt: VirtualTerminal
@@ -193,11 +185,12 @@ describe('default renderer: input', () => {
       expect(stty.echo).toBe(true)
     })
 
-    it('should never erase what the shell writes when the job stops, and lock the input again and draw the live region below it when the job continues', async() => {
+    it('should never erase what the shell writes when the job stops, and give up the lock and draw the live region below it when the job continues', async() => {
       stty.install()
 
       const kill = vi.spyOn(process, 'kill').mockImplementation(() => true)
       const screen = vt.write
+      const listeners = { SIGTSTP: process.listenerCount('SIGTSTP'), SIGCONT: process.listenerCount('SIGCONT') }
       let stopped: string[]
       let continued: { echo: boolean; content: string[] }
 
@@ -207,19 +200,15 @@ describe('default renderer: input', () => {
           {
             title: 'running',
             task: async(_, task): Promise<void> => {
-              // under a wrapper such as pnpm, the shell can take the terminal back and report the job stopped before node handles SIGTSTP, and redraw in between
-              stty.foreground = false
-              screen('[1]+  Stopped\n$ ')
-              task.output = 'still running'
               process.emit('SIGTSTP', 'SIGTSTP')
-              stopped = await vt.content()
-
               // the shell takes the terminal back in its own mode while the job is stopped
               stty.echo = true
-              stty.foreground = true
-              screen('fg\n')
+              screen('[1]+  Stopped\n$ ')
+              stopped = await vt.content()
 
+              screen('fg\n')
               process.emit('SIGCONT', 'SIGCONT')
+              task.output = 'still running'
               continued = { echo: stty.echo, content: await vt.content() }
             }
           }
@@ -229,114 +218,86 @@ describe('default renderer: input', () => {
 
       expect(kill).toHaveBeenCalledWith(process.pid, 'SIGTSTP')
       expect(stopped).toEqual(['✔ before', '❯ running', '[1]+  Stopped', '$'])
-      expect(continued).toEqual({ echo: false, content: ['✔ before', '❯ running', '[1]+  Stopped', '$ fg', '❯ running', '  › still running'] })
+      expect(continued).toEqual({ echo: true, content: ['✔ before', '❯ running', '[1]+  Stopped', '$ fg', '❯ running', '  › still running'] })
       expect(await vt.content()).toEqual(['✔ before', '❯ running', '[1]+  Stopped', '$ fg', '✔ running'])
-      expect(stty.echo).toBe(true)
+      // stty from the background would stop the job again, so it never runs after the stop
+      expect(stty.calls).toEqual(['-g', '-echo'])
+      expect({ SIGTSTP: process.listenerCount('SIGTSTP'), SIGCONT: process.listenerCount('SIGCONT') }).toEqual(listeners)
     })
 
-    it('should leave the terminal to the shell while the job runs in the background, and lock it again once it is back in the foreground', async() => {
+    it('should give up the lock when the job continues after a SIGSTOP, which it cannot handle', async() => {
       stty.install()
-      vi.spyOn(process, 'kill').mockImplementation(() => true)
 
-      let background: { echo: boolean; content: string[] }
-      let foreground: boolean
-
-      await new Listr(
-        [
-          {
-            title: 'running',
-            task: async(_, task): Promise<void> => {
-              process.emit('SIGTSTP', 'SIGTSTP')
-              stty.echo = true
-
-              stty.foreground = false
-              process.emit('SIGCONT', 'SIGCONT')
-              task.title = 'running in the background'
-              background = { echo: stty.echo, content: await vt.content() }
-
-              // `fg` sends no SIGCONT to a job that already runs
-              stty.foreground = true
-              vi.spyOn(Date, 'now').mockReturnValue(Date.now() + TERMINAL_POLL_INTERVAL)
-              task.title = 'running in the foreground'
-              foreground = stty.echo
-            }
-          }
-        ],
-        options()
-      ).run()
-
-      expect(background).toEqual({ echo: true, content: ['❯ running'] })
-      expect(foreground).toBe(false)
-      expect(await vt.content()).toEqual(['❯ running', '✔ running in the foreground'])
-      expect(stty.echo).toBe(true)
-    })
-
-    it.each([
-      ['/proc', { proc: true }],
-      ['ps where there is no /proc', { proc: false }]
-    ])('should draw without locking the input while the job was started in the background, and lock it once it is in the foreground, found through %s', async(_, install) => {
-      stty.install(install)
-      stty.foreground = false
-
-      let background: { echo: boolean; content: string[] }
-      let foreground: boolean
-
-      await new Listr(
-        [
-          {
-            title: 'running',
-            task: async(_, task): Promise<void> => {
-              background = { echo: stty.echo, content: await vt.content() }
-
-              stty.foreground = true
-              vi.spyOn(Date, 'now').mockReturnValue(Date.now() + TERMINAL_POLL_INTERVAL)
-              task.title = 'running in the foreground'
-              foreground = stty.echo
-            }
-          }
-        ],
-        options()
-      ).run()
-
-      expect(background).toEqual({ echo: true, content: ['❯ running'] })
-      expect(foreground).toBe(false)
-      expect(await vt.content()).toEqual(['✔ running in the foreground'])
-      expect(stty.echo).toBe(true)
-      expect(stty.ps > 0).toBe(!install.proc)
-    })
-
-    it('should not change the mode of the terminal when the job runs in the background until the end', async() => {
-      stty.install()
-      stty.foreground = false
-
-      await new Listr(
-        range(3, (index) => ({ title: `task ${index}`, task: async(): Promise<void> => delay(0) })),
-        options()
-      ).run()
-
-      expect(stty.calls.filter((call) => call !== '-g')).toEqual([])
-      expect(await vt.content()).toEqual(range(3, (index) => `✔ task ${index}`))
-    })
-
-    it('should lock the input when the job has no controlling terminal', async() => {
-      stty.install()
-      stty.controlling = false
-
-      let echo: boolean
+      const screen = vt.write
 
       await new Listr(
         [
           {
             title: 'running',
             task: async(): Promise<void> => {
-              echo = stty.echo
+              stty.echo = true
+              screen('[1]+  Stopped\n$ bg\n')
+              process.emit('SIGCONT', 'SIGCONT')
             }
           }
         ],
         options()
       ).run()
 
-      expect(echo).toBe(false)
+      expect(stty.calls).toEqual(['-g', '-echo'])
+      expect(await vt.content()).toEqual(['❯ running', '[1]+  Stopped', '$ bg', '✔ running'])
+    })
+
+    it('should still show the cursor to the shell when the job stops a second time', async() => {
+      stty.install()
+
+      const kill = vi.spyOn(process, 'kill').mockImplementation(() => true)
+      let written: string[]
+
+      await new Listr(
+        [
+          {
+            title: 'running',
+            task: async(): Promise<void> => {
+              process.emit('SIGTSTP', 'SIGTSTP')
+              process.emit('SIGCONT', 'SIGCONT')
+
+              const before = vt.writes.length
+
+              process.emit('SIGTSTP', 'SIGTSTP')
+              written = vt.writes.slice(before)
+              process.emit('SIGCONT', 'SIGCONT')
+            }
+          }
+        ],
+        options()
+      ).run()
+
+      expect(kill).toHaveBeenCalledTimes(2)
+      expect(written).toEqual([ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW])
+    })
+
+    it('should not lock the input again for a prompt after the job continued', async() => {
+      stty.install()
+      vi.spyOn(process, 'kill').mockImplementation(() => true)
+
+      await new Listr(
+        [
+          {
+            title: 'prompt',
+            task: async(_, task: ListrTaskWrapper<any, any, any>): Promise<void> => {
+              process.emit('SIGTSTP', 'SIGTSTP')
+              stty.echo = true
+              process.emit('SIGCONT', 'SIGCONT')
+
+              await task.prompt(Prompt).run()
+            }
+          }
+        ],
+        options()
+      ).run()
+
+      expect(stty.calls).toEqual(['-g', '-echo'])
       expect(stty.echo).toBe(true)
     })
 
