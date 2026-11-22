@@ -129,10 +129,11 @@ While the tasks run, what you type is not shown, so it cannot break the task lis
 
 - A child process spawned with `stdio: 'inherit'` writes over the task list. Pipe its output through [`task.stdout()`](../task/output.md) instead, and set `lockInput: false` if it reads the terminal input, so what you type for it is shown.
 - A process killed with `SIGKILL` leaves typed keys hidden. Run `stty sane` or `reset`.
-- Resizing the terminal can leave a stray row of the task list behind, or erase a row above it, once per resize.
+- Resizing the terminal can leave a stray row of the task list behind, or erase a row above it, once per resize. Making it shorter leaves the rows that scrolled off the top in the scrollback, up to a whole copy of the task list.
 - Stopping the run with `Ctrl+Z` leaves a copy of the running tasks where the shell took over. They are drawn again below once the run continues.
-- After `Ctrl+Z`, what you type is shown for the rest of the run, since changing the terminal mode from the background would stop the run again.
+- After `Ctrl+Z`, what you type is shown for the rest of the process, also in the lists that run after it, since changing the terminal mode from the background would stop the run again.
 - A run started in the background, such as with `&` or under `timeout` in a script, stops with `Stopped (tty output)` until it is brought to the foreground. Set `lockInput: false` for it.
+- A group is printed once it closes. When the list goes on after it, such as with `exitOnError: false`, a subtask that still changes afterwards keeps the state it had when the group was printed.
 - When the terminal reports more rows than it shows, as some multiplexers and remote sessions do, the scrollback can fill with copies of the task list while it runs. The final output is still correct.
 
 ## How the Options Look
