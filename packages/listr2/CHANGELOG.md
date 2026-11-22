@@ -1,3 +1,14 @@
+## listr2 [12.0.0-beta.25](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.24...listr2@12.0.0-beta.25) (2026-11-22)
+
+### Bug Fixes
+
+* **lib:** end the renderer when a list fails with exitOnError [secure] ([2d36451](https://github.com/listr2/listr2/commit/2d36451862509e61768c3ce55976b71397deeac0))
+* **renderer:** lock the input without probing the foreground through /proc or ps ([a97af49](https://github.com/listr2/listr2/commit/a97af49847f58cf795f914319ab060c33ce016f7))
+
+### Code Refactoring
+
+* **renderer:** track closed tasks in the default renderer instead of reopening them ([af55ed6](https://github.com/listr2/listr2/commit/af55ed6400e4246a9c5b0357c69a0fbd653080e5))
+
 ## listr2 [12.0.0-beta.24](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.23...listr2@12.0.0-beta.24) (2026-11-21)
 
 ### Features
