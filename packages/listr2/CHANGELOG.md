@@ -1,3 +1,9 @@
+## listr2 [12.0.0-beta.27](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.26...listr2@12.0.0-beta.27) (2026-11-22)
+
+### Bug Fixes
+
+* **renderer:** turn the input lock off by default ([ae8ec2d](https://github.com/listr2/listr2/commit/ae8ec2d87e6a4a97e69a8ceab2f1f6dc8dc83939))
+
 ## listr2 [12.0.0-beta.26](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.25...listr2@12.0.0-beta.26) (2026-11-22)
 
 ### Bug Fixes
