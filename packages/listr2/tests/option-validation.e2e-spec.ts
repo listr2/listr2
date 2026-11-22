@@ -94,6 +94,21 @@ describe('option validation', () => {
     })
   })
 
+  describe('fallback renderer', () => {
+    it('should throw for the options of the renderer that is not picked', () => {
+      expect(() => new Listr(tasks(), {
+        renderer: 'silent', fallbackRenderer: 'simple', fallbackRendererOptions: { logger: {} as any }
+      })).toThrow(
+        new RangeError('The logger option must be a ListrLogger, but it is [object Object].')
+      )
+      expect(
+        () => new Listr([{
+          title: 'task', task: (): void => {}, fallbackRendererOptions: { timer: true as any }
+        }], { renderer: 'silent', fallbackRenderer: 'simple' })
+      ).toThrow(new RangeError('The timer option must be an object with a field, but it is true.'))
+    })
+  })
+
   describe('default renderer', () => {
     let vt: VirtualTerminal
 

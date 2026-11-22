@@ -16,7 +16,7 @@ import type {
   ListrTask
 } from '#interfaces'
 import { ListrEventManager, Task, TaskWrapper } from '#lib'
-import { Concurrency, assertOption, getRenderer } from '#utils'
+import { Concurrency, assertOption, getRenderer, getRendererClass } from '#utils'
 
 /**
  * Create a new task list with Listr.
@@ -128,7 +128,9 @@ export class Listr<
     this.rendererClass = renderer.renderer
     this.rendererClassOptions = renderer.options as ListrGetRendererOptions<ListrGetRendererClassFromValue<Renderer> | ListrGetRendererClassFromValue<FallbackRenderer>>
     this.rendererSelection = renderer.selection
-    this.rendererClass.assertOptions?.(this.rendererClassOptions ?? {})
+    // the fallback renderer is picked where there is no TTY, so its options are checked too, not only where it runs
+    getRendererClass(this.options.renderer).assertOptions?.(this.options.rendererOptions ?? {})
+    getRendererClass(this.options.fallbackRenderer).assertOptions?.(this.options.fallbackRendererOptions ?? {})
 
     // parse and add tasks
     /* istanbul ignore next */
@@ -255,7 +257,8 @@ export class Listr<
         rendererTaskOptions = task.fallbackRendererOptions
       }
 
-      this.rendererClass.assertOptions?.(rendererTaskOptions ?? {})
+      getRendererClass(this.options.renderer).assertOptions?.(task.rendererOptions ?? {})
+      getRendererClass(this.options.fallbackRenderer).assertOptions?.(task.fallbackRendererOptions ?? {})
 
       return new Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>(
         this as Listr<Ctx, any, any>,
