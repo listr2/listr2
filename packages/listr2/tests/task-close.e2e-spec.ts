@@ -43,7 +43,7 @@ describe('close a task', () => {
     expect(list.tasks.map((task) => task.isClosed())).toEqual([true, true, true, false])
   })
 
-  it('should reopen every task before the list runs again', async() => {
+  it('should keep the tasks closed when the list runs again', async() => {
     const closed: boolean[][] = []
 
     const list = new Listr(
@@ -62,10 +62,9 @@ describe('close a task', () => {
     await list.run()
     await list.run()
 
-    // the second task has not run yet in either run, so it is still open
     expect(closed).toEqual([
       [false, false],
-      [false, false]
+      [true, true]
     ])
     expect(list.tasks.map((task) => task.isClosed())).toEqual([true, true])
   })

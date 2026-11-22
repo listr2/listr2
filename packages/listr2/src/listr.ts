@@ -178,8 +178,6 @@ export class Listr<
       this.renderer = new this.rendererClass(this.tasks, this.rendererClassOptions, this.events)
     }
 
-    this.reopenTasks()
-
     await this.renderer.render()
 
     // create a new context
@@ -295,16 +293,6 @@ export class Listr<
   private removeSignalHandler(): void {
     if (this.boundSignalHandler) {
       process.removeListener('SIGINT', this.boundSignalHandler)
-    }
-  }
-
-  private reopenTasks(tasks: Task<Ctx, ListrGetRendererClassFromValue<Renderer>, ListrGetRendererClassFromValue<FallbackRenderer>>[] = this.tasks): void {
-    for (const task of tasks) {
-      task.reopen()
-
-      if (task.hasSubtasks()) {
-        this.reopenTasks(task.subtasks)
-      }
     }
   }
 

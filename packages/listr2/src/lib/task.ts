@@ -56,7 +56,7 @@ export class Task<
   /** User provided Task callback function to run. */
   private taskFn: ListrTaskFn<Ctx, Renderer, FallbackRenderer>
   /** Marks the task as closed. This is different from finalized since this is not really related to task itself. */
-  private closed: boolean
+  private closed = false
 
   constructor(
     public listr: Listr<Ctx, Renderer, FallbackRenderer>,
@@ -274,11 +274,6 @@ export class Task<
   /** Returns whether this task is closed. */
   public isClosed(): boolean {
     return this.closed
-  }
-
-  /** Reopen the task before its list runs again. */
-  public reopen(): void {
-    this.closed = false
   }
 
   /** Pause the given task for certain time. */

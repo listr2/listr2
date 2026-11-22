@@ -68,6 +68,9 @@ export class DefaultRenderer implements ListrRenderer {
   }
   // the tasks that are written to the scrollback
   private readonly frozen = new Set<string>()
+  // the tasks that closed in this render, since a list that runs again keeps the tasks of its last run
+  private readonly closed = new Set<string>()
+  private readonly watched = new Map<string, () => void>()
   private hasPersisted = false
 
   constructor(
@@ -119,7 +122,9 @@ export class DefaultRenderer implements ListrRenderer {
   public render(): void {
     this.cache.render.clear()
     this.frozen.clear()
+    this.closed.clear()
     this.hasPersisted = false
+    this.watch(this.tasks)
 
     this.logger.process.hijack(() => this.update())
     this.syncInputLock()
@@ -304,6 +309,28 @@ export class DefaultRenderer implements ListrRenderer {
     }
   }
 
+  private watch(tasks: ListrDefaultRendererTask[]): void {
+    for (const task of tasks) {
+      this.closed.delete(task.id)
+      // a task that never closed still holds the listeners of the last run
+      this.watched.get(task.id)?.()
+
+      const onClosed = (): void => {
+        this.closed.add(task.id)
+      }
+      const onSubtask = (subtasks: ListrDefaultRendererTask[]): void => {
+        this.watch(subtasks)
+      }
+
+      task.on(ListrTaskEventType.CLOSED, onClosed)
+      task.on(ListrTaskEventType.SUBTASK, onSubtask)
+      this.watched.set(task.id, () => {
+        task.off(ListrTaskEventType.CLOSED, onClosed)
+        task.off(ListrTaskEventType.SUBTASK, onSubtask)
+      })
+    }
+  }
+
   private readonly refresh = (): void => {
     this.update()
   }
@@ -441,7 +468,7 @@ export class DefaultRenderer implements ListrRenderer {
       return this.renderProgressive(task, siblings, column, context)
     }
 
-    const commit = context.commit && (context.final || task.isClosed())
+    const commit = context.commit && (context.final || this.closed.has(task.id))
     const output = this.renderLines(task, siblings, column, commit ? undefined : context.summary)
 
     if (!commit) {
@@ -455,7 +482,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   // a parent without a title writes its subtasks as they finish, like the tasks of the list it is in
   private renderProgressive(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], column: number, context: ListrDefaultRendererContext): ListrDefaultRendererFrame {
-    const final = context.final || task.isClosed()
+    const final = context.final || this.closed.has(task.id)
     const { body, subtaskColumn } = this.renderTask(task, siblings, column)
     const children = this.renderer(task.subtasks, subtaskColumn, { ...context, final })
 
@@ -470,7 +497,7 @@ export class DefaultRenderer implements ListrRenderer {
 
   private renderLines(task: ListrDefaultRendererTask, siblings: ListrDefaultRendererTask[], column: number, summary?: ListrDefaultRendererSummary): string[] {
     // if this is already cached return the cache
-    if (task.isClosed() && this.cache.render.has(task.id)) {
+    if (this.closed.has(task.id) && this.cache.render.has(task.id)) {
       return this.cache.render.get(task.id)
     }
 
@@ -478,7 +505,7 @@ export class DefaultRenderer implements ListrRenderer {
     const lines = [...body]
 
     if (subtasks) {
-      const compact = summary !== undefined && !task.isClosed() && !this.isProgressive(task)
+      const compact = summary !== undefined && !this.closed.has(task.id) && !this.isProgressive(task)
 
       lines.push(...this.renderer(task.subtasks, subtaskColumn, { summary, compact }).live)
     }
@@ -486,7 +513,7 @@ export class DefaultRenderer implements ListrRenderer {
     const output = bracket ? this.close(task, column, header, lines, title) : [...header, ...lines]
 
     // a summarized render is not the final one
-    if (task.isClosed() && !summary) {
+    if (this.closed.has(task.id) && !summary) {
       this.cache.render.set(task.id, output)
       this.reset(task)
     }
