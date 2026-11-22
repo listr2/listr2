@@ -17,13 +17,13 @@ import type {
   ListrDefaultRendererSummary,
   ListrDefaultRendererTaskRender
 } from './renderer.internal.interface'
-import { ListrEventType, ListrTaskEventType, ListrTaskState } from '#constants'
+import { ListrEventType, ListrTaskEventType, ListrTaskState, ProcessOutputEventType } from '#constants'
 import type { ListrRenderer, ListrTaskEventMap } from '#interfaces'
 import { ListrRendererError } from '#interfaces'
 import type { ListrEventManager } from '#lib'
 import { PRESET_TIMER } from '#presets'
 import {
-  ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, assertLoggerOptions, assertOption, cleanseAnsi, color, indent
+  ProcessInputLock, ListrLogLevels, ListrLogger, ProcessOutputBuffer, Spinner, assertFunctionOrSelf, assertLoggerOptions, assertOption, cleanseAnsi, color, indent
 } from '#utils'
 
 export class DefaultRenderer implements ListrRenderer {
@@ -57,6 +57,7 @@ export class DefaultRenderer implements ListrRenderer {
   private activePrompt: string
   private readonly spinner: Spinner
   private readonly logger: ListrLogger<ListrDefaultRendererLogLevels>
+  private readonly input?: ProcessInputLock
   private readonly buffer: ListrDefaultRendererOutputBuffer = {
     output: new Map(),
     bottom: new Map()
@@ -96,6 +97,10 @@ export class DefaultRenderer implements ListrRenderer {
     this.logger = this.options.logger ?? new ListrLogger<ListrDefaultRendererLogLevels>({ useIcons: true, toStderr: [] })
     this.logger.options.icon = this.options.icon
     this.logger.options.color = this.options.color
+
+    if (this.options.lockInput) {
+      this.input = new ProcessInputLock(this.logger.process)
+    }
   }
 
   /**
@@ -126,8 +131,10 @@ export class DefaultRenderer implements ListrRenderer {
     this.hasPersisted = false
     this.watch(this.tasks)
 
-    this.logger.process.hijack(() => this.update())
-    this.syncInputLock()
+    this.logger.process.hijack()
+    // what the live region shows depends on the size of the terminal
+    this.logger.process.events.on(ProcessOutputEventType.RESIZE, this.refresh)
+    this.syncProcessInputLock()
 
     /* istanbul ignore if */
     if (!this.options?.lazy) {
@@ -164,7 +171,7 @@ export class DefaultRenderer implements ListrRenderer {
     }
 
     // rendering a prompt task sets the active prompt before the prompt takes over stdin
-    this.syncInputLock()
+    this.syncProcessInputLock()
   }
 
   public end(): void {
@@ -192,6 +199,8 @@ export class DefaultRenderer implements ListrRenderer {
 
     this.watched.forEach((off) => off())
     this.watched.clear()
+    this.logger.process.events.off(ProcessOutputEventType.RESIZE, this.refresh)
+    this.input?.unlock()
     this.logger.process.release()
   }
 
@@ -302,15 +311,11 @@ export class DefaultRenderer implements ListrRenderer {
   }
 
   // locks the input while the renderer draws, and lifts the lock while a prompt reads the terminal
-  private syncInputLock(): void {
-    if (!this.options.lockInput) {
-      return
-    }
-
+  private syncProcessInputLock(): void {
     if (this.activePrompt) {
-      this.logger.process.unlockInput()
+      this.input?.unlock()
     } else {
-      this.logger.process.lockInput()
+      this.input?.lock()
     }
   }
 

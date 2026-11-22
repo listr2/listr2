@@ -1,13 +1,11 @@
-import { spawnSync } from 'child_process'
-import { createLogUpdate } from 'log-update'
 import { EOL } from 'os'
 import { onExit } from 'signal-exit'
-import wrapAnsi from 'wrap-ansi'
 
+import { LiveRegion } from './live-region'
 import { ProcessOutputStream } from './process-output-stream'
-import { STTY_TIMEOUT } from './process-output.constants'
 import type { ProcessOutputCapture, ProcessOutputOptions, ProcessOutputStreamMap } from './process-output.interface'
-import { ANSI_ESCAPE_CODES } from '#constants'
+import { ANSI_ESCAPE_CODES, ProcessOutputEventType } from '#constants'
+import { EventManager } from '#lib'
 import { cleanseAnsi } from '#utils'
 
 /**
@@ -21,16 +19,14 @@ export class ProcessOutput {
   // a job that was stopped once never changes the terminal mode again in this process, since stty from the background would stop it
   private static suspended = false
   public readonly stream: ProcessOutputStreamMap
+  /** What happens to the terminal while the output is hijacked. */
+  public readonly events = new EventManager<ProcessOutputEventType>()
   protected active: boolean
   private readonly shared: boolean
-  private updater?: ReturnType<typeof createLogUpdate>
+  private readonly region: LiveRegion
   private live = ''
+  private drawing = false
   private captured: ProcessOutputCapture[] = []
-  private drawn?: { text: string; columns: number; rows: number }
-  private redraw?: () => void
-  private frame?: string[]
-  private input?: string
-  private failed = false
   private stopped = false
   private removeExitHook?: () => void
 
@@ -45,6 +41,7 @@ export class ProcessOutput {
     }
 
     this.shared = (stdout ?? process.stdout) === (stderr ?? process.stderr)
+    this.region = new LiveRegion(stdout ?? process.stdout)
 
     this.options = {
       dump: ['stdout', 'stderr'],
@@ -60,22 +57,36 @@ export class ProcessOutput {
     return this.stream.stderr.out
   }
 
-  /**
-   * Captures the writes to `stdout` and `stderr`, and writes them above the live region. `redraw` draws the live region again after a
-   * resize, since what it shows depends on the size of the terminal.
-   */
-  public hijack(redraw?: () => void): void {
+  /** Whether the output is hijacked. */
+  get hijacked(): boolean {
+    return this.active === true
+  }
+
+  /** Whether this process was stopped while an output was hijacked, after which the terminal mode must not change anymore. */
+  get suspended(): boolean {
+    return ProcessOutput.suspended
+  }
+
+  /** Captures the writes to `stdout` and `stderr`, and writes them above the live region. */
+  public hijack(): void {
     if (this.active) {
       throw new Error('ProcessOutput has been already hijacked!')
     }
 
-    this.redraw = redraw
-
     this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
-    this.removeExitHook = onExit(() => this.restore(), { alwaysLast: true })
+    this.removeExitHook = onExit(this.onExit, { alwaysLast: true })
 
     for (const name of Object.keys(this.stream) as (keyof ProcessOutputStreamMap)[]) {
       this.stream[name].hijack((entry) => this.capture(name, entry))
+    }
+
+    this.stdout.on('resize', this.onResize)
+    this.stopped = false
+
+    // without a terminal there is no shell to give it back to, and windows has no job control
+    if (process.platform !== 'win32' && this.stdout.isTTY) {
+      process.on('SIGTSTP', this.onStop)
+      process.on('SIGCONT', this.onContinue)
     }
 
     this.active = true
@@ -85,88 +96,38 @@ export class ProcessOutput {
   public update(live: string): void {
     this.live = live
 
-    this.batch(() => this.draw())
+    this.write(this.region.paint(live))
   }
 
   /** Writes the text above the live region, where it stays, and redraws the live region below it. */
   public persist(text: string, live = this.live): void {
     this.live = live
 
-    this.batch(() => {
-      if (text !== '') {
-        this.start().persist(text)
-        this.drawn = undefined
-      }
-
-      this.draw()
-    })
+    this.write((text === '' ? '' : this.region.paint('') + text + (text.endsWith('\n') ? '' : '\n')) + this.region.paint(live))
   }
 
   /** Erases the live region. */
   public clear(): void {
-    this.live = ''
-
-    this.batch(() => this.draw())
-  }
-
-  /**
-   * Hides keyboard input until `unlockInput()` or `release()`, while the output is hijacked.
-   *
-   * @see {@link https://listr2.kilic.dev/renderer/default.html#keyboard-input}
-   */
-  public lockInput(): void {
-    if (!this.active || this.input !== undefined || this.failed || ProcessOutput.suspended) {
-      return
-    }
-
-    if (process.platform === 'win32' || !process.stdin.isTTY || !this.stdout.isTTY) {
-      return
-    }
-
-    const input = this.stty('-g')
-
-    if (!input || this.stty('-echo') === undefined) {
-      this.failed = true
-
-      return
-    }
-
-    this.input = input
-    process.on('SIGTSTP', this.onStop)
-    process.on('SIGCONT', this.onContinue)
-  }
-
-  /** Shows keyboard input again after `lockInput()`. */
-  public unlockInput(): void {
-    if (this.input === undefined) {
-      return
-    }
-
-    this.removeSignalHandlers()
-    this.stty(this.input)
-    this.input = undefined
+    this.update('')
   }
 
   /** Writes what was captured and not written yet, and restores the streams. */
   public release(): void {
-    if (this.updater) {
-      this.stdout.off('resize', this.onResize)
-      this.updater.done()
-      this.updater = undefined
-    }
+    this.events.emit(ProcessOutputEventType.RELEASE)
+    this.stdout.off('resize', this.onResize)
+    process.off('SIGTSTP', this.onStop)
+    process.off('SIGCONT', this.onContinue)
 
+    this.region.reset()
     this.live = ''
-    this.drawn = undefined
+    this.drawing = false
 
     Object.values(this.stream).forEach((stream) => stream.release())
     this.take().forEach((message) => this.stream[message.name].write(message.entry + EOL))
 
     this.restore()
-    this.removeSignalHandlers()
     this.removeExitHook?.()
     this.removeExitHook = undefined
-    this.redraw = undefined
-    this.failed = false
 
     this.active = false
   }
@@ -187,127 +148,14 @@ export class ProcessOutput {
     return this.stream.stderr.write(buffer)
   }
 
-  private start(): ReturnType<typeof createLogUpdate> {
-    if (!this.updater) {
-      this.updater = createLogUpdate(
-        new Proxy(this.stdout, {
-          get: (target, prop, receiver): any => (prop === 'write' ? (chunk: string): boolean => this.writeFrame(chunk) : Reflect.get(target, prop, receiver))
-        }),
-        { showCursor: true }
-      )
-      this.stdout.on('resize', this.onResize)
-    }
-
-    return this.updater
-  }
-
-  private draw(): void {
-    if (this.live === '') {
-      this.updater?.clear()
-      this.drawn = undefined
-
+  /** Writes a frame as one synchronized update. */
+  private write(frame: string): void {
+    if (frame === '') {
       return
     }
 
-    this.start()(this.live)
-    // laid out only on a resize, at the size it was drawn at
-    this.drawn = {
-      text: this.live,
-      columns: this.stdout.columns ?? 80,
-      rows: this.stdout.rows ?? 24
-    }
-  }
-
-  private readonly onResize = (): void => {
-    if (!this.drawn) {
-      return
-    }
-
-    const lines = this.layout(this.drawn)
-    const columns = this.stdout.columns
-    // log-update erases with the line count of the last frame, which is stale once the terminal reflowed it
-    const height = this.reflows() ? lines.reduce((height, line) => height + this.wrap(line, columns).length, 0) : lines.length
-
-    this.batch(() => {
-      this.writeFrame(ANSI_ESCAPE_CODES.ERASE_LINE + (ANSI_ESCAPE_CODES.CURSOR_UP + ANSI_ESCAPE_CODES.ERASE_LINE).repeat(height) + ANSI_ESCAPE_CODES.CURSOR_LEFT)
-      this.updater.done()
-
-      // what the live region shows depends on the size of the terminal
-      if (this.redraw) {
-        this.redraw()
-      } else {
-        this.draw()
-      }
-    })
-  }
-
-  // log-update wraps each of its writes in a synchronized update, so a persist and the redraw below it would show as two frames, the first
-  // without a live region
-  private batch(draw: () => void): void {
-    if (this.frame) {
-      return draw()
-    }
-
-    this.frame = []
-
-    try {
-      draw()
-    } finally {
-      const frame = this.frame.join('')
-
-      this.frame = undefined
-
-      if (frame !== '') {
-        this.writeSynced(frame)
-      }
-    }
-  }
-
-  private writeFrame(chunk: string): boolean {
-    chunk = chunk.replaceAll(ANSI_ESCAPE_CODES.SYNC_START, '').replaceAll(ANSI_ESCAPE_CODES.SYNC_END, '')
-
-    if (this.frame) {
-      this.frame.push(chunk)
-
-      return true
-    }
-
-    return this.writeSynced(chunk)
-  }
-
-  private writeSynced(text: string): boolean {
-    return this.stream.stdout.write(this.stdout.isTTY ? ANSI_ESCAPE_CODES.SYNC_START + text + ANSI_ESCAPE_CODES.SYNC_END : text)
-  }
-
-  private layout({ text, columns, rows }: { text: string; columns: number; rows: number }): string[] {
-    const lines = this.wrap(text.endsWith(EOL) ? text.slice(0, -EOL.length) : text, columns)
-
-    return lines.slice(Math.max(lines.length - rows + 1, 0))
-  }
-
-  // wrap-ansi turns every line break into \n, also where EOL is \r\n
-  private wrap(text: string, columns: number): string[] {
-    return wrapAnsi(text, columns, {
-      hard: true,
-      trim: false,
-      wordWrap: false
-    }).split('\n')
-  }
-
-  private reflows(): boolean {
-    // tmux reflows, and its panes inherit the environment of the terminal it was started from
-    if (process.env.TMUX) {
-      return true
-    }
-
-    // these terminals truncate lines instead of reflowing them
-    if (process.env.XTERM_VERSION || process.env.STY) {
-      return false
-    }
-
-    const term = process.env.TERM ?? ''
-
-    return term !== 'linux' && !/^(rxvt|st|screen)/.test(term)
+    this.drawing = true
+    this.stream.stdout.write(this.stdout.isTTY ? ANSI_ESCAPE_CODES.SYNC_START + frame + ANSI_ESCAPE_CODES.SYNC_END : frame)
   }
 
   private capture(name: keyof ProcessOutputStreamMap, entry: string): void {
@@ -317,13 +165,13 @@ export class ProcessOutput {
 
     this.captured.push({ name, entry })
 
-    if (this.updater) {
-      queueMicrotask(() => this.flush())
+    if (this.drawing) {
+      queueMicrotask(this.flush)
     }
   }
 
-  private flush(): void {
-    if (!this.updater || !this.active) {
+  private readonly flush = (): void => {
+    if (!this.active) {
       return
     }
 
@@ -339,10 +187,9 @@ export class ProcessOutput {
       return
     }
 
-    this.updater.clear()
+    this.write(this.region.paint(''))
     captured.forEach((message) => this.stream[message.name].write(message.entry + EOL))
-
-    this.draw()
+    this.write(this.region.paint(this.live))
   }
 
   private take(): ProcessOutputCapture[] {
@@ -355,62 +202,61 @@ export class ProcessOutput {
 
   // a terminal left in a synchronized update shows nothing anymore, so end it in case the process stops in the middle of a frame
   private restore(): void {
-    this.unlockInput()
     this.stream.stdout.write(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
   }
 
-  private stty(...args: string[]): string | undefined {
-    const { status, stdout } = spawnSync('stty', args, {
-      stdio: ['inherit', 'pipe', 'ignore'],
-      encoding: 'utf-8',
-      timeout: STTY_TIMEOUT,
-      killSignal: 'SIGKILL'
-    })
-
-    return status === 0 ? stdout.trim() : undefined
+  private readonly onExit = (): void => {
+    try {
+      this.events.emit(ProcessOutputEventType.EXIT)
+    } finally {
+      this.restore()
+    }
   }
 
-  private removeSignalHandlers(): void {
-    process.off('SIGTSTP', this.onStop)
-    process.off('SIGCONT', this.onContinue)
+  private readonly onResize = (): void => {
+    this.events.emit(ProcessOutputEventType.RESIZE)
+    // nothing is left to draw when a listener drew for the new size
+    this.update(this.live)
   }
 
-  // the shell takes the terminal back in its own mode, and stty from the background would stop the job again, so the lock ends here for the rest
-  // of the run
-  private dropInput(): void {
-    this.input = undefined
-    this.failed = true
-    ProcessOutput.suspended = true
-  }
-
-  // a SIGTSTP listener keeps the process from stopping, and the shell may already have written below the live region, so it stays as it is
+  // a SIGTSTP listener keeps the process from stopping, and the shell writes below the live region, so it stays as it is
   private readonly onStop = (): void => {
-    this.dropInput()
-    this.updater?.done()
-    this.drawn = undefined
-    this.stopped = true
-    this.stream.stdout.write(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
+    ProcessOutput.suspended = true
 
-    process.off('SIGTSTP', this.onStop)
-    process.kill(process.pid, 'SIGTSTP')
+    try {
+      this.events.emit(ProcessOutputEventType.STOP)
+    } finally {
+      this.region.reset()
+      this.stopped = true
+      this.restore()
+
+      process.off('SIGTSTP', this.onStop)
+      process.kill(process.pid, 'SIGTSTP')
+    }
   }
 
   // also reached after a SIGSTOP, which never went through onStop
   private readonly onContinue = (): void => {
-    this.dropInput()
-
-    // a frame drawn after onStop is already below the shell's output
-    if (!this.stopped) {
-      this.updater?.done()
-      this.drawn = undefined
-    }
-
-    this.stopped = false
+    ProcessOutput.suspended = true
 
     process.off('SIGTSTP', this.onStop)
     process.on('SIGTSTP', this.onStop)
 
-    this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
-    this.batch(() => this.draw())
+    try {
+      this.events.emit(ProcessOutputEventType.CONTINUE)
+    } finally {
+      // a frame drawn after onStop is already below the shell's output
+      if (!this.stopped) {
+        this.region.reset()
+      }
+
+      this.stopped = false
+
+      // a prompt that draws no live region, as with the simple renderer, keeps its cursor
+      if (this.live !== '') {
+        this.stream.stdout.write(ANSI_ESCAPE_CODES.CURSOR_HIDE)
+        this.update(this.live)
+      }
+    }
   }
 }

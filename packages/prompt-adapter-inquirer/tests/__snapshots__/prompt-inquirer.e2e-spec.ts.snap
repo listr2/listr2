@@ -11,8 +11,9 @@ exports[`default renderer: prompt -> inquirer > should be able to cancel a promp
 [?2026l",
   "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
 [?2026l",
-  "[?2026h[1B[G[G[34m?[39m [1mGive me some input.[22m
-[K[?2026l",
+  "[?2026h[2K[G
+[34m?[39m [1mGive me some input.[22m
+[?2026l",
   "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
 
 [34m?[39m [1mGive me some input.[22m
@@ -38,17 +39,18 @@ exports[`default renderer: prompt -> inquirer > should render a prompt > stdout 
 [?2026l",
   "[?2026h[2K[1A[2K[G[33m❯[39m This task will execute.
 [?2026l",
-  "[?2026h[1B[G[G[34m?[39m [1mGive me some input.[22m
-[K[?2026l",
-  "[?2026h[1A[G[2K[G[34m?[39m [1mGive me some input.[22m t[K
+  "[?2026h[2K[G
+[34m?[39m [1mGive me some input.[22m
 [?2026l",
-  "[?2026h[1A[G[2K[G[34m?[39m [1mGive me some input.[22m te[K
+  "[?2026h[2K[1A[2K[G[34m?[39m [1mGive me some input.[22m t
 [?2026l",
-  "[?2026h[1A[G[2K[G[34m?[39m [1mGive me some input.[22m tes[K
+  "[?2026h[2K[1A[2K[G[34m?[39m [1mGive me some input.[22m te
 [?2026l",
-  "[?2026h[1A[G[2K[G[34m?[39m [1mGive me some input.[22m test[K
+  "[?2026h[2K[1A[2K[G[34m?[39m [1mGive me some input.[22m tes
 [?2026l",
-  "[?2026h[1A[G[2K[G[32m✔[39m [1mGive me some input.[22m [36mtest[39m[K
+  "[?2026h[2K[1A[2K[G[34m?[39m [1mGive me some input.[22m test
+[?2026l",
+  "[?2026h[2K[1A[2K[G[32m✔[39m [1mGive me some input.[22m [36mtest[39m
 [?2026l",
   "[?2026h[2K[1A[2K[1A[2K[1A[2K[G[2m◼[22m This task will execute.
 [?2026l",

@@ -73,7 +73,6 @@
   },
   "dependencies": {
     "cli-truncate": "^6.2.0",
-    "log-update": "^8.0.0",
     "signal-exit": "^4.1.0",
     "wrap-ansi": "^10.0.2"
   },

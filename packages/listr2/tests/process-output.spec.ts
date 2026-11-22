@@ -16,13 +16,15 @@ vi.mock('signal-exit', () => ({
   }
 }))
 
-const { ANSI_ESCAPE_CODES, ProcessOutput } = await import('#root')
+const { ANSI_ESCAPE_CODES, ProcessInputLock, ProcessOutput, ProcessOutputEventType } = await import('#root')
 
 describe('process output', () => {
   let vt: VirtualTerminal
 
   afterEach(() => {
+    vi.restoreAllMocks()
     stty.uninstall()
+    Reflect.set(ProcessOutput, 'suspended', false)
     vt.dispose()
   })
 
@@ -162,13 +164,106 @@ describe('process output', () => {
       const output = new ProcessOutput(vt as any, vt as any)
 
       output.hijack()
-      output.lockInput()
+      new ProcessInputLock(output).lock()
 
       expect(stty.echo).toBe(false)
 
       exitHandlers.forEach((handler) => handler())
 
       expect(stty.echo).toBe(true)
+
+      output.release()
+    })
+  })
+
+  describe('input lock', () => {
+    it('should restore the echo when the output is released while the input is locked', async() => {
+      vt = new VirtualTerminal({ columns: 40, rows: 10 })
+
+      stty.install()
+      const output = new ProcessOutput(vt as any, vt as any)
+
+      output.hijack()
+      new ProcessInputLock(output).lock()
+      output.release()
+
+      expect(stty.echo).toBe(true)
+      expect(stty.calls).toEqual(['-g', '-echo', 'echo'])
+    })
+
+    it('should not lock the input before the output is hijacked', async() => {
+      vt = new VirtualTerminal({ columns: 40, rows: 10 })
+
+      stty.install()
+      new ProcessInputLock(new ProcessOutput(vt as any, vt as any)).lock()
+
+      expect(stty.calls).toEqual([])
+    })
+  })
+
+  describe('job control', () => {
+    const listeners = (): Record<string, number> => ({ SIGTSTP: process.listenerCount('SIGTSTP'), SIGCONT: process.listenerCount('SIGCONT') })
+
+    it('should report the stop and the continue, and stop the job once, without an input lock', async() => {
+      vt = new VirtualTerminal({ columns: 40, rows: 10 })
+
+      const kill = vi.spyOn(process, 'kill').mockImplementation(() => true)
+      const before = listeners()
+      const output = new ProcessOutput(vt as any, vt as any)
+      const events: string[] = []
+
+      output.events.on(ProcessOutputEventType.STOP, () => events.push('stop'))
+      output.events.on(ProcessOutputEventType.CONTINUE, () => events.push('continue'))
+      output.hijack()
+      output.update('live')
+
+      process.emit('SIGTSTP', 'SIGTSTP')
+
+      expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
+
+      vt.write('[1]+  Stopped\n$ fg\n')
+      process.emit('SIGCONT', 'SIGCONT')
+
+      expect(events).toEqual(['stop', 'continue'])
+      expect(kill).toHaveBeenCalledTimes(1)
+      expect(output.suspended).toBe(true)
+      expect(await vt.content()).toEqual(['live', '[1]+  Stopped', '$ fg', 'live'])
+
+      output.release()
+
+      expect(listeners()).toEqual(before)
+    })
+
+    it('should still show the cursor and stop the job when a listener of the stop throws', async() => {
+      vt = new VirtualTerminal({ columns: 40, rows: 10 })
+
+      const kill = vi.spyOn(process, 'kill').mockImplementation(() => true)
+      const output = new ProcessOutput(vt as any, vt as any)
+
+      output.events.on(ProcessOutputEventType.STOP, () => {
+        throw new Error('listener')
+      })
+      output.hijack()
+      output.update('live')
+
+      expect(() => process.emit('SIGTSTP', 'SIGTSTP')).toThrow('listener')
+      expect(vt.writes.at(-1)).toBe(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
+      expect(kill).toHaveBeenCalledWith(process.pid, 'SIGTSTP')
+
+      output.release()
+    })
+
+    it('should not handle the stop when stdout is not a terminal', async() => {
+      vt = new VirtualTerminal({ columns: 40, rows: 10 })
+
+      const before = listeners()
+      const output = new ProcessOutput({
+        ...vt, isTTY: false, write: vt.write, on: vt.on.bind(vt), off: vt.off.bind(vt)
+      } as any, vt as any)
+
+      output.hijack()
+
+      expect(listeners()).toEqual(before)
 
       output.release()
     })

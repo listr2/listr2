@@ -1,5 +1,6 @@
 export type * from './process-output-buffer.interface'
 export * from './process-output-buffer'
+export * from './process-input-lock'
 export * from './process-output-stream'
 export * from './process-output'
 export type * from './process-output.interface'

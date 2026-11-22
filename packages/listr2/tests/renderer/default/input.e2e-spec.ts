@@ -86,6 +86,17 @@ describe('default renderer: input', () => {
       }
     }
 
+    class StopPrompt extends ListrPromptAdapter {
+      public async run<T = any>(): Promise<T> {
+        this.reportStarted()
+        process.emit('SIGTSTP', 'SIGTSTP')
+        process.emit('SIGCONT', 'SIGCONT')
+        this.reportCompleted()
+
+        return undefined as T
+      }
+    }
+
     it('should turn off the echo during the run and restore it after', async() => {
       stty.install()
 
@@ -276,6 +287,51 @@ describe('default renderer: input', () => {
       ).run()
 
       expect(await vt.content()).toEqual(['❯ running', '[1]+  Stopped', '$ fg', '✔ running'])
+    })
+
+    it('should keep what the shell writes and draw below it when the job stops and continues without the input lock', async() => {
+      stty.install()
+      vi.spyOn(process, 'kill').mockImplementation(() => true)
+
+      const screen = vt.write
+
+      await new Listr(
+        [
+          {
+            title: 'running',
+            task: async(): Promise<void> => {
+              process.emit('SIGTSTP', 'SIGTSTP')
+              screen('[1]+  Stopped\n$ fg\n')
+              process.emit('SIGCONT', 'SIGCONT')
+            }
+          }
+        ],
+        options({ lockInput: undefined })
+      ).run()
+
+      expect(stty.calls).toEqual([])
+      expect(await vt.content()).toEqual(['❯ running', '[1]+  Stopped', '$ fg', '✔ running'])
+    })
+
+    it('should not lock the input for the next list after a stop during a prompt', async() => {
+      stty.install()
+      vi.spyOn(process, 'kill').mockImplementation(() => true)
+
+      await new Listr(
+        [
+          {
+            title: 'prompt',
+            task: async(_, task: ListrTaskWrapper<any, any, any>): Promise<void> => {
+              await task.prompt(StopPrompt).run()
+            }
+          }
+        ],
+        options()
+      ).run()
+      await new Listr([{ title: 'second', task: async(): Promise<void> => {} }], options()).run()
+
+      // the lock was lifted for the prompt, so only the first list locked and unlocked around it
+      expect(stty.calls).toEqual(['-g', '-echo', 'echo'])
     })
 
     it('should give up the lock when the job continues after a SIGSTOP, which it cannot handle', async() => {
