@@ -125,6 +125,28 @@ describe('default renderer: input', () => {
       expect(stty.echo).toBe(true)
     })
 
+    it('should restore the echo and remove its signal handler after a rollback with exitOnError: false', async() => {
+      stty.install()
+
+      const sigint = process.listenerCount('SIGINT')
+
+      await new Listr(
+        [
+          {
+            title: 'task',
+            task: async(): Promise<void> => {
+              throw new Error('failed')
+            },
+            rollback: async(): Promise<void> => {}
+          }
+        ],
+        { ...options(), exitOnError: false }
+      ).run()
+
+      expect(stty.echo).toBe(true)
+      expect(process.listenerCount('SIGINT')).toBe(sigint)
+    })
+
     it('should give the terminal to a prompt and lock it again after', async() => {
       stty.install()
 

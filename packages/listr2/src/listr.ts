@@ -219,19 +219,13 @@ export class Listr<
       throw error ?? new Error('Interrupted.')
     }
 
+    this.renderer.end(failed ? error : undefined)
+
+    this.removeSignalHandler()
+
     // Do not exit when explicitly set to `false`
     if (failed && this.options.exitOnError !== false) {
-      this.renderer.end(error)
-
-      this.removeSignalHandler()
-
       throw error
-    }
-
-    if (!failed) {
-      this.renderer.end()
-
-      this.removeSignalHandler()
     }
 
     return this.ctx
