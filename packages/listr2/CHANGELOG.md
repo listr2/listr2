@@ -1,3 +1,11 @@
+## listr2 [12.0.0-beta.26](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.25...listr2@12.0.0-beta.26) (2026-11-22)
+
+### Bug Fixes
+
+* **lib:** validate the options of the fallback renderer too ([980e799](https://github.com/listr2/listr2/commit/980e7992a52ce4e70eaa15b12ceda7a812552885))
+* **renderer:** fit the bars and wrapped rows when the list is taller than the terminal ([d3da43d](https://github.com/listr2/listr2/commit/d3da43d2224bf57f43ffce91199e9f62350f6871))
+* **renderer:** keep the input lock off for the rest of the process after a stop ([3081079](https://github.com/listr2/listr2/commit/308107956615f8ac2a190550f7a6f033c0a26217))
+
 ## listr2 [12.0.0-beta.25](https://github.com/listr2/listr2/compare/listr2@12.0.0-beta.24...listr2@12.0.0-beta.25) (2026-11-22)
 
 ### Bug Fixes
