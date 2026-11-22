@@ -18,6 +18,8 @@ import { cleanseAnsi } from '#utils'
  * @see {@link https://listr2.kilic.dev/renderer/process-output.html}
  */
 export class ProcessOutput {
+  // a job that was stopped once never changes the terminal mode again in this process, since stty from the background would stop it
+  private static suspended = false
   public readonly stream: ProcessOutputStreamMap
   protected active: boolean
   private readonly shared: boolean
@@ -29,6 +31,7 @@ export class ProcessOutput {
   private frame?: string[]
   private input?: string
   private failed = false
+  private stopped = false
   private removeExitHook?: () => void
 
   constructor(
@@ -112,7 +115,7 @@ export class ProcessOutput {
    * @see {@link https://listr2.kilic.dev/renderer/default.html#keyboard-input}
    */
   public lockInput(): void {
-    if (!this.active || this.input !== undefined || this.failed) {
+    if (!this.active || this.input !== undefined || this.failed || ProcessOutput.suspended) {
       return
     }
 
@@ -377,11 +380,15 @@ export class ProcessOutput {
   private dropInput(): void {
     this.input = undefined
     this.failed = true
+    ProcessOutput.suspended = true
   }
 
   // a SIGTSTP listener keeps the process from stopping, and the shell may already have written below the live region, so it stays as it is
   private readonly onStop = (): void => {
     this.dropInput()
+    this.updater?.done()
+    this.drawn = undefined
+    this.stopped = true
     this.stream.stdout.write(ANSI_ESCAPE_CODES.SYNC_END + ANSI_ESCAPE_CODES.CURSOR_SHOW)
 
     process.off('SIGTSTP', this.onStop)
@@ -391,8 +398,14 @@ export class ProcessOutput {
   // also reached after a SIGSTOP, which never went through onStop
   private readonly onContinue = (): void => {
     this.dropInput()
-    this.updater?.done()
-    this.drawn = undefined
+
+    // a frame drawn after onStop is already below the shell's output
+    if (!this.stopped) {
+      this.updater?.done()
+      this.drawn = undefined
+    }
+
+    this.stopped = false
 
     process.off('SIGTSTP', this.onStop)
     process.on('SIGTSTP', this.onStop)

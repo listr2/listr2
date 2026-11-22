@@ -26,6 +26,8 @@ describe('default renderer: input', () => {
   afterEach(() => {
     vi.restoreAllMocks()
     stty.uninstall()
+    // a stop gives up the lock for the rest of the process, and every test stands for a new process
+    Reflect.set(ProcessOutput, 'suspended', false)
     vt.dispose()
   })
 
@@ -247,6 +249,31 @@ describe('default renderer: input', () => {
       expect({ SIGTSTP: process.listenerCount('SIGTSTP'), SIGCONT: process.listenerCount('SIGCONT') }).toEqual(listeners)
     })
 
+    it('should draw below the shell when the job draws before it handles the SIGCONT', async() => {
+      stty.install()
+      vi.spyOn(process, 'kill').mockImplementation(() => true)
+
+      const screen = vt.write
+
+      await new Listr(
+        [
+          {
+            title: 'running',
+            task: async(_, task): Promise<void> => {
+              process.emit('SIGTSTP', 'SIGTSTP')
+              screen('[1]+  Stopped\n$ fg\n')
+              // timers run before the signal watcher once the job continues
+              task.output = 'still running'
+              process.emit('SIGCONT', 'SIGCONT')
+            }
+          }
+        ],
+        options()
+      ).run()
+
+      expect(await vt.content()).toEqual(['❯ running', '[1]+  Stopped', '$ fg', '✔ running'])
+    })
+
     it('should give up the lock when the job continues after a SIGSTOP, which it cannot handle', async() => {
       stty.install()
 
@@ -321,6 +348,30 @@ describe('default renderer: input', () => {
 
       expect(stty.calls).toEqual(['-g', '-echo'])
       expect(stty.echo).toBe(true)
+    })
+
+    it('should not lock the input again for the next list after the job continued', async() => {
+      stty.install()
+      vi.spyOn(process, 'kill').mockImplementation(() => true)
+
+      await new Listr(
+        [
+          {
+            title: 'first',
+            task: async(): Promise<void> => {
+              process.emit('SIGTSTP', 'SIGTSTP')
+              stty.echo = true
+              process.emit('SIGCONT', 'SIGCONT')
+            }
+          }
+        ],
+        options()
+      ).run()
+      await new Listr([{ title: 'second', task: async(): Promise<void> => {} }], options()).run()
+
+      expect(stty.calls).toEqual(['-g', '-echo'])
+      // the copy the stop left behind, where the shell took over
+      expect(await vt.content()).toEqual(['❯ first', '✔ first', '✔ second'])
     })
 
     it('should try to lock the input only once when stty cannot turn off the echo', async() => {
