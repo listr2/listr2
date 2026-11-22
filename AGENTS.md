@@ -7,7 +7,7 @@ Terminal task list library for Node.js. This pnpm monorepo publishes `listr2` an
 - `packages/listr2` is the library. Its entry is `src/index.ts`, and its modules import each other through the `#…` subpath imports declared in its `package.json`, which point at `src/`.
   - `src/listr.ts` and `src/lib/` hold the task model: a `Listr` owns its `Task`s, and a task that returns `task.newListr()` gets a child `Listr` that shares the parent's events and abort signal.
   - `src/renderer/` holds the integrated renderers. `Listr` picks one through `getRenderer()` in `src/utils/ui/renderer.ts`, calls its static `assertOptions` when a list or a task is created, and drives it through task events.
-  - `src/utils/process-output/` owns stdout and stderr while a renderer draws. The renderers reach it through `ListrLogger`.
+  - `src/utils/process-output/` owns stdout and stderr while a renderer draws. The renderers reach it through `ListrLogger`. `ProcessOutput` draws the live region and emits resize and job control events on `events`; `ProcessInputLock` subscribes to them and is created only by a renderer that locks the input.
 - The other packages under `packages/` depend on `listr2` through a version range that `linkWorkspacePackages` in `pnpm-workspace.yaml` links to the local package. The link resolves to its built `dist/`, not its `src/`.
 - `examples/` holds runnable examples that import the libraries from source through tsx. `examples/screenshots/` holds the documentation images, stored in Git LFS, and the way to capture them.
 - `docs/` is the VitePress site. Its sidebar is generated from the frontmatter `order` of each page.

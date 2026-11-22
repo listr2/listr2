@@ -30,11 +30,24 @@ _ProcessOutput_ also keeps the part of `stdout` that the _DefaultRenderer_ updat
 
 _Lines a task writes with `console.log`, printed above the task list as they arrive._
 
-A renderer that passes a callback to `output.hijack()` is called after a resize, to draw its live region again for the new size of the terminal.
+## Events
+
+While it is hijacked, `output.events` emits a `ProcessOutputEventType`:
+
+- `RESIZE` when the terminal changes its size. A renderer that listens draws its live region again for the new size; otherwise the _ProcessOutput_ draws the last one again itself.
+- `STOP` before the job stops with `Ctrl+Z`, and `CONTINUE` when it continues. The _ProcessOutput_ shows the cursor to the shell on a stop and draws the live region again below the shell's lines on continue. These apply only when `stdout` is a TTY, and not on Windows.
+- `EXIT` when the process exits while hijacked, and `RELEASE` before the release.
+
+```typescript
+import { ProcessOutputEventType } from 'listr2'
+
+output.hijack()
+output.events.on(ProcessOutputEventType.RESIZE, () => output.update(draw()))
+```
 
 ## Locking the Input
 
-`output.lockInput()` hides what is typed until `output.unlockInput()` or the release. The _DefaultRenderer_ calls it when its `lockInput` option is `true`. See [the default renderer](./default.md#keyboard-input).
+`new ProcessInputLock(output)` hides what is typed between `lock()` and `unlock()`. It works only while the output is hijacked, and it ends by itself on the release, on the exit of the process, and on the first stop of the job, after which no lock is taken again in the same process. The _DefaultRenderer_ creates one when its `lockInput` option is `true`. See [the default renderer](./default.md#keyboard-input).
 
 ## Release
 

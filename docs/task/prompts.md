@@ -10,7 +10,7 @@ category:
 
 # {{ $frontmatter.title }}
 
-Prompts use adapters and optional peer dependencies to provide interactivity with the user. The problem that we have with this application is that we are utilizing a single console updater, therefore we cannot directly write to `process.stdout`. This behavior requires a adapter in between to instead write to `task.stdout` and control the ANSI escape sequences for clearing lines since we do not have a `vt100` compatible interface through the console updater.
+Prompts use adapters and optional peer dependencies to provide interactivity with the user. The renderer owns the part of the terminal where it draws the task list, therefore a prompt cannot write to `process.stdout` directly. An adapter in between writes to `task.stdout` instead and controls the ANSI escape sequences for clearing lines, since the renderer does not offer a `vt100` compatible interface.
 
 <!-- more -->
 
