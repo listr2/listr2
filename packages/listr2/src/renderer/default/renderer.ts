@@ -142,15 +142,17 @@ export class DefaultRenderer implements ListrRenderer {
   public update(): void {
     const rows = this.logger.process.stdout.rows
     const { persist, live } = this.renderer(this.tasks, 0, { commit: !this.options.clearOutput })
+    const bars = [this.renderBottomBar(), this.renderPrompt()]
+    // each bar takes its rows and the empty line above it
+    const budget = typeof rows === 'number' ? Math.max(rows - 1 - bars.reduce((height, bar) => height + (bar.length > 0 ? bar.length + 1 : 0), 0), 1) : undefined
 
     // rows that scrolled off the top cannot be redrawn, so summarize until the live region fits
-    const render = typeof rows === 'number' && live.length > rows - 1 ? this.summarize(rows - 1) : live
+    const render = budget !== undefined && live.length > budget ? this.summarize(budget) : live
 
     if (persist.length > 0) {
       this.hasPersisted = true
     }
 
-    const bars = [this.renderBottomBar(), this.renderPrompt()]
     const compose = (lines: string[]): string[] =>
       bars.reduce((output, bar) => (bar.length > 0 ? [...output, ...(output.length > 0 || this.hasPersisted ? [''] : []), ...bar] : output), lines)
     const output = compose(render).join(EOL)
@@ -188,6 +190,8 @@ export class DefaultRenderer implements ListrRenderer {
       this.logger.process.persist(persist.join(EOL), '')
     }
 
+    this.watched.forEach((off) => off())
+    this.watched.clear()
     this.logger.process.release()
   }
 
@@ -259,15 +263,16 @@ export class DefaultRenderer implements ListrRenderer {
 
     switch (this.options.formatOutput) {
       case 'truncate':
-        parsed = message.split(EOL).map((s, i) => {
+        parsed = message.split(/\r?\n/).map((s, i) => {
           return truncate(this.indent(s, i), columns)
         })
 
         break
 
       case 'wrap':
+        // wrap-ansi breaks lines with \n, also where EOL is \r\n
         parsed = wrap(message, columns, { hard: true, trim: false })
-          .split(EOL)
+          .split(/\r?\n/)
           .map((s, i) => this.indent(s, i))
 
         break

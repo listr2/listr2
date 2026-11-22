@@ -1239,6 +1239,33 @@ describe('default renderer: terminal', () => {
     expect(seen).toEqual(['┌ ❯ outer', '│   ✔ first', '│   ┌ ❯ inner', '└   └   ❯ last'])
   })
 
+  it('should leave room for the bottom bar when the tasks do not fit on the terminal', async() => {
+    vt = new VirtualTerminal({ columns: 80, rows: 12 })
+
+    let seen: string[]
+
+    await new Listr(
+      [
+        {
+          title: 'running',
+          rendererOptions: { bottomBar: 5 },
+          task: async(_, task): Promise<void> => {
+            for (const index of range(5, (index) => index)) {
+              task.output = `step ${index}`
+            }
+
+            await delay(0)
+            seen = await vt.screen()
+          }
+        },
+        ...range(30, (index) => ({ title: `waiting ${index}`, task: async(): Promise<void> => {} }))
+      ],
+      options()
+    ).run()
+
+    expect(seen).toEqual(['❯ running', ...range(3, (index) => `◼ waiting ${index}`), '… 27', '', ...range(5, (index) => `› step ${index}`), ''])
+  })
+
   it('should count the running tasks that do not fit on the terminal and keep the header on the screen', async() => {
     vt = new VirtualTerminal({
       columns: 80,
