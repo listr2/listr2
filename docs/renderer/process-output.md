@@ -34,7 +34,7 @@ A renderer that passes a callback to `output.hijack()` is called after a resize,
 
 ## Locking the Input
 
-`output.lockInput()` hides what is typed until `output.unlockInput()` or the release. The _DefaultRenderer_ calls it unless its `lockInput` option is `false`. See [the default renderer](./default.md#keyboard-input).
+`output.lockInput()` hides what is typed until `output.unlockInput()` or the release. The _DefaultRenderer_ calls it when its `lockInput` option is `true`. See [the default renderer](./default.md#keyboard-input).
 
 ## Release
 

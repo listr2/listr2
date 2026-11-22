@@ -53,10 +53,10 @@ export interface ListrDefaultRendererOptions
    * Hide keyboard input while the tasks run, so it cannot break the task list.
    *
    * - This is a global option that can only be changed through the main Listr class.
-   * - Disable it when a task reads from the terminal, such as a child process spawned with `stdio: 'inherit'`.
+   * - Leave it off when a task reads from the terminal, such as a child process spawned with `stdio: 'inherit'`, or when the run may start in the background.
    *
    * @see {@link https://listr2.kilic.dev/renderer/default.html#keyboard-input}
-   * @defaultValue `true`
+   * @defaultValue `false`
    */
   lockInput?: boolean
   /**

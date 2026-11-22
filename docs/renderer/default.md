@@ -123,16 +123,16 @@ The summary lines use `↑` in green and a dimmed `…`, or `^` and `+` when the
 
 ### Keyboard Input
 
-While the tasks run, what you type is not shown, so it cannot break the task list. It reaches the shell after the run. `Ctrl+C`, `Ctrl+\`, `Ctrl+Z` and prompts work as usual. This applies only when both `stdin` and `stdout` are TTYs, and not on Windows. Set `lockInput: false` to turn it off.
+What you type while the tasks run is shown, and pressing `Enter` moves the cursor, which can leave a copy of the task list behind. Set `lockInput: true` to hide it while the tasks run, so it cannot break the task list; it then reaches the shell after the run. `Ctrl+C`, `Ctrl+\`, `Ctrl+Z` and prompts work as usual. The lock applies only when both `stdin` and `stdout` are TTYs, and not on Windows.
 
 ### Known Limits
 
-- A child process spawned with `stdio: 'inherit'` writes over the task list. Pipe its output through [`task.stdout()`](../task/output.md) instead, and set `lockInput: false` if it reads the terminal input, so what you type for it is shown.
+- A child process spawned with `stdio: 'inherit'` writes over the task list. Pipe its output through [`task.stdout()`](../task/output.md) instead, and leave `lockInput` off if it reads the terminal input, so what you type for it is shown.
 - A process killed with `SIGKILL` leaves typed keys hidden. Run `stty sane` or `reset`.
 - Resizing the terminal can leave a stray row of the task list behind, or erase a row above it, once per resize. Making it shorter leaves the rows that scrolled off the top in the scrollback, up to a whole copy of the task list.
 - Stopping the run with `Ctrl+Z` leaves a copy of the running tasks where the shell took over. They are drawn again below once the run continues.
-- After `Ctrl+Z`, what you type is shown for the rest of the process, also in the lists that run after it, since changing the terminal mode from the background would stop the run again.
-- A run started in the background, such as with `&` or under `timeout` in a script, stops with `Stopped (tty output)` until it is brought to the foreground. Set `lockInput: false` for it.
+- With `lockInput`, after `Ctrl+Z`, what you type is shown for the rest of the process, also in the lists that run after it, since changing the terminal mode from the background would stop the run again.
+- With `lockInput`, a run started in the background, such as with `&` or under `timeout` in a script, stops with `Stopped (tty output)` until it is brought to the foreground.
 - A group is printed once it closes. When the list goes on after it, such as with `exitOnError: false`, a subtask that still changes afterwards keeps the state it had when the group was printed.
 - When the terminal reports more rows than it shows, as some multiplexers and remote sessions do, the scrollback can fill with copies of the task list while it runs. The final output is still correct.
 

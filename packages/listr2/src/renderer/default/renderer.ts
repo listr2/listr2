@@ -40,7 +40,7 @@ export class DefaultRenderer implements ListrRenderer {
     showErrorMessage: true,
     suffixRetries: true,
     lazy: false,
-    lockInput: true,
+    lockInput: false,
     markIndentation: false,
     removeEmptyLines: true,
     formatOutput: 'wrap',

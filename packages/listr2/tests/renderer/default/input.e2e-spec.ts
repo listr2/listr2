@@ -12,11 +12,15 @@ describe('default renderer: input', () => {
 
   const options = (rendererOptions?: Record<string, unknown>): any => ({
     renderer: 'default',
-    rendererOptions: {
-      lazy: true,
-      logger: new ListrLogger({ useIcons: true, processOutput: new ProcessOutput(vt as any, vt as any) }),
-      ...rendererOptions
-    }
+    // an undefined option is dropped, so the renderer falls back to its default
+    rendererOptions: Object.fromEntries(
+      Object.entries({
+        lazy: true,
+        lockInput: true,
+        logger: new ListrLogger({ useIcons: true, processOutput: new ProcessOutput(vt as any, vt as any) }),
+        ...rendererOptions
+      }).filter(([, value]) => value !== undefined)
+    )
   })
 
   beforeEach(() => {
@@ -59,10 +63,10 @@ describe('default renderer: input', () => {
       expect(await vt.content()).toEqual(range(5, (index) => `✔ task ${index}`))
     })
 
-    it('should duplicate lines when enter is pressed with the input lock turned off', async() => {
+    it('should duplicate lines when enter is pressed without the input lock, which is off by default', async() => {
       stty.install()
 
-      await pressEnter(5, { lockInput: false }).run()
+      await pressEnter(5, { lockInput: undefined }).run()
 
       expect(await vt.content()).toEqual(range(5, (index) => [`❯ task ${index}`, `✔ task ${index}`]).flat())
       expect(stty.calls).toEqual([])
