@@ -1,3 +1,14 @@
+## @listr2/prompt-adapter-inquirer [5.0.0-beta.28](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@5.0.0-beta.27...@listr2/prompt-adapter-inquirer@5.0.0-beta.28) (2026-11-22)
+
+### Bug Fixes
+
+* **renderer:** draw the live region without log-update and move the input lock into ProcessInputLock ([71bf834](https://github.com/listr2/listr2/commit/71bf8341db40927a0836d08662c14875a7afcaa2))
+
+
+### Dependencies
+
+* **listr2:** upgraded to 12.0.0-beta.28
+
 ## @listr2/prompt-adapter-inquirer [5.0.0-beta.27](https://github.com/listr2/listr2/compare/@listr2/prompt-adapter-inquirer@5.0.0-beta.26...@listr2/prompt-adapter-inquirer@5.0.0-beta.27) (2026-11-22)
 
 
